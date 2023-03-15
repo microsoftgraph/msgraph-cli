@@ -30,15 +30,15 @@ namespace ApiSdk.Groups.Item.Sites.Item.Operations.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property operations for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var richLongRunningOperationIdOption = new Option<string>("--rich-long-running-operation-id", description: "key: id of richLongRunningOperation") {
+            var richLongRunningOperationIdOption = new Option<string>("--rich-long-running-operation-id", description: "The unique identifier of richLongRunningOperation") {
             };
             richLongRunningOperationIdOption.IsRequired = true;
             command.AddOption(richLongRunningOperationIdOption);
@@ -76,15 +76,15 @@ namespace ApiSdk.Groups.Item.Sites.Item.Operations.Item {
             var command = new Command("get");
             command.Description = "The collection of long-running operations on the site.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var richLongRunningOperationIdOption = new Option<string>("--rich-long-running-operation-id", description: "key: id of richLongRunningOperation") {
+            var richLongRunningOperationIdOption = new Option<string>("--rich-long-running-operation-id", description: "The unique identifier of richLongRunningOperation") {
             };
             richLongRunningOperationIdOption.IsRequired = true;
             command.AddOption(richLongRunningOperationIdOption);
@@ -150,15 +150,15 @@ namespace ApiSdk.Groups.Item.Sites.Item.Operations.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property operations in groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var richLongRunningOperationIdOption = new Option<string>("--rich-long-running-operation-id", description: "key: id of richLongRunningOperation") {
+            var richLongRunningOperationIdOption = new Option<string>("--rich-long-running-operation-id", description: "The unique identifier of richLongRunningOperation") {
             };
             richLongRunningOperationIdOption.IsRequired = true;
             command.AddOption(richLongRunningOperationIdOption);
@@ -200,6 +200,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Operations.Item {
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
                 if (richLongRunningOperationId is not null) requestInfo.PathParameters.Add("richLongRunningOperation%2Did", richLongRunningOperationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

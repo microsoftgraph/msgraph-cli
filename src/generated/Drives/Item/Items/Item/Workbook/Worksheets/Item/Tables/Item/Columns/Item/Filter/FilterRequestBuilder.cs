@@ -1,15 +1,15 @@
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.MicrosoftGraphApply;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.MicrosoftGraphApplyBottomItemsFilter;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.MicrosoftGraphApplyBottomPercentFilter;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.MicrosoftGraphApplyCellColorFilter;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.MicrosoftGraphApplyCustomFilter;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.MicrosoftGraphApplyDynamicFilter;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.MicrosoftGraphApplyFontColorFilter;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.MicrosoftGraphApplyIconFilter;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.MicrosoftGraphApplyTopItemsFilter;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.MicrosoftGraphApplyTopPercentFilter;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.MicrosoftGraphApplyValuesFilter;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.MicrosoftGraphClear;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.Apply;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.ApplyBottomItemsFilter;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.ApplyBottomPercentFilter;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.ApplyCellColorFilter;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.ApplyCustomFilter;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.ApplyDynamicFilter;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.ApplyFontColorFilter;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.ApplyIconFilter;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.ApplyTopItemsFilter;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.ApplyTopPercentFilter;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.ApplyValuesFilter;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item.Filter.Clear;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,29 +36,149 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the applyBottomItemsFilter method.
+        /// </summary>
+        public Command BuildApplyBottomItemsFilterCommand() {
+            var command = new Command("apply-bottom-items-filter");
+            command.Description = "Provides operations to call the applyBottomItemsFilter method.";
+            var builder = new ApplyBottomItemsFilterRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the applyBottomPercentFilter method.
+        /// </summary>
+        public Command BuildApplyBottomPercentFilterCommand() {
+            var command = new Command("apply-bottom-percent-filter");
+            command.Description = "Provides operations to call the applyBottomPercentFilter method.";
+            var builder = new ApplyBottomPercentFilterRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the applyCellColorFilter method.
+        /// </summary>
+        public Command BuildApplyCellColorFilterCommand() {
+            var command = new Command("apply-cell-color-filter");
+            command.Description = "Provides operations to call the applyCellColorFilter method.";
+            var builder = new ApplyCellColorFilterRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the apply method.
+        /// </summary>
+        public Command BuildApplyCommand() {
+            var command = new Command("apply");
+            command.Description = "Provides operations to call the apply method.";
+            var builder = new ApplyRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the applyCustomFilter method.
+        /// </summary>
+        public Command BuildApplyCustomFilterCommand() {
+            var command = new Command("apply-custom-filter");
+            command.Description = "Provides operations to call the applyCustomFilter method.";
+            var builder = new ApplyCustomFilterRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the applyDynamicFilter method.
+        /// </summary>
+        public Command BuildApplyDynamicFilterCommand() {
+            var command = new Command("apply-dynamic-filter");
+            command.Description = "Provides operations to call the applyDynamicFilter method.";
+            var builder = new ApplyDynamicFilterRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the applyFontColorFilter method.
+        /// </summary>
+        public Command BuildApplyFontColorFilterCommand() {
+            var command = new Command("apply-font-color-filter");
+            command.Description = "Provides operations to call the applyFontColorFilter method.";
+            var builder = new ApplyFontColorFilterRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the applyIconFilter method.
+        /// </summary>
+        public Command BuildApplyIconFilterCommand() {
+            var command = new Command("apply-icon-filter");
+            command.Description = "Provides operations to call the applyIconFilter method.";
+            var builder = new ApplyIconFilterRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the applyTopItemsFilter method.
+        /// </summary>
+        public Command BuildApplyTopItemsFilterCommand() {
+            var command = new Command("apply-top-items-filter");
+            command.Description = "Provides operations to call the applyTopItemsFilter method.";
+            var builder = new ApplyTopItemsFilterRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the applyTopPercentFilter method.
+        /// </summary>
+        public Command BuildApplyTopPercentFilterCommand() {
+            var command = new Command("apply-top-percent-filter");
+            command.Description = "Provides operations to call the applyTopPercentFilter method.";
+            var builder = new ApplyTopPercentFilterRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the applyValuesFilter method.
+        /// </summary>
+        public Command BuildApplyValuesFilterCommand() {
+            var command = new Command("apply-values-filter");
+            command.Description = "Provides operations to call the applyValuesFilter method.";
+            var builder = new ApplyValuesFilterRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the clear method.
+        /// </summary>
+        public Command BuildClearCommand() {
+            var command = new Command("clear");
+            command.Description = "Provides operations to call the clear method.";
+            var builder = new ClearRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete navigation property filter for drives
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property filter for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
-            var workbookTableIdOption = new Option<string>("--workbook-table-id", description: "key: id of workbookTable") {
+            var workbookTableIdOption = new Option<string>("--workbook-table-id", description: "The unique identifier of workbookTable") {
             };
             workbookTableIdOption.IsRequired = true;
             command.AddOption(workbookTableIdOption);
-            var workbookTableColumnIdOption = new Option<string>("--workbook-table-column-id", description: "key: id of workbookTableColumn") {
+            var workbookTableColumnIdOption = new Option<string>("--workbook-table-column-id", description: "The unique identifier of workbookTableColumn") {
             };
             workbookTableColumnIdOption.IsRequired = true;
             command.AddOption(workbookTableColumnIdOption);
@@ -100,23 +220,23 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
             var command = new Command("get");
             command.Description = "Retrieve the filter applied to the column. Read-only.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
-            var workbookTableIdOption = new Option<string>("--workbook-table-id", description: "key: id of workbookTable") {
+            var workbookTableIdOption = new Option<string>("--workbook-table-id", description: "The unique identifier of workbookTable") {
             };
             workbookTableIdOption.IsRequired = true;
             command.AddOption(workbookTableIdOption);
-            var workbookTableColumnIdOption = new Option<string>("--workbook-table-column-id", description: "key: id of workbookTableColumn") {
+            var workbookTableColumnIdOption = new Option<string>("--workbook-table-column-id", description: "The unique identifier of workbookTableColumn") {
             };
             workbookTableColumnIdOption.IsRequired = true;
             command.AddOption(workbookTableColumnIdOption);
@@ -180,149 +300,29 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
             return command;
         }
         /// <summary>
-        /// Provides operations to call the applyBottomItemsFilter method.
-        /// </summary>
-        public Command BuildMicrosoftGraphApplyBottomItemsFilterCommand() {
-            var command = new Command("microsoft-graph-apply-bottom-items-filter");
-            command.Description = "Provides operations to call the applyBottomItemsFilter method.";
-            var builder = new MicrosoftGraphApplyBottomItemsFilterRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the applyBottomPercentFilter method.
-        /// </summary>
-        public Command BuildMicrosoftGraphApplyBottomPercentFilterCommand() {
-            var command = new Command("microsoft-graph-apply-bottom-percent-filter");
-            command.Description = "Provides operations to call the applyBottomPercentFilter method.";
-            var builder = new MicrosoftGraphApplyBottomPercentFilterRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the applyCellColorFilter method.
-        /// </summary>
-        public Command BuildMicrosoftGraphApplyCellColorFilterCommand() {
-            var command = new Command("microsoft-graph-apply-cell-color-filter");
-            command.Description = "Provides operations to call the applyCellColorFilter method.";
-            var builder = new MicrosoftGraphApplyCellColorFilterRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the apply method.
-        /// </summary>
-        public Command BuildMicrosoftGraphApplyCommand() {
-            var command = new Command("microsoft-graph-apply");
-            command.Description = "Provides operations to call the apply method.";
-            var builder = new MicrosoftGraphApplyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the applyCustomFilter method.
-        /// </summary>
-        public Command BuildMicrosoftGraphApplyCustomFilterCommand() {
-            var command = new Command("microsoft-graph-apply-custom-filter");
-            command.Description = "Provides operations to call the applyCustomFilter method.";
-            var builder = new MicrosoftGraphApplyCustomFilterRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the applyDynamicFilter method.
-        /// </summary>
-        public Command BuildMicrosoftGraphApplyDynamicFilterCommand() {
-            var command = new Command("microsoft-graph-apply-dynamic-filter");
-            command.Description = "Provides operations to call the applyDynamicFilter method.";
-            var builder = new MicrosoftGraphApplyDynamicFilterRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the applyFontColorFilter method.
-        /// </summary>
-        public Command BuildMicrosoftGraphApplyFontColorFilterCommand() {
-            var command = new Command("microsoft-graph-apply-font-color-filter");
-            command.Description = "Provides operations to call the applyFontColorFilter method.";
-            var builder = new MicrosoftGraphApplyFontColorFilterRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the applyIconFilter method.
-        /// </summary>
-        public Command BuildMicrosoftGraphApplyIconFilterCommand() {
-            var command = new Command("microsoft-graph-apply-icon-filter");
-            command.Description = "Provides operations to call the applyIconFilter method.";
-            var builder = new MicrosoftGraphApplyIconFilterRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the applyTopItemsFilter method.
-        /// </summary>
-        public Command BuildMicrosoftGraphApplyTopItemsFilterCommand() {
-            var command = new Command("microsoft-graph-apply-top-items-filter");
-            command.Description = "Provides operations to call the applyTopItemsFilter method.";
-            var builder = new MicrosoftGraphApplyTopItemsFilterRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the applyTopPercentFilter method.
-        /// </summary>
-        public Command BuildMicrosoftGraphApplyTopPercentFilterCommand() {
-            var command = new Command("microsoft-graph-apply-top-percent-filter");
-            command.Description = "Provides operations to call the applyTopPercentFilter method.";
-            var builder = new MicrosoftGraphApplyTopPercentFilterRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the applyValuesFilter method.
-        /// </summary>
-        public Command BuildMicrosoftGraphApplyValuesFilterCommand() {
-            var command = new Command("microsoft-graph-apply-values-filter");
-            command.Description = "Provides operations to call the applyValuesFilter method.";
-            var builder = new MicrosoftGraphApplyValuesFilterRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the clear method.
-        /// </summary>
-        public Command BuildMicrosoftGraphClearCommand() {
-            var command = new Command("microsoft-graph-clear");
-            command.Description = "Provides operations to call the clear method.";
-            var builder = new MicrosoftGraphClearRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property filter in drives
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property filter in drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
-            var workbookTableIdOption = new Option<string>("--workbook-table-id", description: "key: id of workbookTable") {
+            var workbookTableIdOption = new Option<string>("--workbook-table-id", description: "The unique identifier of workbookTable") {
             };
             workbookTableIdOption.IsRequired = true;
             command.AddOption(workbookTableIdOption);
-            var workbookTableColumnIdOption = new Option<string>("--workbook-table-column-id", description: "key: id of workbookTableColumn") {
+            var workbookTableColumnIdOption = new Option<string>("--workbook-table-column-id", description: "The unique identifier of workbookTableColumn") {
             };
             workbookTableColumnIdOption.IsRequired = true;
             command.AddOption(workbookTableColumnIdOption);
@@ -368,6 +368,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
                 if (workbookWorksheetId is not null) requestInfo.PathParameters.Add("workbookWorksheet%2Did", workbookWorksheetId);
                 if (workbookTableId is not null) requestInfo.PathParameters.Add("workbookTable%2Did", workbookTableId);
                 if (workbookTableColumnId is not null) requestInfo.PathParameters.Add("workbookTableColumn%2Did", workbookTableColumnId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

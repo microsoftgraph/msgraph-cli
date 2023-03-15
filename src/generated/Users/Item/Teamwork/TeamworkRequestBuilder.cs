@@ -2,7 +2,7 @@ using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.Teamwork.AssociatedTeams;
 using ApiSdk.Users.Item.Teamwork.InstalledApps;
-using ApiSdk.Users.Item.Teamwork.MicrosoftGraphSendActivityNotification;
+using ApiSdk.Users.Item.Teamwork.SendActivityNotification;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -46,7 +46,7 @@ namespace ApiSdk.Users.Item.Teamwork {
             var command = new Command("delete");
             command.Description = "Delete navigation property teamwork for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -80,7 +80,7 @@ namespace ApiSdk.Users.Item.Teamwork {
             var command = new Command("get");
             command.Description = "Get teamwork from users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -149,23 +149,13 @@ namespace ApiSdk.Users.Item.Teamwork {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the sendActivityNotification method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSendActivityNotificationCommand() {
-            var command = new Command("microsoft-graph-send-activity-notification");
-            command.Description = "Provides operations to call the sendActivityNotification method.";
-            var builder = new MicrosoftGraphSendActivityNotificationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property teamwork in users
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property teamwork in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -203,6 +193,7 @@ namespace ApiSdk.Users.Item.Teamwork {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -213,6 +204,16 @@ namespace ApiSdk.Users.Item.Teamwork {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sendActivityNotification method.
+        /// </summary>
+        public Command BuildSendActivityNotificationCommand() {
+            var command = new Command("send-activity-notification");
+            command.Description = "Provides operations to call the sendActivityNotification method.";
+            var builder = new SendActivityNotificationRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

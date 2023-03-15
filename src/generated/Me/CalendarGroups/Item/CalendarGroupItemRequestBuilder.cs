@@ -44,7 +44,7 @@ namespace ApiSdk.Me.CalendarGroups.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property calendarGroups for me";
             // Create options for all the parameters
-            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "key: id of calendarGroup") {
+            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "The unique identifier of calendarGroup") {
             };
             calendarGroupIdOption.IsRequired = true;
             command.AddOption(calendarGroupIdOption);
@@ -78,7 +78,7 @@ namespace ApiSdk.Me.CalendarGroups.Item {
             var command = new Command("get");
             command.Description = "The user's calendar groups. Read-only. Nullable.";
             // Create options for all the parameters
-            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "key: id of calendarGroup") {
+            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "The unique identifier of calendarGroup") {
             };
             calendarGroupIdOption.IsRequired = true;
             command.AddOption(calendarGroupIdOption);
@@ -133,7 +133,7 @@ namespace ApiSdk.Me.CalendarGroups.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property calendarGroups in me";
             // Create options for all the parameters
-            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "key: id of calendarGroup") {
+            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "The unique identifier of calendarGroup") {
             };
             calendarGroupIdOption.IsRequired = true;
             command.AddOption(calendarGroupIdOption);
@@ -171,6 +171,7 @@ namespace ApiSdk.Me.CalendarGroups.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (calendarGroupId is not null) requestInfo.PathParameters.Add("calendarGroup%2Did", calendarGroupId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

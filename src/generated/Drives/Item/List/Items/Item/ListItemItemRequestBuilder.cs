@@ -2,8 +2,8 @@ using ApiSdk.Drives.Item.List.Items.Item.Analytics;
 using ApiSdk.Drives.Item.List.Items.Item.DocumentSetVersions;
 using ApiSdk.Drives.Item.List.Items.Item.DriveItem;
 using ApiSdk.Drives.Item.List.Items.Item.Fields;
-using ApiSdk.Drives.Item.List.Items.Item.MicrosoftGraphGetActivitiesByInterval;
-using ApiSdk.Drives.Item.List.Items.Item.MicrosoftGraphGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval;
+using ApiSdk.Drives.Item.List.Items.Item.GetActivitiesByInterval;
+using ApiSdk.Drives.Item.List.Items.Item.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval;
 using ApiSdk.Drives.Item.List.Items.Item.Versions;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
@@ -47,11 +47,11 @@ namespace ApiSdk.Drives.Item.List.Items.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property items for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var listItemIdOption = new Option<string>("--list-item-id", description: "key: id of listItem") {
+            var listItemIdOption = new Option<string>("--list-item-id", description: "The unique identifier of listItem") {
             };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
@@ -117,17 +117,27 @@ namespace ApiSdk.Drives.Item.List.Items.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the getActivitiesByInterval method.
+        /// </summary>
+        public Command BuildGetActivitiesByIntervalCommand() {
+            var command = new Command("get-activities-by-interval");
+            command.Description = "Provides operations to call the getActivitiesByInterval method.";
+            var builder = new GetActivitiesByIntervalRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// All items contained in the list.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "All items contained in the list.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var listItemIdOption = new Option<string>("--list-item-id", description: "key: id of listItem") {
+            var listItemIdOption = new Option<string>("--list-item-id", description: "The unique identifier of listItem") {
             };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
@@ -185,27 +195,17 @@ namespace ApiSdk.Drives.Item.List.Items.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the getActivitiesByInterval method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetActivitiesByIntervalCommand() {
-            var command = new Command("microsoft-graph-get-activities-by-interval");
-            command.Description = "Provides operations to call the getActivitiesByInterval method.";
-            var builder = new MicrosoftGraphGetActivitiesByIntervalRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property items in drives
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property items in drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var listItemIdOption = new Option<string>("--list-item-id", description: "key: id of listItem") {
+            var listItemIdOption = new Option<string>("--list-item-id", description: "The unique identifier of listItem") {
             };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
@@ -245,6 +245,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item {
                 });
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (listItemId is not null) requestInfo.PathParameters.Add("listItem%2Did", listItemId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -53,7 +53,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item.Rules {
             var command = new Command("create");
             command.Description = "Create new navigation property to rules for policies";
             // Create options for all the parameters
-            var unifiedRoleManagementPolicyIdOption = new Option<string>("--unified-role-management-policy-id", description: "key: id of unifiedRoleManagementPolicy") {
+            var unifiedRoleManagementPolicyIdOption = new Option<string>("--unified-role-management-policy-id", description: "The unique identifier of unifiedRoleManagementPolicy") {
             };
             unifiedRoleManagementPolicyIdOption.IsRequired = true;
             command.AddOption(unifiedRoleManagementPolicyIdOption);
@@ -91,6 +91,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item.Rules {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (unifiedRoleManagementPolicyId is not null) requestInfo.PathParameters.Add("unifiedRoleManagementPolicy%2Did", unifiedRoleManagementPolicyId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -111,7 +112,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item.Rules {
             var command = new Command("list");
             command.Description = "Get the rules or settings defined for a role management policy. The rules are a collection of following types that are derived from the unifiedRoleManagementPolicyRule object:+ unifiedRoleManagementPolicyApprovalRule+ unifiedRoleManagementPolicyAuthenticationContextRule+ unifiedRoleManagementPolicyEnablementRule+ unifiedRoleManagementPolicyExpirationRule+ unifiedRoleManagementPolicyNotificationRule\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/unifiedrolemanagementpolicy-list-rules?view=graph-rest-1.0";
             // Create options for all the parameters
-            var unifiedRoleManagementPolicyIdOption = new Option<string>("--unified-role-management-policy-id", description: "key: id of unifiedRoleManagementPolicy") {
+            var unifiedRoleManagementPolicyIdOption = new Option<string>("--unified-role-management-policy-id", description: "The unique identifier of unifiedRoleManagementPolicy") {
             };
             unifiedRoleManagementPolicyIdOption.IsRequired = true;
             command.AddOption(unifiedRoleManagementPolicyIdOption);

@@ -2,12 +2,14 @@ using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Policies.ActivityBasedTimeoutPolicies;
 using ApiSdk.Policies.AdminConsentRequestPolicy;
+using ApiSdk.Policies.AppManagementPolicies;
 using ApiSdk.Policies.AuthenticationFlowsPolicy;
 using ApiSdk.Policies.AuthenticationMethodsPolicy;
 using ApiSdk.Policies.AuthorizationPolicy;
 using ApiSdk.Policies.ClaimsMappingPolicies;
 using ApiSdk.Policies.ConditionalAccessPolicies;
 using ApiSdk.Policies.CrossTenantAccessPolicy;
+using ApiSdk.Policies.DefaultAppManagementPolicy;
 using ApiSdk.Policies.FeatureRolloutPolicies;
 using ApiSdk.Policies.HomeRealmDiscoveryPolicies;
 using ApiSdk.Policies.IdentitySecurityDefaultsEnforcementPolicy;
@@ -62,6 +64,19 @@ namespace ApiSdk.Policies {
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the appManagementPolicies property of the microsoft.graph.policyRoot entity.
+        /// </summary>
+        public Command BuildAppManagementPoliciesCommand() {
+            var command = new Command("app-management-policies");
+            command.Description = "Provides operations to manage the appManagementPolicies property of the microsoft.graph.policyRoot entity.";
+            var builder = new AppManagementPoliciesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -138,6 +153,18 @@ namespace ApiSdk.Policies {
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPartnersCommand());
+            command.AddCommand(builder.BuildPatchCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the defaultAppManagementPolicy property of the microsoft.graph.policyRoot entity.
+        /// </summary>
+        public Command BuildDefaultAppManagementPolicyCommand() {
+            var command = new Command("default-app-management-policy");
+            command.Description = "Provides operations to manage the defaultAppManagementPolicy property of the microsoft.graph.policyRoot entity.";
+            var builder = new DefaultAppManagementPolicyRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
@@ -274,6 +301,7 @@ namespace ApiSdk.Policies {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

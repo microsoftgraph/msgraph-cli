@@ -3,12 +3,16 @@ using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.Activities;
 using ApiSdk.Users.Item.AgreementAcceptances;
 using ApiSdk.Users.Item.AppRoleAssignments;
+using ApiSdk.Users.Item.AssignLicense;
 using ApiSdk.Users.Item.Authentication;
 using ApiSdk.Users.Item.Calendar;
 using ApiSdk.Users.Item.CalendarGroups;
 using ApiSdk.Users.Item.Calendars;
 using ApiSdk.Users.Item.CalendarView;
+using ApiSdk.Users.Item.ChangePassword;
 using ApiSdk.Users.Item.Chats;
+using ApiSdk.Users.Item.CheckMemberGroups;
+using ApiSdk.Users.Item.CheckMemberObjects;
 using ApiSdk.Users.Item.ContactFolders;
 using ApiSdk.Users.Item.Contacts;
 using ApiSdk.Users.Item.CreatedObjects;
@@ -17,8 +21,18 @@ using ApiSdk.Users.Item.DirectReports;
 using ApiSdk.Users.Item.Drive;
 using ApiSdk.Users.Item.Drives;
 using ApiSdk.Users.Item.Events;
+using ApiSdk.Users.Item.ExportDeviceAndAppManagementData;
+using ApiSdk.Users.Item.ExportDeviceAndAppManagementDataWithSkipWithTop;
+using ApiSdk.Users.Item.ExportPersonalData;
 using ApiSdk.Users.Item.Extensions;
+using ApiSdk.Users.Item.FindMeetingTimes;
 using ApiSdk.Users.Item.FollowedSites;
+using ApiSdk.Users.Item.GetMailTips;
+using ApiSdk.Users.Item.GetManagedAppDiagnosticStatuses;
+using ApiSdk.Users.Item.GetManagedAppPolicies;
+using ApiSdk.Users.Item.GetManagedDevicesWithAppFailures;
+using ApiSdk.Users.Item.GetMemberGroups;
+using ApiSdk.Users.Item.GetMemberObjects;
 using ApiSdk.Users.Item.InferenceClassification;
 using ApiSdk.Users.Item.Insights;
 using ApiSdk.Users.Item.JoinedTeams;
@@ -29,28 +43,6 @@ using ApiSdk.Users.Item.ManagedDevices;
 using ApiSdk.Users.Item.Manager;
 using ApiSdk.Users.Item.MemberOf;
 using ApiSdk.Users.Item.Messages;
-using ApiSdk.Users.Item.MicrosoftGraphAssignLicense;
-using ApiSdk.Users.Item.MicrosoftGraphChangePassword;
-using ApiSdk.Users.Item.MicrosoftGraphCheckMemberGroups;
-using ApiSdk.Users.Item.MicrosoftGraphCheckMemberObjects;
-using ApiSdk.Users.Item.MicrosoftGraphExportDeviceAndAppManagementData;
-using ApiSdk.Users.Item.MicrosoftGraphExportDeviceAndAppManagementDataWithSkipWithTop;
-using ApiSdk.Users.Item.MicrosoftGraphExportPersonalData;
-using ApiSdk.Users.Item.MicrosoftGraphFindMeetingTimes;
-using ApiSdk.Users.Item.MicrosoftGraphGetMailTips;
-using ApiSdk.Users.Item.MicrosoftGraphGetManagedAppDiagnosticStatuses;
-using ApiSdk.Users.Item.MicrosoftGraphGetManagedAppPolicies;
-using ApiSdk.Users.Item.MicrosoftGraphGetManagedDevicesWithAppFailures;
-using ApiSdk.Users.Item.MicrosoftGraphGetMemberGroups;
-using ApiSdk.Users.Item.MicrosoftGraphGetMemberObjects;
-using ApiSdk.Users.Item.MicrosoftGraphReminderViewWithStartDateTimeWithEndDateTime;
-using ApiSdk.Users.Item.MicrosoftGraphRemoveAllDevicesFromManagement;
-using ApiSdk.Users.Item.MicrosoftGraphReprocessLicenseAssignment;
-using ApiSdk.Users.Item.MicrosoftGraphRestore;
-using ApiSdk.Users.Item.MicrosoftGraphRevokeSignInSessions;
-using ApiSdk.Users.Item.MicrosoftGraphSendMail;
-using ApiSdk.Users.Item.MicrosoftGraphTranslateExchangeIds;
-using ApiSdk.Users.Item.MicrosoftGraphWipeManagedAppRegistrationsByDeviceTag;
 using ApiSdk.Users.Item.Oauth2PermissionGrants;
 using ApiSdk.Users.Item.Onenote;
 using ApiSdk.Users.Item.OnlineMeetings;
@@ -63,11 +55,19 @@ using ApiSdk.Users.Item.Photos;
 using ApiSdk.Users.Item.Planner;
 using ApiSdk.Users.Item.Presence;
 using ApiSdk.Users.Item.RegisteredDevices;
+using ApiSdk.Users.Item.ReminderViewWithStartDateTimeWithEndDateTime;
+using ApiSdk.Users.Item.RemoveAllDevicesFromManagement;
+using ApiSdk.Users.Item.ReprocessLicenseAssignment;
+using ApiSdk.Users.Item.Restore;
+using ApiSdk.Users.Item.RevokeSignInSessions;
 using ApiSdk.Users.Item.ScopedRoleMemberOf;
+using ApiSdk.Users.Item.SendMail;
 using ApiSdk.Users.Item.Settings;
 using ApiSdk.Users.Item.Teamwork;
 using ApiSdk.Users.Item.Todo;
 using ApiSdk.Users.Item.TransitiveMemberOf;
+using ApiSdk.Users.Item.TranslateExchangeIds;
+using ApiSdk.Users.Item.WipeManagedAppRegistrationsByDeviceTag;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -102,7 +102,7 @@ namespace ApiSdk.Users.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRecentCommand());
+            command.AddCommand(builder.BuildRecentCommand());
             return command;
         }
         /// <summary>
@@ -128,6 +128,16 @@ namespace ApiSdk.Users.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the assignLicense method.
+        /// </summary>
+        public Command BuildAssignLicenseCommand() {
+            var command = new Command("assign-license");
+            command.Description = "Provides operations to call the assignLicense method.";
+            var builder = new AssignLicenseRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -163,7 +173,7 @@ namespace ApiSdk.Users.Item {
             command.AddCommand(builder.BuildCalendarViewCommand());
             command.AddCommand(builder.BuildEventsCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetScheduleCommand());
+            command.AddCommand(builder.BuildGetScheduleCommand());
             command.AddCommand(builder.BuildMultiValueExtendedPropertiesCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildSingleValueExtendedPropertiesCommand());
@@ -204,8 +214,18 @@ namespace ApiSdk.Users.Item {
             var builder = new CalendarViewRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the changePassword method.
+        /// </summary>
+        public Command BuildChangePasswordCommand() {
+            var command = new Command("change-password");
+            command.Description = "Provides operations to call the changePassword method.";
+            var builder = new ChangePasswordRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -218,8 +238,28 @@ namespace ApiSdk.Users.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildGetAllMessagesCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetAllMessagesCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the checkMemberGroups method.
+        /// </summary>
+        public Command BuildCheckMemberGroupsCommand() {
+            var command = new Command("check-member-groups");
+            command.Description = "Provides operations to call the checkMemberGroups method.";
+            var builder = new CheckMemberGroupsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the checkMemberObjects method.
+        /// </summary>
+        public Command BuildCheckMemberObjectsCommand() {
+            var command = new Command("check-member-objects");
+            command.Description = "Provides operations to call the checkMemberObjects method.";
+            var builder = new CheckMemberObjectsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -232,8 +272,8 @@ namespace ApiSdk.Users.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             return command;
         }
         /// <summary>
@@ -246,8 +286,8 @@ namespace ApiSdk.Users.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             return command;
         }
         /// <summary>
@@ -259,8 +299,8 @@ namespace ApiSdk.Users.Item {
             var builder = new CreatedObjectsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGraphServicePrincipalCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphServicePrincipalCommand());
             return command;
         }
         /// <summary>
@@ -271,7 +311,7 @@ namespace ApiSdk.Users.Item {
             var command = new Command("delete");
             command.Description = "Delete user.   When deleted, user resources are moved to a temporary container and can be restored within 30 days.  After that time, they are permanently deleted.  To learn more, see deletedItems.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-delete?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -320,9 +360,9 @@ namespace ApiSdk.Users.Item {
             var builder = new DirectReportsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGraphOrgContactCommand());
+            command.AddCommand(builder.BuildGraphUserCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphOrgContactCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUserCommand());
             return command;
         }
         /// <summary>
@@ -357,8 +397,28 @@ namespace ApiSdk.Users.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the exportDeviceAndAppManagementData method.
+        /// </summary>
+        public Command BuildExportDeviceAndAppManagementDataCommand() {
+            var command = new Command("export-device-and-app-management-data");
+            command.Description = "Provides operations to call the exportDeviceAndAppManagementData method.";
+            var builder = new ExportDeviceAndAppManagementDataRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the exportPersonalData method.
+        /// </summary>
+        public Command BuildExportPersonalDataCommand() {
+            var command = new Command("export-personal-data");
+            command.Description = "Provides operations to call the exportPersonalData method.";
+            var builder = new ExportPersonalDataRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -372,6 +432,16 @@ namespace ApiSdk.Users.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the findMeetingTimes method.
+        /// </summary>
+        public Command BuildFindMeetingTimesCommand() {
+            var command = new Command("find-meeting-times");
+            command.Description = "Provides operations to call the findMeetingTimes method.";
+            var builder = new FindMeetingTimesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -394,7 +464,7 @@ namespace ApiSdk.Users.Item {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of user object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -450,6 +520,66 @@ namespace ApiSdk.Users.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the getMailTips method.
+        /// </summary>
+        public Command BuildGetMailTipsCommand() {
+            var command = new Command("get-mail-tips");
+            command.Description = "Provides operations to call the getMailTips method.";
+            var builder = new GetMailTipsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getManagedAppDiagnosticStatuses method.
+        /// </summary>
+        public Command BuildGetManagedAppDiagnosticStatusesCommand() {
+            var command = new Command("get-managed-app-diagnostic-statuses");
+            command.Description = "Provides operations to call the getManagedAppDiagnosticStatuses method.";
+            var builder = new GetManagedAppDiagnosticStatusesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getManagedAppPolicies method.
+        /// </summary>
+        public Command BuildGetManagedAppPoliciesCommand() {
+            var command = new Command("get-managed-app-policies");
+            command.Description = "Provides operations to call the getManagedAppPolicies method.";
+            var builder = new GetManagedAppPoliciesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getManagedDevicesWithAppFailures method.
+        /// </summary>
+        public Command BuildGetManagedDevicesWithAppFailuresCommand() {
+            var command = new Command("get-managed-devices-with-app-failures");
+            command.Description = "Provides operations to call the getManagedDevicesWithAppFailures method.";
+            var builder = new GetManagedDevicesWithAppFailuresRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getMemberGroups method.
+        /// </summary>
+        public Command BuildGetMemberGroupsCommand() {
+            var command = new Command("get-member-groups");
+            command.Description = "Provides operations to call the getMemberGroups method.";
+            var builder = new GetMemberGroupsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getMemberObjects method.
+        /// </summary>
+        public Command BuildGetMemberObjectsCommand() {
+            var command = new Command("get-member-objects");
+            command.Description = "Provides operations to call the getMemberObjects method.";
+            var builder = new GetMemberObjectsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the inferenceClassification property of the microsoft.graph.user entity.
         /// </summary>
         public Command BuildInferenceClassificationCommand() {
@@ -486,8 +616,8 @@ namespace ApiSdk.Users.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildGetAllMessagesCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetAllMessagesCommand());
             return command;
         }
         /// <summary>
@@ -513,8 +643,8 @@ namespace ApiSdk.Users.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             return command;
         }
         /// <summary>
@@ -562,13 +692,8 @@ namespace ApiSdk.Users.Item {
             var builder = new MemberOfRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGraphGroupCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphApplicationCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeviceCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGroupCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphOrgContactCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphServicePrincipalCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUserCommand());
             return command;
         }
         /// <summary>
@@ -581,208 +706,8 @@ namespace ApiSdk.Users.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the assignLicense method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAssignLicenseCommand() {
-            var command = new Command("microsoft-graph-assign-license");
-            command.Description = "Provides operations to call the assignLicense method.";
-            var builder = new MicrosoftGraphAssignLicenseRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the changePassword method.
-        /// </summary>
-        public Command BuildMicrosoftGraphChangePasswordCommand() {
-            var command = new Command("microsoft-graph-change-password");
-            command.Description = "Provides operations to call the changePassword method.";
-            var builder = new MicrosoftGraphChangePasswordRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the checkMemberGroups method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCheckMemberGroupsCommand() {
-            var command = new Command("microsoft-graph-check-member-groups");
-            command.Description = "Provides operations to call the checkMemberGroups method.";
-            var builder = new MicrosoftGraphCheckMemberGroupsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the checkMemberObjects method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCheckMemberObjectsCommand() {
-            var command = new Command("microsoft-graph-check-member-objects");
-            command.Description = "Provides operations to call the checkMemberObjects method.";
-            var builder = new MicrosoftGraphCheckMemberObjectsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the exportDeviceAndAppManagementData method.
-        /// </summary>
-        public Command BuildMicrosoftGraphExportDeviceAndAppManagementDataCommand() {
-            var command = new Command("microsoft-graph-export-device-and-app-management-data");
-            command.Description = "Provides operations to call the exportDeviceAndAppManagementData method.";
-            var builder = new MicrosoftGraphExportDeviceAndAppManagementDataRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the exportPersonalData method.
-        /// </summary>
-        public Command BuildMicrosoftGraphExportPersonalDataCommand() {
-            var command = new Command("microsoft-graph-export-personal-data");
-            command.Description = "Provides operations to call the exportPersonalData method.";
-            var builder = new MicrosoftGraphExportPersonalDataRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the findMeetingTimes method.
-        /// </summary>
-        public Command BuildMicrosoftGraphFindMeetingTimesCommand() {
-            var command = new Command("microsoft-graph-find-meeting-times");
-            command.Description = "Provides operations to call the findMeetingTimes method.";
-            var builder = new MicrosoftGraphFindMeetingTimesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getMailTips method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetMailTipsCommand() {
-            var command = new Command("microsoft-graph-get-mail-tips");
-            command.Description = "Provides operations to call the getMailTips method.";
-            var builder = new MicrosoftGraphGetMailTipsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getManagedAppDiagnosticStatuses method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetManagedAppDiagnosticStatusesCommand() {
-            var command = new Command("microsoft-graph-get-managed-app-diagnostic-statuses");
-            command.Description = "Provides operations to call the getManagedAppDiagnosticStatuses method.";
-            var builder = new MicrosoftGraphGetManagedAppDiagnosticStatusesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getManagedAppPolicies method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetManagedAppPoliciesCommand() {
-            var command = new Command("microsoft-graph-get-managed-app-policies");
-            command.Description = "Provides operations to call the getManagedAppPolicies method.";
-            var builder = new MicrosoftGraphGetManagedAppPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getManagedDevicesWithAppFailures method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetManagedDevicesWithAppFailuresCommand() {
-            var command = new Command("microsoft-graph-get-managed-devices-with-app-failures");
-            command.Description = "Provides operations to call the getManagedDevicesWithAppFailures method.";
-            var builder = new MicrosoftGraphGetManagedDevicesWithAppFailuresRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getMemberGroups method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetMemberGroupsCommand() {
-            var command = new Command("microsoft-graph-get-member-groups");
-            command.Description = "Provides operations to call the getMemberGroups method.";
-            var builder = new MicrosoftGraphGetMemberGroupsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getMemberObjects method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetMemberObjectsCommand() {
-            var command = new Command("microsoft-graph-get-member-objects");
-            command.Description = "Provides operations to call the getMemberObjects method.";
-            var builder = new MicrosoftGraphGetMemberObjectsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the removeAllDevicesFromManagement method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRemoveAllDevicesFromManagementCommand() {
-            var command = new Command("microsoft-graph-remove-all-devices-from-management");
-            command.Description = "Provides operations to call the removeAllDevicesFromManagement method.";
-            var builder = new MicrosoftGraphRemoveAllDevicesFromManagementRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the reprocessLicenseAssignment method.
-        /// </summary>
-        public Command BuildMicrosoftGraphReprocessLicenseAssignmentCommand() {
-            var command = new Command("microsoft-graph-reprocess-license-assignment");
-            command.Description = "Provides operations to call the reprocessLicenseAssignment method.";
-            var builder = new MicrosoftGraphReprocessLicenseAssignmentRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the restore method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRestoreCommand() {
-            var command = new Command("microsoft-graph-restore");
-            command.Description = "Provides operations to call the restore method.";
-            var builder = new MicrosoftGraphRestoreRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the revokeSignInSessions method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRevokeSignInSessionsCommand() {
-            var command = new Command("microsoft-graph-revoke-sign-in-sessions");
-            command.Description = "Provides operations to call the revokeSignInSessions method.";
-            var builder = new MicrosoftGraphRevokeSignInSessionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the sendMail method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSendMailCommand() {
-            var command = new Command("microsoft-graph-send-mail");
-            command.Description = "Provides operations to call the sendMail method.";
-            var builder = new MicrosoftGraphSendMailRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the translateExchangeIds method.
-        /// </summary>
-        public Command BuildMicrosoftGraphTranslateExchangeIdsCommand() {
-            var command = new Command("microsoft-graph-translate-exchange-ids");
-            command.Description = "Provides operations to call the translateExchangeIds method.";
-            var builder = new MicrosoftGraphTranslateExchangeIdsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the wipeManagedAppRegistrationsByDeviceTag method.
-        /// </summary>
-        public Command BuildMicrosoftGraphWipeManagedAppRegistrationsByDeviceTagCommand() {
-            var command = new Command("microsoft-graph-wipe-managed-app-registrations-by-device-tag");
-            command.Description = "Provides operations to call the wipeManagedAppRegistrationsByDeviceTag method.";
-            var builder = new MicrosoftGraphWipeManagedAppRegistrationsByDeviceTagRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -825,8 +750,8 @@ namespace ApiSdk.Users.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildCreateOrGetCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCreateOrGetCommand());
             return command;
         }
         /// <summary>
@@ -838,8 +763,8 @@ namespace ApiSdk.Users.Item {
             var builder = new OutlookRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildMasterCategoriesCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSupportedLanguagesCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSupportedTimeZonesCommand());
+            command.AddCommand(builder.BuildSupportedLanguagesCommand());
+            command.AddCommand(builder.BuildSupportedTimeZonesCommand());
             return command;
         }
         /// <summary>
@@ -851,10 +776,10 @@ namespace ApiSdk.Users.Item {
             var builder = new OwnedDevicesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGraphAppRoleAssignmentCommand());
+            command.AddCommand(builder.BuildGraphDeviceCommand());
+            command.AddCommand(builder.BuildGraphEndpointCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAppRoleAssignmentCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeviceCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphEndpointCommand());
             return command;
         }
         /// <summary>
@@ -866,10 +791,10 @@ namespace ApiSdk.Users.Item {
             var builder = new OwnedObjectsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGraphApplicationCommand());
+            command.AddCommand(builder.BuildGraphGroupCommand());
+            command.AddCommand(builder.BuildGraphServicePrincipalCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphApplicationCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGroupCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphServicePrincipalCommand());
             return command;
         }
         /// <summary>
@@ -880,7 +805,7 @@ namespace ApiSdk.Users.Item {
             var command = new Command("patch");
             command.Description = "Update the properties of a user object. Not all properties can be updated by Member or Guest users with their default permissions without Administrator roles. Compare member and guest default permissions to see properties they can manage.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-update?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -918,6 +843,7 @@ namespace ApiSdk.Users.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -987,13 +913,13 @@ namespace ApiSdk.Users.Item {
             var command = new Command("presence");
             command.Description = "Provides operations to manage the presence property of the microsoft.graph.user entity.";
             var builder = new PresenceRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildClearPresenceCommand());
+            command.AddCommand(builder.BuildClearUserPreferredPresenceCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphClearPresenceCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphClearUserPreferredPresenceCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSetPresenceCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSetUserPreferredPresenceCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildSetPresenceCommand());
+            command.AddCommand(builder.BuildSetUserPreferredPresenceCommand());
             return command;
         }
         /// <summary>
@@ -1005,10 +931,50 @@ namespace ApiSdk.Users.Item {
             var builder = new RegisteredDevicesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGraphAppRoleAssignmentCommand());
+            command.AddCommand(builder.BuildGraphDeviceCommand());
+            command.AddCommand(builder.BuildGraphEndpointCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAppRoleAssignmentCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeviceCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphEndpointCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the removeAllDevicesFromManagement method.
+        /// </summary>
+        public Command BuildRemoveAllDevicesFromManagementCommand() {
+            var command = new Command("remove-all-devices-from-management");
+            command.Description = "Provides operations to call the removeAllDevicesFromManagement method.";
+            var builder = new RemoveAllDevicesFromManagementRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the reprocessLicenseAssignment method.
+        /// </summary>
+        public Command BuildReprocessLicenseAssignmentCommand() {
+            var command = new Command("reprocess-license-assignment");
+            command.Description = "Provides operations to call the reprocessLicenseAssignment method.";
+            var builder = new ReprocessLicenseAssignmentRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the restore method.
+        /// </summary>
+        public Command BuildRestoreCommand() {
+            var command = new Command("restore");
+            command.Description = "Provides operations to call the restore method.";
+            var builder = new RestoreRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the revokeSignInSessions method.
+        /// </summary>
+        public Command BuildRevokeSignInSessionsCommand() {
+            var command = new Command("revoke-sign-in-sessions");
+            command.Description = "Provides operations to call the revokeSignInSessions method.";
+            var builder = new RevokeSignInSessionsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -1022,6 +988,16 @@ namespace ApiSdk.Users.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sendMail method.
+        /// </summary>
+        public Command BuildSendMailCommand() {
+            var command = new Command("send-mail");
+            command.Description = "Provides operations to call the sendMail method.";
+            var builder = new SendMailRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -1048,8 +1024,8 @@ namespace ApiSdk.Users.Item {
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildInstalledAppsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSendActivityNotificationCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildSendActivityNotificationCommand());
             return command;
         }
         /// <summary>
@@ -1074,13 +1050,28 @@ namespace ApiSdk.Users.Item {
             var builder = new TransitiveMemberOfRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGraphGroupCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphApplicationCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeviceCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGroupCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphOrgContactCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphServicePrincipalCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUserCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the translateExchangeIds method.
+        /// </summary>
+        public Command BuildTranslateExchangeIdsCommand() {
+            var command = new Command("translate-exchange-ids");
+            command.Description = "Provides operations to call the translateExchangeIds method.";
+            var builder = new TranslateExchangeIdsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the wipeManagedAppRegistrationsByDeviceTag method.
+        /// </summary>
+        public Command BuildWipeManagedAppRegistrationsByDeviceTagCommand() {
+            var command = new Command("wipe-managed-app-registrations-by-device-tag");
+            command.Description = "Provides operations to call the wipeManagedAppRegistrationsByDeviceTag method.";
+            var builder = new WipeManagedAppRegistrationsByDeviceTagRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

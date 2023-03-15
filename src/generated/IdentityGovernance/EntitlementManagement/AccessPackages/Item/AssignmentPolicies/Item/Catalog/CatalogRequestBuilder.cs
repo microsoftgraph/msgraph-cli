@@ -30,11 +30,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.As
             var command = new Command("get");
             command.Description = "Catalog of the access package containing this policy. Read-only.";
             // Create options for all the parameters
-            var accessPackageIdOption = new Option<string>("--access-package-id", description: "key: id of accessPackage") {
+            var accessPackageIdOption = new Option<string>("--access-package-id", description: "The unique identifier of accessPackage") {
             };
             accessPackageIdOption.IsRequired = true;
             command.AddOption(accessPackageIdOption);
-            var accessPackageAssignmentPolicyIdOption = new Option<string>("--access-package-assignment-policy-id", description: "key: id of accessPackageAssignmentPolicy") {
+            var accessPackageAssignmentPolicyIdOption = new Option<string>("--access-package-assignment-policy-id", description: "The unique identifier of accessPackageAssignmentPolicy") {
             };
             accessPackageAssignmentPolicyIdOption.IsRequired = true;
             command.AddOption(accessPackageAssignmentPolicyIdOption);

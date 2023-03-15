@@ -30,11 +30,11 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item.Definition {
             var command = new Command("get");
             command.Description = "The printTaskDefinition that was used to create this task. Read-only.";
             // Create options for all the parameters
-            var printTaskDefinitionIdOption = new Option<string>("--print-task-definition-id", description: "key: id of printTaskDefinition") {
+            var printTaskDefinitionIdOption = new Option<string>("--print-task-definition-id", description: "The unique identifier of printTaskDefinition") {
             };
             printTaskDefinitionIdOption.IsRequired = true;
             command.AddOption(printTaskDefinitionIdOption);
-            var printTaskIdOption = new Option<string>("--print-task-id", description: "key: id of printTask") {
+            var printTaskIdOption = new Option<string>("--print-task-id", description: "The unique identifier of printTask") {
             };
             printTaskIdOption.IsRequired = true;
             command.AddOption(printTaskIdOption);

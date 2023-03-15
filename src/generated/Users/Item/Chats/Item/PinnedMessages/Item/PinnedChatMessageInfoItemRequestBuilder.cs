@@ -31,15 +31,15 @@ namespace ApiSdk.Users.Item.Chats.Item.PinnedMessages.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property pinnedMessages for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
-            var pinnedChatMessageInfoIdOption = new Option<string>("--pinned-chat-message-info-id", description: "key: id of pinnedChatMessageInfo") {
+            var pinnedChatMessageInfoIdOption = new Option<string>("--pinned-chat-message-info-id", description: "The unique identifier of pinnedChatMessageInfo") {
             };
             pinnedChatMessageInfoIdOption.IsRequired = true;
             command.AddOption(pinnedChatMessageInfoIdOption);
@@ -77,15 +77,15 @@ namespace ApiSdk.Users.Item.Chats.Item.PinnedMessages.Item {
             var command = new Command("get");
             command.Description = "A collection of all the pinned messages in the chat. Nullable.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
-            var pinnedChatMessageInfoIdOption = new Option<string>("--pinned-chat-message-info-id", description: "key: id of pinnedChatMessageInfo") {
+            var pinnedChatMessageInfoIdOption = new Option<string>("--pinned-chat-message-info-id", description: "The unique identifier of pinnedChatMessageInfo") {
             };
             pinnedChatMessageInfoIdOption.IsRequired = true;
             command.AddOption(pinnedChatMessageInfoIdOption);
@@ -161,15 +161,15 @@ namespace ApiSdk.Users.Item.Chats.Item.PinnedMessages.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property pinnedMessages in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
-            var pinnedChatMessageInfoIdOption = new Option<string>("--pinned-chat-message-info-id", description: "key: id of pinnedChatMessageInfo") {
+            var pinnedChatMessageInfoIdOption = new Option<string>("--pinned-chat-message-info-id", description: "The unique identifier of pinnedChatMessageInfo") {
             };
             pinnedChatMessageInfoIdOption.IsRequired = true;
             command.AddOption(pinnedChatMessageInfoIdOption);
@@ -211,6 +211,7 @@ namespace ApiSdk.Users.Item.Chats.Item.PinnedMessages.Item {
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (chatId is not null) requestInfo.PathParameters.Add("chat%2Did", chatId);
                 if (pinnedChatMessageInfoId is not null) requestInfo.PathParameters.Add("pinnedChatMessageInfo%2Did", pinnedChatMessageInfoId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

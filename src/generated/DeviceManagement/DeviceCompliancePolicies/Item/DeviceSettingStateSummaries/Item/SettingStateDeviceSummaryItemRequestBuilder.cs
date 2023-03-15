@@ -30,11 +30,11 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceSettingSta
             var command = new Command("delete");
             command.Description = "Delete navigation property deviceSettingStateSummaries for deviceManagement";
             // Create options for all the parameters
-            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "key: id of deviceCompliancePolicy") {
+            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicyIdOption);
-            var settingStateDeviceSummaryIdOption = new Option<string>("--setting-state-device-summary-id", description: "key: id of settingStateDeviceSummary") {
+            var settingStateDeviceSummaryIdOption = new Option<string>("--setting-state-device-summary-id", description: "The unique identifier of settingStateDeviceSummary") {
             };
             settingStateDeviceSummaryIdOption.IsRequired = true;
             command.AddOption(settingStateDeviceSummaryIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceSettingSta
             var command = new Command("get");
             command.Description = "Compliance Setting State Device Summary";
             // Create options for all the parameters
-            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "key: id of deviceCompliancePolicy") {
+            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicyIdOption);
-            var settingStateDeviceSummaryIdOption = new Option<string>("--setting-state-device-summary-id", description: "key: id of settingStateDeviceSummary") {
+            var settingStateDeviceSummaryIdOption = new Option<string>("--setting-state-device-summary-id", description: "The unique identifier of settingStateDeviceSummary") {
             };
             settingStateDeviceSummaryIdOption.IsRequired = true;
             command.AddOption(settingStateDeviceSummaryIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceSettingSta
             var command = new Command("patch");
             command.Description = "Update the navigation property deviceSettingStateSummaries in deviceManagement";
             // Create options for all the parameters
-            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "key: id of deviceCompliancePolicy") {
+            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicyIdOption);
-            var settingStateDeviceSummaryIdOption = new Option<string>("--setting-state-device-summary-id", description: "key: id of settingStateDeviceSummary") {
+            var settingStateDeviceSummaryIdOption = new Option<string>("--setting-state-device-summary-id", description: "The unique identifier of settingStateDeviceSummary") {
             };
             settingStateDeviceSummaryIdOption.IsRequired = true;
             command.AddOption(settingStateDeviceSummaryIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceSettingSta
                 });
                 if (deviceCompliancePolicyId is not null) requestInfo.PathParameters.Add("deviceCompliancePolicy%2Did", deviceCompliancePolicyId);
                 if (settingStateDeviceSummaryId is not null) requestInfo.PathParameters.Add("settingStateDeviceSummary%2Did", settingStateDeviceSummaryId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

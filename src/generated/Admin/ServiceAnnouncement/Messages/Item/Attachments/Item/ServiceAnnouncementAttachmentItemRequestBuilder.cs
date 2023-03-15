@@ -42,11 +42,11 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property attachments for admin";
             // Create options for all the parameters
-            var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "key: id of serviceUpdateMessage") {
+            var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "The unique identifier of serviceUpdateMessage") {
             };
             serviceUpdateMessageIdOption.IsRequired = true;
             command.AddOption(serviceUpdateMessageIdOption);
-            var serviceAnnouncementAttachmentIdOption = new Option<string>("--service-announcement-attachment-id", description: "key: id of serviceAnnouncementAttachment") {
+            var serviceAnnouncementAttachmentIdOption = new Option<string>("--service-announcement-attachment-id", description: "The unique identifier of serviceAnnouncementAttachment") {
             };
             serviceAnnouncementAttachmentIdOption.IsRequired = true;
             command.AddOption(serviceAnnouncementAttachmentIdOption);
@@ -82,11 +82,11 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item {
             var command = new Command("get");
             command.Description = "A collection of serviceAnnouncementAttachments.";
             // Create options for all the parameters
-            var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "key: id of serviceUpdateMessage") {
+            var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "The unique identifier of serviceUpdateMessage") {
             };
             serviceUpdateMessageIdOption.IsRequired = true;
             command.AddOption(serviceUpdateMessageIdOption);
-            var serviceAnnouncementAttachmentIdOption = new Option<string>("--service-announcement-attachment-id", description: "key: id of serviceAnnouncementAttachment") {
+            var serviceAnnouncementAttachmentIdOption = new Option<string>("--service-announcement-attachment-id", description: "The unique identifier of serviceAnnouncementAttachment") {
             };
             serviceAnnouncementAttachmentIdOption.IsRequired = true;
             command.AddOption(serviceAnnouncementAttachmentIdOption);
@@ -150,11 +150,11 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property attachments in admin";
             // Create options for all the parameters
-            var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "key: id of serviceUpdateMessage") {
+            var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "The unique identifier of serviceUpdateMessage") {
             };
             serviceUpdateMessageIdOption.IsRequired = true;
             command.AddOption(serviceUpdateMessageIdOption);
-            var serviceAnnouncementAttachmentIdOption = new Option<string>("--service-announcement-attachment-id", description: "key: id of serviceAnnouncementAttachment") {
+            var serviceAnnouncementAttachmentIdOption = new Option<string>("--service-announcement-attachment-id", description: "The unique identifier of serviceAnnouncementAttachment") {
             };
             serviceAnnouncementAttachmentIdOption.IsRequired = true;
             command.AddOption(serviceAnnouncementAttachmentIdOption);
@@ -194,6 +194,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item {
                 });
                 if (serviceUpdateMessageId is not null) requestInfo.PathParameters.Add("serviceUpdateMessage%2Did", serviceUpdateMessageId);
                 if (serviceAnnouncementAttachmentId is not null) requestInfo.PathParameters.Add("serviceAnnouncementAttachment%2Did", serviceAnnouncementAttachmentId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

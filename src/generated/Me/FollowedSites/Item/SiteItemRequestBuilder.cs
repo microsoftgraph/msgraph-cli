@@ -30,7 +30,7 @@ namespace ApiSdk.Me.FollowedSites.Item {
             var command = new Command("get");
             command.Description = "Get followedSites from me";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);

@@ -42,11 +42,11 @@ namespace ApiSdk.Groups.Item.Onenote.Resources.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property resources for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var onenoteResourceIdOption = new Option<string>("--onenote-resource-id", description: "key: id of onenoteResource") {
+            var onenoteResourceIdOption = new Option<string>("--onenote-resource-id", description: "The unique identifier of onenoteResource") {
             };
             onenoteResourceIdOption.IsRequired = true;
             command.AddOption(onenoteResourceIdOption);
@@ -82,11 +82,11 @@ namespace ApiSdk.Groups.Item.Onenote.Resources.Item {
             var command = new Command("get");
             command.Description = "The image and other file resources in OneNote pages. Getting a resources collection is not supported, but you can get the binary content of a specific resource. Read-only. Nullable.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var onenoteResourceIdOption = new Option<string>("--onenote-resource-id", description: "key: id of onenoteResource") {
+            var onenoteResourceIdOption = new Option<string>("--onenote-resource-id", description: "The unique identifier of onenoteResource") {
             };
             onenoteResourceIdOption.IsRequired = true;
             command.AddOption(onenoteResourceIdOption);
@@ -150,11 +150,11 @@ namespace ApiSdk.Groups.Item.Onenote.Resources.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property resources in groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var onenoteResourceIdOption = new Option<string>("--onenote-resource-id", description: "key: id of onenoteResource") {
+            var onenoteResourceIdOption = new Option<string>("--onenote-resource-id", description: "The unique identifier of onenoteResource") {
             };
             onenoteResourceIdOption.IsRequired = true;
             command.AddOption(onenoteResourceIdOption);
@@ -194,6 +194,7 @@ namespace ApiSdk.Groups.Item.Onenote.Resources.Item {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (onenoteResourceId is not null) requestInfo.PathParameters.Add("onenoteResource%2Did", onenoteResourceId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -30,11 +30,11 @@ namespace ApiSdk.Communications.Calls.Item.ContentSharingSessions.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property contentSharingSessions for communications";
             // Create options for all the parameters
-            var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
+            var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
             command.AddOption(callIdOption);
-            var contentSharingSessionIdOption = new Option<string>("--content-sharing-session-id", description: "key: id of contentSharingSession") {
+            var contentSharingSessionIdOption = new Option<string>("--content-sharing-session-id", description: "The unique identifier of contentSharingSession") {
             };
             contentSharingSessionIdOption.IsRequired = true;
             command.AddOption(contentSharingSessionIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Communications.Calls.Item.ContentSharingSessions.Item {
             var command = new Command("get");
             command.Description = "Get contentSharingSessions from communications";
             // Create options for all the parameters
-            var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
+            var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
             command.AddOption(callIdOption);
-            var contentSharingSessionIdOption = new Option<string>("--content-sharing-session-id", description: "key: id of contentSharingSession") {
+            var contentSharingSessionIdOption = new Option<string>("--content-sharing-session-id", description: "The unique identifier of contentSharingSession") {
             };
             contentSharingSessionIdOption.IsRequired = true;
             command.AddOption(contentSharingSessionIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Communications.Calls.Item.ContentSharingSessions.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property contentSharingSessions in communications";
             // Create options for all the parameters
-            var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
+            var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
             command.AddOption(callIdOption);
-            var contentSharingSessionIdOption = new Option<string>("--content-sharing-session-id", description: "key: id of contentSharingSession") {
+            var contentSharingSessionIdOption = new Option<string>("--content-sharing-session-id", description: "The unique identifier of contentSharingSession") {
             };
             contentSharingSessionIdOption.IsRequired = true;
             command.AddOption(contentSharingSessionIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Communications.Calls.Item.ContentSharingSessions.Item {
                 });
                 if (callId is not null) requestInfo.PathParameters.Add("call%2Did", callId);
                 if (contentSharingSessionId is not null) requestInfo.PathParameters.Add("contentSharingSession%2Did", contentSharingSessionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

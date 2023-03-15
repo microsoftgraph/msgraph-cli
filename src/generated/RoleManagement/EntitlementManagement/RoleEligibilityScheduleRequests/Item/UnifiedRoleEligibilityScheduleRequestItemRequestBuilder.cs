@@ -1,8 +1,8 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleRequests.Item.AppScope;
+using ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleRequests.Item.Cancel;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleRequests.Item.DirectoryScope;
-using ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleRequests.Item.MicrosoftGraphCancel;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleRequests.Item.Principal;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleRequests.Item.RoleDefinition;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleRequests.Item.TargetSchedule;
@@ -40,13 +40,23 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleReq
             return command;
         }
         /// <summary>
+        /// Provides operations to call the cancel method.
+        /// </summary>
+        public Command BuildCancelCommand() {
+            var command = new Command("cancel");
+            command.Description = "Provides operations to call the cancel method.";
+            var builder = new CancelRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete navigation property roleEligibilityScheduleRequests for roleManagement
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property roleEligibilityScheduleRequests for roleManagement";
             // Create options for all the parameters
-            var unifiedRoleEligibilityScheduleRequestIdOption = new Option<string>("--unified-role-eligibility-schedule-request-id", description: "key: id of unifiedRoleEligibilityScheduleRequest") {
+            var unifiedRoleEligibilityScheduleRequestIdOption = new Option<string>("--unified-role-eligibility-schedule-request-id", description: "The unique identifier of unifiedRoleEligibilityScheduleRequest") {
             };
             unifiedRoleEligibilityScheduleRequestIdOption.IsRequired = true;
             command.AddOption(unifiedRoleEligibilityScheduleRequestIdOption);
@@ -90,7 +100,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleReq
             var command = new Command("get");
             command.Description = "Requests for role eligibilities for principals through PIM.";
             // Create options for all the parameters
-            var unifiedRoleEligibilityScheduleRequestIdOption = new Option<string>("--unified-role-eligibility-schedule-request-id", description: "key: id of unifiedRoleEligibilityScheduleRequest") {
+            var unifiedRoleEligibilityScheduleRequestIdOption = new Option<string>("--unified-role-eligibility-schedule-request-id", description: "The unique identifier of unifiedRoleEligibilityScheduleRequest") {
             };
             unifiedRoleEligibilityScheduleRequestIdOption.IsRequired = true;
             command.AddOption(unifiedRoleEligibilityScheduleRequestIdOption);
@@ -146,23 +156,13 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleReq
             return command;
         }
         /// <summary>
-        /// Provides operations to call the cancel method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCancelCommand() {
-            var command = new Command("microsoft-graph-cancel");
-            command.Description = "Provides operations to call the cancel method.";
-            var builder = new MicrosoftGraphCancelRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property roleEligibilityScheduleRequests in roleManagement
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property roleEligibilityScheduleRequests in roleManagement";
             // Create options for all the parameters
-            var unifiedRoleEligibilityScheduleRequestIdOption = new Option<string>("--unified-role-eligibility-schedule-request-id", description: "key: id of unifiedRoleEligibilityScheduleRequest") {
+            var unifiedRoleEligibilityScheduleRequestIdOption = new Option<string>("--unified-role-eligibility-schedule-request-id", description: "The unique identifier of unifiedRoleEligibilityScheduleRequest") {
             };
             unifiedRoleEligibilityScheduleRequestIdOption.IsRequired = true;
             command.AddOption(unifiedRoleEligibilityScheduleRequestIdOption);
@@ -200,6 +200,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleReq
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (unifiedRoleEligibilityScheduleRequestId is not null) requestInfo.PathParameters.Add("unifiedRoleEligibilityScheduleRequest%2Did", unifiedRoleEligibilityScheduleRequestId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

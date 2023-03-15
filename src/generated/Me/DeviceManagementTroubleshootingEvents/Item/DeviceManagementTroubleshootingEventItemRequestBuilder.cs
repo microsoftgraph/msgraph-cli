@@ -30,7 +30,7 @@ namespace ApiSdk.Me.DeviceManagementTroubleshootingEvents.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property deviceManagementTroubleshootingEvents for me";
             // Create options for all the parameters
-            var deviceManagementTroubleshootingEventIdOption = new Option<string>("--device-management-troubleshooting-event-id", description: "key: id of deviceManagementTroubleshootingEvent") {
+            var deviceManagementTroubleshootingEventIdOption = new Option<string>("--device-management-troubleshooting-event-id", description: "The unique identifier of deviceManagementTroubleshootingEvent") {
             };
             deviceManagementTroubleshootingEventIdOption.IsRequired = true;
             command.AddOption(deviceManagementTroubleshootingEventIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Me.DeviceManagementTroubleshootingEvents.Item {
             var command = new Command("get");
             command.Description = "The list of troubleshooting events for this user.";
             // Create options for all the parameters
-            var deviceManagementTroubleshootingEventIdOption = new Option<string>("--device-management-troubleshooting-event-id", description: "key: id of deviceManagementTroubleshootingEvent") {
+            var deviceManagementTroubleshootingEventIdOption = new Option<string>("--device-management-troubleshooting-event-id", description: "The unique identifier of deviceManagementTroubleshootingEvent") {
             };
             deviceManagementTroubleshootingEventIdOption.IsRequired = true;
             command.AddOption(deviceManagementTroubleshootingEventIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.Me.DeviceManagementTroubleshootingEvents.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property deviceManagementTroubleshootingEvents in me";
             // Create options for all the parameters
-            var deviceManagementTroubleshootingEventIdOption = new Option<string>("--device-management-troubleshooting-event-id", description: "key: id of deviceManagementTroubleshootingEvent") {
+            var deviceManagementTroubleshootingEventIdOption = new Option<string>("--device-management-troubleshooting-event-id", description: "The unique identifier of deviceManagementTroubleshootingEvent") {
             };
             deviceManagementTroubleshootingEventIdOption.IsRequired = true;
             command.AddOption(deviceManagementTroubleshootingEventIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.Me.DeviceManagementTroubleshootingEvents.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (deviceManagementTroubleshootingEventId is not null) requestInfo.PathParameters.Add("deviceManagementTroubleshootingEvent%2Did", deviceManagementTroubleshootingEventId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

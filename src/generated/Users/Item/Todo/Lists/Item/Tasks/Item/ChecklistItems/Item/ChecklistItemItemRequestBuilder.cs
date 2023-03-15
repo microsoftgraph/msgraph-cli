@@ -30,19 +30,19 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.ChecklistItems.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property checklistItems for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "key: id of todoTaskList") {
+            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "The unique identifier of todoTaskList") {
             };
             todoTaskListIdOption.IsRequired = true;
             command.AddOption(todoTaskListIdOption);
-            var todoTaskIdOption = new Option<string>("--todo-task-id", description: "key: id of todoTask") {
+            var todoTaskIdOption = new Option<string>("--todo-task-id", description: "The unique identifier of todoTask") {
             };
             todoTaskIdOption.IsRequired = true;
             command.AddOption(todoTaskIdOption);
-            var checklistItemIdOption = new Option<string>("--checklist-item-id", description: "key: id of checklistItem") {
+            var checklistItemIdOption = new Option<string>("--checklist-item-id", description: "The unique identifier of checklistItem") {
             };
             checklistItemIdOption.IsRequired = true;
             command.AddOption(checklistItemIdOption);
@@ -82,19 +82,19 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.ChecklistItems.Item {
             var command = new Command("get");
             command.Description = "A collection of checklistItems linked to a task.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "key: id of todoTaskList") {
+            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "The unique identifier of todoTaskList") {
             };
             todoTaskListIdOption.IsRequired = true;
             command.AddOption(todoTaskListIdOption);
-            var todoTaskIdOption = new Option<string>("--todo-task-id", description: "key: id of todoTask") {
+            var todoTaskIdOption = new Option<string>("--todo-task-id", description: "The unique identifier of todoTask") {
             };
             todoTaskIdOption.IsRequired = true;
             command.AddOption(todoTaskIdOption);
-            var checklistItemIdOption = new Option<string>("--checklist-item-id", description: "key: id of checklistItem") {
+            var checklistItemIdOption = new Option<string>("--checklist-item-id", description: "The unique identifier of checklistItem") {
             };
             checklistItemIdOption.IsRequired = true;
             command.AddOption(checklistItemIdOption);
@@ -162,19 +162,19 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.ChecklistItems.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property checklistItems in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "key: id of todoTaskList") {
+            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "The unique identifier of todoTaskList") {
             };
             todoTaskListIdOption.IsRequired = true;
             command.AddOption(todoTaskListIdOption);
-            var todoTaskIdOption = new Option<string>("--todo-task-id", description: "key: id of todoTask") {
+            var todoTaskIdOption = new Option<string>("--todo-task-id", description: "The unique identifier of todoTask") {
             };
             todoTaskIdOption.IsRequired = true;
             command.AddOption(todoTaskIdOption);
-            var checklistItemIdOption = new Option<string>("--checklist-item-id", description: "key: id of checklistItem") {
+            var checklistItemIdOption = new Option<string>("--checklist-item-id", description: "The unique identifier of checklistItem") {
             };
             checklistItemIdOption.IsRequired = true;
             command.AddOption(checklistItemIdOption);
@@ -218,6 +218,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.ChecklistItems.Item {
                 if (todoTaskListId is not null) requestInfo.PathParameters.Add("todoTaskList%2Did", todoTaskListId);
                 if (todoTaskId is not null) requestInfo.PathParameters.Add("todoTask%2Did", todoTaskId);
                 if (checklistItemId is not null) requestInfo.PathParameters.Add("checklistItem%2Did", checklistItemId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -30,11 +30,11 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assignments.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property assignments for deviceManagement";
             // Create options for all the parameters
-            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "key: id of deviceConfiguration") {
+            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationIdOption);
-            var deviceConfigurationAssignmentIdOption = new Option<string>("--device-configuration-assignment-id", description: "key: id of deviceConfigurationAssignment") {
+            var deviceConfigurationAssignmentIdOption = new Option<string>("--device-configuration-assignment-id", description: "The unique identifier of deviceConfigurationAssignment") {
             };
             deviceConfigurationAssignmentIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationAssignmentIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assignments.Item {
             var command = new Command("get");
             command.Description = "The list of assignments for the device configuration profile.";
             // Create options for all the parameters
-            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "key: id of deviceConfiguration") {
+            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationIdOption);
-            var deviceConfigurationAssignmentIdOption = new Option<string>("--device-configuration-assignment-id", description: "key: id of deviceConfigurationAssignment") {
+            var deviceConfigurationAssignmentIdOption = new Option<string>("--device-configuration-assignment-id", description: "The unique identifier of deviceConfigurationAssignment") {
             };
             deviceConfigurationAssignmentIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationAssignmentIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assignments.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property assignments in deviceManagement";
             // Create options for all the parameters
-            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "key: id of deviceConfiguration") {
+            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationIdOption);
-            var deviceConfigurationAssignmentIdOption = new Option<string>("--device-configuration-assignment-id", description: "key: id of deviceConfigurationAssignment") {
+            var deviceConfigurationAssignmentIdOption = new Option<string>("--device-configuration-assignment-id", description: "The unique identifier of deviceConfigurationAssignment") {
             };
             deviceConfigurationAssignmentIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationAssignmentIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assignments.Item {
                 });
                 if (deviceConfigurationId is not null) requestInfo.PathParameters.Add("deviceConfiguration%2Did", deviceConfigurationId);
                 if (deviceConfigurationAssignmentId is not null) requestInfo.PathParameters.Add("deviceConfigurationAssignment%2Did", deviceConfigurationAssignmentId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

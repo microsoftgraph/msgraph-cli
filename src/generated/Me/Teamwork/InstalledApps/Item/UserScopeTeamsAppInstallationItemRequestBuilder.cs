@@ -41,7 +41,7 @@ namespace ApiSdk.Me.Teamwork.InstalledApps.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property installedApps for me";
             // Create options for all the parameters
-            var userScopeTeamsAppInstallationIdOption = new Option<string>("--user-scope-teams-app-installation-id", description: "key: id of userScopeTeamsAppInstallation") {
+            var userScopeTeamsAppInstallationIdOption = new Option<string>("--user-scope-teams-app-installation-id", description: "The unique identifier of userScopeTeamsAppInstallation") {
             };
             userScopeTeamsAppInstallationIdOption.IsRequired = true;
             command.AddOption(userScopeTeamsAppInstallationIdOption);
@@ -75,7 +75,7 @@ namespace ApiSdk.Me.Teamwork.InstalledApps.Item {
             var command = new Command("get");
             command.Description = "The apps installed in the personal scope of this user.";
             // Create options for all the parameters
-            var userScopeTeamsAppInstallationIdOption = new Option<string>("--user-scope-teams-app-installation-id", description: "key: id of userScopeTeamsAppInstallation") {
+            var userScopeTeamsAppInstallationIdOption = new Option<string>("--user-scope-teams-app-installation-id", description: "The unique identifier of userScopeTeamsAppInstallation") {
             };
             userScopeTeamsAppInstallationIdOption.IsRequired = true;
             command.AddOption(userScopeTeamsAppInstallationIdOption);
@@ -137,7 +137,7 @@ namespace ApiSdk.Me.Teamwork.InstalledApps.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property installedApps in me";
             // Create options for all the parameters
-            var userScopeTeamsAppInstallationIdOption = new Option<string>("--user-scope-teams-app-installation-id", description: "key: id of userScopeTeamsAppInstallation") {
+            var userScopeTeamsAppInstallationIdOption = new Option<string>("--user-scope-teams-app-installation-id", description: "The unique identifier of userScopeTeamsAppInstallation") {
             };
             userScopeTeamsAppInstallationIdOption.IsRequired = true;
             command.AddOption(userScopeTeamsAppInstallationIdOption);
@@ -175,6 +175,7 @@ namespace ApiSdk.Me.Teamwork.InstalledApps.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (userScopeTeamsAppInstallationId is not null) requestInfo.PathParameters.Add("userScopeTeamsAppInstallation%2Did", userScopeTeamsAppInstallationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

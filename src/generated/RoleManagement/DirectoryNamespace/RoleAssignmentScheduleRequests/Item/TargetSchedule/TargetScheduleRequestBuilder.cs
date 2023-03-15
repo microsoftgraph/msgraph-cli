@@ -30,7 +30,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentScheduleRequest
             var command = new Command("get");
             command.Description = "The schedule for an eligible role assignment that is referenced through the targetScheduleId property. Supports $expand.";
             // Create options for all the parameters
-            var unifiedRoleAssignmentScheduleRequestIdOption = new Option<string>("--unified-role-assignment-schedule-request-id", description: "key: id of unifiedRoleAssignmentScheduleRequest") {
+            var unifiedRoleAssignmentScheduleRequestIdOption = new Option<string>("--unified-role-assignment-schedule-request-id", description: "The unique identifier of unifiedRoleAssignmentScheduleRequest") {
             };
             unifiedRoleAssignmentScheduleRequestIdOption.IsRequired = true;
             command.AddOption(unifiedRoleAssignmentScheduleRequestIdOption);

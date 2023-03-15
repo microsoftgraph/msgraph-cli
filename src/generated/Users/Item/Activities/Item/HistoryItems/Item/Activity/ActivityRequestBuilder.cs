@@ -30,15 +30,15 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item.Activity {
             var command = new Command("get");
             command.Description = "Optional. NavigationProperty/Containment; navigation property to the associated activity.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var userActivityIdOption = new Option<string>("--user-activity-id", description: "key: id of userActivity") {
+            var userActivityIdOption = new Option<string>("--user-activity-id", description: "The unique identifier of userActivity") {
             };
             userActivityIdOption.IsRequired = true;
             command.AddOption(userActivityIdOption);
-            var activityHistoryItemIdOption = new Option<string>("--activity-history-item-id", description: "key: id of activityHistoryItem") {
+            var activityHistoryItemIdOption = new Option<string>("--activity-history-item-id", description: "The unique identifier of activityHistoryItem") {
             };
             activityHistoryItemIdOption.IsRequired = true;
             command.AddOption(activityHistoryItemIdOption);

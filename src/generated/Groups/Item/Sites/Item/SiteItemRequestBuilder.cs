@@ -4,12 +4,12 @@ using ApiSdk.Groups.Item.Sites.Item.ContentTypes;
 using ApiSdk.Groups.Item.Sites.Item.Drive;
 using ApiSdk.Groups.Item.Sites.Item.Drives;
 using ApiSdk.Groups.Item.Sites.Item.ExternalColumns;
+using ApiSdk.Groups.Item.Sites.Item.GetActivitiesByInterval;
+using ApiSdk.Groups.Item.Sites.Item.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval;
+using ApiSdk.Groups.Item.Sites.Item.GetApplicableContentTypesForListWithListId;
+using ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath;
 using ApiSdk.Groups.Item.Sites.Item.Items;
 using ApiSdk.Groups.Item.Sites.Item.Lists;
-using ApiSdk.Groups.Item.Sites.Item.MicrosoftGraphGetActivitiesByInterval;
-using ApiSdk.Groups.Item.Sites.Item.MicrosoftGraphGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval;
-using ApiSdk.Groups.Item.Sites.Item.MicrosoftGraphGetApplicableContentTypesForListWithListId;
-using ApiSdk.Groups.Item.Sites.Item.MicrosoftGraphGetByPathWithPath;
 using ApiSdk.Groups.Item.Sites.Item.Onenote;
 using ApiSdk.Groups.Item.Sites.Item.Operations;
 using ApiSdk.Groups.Item.Sites.Item.Permissions;
@@ -71,13 +71,13 @@ namespace ApiSdk.Groups.Item.Sites.Item {
             var command = new Command("content-types");
             command.Description = "Provides operations to manage the contentTypes property of the microsoft.graph.site entity.";
             var builder = new ContentTypesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAddCopyCommand());
+            command.AddCommand(builder.BuildAddCopyFromContentTypeHubCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildGetCompatibleHubContentTypesCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAddCopyCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAddCopyFromContentTypeHubCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetCompatibleHubContentTypesCommand());
             return command;
         }
         /// <summary>
@@ -115,17 +115,27 @@ namespace ApiSdk.Groups.Item.Sites.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the getActivitiesByInterval method.
+        /// </summary>
+        public Command BuildGetActivitiesByIntervalCommand() {
+            var command = new Command("get-activities-by-interval");
+            command.Description = "Provides operations to call the getActivitiesByInterval method.";
+            var builder = new GetActivitiesByIntervalRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// The list of SharePoint sites in this group. Access the default site with /sites/root.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The list of SharePoint sites in this group. Access the default site with /sites/root.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
@@ -208,16 +218,6 @@ namespace ApiSdk.Groups.Item.Sites.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the getActivitiesByInterval method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetActivitiesByIntervalCommand() {
-            var command = new Command("microsoft-graph-get-activities-by-interval");
-            command.Description = "Provides operations to call the getActivitiesByInterval method.";
-            var builder = new MicrosoftGraphGetActivitiesByIntervalRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the onenote property of the microsoft.graph.site entity.
         /// </summary>
         public Command BuildOnenoteCommand() {
@@ -255,11 +255,11 @@ namespace ApiSdk.Groups.Item.Sites.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property sites in groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
@@ -299,6 +299,7 @@ namespace ApiSdk.Groups.Item.Sites.Item {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

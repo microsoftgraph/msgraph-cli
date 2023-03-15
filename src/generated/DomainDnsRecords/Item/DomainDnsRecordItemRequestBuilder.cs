@@ -30,7 +30,7 @@ namespace ApiSdk.DomainDnsRecords.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from domainDnsRecords";
             // Create options for all the parameters
-            var domainDnsRecordIdOption = new Option<string>("--domain-dns-record-id", description: "key: id of domainDnsRecord") {
+            var domainDnsRecordIdOption = new Option<string>("--domain-dns-record-id", description: "The unique identifier of domainDnsRecord") {
             };
             domainDnsRecordIdOption.IsRequired = true;
             command.AddOption(domainDnsRecordIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.DomainDnsRecords.Item {
             var command = new Command("get");
             command.Description = "Get entity from domainDnsRecords by key";
             // Create options for all the parameters
-            var domainDnsRecordIdOption = new Option<string>("--domain-dns-record-id", description: "key: id of domainDnsRecord") {
+            var domainDnsRecordIdOption = new Option<string>("--domain-dns-record-id", description: "The unique identifier of domainDnsRecord") {
             };
             domainDnsRecordIdOption.IsRequired = true;
             command.AddOption(domainDnsRecordIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.DomainDnsRecords.Item {
             var command = new Command("patch");
             command.Description = "Update entity in domainDnsRecords";
             // Create options for all the parameters
-            var domainDnsRecordIdOption = new Option<string>("--domain-dns-record-id", description: "key: id of domainDnsRecord") {
+            var domainDnsRecordIdOption = new Option<string>("--domain-dns-record-id", description: "The unique identifier of domainDnsRecord") {
             };
             domainDnsRecordIdOption.IsRequired = true;
             command.AddOption(domainDnsRecordIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.DomainDnsRecords.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (domainDnsRecordId is not null) requestInfo.PathParameters.Add("domainDnsRecord%2Did", domainDnsRecordId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

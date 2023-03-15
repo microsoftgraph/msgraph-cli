@@ -29,7 +29,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var roleDefinitionIdOption = new Option<string>("--role-definition-id", description: "key: id of roleDefinition") {
+            var roleDefinitionIdOption = new Option<string>("--role-definition-id", description: "The unique identifier of roleDefinition") {
             };
             roleDefinitionIdOption.IsRequired = true;
             command.AddOption(roleDefinitionIdOption);

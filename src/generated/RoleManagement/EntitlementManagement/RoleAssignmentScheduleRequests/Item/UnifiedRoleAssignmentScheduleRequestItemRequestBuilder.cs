@@ -2,8 +2,8 @@ using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequests.Item.ActivatedUsing;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequests.Item.AppScope;
+using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequests.Item.Cancel;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequests.Item.DirectoryScope;
-using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequests.Item.MicrosoftGraphCancel;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequests.Item.Principal;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequests.Item.RoleDefinition;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequests.Item.TargetSchedule;
@@ -51,13 +51,23 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
             return command;
         }
         /// <summary>
+        /// Provides operations to call the cancel method.
+        /// </summary>
+        public Command BuildCancelCommand() {
+            var command = new Command("cancel");
+            command.Description = "Provides operations to call the cancel method.";
+            var builder = new CancelRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete navigation property roleAssignmentScheduleRequests for roleManagement
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property roleAssignmentScheduleRequests for roleManagement";
             // Create options for all the parameters
-            var unifiedRoleAssignmentScheduleRequestIdOption = new Option<string>("--unified-role-assignment-schedule-request-id", description: "key: id of unifiedRoleAssignmentScheduleRequest") {
+            var unifiedRoleAssignmentScheduleRequestIdOption = new Option<string>("--unified-role-assignment-schedule-request-id", description: "The unique identifier of unifiedRoleAssignmentScheduleRequest") {
             };
             unifiedRoleAssignmentScheduleRequestIdOption.IsRequired = true;
             command.AddOption(unifiedRoleAssignmentScheduleRequestIdOption);
@@ -101,7 +111,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
             var command = new Command("get");
             command.Description = "Requests for active role assignments to principals through PIM.";
             // Create options for all the parameters
-            var unifiedRoleAssignmentScheduleRequestIdOption = new Option<string>("--unified-role-assignment-schedule-request-id", description: "key: id of unifiedRoleAssignmentScheduleRequest") {
+            var unifiedRoleAssignmentScheduleRequestIdOption = new Option<string>("--unified-role-assignment-schedule-request-id", description: "The unique identifier of unifiedRoleAssignmentScheduleRequest") {
             };
             unifiedRoleAssignmentScheduleRequestIdOption.IsRequired = true;
             command.AddOption(unifiedRoleAssignmentScheduleRequestIdOption);
@@ -157,23 +167,13 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
             return command;
         }
         /// <summary>
-        /// Provides operations to call the cancel method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCancelCommand() {
-            var command = new Command("microsoft-graph-cancel");
-            command.Description = "Provides operations to call the cancel method.";
-            var builder = new MicrosoftGraphCancelRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property roleAssignmentScheduleRequests in roleManagement
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property roleAssignmentScheduleRequests in roleManagement";
             // Create options for all the parameters
-            var unifiedRoleAssignmentScheduleRequestIdOption = new Option<string>("--unified-role-assignment-schedule-request-id", description: "key: id of unifiedRoleAssignmentScheduleRequest") {
+            var unifiedRoleAssignmentScheduleRequestIdOption = new Option<string>("--unified-role-assignment-schedule-request-id", description: "The unique identifier of unifiedRoleAssignmentScheduleRequest") {
             };
             unifiedRoleAssignmentScheduleRequestIdOption.IsRequired = true;
             command.AddOption(unifiedRoleAssignmentScheduleRequestIdOption);
@@ -211,6 +211,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (unifiedRoleAssignmentScheduleRequestId is not null) requestInfo.PathParameters.Add("unifiedRoleAssignmentScheduleRequest%2Did", unifiedRoleAssignmentScheduleRequestId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

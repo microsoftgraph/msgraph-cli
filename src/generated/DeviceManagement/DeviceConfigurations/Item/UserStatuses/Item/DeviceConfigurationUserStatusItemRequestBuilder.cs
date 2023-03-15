@@ -30,11 +30,11 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatuses.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property userStatuses for deviceManagement";
             // Create options for all the parameters
-            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "key: id of deviceConfiguration") {
+            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationIdOption);
-            var deviceConfigurationUserStatusIdOption = new Option<string>("--device-configuration-user-status-id", description: "key: id of deviceConfigurationUserStatus") {
+            var deviceConfigurationUserStatusIdOption = new Option<string>("--device-configuration-user-status-id", description: "The unique identifier of deviceConfigurationUserStatus") {
             };
             deviceConfigurationUserStatusIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationUserStatusIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatuses.Item {
             var command = new Command("get");
             command.Description = "Device configuration installation status by user.";
             // Create options for all the parameters
-            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "key: id of deviceConfiguration") {
+            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationIdOption);
-            var deviceConfigurationUserStatusIdOption = new Option<string>("--device-configuration-user-status-id", description: "key: id of deviceConfigurationUserStatus") {
+            var deviceConfigurationUserStatusIdOption = new Option<string>("--device-configuration-user-status-id", description: "The unique identifier of deviceConfigurationUserStatus") {
             };
             deviceConfigurationUserStatusIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationUserStatusIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatuses.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property userStatuses in deviceManagement";
             // Create options for all the parameters
-            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "key: id of deviceConfiguration") {
+            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationIdOption);
-            var deviceConfigurationUserStatusIdOption = new Option<string>("--device-configuration-user-status-id", description: "key: id of deviceConfigurationUserStatus") {
+            var deviceConfigurationUserStatusIdOption = new Option<string>("--device-configuration-user-status-id", description: "The unique identifier of deviceConfigurationUserStatus") {
             };
             deviceConfigurationUserStatusIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationUserStatusIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatuses.Item {
                 });
                 if (deviceConfigurationId is not null) requestInfo.PathParameters.Add("deviceConfiguration%2Did", deviceConfigurationId);
                 if (deviceConfigurationUserStatusId is not null) requestInfo.PathParameters.Add("deviceConfigurationUserStatus%2Did", deviceConfigurationUserStatusId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

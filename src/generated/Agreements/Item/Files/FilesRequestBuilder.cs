@@ -55,7 +55,7 @@ namespace ApiSdk.Agreements.Item.Files {
             var command = new Command("create");
             command.Description = "Create a new localized agreement file.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/agreement-post-files?view=graph-rest-1.0";
             // Create options for all the parameters
-            var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement") {
+            var agreementIdOption = new Option<string>("--agreement-id", description: "The unique identifier of agreement") {
             };
             agreementIdOption.IsRequired = true;
             command.AddOption(agreementIdOption);
@@ -93,6 +93,7 @@ namespace ApiSdk.Agreements.Item.Files {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (agreementId is not null) requestInfo.PathParameters.Add("agreement%2Did", agreementId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,7 +113,7 @@ namespace ApiSdk.Agreements.Item.Files {
             var command = new Command("list");
             command.Description = "PDFs linked to this agreement. This property is in the process of being deprecated. Use the  file property instead. Supports $expand.";
             // Create options for all the parameters
-            var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement") {
+            var agreementIdOption = new Option<string>("--agreement-id", description: "The unique identifier of agreement") {
             };
             agreementIdOption.IsRequired = true;
             command.AddOption(agreementIdOption);

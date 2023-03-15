@@ -30,15 +30,15 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             var command = new Command("delete");
             command.Description = "Delete navigation property stages for identityGovernance";
             // Create options for all the parameters
-            var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "key: id of appConsentRequest") {
+            var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "The unique identifier of appConsentRequest") {
             };
             appConsentRequestIdOption.IsRequired = true;
             command.AddOption(appConsentRequestIdOption);
-            var userConsentRequestIdOption = new Option<string>("--user-consent-request-id", description: "key: id of userConsentRequest") {
+            var userConsentRequestIdOption = new Option<string>("--user-consent-request-id", description: "The unique identifier of userConsentRequest") {
             };
             userConsentRequestIdOption.IsRequired = true;
             command.AddOption(userConsentRequestIdOption);
-            var approvalStageIdOption = new Option<string>("--approval-stage-id", description: "key: id of approvalStage") {
+            var approvalStageIdOption = new Option<string>("--approval-stage-id", description: "The unique identifier of approvalStage") {
             };
             approvalStageIdOption.IsRequired = true;
             command.AddOption(approvalStageIdOption);
@@ -76,15 +76,15 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             var command = new Command("get");
             command.Description = "A collection of stages in the approval decision.";
             // Create options for all the parameters
-            var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "key: id of appConsentRequest") {
+            var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "The unique identifier of appConsentRequest") {
             };
             appConsentRequestIdOption.IsRequired = true;
             command.AddOption(appConsentRequestIdOption);
-            var userConsentRequestIdOption = new Option<string>("--user-consent-request-id", description: "key: id of userConsentRequest") {
+            var userConsentRequestIdOption = new Option<string>("--user-consent-request-id", description: "The unique identifier of userConsentRequest") {
             };
             userConsentRequestIdOption.IsRequired = true;
             command.AddOption(userConsentRequestIdOption);
-            var approvalStageIdOption = new Option<string>("--approval-stage-id", description: "key: id of approvalStage") {
+            var approvalStageIdOption = new Option<string>("--approval-stage-id", description: "The unique identifier of approvalStage") {
             };
             approvalStageIdOption.IsRequired = true;
             command.AddOption(approvalStageIdOption);
@@ -150,15 +150,15 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             var command = new Command("patch");
             command.Description = "Update the navigation property stages in identityGovernance";
             // Create options for all the parameters
-            var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "key: id of appConsentRequest") {
+            var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "The unique identifier of appConsentRequest") {
             };
             appConsentRequestIdOption.IsRequired = true;
             command.AddOption(appConsentRequestIdOption);
-            var userConsentRequestIdOption = new Option<string>("--user-consent-request-id", description: "key: id of userConsentRequest") {
+            var userConsentRequestIdOption = new Option<string>("--user-consent-request-id", description: "The unique identifier of userConsentRequest") {
             };
             userConsentRequestIdOption.IsRequired = true;
             command.AddOption(userConsentRequestIdOption);
-            var approvalStageIdOption = new Option<string>("--approval-stage-id", description: "key: id of approvalStage") {
+            var approvalStageIdOption = new Option<string>("--approval-stage-id", description: "The unique identifier of approvalStage") {
             };
             approvalStageIdOption.IsRequired = true;
             command.AddOption(approvalStageIdOption);
@@ -200,6 +200,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
                 if (appConsentRequestId is not null) requestInfo.PathParameters.Add("appConsentRequest%2Did", appConsentRequestId);
                 if (userConsentRequestId is not null) requestInfo.PathParameters.Add("userConsentRequest%2Did", userConsentRequestId);
                 if (approvalStageId is not null) requestInfo.PathParameters.Add("approvalStage%2Did", approvalStageId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -30,11 +30,11 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShifts.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property openShifts for teams";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var openShiftIdOption = new Option<string>("--open-shift-id", description: "key: id of openShift") {
+            var openShiftIdOption = new Option<string>("--open-shift-id", description: "The unique identifier of openShift") {
             };
             openShiftIdOption.IsRequired = true;
             command.AddOption(openShiftIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShifts.Item {
             var command = new Command("get");
             command.Description = "Get openShifts from teams";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var openShiftIdOption = new Option<string>("--open-shift-id", description: "key: id of openShift") {
+            var openShiftIdOption = new Option<string>("--open-shift-id", description: "The unique identifier of openShift") {
             };
             openShiftIdOption.IsRequired = true;
             command.AddOption(openShiftIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShifts.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property openShifts in teams";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var openShiftIdOption = new Option<string>("--open-shift-id", description: "key: id of openShift") {
+            var openShiftIdOption = new Option<string>("--open-shift-id", description: "The unique identifier of openShift") {
             };
             openShiftIdOption.IsRequired = true;
             command.AddOption(openShiftIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShifts.Item {
                 });
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
                 if (openShiftId is not null) requestInfo.PathParameters.Add("openShift%2Did", openShiftId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

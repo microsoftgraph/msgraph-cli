@@ -55,7 +55,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks {
             var command = new Command("create");
             command.Description = "Create new navigation property to tasks for print";
             // Create options for all the parameters
-            var printTaskDefinitionIdOption = new Option<string>("--print-task-definition-id", description: "key: id of printTaskDefinition") {
+            var printTaskDefinitionIdOption = new Option<string>("--print-task-definition-id", description: "The unique identifier of printTaskDefinition") {
             };
             printTaskDefinitionIdOption.IsRequired = true;
             command.AddOption(printTaskDefinitionIdOption);
@@ -93,6 +93,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (printTaskDefinitionId is not null) requestInfo.PathParameters.Add("printTaskDefinition%2Did", printTaskDefinitionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -113,7 +114,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks {
             var command = new Command("list");
             command.Description = "Retrieve a list of tasks associated with a task definition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printtaskdefinition-list-tasks?view=graph-rest-1.0";
             // Create options for all the parameters
-            var printTaskDefinitionIdOption = new Option<string>("--print-task-definition-id", description: "key: id of printTaskDefinition") {
+            var printTaskDefinitionIdOption = new Option<string>("--print-task-definition-id", description: "The unique identifier of printTaskDefinition") {
             };
             printTaskDefinitionIdOption.IsRequired = true;
             command.AddOption(printTaskDefinitionIdOption);

@@ -1,11 +1,11 @@
-using ApiSdk.Education.Me.Assignments.Item.Submissions.Item.MicrosoftGraphReassign;
-using ApiSdk.Education.Me.Assignments.Item.Submissions.Item.MicrosoftGraphReturn;
-using ApiSdk.Education.Me.Assignments.Item.Submissions.Item.MicrosoftGraphSetUpResourcesFolder;
-using ApiSdk.Education.Me.Assignments.Item.Submissions.Item.MicrosoftGraphSubmit;
-using ApiSdk.Education.Me.Assignments.Item.Submissions.Item.MicrosoftGraphUnsubmit;
 using ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Outcomes;
+using ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Reassign;
 using ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Resources;
+using ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Return;
+using ApiSdk.Education.Me.Assignments.Item.Submissions.Item.SetUpResourcesFolder;
+using ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Submit;
 using ApiSdk.Education.Me.Assignments.Item.Submissions.Item.SubmittedResources;
+using ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Unsubmit;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,11 +38,11 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property submissions for education";
             // Create options for all the parameters
-            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
+            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
-            var educationSubmissionIdOption = new Option<string>("--education-submission-id", description: "key: id of educationSubmission") {
+            var educationSubmissionIdOption = new Option<string>("--education-submission-id", description: "The unique identifier of educationSubmission") {
             };
             educationSubmissionIdOption.IsRequired = true;
             command.AddOption(educationSubmissionIdOption);
@@ -78,11 +78,11 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
             var command = new Command("get");
             command.Description = "Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.";
             // Create options for all the parameters
-            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
+            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
-            var educationSubmissionIdOption = new Option<string>("--education-submission-id", description: "key: id of educationSubmission") {
+            var educationSubmissionIdOption = new Option<string>("--education-submission-id", description: "The unique identifier of educationSubmission") {
             };
             educationSubmissionIdOption.IsRequired = true;
             command.AddOption(educationSubmissionIdOption);
@@ -140,56 +140,6 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the reassign method.
-        /// </summary>
-        public Command BuildMicrosoftGraphReassignCommand() {
-            var command = new Command("microsoft-graph-reassign");
-            command.Description = "Provides operations to call the reassign method.";
-            var builder = new MicrosoftGraphReassignRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the return method.
-        /// </summary>
-        public Command BuildMicrosoftGraphReturnCommand() {
-            var command = new Command("microsoft-graph-return");
-            command.Description = "Provides operations to call the return method.";
-            var builder = new MicrosoftGraphReturnRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the setUpResourcesFolder method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSetUpResourcesFolderCommand() {
-            var command = new Command("microsoft-graph-set-up-resources-folder");
-            command.Description = "Provides operations to call the setUpResourcesFolder method.";
-            var builder = new MicrosoftGraphSetUpResourcesFolderRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the submit method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSubmitCommand() {
-            var command = new Command("microsoft-graph-submit");
-            command.Description = "Provides operations to call the submit method.";
-            var builder = new MicrosoftGraphSubmitRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the unsubmit method.
-        /// </summary>
-        public Command BuildMicrosoftGraphUnsubmitCommand() {
-            var command = new Command("microsoft-graph-unsubmit");
-            command.Description = "Provides operations to call the unsubmit method.";
-            var builder = new MicrosoftGraphUnsubmitRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the outcomes property of the microsoft.graph.educationSubmission entity.
         /// </summary>
         public Command BuildOutcomesCommand() {
@@ -209,11 +159,11 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property submissions in education";
             // Create options for all the parameters
-            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
+            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
-            var educationSubmissionIdOption = new Option<string>("--education-submission-id", description: "key: id of educationSubmission") {
+            var educationSubmissionIdOption = new Option<string>("--education-submission-id", description: "The unique identifier of educationSubmission") {
             };
             educationSubmissionIdOption.IsRequired = true;
             command.AddOption(educationSubmissionIdOption);
@@ -253,6 +203,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
                 });
                 if (educationAssignmentId is not null) requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
                 if (educationSubmissionId is not null) requestInfo.PathParameters.Add("educationSubmission%2Did", educationSubmissionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -263,6 +214,16 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the reassign method.
+        /// </summary>
+        public Command BuildReassignCommand() {
+            var command = new Command("reassign");
+            command.Description = "Provides operations to call the reassign method.";
+            var builder = new ReassignRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -279,6 +240,36 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the return method.
+        /// </summary>
+        public Command BuildReturnCommand() {
+            var command = new Command("return");
+            command.Description = "Provides operations to call the return method.";
+            var builder = new ReturnRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the setUpResourcesFolder method.
+        /// </summary>
+        public Command BuildSetUpResourcesFolderCommand() {
+            var command = new Command("set-up-resources-folder");
+            command.Description = "Provides operations to call the setUpResourcesFolder method.";
+            var builder = new SetUpResourcesFolderRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the submit method.
+        /// </summary>
+        public Command BuildSubmitCommand() {
+            var command = new Command("submit");
+            command.Description = "Provides operations to call the submit method.";
+            var builder = new SubmitRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the submittedResources property of the microsoft.graph.educationSubmission entity.
         /// </summary>
         public Command BuildSubmittedResourcesCommand() {
@@ -289,6 +280,16 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the unsubmit method.
+        /// </summary>
+        public Command BuildUnsubmitCommand() {
+            var command = new Command("unsubmit");
+            command.Description = "Provides operations to call the unsubmit method.";
+            var builder = new UnsubmitRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

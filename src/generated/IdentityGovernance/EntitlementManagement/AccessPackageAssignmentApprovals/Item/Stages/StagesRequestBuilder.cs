@@ -53,7 +53,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
             var command = new Command("create");
             command.Description = "Create new navigation property to stages for identityGovernance";
             // Create options for all the parameters
-            var approvalIdOption = new Option<string>("--approval-id", description: "key: id of approval") {
+            var approvalIdOption = new Option<string>("--approval-id", description: "The unique identifier of approval") {
             };
             approvalIdOption.IsRequired = true;
             command.AddOption(approvalIdOption);
@@ -91,6 +91,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (approvalId is not null) requestInfo.PathParameters.Add("approval%2Did", approvalId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -111,7 +112,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
             var command = new Command("list");
             command.Description = "In Azure AD entitlement management, list the approvalStage objects associated with an approval object. This call can be made by an approver, providing the identifier of the access package assignment request.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/approval-list-stages?view=graph-rest-1.0";
             // Create options for all the parameters
-            var approvalIdOption = new Option<string>("--approval-id", description: "key: id of approval") {
+            var approvalIdOption = new Option<string>("--approval-id", description: "The unique identifier of approval") {
             };
             approvalIdOption.IsRequired = true;
             command.AddOption(approvalIdOption);

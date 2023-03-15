@@ -1,6 +1,7 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.Teamwork.MicrosoftGraphSendActivityNotificationToRecipients;
+using ApiSdk.Teamwork.DeletedTeams;
+using ApiSdk.Teamwork.SendActivityNotificationToRecipients;
 using ApiSdk.Teamwork.WorkforceIntegrations;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,6 +26,20 @@ namespace ApiSdk.Teamwork {
         private Dictionary<string, object> PathParameters { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        /// <summary>
+        /// Provides operations to manage the deletedTeams property of the microsoft.graph.teamwork entity.
+        /// </summary>
+        public Command BuildDeletedTeamsCommand() {
+            var command = new Command("deleted-teams");
+            command.Description = "Provides operations to manage the deletedTeams property of the microsoft.graph.teamwork entity.";
+            var builder = new DeletedTeamsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildGetAllMessagesCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
         /// <summary>
         /// Get teamwork
         /// </summary>
@@ -82,16 +97,6 @@ namespace ApiSdk.Teamwork {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the sendActivityNotificationToRecipients method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSendActivityNotificationToRecipientsCommand() {
-            var command = new Command("microsoft-graph-send-activity-notification-to-recipients");
-            command.Description = "Provides operations to call the sendActivityNotificationToRecipients method.";
-            var builder = new MicrosoftGraphSendActivityNotificationToRecipientsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update teamwork
         /// </summary>
         public Command BuildPatchCommand() {
@@ -130,6 +135,7 @@ namespace ApiSdk.Teamwork {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -140,6 +146,16 @@ namespace ApiSdk.Teamwork {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sendActivityNotificationToRecipients method.
+        /// </summary>
+        public Command BuildSendActivityNotificationToRecipientsCommand() {
+            var command = new Command("send-activity-notification-to-recipients");
+            command.Description = "Provides operations to call the sendActivityNotificationToRecipients method.";
+            var builder = new SendActivityNotificationToRecipientsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

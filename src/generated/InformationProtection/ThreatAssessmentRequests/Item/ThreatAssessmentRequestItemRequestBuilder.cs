@@ -31,7 +31,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property threatAssessmentRequests for informationProtection";
             // Create options for all the parameters
-            var threatAssessmentRequestIdOption = new Option<string>("--threat-assessment-request-id", description: "key: id of threatAssessmentRequest") {
+            var threatAssessmentRequestIdOption = new Option<string>("--threat-assessment-request-id", description: "The unique identifier of threatAssessmentRequest") {
             };
             threatAssessmentRequestIdOption.IsRequired = true;
             command.AddOption(threatAssessmentRequestIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item {
             var command = new Command("get");
             command.Description = "Get threatAssessmentRequests from informationProtection";
             // Create options for all the parameters
-            var threatAssessmentRequestIdOption = new Option<string>("--threat-assessment-request-id", description: "key: id of threatAssessmentRequest") {
+            var threatAssessmentRequestIdOption = new Option<string>("--threat-assessment-request-id", description: "The unique identifier of threatAssessmentRequest") {
             };
             threatAssessmentRequestIdOption.IsRequired = true;
             command.AddOption(threatAssessmentRequestIdOption);
@@ -127,7 +127,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property threatAssessmentRequests in informationProtection";
             // Create options for all the parameters
-            var threatAssessmentRequestIdOption = new Option<string>("--threat-assessment-request-id", description: "key: id of threatAssessmentRequest") {
+            var threatAssessmentRequestIdOption = new Option<string>("--threat-assessment-request-id", description: "The unique identifier of threatAssessmentRequest") {
             };
             threatAssessmentRequestIdOption.IsRequired = true;
             command.AddOption(threatAssessmentRequestIdOption);
@@ -165,6 +165,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (threatAssessmentRequestId is not null) requestInfo.PathParameters.Add("threatAssessmentRequest%2Did", threatAssessmentRequestId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -30,11 +30,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
             var command = new Command("delete");
             command.Description = "Delete navigation property stages for identityGovernance";
             // Create options for all the parameters
-            var approvalIdOption = new Option<string>("--approval-id", description: "key: id of approval") {
+            var approvalIdOption = new Option<string>("--approval-id", description: "The unique identifier of approval") {
             };
             approvalIdOption.IsRequired = true;
             command.AddOption(approvalIdOption);
-            var approvalStageIdOption = new Option<string>("--approval-stage-id", description: "key: id of approvalStage") {
+            var approvalStageIdOption = new Option<string>("--approval-stage-id", description: "The unique identifier of approvalStage") {
             };
             approvalStageIdOption.IsRequired = true;
             command.AddOption(approvalStageIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
             var command = new Command("get");
             command.Description = "A collection of stages in the approval decision.";
             // Create options for all the parameters
-            var approvalIdOption = new Option<string>("--approval-id", description: "key: id of approval") {
+            var approvalIdOption = new Option<string>("--approval-id", description: "The unique identifier of approval") {
             };
             approvalIdOption.IsRequired = true;
             command.AddOption(approvalIdOption);
-            var approvalStageIdOption = new Option<string>("--approval-stage-id", description: "key: id of approvalStage") {
+            var approvalStageIdOption = new Option<string>("--approval-stage-id", description: "The unique identifier of approvalStage") {
             };
             approvalStageIdOption.IsRequired = true;
             command.AddOption(approvalStageIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
             var command = new Command("patch");
             command.Description = "Update the navigation property stages in identityGovernance";
             // Create options for all the parameters
-            var approvalIdOption = new Option<string>("--approval-id", description: "key: id of approval") {
+            var approvalIdOption = new Option<string>("--approval-id", description: "The unique identifier of approval") {
             };
             approvalIdOption.IsRequired = true;
             command.AddOption(approvalIdOption);
-            var approvalStageIdOption = new Option<string>("--approval-stage-id", description: "key: id of approvalStage") {
+            var approvalStageIdOption = new Option<string>("--approval-stage-id", description: "The unique identifier of approvalStage") {
             };
             approvalStageIdOption.IsRequired = true;
             command.AddOption(approvalStageIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
                 });
                 if (approvalId is not null) requestInfo.PathParameters.Add("approval%2Did", approvalId);
                 if (approvalStageId is not null) requestInfo.PathParameters.Add("approvalStage%2Did", approvalStageId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

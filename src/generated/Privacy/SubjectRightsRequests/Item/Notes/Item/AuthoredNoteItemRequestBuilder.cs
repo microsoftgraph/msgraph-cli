@@ -30,11 +30,11 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property notes for privacy";
             // Create options for all the parameters
-            var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "key: id of subjectRightsRequest") {
+            var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "The unique identifier of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
             command.AddOption(subjectRightsRequestIdOption);
-            var authoredNoteIdOption = new Option<string>("--authored-note-id", description: "key: id of authoredNote") {
+            var authoredNoteIdOption = new Option<string>("--authored-note-id", description: "The unique identifier of authoredNote") {
             };
             authoredNoteIdOption.IsRequired = true;
             command.AddOption(authoredNoteIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
             var command = new Command("get");
             command.Description = "List of notes associcated with the request.";
             // Create options for all the parameters
-            var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "key: id of subjectRightsRequest") {
+            var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "The unique identifier of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
             command.AddOption(subjectRightsRequestIdOption);
-            var authoredNoteIdOption = new Option<string>("--authored-note-id", description: "key: id of authoredNote") {
+            var authoredNoteIdOption = new Option<string>("--authored-note-id", description: "The unique identifier of authoredNote") {
             };
             authoredNoteIdOption.IsRequired = true;
             command.AddOption(authoredNoteIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property notes in privacy";
             // Create options for all the parameters
-            var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "key: id of subjectRightsRequest") {
+            var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "The unique identifier of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
             command.AddOption(subjectRightsRequestIdOption);
-            var authoredNoteIdOption = new Option<string>("--authored-note-id", description: "key: id of authoredNote") {
+            var authoredNoteIdOption = new Option<string>("--authored-note-id", description: "The unique identifier of authoredNote") {
             };
             authoredNoteIdOption.IsRequired = true;
             command.AddOption(authoredNoteIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
                 });
                 if (subjectRightsRequestId is not null) requestInfo.PathParameters.Add("subjectRightsRequest%2Did", subjectRightsRequestId);
                 if (authoredNoteId is not null) requestInfo.PathParameters.Add("authoredNote%2Did", authoredNoteId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

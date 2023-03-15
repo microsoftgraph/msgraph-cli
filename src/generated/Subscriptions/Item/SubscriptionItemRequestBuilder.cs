@@ -1,6 +1,6 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.Subscriptions.Item.MicrosoftGraphReauthorize;
+using ApiSdk.Subscriptions.Item.Reauthorize;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -32,7 +32,7 @@ namespace ApiSdk.Subscriptions.Item {
             var command = new Command("delete");
             command.Description = "Delete a subscription. For the list of resources that support subscribing to change notifications, see the table in the Permissions section.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/subscription-delete?view=graph-rest-1.0";
             // Create options for all the parameters
-            var subscriptionIdOption = new Option<string>("--subscription-id", description: "key: id of subscription") {
+            var subscriptionIdOption = new Option<string>("--subscription-id", description: "The unique identifier of subscription") {
             };
             subscriptionIdOption.IsRequired = true;
             command.AddOption(subscriptionIdOption);
@@ -67,7 +67,7 @@ namespace ApiSdk.Subscriptions.Item {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a subscription. See the table in the Permissions section for the list of resources that support subscribing to change notifications.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/subscription-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var subscriptionIdOption = new Option<string>("--subscription-id", description: "key: id of subscription") {
+            var subscriptionIdOption = new Option<string>("--subscription-id", description: "The unique identifier of subscription") {
             };
             subscriptionIdOption.IsRequired = true;
             command.AddOption(subscriptionIdOption);
@@ -116,16 +116,6 @@ namespace ApiSdk.Subscriptions.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the reauthorize method.
-        /// </summary>
-        public Command BuildMicrosoftGraphReauthorizeCommand() {
-            var command = new Command("microsoft-graph-reauthorize");
-            command.Description = "Provides operations to call the reauthorize method.";
-            var builder = new MicrosoftGraphReauthorizeRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Renew a subscription by extending its expiry time. The table in the Permissions section lists the resources that support subscribing to change notifications. Subscriptions expire after a length of time that varies by resource type. In order to avoid missing change notifications, an app should renew its subscriptions well in advance of their expiry date. See subscription for maximum length of a subscription for each resource type.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/subscription-update?view=graph-rest-1.0" />
         /// </summary>
@@ -133,7 +123,7 @@ namespace ApiSdk.Subscriptions.Item {
             var command = new Command("patch");
             command.Description = "Renew a subscription by extending its expiry time. The table in the Permissions section lists the resources that support subscribing to change notifications. Subscriptions expire after a length of time that varies by resource type. In order to avoid missing change notifications, an app should renew its subscriptions well in advance of their expiry date. See subscription for maximum length of a subscription for each resource type.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/subscription-update?view=graph-rest-1.0";
             // Create options for all the parameters
-            var subscriptionIdOption = new Option<string>("--subscription-id", description: "key: id of subscription") {
+            var subscriptionIdOption = new Option<string>("--subscription-id", description: "The unique identifier of subscription") {
             };
             subscriptionIdOption.IsRequired = true;
             command.AddOption(subscriptionIdOption);
@@ -171,6 +161,7 @@ namespace ApiSdk.Subscriptions.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (subscriptionId is not null) requestInfo.PathParameters.Add("subscription%2Did", subscriptionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -181,6 +172,16 @@ namespace ApiSdk.Subscriptions.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the reauthorize method.
+        /// </summary>
+        public Command BuildReauthorizeCommand() {
+            var command = new Command("reauthorize");
+            command.Description = "Provides operations to call the reauthorize method.";
+            var builder = new ReauthorizeRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

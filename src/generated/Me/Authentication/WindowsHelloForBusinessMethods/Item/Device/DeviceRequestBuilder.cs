@@ -30,7 +30,7 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item.Device {
             var command = new Command("get");
             command.Description = "The registered device on which this Windows Hello for Business key resides. Supports $expand. When you get a user's Windows Hello for Business registration information, this property is returned only on a single GET and when you specify ?$expand. For example, GET /users/admin@contoso.com/authentication/windowsHelloForBusinessMethods/_jpuR-TGZtk6aQCLF3BQjA2?$expand=device.";
             // Create options for all the parameters
-            var windowsHelloForBusinessAuthenticationMethodIdOption = new Option<string>("--windows-hello-for-business-authentication-method-id", description: "key: id of windowsHelloForBusinessAuthenticationMethod") {
+            var windowsHelloForBusinessAuthenticationMethodIdOption = new Option<string>("--windows-hello-for-business-authentication-method-id", description: "The unique identifier of windowsHelloForBusinessAuthenticationMethod") {
             };
             windowsHelloForBusinessAuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(windowsHelloForBusinessAuthenticationMethodIdOption);

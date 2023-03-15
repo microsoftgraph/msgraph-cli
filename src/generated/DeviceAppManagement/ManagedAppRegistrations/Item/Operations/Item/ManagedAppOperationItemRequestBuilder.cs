@@ -30,11 +30,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.Ite
             var command = new Command("delete");
             command.Description = "Delete navigation property operations for deviceAppManagement";
             // Create options for all the parameters
-            var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "key: id of managedAppRegistration") {
+            var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "The unique identifier of managedAppRegistration") {
             };
             managedAppRegistrationIdOption.IsRequired = true;
             command.AddOption(managedAppRegistrationIdOption);
-            var managedAppOperationIdOption = new Option<string>("--managed-app-operation-id", description: "key: id of managedAppOperation") {
+            var managedAppOperationIdOption = new Option<string>("--managed-app-operation-id", description: "The unique identifier of managedAppOperation") {
             };
             managedAppOperationIdOption.IsRequired = true;
             command.AddOption(managedAppOperationIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.Ite
             var command = new Command("get");
             command.Description = "Zero or more long running operations triggered on the app registration.";
             // Create options for all the parameters
-            var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "key: id of managedAppRegistration") {
+            var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "The unique identifier of managedAppRegistration") {
             };
             managedAppRegistrationIdOption.IsRequired = true;
             command.AddOption(managedAppRegistrationIdOption);
-            var managedAppOperationIdOption = new Option<string>("--managed-app-operation-id", description: "key: id of managedAppOperation") {
+            var managedAppOperationIdOption = new Option<string>("--managed-app-operation-id", description: "The unique identifier of managedAppOperation") {
             };
             managedAppOperationIdOption.IsRequired = true;
             command.AddOption(managedAppOperationIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.Ite
             var command = new Command("patch");
             command.Description = "Update the navigation property operations in deviceAppManagement";
             // Create options for all the parameters
-            var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "key: id of managedAppRegistration") {
+            var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "The unique identifier of managedAppRegistration") {
             };
             managedAppRegistrationIdOption.IsRequired = true;
             command.AddOption(managedAppRegistrationIdOption);
-            var managedAppOperationIdOption = new Option<string>("--managed-app-operation-id", description: "key: id of managedAppOperation") {
+            var managedAppOperationIdOption = new Option<string>("--managed-app-operation-id", description: "The unique identifier of managedAppOperation") {
             };
             managedAppOperationIdOption.IsRequired = true;
             command.AddOption(managedAppOperationIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.Ite
                 });
                 if (managedAppRegistrationId is not null) requestInfo.PathParameters.Add("managedAppRegistration%2Did", managedAppRegistrationId);
                 if (managedAppOperationId is not null) requestInfo.PathParameters.Add("managedAppOperation%2Did", managedAppOperationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

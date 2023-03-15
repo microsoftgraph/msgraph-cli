@@ -31,7 +31,7 @@ namespace ApiSdk.IdentityProviders.Item {
             var command = new Command("delete");
             command.Description = "Delete an existing identityProvider.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/identityprovider-delete?view=graph-rest-1.0";
             // Create options for all the parameters
-            var identityProviderIdOption = new Option<string>("--identity-provider-id", description: "key: id of identityProvider") {
+            var identityProviderIdOption = new Option<string>("--identity-provider-id", description: "The unique identifier of identityProvider") {
             };
             identityProviderIdOption.IsRequired = true;
             command.AddOption(identityProviderIdOption);
@@ -66,7 +66,7 @@ namespace ApiSdk.IdentityProviders.Item {
             var command = new Command("get");
             command.Description = "Retrieve the properties of an existing identityProvider.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/identityprovider-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var identityProviderIdOption = new Option<string>("--identity-provider-id", description: "key: id of identityProvider") {
+            var identityProviderIdOption = new Option<string>("--identity-provider-id", description: "The unique identifier of identityProvider") {
             };
             identityProviderIdOption.IsRequired = true;
             command.AddOption(identityProviderIdOption);
@@ -129,7 +129,7 @@ namespace ApiSdk.IdentityProviders.Item {
             var command = new Command("patch");
             command.Description = "Update properties in an existing identityProvider.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/identityprovider-update?view=graph-rest-1.0";
             // Create options for all the parameters
-            var identityProviderIdOption = new Option<string>("--identity-provider-id", description: "key: id of identityProvider") {
+            var identityProviderIdOption = new Option<string>("--identity-provider-id", description: "The unique identifier of identityProvider") {
             };
             identityProviderIdOption.IsRequired = true;
             command.AddOption(identityProviderIdOption);
@@ -167,6 +167,7 @@ namespace ApiSdk.IdentityProviders.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (identityProviderId is not null) requestInfo.PathParameters.Add("identityProvider%2Did", identityProviderId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

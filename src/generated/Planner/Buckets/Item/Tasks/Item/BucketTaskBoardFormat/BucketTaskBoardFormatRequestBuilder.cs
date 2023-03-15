@@ -30,11 +30,11 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks.Item.BucketTaskBoardFormat {
             var command = new Command("delete");
             command.Description = "Delete navigation property bucketTaskBoardFormat for planner";
             // Create options for all the parameters
-            var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "key: id of plannerBucket") {
+            var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "The unique identifier of plannerBucket") {
             };
             plannerBucketIdOption.IsRequired = true;
             command.AddOption(plannerBucketIdOption);
-            var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "key: id of plannerTask") {
+            var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "The unique identifier of plannerTask") {
             };
             plannerTaskIdOption.IsRequired = true;
             command.AddOption(plannerTaskIdOption);
@@ -71,11 +71,11 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks.Item.BucketTaskBoardFormat {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of **plannerBucketTaskBoardTaskFormat** object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerbuckettaskboardtaskformat-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "key: id of plannerBucket") {
+            var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "The unique identifier of plannerBucket") {
             };
             plannerBucketIdOption.IsRequired = true;
             command.AddOption(plannerBucketIdOption);
-            var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "key: id of plannerTask") {
+            var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "The unique identifier of plannerTask") {
             };
             plannerTaskIdOption.IsRequired = true;
             command.AddOption(plannerTaskIdOption);
@@ -140,11 +140,11 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks.Item.BucketTaskBoardFormat {
             var command = new Command("patch");
             command.Description = "Update the navigation property bucketTaskBoardFormat in planner\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerbuckettaskboardtaskformat-update?view=graph-rest-1.0";
             // Create options for all the parameters
-            var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "key: id of plannerBucket") {
+            var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "The unique identifier of plannerBucket") {
             };
             plannerBucketIdOption.IsRequired = true;
             command.AddOption(plannerBucketIdOption);
-            var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "key: id of plannerTask") {
+            var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "The unique identifier of plannerTask") {
             };
             plannerTaskIdOption.IsRequired = true;
             command.AddOption(plannerTaskIdOption);
@@ -191,6 +191,7 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks.Item.BucketTaskBoardFormat {
                 if (plannerBucketId is not null) requestInfo.PathParameters.Add("plannerBucket%2Did", plannerBucketId);
                 if (plannerTaskId is not null) requestInfo.PathParameters.Add("plannerTask%2Did", plannerTaskId);
                 if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

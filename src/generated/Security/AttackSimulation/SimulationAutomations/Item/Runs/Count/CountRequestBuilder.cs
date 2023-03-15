@@ -29,7 +29,7 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item.Runs.Count
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var simulationAutomationIdOption = new Option<string>("--simulation-automation-id", description: "key: id of simulationAutomation") {
+            var simulationAutomationIdOption = new Option<string>("--simulation-automation-id", description: "The unique identifier of simulationAutomation") {
             };
             simulationAutomationIdOption.IsRequired = true;
             command.AddOption(simulationAutomationIdOption);

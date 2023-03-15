@@ -30,11 +30,11 @@ namespace ApiSdk.Users.Item.Insights.Used.Item.Resource {
             var command = new Command("get");
             command.Description = "Used for navigating to the item that was used. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var usedInsightIdOption = new Option<string>("--used-insight-id", description: "key: id of usedInsight") {
+            var usedInsightIdOption = new Option<string>("--used-insight-id", description: "The unique identifier of usedInsight") {
             };
             usedInsightIdOption.IsRequired = true;
             command.AddOption(usedInsightIdOption);

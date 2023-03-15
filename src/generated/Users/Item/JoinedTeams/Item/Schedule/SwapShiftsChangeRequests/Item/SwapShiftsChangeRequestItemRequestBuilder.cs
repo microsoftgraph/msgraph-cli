@@ -30,15 +30,15 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.SwapShiftsChangeRequests.I
             var command = new Command("delete");
             command.Description = "Delete navigation property swapShiftsChangeRequests for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var swapShiftsChangeRequestIdOption = new Option<string>("--swap-shifts-change-request-id", description: "key: id of swapShiftsChangeRequest") {
+            var swapShiftsChangeRequestIdOption = new Option<string>("--swap-shifts-change-request-id", description: "The unique identifier of swapShiftsChangeRequest") {
             };
             swapShiftsChangeRequestIdOption.IsRequired = true;
             command.AddOption(swapShiftsChangeRequestIdOption);
@@ -76,15 +76,15 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.SwapShiftsChangeRequests.I
             var command = new Command("get");
             command.Description = "Get swapShiftsChangeRequests from users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var swapShiftsChangeRequestIdOption = new Option<string>("--swap-shifts-change-request-id", description: "key: id of swapShiftsChangeRequest") {
+            var swapShiftsChangeRequestIdOption = new Option<string>("--swap-shifts-change-request-id", description: "The unique identifier of swapShiftsChangeRequest") {
             };
             swapShiftsChangeRequestIdOption.IsRequired = true;
             command.AddOption(swapShiftsChangeRequestIdOption);
@@ -150,15 +150,15 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.SwapShiftsChangeRequests.I
             var command = new Command("patch");
             command.Description = "Update the navigation property swapShiftsChangeRequests in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var swapShiftsChangeRequestIdOption = new Option<string>("--swap-shifts-change-request-id", description: "key: id of swapShiftsChangeRequest") {
+            var swapShiftsChangeRequestIdOption = new Option<string>("--swap-shifts-change-request-id", description: "The unique identifier of swapShiftsChangeRequest") {
             };
             swapShiftsChangeRequestIdOption.IsRequired = true;
             command.AddOption(swapShiftsChangeRequestIdOption);
@@ -200,6 +200,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.SwapShiftsChangeRequests.I
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
                 if (swapShiftsChangeRequestId is not null) requestInfo.PathParameters.Add("swapShiftsChangeRequest%2Did", swapShiftsChangeRequestId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

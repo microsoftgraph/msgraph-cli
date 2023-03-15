@@ -31,15 +31,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.SiteSources
             var command = new Command("delete");
             command.Description = "Delete navigation property siteSources for security";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoveryCustodianIdOption = new Option<string>("--ediscovery-custodian-id", description: "key: id of ediscoveryCustodian") {
+            var ediscoveryCustodianIdOption = new Option<string>("--ediscovery-custodian-id", description: "The unique identifier of ediscoveryCustodian") {
             };
             ediscoveryCustodianIdOption.IsRequired = true;
             command.AddOption(ediscoveryCustodianIdOption);
-            var siteSourceIdOption = new Option<string>("--site-source-id", description: "key: id of siteSource") {
+            var siteSourceIdOption = new Option<string>("--site-source-id", description: "The unique identifier of siteSource") {
             };
             siteSourceIdOption.IsRequired = true;
             command.AddOption(siteSourceIdOption);
@@ -77,15 +77,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.SiteSources
             var command = new Command("get");
             command.Description = "Data source entity for SharePoint sites associated with the custodian.";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoveryCustodianIdOption = new Option<string>("--ediscovery-custodian-id", description: "key: id of ediscoveryCustodian") {
+            var ediscoveryCustodianIdOption = new Option<string>("--ediscovery-custodian-id", description: "The unique identifier of ediscoveryCustodian") {
             };
             ediscoveryCustodianIdOption.IsRequired = true;
             command.AddOption(ediscoveryCustodianIdOption);
-            var siteSourceIdOption = new Option<string>("--site-source-id", description: "key: id of siteSource") {
+            var siteSourceIdOption = new Option<string>("--site-source-id", description: "The unique identifier of siteSource") {
             };
             siteSourceIdOption.IsRequired = true;
             command.AddOption(siteSourceIdOption);
@@ -151,15 +151,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.SiteSources
             var command = new Command("patch");
             command.Description = "Update the navigation property siteSources in security";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoveryCustodianIdOption = new Option<string>("--ediscovery-custodian-id", description: "key: id of ediscoveryCustodian") {
+            var ediscoveryCustodianIdOption = new Option<string>("--ediscovery-custodian-id", description: "The unique identifier of ediscoveryCustodian") {
             };
             ediscoveryCustodianIdOption.IsRequired = true;
             command.AddOption(ediscoveryCustodianIdOption);
-            var siteSourceIdOption = new Option<string>("--site-source-id", description: "key: id of siteSource") {
+            var siteSourceIdOption = new Option<string>("--site-source-id", description: "The unique identifier of siteSource") {
             };
             siteSourceIdOption.IsRequired = true;
             command.AddOption(siteSourceIdOption);
@@ -201,6 +201,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.SiteSources
                 if (ediscoveryCaseId is not null) requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
                 if (ediscoveryCustodianId is not null) requestInfo.PathParameters.Add("ediscoveryCustodian%2Did", ediscoveryCustodianId);
                 if (siteSourceId is not null) requestInfo.PathParameters.Add("siteSource%2Did", siteSourceId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

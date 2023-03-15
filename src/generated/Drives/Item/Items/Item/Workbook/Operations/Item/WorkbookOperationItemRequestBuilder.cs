@@ -30,15 +30,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Operations.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property operations for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookOperationIdOption = new Option<string>("--workbook-operation-id", description: "key: id of workbookOperation") {
+            var workbookOperationIdOption = new Option<string>("--workbook-operation-id", description: "The unique identifier of workbookOperation") {
             };
             workbookOperationIdOption.IsRequired = true;
             command.AddOption(workbookOperationIdOption);
@@ -76,15 +76,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Operations.Item {
             var command = new Command("get");
             command.Description = "The status of workbook operations. Getting an operation collection is not supported, but you can get the status of a long-running operation if the Location header is returned in the response. Read-only.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookOperationIdOption = new Option<string>("--workbook-operation-id", description: "key: id of workbookOperation") {
+            var workbookOperationIdOption = new Option<string>("--workbook-operation-id", description: "The unique identifier of workbookOperation") {
             };
             workbookOperationIdOption.IsRequired = true;
             command.AddOption(workbookOperationIdOption);
@@ -150,15 +150,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Operations.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property operations in drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookOperationIdOption = new Option<string>("--workbook-operation-id", description: "key: id of workbookOperation") {
+            var workbookOperationIdOption = new Option<string>("--workbook-operation-id", description: "The unique identifier of workbookOperation") {
             };
             workbookOperationIdOption.IsRequired = true;
             command.AddOption(workbookOperationIdOption);
@@ -200,6 +200,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Operations.Item {
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
                 if (workbookOperationId is not null) requestInfo.PathParameters.Add("workbookOperation%2Did", workbookOperationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

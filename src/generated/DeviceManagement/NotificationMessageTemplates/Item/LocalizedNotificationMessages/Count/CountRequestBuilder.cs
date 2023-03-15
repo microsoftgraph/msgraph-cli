@@ -29,7 +29,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNot
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "key: id of notificationMessageTemplate") {
+            var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "The unique identifier of notificationMessageTemplate") {
             };
             notificationMessageTemplateIdOption.IsRequired = true;
             command.AddOption(notificationMessageTemplateIdOption);

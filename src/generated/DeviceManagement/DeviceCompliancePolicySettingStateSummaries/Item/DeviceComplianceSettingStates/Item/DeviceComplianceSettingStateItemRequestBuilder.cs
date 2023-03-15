@@ -30,11 +30,11 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
             var command = new Command("delete");
             command.Description = "Delete navigation property deviceComplianceSettingStates for deviceManagement";
             // Create options for all the parameters
-            var deviceCompliancePolicySettingStateSummaryIdOption = new Option<string>("--device-compliance-policy-setting-state-summary-id", description: "key: id of deviceCompliancePolicySettingStateSummary") {
+            var deviceCompliancePolicySettingStateSummaryIdOption = new Option<string>("--device-compliance-policy-setting-state-summary-id", description: "The unique identifier of deviceCompliancePolicySettingStateSummary") {
             };
             deviceCompliancePolicySettingStateSummaryIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicySettingStateSummaryIdOption);
-            var deviceComplianceSettingStateIdOption = new Option<string>("--device-compliance-setting-state-id", description: "key: id of deviceComplianceSettingState") {
+            var deviceComplianceSettingStateIdOption = new Option<string>("--device-compliance-setting-state-id", description: "The unique identifier of deviceComplianceSettingState") {
             };
             deviceComplianceSettingStateIdOption.IsRequired = true;
             command.AddOption(deviceComplianceSettingStateIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
             var command = new Command("get");
             command.Description = "Not yet documented";
             // Create options for all the parameters
-            var deviceCompliancePolicySettingStateSummaryIdOption = new Option<string>("--device-compliance-policy-setting-state-summary-id", description: "key: id of deviceCompliancePolicySettingStateSummary") {
+            var deviceCompliancePolicySettingStateSummaryIdOption = new Option<string>("--device-compliance-policy-setting-state-summary-id", description: "The unique identifier of deviceCompliancePolicySettingStateSummary") {
             };
             deviceCompliancePolicySettingStateSummaryIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicySettingStateSummaryIdOption);
-            var deviceComplianceSettingStateIdOption = new Option<string>("--device-compliance-setting-state-id", description: "key: id of deviceComplianceSettingState") {
+            var deviceComplianceSettingStateIdOption = new Option<string>("--device-compliance-setting-state-id", description: "The unique identifier of deviceComplianceSettingState") {
             };
             deviceComplianceSettingStateIdOption.IsRequired = true;
             command.AddOption(deviceComplianceSettingStateIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
             var command = new Command("patch");
             command.Description = "Update the navigation property deviceComplianceSettingStates in deviceManagement";
             // Create options for all the parameters
-            var deviceCompliancePolicySettingStateSummaryIdOption = new Option<string>("--device-compliance-policy-setting-state-summary-id", description: "key: id of deviceCompliancePolicySettingStateSummary") {
+            var deviceCompliancePolicySettingStateSummaryIdOption = new Option<string>("--device-compliance-policy-setting-state-summary-id", description: "The unique identifier of deviceCompliancePolicySettingStateSummary") {
             };
             deviceCompliancePolicySettingStateSummaryIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicySettingStateSummaryIdOption);
-            var deviceComplianceSettingStateIdOption = new Option<string>("--device-compliance-setting-state-id", description: "key: id of deviceComplianceSettingState") {
+            var deviceComplianceSettingStateIdOption = new Option<string>("--device-compliance-setting-state-id", description: "The unique identifier of deviceComplianceSettingState") {
             };
             deviceComplianceSettingStateIdOption.IsRequired = true;
             command.AddOption(deviceComplianceSettingStateIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
                 });
                 if (deviceCompliancePolicySettingStateSummaryId is not null) requestInfo.PathParameters.Add("deviceCompliancePolicySettingStateSummary%2Did", deviceCompliancePolicySettingStateSummaryId);
                 if (deviceComplianceSettingStateId is not null) requestInfo.PathParameters.Add("deviceComplianceSettingState%2Did", deviceComplianceSettingStateId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

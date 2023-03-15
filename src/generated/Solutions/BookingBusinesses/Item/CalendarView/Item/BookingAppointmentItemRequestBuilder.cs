@@ -1,6 +1,6 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item.MicrosoftGraphCancel;
+using ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item.Cancel;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -25,17 +25,27 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the cancel method.
+        /// </summary>
+        public Command BuildCancelCommand() {
+            var command = new Command("cancel");
+            command.Description = "Provides operations to call the cancel method.";
+            var builder = new CancelRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete navigation property calendarView for solutions
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property calendarView for solutions";
             // Create options for all the parameters
-            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
+            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
             command.AddOption(bookingBusinessIdOption);
-            var bookingAppointmentIdOption = new Option<string>("--booking-appointment-id", description: "key: id of bookingAppointment") {
+            var bookingAppointmentIdOption = new Option<string>("--booking-appointment-id", description: "The unique identifier of bookingAppointment") {
             };
             bookingAppointmentIdOption.IsRequired = true;
             command.AddOption(bookingAppointmentIdOption);
@@ -71,11 +81,11 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item {
             var command = new Command("get");
             command.Description = "The set of appointments of this business in a specified date range. Read-only. Nullable.";
             // Create options for all the parameters
-            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
+            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
             command.AddOption(bookingBusinessIdOption);
-            var bookingAppointmentIdOption = new Option<string>("--booking-appointment-id", description: "key: id of bookingAppointment") {
+            var bookingAppointmentIdOption = new Option<string>("--booking-appointment-id", description: "The unique identifier of bookingAppointment") {
             };
             bookingAppointmentIdOption.IsRequired = true;
             command.AddOption(bookingAppointmentIdOption);
@@ -133,27 +143,17 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the cancel method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCancelCommand() {
-            var command = new Command("microsoft-graph-cancel");
-            command.Description = "Provides operations to call the cancel method.";
-            var builder = new MicrosoftGraphCancelRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property calendarView in solutions
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property calendarView in solutions";
             // Create options for all the parameters
-            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
+            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
             command.AddOption(bookingBusinessIdOption);
-            var bookingAppointmentIdOption = new Option<string>("--booking-appointment-id", description: "key: id of bookingAppointment") {
+            var bookingAppointmentIdOption = new Option<string>("--booking-appointment-id", description: "The unique identifier of bookingAppointment") {
             };
             bookingAppointmentIdOption.IsRequired = true;
             command.AddOption(bookingAppointmentIdOption);
@@ -193,6 +193,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item {
                 });
                 if (bookingBusinessId is not null) requestInfo.PathParameters.Add("bookingBusiness%2Did", bookingBusinessId);
                 if (bookingAppointmentId is not null) requestInfo.PathParameters.Add("bookingAppointment%2Did", bookingAppointmentId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -33,10 +33,10 @@ namespace ApiSdk.Me.Chats.Item.InstalledApps {
             var builder = new TeamsAppInstallationItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUpgradeCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildTeamsAppCommand());
             command.AddCommand(builder.BuildTeamsAppDefinitionCommand());
+            command.AddCommand(builder.BuildUpgradeCommand());
             return command;
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace ApiSdk.Me.Chats.Item.InstalledApps {
             var command = new Command("create");
             command.Description = "Install a teamsApp to the specified chat.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-post-installedapps?view=graph-rest-1.0";
             // Create options for all the parameters
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
@@ -95,6 +95,7 @@ namespace ApiSdk.Me.Chats.Item.InstalledApps {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (chatId is not null) requestInfo.PathParameters.Add("chat%2Did", chatId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -115,7 +116,7 @@ namespace ApiSdk.Me.Chats.Item.InstalledApps {
             var command = new Command("list");
             command.Description = "List all app installations within a chat.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-list-installedapps?view=graph-rest-1.0";
             // Create options for all the parameters
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);

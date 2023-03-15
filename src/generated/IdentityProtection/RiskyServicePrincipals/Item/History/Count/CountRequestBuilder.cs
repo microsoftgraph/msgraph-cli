@@ -29,7 +29,7 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Item.History.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var riskyServicePrincipalIdOption = new Option<string>("--risky-service-principal-id", description: "key: id of riskyServicePrincipal") {
+            var riskyServicePrincipalIdOption = new Option<string>("--risky-service-principal-id", description: "The unique identifier of riskyServicePrincipal") {
             };
             riskyServicePrincipalIdOption.IsRequired = true;
             command.AddOption(riskyServicePrincipalIdOption);

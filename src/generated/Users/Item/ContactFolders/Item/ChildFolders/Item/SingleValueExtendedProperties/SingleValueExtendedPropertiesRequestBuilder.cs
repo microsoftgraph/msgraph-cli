@@ -53,15 +53,15 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.SingleValueExt
             var command = new Command("create");
             command.Description = "Create new navigation property to singleValueExtendedProperties for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
+            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "The unique identifier of contactFolder") {
             };
             contactFolderIdOption.IsRequired = true;
             command.AddOption(contactFolderIdOption);
-            var contactFolderId1Option = new Option<string>("--contact-folder-id1", description: "key: id of contactFolder") {
+            var contactFolderId1Option = new Option<string>("--contact-folder-id1", description: "The unique identifier of contactFolder") {
             };
             contactFolderId1Option.IsRequired = true;
             command.AddOption(contactFolderId1Option);
@@ -103,6 +103,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.SingleValueExt
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (contactFolderId is not null) requestInfo.PathParameters.Add("contactFolder%2Did", contactFolderId);
                 if (contactFolderId1 is not null) requestInfo.PathParameters.Add("contactFolder%2Did1", contactFolderId1);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -122,15 +123,15 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.SingleValueExt
             var command = new Command("list");
             command.Description = "The collection of single-value extended properties defined for the contactFolder. Read-only. Nullable.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
+            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "The unique identifier of contactFolder") {
             };
             contactFolderIdOption.IsRequired = true;
             command.AddOption(contactFolderIdOption);
-            var contactFolderId1Option = new Option<string>("--contact-folder-id1", description: "key: id of contactFolder") {
+            var contactFolderId1Option = new Option<string>("--contact-folder-id1", description: "The unique identifier of contactFolder") {
             };
             contactFolderId1Option.IsRequired = true;
             command.AddOption(contactFolderId1Option);

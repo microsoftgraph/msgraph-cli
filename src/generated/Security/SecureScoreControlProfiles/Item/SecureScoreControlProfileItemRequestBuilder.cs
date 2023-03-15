@@ -30,7 +30,7 @@ namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property secureScoreControlProfiles for security";
             // Create options for all the parameters
-            var secureScoreControlProfileIdOption = new Option<string>("--secure-score-control-profile-id", description: "key: id of secureScoreControlProfile") {
+            var secureScoreControlProfileIdOption = new Option<string>("--secure-score-control-profile-id", description: "The unique identifier of secureScoreControlProfile") {
             };
             secureScoreControlProfileIdOption.IsRequired = true;
             command.AddOption(secureScoreControlProfileIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
             var command = new Command("get");
             command.Description = "Get secureScoreControlProfiles from security";
             // Create options for all the parameters
-            var secureScoreControlProfileIdOption = new Option<string>("--secure-score-control-profile-id", description: "key: id of secureScoreControlProfile") {
+            var secureScoreControlProfileIdOption = new Option<string>("--secure-score-control-profile-id", description: "The unique identifier of secureScoreControlProfile") {
             };
             secureScoreControlProfileIdOption.IsRequired = true;
             command.AddOption(secureScoreControlProfileIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property secureScoreControlProfiles in security";
             // Create options for all the parameters
-            var secureScoreControlProfileIdOption = new Option<string>("--secure-score-control-profile-id", description: "key: id of secureScoreControlProfile") {
+            var secureScoreControlProfileIdOption = new Option<string>("--secure-score-control-profile-id", description: "The unique identifier of secureScoreControlProfile") {
             };
             secureScoreControlProfileIdOption.IsRequired = true;
             command.AddOption(secureScoreControlProfileIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.Security.SecureScoreControlProfiles.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (secureScoreControlProfileId is not null) requestInfo.PathParameters.Add("secureScoreControlProfile%2Did", secureScoreControlProfileId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -1,22 +1,22 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Teams.Item.AllChannels;
+using ApiSdk.Teams.Item.Archive;
 using ApiSdk.Teams.Item.Channels;
+using ApiSdk.Teams.Item.Clone;
+using ApiSdk.Teams.Item.CompleteMigration;
 using ApiSdk.Teams.Item.Group;
 using ApiSdk.Teams.Item.IncomingChannels;
 using ApiSdk.Teams.Item.InstalledApps;
 using ApiSdk.Teams.Item.Members;
-using ApiSdk.Teams.Item.MicrosoftGraphArchive;
-using ApiSdk.Teams.Item.MicrosoftGraphClone;
-using ApiSdk.Teams.Item.MicrosoftGraphCompleteMigration;
-using ApiSdk.Teams.Item.MicrosoftGraphSendActivityNotification;
-using ApiSdk.Teams.Item.MicrosoftGraphUnarchive;
 using ApiSdk.Teams.Item.Operations;
 using ApiSdk.Teams.Item.Photo;
 using ApiSdk.Teams.Item.PrimaryChannel;
 using ApiSdk.Teams.Item.Schedule;
+using ApiSdk.Teams.Item.SendActivityNotification;
 using ApiSdk.Teams.Item.Tags;
 using ApiSdk.Teams.Item.Template;
+using ApiSdk.Teams.Item.Unarchive;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -53,6 +53,16 @@ namespace ApiSdk.Teams.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the archive method.
+        /// </summary>
+        public Command BuildArchiveCommand() {
+            var command = new Command("archive");
+            command.Description = "Provides operations to call the archive method.";
+            var builder = new ArchiveRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the channels property of the microsoft.graph.team entity.
         /// </summary>
         public Command BuildChannelsCommand() {
@@ -62,8 +72,28 @@ namespace ApiSdk.Teams.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildGetAllMessagesCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetAllMessagesCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the clone method.
+        /// </summary>
+        public Command BuildCloneCommand() {
+            var command = new Command("clone");
+            command.Description = "Provides operations to call the clone method.";
+            var builder = new CloneRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the completeMigration method.
+        /// </summary>
+        public Command BuildCompleteMigrationCommand() {
+            var command = new Command("complete-migration");
+            command.Description = "Provides operations to call the completeMigration method.";
+            var builder = new CompleteMigrationRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -73,7 +103,7 @@ namespace ApiSdk.Teams.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from teams";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
@@ -101,14 +131,14 @@ namespace ApiSdk.Teams.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of the specified team.
+        /// Get entity from teams by key
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/team-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of the specified team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-get?view=graph-rest-1.0";
+            command.Description = "Get entity from teams by key\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
@@ -205,61 +235,11 @@ namespace ApiSdk.Teams.Item {
             var command = new Command("members");
             command.Description = "Provides operations to manage the members property of the microsoft.graph.team entity.";
             var builder = new MembersRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAddCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAddCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the archive method.
-        /// </summary>
-        public Command BuildMicrosoftGraphArchiveCommand() {
-            var command = new Command("microsoft-graph-archive");
-            command.Description = "Provides operations to call the archive method.";
-            var builder = new MicrosoftGraphArchiveRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the clone method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCloneCommand() {
-            var command = new Command("microsoft-graph-clone");
-            command.Description = "Provides operations to call the clone method.";
-            var builder = new MicrosoftGraphCloneRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the completeMigration method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCompleteMigrationCommand() {
-            var command = new Command("microsoft-graph-complete-migration");
-            command.Description = "Provides operations to call the completeMigration method.";
-            var builder = new MicrosoftGraphCompleteMigrationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the sendActivityNotification method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSendActivityNotificationCommand() {
-            var command = new Command("microsoft-graph-send-activity-notification");
-            command.Description = "Provides operations to call the sendActivityNotification method.";
-            var builder = new MicrosoftGraphSendActivityNotificationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the unarchive method.
-        /// </summary>
-        public Command BuildMicrosoftGraphUnarchiveCommand() {
-            var command = new Command("microsoft-graph-unarchive");
-            command.Description = "Provides operations to call the unarchive method.";
-            var builder = new MicrosoftGraphUnarchiveRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -283,7 +263,7 @@ namespace ApiSdk.Teams.Item {
             var command = new Command("patch");
             command.Description = "Update the properties of the specified team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-update?view=graph-rest-1.0";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
@@ -321,6 +301,7 @@ namespace ApiSdk.Teams.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -353,16 +334,16 @@ namespace ApiSdk.Teams.Item {
             var command = new Command("primary-channel");
             command.Description = "Provides operations to manage the primaryChannel property of the microsoft.graph.team entity.";
             var builder = new PrimaryChannelRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCompleteMigrationCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameCommand());
             command.AddCommand(builder.BuildFilesFolderCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildMembersCommand());
             command.AddCommand(builder.BuildMessagesCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCompleteMigrationCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphProvisionEmailCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRemoveEmailCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildProvisionEmailCommand());
+            command.AddCommand(builder.BuildRemoveEmailCommand());
             command.AddCommand(builder.BuildSharedWithTeamsCommand());
             command.AddCommand(builder.BuildTabsCommand());
             return command;
@@ -376,17 +357,27 @@ namespace ApiSdk.Teams.Item {
             var builder = new ScheduleRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphShareCommand());
             command.AddCommand(builder.BuildOfferShiftRequestsCommand());
             command.AddCommand(builder.BuildOpenShiftChangeRequestsCommand());
             command.AddCommand(builder.BuildOpenShiftsCommand());
             command.AddCommand(builder.BuildPutCommand());
             command.AddCommand(builder.BuildSchedulingGroupsCommand());
+            command.AddCommand(builder.BuildShareCommand());
             command.AddCommand(builder.BuildShiftsCommand());
             command.AddCommand(builder.BuildSwapShiftsChangeRequestsCommand());
             command.AddCommand(builder.BuildTimeOffReasonsCommand());
             command.AddCommand(builder.BuildTimeOffRequestsCommand());
             command.AddCommand(builder.BuildTimesOffCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sendActivityNotification method.
+        /// </summary>
+        public Command BuildSendActivityNotificationCommand() {
+            var command = new Command("send-activity-notification");
+            command.Description = "Provides operations to call the sendActivityNotification method.";
+            var builder = new SendActivityNotificationRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -410,6 +401,16 @@ namespace ApiSdk.Teams.Item {
             command.Description = "Provides operations to manage the template property of the microsoft.graph.team entity.";
             var builder = new TemplateRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the unarchive method.
+        /// </summary>
+        public Command BuildUnarchiveCommand() {
+            var command = new Command("unarchive");
+            command.Description = "Provides operations to call the unarchive method.";
+            var builder = new UnarchiveRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -447,7 +448,7 @@ namespace ApiSdk.Teams.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of the specified team.
+        /// Get entity from teams by key
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -516,7 +517,7 @@ namespace ApiSdk.Teams.Item {
             }
         }
         /// <summary>
-        /// Retrieve the properties and relationships of the specified team.
+        /// Get entity from teams by key
         /// </summary>
         public class TeamItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

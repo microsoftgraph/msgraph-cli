@@ -53,7 +53,7 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords {
             var command = new Command("create");
             command.Description = "Create new navigation property to verificationDnsRecords for domains";
             // Create options for all the parameters
-            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
+            var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
             command.AddOption(domainIdOption);
@@ -91,6 +91,7 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (domainId is not null) requestInfo.PathParameters.Add("domain%2Did", domainId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -111,7 +112,7 @@ namespace ApiSdk.Domains.Item.VerificationDnsRecords {
             var command = new Command("list");
             command.Description = "Retrieve a list of domainDnsRecord objects. You cannot use an associated domain with your Azure AD tenant until ownership is verified. To verify the ownership of the domain, retrieve the domain verification records and add the details to the zone file of the domain. This can be done through the domain registrar or DNS server configuration. Root domains require verification. For example, contoso.com requires verification. If a root domain is verified, subdomains of the root domain are automatically verified. For example, subdomain.contoso.com is automatically be verified if contoso.com has been verified.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/domain-list-verificationdnsrecords?view=graph-rest-1.0";
             // Create options for all the parameters
-            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
+            var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
             command.AddOption(domainIdOption);

@@ -30,7 +30,7 @@ namespace ApiSdk.InformationProtection.Bitlocker.RecoveryKeys.Item {
             var command = new Command("get");
             command.Description = "The recovery keys associated with the bitlocker entity.";
             // Create options for all the parameters
-            var bitlockerRecoveryKeyIdOption = new Option<string>("--bitlocker-recovery-key-id", description: "key: id of bitlockerRecoveryKey") {
+            var bitlockerRecoveryKeyIdOption = new Option<string>("--bitlocker-recovery-key-id", description: "The unique identifier of bitlockerRecoveryKey") {
             };
             bitlockerRecoveryKeyIdOption.IsRequired = true;
             command.AddOption(bitlockerRecoveryKeyIdOption);

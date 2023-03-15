@@ -46,19 +46,19 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property terms for sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            var setIdOption = new Option<string>("--set-id", description: "The unique identifier of set") {
             };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
-            var termIdOption = new Option<string>("--term-id", description: "key: id of term") {
+            var termIdOption = new Option<string>("--term-id", description: "The unique identifier of term") {
             };
             termIdOption.IsRequired = true;
             command.AddOption(termIdOption);
@@ -98,19 +98,19 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.Item {
             var command = new Command("get");
             command.Description = "All the terms under the set.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            var setIdOption = new Option<string>("--set-id", description: "The unique identifier of set") {
             };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
-            var termIdOption = new Option<string>("--term-id", description: "key: id of term") {
+            var termIdOption = new Option<string>("--term-id", description: "The unique identifier of term") {
             };
             termIdOption.IsRequired = true;
             command.AddOption(termIdOption);
@@ -178,19 +178,19 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property terms in sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            var setIdOption = new Option<string>("--set-id", description: "The unique identifier of set") {
             };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
-            var termIdOption = new Option<string>("--term-id", description: "key: id of term") {
+            var termIdOption = new Option<string>("--term-id", description: "The unique identifier of term") {
             };
             termIdOption.IsRequired = true;
             command.AddOption(termIdOption);
@@ -234,6 +234,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Terms.Item {
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (setId is not null) requestInfo.PathParameters.Add("set%2Did", setId);
                 if (termId is not null) requestInfo.PathParameters.Add("term%2Did", termId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -30,11 +30,11 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property resources for education";
             // Create options for all the parameters
-            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
+            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
-            var educationAssignmentResourceIdOption = new Option<string>("--education-assignment-resource-id", description: "key: id of educationAssignmentResource") {
+            var educationAssignmentResourceIdOption = new Option<string>("--education-assignment-resource-id", description: "The unique identifier of educationAssignmentResource") {
             };
             educationAssignmentResourceIdOption.IsRequired = true;
             command.AddOption(educationAssignmentResourceIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources.Item {
             var command = new Command("get");
             command.Description = "Learning objects that are associated with this assignment.  Only teachers can modify this list. Nullable.";
             // Create options for all the parameters
-            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
+            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
-            var educationAssignmentResourceIdOption = new Option<string>("--education-assignment-resource-id", description: "key: id of educationAssignmentResource") {
+            var educationAssignmentResourceIdOption = new Option<string>("--education-assignment-resource-id", description: "The unique identifier of educationAssignmentResource") {
             };
             educationAssignmentResourceIdOption.IsRequired = true;
             command.AddOption(educationAssignmentResourceIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property resources in education";
             // Create options for all the parameters
-            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
+            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
-            var educationAssignmentResourceIdOption = new Option<string>("--education-assignment-resource-id", description: "key: id of educationAssignmentResource") {
+            var educationAssignmentResourceIdOption = new Option<string>("--education-assignment-resource-id", description: "The unique identifier of educationAssignmentResource") {
             };
             educationAssignmentResourceIdOption.IsRequired = true;
             command.AddOption(educationAssignmentResourceIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources.Item {
                 });
                 if (educationAssignmentId is not null) requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
                 if (educationAssignmentResourceId is not null) requestInfo.PathParameters.Add("educationAssignmentResource%2Did", educationAssignmentResourceId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

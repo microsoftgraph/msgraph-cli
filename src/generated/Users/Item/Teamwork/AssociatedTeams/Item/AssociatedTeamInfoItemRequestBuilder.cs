@@ -30,11 +30,11 @@ namespace ApiSdk.Users.Item.Teamwork.AssociatedTeams.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property associatedTeams for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var associatedTeamInfoIdOption = new Option<string>("--associated-team-info-id", description: "key: id of associatedTeamInfo") {
+            var associatedTeamInfoIdOption = new Option<string>("--associated-team-info-id", description: "The unique identifier of associatedTeamInfo") {
             };
             associatedTeamInfoIdOption.IsRequired = true;
             command.AddOption(associatedTeamInfoIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Users.Item.Teamwork.AssociatedTeams.Item {
             var command = new Command("get");
             command.Description = "The list of associatedTeamInfo objects that a user is associated with.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var associatedTeamInfoIdOption = new Option<string>("--associated-team-info-id", description: "key: id of associatedTeamInfo") {
+            var associatedTeamInfoIdOption = new Option<string>("--associated-team-info-id", description: "The unique identifier of associatedTeamInfo") {
             };
             associatedTeamInfoIdOption.IsRequired = true;
             command.AddOption(associatedTeamInfoIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Users.Item.Teamwork.AssociatedTeams.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property associatedTeams in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var associatedTeamInfoIdOption = new Option<string>("--associated-team-info-id", description: "key: id of associatedTeamInfo") {
+            var associatedTeamInfoIdOption = new Option<string>("--associated-team-info-id", description: "The unique identifier of associatedTeamInfo") {
             };
             associatedTeamInfoIdOption.IsRequired = true;
             command.AddOption(associatedTeamInfoIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Users.Item.Teamwork.AssociatedTeams.Item {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (associatedTeamInfoId is not null) requestInfo.PathParameters.Add("associatedTeamInfo%2Did", associatedTeamInfoId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

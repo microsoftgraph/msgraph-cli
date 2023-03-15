@@ -31,7 +31,7 @@ namespace ApiSdk.Applications.Item.Owners.Ref {
             var command = new Command("get");
             command.Description = "Directory objects that are owners of the application. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-list-owners?view=graph-rest-1.0";
             // Create options for all the parameters
-            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
             command.AddOption(applicationIdOption);
@@ -135,7 +135,7 @@ namespace ApiSdk.Applications.Item.Owners.Ref {
             var command = new Command("post");
             command.Description = "Create new navigation property ref to owners for applications";
             // Create options for all the parameters
-            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
             command.AddOption(applicationIdOption);
@@ -155,6 +155,7 @@ namespace ApiSdk.Applications.Item.Owners.Ref {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (applicationId is not null) requestInfo.PathParameters.Add("application%2Did", applicationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

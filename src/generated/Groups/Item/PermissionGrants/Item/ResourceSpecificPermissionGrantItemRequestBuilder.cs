@@ -1,8 +1,8 @@
-using ApiSdk.Groups.Item.PermissionGrants.Item.MicrosoftGraphCheckMemberGroups;
-using ApiSdk.Groups.Item.PermissionGrants.Item.MicrosoftGraphCheckMemberObjects;
-using ApiSdk.Groups.Item.PermissionGrants.Item.MicrosoftGraphGetMemberGroups;
-using ApiSdk.Groups.Item.PermissionGrants.Item.MicrosoftGraphGetMemberObjects;
-using ApiSdk.Groups.Item.PermissionGrants.Item.MicrosoftGraphRestore;
+using ApiSdk.Groups.Item.PermissionGrants.Item.CheckMemberGroups;
+using ApiSdk.Groups.Item.PermissionGrants.Item.CheckMemberObjects;
+using ApiSdk.Groups.Item.PermissionGrants.Item.GetMemberGroups;
+using ApiSdk.Groups.Item.PermissionGrants.Item.GetMemberObjects;
+using ApiSdk.Groups.Item.PermissionGrants.Item.Restore;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,17 +29,37 @@ namespace ApiSdk.Groups.Item.PermissionGrants.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the checkMemberGroups method.
+        /// </summary>
+        public Command BuildCheckMemberGroupsCommand() {
+            var command = new Command("check-member-groups");
+            command.Description = "Provides operations to call the checkMemberGroups method.";
+            var builder = new CheckMemberGroupsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the checkMemberObjects method.
+        /// </summary>
+        public Command BuildCheckMemberObjectsCommand() {
+            var command = new Command("check-member-objects");
+            command.Description = "Provides operations to call the checkMemberObjects method.";
+            var builder = new CheckMemberObjectsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete navigation property permissionGrants for groups
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property permissionGrants for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var resourceSpecificPermissionGrantIdOption = new Option<string>("--resource-specific-permission-grant-id", description: "key: id of resourceSpecificPermissionGrant") {
+            var resourceSpecificPermissionGrantIdOption = new Option<string>("--resource-specific-permission-grant-id", description: "The unique identifier of resourceSpecificPermissionGrant") {
             };
             resourceSpecificPermissionGrantIdOption.IsRequired = true;
             command.AddOption(resourceSpecificPermissionGrantIdOption);
@@ -75,11 +95,11 @@ namespace ApiSdk.Groups.Item.PermissionGrants.Item {
             var command = new Command("get");
             command.Description = "The permission that has been granted for a group to a specific application. Supports $expand.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var resourceSpecificPermissionGrantIdOption = new Option<string>("--resource-specific-permission-grant-id", description: "key: id of resourceSpecificPermissionGrant") {
+            var resourceSpecificPermissionGrantIdOption = new Option<string>("--resource-specific-permission-grant-id", description: "The unique identifier of resourceSpecificPermissionGrant") {
             };
             resourceSpecificPermissionGrantIdOption.IsRequired = true;
             command.AddOption(resourceSpecificPermissionGrantIdOption);
@@ -137,52 +157,22 @@ namespace ApiSdk.Groups.Item.PermissionGrants.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the checkMemberGroups method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCheckMemberGroupsCommand() {
-            var command = new Command("microsoft-graph-check-member-groups");
-            command.Description = "Provides operations to call the checkMemberGroups method.";
-            var builder = new MicrosoftGraphCheckMemberGroupsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the checkMemberObjects method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCheckMemberObjectsCommand() {
-            var command = new Command("microsoft-graph-check-member-objects");
-            command.Description = "Provides operations to call the checkMemberObjects method.";
-            var builder = new MicrosoftGraphCheckMemberObjectsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to call the getMemberGroups method.
         /// </summary>
-        public Command BuildMicrosoftGraphGetMemberGroupsCommand() {
-            var command = new Command("microsoft-graph-get-member-groups");
+        public Command BuildGetMemberGroupsCommand() {
+            var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
-            var builder = new MicrosoftGraphGetMemberGroupsRequestBuilder(PathParameters);
+            var builder = new GetMemberGroupsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the getMemberObjects method.
         /// </summary>
-        public Command BuildMicrosoftGraphGetMemberObjectsCommand() {
-            var command = new Command("microsoft-graph-get-member-objects");
+        public Command BuildGetMemberObjectsCommand() {
+            var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
-            var builder = new MicrosoftGraphGetMemberObjectsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the restore method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRestoreCommand() {
-            var command = new Command("microsoft-graph-restore");
-            command.Description = "Provides operations to call the restore method.";
-            var builder = new MicrosoftGraphRestoreRequestBuilder(PathParameters);
+            var builder = new GetMemberObjectsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -193,11 +183,11 @@ namespace ApiSdk.Groups.Item.PermissionGrants.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property permissionGrants in groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var resourceSpecificPermissionGrantIdOption = new Option<string>("--resource-specific-permission-grant-id", description: "key: id of resourceSpecificPermissionGrant") {
+            var resourceSpecificPermissionGrantIdOption = new Option<string>("--resource-specific-permission-grant-id", description: "The unique identifier of resourceSpecificPermissionGrant") {
             };
             resourceSpecificPermissionGrantIdOption.IsRequired = true;
             command.AddOption(resourceSpecificPermissionGrantIdOption);
@@ -237,6 +227,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants.Item {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (resourceSpecificPermissionGrantId is not null) requestInfo.PathParameters.Add("resourceSpecificPermissionGrant%2Did", resourceSpecificPermissionGrantId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -247,6 +238,16 @@ namespace ApiSdk.Groups.Item.PermissionGrants.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the restore method.
+        /// </summary>
+        public Command BuildRestoreCommand() {
+            var command = new Command("restore");
+            command.Description = "Provides operations to call the restore method.";
+            var builder = new RestoreRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

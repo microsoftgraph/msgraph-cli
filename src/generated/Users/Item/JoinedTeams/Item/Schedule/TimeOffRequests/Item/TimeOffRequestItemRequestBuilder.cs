@@ -30,15 +30,15 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimeOffRequests.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property timeOffRequests for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var timeOffRequestIdOption = new Option<string>("--time-off-request-id", description: "key: id of timeOffRequest") {
+            var timeOffRequestIdOption = new Option<string>("--time-off-request-id", description: "The unique identifier of timeOffRequest") {
             };
             timeOffRequestIdOption.IsRequired = true;
             command.AddOption(timeOffRequestIdOption);
@@ -76,15 +76,15 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimeOffRequests.Item {
             var command = new Command("get");
             command.Description = "Get timeOffRequests from users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var timeOffRequestIdOption = new Option<string>("--time-off-request-id", description: "key: id of timeOffRequest") {
+            var timeOffRequestIdOption = new Option<string>("--time-off-request-id", description: "The unique identifier of timeOffRequest") {
             };
             timeOffRequestIdOption.IsRequired = true;
             command.AddOption(timeOffRequestIdOption);
@@ -143,15 +143,15 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimeOffRequests.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property timeOffRequests in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var timeOffRequestIdOption = new Option<string>("--time-off-request-id", description: "key: id of timeOffRequest") {
+            var timeOffRequestIdOption = new Option<string>("--time-off-request-id", description: "The unique identifier of timeOffRequest") {
             };
             timeOffRequestIdOption.IsRequired = true;
             command.AddOption(timeOffRequestIdOption);
@@ -193,6 +193,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimeOffRequests.Item {
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
                 if (timeOffRequestId is not null) requestInfo.PathParameters.Add("timeOffRequest%2Did", timeOffRequestId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

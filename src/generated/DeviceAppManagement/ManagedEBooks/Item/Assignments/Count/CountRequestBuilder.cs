@@ -29,7 +29,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "key: id of managedEBook") {
+            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
             command.AddOption(managedEBookIdOption);

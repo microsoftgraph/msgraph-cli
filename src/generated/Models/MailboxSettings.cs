@@ -65,7 +65,7 @@ namespace ApiSdk.Models {
 #else
         public string TimeZone { get; set; }
 #endif
-        /// <summary>The userPurpose property</summary>
+        /// <summary>The purpose of the mailbox. Differentiates a mailbox for a single user from a shared mailbox and equipment mailbox in Exchange Online. Possible values are: user, linked, shared, room, equipment, others, unknownFutureValue. Read-only.</summary>
         public ApiSdk.Models.UserPurpose? UserPurpose { get; set; }
         /// <summary>The days of the week and hours in a specific time zone that the user works.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

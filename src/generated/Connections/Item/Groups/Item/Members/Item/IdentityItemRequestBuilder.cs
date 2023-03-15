@@ -30,15 +30,15 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property members for connections";
             // Create options for all the parameters
-            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
+            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
             command.AddOption(externalConnectionIdOption);
-            var externalGroupIdOption = new Option<string>("--external-group-id", description: "key: id of externalGroup") {
+            var externalGroupIdOption = new Option<string>("--external-group-id", description: "The unique identifier of externalGroup") {
             };
             externalGroupIdOption.IsRequired = true;
             command.AddOption(externalGroupIdOption);
-            var identityIdOption = new Option<string>("--identity-id", description: "key: id of identity") {
+            var identityIdOption = new Option<string>("--identity-id", description: "The unique identifier of identity") {
             };
             identityIdOption.IsRequired = true;
             command.AddOption(identityIdOption);
@@ -76,15 +76,15 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members.Item {
             var command = new Command("get");
             command.Description = "A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or an externalGroup as members.";
             // Create options for all the parameters
-            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
+            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
             command.AddOption(externalConnectionIdOption);
-            var externalGroupIdOption = new Option<string>("--external-group-id", description: "key: id of externalGroup") {
+            var externalGroupIdOption = new Option<string>("--external-group-id", description: "The unique identifier of externalGroup") {
             };
             externalGroupIdOption.IsRequired = true;
             command.AddOption(externalGroupIdOption);
-            var identityIdOption = new Option<string>("--identity-id", description: "key: id of identity") {
+            var identityIdOption = new Option<string>("--identity-id", description: "The unique identifier of identity") {
             };
             identityIdOption.IsRequired = true;
             command.AddOption(identityIdOption);
@@ -150,15 +150,15 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property members in connections";
             // Create options for all the parameters
-            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
+            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
             command.AddOption(externalConnectionIdOption);
-            var externalGroupIdOption = new Option<string>("--external-group-id", description: "key: id of externalGroup") {
+            var externalGroupIdOption = new Option<string>("--external-group-id", description: "The unique identifier of externalGroup") {
             };
             externalGroupIdOption.IsRequired = true;
             command.AddOption(externalGroupIdOption);
-            var identityIdOption = new Option<string>("--identity-id", description: "key: id of identity") {
+            var identityIdOption = new Option<string>("--identity-id", description: "The unique identifier of identity") {
             };
             identityIdOption.IsRequired = true;
             command.AddOption(identityIdOption);
@@ -200,6 +200,7 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members.Item {
                 if (externalConnectionId is not null) requestInfo.PathParameters.Add("externalConnection%2Did", externalConnectionId);
                 if (externalGroupId is not null) requestInfo.PathParameters.Add("externalGroup%2Did", externalGroupId);
                 if (identityId is not null) requestInfo.PathParameters.Add("identity%2Did", identityId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

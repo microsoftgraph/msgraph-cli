@@ -29,11 +29,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.SharedWithTeams.Item.Allowed
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var sharedWithChannelTeamInfoIdOption = new Option<string>("--shared-with-channel-team-info-id", description: "key: id of sharedWithChannelTeamInfo") {
+            var sharedWithChannelTeamInfoIdOption = new Option<string>("--shared-with-channel-team-info-id", description: "The unique identifier of sharedWithChannelTeamInfo") {
             };
             sharedWithChannelTeamInfoIdOption.IsRequired = true;
             command.AddOption(sharedWithChannelTeamInfoIdOption);

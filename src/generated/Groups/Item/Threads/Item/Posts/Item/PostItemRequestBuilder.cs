@@ -1,9 +1,9 @@
 using ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments;
 using ApiSdk.Groups.Item.Threads.Item.Posts.Item.Extensions;
+using ApiSdk.Groups.Item.Threads.Item.Posts.Item.Forward;
 using ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo;
-using ApiSdk.Groups.Item.Threads.Item.Posts.Item.MicrosoftGraphForward;
-using ApiSdk.Groups.Item.Threads.Item.Posts.Item.MicrosoftGraphReply;
 using ApiSdk.Groups.Item.Threads.Item.Posts.Item.MultiValueExtendedProperties;
+using ApiSdk.Groups.Item.Threads.Item.Posts.Item.Reply;
 using ApiSdk.Groups.Item.Threads.Item.Posts.Item.SingleValueExtendedProperties;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
@@ -40,8 +40,8 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildCreateUploadSessionCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCreateUploadSessionCommand());
             return command;
         }
         /// <summary>
@@ -58,21 +58,31 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the forward method.
+        /// </summary>
+        public Command BuildForwardCommand() {
+            var command = new Command("forward");
+            command.Description = "Provides operations to call the forward method.";
+            var builder = new ForwardRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Get posts from groups
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get posts from groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "key: id of conversationThread") {
+            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "The unique identifier of conversationThread") {
             };
             conversationThreadIdOption.IsRequired = true;
             command.AddOption(conversationThreadIdOption);
-            var postIdOption = new Option<string>("--post-id", description: "key: id of post") {
+            var postIdOption = new Option<string>("--post-id", description: "The unique identifier of post") {
             };
             postIdOption.IsRequired = true;
             command.AddOption(postIdOption);
@@ -140,31 +150,11 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
             var builder = new InReplyToRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildAttachmentsCommand());
             command.AddCommand(builder.BuildExtensionsCommand());
+            command.AddCommand(builder.BuildForwardCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphForwardCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphReplyCommand());
             command.AddCommand(builder.BuildMultiValueExtendedPropertiesCommand());
+            command.AddCommand(builder.BuildReplyCommand());
             command.AddCommand(builder.BuildSingleValueExtendedPropertiesCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the forward method.
-        /// </summary>
-        public Command BuildMicrosoftGraphForwardCommand() {
-            var command = new Command("microsoft-graph-forward");
-            command.Description = "Provides operations to call the forward method.";
-            var builder = new MicrosoftGraphForwardRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the reply method.
-        /// </summary>
-        public Command BuildMicrosoftGraphReplyCommand() {
-            var command = new Command("microsoft-graph-reply");
-            command.Description = "Provides operations to call the reply method.";
-            var builder = new MicrosoftGraphReplyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -178,6 +168,16 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the reply method.
+        /// </summary>
+        public Command BuildReplyCommand() {
+            var command = new Command("reply");
+            command.Description = "Provides operations to call the reply method.";
+            var builder = new ReplyRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

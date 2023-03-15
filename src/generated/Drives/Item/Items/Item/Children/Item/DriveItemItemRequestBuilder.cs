@@ -42,15 +42,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Children.Item {
             var command = new Command("get");
             command.Description = "Collection containing Item objects for the immediate children of Item. Only items representing folders have children. Read-only. Nullable.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var driveItemId1Option = new Option<string>("--drive-item-id1", description: "key: id of driveItem") {
+            var driveItemId1Option = new Option<string>("--drive-item-id1", description: "The unique identifier of driveItem") {
             };
             driveItemId1Option.IsRequired = true;
             command.AddOption(driveItemId1Option);

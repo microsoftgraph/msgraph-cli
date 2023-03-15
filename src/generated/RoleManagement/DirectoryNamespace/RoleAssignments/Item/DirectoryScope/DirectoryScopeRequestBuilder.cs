@@ -30,7 +30,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item.Director
             var command = new Command("get");
             command.Description = "The directory object that is the scope of the assignment. Read-only. Supports $expand.";
             // Create options for all the parameters
-            var unifiedRoleAssignmentIdOption = new Option<string>("--unified-role-assignment-id", description: "key: id of unifiedRoleAssignment") {
+            var unifiedRoleAssignmentIdOption = new Option<string>("--unified-role-assignment-id", description: "The unique identifier of unifiedRoleAssignment") {
             };
             unifiedRoleAssignmentIdOption.IsRequired = true;
             command.AddOption(unifiedRoleAssignmentIdOption);

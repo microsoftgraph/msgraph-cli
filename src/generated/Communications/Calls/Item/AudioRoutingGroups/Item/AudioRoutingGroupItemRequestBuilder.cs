@@ -30,11 +30,11 @@ namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property audioRoutingGroups for communications";
             // Create options for all the parameters
-            var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
+            var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
             command.AddOption(callIdOption);
-            var audioRoutingGroupIdOption = new Option<string>("--audio-routing-group-id", description: "key: id of audioRoutingGroup") {
+            var audioRoutingGroupIdOption = new Option<string>("--audio-routing-group-id", description: "The unique identifier of audioRoutingGroup") {
             };
             audioRoutingGroupIdOption.IsRequired = true;
             command.AddOption(audioRoutingGroupIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups.Item {
             var command = new Command("get");
             command.Description = "Get audioRoutingGroups from communications";
             // Create options for all the parameters
-            var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
+            var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
             command.AddOption(callIdOption);
-            var audioRoutingGroupIdOption = new Option<string>("--audio-routing-group-id", description: "key: id of audioRoutingGroup") {
+            var audioRoutingGroupIdOption = new Option<string>("--audio-routing-group-id", description: "The unique identifier of audioRoutingGroup") {
             };
             audioRoutingGroupIdOption.IsRequired = true;
             command.AddOption(audioRoutingGroupIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property audioRoutingGroups in communications";
             // Create options for all the parameters
-            var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
+            var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
             command.AddOption(callIdOption);
-            var audioRoutingGroupIdOption = new Option<string>("--audio-routing-group-id", description: "key: id of audioRoutingGroup") {
+            var audioRoutingGroupIdOption = new Option<string>("--audio-routing-group-id", description: "The unique identifier of audioRoutingGroup") {
             };
             audioRoutingGroupIdOption.IsRequired = true;
             command.AddOption(audioRoutingGroupIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups.Item {
                 });
                 if (callId is not null) requestInfo.PathParameters.Add("call%2Did", callId);
                 if (audioRoutingGroupId is not null) requestInfo.PathParameters.Add("audioRoutingGroup%2Did", audioRoutingGroupId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

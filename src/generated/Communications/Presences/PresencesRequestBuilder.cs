@@ -31,13 +31,13 @@ namespace ApiSdk.Communications.Presences {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new PresenceItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildClearPresenceCommand());
+            command.AddCommand(builder.BuildClearUserPreferredPresenceCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphClearPresenceCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphClearUserPreferredPresenceCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSetPresenceCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSetUserPreferredPresenceCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildSetPresenceCommand());
+            command.AddCommand(builder.BuildSetUserPreferredPresenceCommand());
             return command;
         }
         /// <summary>
@@ -89,6 +89,7 @@ namespace ApiSdk.Communications.Presences {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

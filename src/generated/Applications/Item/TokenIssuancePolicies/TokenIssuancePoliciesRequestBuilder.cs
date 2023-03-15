@@ -53,7 +53,7 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies {
             var command = new Command("list");
             command.Description = "List the tokenIssuancePolicy objects that are assigned to an application.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-list-tokenissuancepolicies?view=graph-rest-1.0";
             // Create options for all the parameters
-            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
             command.AddOption(applicationIdOption);

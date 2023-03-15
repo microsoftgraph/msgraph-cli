@@ -1,6 +1,6 @@
 using ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPackages.Count;
+using ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPackages.FilterByCurrentUserWithOn;
 using ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPackages.Item;
-using ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPackages.MicrosoftGraphFilterByCurrentUserWithOn;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,10 +36,10 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             command.AddCommand(builder.BuildAssignmentPoliciesCommand());
             command.AddCommand(builder.BuildCatalogCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetApplicablePolicyRequirementsCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildIncompatibleAccessPackagesCommand());
             command.AddCommand(builder.BuildIncompatibleGroupsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetApplicablePolicyRequirementsCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
@@ -60,7 +60,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             var command = new Command("create");
             command.Description = "Create new navigation property to accessPackages for identityGovernance";
             // Create options for all the parameters
-            var accessPackageCatalogIdOption = new Option<string>("--access-package-catalog-id", description: "key: id of accessPackageCatalog") {
+            var accessPackageCatalogIdOption = new Option<string>("--access-package-catalog-id", description: "The unique identifier of accessPackageCatalog") {
             };
             accessPackageCatalogIdOption.IsRequired = true;
             command.AddOption(accessPackageCatalogIdOption);
@@ -98,6 +98,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (accessPackageCatalogId is not null) requestInfo.PathParameters.Add("accessPackageCatalog%2Did", accessPackageCatalogId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -117,7 +118,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             var command = new Command("list");
             command.Description = "The access packages in this catalog. Read-only. Nullable.";
             // Create options for all the parameters
-            var accessPackageCatalogIdOption = new Option<string>("--access-package-catalog-id", description: "key: id of accessPackageCatalog") {
+            var accessPackageCatalogIdOption = new Option<string>("--access-package-catalog-id", description: "The unique identifier of accessPackageCatalog") {
             };
             accessPackageCatalogIdOption.IsRequired = true;
             command.AddOption(accessPackageCatalogIdOption);

@@ -1,13 +1,13 @@
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.CellWithRowWithColumn;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.MicrosoftGraphCellWithRowWithColumn;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.MicrosoftGraphRange;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.MicrosoftGraphRangeWithAddress;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.MicrosoftGraphUsedRange;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.MicrosoftGraphUsedRangeWithValuesOnly;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Names;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.RangeNamespace;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.RangeWithAddress;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.UsedRange;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.UsedRangeWithValuesOnly;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -40,12 +40,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
             var command = new Command("charts");
             command.Description = "Provides operations to manage the charts property of the microsoft.graph.workbookWorksheet entity.";
             var builder = new ChartsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAddCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAddCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCountCommand());
             return command;
         }
         /// <summary>
@@ -55,15 +54,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property worksheets for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
@@ -101,15 +100,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
             var command = new Command("get");
             command.Description = "Represents a collection of worksheets associated with the workbook. Read-only.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
@@ -169,38 +168,18 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the range method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRangeCommand() {
-            var command = new Command("microsoft-graph-range");
-            command.Description = "Provides operations to call the range method.";
-            var builder = new MicrosoftGraphRangeRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the usedRange method.
-        /// </summary>
-        public Command BuildMicrosoftGraphUsedRangeCommand() {
-            var command = new Command("microsoft-graph-used-range");
-            command.Description = "Provides operations to call the usedRange method.";
-            var builder = new MicrosoftGraphUsedRangeRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the names property of the microsoft.graph.workbookWorksheet entity.
         /// </summary>
         public Command BuildNamesCommand() {
             var command = new Command("names");
             command.Description = "Provides operations to manage the names property of the microsoft.graph.workbookWorksheet entity.";
             var builder = new NamesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAddCommand());
+            command.AddCommand(builder.BuildAddFormulaLocalCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAddCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAddFormulaLocalCommand());
             return command;
         }
         /// <summary>
@@ -210,15 +189,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property worksheets in drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
@@ -260,6 +239,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
                 if (workbookWorksheetId is not null) requestInfo.PathParameters.Add("workbookWorksheet%2Did", workbookWorksheetId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -283,7 +263,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRefreshAllCommand());
+            command.AddCommand(builder.BuildRefreshAllCommand());
             return command;
         }
         /// <summary>
@@ -295,9 +275,19 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
             var builder = new ProtectionRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphProtectCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUnprotectCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildProtectCommand());
+            command.AddCommand(builder.BuildUnprotectCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the range method.
+        /// </summary>
+        public Command BuildRangeCommand() {
+            var command = new Command("range");
+            command.Description = "Provides operations to call the range method.";
+            var builder = new RangeRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -307,12 +297,21 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
             var command = new Command("tables");
             command.Description = "Provides operations to manage the tables property of the microsoft.graph.workbookWorksheet entity.";
             var builder = new TablesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAddCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAddCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCountCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the usedRange method.
+        /// </summary>
+        public Command BuildUsedRangeCommand() {
+            var command = new Command("used-range");
+            command.Description = "Provides operations to call the usedRange method.";
+            var builder = new UsedRangeRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

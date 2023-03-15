@@ -1,18 +1,18 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Accept;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Attachments;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Calendar;
+using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Cancel;
+using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Decline;
+using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.DismissReminder;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Extensions;
+using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Forward;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.Instances;
-using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.MicrosoftGraphAccept;
-using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.MicrosoftGraphCancel;
-using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.MicrosoftGraphDecline;
-using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.MicrosoftGraphDismissReminder;
-using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.MicrosoftGraphForward;
-using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.MicrosoftGraphSnoozeReminder;
-using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.MicrosoftGraphTentativelyAccept;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.MultiValueExtendedProperties;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.SingleValueExtendedProperties;
+using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.SnoozeReminder;
+using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item.TentativelyAccept;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -37,6 +37,16 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the accept method.
+        /// </summary>
+        public Command BuildAcceptCommand() {
+            var command = new Command("accept");
+            command.Description = "Provides operations to call the accept method.";
+            var builder = new AcceptRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the attachments property of the microsoft.graph.event entity.
         /// </summary>
         public Command BuildAttachmentsCommand() {
@@ -46,8 +56,8 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildCreateUploadSessionCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCreateUploadSessionCommand());
             return command;
         }
         /// <summary>
@@ -61,25 +71,45 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the cancel method.
+        /// </summary>
+        public Command BuildCancelCommand() {
+            var command = new Command("cancel");
+            command.Description = "Provides operations to call the cancel method.";
+            var builder = new CancelRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the decline method.
+        /// </summary>
+        public Command BuildDeclineCommand() {
+            var command = new Command("decline");
+            command.Description = "Provides operations to call the decline method.";
+            var builder = new DeclineRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete navigation property events for users
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property events for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "key: id of calendarGroup") {
+            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "The unique identifier of calendarGroup") {
             };
             calendarGroupIdOption.IsRequired = true;
             command.AddOption(calendarGroupIdOption);
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            var calendarIdOption = new Option<string>("--calendar-id", description: "The unique identifier of calendar") {
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
@@ -113,6 +143,16 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the dismissReminder method.
+        /// </summary>
+        public Command BuildDismissReminderCommand() {
+            var command = new Command("dismiss-reminder");
+            command.Description = "Provides operations to call the dismissReminder method.";
+            var builder = new DismissReminderRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the extensions property of the microsoft.graph.event entity.
         /// </summary>
         public Command BuildExtensionsCommand() {
@@ -126,25 +166,35 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the forward method.
+        /// </summary>
+        public Command BuildForwardCommand() {
+            var command = new Command("forward");
+            command.Description = "Provides operations to call the forward method.";
+            var builder = new ForwardRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// The events in the calendar. Navigation property. Read-only.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The events in the calendar. Navigation property. Read-only.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "key: id of calendarGroup") {
+            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "The unique identifier of calendarGroup") {
             };
             calendarGroupIdOption.IsRequired = true;
             command.AddOption(calendarGroupIdOption);
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            var calendarIdOption = new Option<string>("--calendar-id", description: "The unique identifier of calendar") {
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
@@ -207,78 +257,8 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item {
             var builder = new InstancesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the accept method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAcceptCommand() {
-            var command = new Command("microsoft-graph-accept");
-            command.Description = "Provides operations to call the accept method.";
-            var builder = new MicrosoftGraphAcceptRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the cancel method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCancelCommand() {
-            var command = new Command("microsoft-graph-cancel");
-            command.Description = "Provides operations to call the cancel method.";
-            var builder = new MicrosoftGraphCancelRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the decline method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDeclineCommand() {
-            var command = new Command("microsoft-graph-decline");
-            command.Description = "Provides operations to call the decline method.";
-            var builder = new MicrosoftGraphDeclineRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the dismissReminder method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDismissReminderCommand() {
-            var command = new Command("microsoft-graph-dismiss-reminder");
-            command.Description = "Provides operations to call the dismissReminder method.";
-            var builder = new MicrosoftGraphDismissReminderRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the forward method.
-        /// </summary>
-        public Command BuildMicrosoftGraphForwardCommand() {
-            var command = new Command("microsoft-graph-forward");
-            command.Description = "Provides operations to call the forward method.";
-            var builder = new MicrosoftGraphForwardRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the snoozeReminder method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSnoozeReminderCommand() {
-            var command = new Command("microsoft-graph-snooze-reminder");
-            command.Description = "Provides operations to call the snoozeReminder method.";
-            var builder = new MicrosoftGraphSnoozeReminderRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the tentativelyAccept method.
-        /// </summary>
-        public Command BuildMicrosoftGraphTentativelyAcceptCommand() {
-            var command = new Command("microsoft-graph-tentatively-accept");
-            command.Description = "Provides operations to call the tentativelyAccept method.";
-            var builder = new MicrosoftGraphTentativelyAcceptRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -301,19 +281,19 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property events in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "key: id of calendarGroup") {
+            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "The unique identifier of calendarGroup") {
             };
             calendarGroupIdOption.IsRequired = true;
             command.AddOption(calendarGroupIdOption);
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            var calendarIdOption = new Option<string>("--calendar-id", description: "The unique identifier of calendar") {
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
@@ -357,6 +337,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item {
                 if (calendarGroupId is not null) requestInfo.PathParameters.Add("calendarGroup%2Did", calendarGroupId);
                 if (calendarId is not null) requestInfo.PathParameters.Add("calendar%2Did", calendarId);
                 if (eventId is not null) requestInfo.PathParameters.Add("event%2Did", eventId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -380,6 +361,26 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the snoozeReminder method.
+        /// </summary>
+        public Command BuildSnoozeReminderCommand() {
+            var command = new Command("snooze-reminder");
+            command.Description = "Provides operations to call the snoozeReminder method.";
+            var builder = new SnoozeReminderRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the tentativelyAccept method.
+        /// </summary>
+        public Command BuildTentativelyAcceptCommand() {
+            var command = new Command("tentatively-accept");
+            command.Description = "Provides operations to call the tentativelyAccept method.";
+            var builder = new TentativelyAcceptRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

@@ -30,11 +30,11 @@ namespace ApiSdk.Users.Item.Authentication.SoftwareOathMethods.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property softwareOathMethods for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var softwareOathAuthenticationMethodIdOption = new Option<string>("--software-oath-authentication-method-id", description: "key: id of softwareOathAuthenticationMethod") {
+            var softwareOathAuthenticationMethodIdOption = new Option<string>("--software-oath-authentication-method-id", description: "The unique identifier of softwareOathAuthenticationMethod") {
             };
             softwareOathAuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(softwareOathAuthenticationMethodIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Users.Item.Authentication.SoftwareOathMethods.Item {
             var command = new Command("get");
             command.Description = "The software OATH TOTP applications registered to a user for authentication.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var softwareOathAuthenticationMethodIdOption = new Option<string>("--software-oath-authentication-method-id", description: "key: id of softwareOathAuthenticationMethod") {
+            var softwareOathAuthenticationMethodIdOption = new Option<string>("--software-oath-authentication-method-id", description: "The unique identifier of softwareOathAuthenticationMethod") {
             };
             softwareOathAuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(softwareOathAuthenticationMethodIdOption);

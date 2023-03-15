@@ -1,6 +1,6 @@
 using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Count;
+using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.FilterByCurrentUserWithOn;
 using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item;
-using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.MicrosoftGraphFilterByCurrentUserWithOn;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,18 +32,18 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new AccessReviewInstanceItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAcceptRecommendationsCommand());
+            command.AddCommand(builder.BuildApplyDecisionsCommand());
+            command.AddCommand(builder.BuildBatchRecordDecisionsCommand());
             command.AddCommand(builder.BuildContactedReviewersCommand());
             command.AddCommand(builder.BuildDecisionsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAcceptRecommendationsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphApplyDecisionsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphBatchRecordDecisionsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphResetDecisionsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSendReminderCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphStopCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildResetDecisionsCommand());
+            command.AddCommand(builder.BuildSendReminderCommand());
             command.AddCommand(builder.BuildStagesCommand());
+            command.AddCommand(builder.BuildStopCommand());
             return command;
         }
         /// <summary>
@@ -63,7 +63,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances {
             var command = new Command("create");
             command.Description = "Create new navigation property to instances for identityGovernance";
             // Create options for all the parameters
-            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "key: id of accessReviewScheduleDefinition") {
+            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "The unique identifier of accessReviewScheduleDefinition") {
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
             command.AddOption(accessReviewScheduleDefinitionIdOption);
@@ -101,6 +101,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (accessReviewScheduleDefinitionId is not null) requestInfo.PathParameters.Add("accessReviewScheduleDefinition%2Did", accessReviewScheduleDefinitionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -121,7 +122,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances {
             var command = new Command("list");
             command.Description = "Get a list of the accessReviewInstance objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/accessreviewscheduledefinition-list-instances?view=graph-rest-1.0";
             // Create options for all the parameters
-            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "key: id of accessReviewScheduleDefinition") {
+            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "The unique identifier of accessReviewScheduleDefinition") {
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
             command.AddOption(accessReviewScheduleDefinitionIdOption);

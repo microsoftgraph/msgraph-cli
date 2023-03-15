@@ -29,7 +29,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var riskyUserIdOption = new Option<string>("--risky-user-id", description: "key: id of riskyUser") {
+            var riskyUserIdOption = new Option<string>("--risky-user-id", description: "The unique identifier of riskyUser") {
             };
             riskyUserIdOption.IsRequired = true;
             command.AddOption(riskyUserIdOption);

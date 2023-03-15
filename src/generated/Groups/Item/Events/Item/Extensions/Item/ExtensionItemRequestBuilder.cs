@@ -30,15 +30,15 @@ namespace ApiSdk.Groups.Item.Events.Item.Extensions.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property extensions for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var extensionIdOption = new Option<string>("--extension-id", description: "key: id of extension") {
+            var extensionIdOption = new Option<string>("--extension-id", description: "The unique identifier of extension") {
             };
             extensionIdOption.IsRequired = true;
             command.AddOption(extensionIdOption);
@@ -76,15 +76,15 @@ namespace ApiSdk.Groups.Item.Events.Item.Extensions.Item {
             var command = new Command("get");
             command.Description = "The collection of open extensions defined for the event. Nullable.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var extensionIdOption = new Option<string>("--extension-id", description: "key: id of extension") {
+            var extensionIdOption = new Option<string>("--extension-id", description: "The unique identifier of extension") {
             };
             extensionIdOption.IsRequired = true;
             command.AddOption(extensionIdOption);
@@ -150,15 +150,15 @@ namespace ApiSdk.Groups.Item.Events.Item.Extensions.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property extensions in groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var extensionIdOption = new Option<string>("--extension-id", description: "key: id of extension") {
+            var extensionIdOption = new Option<string>("--extension-id", description: "The unique identifier of extension") {
             };
             extensionIdOption.IsRequired = true;
             command.AddOption(extensionIdOption);
@@ -200,6 +200,7 @@ namespace ApiSdk.Groups.Item.Events.Item.Extensions.Item {
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (eventId is not null) requestInfo.PathParameters.Add("event%2Did", eventId);
                 if (extensionId is not null) requestInfo.PathParameters.Add("extension%2Did", extensionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

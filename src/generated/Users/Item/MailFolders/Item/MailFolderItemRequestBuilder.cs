@@ -1,10 +1,10 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.MailFolders.Item.ChildFolders;
+using ApiSdk.Users.Item.MailFolders.Item.Copy;
 using ApiSdk.Users.Item.MailFolders.Item.MessageRules;
 using ApiSdk.Users.Item.MailFolders.Item.Messages;
-using ApiSdk.Users.Item.MailFolders.Item.MicrosoftGraphCopy;
-using ApiSdk.Users.Item.MailFolders.Item.MicrosoftGraphMove;
+using ApiSdk.Users.Item.MailFolders.Item.Move;
 using ApiSdk.Users.Item.MailFolders.Item.MultiValueExtendedProperties;
 using ApiSdk.Users.Item.MailFolders.Item.SingleValueExtendedProperties;
 using Microsoft.Extensions.DependencyInjection;
@@ -40,8 +40,18 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the copy method.
+        /// </summary>
+        public Command BuildCopyCommand() {
+            var command = new Command("copy");
+            command.Description = "Provides operations to call the copy method.";
+            var builder = new CopyRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -51,11 +61,11 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property mailFolders for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
+            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "The unique identifier of mailFolder") {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
@@ -91,11 +101,11 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
             var command = new Command("get");
             command.Description = "The user's mail folders. Read-only. Nullable.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
+            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "The unique identifier of mailFolder") {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
@@ -168,27 +178,17 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the copy method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCopyCommand() {
-            var command = new Command("microsoft-graph-copy");
-            command.Description = "Provides operations to call the copy method.";
-            var builder = new MicrosoftGraphCopyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the move method.
         /// </summary>
-        public Command BuildMicrosoftGraphMoveCommand() {
-            var command = new Command("microsoft-graph-move");
+        public Command BuildMoveCommand() {
+            var command = new Command("move");
             command.Description = "Provides operations to call the move method.";
-            var builder = new MicrosoftGraphMoveRequestBuilder(PathParameters);
+            var builder = new MoveRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -212,11 +212,11 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property mailFolders in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
+            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "The unique identifier of mailFolder") {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
@@ -256,6 +256,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (mailFolderId is not null) requestInfo.PathParameters.Add("mailFolder%2Did", mailFolderId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

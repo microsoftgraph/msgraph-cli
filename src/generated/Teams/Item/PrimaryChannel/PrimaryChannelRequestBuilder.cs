@@ -1,12 +1,12 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Teams.Item.PrimaryChannel.CompleteMigration;
+using ApiSdk.Teams.Item.PrimaryChannel.DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalName;
 using ApiSdk.Teams.Item.PrimaryChannel.FilesFolder;
 using ApiSdk.Teams.Item.PrimaryChannel.Members;
 using ApiSdk.Teams.Item.PrimaryChannel.Messages;
-using ApiSdk.Teams.Item.PrimaryChannel.MicrosoftGraphCompleteMigration;
-using ApiSdk.Teams.Item.PrimaryChannel.MicrosoftGraphDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalName;
-using ApiSdk.Teams.Item.PrimaryChannel.MicrosoftGraphProvisionEmail;
-using ApiSdk.Teams.Item.PrimaryChannel.MicrosoftGraphRemoveEmail;
+using ApiSdk.Teams.Item.PrimaryChannel.ProvisionEmail;
+using ApiSdk.Teams.Item.PrimaryChannel.RemoveEmail;
 using ApiSdk.Teams.Item.PrimaryChannel.SharedWithTeams;
 using ApiSdk.Teams.Item.PrimaryChannel.Tabs;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,13 +33,23 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the completeMigration method.
+        /// </summary>
+        public Command BuildCompleteMigrationCommand() {
+            var command = new Command("complete-migration");
+            command.Description = "Provides operations to call the completeMigration method.";
+            var builder = new CompleteMigrationRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete navigation property primaryChannel for teams
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property primaryChannel for teams";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
@@ -67,6 +77,16 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the doesUserHaveAccess method.
+        /// </summary>
+        public Command BuildDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameCommand() {
+            var command = new Command("does-user-have-accessuser-id-user-id-tenant-id-tenant-id-user-principal-name-user-principal-name");
+            command.Description = "Provides operations to call the doesUserHaveAccess method.";
+            var builder = new DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the filesFolder property of the microsoft.graph.channel entity.
         /// </summary>
         public Command BuildFilesFolderCommand() {
@@ -85,7 +105,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
             var command = new Command("get");
             command.Description = "Get the default channel, **General**, of a team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-get-primarychannel?view=graph-rest-1.0";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
@@ -147,11 +167,11 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
             var command = new Command("members");
             command.Description = "Provides operations to manage the members property of the microsoft.graph.channel entity.";
             var builder = new MembersRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAddCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAddCommand());
             return command;
         }
         /// <summary>
@@ -164,48 +184,8 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the completeMigration method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCompleteMigrationCommand() {
-            var command = new Command("microsoft-graph-complete-migration");
-            command.Description = "Provides operations to call the completeMigration method.";
-            var builder = new MicrosoftGraphCompleteMigrationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the doesUserHaveAccess method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameCommand() {
-            var command = new Command("microsoft-graph-does-user-have-accessuser-id-user-id-tenant-id-tenant-id-user-principal-name-user-principal-name");
-            command.Description = "Provides operations to call the doesUserHaveAccess method.";
-            var builder = new MicrosoftGraphDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the provisionEmail method.
-        /// </summary>
-        public Command BuildMicrosoftGraphProvisionEmailCommand() {
-            var command = new Command("microsoft-graph-provision-email");
-            command.Description = "Provides operations to call the provisionEmail method.";
-            var builder = new MicrosoftGraphProvisionEmailRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the removeEmail method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRemoveEmailCommand() {
-            var command = new Command("microsoft-graph-remove-email");
-            command.Description = "Provides operations to call the removeEmail method.";
-            var builder = new MicrosoftGraphRemoveEmailRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -215,7 +195,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
             var command = new Command("patch");
             command.Description = "Update the navigation property primaryChannel in teams";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
@@ -253,6 +233,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -263,6 +244,26 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the provisionEmail method.
+        /// </summary>
+        public Command BuildProvisionEmailCommand() {
+            var command = new Command("provision-email");
+            command.Description = "Provides operations to call the provisionEmail method.";
+            var builder = new ProvisionEmailRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the removeEmail method.
+        /// </summary>
+        public Command BuildRemoveEmailCommand() {
+            var command = new Command("remove-email");
+            command.Description = "Provides operations to call the removeEmail method.";
+            var builder = new RemoveEmailRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

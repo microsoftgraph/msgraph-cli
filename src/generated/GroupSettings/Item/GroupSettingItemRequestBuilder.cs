@@ -31,7 +31,7 @@ namespace ApiSdk.GroupSettings.Item {
             var command = new Command("delete");
             command.Description = "Delete a tenant-level or group-specific groupSetting object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/groupsetting-delete?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupSettingIdOption = new Option<string>("--group-setting-id", description: "key: id of groupSetting") {
+            var groupSettingIdOption = new Option<string>("--group-setting-id", description: "The unique identifier of groupSetting") {
             };
             groupSettingIdOption.IsRequired = true;
             command.AddOption(groupSettingIdOption);
@@ -66,7 +66,7 @@ namespace ApiSdk.GroupSettings.Item {
             var command = new Command("get");
             command.Description = "Retrieve the properties of a specific group setting object. The setting can be a tenant-level or group-specific setting.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/groupsetting-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupSettingIdOption = new Option<string>("--group-setting-id", description: "key: id of groupSetting") {
+            var groupSettingIdOption = new Option<string>("--group-setting-id", description: "The unique identifier of groupSetting") {
             };
             groupSettingIdOption.IsRequired = true;
             command.AddOption(groupSettingIdOption);
@@ -129,7 +129,7 @@ namespace ApiSdk.GroupSettings.Item {
             var command = new Command("patch");
             command.Description = "Update the properties of a groupSetting object for tenant-wide group settings or a specific group setting.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/groupsetting-update?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupSettingIdOption = new Option<string>("--group-setting-id", description: "key: id of groupSetting") {
+            var groupSettingIdOption = new Option<string>("--group-setting-id", description: "The unique identifier of groupSetting") {
             };
             groupSettingIdOption.IsRequired = true;
             command.AddOption(groupSettingIdOption);
@@ -167,6 +167,7 @@ namespace ApiSdk.GroupSettings.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (groupSettingId is not null) requestInfo.PathParameters.Add("groupSetting%2Did", groupSettingId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

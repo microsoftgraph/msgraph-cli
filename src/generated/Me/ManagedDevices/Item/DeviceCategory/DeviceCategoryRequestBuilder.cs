@@ -30,7 +30,7 @@ namespace ApiSdk.Me.ManagedDevices.Item.DeviceCategory {
             var command = new Command("delete");
             command.Description = "Delete navigation property deviceCategory for me";
             // Create options for all the parameters
-            var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "key: id of managedDevice") {
+            var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "The unique identifier of managedDevice") {
             };
             managedDeviceIdOption.IsRequired = true;
             command.AddOption(managedDeviceIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Me.ManagedDevices.Item.DeviceCategory {
             var command = new Command("get");
             command.Description = "Device category";
             // Create options for all the parameters
-            var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "key: id of managedDevice") {
+            var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "The unique identifier of managedDevice") {
             };
             managedDeviceIdOption.IsRequired = true;
             command.AddOption(managedDeviceIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.Me.ManagedDevices.Item.DeviceCategory {
             var command = new Command("patch");
             command.Description = "Update the navigation property deviceCategory in me";
             // Create options for all the parameters
-            var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "key: id of managedDevice") {
+            var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "The unique identifier of managedDevice") {
             };
             managedDeviceIdOption.IsRequired = true;
             command.AddOption(managedDeviceIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.Me.ManagedDevices.Item.DeviceCategory {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (managedDeviceId is not null) requestInfo.PathParameters.Add("managedDevice%2Did", managedDeviceId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -29,11 +29,11 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies.Item.Ref {
             var command = new Command("delete");
             command.Description = "Delete ref of navigation property tokenIssuancePolicies for applications";
             // Create options for all the parameters
-            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
             command.AddOption(applicationIdOption);
-            var tokenIssuancePolicyIdOption = new Option<string>("--token-issuance-policy-id", description: "key: id of tokenIssuancePolicy") {
+            var tokenIssuancePolicyIdOption = new Option<string>("--token-issuance-policy-id", description: "The unique identifier of tokenIssuancePolicy") {
             };
             tokenIssuancePolicyIdOption.IsRequired = true;
             command.AddOption(tokenIssuancePolicyIdOption);

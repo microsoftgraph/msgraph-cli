@@ -30,11 +30,11 @@ namespace ApiSdk.ServicePrincipals.Item.FederatedIdentityCredentials.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property federatedIdentityCredentials for servicePrincipals";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
+            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
-            var federatedIdentityCredentialIdOption = new Option<string>("--federated-identity-credential-id", description: "key: id of federatedIdentityCredential") {
+            var federatedIdentityCredentialIdOption = new Option<string>("--federated-identity-credential-id", description: "The unique identifier of federatedIdentityCredential") {
             };
             federatedIdentityCredentialIdOption.IsRequired = true;
             command.AddOption(federatedIdentityCredentialIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.ServicePrincipals.Item.FederatedIdentityCredentials.Item {
             var command = new Command("get");
             command.Description = "Federated identities for a specific type of service principal - managed identity. Supports $expand and $filter (/$count eq 0, /$count ne 0).";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
+            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
-            var federatedIdentityCredentialIdOption = new Option<string>("--federated-identity-credential-id", description: "key: id of federatedIdentityCredential") {
+            var federatedIdentityCredentialIdOption = new Option<string>("--federated-identity-credential-id", description: "The unique identifier of federatedIdentityCredential") {
             };
             federatedIdentityCredentialIdOption.IsRequired = true;
             command.AddOption(federatedIdentityCredentialIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.ServicePrincipals.Item.FederatedIdentityCredentials.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property federatedIdentityCredentials in servicePrincipals";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
+            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
-            var federatedIdentityCredentialIdOption = new Option<string>("--federated-identity-credential-id", description: "key: id of federatedIdentityCredential") {
+            var federatedIdentityCredentialIdOption = new Option<string>("--federated-identity-credential-id", description: "The unique identifier of federatedIdentityCredential") {
             };
             federatedIdentityCredentialIdOption.IsRequired = true;
             command.AddOption(federatedIdentityCredentialIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.ServicePrincipals.Item.FederatedIdentityCredentials.Item {
                 });
                 if (servicePrincipalId is not null) requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
                 if (federatedIdentityCredentialId is not null) requestInfo.PathParameters.Add("federatedIdentityCredential%2Did", federatedIdentityCredentialId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

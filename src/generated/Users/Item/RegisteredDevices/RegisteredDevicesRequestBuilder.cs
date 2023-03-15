@@ -1,10 +1,10 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.RegisteredDevices.Count;
+using ApiSdk.Users.Item.RegisteredDevices.GraphAppRoleAssignment;
+using ApiSdk.Users.Item.RegisteredDevices.GraphDevice;
+using ApiSdk.Users.Item.RegisteredDevices.GraphEndpoint;
 using ApiSdk.Users.Item.RegisteredDevices.Item;
-using ApiSdk.Users.Item.RegisteredDevices.MicrosoftGraphAppRoleAssignment;
-using ApiSdk.Users.Item.RegisteredDevices.MicrosoftGraphDevice;
-using ApiSdk.Users.Item.RegisteredDevices.MicrosoftGraphEndpoint;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -35,9 +35,9 @@ namespace ApiSdk.Users.Item.RegisteredDevices {
             var command = new Command("item");
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAppRoleAssignmentCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeviceCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphEndpointCommand());
+            command.AddCommand(builder.BuildGraphAppRoleAssignmentCommand());
+            command.AddCommand(builder.BuildGraphDeviceCommand());
+            command.AddCommand(builder.BuildGraphEndpointCommand());
             return command;
         }
         /// <summary>
@@ -51,6 +51,39 @@ namespace ApiSdk.Users.Item.RegisteredDevices {
             return command;
         }
         /// <summary>
+        /// Casts the previous resource to appRoleAssignment.
+        /// </summary>
+        public Command BuildGraphAppRoleAssignmentCommand() {
+            var command = new Command("graph-app-role-assignment");
+            command.Description = "Casts the previous resource to appRoleAssignment.";
+            var builder = new GraphAppRoleAssignmentRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to device.
+        /// </summary>
+        public Command BuildGraphDeviceCommand() {
+            var command = new Command("graph-device");
+            command.Description = "Casts the previous resource to device.";
+            var builder = new GraphDeviceRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to endpoint.
+        /// </summary>
+        public Command BuildGraphEndpointCommand() {
+            var command = new Command("graph-endpoint");
+            command.Description = "Casts the previous resource to endpoint.";
+            var builder = new GraphEndpointRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Devices that are registered for the user. Read-only. Nullable. Supports $expand.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-list-registereddevices?view=graph-rest-1.0" />
         /// </summary>
@@ -58,7 +91,7 @@ namespace ApiSdk.Users.Item.RegisteredDevices {
             var command = new Command("list");
             command.Description = "Devices that are registered for the user. Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-registereddevices?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -167,39 +200,6 @@ namespace ApiSdk.Users.Item.RegisteredDevices {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to appRoleAssignment.
-        /// </summary>
-        public Command BuildMicrosoftGraphAppRoleAssignmentCommand() {
-            var command = new Command("microsoft-graph-app-role-assignment");
-            command.Description = "Casts the previous resource to appRoleAssignment.";
-            var builder = new MicrosoftGraphAppRoleAssignmentRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to device.
-        /// </summary>
-        public Command BuildMicrosoftGraphDeviceCommand() {
-            var command = new Command("microsoft-graph-device");
-            command.Description = "Casts the previous resource to device.";
-            var builder = new MicrosoftGraphDeviceRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to endpoint.
-        /// </summary>
-        public Command BuildMicrosoftGraphEndpointCommand() {
-            var command = new Command("microsoft-graph-endpoint");
-            command.Description = "Casts the previous resource to endpoint.";
-            var builder = new MicrosoftGraphEndpointRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

@@ -30,11 +30,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item.Parent {
             var command = new Command("get");
             command.Description = "Returns the parent tag of the specified tag.";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoveryReviewTagIdOption = new Option<string>("--ediscovery-review-tag-id", description: "key: id of ediscoveryReviewTag") {
+            var ediscoveryReviewTagIdOption = new Option<string>("--ediscovery-review-tag-id", description: "The unique identifier of ediscoveryReviewTag") {
             };
             ediscoveryReviewTagIdOption.IsRequired = true;
             command.AddOption(ediscoveryReviewTagIdOption);

@@ -30,11 +30,11 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Apps.
             var command = new Command("delete");
             command.Description = "Delete navigation property apps for deviceAppManagement";
             // Create options for all the parameters
-            var targetedManagedAppConfigurationIdOption = new Option<string>("--targeted-managed-app-configuration-id", description: "key: id of targetedManagedAppConfiguration") {
+            var targetedManagedAppConfigurationIdOption = new Option<string>("--targeted-managed-app-configuration-id", description: "The unique identifier of targetedManagedAppConfiguration") {
             };
             targetedManagedAppConfigurationIdOption.IsRequired = true;
             command.AddOption(targetedManagedAppConfigurationIdOption);
-            var managedMobileAppIdOption = new Option<string>("--managed-mobile-app-id", description: "key: id of managedMobileApp") {
+            var managedMobileAppIdOption = new Option<string>("--managed-mobile-app-id", description: "The unique identifier of managedMobileApp") {
             };
             managedMobileAppIdOption.IsRequired = true;
             command.AddOption(managedMobileAppIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Apps.
             var command = new Command("get");
             command.Description = "List of apps to which the policy is deployed.";
             // Create options for all the parameters
-            var targetedManagedAppConfigurationIdOption = new Option<string>("--targeted-managed-app-configuration-id", description: "key: id of targetedManagedAppConfiguration") {
+            var targetedManagedAppConfigurationIdOption = new Option<string>("--targeted-managed-app-configuration-id", description: "The unique identifier of targetedManagedAppConfiguration") {
             };
             targetedManagedAppConfigurationIdOption.IsRequired = true;
             command.AddOption(targetedManagedAppConfigurationIdOption);
-            var managedMobileAppIdOption = new Option<string>("--managed-mobile-app-id", description: "key: id of managedMobileApp") {
+            var managedMobileAppIdOption = new Option<string>("--managed-mobile-app-id", description: "The unique identifier of managedMobileApp") {
             };
             managedMobileAppIdOption.IsRequired = true;
             command.AddOption(managedMobileAppIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Apps.
             var command = new Command("patch");
             command.Description = "Update the navigation property apps in deviceAppManagement";
             // Create options for all the parameters
-            var targetedManagedAppConfigurationIdOption = new Option<string>("--targeted-managed-app-configuration-id", description: "key: id of targetedManagedAppConfiguration") {
+            var targetedManagedAppConfigurationIdOption = new Option<string>("--targeted-managed-app-configuration-id", description: "The unique identifier of targetedManagedAppConfiguration") {
             };
             targetedManagedAppConfigurationIdOption.IsRequired = true;
             command.AddOption(targetedManagedAppConfigurationIdOption);
-            var managedMobileAppIdOption = new Option<string>("--managed-mobile-app-id", description: "key: id of managedMobileApp") {
+            var managedMobileAppIdOption = new Option<string>("--managed-mobile-app-id", description: "The unique identifier of managedMobileApp") {
             };
             managedMobileAppIdOption.IsRequired = true;
             command.AddOption(managedMobileAppIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Apps.
                 });
                 if (targetedManagedAppConfigurationId is not null) requestInfo.PathParameters.Add("targetedManagedAppConfiguration%2Did", targetedManagedAppConfigurationId);
                 if (managedMobileAppId is not null) requestInfo.PathParameters.Add("managedMobileApp%2Did", managedMobileAppId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

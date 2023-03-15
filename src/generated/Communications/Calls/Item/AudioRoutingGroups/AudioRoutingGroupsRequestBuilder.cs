@@ -53,7 +53,7 @@ namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups {
             var command = new Command("create");
             command.Description = "Create new navigation property to audioRoutingGroups for communications";
             // Create options for all the parameters
-            var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
+            var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
             command.AddOption(callIdOption);
@@ -91,6 +91,7 @@ namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (callId is not null) requestInfo.PathParameters.Add("call%2Did", callId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -110,7 +111,7 @@ namespace ApiSdk.Communications.Calls.Item.AudioRoutingGroups {
             var command = new Command("list");
             command.Description = "Get audioRoutingGroups from communications";
             // Create options for all the parameters
-            var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
+            var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
             command.AddOption(callIdOption);

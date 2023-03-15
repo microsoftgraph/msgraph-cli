@@ -1,4 +1,4 @@
-using ApiSdk.Identity.ApiConnectors.Item.MicrosoftGraphUploadClientCertificate;
+using ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,7 +31,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property apiConnectors for identity";
             // Create options for all the parameters
-            var identityApiConnectorIdOption = new Option<string>("--identity-api-connector-id", description: "key: id of identityApiConnector") {
+            var identityApiConnectorIdOption = new Option<string>("--identity-api-connector-id", description: "The unique identifier of identityApiConnector") {
             };
             identityApiConnectorIdOption.IsRequired = true;
             command.AddOption(identityApiConnectorIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item {
             var command = new Command("get");
             command.Description = "Represents entry point for API connectors.";
             // Create options for all the parameters
-            var identityApiConnectorIdOption = new Option<string>("--identity-api-connector-id", description: "key: id of identityApiConnector") {
+            var identityApiConnectorIdOption = new Option<string>("--identity-api-connector-id", description: "The unique identifier of identityApiConnector") {
             };
             identityApiConnectorIdOption.IsRequired = true;
             command.AddOption(identityApiConnectorIdOption);
@@ -121,23 +121,13 @@ namespace ApiSdk.Identity.ApiConnectors.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the uploadClientCertificate method.
-        /// </summary>
-        public Command BuildMicrosoftGraphUploadClientCertificateCommand() {
-            var command = new Command("microsoft-graph-upload-client-certificate");
-            command.Description = "Provides operations to call the uploadClientCertificate method.";
-            var builder = new MicrosoftGraphUploadClientCertificateRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property apiConnectors in identity
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property apiConnectors in identity";
             // Create options for all the parameters
-            var identityApiConnectorIdOption = new Option<string>("--identity-api-connector-id", description: "key: id of identityApiConnector") {
+            var identityApiConnectorIdOption = new Option<string>("--identity-api-connector-id", description: "The unique identifier of identityApiConnector") {
             };
             identityApiConnectorIdOption.IsRequired = true;
             command.AddOption(identityApiConnectorIdOption);
@@ -175,6 +165,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (identityApiConnectorId is not null) requestInfo.PathParameters.Add("identityApiConnector%2Did", identityApiConnectorId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -185,6 +176,16 @@ namespace ApiSdk.Identity.ApiConnectors.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the uploadClientCertificate method.
+        /// </summary>
+        public Command BuildUploadClientCertificateCommand() {
+            var command = new Command("upload-client-certificate");
+            command.Description = "Provides operations to call the uploadClientCertificate method.";
+            var builder = new UploadClientCertificateRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

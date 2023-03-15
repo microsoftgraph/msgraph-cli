@@ -31,10 +31,10 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new RemoteAssistancePartnerItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildBeginOnboardingCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildDisconnectCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphBeginOnboardingCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDisconnectCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
@@ -87,6 +87,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

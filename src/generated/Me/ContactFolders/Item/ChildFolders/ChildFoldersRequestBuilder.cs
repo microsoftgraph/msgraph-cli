@@ -1,6 +1,6 @@
 using ApiSdk.Me.ContactFolders.Item.ChildFolders.Count;
+using ApiSdk.Me.ContactFolders.Item.ChildFolders.Delta;
 using ApiSdk.Me.ContactFolders.Item.ChildFolders.Item;
-using ApiSdk.Me.ContactFolders.Item.ChildFolders.MicrosoftGraphDelta;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -58,7 +58,7 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders {
             var command = new Command("create");
             command.Description = "Create a new contactFolder as a child of a specified folder.  You can also create a new contactFolder under the user's default contact folder.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contactfolder-post-childfolders?view=graph-rest-1.0";
             // Create options for all the parameters
-            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
+            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "The unique identifier of contactFolder") {
             };
             contactFolderIdOption.IsRequired = true;
             command.AddOption(contactFolderIdOption);
@@ -96,6 +96,7 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (contactFolderId is not null) requestInfo.PathParameters.Add("contactFolder%2Did", contactFolderId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -109,6 +110,16 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildDeltaCommand() {
+            var command = new Command("delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Get a collection of child folders under the specified contact folder.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/contactfolder-list-childfolders?view=graph-rest-1.0" />
         /// </summary>
@@ -116,7 +127,7 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders {
             var command = new Command("list");
             command.Description = "Get a collection of child folders under the specified contact folder.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contactfolder-list-childfolders?view=graph-rest-1.0";
             // Create options for all the parameters
-            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
+            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "The unique identifier of contactFolder") {
             };
             contactFolderIdOption.IsRequired = true;
             command.AddOption(contactFolderIdOption);
@@ -212,16 +223,6 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the delta method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDeltaCommand() {
-            var command = new Command("microsoft-graph-delta");
-            command.Description = "Provides operations to call the delta method.";
-            var builder = new MicrosoftGraphDeltaRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

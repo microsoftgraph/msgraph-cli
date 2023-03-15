@@ -54,7 +54,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments {
             var command = new Command("create");
             command.Description = "Create new navigation property to attachments for admin";
             // Create options for all the parameters
-            var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "key: id of serviceUpdateMessage") {
+            var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "The unique identifier of serviceUpdateMessage") {
             };
             serviceUpdateMessageIdOption.IsRequired = true;
             command.AddOption(serviceUpdateMessageIdOption);
@@ -92,6 +92,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (serviceUpdateMessageId is not null) requestInfo.PathParameters.Add("serviceUpdateMessage%2Did", serviceUpdateMessageId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,7 +113,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments {
             var command = new Command("list");
             command.Description = "Get the list of attachments associated with a service message.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceupdatemessage-list-attachments?view=graph-rest-1.0";
             // Create options for all the parameters
-            var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "key: id of serviceUpdateMessage") {
+            var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "The unique identifier of serviceUpdateMessage") {
             };
             serviceUpdateMessageIdOption.IsRequired = true;
             command.AddOption(serviceUpdateMessageIdOption);

@@ -31,15 +31,15 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new DeviceCompliancePolicyItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAssignCommand());
             command.AddCommand(builder.BuildAssignmentsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildDeviceSettingStateSummariesCommand());
             command.AddCommand(builder.BuildDeviceStatusesCommand());
             command.AddCommand(builder.BuildDeviceStatusOverviewCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAssignCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphScheduleActionsForRulesCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildScheduleActionsForRulesCommand());
             command.AddCommand(builder.BuildScheduledActionsForRuleCommand());
             command.AddCommand(builder.BuildUserStatusesCommand());
             command.AddCommand(builder.BuildUserStatusOverviewCommand());
@@ -94,6 +94,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

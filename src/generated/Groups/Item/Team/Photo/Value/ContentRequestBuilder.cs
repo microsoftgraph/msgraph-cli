@@ -29,7 +29,7 @@ namespace ApiSdk.Groups.Item.Team.Photo.Value {
             var command = new Command("get");
             command.Description = "Get media content for the navigation property photo from groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
@@ -68,7 +68,7 @@ namespace ApiSdk.Groups.Item.Team.Photo.Value {
             var command = new Command("put");
             command.Description = "Update media content for the navigation property photo in groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);

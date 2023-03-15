@@ -57,7 +57,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks {
             var command = new Command("create");
             command.Description = "Create new navigation property to tasks for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -95,6 +95,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -115,7 +116,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks {
             var command = new Command("list");
             command.Description = "Retrieve a list of **plannertask** objects assigned to a User.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/planneruser-list-tasks?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

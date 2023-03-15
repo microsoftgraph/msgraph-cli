@@ -31,12 +31,12 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new DeviceEnrollmentConfigurationItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAssignCommand());
             command.AddCommand(builder.BuildAssignmentsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAssignCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSetPriorityCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildSetPriorityCommand());
             return command;
         }
         /// <summary>
@@ -88,6 +88,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

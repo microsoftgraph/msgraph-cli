@@ -31,7 +31,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleDefinitions.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property roleDefinitions for roleManagement";
             // Create options for all the parameters
-            var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "key: id of unifiedRoleDefinition") {
+            var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "The unique identifier of unifiedRoleDefinition") {
             };
             unifiedRoleDefinitionIdOption.IsRequired = true;
             command.AddOption(unifiedRoleDefinitionIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleDefinitions.Item {
             var command = new Command("get");
             command.Description = "Resource representing the roles allowed by RBAC providers and the permissions assigned to the roles.";
             // Create options for all the parameters
-            var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "key: id of unifiedRoleDefinition") {
+            var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "The unique identifier of unifiedRoleDefinition") {
             };
             unifiedRoleDefinitionIdOption.IsRequired = true;
             command.AddOption(unifiedRoleDefinitionIdOption);
@@ -140,7 +140,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleDefinitions.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property roleDefinitions in roleManagement";
             // Create options for all the parameters
-            var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "key: id of unifiedRoleDefinition") {
+            var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "The unique identifier of unifiedRoleDefinition") {
             };
             unifiedRoleDefinitionIdOption.IsRequired = true;
             command.AddOption(unifiedRoleDefinitionIdOption);
@@ -178,6 +178,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleDefinitions.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (unifiedRoleDefinitionId is not null) requestInfo.PathParameters.Add("unifiedRoleDefinition%2Did", unifiedRoleDefinitionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

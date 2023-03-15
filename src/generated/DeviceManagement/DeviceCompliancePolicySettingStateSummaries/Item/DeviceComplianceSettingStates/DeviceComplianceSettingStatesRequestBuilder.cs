@@ -53,7 +53,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
             var command = new Command("create");
             command.Description = "Create new navigation property to deviceComplianceSettingStates for deviceManagement";
             // Create options for all the parameters
-            var deviceCompliancePolicySettingStateSummaryIdOption = new Option<string>("--device-compliance-policy-setting-state-summary-id", description: "key: id of deviceCompliancePolicySettingStateSummary") {
+            var deviceCompliancePolicySettingStateSummaryIdOption = new Option<string>("--device-compliance-policy-setting-state-summary-id", description: "The unique identifier of deviceCompliancePolicySettingStateSummary") {
             };
             deviceCompliancePolicySettingStateSummaryIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicySettingStateSummaryIdOption);
@@ -91,6 +91,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (deviceCompliancePolicySettingStateSummaryId is not null) requestInfo.PathParameters.Add("deviceCompliancePolicySettingStateSummary%2Did", deviceCompliancePolicySettingStateSummaryId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -110,7 +111,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
             var command = new Command("list");
             command.Description = "Not yet documented";
             // Create options for all the parameters
-            var deviceCompliancePolicySettingStateSummaryIdOption = new Option<string>("--device-compliance-policy-setting-state-summary-id", description: "key: id of deviceCompliancePolicySettingStateSummary") {
+            var deviceCompliancePolicySettingStateSummaryIdOption = new Option<string>("--device-compliance-policy-setting-state-summary-id", description: "The unique identifier of deviceCompliancePolicySettingStateSummary") {
             };
             deviceCompliancePolicySettingStateSummaryIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicySettingStateSummaryIdOption);

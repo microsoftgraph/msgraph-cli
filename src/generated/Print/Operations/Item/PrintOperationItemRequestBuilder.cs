@@ -30,7 +30,7 @@ namespace ApiSdk.Print.Operations.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property operations for print";
             // Create options for all the parameters
-            var printOperationIdOption = new Option<string>("--print-operation-id", description: "key: id of printOperation") {
+            var printOperationIdOption = new Option<string>("--print-operation-id", description: "The unique identifier of printOperation") {
             };
             printOperationIdOption.IsRequired = true;
             command.AddOption(printOperationIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Print.Operations.Item {
             var command = new Command("get");
             command.Description = "The list of print long running operations.";
             // Create options for all the parameters
-            var printOperationIdOption = new Option<string>("--print-operation-id", description: "key: id of printOperation") {
+            var printOperationIdOption = new Option<string>("--print-operation-id", description: "The unique identifier of printOperation") {
             };
             printOperationIdOption.IsRequired = true;
             command.AddOption(printOperationIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.Print.Operations.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property operations in print";
             // Create options for all the parameters
-            var printOperationIdOption = new Option<string>("--print-operation-id", description: "key: id of printOperation") {
+            var printOperationIdOption = new Option<string>("--print-operation-id", description: "The unique identifier of printOperation") {
             };
             printOperationIdOption.IsRequired = true;
             command.AddOption(printOperationIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.Print.Operations.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (printOperationId is not null) requestInfo.PathParameters.Add("printOperation%2Did", printOperationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

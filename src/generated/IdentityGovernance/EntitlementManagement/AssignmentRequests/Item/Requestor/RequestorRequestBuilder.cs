@@ -30,7 +30,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
             var command = new Command("get");
             command.Description = "The subject who requested or, if a direct assignment, was assigned. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
-            var accessPackageAssignmentRequestIdOption = new Option<string>("--access-package-assignment-request-id", description: "key: id of accessPackageAssignmentRequest") {
+            var accessPackageAssignmentRequestIdOption = new Option<string>("--access-package-assignment-request-id", description: "The unique identifier of accessPackageAssignmentRequest") {
             };
             accessPackageAssignmentRequestIdOption.IsRequired = true;
             command.AddOption(accessPackageAssignmentRequestIdOption);

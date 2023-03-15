@@ -2,10 +2,10 @@ using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.Security;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item.DataSource;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item.LastIndexOperation;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item.MicrosoftGraphSecurityApplyHold;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item.MicrosoftGraphSecurityRelease;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item.MicrosoftGraphSecurityRemoveHold;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item.MicrosoftGraphSecurityUpdateIndex;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item.SecurityApplyHold;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item.SecurityRelease;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item.SecurityRemoveHold;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item.SecurityUpdateIndex;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -48,11 +48,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Ite
             var command = new Command("delete");
             command.Description = "Delete navigation property noncustodialDataSources for security";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoveryNoncustodialDataSourceIdOption = new Option<string>("--ediscovery-noncustodial-data-source-id", description: "key: id of ediscoveryNoncustodialDataSource") {
+            var ediscoveryNoncustodialDataSourceIdOption = new Option<string>("--ediscovery-noncustodial-data-source-id", description: "The unique identifier of ediscoveryNoncustodialDataSource") {
             };
             ediscoveryNoncustodialDataSourceIdOption.IsRequired = true;
             command.AddOption(ediscoveryNoncustodialDataSourceIdOption);
@@ -88,11 +88,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Ite
             var command = new Command("get");
             command.Description = "Returns a list of case ediscoveryNoncustodialDataSource objects for this case.";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoveryNoncustodialDataSourceIdOption = new Option<string>("--ediscovery-noncustodial-data-source-id", description: "key: id of ediscoveryNoncustodialDataSource") {
+            var ediscoveryNoncustodialDataSourceIdOption = new Option<string>("--ediscovery-noncustodial-data-source-id", description: "The unique identifier of ediscoveryNoncustodialDataSource") {
             };
             ediscoveryNoncustodialDataSourceIdOption.IsRequired = true;
             command.AddOption(ediscoveryNoncustodialDataSourceIdOption);
@@ -160,57 +160,17 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Ite
             return command;
         }
         /// <summary>
-        /// Provides operations to call the applyHold method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSecurityApplyHoldCommand() {
-            var command = new Command("microsoft-graph-security-apply-hold");
-            command.Description = "Provides operations to call the applyHold method.";
-            var builder = new MicrosoftGraphSecurityApplyHoldRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the release method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSecurityReleaseCommand() {
-            var command = new Command("microsoft-graph-security-release");
-            command.Description = "Provides operations to call the release method.";
-            var builder = new MicrosoftGraphSecurityReleaseRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the removeHold method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSecurityRemoveHoldCommand() {
-            var command = new Command("microsoft-graph-security-remove-hold");
-            command.Description = "Provides operations to call the removeHold method.";
-            var builder = new MicrosoftGraphSecurityRemoveHoldRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the updateIndex method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSecurityUpdateIndexCommand() {
-            var command = new Command("microsoft-graph-security-update-index");
-            command.Description = "Provides operations to call the updateIndex method.";
-            var builder = new MicrosoftGraphSecurityUpdateIndexRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property noncustodialDataSources in security
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property noncustodialDataSources in security";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoveryNoncustodialDataSourceIdOption = new Option<string>("--ediscovery-noncustodial-data-source-id", description: "key: id of ediscoveryNoncustodialDataSource") {
+            var ediscoveryNoncustodialDataSourceIdOption = new Option<string>("--ediscovery-noncustodial-data-source-id", description: "The unique identifier of ediscoveryNoncustodialDataSource") {
             };
             ediscoveryNoncustodialDataSourceIdOption.IsRequired = true;
             command.AddOption(ediscoveryNoncustodialDataSourceIdOption);
@@ -250,6 +210,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Ite
                 });
                 if (ediscoveryCaseId is not null) requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
                 if (ediscoveryNoncustodialDataSourceId is not null) requestInfo.PathParameters.Add("ediscoveryNoncustodialDataSource%2Did", ediscoveryNoncustodialDataSourceId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -260,6 +221,46 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Ite
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the applyHold method.
+        /// </summary>
+        public Command BuildSecurityApplyHoldCommand() {
+            var command = new Command("security-apply-hold");
+            command.Description = "Provides operations to call the applyHold method.";
+            var builder = new SecurityApplyHoldRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the release method.
+        /// </summary>
+        public Command BuildSecurityReleaseCommand() {
+            var command = new Command("security-release");
+            command.Description = "Provides operations to call the release method.";
+            var builder = new SecurityReleaseRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the removeHold method.
+        /// </summary>
+        public Command BuildSecurityRemoveHoldCommand() {
+            var command = new Command("security-remove-hold");
+            command.Description = "Provides operations to call the removeHold method.";
+            var builder = new SecurityRemoveHoldRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the updateIndex method.
+        /// </summary>
+        public Command BuildSecurityUpdateIndexCommand() {
+            var command = new Command("security-update-index");
+            command.Description = "Provides operations to call the updateIndex method.";
+            var builder = new SecurityUpdateIndexRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

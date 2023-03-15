@@ -47,14 +47,14 @@ namespace ApiSdk.Groups.Item.Team.Schedule.Shifts {
             return command;
         }
         /// <summary>
-        /// Create a new shift instance in a schedule.
+        /// Create a new shift instance in a schedule. The duration of a shift cannot be less than 1 minute or longer than 24 hours.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/schedule-post-shifts?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new shift instance in a schedule.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/schedule-post-shifts?view=graph-rest-1.0";
+            command.Description = "Create a new shift instance in a schedule. The duration of a shift cannot be less than 1 minute or longer than 24 hours.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/schedule-post-shifts?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
@@ -92,6 +92,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.Shifts {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,7 +113,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.Shifts {
             var command = new Command("list");
             command.Description = "Get the list of shift instances in a schedule.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/schedule-list-shifts?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
@@ -246,7 +247,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.Shifts {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new shift instance in a schedule.
+        /// Create a new shift instance in a schedule. The duration of a shift cannot be less than 1 minute or longer than 24 hours.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

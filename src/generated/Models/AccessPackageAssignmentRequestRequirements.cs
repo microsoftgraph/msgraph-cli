@@ -45,6 +45,14 @@ namespace ApiSdk.Models {
 #else
         public string PolicyId { get; set; }
 #endif
+        /// <summary>The questions property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AccessPackageQuestion>? Questions { get; set; }
+#nullable restore
+#else
+        public List<AccessPackageQuestion> Questions { get; set; }
+#endif
         /// <summary>Schedule restrictions enforced, if any.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -79,6 +87,7 @@ namespace ApiSdk.Models {
                 {"policyDescription", n => { PolicyDescription = n.GetStringValue(); } },
                 {"policyDisplayName", n => { PolicyDisplayName = n.GetStringValue(); } },
                 {"policyId", n => { PolicyId = n.GetStringValue(); } },
+                {"questions", n => { Questions = n.GetCollectionOfObjectValues<AccessPackageQuestion>(AccessPackageQuestion.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"schedule", n => { Schedule = n.GetObjectValue<EntitlementManagementSchedule>(EntitlementManagementSchedule.CreateFromDiscriminatorValue); } },
             };
         }
@@ -95,6 +104,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("policyDescription", PolicyDescription);
             writer.WriteStringValue("policyDisplayName", PolicyDisplayName);
             writer.WriteStringValue("policyId", PolicyId);
+            writer.WriteCollectionOfObjectValues<AccessPackageQuestion>("questions", Questions);
             writer.WriteObjectValue<EntitlementManagementSchedule>("schedule", Schedule);
             writer.WriteAdditionalData(AdditionalData);
         }

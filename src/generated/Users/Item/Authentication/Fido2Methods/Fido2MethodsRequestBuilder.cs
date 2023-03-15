@@ -52,7 +52,7 @@ namespace ApiSdk.Users.Item.Authentication.Fido2Methods {
             var command = new Command("list");
             command.Description = "Represents the FIDO2 security keys registered to a user for authentication.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

@@ -1,10 +1,10 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.Users.Item.JoinedTeams.Item.Schedule.MicrosoftGraphShare;
 using ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OfferShiftRequests;
 using ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShiftChangeRequests;
 using ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShifts;
 using ApiSdk.Users.Item.JoinedTeams.Item.Schedule.SchedulingGroups;
+using ApiSdk.Users.Item.JoinedTeams.Item.Schedule.Share;
 using ApiSdk.Users.Item.JoinedTeams.Item.Schedule.Shifts;
 using ApiSdk.Users.Item.JoinedTeams.Item.Schedule.SwapShiftsChangeRequests;
 using ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimeOffReasons;
@@ -40,11 +40,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
             var command = new Command("delete");
             command.Description = "Delete navigation property schedule for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
@@ -81,11 +81,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a schedule object. The schedule creation process conforms to the One API guideline for resource based long running operations (RELO).When clients use the PUT method, if the schedule is provisioned, the operation updates the schedule; otherwise, the operation starts the schedule provisioning process in the background. During schedule provisioning, clients can use the GET method to get the schedule and look at the `provisionStatus` property for the current state of the provisioning. If the provisioning failed, clients can get additional information from the `provisionStatusCode` property. Clients can also inspect the configuration of the schedule.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/schedule-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
@@ -143,16 +143,6 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the share method.
-        /// </summary>
-        public Command BuildMicrosoftGraphShareCommand() {
-            var command = new Command("microsoft-graph-share");
-            command.Description = "Provides operations to call the share method.";
-            var builder = new MicrosoftGraphShareRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the offerShiftRequests property of the microsoft.graph.schedule entity.
         /// </summary>
         public Command BuildOfferShiftRequestsCommand() {
@@ -198,11 +188,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
             var command = new Command("put");
             command.Description = "Update the navigation property schedule in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
@@ -242,6 +232,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -265,6 +256,16 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the share method.
+        /// </summary>
+        public Command BuildShareCommand() {
+            var command = new Command("share");
+            command.Description = "Provides operations to call the share method.";
+            var builder = new ShareRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

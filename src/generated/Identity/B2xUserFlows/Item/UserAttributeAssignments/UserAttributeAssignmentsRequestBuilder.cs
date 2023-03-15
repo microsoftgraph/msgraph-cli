@@ -1,7 +1,7 @@
 using ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Count;
+using ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.GetOrder;
 using ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item;
-using ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.MicrosoftGraphGetOrder;
-using ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.MicrosoftGraphSetOrder;
+using ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.SetOrder;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -57,7 +57,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
             var command = new Command("create");
             command.Description = "Create a new identityUserFlowAttributeAssignment object in a b2xIdentityUserFlow.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/b2xidentityuserflow-post-userattributeassignments?view=graph-rest-1.0";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
@@ -95,6 +95,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (b2xIdentityUserFlowId is not null) requestInfo.PathParameters.Add("b2xIdentityUserFlow%2Did", b2xIdentityUserFlowId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -108,6 +109,16 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the getOrder method.
+        /// </summary>
+        public Command BuildGetOrderCommand() {
+            var command = new Command("get-order");
+            command.Description = "Provides operations to call the getOrder method.";
+            var builder = new GetOrderRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Get the identityUserFlowAttributeAssignment resources from the userAttributeAssignments navigation property in a b2xIdentityUserFlow.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/b2xidentityuserflow-list-userattributeassignments?view=graph-rest-1.0" />
         /// </summary>
@@ -115,7 +126,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
             var command = new Command("list");
             command.Description = "Get the identityUserFlowAttributeAssignment resources from the userAttributeAssignments navigation property in a b2xIdentityUserFlow.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/b2xidentityuserflow-list-userattributeassignments?view=graph-rest-1.0";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
@@ -220,22 +231,12 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the getOrder method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetOrderCommand() {
-            var command = new Command("microsoft-graph-get-order");
-            command.Description = "Provides operations to call the getOrder method.";
-            var builder = new MicrosoftGraphGetOrderRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to call the setOrder method.
         /// </summary>
-        public Command BuildMicrosoftGraphSetOrderCommand() {
-            var command = new Command("microsoft-graph-set-order");
+        public Command BuildSetOrderCommand() {
+            var command = new Command("set-order");
             command.Description = "Provides operations to call the setOrder method.";
-            var builder = new MicrosoftGraphSetOrderRequestBuilder(PathParameters);
+            var builder = new SetOrderRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }

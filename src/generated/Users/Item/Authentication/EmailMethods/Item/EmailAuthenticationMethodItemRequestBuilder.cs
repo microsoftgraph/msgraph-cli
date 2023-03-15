@@ -30,11 +30,11 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property emailMethods for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var emailAuthenticationMethodIdOption = new Option<string>("--email-authentication-method-id", description: "key: id of emailAuthenticationMethod") {
+            var emailAuthenticationMethodIdOption = new Option<string>("--email-authentication-method-id", description: "The unique identifier of emailAuthenticationMethod") {
             };
             emailAuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(emailAuthenticationMethodIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods.Item {
             var command = new Command("get");
             command.Description = "The email address registered to a user for authentication.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var emailAuthenticationMethodIdOption = new Option<string>("--email-authentication-method-id", description: "key: id of emailAuthenticationMethod") {
+            var emailAuthenticationMethodIdOption = new Option<string>("--email-authentication-method-id", description: "The unique identifier of emailAuthenticationMethod") {
             };
             emailAuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(emailAuthenticationMethodIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property emailMethods in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var emailAuthenticationMethodIdOption = new Option<string>("--email-authentication-method-id", description: "key: id of emailAuthenticationMethod") {
+            var emailAuthenticationMethodIdOption = new Option<string>("--email-authentication-method-id", description: "The unique identifier of emailAuthenticationMethod") {
             };
             emailAuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(emailAuthenticationMethodIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods.Item {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (emailAuthenticationMethodId is not null) requestInfo.PathParameters.Add("emailAuthenticationMethod%2Did", emailAuthenticationMethodId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

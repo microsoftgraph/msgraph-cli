@@ -32,14 +32,14 @@ namespace ApiSdk.Me.Onenote.Sections.Item.Pages {
             var command = new Command("item");
             var builder = new OnenotePageItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildContentCommand());
+            command.AddCommand(builder.BuildCopyToSectionCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCopyToSectionCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphOnenotePatchContentCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphPreviewCommand());
+            command.AddCommand(builder.BuildOnenotePatchContentCommand());
             command.AddCommand(builder.BuildParentNotebookCommand());
             command.AddCommand(builder.BuildParentSectionCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildPreviewCommand());
             return command;
         }
         /// <summary>
@@ -59,7 +59,7 @@ namespace ApiSdk.Me.Onenote.Sections.Item.Pages {
             var command = new Command("create");
             command.Description = "Create new navigation property to pages for me";
             // Create options for all the parameters
-            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "key: id of onenoteSection") {
+            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "The unique identifier of onenoteSection") {
             };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
@@ -97,6 +97,7 @@ namespace ApiSdk.Me.Onenote.Sections.Item.Pages {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (onenoteSectionId is not null) requestInfo.PathParameters.Add("onenoteSection%2Did", onenoteSectionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -116,7 +117,7 @@ namespace ApiSdk.Me.Onenote.Sections.Item.Pages {
             var command = new Command("list");
             command.Description = "The collection of pages in the section.  Read-only. Nullable.";
             // Create options for all the parameters
-            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "key: id of onenoteSection") {
+            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "The unique identifier of onenoteSection") {
             };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);

@@ -1,4 +1,4 @@
-using ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.MicrosoftGraphCopyNotebook;
+using ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.CopyNotebook;
 using ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups;
 using ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.Sections;
 using ApiSdk.Models;
@@ -27,21 +27,31 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the copyNotebook method.
+        /// </summary>
+        public Command BuildCopyNotebookCommand() {
+            var command = new Command("copy-notebook");
+            command.Description = "Provides operations to call the copyNotebook method.";
+            var builder = new CopyNotebookRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete navigation property notebooks for groups
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property notebooks for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var notebookIdOption = new Option<string>("--notebook-id", description: "key: id of notebook") {
+            var notebookIdOption = new Option<string>("--notebook-id", description: "The unique identifier of notebook") {
             };
             notebookIdOption.IsRequired = true;
             command.AddOption(notebookIdOption);
@@ -79,15 +89,15 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item {
             var command = new Command("get");
             command.Description = "The collection of OneNote notebooks that are owned by the user or group. Read-only. Nullable.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var notebookIdOption = new Option<string>("--notebook-id", description: "key: id of notebook") {
+            var notebookIdOption = new Option<string>("--notebook-id", description: "The unique identifier of notebook") {
             };
             notebookIdOption.IsRequired = true;
             command.AddOption(notebookIdOption);
@@ -147,31 +157,21 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the copyNotebook method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCopyNotebookCommand() {
-            var command = new Command("microsoft-graph-copy-notebook");
-            command.Description = "Provides operations to call the copyNotebook method.";
-            var builder = new MicrosoftGraphCopyNotebookRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property notebooks in groups
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property notebooks in groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var notebookIdOption = new Option<string>("--notebook-id", description: "key: id of notebook") {
+            var notebookIdOption = new Option<string>("--notebook-id", description: "The unique identifier of notebook") {
             };
             notebookIdOption.IsRequired = true;
             command.AddOption(notebookIdOption);
@@ -213,6 +213,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item {
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
                 if (notebookId is not null) requestInfo.PathParameters.Add("notebook%2Did", notebookId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

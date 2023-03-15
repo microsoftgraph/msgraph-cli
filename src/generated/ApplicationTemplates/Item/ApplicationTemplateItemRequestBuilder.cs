@@ -1,4 +1,4 @@
-using ApiSdk.ApplicationTemplates.Item.MicrosoftGraphInstantiate;
+using ApiSdk.ApplicationTemplates.Item.Instantiate;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,7 +32,7 @@ namespace ApiSdk.ApplicationTemplates.Item {
             var command = new Command("get");
             command.Description = "Retrieve the properties of an applicationTemplate object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/applicationtemplate-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var applicationTemplateIdOption = new Option<string>("--application-template-id", description: "key: id of applicationTemplate") {
+            var applicationTemplateIdOption = new Option<string>("--application-template-id", description: "The unique identifier of applicationTemplate") {
             };
             applicationTemplateIdOption.IsRequired = true;
             command.AddOption(applicationTemplateIdOption);
@@ -90,10 +90,10 @@ namespace ApiSdk.ApplicationTemplates.Item {
         /// <summary>
         /// Provides operations to call the instantiate method.
         /// </summary>
-        public Command BuildMicrosoftGraphInstantiateCommand() {
-            var command = new Command("microsoft-graph-instantiate");
+        public Command BuildInstantiateCommand() {
+            var command = new Command("instantiate");
             command.Description = "Provides operations to call the instantiate method.";
-            var builder = new MicrosoftGraphInstantiateRequestBuilder(PathParameters);
+            var builder = new InstantiateRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }

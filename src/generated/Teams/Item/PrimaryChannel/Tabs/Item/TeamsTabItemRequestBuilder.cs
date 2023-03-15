@@ -31,11 +31,11 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property tabs for teams";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var teamsTabIdOption = new Option<string>("--teams-tab-id", description: "key: id of teamsTab") {
+            var teamsTabIdOption = new Option<string>("--teams-tab-id", description: "The unique identifier of teamsTab") {
             };
             teamsTabIdOption.IsRequired = true;
             command.AddOption(teamsTabIdOption);
@@ -71,11 +71,11 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item {
             var command = new Command("get");
             command.Description = "A collection of all the tabs in the channel. A navigation property.";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var teamsTabIdOption = new Option<string>("--teams-tab-id", description: "key: id of teamsTab") {
+            var teamsTabIdOption = new Option<string>("--teams-tab-id", description: "The unique identifier of teamsTab") {
             };
             teamsTabIdOption.IsRequired = true;
             command.AddOption(teamsTabIdOption);
@@ -139,11 +139,11 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property tabs in teams";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var teamsTabIdOption = new Option<string>("--teams-tab-id", description: "key: id of teamsTab") {
+            var teamsTabIdOption = new Option<string>("--teams-tab-id", description: "The unique identifier of teamsTab") {
             };
             teamsTabIdOption.IsRequired = true;
             command.AddOption(teamsTabIdOption);
@@ -183,6 +183,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Tabs.Item {
                 });
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
                 if (teamsTabId is not null) requestInfo.PathParameters.Add("teamsTab%2Did", teamsTabId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

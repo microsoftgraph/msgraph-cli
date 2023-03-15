@@ -30,11 +30,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Members.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property members for me";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var conversationMemberIdOption = new Option<string>("--conversation-member-id", description: "key: id of conversationMember") {
+            var conversationMemberIdOption = new Option<string>("--conversation-member-id", description: "The unique identifier of conversationMember") {
             };
             conversationMemberIdOption.IsRequired = true;
             command.AddOption(conversationMemberIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Members.Item {
             var command = new Command("get");
             command.Description = "A collection of membership records associated with the channel.";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var conversationMemberIdOption = new Option<string>("--conversation-member-id", description: "key: id of conversationMember") {
+            var conversationMemberIdOption = new Option<string>("--conversation-member-id", description: "The unique identifier of conversationMember") {
             };
             conversationMemberIdOption.IsRequired = true;
             command.AddOption(conversationMemberIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Members.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property members in me";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var conversationMemberIdOption = new Option<string>("--conversation-member-id", description: "key: id of conversationMember") {
+            var conversationMemberIdOption = new Option<string>("--conversation-member-id", description: "The unique identifier of conversationMember") {
             };
             conversationMemberIdOption.IsRequired = true;
             command.AddOption(conversationMemberIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Members.Item {
                 });
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
                 if (conversationMemberId is not null) requestInfo.PathParameters.Add("conversationMember%2Did", conversationMemberId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

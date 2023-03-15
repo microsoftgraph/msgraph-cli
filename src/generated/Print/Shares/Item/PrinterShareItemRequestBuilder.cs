@@ -59,7 +59,7 @@ namespace ApiSdk.Print.Shares.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property shares for print";
             // Create options for all the parameters
-            var printerShareIdOption = new Option<string>("--printer-share-id", description: "key: id of printerShare") {
+            var printerShareIdOption = new Option<string>("--printer-share-id", description: "The unique identifier of printerShare") {
             };
             printerShareIdOption.IsRequired = true;
             command.AddOption(printerShareIdOption);
@@ -93,7 +93,7 @@ namespace ApiSdk.Print.Shares.Item {
             var command = new Command("get");
             command.Description = "The list of printer shares registered in the tenant.";
             // Create options for all the parameters
-            var printerShareIdOption = new Option<string>("--printer-share-id", description: "key: id of printerShare") {
+            var printerShareIdOption = new Option<string>("--printer-share-id", description: "The unique identifier of printerShare") {
             };
             printerShareIdOption.IsRequired = true;
             command.AddOption(printerShareIdOption);
@@ -155,7 +155,7 @@ namespace ApiSdk.Print.Shares.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property shares in print";
             // Create options for all the parameters
-            var printerShareIdOption = new Option<string>("--printer-share-id", description: "key: id of printerShare") {
+            var printerShareIdOption = new Option<string>("--printer-share-id", description: "The unique identifier of printerShare") {
             };
             printerShareIdOption.IsRequired = true;
             command.AddOption(printerShareIdOption);
@@ -193,6 +193,7 @@ namespace ApiSdk.Print.Shares.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (printerShareId is not null) requestInfo.PathParameters.Add("printerShare%2Did", printerShareId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

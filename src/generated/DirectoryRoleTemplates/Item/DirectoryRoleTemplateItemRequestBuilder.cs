@@ -1,8 +1,8 @@
-using ApiSdk.DirectoryRoleTemplates.Item.MicrosoftGraphCheckMemberGroups;
-using ApiSdk.DirectoryRoleTemplates.Item.MicrosoftGraphCheckMemberObjects;
-using ApiSdk.DirectoryRoleTemplates.Item.MicrosoftGraphGetMemberGroups;
-using ApiSdk.DirectoryRoleTemplates.Item.MicrosoftGraphGetMemberObjects;
-using ApiSdk.DirectoryRoleTemplates.Item.MicrosoftGraphRestore;
+using ApiSdk.DirectoryRoleTemplates.Item.CheckMemberGroups;
+using ApiSdk.DirectoryRoleTemplates.Item.CheckMemberObjects;
+using ApiSdk.DirectoryRoleTemplates.Item.GetMemberGroups;
+using ApiSdk.DirectoryRoleTemplates.Item.GetMemberObjects;
+using ApiSdk.DirectoryRoleTemplates.Item.Restore;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,13 +29,33 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the checkMemberGroups method.
+        /// </summary>
+        public Command BuildCheckMemberGroupsCommand() {
+            var command = new Command("check-member-groups");
+            command.Description = "Provides operations to call the checkMemberGroups method.";
+            var builder = new CheckMemberGroupsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the checkMemberObjects method.
+        /// </summary>
+        public Command BuildCheckMemberObjectsCommand() {
+            var command = new Command("check-member-objects");
+            command.Description = "Provides operations to call the checkMemberObjects method.";
+            var builder = new CheckMemberObjectsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete entity from directoryRoleTemplates
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete entity from directoryRoleTemplates";
             // Create options for all the parameters
-            var directoryRoleTemplateIdOption = new Option<string>("--directory-role-template-id", description: "key: id of directoryRoleTemplate") {
+            var directoryRoleTemplateIdOption = new Option<string>("--directory-role-template-id", description: "The unique identifier of directoryRoleTemplate") {
             };
             directoryRoleTemplateIdOption.IsRequired = true;
             command.AddOption(directoryRoleTemplateIdOption);
@@ -70,7 +90,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a directoryroletemplate object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directoryroletemplate-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var directoryRoleTemplateIdOption = new Option<string>("--directory-role-template-id", description: "key: id of directoryRoleTemplate") {
+            var directoryRoleTemplateIdOption = new Option<string>("--directory-role-template-id", description: "The unique identifier of directoryRoleTemplate") {
             };
             directoryRoleTemplateIdOption.IsRequired = true;
             command.AddOption(directoryRoleTemplateIdOption);
@@ -126,52 +146,22 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the checkMemberGroups method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCheckMemberGroupsCommand() {
-            var command = new Command("microsoft-graph-check-member-groups");
-            command.Description = "Provides operations to call the checkMemberGroups method.";
-            var builder = new MicrosoftGraphCheckMemberGroupsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the checkMemberObjects method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCheckMemberObjectsCommand() {
-            var command = new Command("microsoft-graph-check-member-objects");
-            command.Description = "Provides operations to call the checkMemberObjects method.";
-            var builder = new MicrosoftGraphCheckMemberObjectsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to call the getMemberGroups method.
         /// </summary>
-        public Command BuildMicrosoftGraphGetMemberGroupsCommand() {
-            var command = new Command("microsoft-graph-get-member-groups");
+        public Command BuildGetMemberGroupsCommand() {
+            var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
-            var builder = new MicrosoftGraphGetMemberGroupsRequestBuilder(PathParameters);
+            var builder = new GetMemberGroupsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the getMemberObjects method.
         /// </summary>
-        public Command BuildMicrosoftGraphGetMemberObjectsCommand() {
-            var command = new Command("microsoft-graph-get-member-objects");
+        public Command BuildGetMemberObjectsCommand() {
+            var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
-            var builder = new MicrosoftGraphGetMemberObjectsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the restore method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRestoreCommand() {
-            var command = new Command("microsoft-graph-restore");
-            command.Description = "Provides operations to call the restore method.";
-            var builder = new MicrosoftGraphRestoreRequestBuilder(PathParameters);
+            var builder = new GetMemberObjectsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -182,7 +172,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
             var command = new Command("patch");
             command.Description = "Update entity in directoryRoleTemplates";
             // Create options for all the parameters
-            var directoryRoleTemplateIdOption = new Option<string>("--directory-role-template-id", description: "key: id of directoryRoleTemplate") {
+            var directoryRoleTemplateIdOption = new Option<string>("--directory-role-template-id", description: "The unique identifier of directoryRoleTemplate") {
             };
             directoryRoleTemplateIdOption.IsRequired = true;
             command.AddOption(directoryRoleTemplateIdOption);
@@ -220,6 +210,7 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (directoryRoleTemplateId is not null) requestInfo.PathParameters.Add("directoryRoleTemplate%2Did", directoryRoleTemplateId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -230,6 +221,16 @@ namespace ApiSdk.DirectoryRoleTemplates.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the restore method.
+        /// </summary>
+        public Command BuildRestoreCommand() {
+            var command = new Command("restore");
+            command.Description = "Provides operations to call the restore method.";
+            var builder = new RestoreRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

@@ -30,7 +30,7 @@ namespace ApiSdk.DeviceManagement.ResourceOperations.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property resourceOperations for deviceManagement";
             // Create options for all the parameters
-            var resourceOperationIdOption = new Option<string>("--resource-operation-id", description: "key: id of resourceOperation") {
+            var resourceOperationIdOption = new Option<string>("--resource-operation-id", description: "The unique identifier of resourceOperation") {
             };
             resourceOperationIdOption.IsRequired = true;
             command.AddOption(resourceOperationIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.DeviceManagement.ResourceOperations.Item {
             var command = new Command("get");
             command.Description = "The Resource Operations.";
             // Create options for all the parameters
-            var resourceOperationIdOption = new Option<string>("--resource-operation-id", description: "key: id of resourceOperation") {
+            var resourceOperationIdOption = new Option<string>("--resource-operation-id", description: "The unique identifier of resourceOperation") {
             };
             resourceOperationIdOption.IsRequired = true;
             command.AddOption(resourceOperationIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.DeviceManagement.ResourceOperations.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property resourceOperations in deviceManagement";
             // Create options for all the parameters
-            var resourceOperationIdOption = new Option<string>("--resource-operation-id", description: "key: id of resourceOperation") {
+            var resourceOperationIdOption = new Option<string>("--resource-operation-id", description: "The unique identifier of resourceOperation") {
             };
             resourceOperationIdOption.IsRequired = true;
             command.AddOption(resourceOperationIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.DeviceManagement.ResourceOperations.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (resourceOperationId is not null) requestInfo.PathParameters.Add("resourceOperation%2Did", resourceOperationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -30,11 +30,11 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
             var command = new Command("get");
             command.Description = "Navigation link to the terms and conditions that are assigned.";
             // Create options for all the parameters
-            var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "key: id of termsAndConditions") {
+            var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "The unique identifier of termsAndConditions") {
             };
             termsAndConditionsIdOption.IsRequired = true;
             command.AddOption(termsAndConditionsIdOption);
-            var termsAndConditionsAcceptanceStatusIdOption = new Option<string>("--terms-and-conditions-acceptance-status-id", description: "key: id of termsAndConditionsAcceptanceStatus") {
+            var termsAndConditionsAcceptanceStatusIdOption = new Option<string>("--terms-and-conditions-acceptance-status-id", description: "The unique identifier of termsAndConditionsAcceptanceStatus") {
             };
             termsAndConditionsAcceptanceStatusIdOption.IsRequired = true;
             command.AddOption(termsAndConditionsAcceptanceStatusIdOption);

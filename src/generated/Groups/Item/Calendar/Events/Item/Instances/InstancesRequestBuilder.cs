@@ -1,6 +1,6 @@
 using ApiSdk.Groups.Item.Calendar.Events.Item.Instances.Count;
+using ApiSdk.Groups.Item.Calendar.Events.Item.Instances.Delta;
 using ApiSdk.Groups.Item.Calendar.Events.Item.Instances.Item;
-using ApiSdk.Groups.Item.Calendar.Events.Item.Instances.MicrosoftGraphDelta;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,19 +32,19 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Instances {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new ApiSdk.Groups.Item.Calendar.Events.Item.Instances.Item.EventItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAcceptCommand());
             command.AddCommand(builder.BuildAttachmentsCommand());
             command.AddCommand(builder.BuildCalendarCommand());
+            command.AddCommand(builder.BuildCancelCommand());
+            command.AddCommand(builder.BuildDeclineCommand());
+            command.AddCommand(builder.BuildDismissReminderCommand());
             command.AddCommand(builder.BuildExtensionsCommand());
+            command.AddCommand(builder.BuildForwardCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAcceptCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCancelCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeclineCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDismissReminderCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphForwardCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSnoozeReminderCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphTentativelyAcceptCommand());
             command.AddCommand(builder.BuildMultiValueExtendedPropertiesCommand());
             command.AddCommand(builder.BuildSingleValueExtendedPropertiesCommand());
+            command.AddCommand(builder.BuildSnoozeReminderCommand());
+            command.AddCommand(builder.BuildTentativelyAcceptCommand());
             return command;
         }
         /// <summary>
@@ -58,6 +58,16 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Instances {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildDeltaCommand() {
+            var command = new Command("delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Get the instances (occurrences) of an event for a specified time range.  If the event is a `seriesMaster` type, this returns the occurrences and exceptions of the event in the specified time range.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/event-list-instances?view=graph-rest-1.0" />
         /// </summary>
@@ -65,11 +75,11 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Instances {
             var command = new Command("list");
             command.Description = "Get the instances (occurrences) of an event for a specified time range.  If the event is a `seriesMaster` type, this returns the occurrences and exceptions of the event in the specified time range.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/event-list-instances?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
@@ -160,16 +170,6 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Instances {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the delta method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDeltaCommand() {
-            var command = new Command("microsoft-graph-delta");
-            command.Description = "Provides operations to call the delta method.";
-            var builder = new MicrosoftGraphDeltaRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

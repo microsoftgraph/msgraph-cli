@@ -33,7 +33,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues {
             var builder = new ServiceHealthIssueItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphIncidentReportCommand());
+            command.AddCommand(builder.BuildIncidentReportCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
@@ -54,7 +54,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues {
             var command = new Command("create");
             command.Description = "Create new navigation property to issues for admin";
             // Create options for all the parameters
-            var serviceHealthIdOption = new Option<string>("--service-health-id", description: "key: id of serviceHealth") {
+            var serviceHealthIdOption = new Option<string>("--service-health-id", description: "The unique identifier of serviceHealth") {
             };
             serviceHealthIdOption.IsRequired = true;
             command.AddOption(serviceHealthIdOption);
@@ -92,6 +92,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (serviceHealthId is not null) requestInfo.PathParameters.Add("serviceHealth%2Did", serviceHealthId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -111,7 +112,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues {
             var command = new Command("list");
             command.Description = "A collection of issues that happened on the service, with detailed information for each issue.";
             // Create options for all the parameters
-            var serviceHealthIdOption = new Option<string>("--service-health-id", description: "key: id of serviceHealth") {
+            var serviceHealthIdOption = new Option<string>("--service-health-id", description: "The unique identifier of serviceHealth") {
             };
             serviceHealthIdOption.IsRequired = true;
             command.AddOption(serviceHealthIdOption);

@@ -30,7 +30,7 @@ namespace ApiSdk.IdentityProtection.ServicePrincipalRiskDetections.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property servicePrincipalRiskDetections for identityProtection";
             // Create options for all the parameters
-            var servicePrincipalRiskDetectionIdOption = new Option<string>("--service-principal-risk-detection-id", description: "key: id of servicePrincipalRiskDetection") {
+            var servicePrincipalRiskDetectionIdOption = new Option<string>("--service-principal-risk-detection-id", description: "The unique identifier of servicePrincipalRiskDetection") {
             };
             servicePrincipalRiskDetectionIdOption.IsRequired = true;
             command.AddOption(servicePrincipalRiskDetectionIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.IdentityProtection.ServicePrincipalRiskDetections.Item {
             var command = new Command("get");
             command.Description = "Represents information about detected at-risk service principals in an Azure AD tenant.";
             // Create options for all the parameters
-            var servicePrincipalRiskDetectionIdOption = new Option<string>("--service-principal-risk-detection-id", description: "key: id of servicePrincipalRiskDetection") {
+            var servicePrincipalRiskDetectionIdOption = new Option<string>("--service-principal-risk-detection-id", description: "The unique identifier of servicePrincipalRiskDetection") {
             };
             servicePrincipalRiskDetectionIdOption.IsRequired = true;
             command.AddOption(servicePrincipalRiskDetectionIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.IdentityProtection.ServicePrincipalRiskDetections.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property servicePrincipalRiskDetections in identityProtection";
             // Create options for all the parameters
-            var servicePrincipalRiskDetectionIdOption = new Option<string>("--service-principal-risk-detection-id", description: "key: id of servicePrincipalRiskDetection") {
+            var servicePrincipalRiskDetectionIdOption = new Option<string>("--service-principal-risk-detection-id", description: "The unique identifier of servicePrincipalRiskDetection") {
             };
             servicePrincipalRiskDetectionIdOption.IsRequired = true;
             command.AddOption(servicePrincipalRiskDetectionIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.IdentityProtection.ServicePrincipalRiskDetections.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (servicePrincipalRiskDetectionId is not null) requestInfo.PathParameters.Add("servicePrincipalRiskDetection%2Did", servicePrincipalRiskDetectionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -54,7 +54,7 @@ namespace ApiSdk.Me.MailFolders.Item.MessageRules {
             var command = new Command("create");
             command.Description = "Create a messageRule object by specifying a set of conditions and actions.  Outlook carries out those actions if an incoming message in the user's Inbox meets the specified conditions.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/mailfolder-post-messagerules?view=graph-rest-1.0";
             // Create options for all the parameters
-            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
+            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "The unique identifier of mailFolder") {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
@@ -92,6 +92,7 @@ namespace ApiSdk.Me.MailFolders.Item.MessageRules {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (mailFolderId is not null) requestInfo.PathParameters.Add("mailFolder%2Did", mailFolderId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,7 +113,7 @@ namespace ApiSdk.Me.MailFolders.Item.MessageRules {
             var command = new Command("list");
             command.Description = "Get all the messageRule objects defined for the user's inbox.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/mailfolder-list-messagerules?view=graph-rest-1.0";
             // Create options for all the parameters
-            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
+            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "The unique identifier of mailFolder") {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);

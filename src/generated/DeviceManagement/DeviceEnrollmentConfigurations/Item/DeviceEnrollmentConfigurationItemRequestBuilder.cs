@@ -1,6 +1,6 @@
+using ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assign;
 using ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assignments;
-using ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.MicrosoftGraphAssign;
-using ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.MicrosoftGraphSetPriority;
+using ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.SetPriority;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,6 +27,16 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the assign method.
+        /// </summary>
+        public Command BuildAssignCommand() {
+            var command = new Command("assign");
+            command.Description = "Provides operations to call the assign method.";
+            var builder = new AssignRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.deviceEnrollmentConfiguration entity.
         /// </summary>
         public Command BuildAssignmentsCommand() {
@@ -46,7 +56,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property deviceEnrollmentConfigurations for deviceManagement";
             // Create options for all the parameters
-            var deviceEnrollmentConfigurationIdOption = new Option<string>("--device-enrollment-configuration-id", description: "key: id of deviceEnrollmentConfiguration") {
+            var deviceEnrollmentConfigurationIdOption = new Option<string>("--device-enrollment-configuration-id", description: "The unique identifier of deviceEnrollmentConfiguration") {
             };
             deviceEnrollmentConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceEnrollmentConfigurationIdOption);
@@ -80,7 +90,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
             var command = new Command("get");
             command.Description = "The list of device enrollment configurations";
             // Create options for all the parameters
-            var deviceEnrollmentConfigurationIdOption = new Option<string>("--device-enrollment-configuration-id", description: "key: id of deviceEnrollmentConfiguration") {
+            var deviceEnrollmentConfigurationIdOption = new Option<string>("--device-enrollment-configuration-id", description: "The unique identifier of deviceEnrollmentConfiguration") {
             };
             deviceEnrollmentConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceEnrollmentConfigurationIdOption);
@@ -136,33 +146,13 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the assign method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAssignCommand() {
-            var command = new Command("microsoft-graph-assign");
-            command.Description = "Provides operations to call the assign method.";
-            var builder = new MicrosoftGraphAssignRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the setPriority method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSetPriorityCommand() {
-            var command = new Command("microsoft-graph-set-priority");
-            command.Description = "Provides operations to call the setPriority method.";
-            var builder = new MicrosoftGraphSetPriorityRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property deviceEnrollmentConfigurations in deviceManagement
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property deviceEnrollmentConfigurations in deviceManagement";
             // Create options for all the parameters
-            var deviceEnrollmentConfigurationIdOption = new Option<string>("--device-enrollment-configuration-id", description: "key: id of deviceEnrollmentConfiguration") {
+            var deviceEnrollmentConfigurationIdOption = new Option<string>("--device-enrollment-configuration-id", description: "The unique identifier of deviceEnrollmentConfiguration") {
             };
             deviceEnrollmentConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceEnrollmentConfigurationIdOption);
@@ -200,6 +190,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (deviceEnrollmentConfigurationId is not null) requestInfo.PathParameters.Add("deviceEnrollmentConfiguration%2Did", deviceEnrollmentConfigurationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -210,6 +201,16 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the setPriority method.
+        /// </summary>
+        public Command BuildSetPriorityCommand() {
+            var command = new Command("set-priority");
+            command.Description = "Provides operations to call the setPriority method.";
+            var builder = new SetPriorityRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

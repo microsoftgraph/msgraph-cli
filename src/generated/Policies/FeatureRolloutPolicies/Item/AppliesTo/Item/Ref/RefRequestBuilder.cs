@@ -29,11 +29,11 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Item.Ref {
             var command = new Command("delete");
             command.Description = "Delete ref of navigation property appliesTo for policies";
             // Create options for all the parameters
-            var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "key: id of featureRolloutPolicy") {
+            var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "The unique identifier of featureRolloutPolicy") {
             };
             featureRolloutPolicyIdOption.IsRequired = true;
             command.AddOption(featureRolloutPolicyIdOption);
-            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "key: id of directoryObject") {
+            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "The unique identifier of directoryObject") {
             };
             directoryObjectIdOption.IsRequired = true;
             command.AddOption(directoryObjectIdOption);

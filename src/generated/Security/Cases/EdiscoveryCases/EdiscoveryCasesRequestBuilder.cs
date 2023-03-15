@@ -34,13 +34,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases {
             command.AddCommand(builder.BuildCustodiansCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSecurityCloseCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSecurityReopenCommand());
             command.AddCommand(builder.BuildNoncustodialDataSourcesCommand());
             command.AddCommand(builder.BuildOperationsCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildReviewSetsCommand());
             command.AddCommand(builder.BuildSearchesCommand());
+            command.AddCommand(builder.BuildSecurityCloseCommand());
+            command.AddCommand(builder.BuildSecurityReopenCommand());
             command.AddCommand(builder.BuildSettingsCommand());
             command.AddCommand(builder.BuildTagsCommand());
             return command;
@@ -95,6 +95,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

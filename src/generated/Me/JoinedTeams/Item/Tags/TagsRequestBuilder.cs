@@ -55,7 +55,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Tags {
             var command = new Command("create");
             command.Description = "Create a standard tag for members in a team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/teamworktag-post?view=graph-rest-1.0";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
@@ -93,6 +93,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Tags {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -113,7 +114,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Tags {
             var command = new Command("list");
             command.Description = "Get a list of the tag objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/teamworktag-list?view=graph-rest-1.0";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);

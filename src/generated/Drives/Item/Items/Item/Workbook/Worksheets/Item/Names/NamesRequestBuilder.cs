@@ -1,7 +1,7 @@
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Names.Add;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Names.AddFormulaLocal;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Names.Count;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Names.Item;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Names.MicrosoftGraphAdd;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Names.MicrosoftGraphAddFormulaLocal;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +28,26 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Names {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the add method.
+        /// </summary>
+        public Command BuildAddCommand() {
+            var command = new Command("add");
+            command.Description = "Provides operations to call the add method.";
+            var builder = new AddRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the addFormulaLocal method.
+        /// </summary>
+        public Command BuildAddFormulaLocalCommand() {
+            var command = new Command("add-formula-local");
+            command.Description = "Provides operations to call the addFormulaLocal method.";
+            var builder = new AddFormulaLocalRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the names property of the microsoft.graph.workbookWorksheet entity.
         /// </summary>
         public Command BuildCommand() {
@@ -35,8 +55,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Names {
             var builder = new WorkbookNamedItemItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRangeCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildRangeCommand());
             command.AddCommand(builder.BuildWorksheetCommand());
             return command;
         }
@@ -57,15 +77,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Names {
             var command = new Command("create");
             command.Description = "Create new navigation property to names for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
@@ -107,6 +127,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Names {
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
                 if (workbookWorksheetId is not null) requestInfo.PathParameters.Add("workbookWorksheet%2Did", workbookWorksheetId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -127,15 +148,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Names {
             var command = new Command("list");
             command.Description = "Retrieve a list of named item associated with the worksheet. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/worksheet-list-names?view=graph-rest-1.0";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
@@ -241,26 +262,6 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Names {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the add method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAddCommand() {
-            var command = new Command("microsoft-graph-add");
-            command.Description = "Provides operations to call the add method.";
-            var builder = new MicrosoftGraphAddRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the addFormulaLocal method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAddFormulaLocalCommand() {
-            var command = new Command("microsoft-graph-add-formula-local");
-            command.Description = "Provides operations to call the addFormulaLocal method.";
-            var builder = new MicrosoftGraphAddFormulaLocalRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

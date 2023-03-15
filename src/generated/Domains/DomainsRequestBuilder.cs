@@ -34,13 +34,13 @@ namespace ApiSdk.Domains {
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildDomainNameReferencesCommand());
             command.AddCommand(builder.BuildFederationConfigurationCommand());
+            command.AddCommand(builder.BuildForceDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphForceDeleteCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphPromoteCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphVerifyCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildPromoteCommand());
             command.AddCommand(builder.BuildServiceConfigurationRecordsCommand());
             command.AddCommand(builder.BuildVerificationDnsRecordsCommand());
+            command.AddCommand(builder.BuildVerifyCommand());
             return command;
         }
         /// <summary>
@@ -93,6 +93,7 @@ namespace ApiSdk.Domains {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

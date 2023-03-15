@@ -1,6 +1,6 @@
 using ApiSdk.Me.Chats.Count;
+using ApiSdk.Me.Chats.GetAllMessages;
 using ApiSdk.Me.Chats.Item;
-using ApiSdk.Me.Chats.MicrosoftGraphGetAllMessages;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,18 +34,18 @@ namespace ApiSdk.Me.Chats {
             var builder = new ChatItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildHideForUserCommand());
             command.AddCommand(builder.BuildInstalledAppsCommand());
             command.AddCommand(builder.BuildLastMessagePreviewCommand());
+            command.AddCommand(builder.BuildMarkChatReadForUserCommand());
+            command.AddCommand(builder.BuildMarkChatUnreadForUserCommand());
             command.AddCommand(builder.BuildMembersCommand());
             command.AddCommand(builder.BuildMessagesCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphHideForUserCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphMarkChatReadForUserCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphMarkChatUnreadForUserCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSendActivityNotificationCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUnhideForUserCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildPinnedMessagesCommand());
+            command.AddCommand(builder.BuildSendActivityNotificationCommand());
             command.AddCommand(builder.BuildTabsCommand());
+            command.AddCommand(builder.BuildUnhideForUserCommand());
             return command;
         }
         /// <summary>
@@ -97,6 +97,7 @@ namespace ApiSdk.Me.Chats {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -107,6 +108,16 @@ namespace ApiSdk.Me.Chats {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getAllMessages method.
+        /// </summary>
+        public Command BuildGetAllMessagesCommand() {
+            var command = new Command("get-all-messages");
+            command.Description = "Provides operations to call the getAllMessages method.";
+            var builder = new GetAllMessagesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -213,16 +224,6 @@ namespace ApiSdk.Me.Chats {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getAllMessages method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetAllMessagesCommand() {
-            var command = new Command("microsoft-graph-get-all-messages");
-            command.Description = "Provides operations to call the getAllMessages method.";
-            var builder = new MicrosoftGraphGetAllMessagesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

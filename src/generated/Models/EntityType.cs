@@ -9,5 +9,7 @@ namespace ApiSdk.Models {
         ListItem,
         Drive,
         UnknownFutureValue,
+        ChatMessage,
+        Person,
     }
 }

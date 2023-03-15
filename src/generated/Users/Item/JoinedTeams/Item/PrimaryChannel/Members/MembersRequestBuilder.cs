@@ -1,8 +1,8 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Members.Add;
 using ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Members.Count;
 using ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Members.Item;
-using ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Members.MicrosoftGraphAdd;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -27,6 +27,16 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Members {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the add method.
+        /// </summary>
+        public Command BuildAddCommand() {
+            var command = new Command("add");
+            command.Description = "Provides operations to call the add method.";
+            var builder = new AddRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the members property of the microsoft.graph.channel entity.
         /// </summary>
         public Command BuildCommand() {
@@ -48,18 +58,18 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Members {
             return command;
         }
         /// <summary>
-        /// Add a conversationMember to a channel.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/conversationmember-add?view=graph-rest-1.0" />
+        /// Add a conversationMember to a channel. This operation is allowed only for channels with a **membershipType** value of `private` or `shared`.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/channel-post-members?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Add a conversationMember to a channel.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/conversationmember-add?view=graph-rest-1.0";
+            command.Description = "Add a conversationMember to a channel. This operation is allowed only for channels with a **membershipType** value of `private` or `shared`.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-post-members?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
@@ -99,6 +109,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Members {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -119,11 +130,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Members {
             var command = new Command("list");
             command.Description = "Retrieve a list of conversationMembers from a channel. This method supports federation. Only a user who is a member of the shared channel can retrieve the channel member list.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-list-members?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
@@ -230,16 +241,6 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Members {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the add method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAddCommand() {
-            var command = new Command("microsoft-graph-add");
-            command.Description = "Provides operations to call the add method.";
-            var builder = new MicrosoftGraphAddRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Instantiates a new MembersRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
@@ -276,7 +277,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Members {
             return requestInfo;
         }
         /// <summary>
-        /// Add a conversationMember to a channel.
+        /// Add a conversationMember to a channel. This operation is allowed only for channels with a **membershipType** value of `private` or `shared`.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

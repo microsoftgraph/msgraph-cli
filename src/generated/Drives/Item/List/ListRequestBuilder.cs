@@ -49,13 +49,13 @@ namespace ApiSdk.Drives.Item.List {
             var command = new Command("content-types");
             command.Description = "Provides operations to manage the contentTypes property of the microsoft.graph.list entity.";
             var builder = new ContentTypesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAddCopyCommand());
+            command.AddCommand(builder.BuildAddCopyFromContentTypeHubCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildGetCompatibleHubContentTypesCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAddCopyCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAddCopyFromContentTypeHubCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetCompatibleHubContentTypesCommand());
             return command;
         }
         /// <summary>
@@ -65,7 +65,7 @@ namespace ApiSdk.Drives.Item.List {
             var command = new Command("delete");
             command.Description = "Delete navigation property list for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
@@ -109,7 +109,7 @@ namespace ApiSdk.Drives.Item.List {
             var command = new Command("get");
             command.Description = "For drives in SharePoint, the underlying document library list. Read-only. Nullable.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
@@ -197,7 +197,7 @@ namespace ApiSdk.Drives.Item.List {
             var command = new Command("patch");
             command.Description = "Update the navigation property list in drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
@@ -235,6 +235,7 @@ namespace ApiSdk.Drives.Item.List {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -53,7 +53,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceSettingStateSu
             var command = new Command("create");
             command.Description = "Create new navigation property to deviceSettingStateSummaries for deviceManagement";
             // Create options for all the parameters
-            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "key: id of deviceConfiguration") {
+            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationIdOption);
@@ -91,6 +91,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceSettingStateSu
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (deviceConfigurationId is not null) requestInfo.PathParameters.Add("deviceConfiguration%2Did", deviceConfigurationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -110,7 +111,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceSettingStateSu
             var command = new Command("list");
             command.Description = "Device Configuration Setting State Device Summary";
             // Create options for all the parameters
-            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "key: id of deviceConfiguration") {
+            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationIdOption);

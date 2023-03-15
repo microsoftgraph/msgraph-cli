@@ -30,7 +30,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
             var command = new Command("delete");
             command.Description = "Delete navigation property assignmentDefaults for education";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of an educationAssignmentDefaults object.  These are the class-level assignment defaults respected by new assignments created in the class. Callers can continue to specify custom values on each **assignment** creation if they don't want the default behaviors. Only teachers can perform this operation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationassignmentdefaults-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
@@ -128,7 +128,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
             var command = new Command("patch");
             command.Description = "Update the properties of an educationAssignmentDefaults object. Only teachers can update these settings.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationassignmentdefaults-update?view=graph-rest-1.0";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
@@ -166,6 +166,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentDefaults {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (educationClassId is not null) requestInfo.PathParameters.Add("educationClass%2Did", educationClassId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -30,15 +30,15 @@ namespace ApiSdk.Users.Item.Messages.Item.Attachments.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property attachments for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            var messageIdOption = new Option<string>("--message-id", description: "The unique identifier of message") {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
-            var attachmentIdOption = new Option<string>("--attachment-id", description: "key: id of attachment") {
+            var attachmentIdOption = new Option<string>("--attachment-id", description: "The unique identifier of attachment") {
             };
             attachmentIdOption.IsRequired = true;
             command.AddOption(attachmentIdOption);
@@ -76,15 +76,15 @@ namespace ApiSdk.Users.Item.Messages.Item.Attachments.Item {
             var command = new Command("get");
             command.Description = "The fileAttachment and itemAttachment attachments for the message.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            var messageIdOption = new Option<string>("--message-id", description: "The unique identifier of message") {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
-            var attachmentIdOption = new Option<string>("--attachment-id", description: "key: id of attachment") {
+            var attachmentIdOption = new Option<string>("--attachment-id", description: "The unique identifier of attachment") {
             };
             attachmentIdOption.IsRequired = true;
             command.AddOption(attachmentIdOption);

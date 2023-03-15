@@ -42,7 +42,7 @@ namespace ApiSdk.Shares.Item.Root {
             var command = new Command("get");
             command.Description = "Used to access the underlying driveItem. Deprecated -- use driveItem instead.";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);

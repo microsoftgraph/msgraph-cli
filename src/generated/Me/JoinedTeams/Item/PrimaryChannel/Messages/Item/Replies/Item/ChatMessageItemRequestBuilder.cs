@@ -1,6 +1,6 @@
 using ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages.Item.Replies.Item.HostedContents;
-using ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages.Item.Replies.Item.MicrosoftGraphSoftDelete;
-using ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages.Item.Replies.Item.MicrosoftGraphUndoSoftDelete;
+using ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages.Item.Replies.Item.SoftDelete;
+using ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages.Item.Replies.Item.UndoSoftDelete;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,15 +33,15 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages.Item.Replies.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property replies for me";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "key: id of chatMessage") {
+            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "The unique identifier of chatMessage") {
             };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);
-            var chatMessageId1Option = new Option<string>("--chat-message-id1", description: "key: id of chatMessage") {
+            var chatMessageId1Option = new Option<string>("--chat-message-id1", description: "The unique identifier of chatMessage") {
             };
             chatMessageId1Option.IsRequired = true;
             command.AddOption(chatMessageId1Option);
@@ -79,15 +79,15 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages.Item.Replies.Item {
             var command = new Command("get");
             command.Description = "Replies for a specified message. Supports $expand for channel messages.";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "key: id of chatMessage") {
+            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "The unique identifier of chatMessage") {
             };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);
-            var chatMessageId1Option = new Option<string>("--chat-message-id1", description: "key: id of chatMessage") {
+            var chatMessageId1Option = new Option<string>("--chat-message-id1", description: "The unique identifier of chatMessage") {
             };
             chatMessageId1Option.IsRequired = true;
             command.AddOption(chatMessageId1Option);
@@ -160,41 +160,21 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages.Item.Replies.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the softDelete method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSoftDeleteCommand() {
-            var command = new Command("microsoft-graph-soft-delete");
-            command.Description = "Provides operations to call the softDelete method.";
-            var builder = new MicrosoftGraphSoftDeleteRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the undoSoftDelete method.
-        /// </summary>
-        public Command BuildMicrosoftGraphUndoSoftDeleteCommand() {
-            var command = new Command("microsoft-graph-undo-soft-delete");
-            command.Description = "Provides operations to call the undoSoftDelete method.";
-            var builder = new MicrosoftGraphUndoSoftDeleteRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property replies in me
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property replies in me";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "key: id of chatMessage") {
+            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "The unique identifier of chatMessage") {
             };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);
-            var chatMessageId1Option = new Option<string>("--chat-message-id1", description: "key: id of chatMessage") {
+            var chatMessageId1Option = new Option<string>("--chat-message-id1", description: "The unique identifier of chatMessage") {
             };
             chatMessageId1Option.IsRequired = true;
             command.AddOption(chatMessageId1Option);
@@ -236,6 +216,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages.Item.Replies.Item {
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
                 if (chatMessageId is not null) requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
                 if (chatMessageId1 is not null) requestInfo.PathParameters.Add("chatMessage%2Did1", chatMessageId1);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -246,6 +227,26 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages.Item.Replies.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the softDelete method.
+        /// </summary>
+        public Command BuildSoftDeleteCommand() {
+            var command = new Command("soft-delete");
+            command.Description = "Provides operations to call the softDelete method.";
+            var builder = new SoftDeleteRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the undoSoftDelete method.
+        /// </summary>
+        public Command BuildUndoSoftDeleteCommand() {
+            var command = new Command("undo-soft-delete");
+            command.Description = "Provides operations to call the undoSoftDelete method.";
+            var builder = new UndoSoftDeleteRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

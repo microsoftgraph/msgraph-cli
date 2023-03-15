@@ -32,14 +32,14 @@ namespace ApiSdk.Me.Onenote.Pages {
             var command = new Command("item");
             var builder = new OnenotePageItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildContentCommand());
+            command.AddCommand(builder.BuildCopyToSectionCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCopyToSectionCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphOnenotePatchContentCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphPreviewCommand());
+            command.AddCommand(builder.BuildOnenotePatchContentCommand());
             command.AddCommand(builder.BuildParentNotebookCommand());
             command.AddCommand(builder.BuildParentSectionCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildPreviewCommand());
             return command;
         }
         /// <summary>
@@ -91,6 +91,7 @@ namespace ApiSdk.Me.Onenote.Pages {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

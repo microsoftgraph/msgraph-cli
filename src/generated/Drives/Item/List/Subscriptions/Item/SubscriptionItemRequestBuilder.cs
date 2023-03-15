@@ -1,4 +1,4 @@
-using ApiSdk.Drives.Item.List.Subscriptions.Item.MicrosoftGraphReauthorize;
+using ApiSdk.Drives.Item.List.Subscriptions.Item.Reauthorize;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,11 +31,11 @@ namespace ApiSdk.Drives.Item.List.Subscriptions.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property subscriptions for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var subscriptionIdOption = new Option<string>("--subscription-id", description: "key: id of subscription") {
+            var subscriptionIdOption = new Option<string>("--subscription-id", description: "The unique identifier of subscription") {
             };
             subscriptionIdOption.IsRequired = true;
             command.AddOption(subscriptionIdOption);
@@ -71,11 +71,11 @@ namespace ApiSdk.Drives.Item.List.Subscriptions.Item {
             var command = new Command("get");
             command.Description = "The set of subscriptions on the list.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var subscriptionIdOption = new Option<string>("--subscription-id", description: "key: id of subscription") {
+            var subscriptionIdOption = new Option<string>("--subscription-id", description: "The unique identifier of subscription") {
             };
             subscriptionIdOption.IsRequired = true;
             command.AddOption(subscriptionIdOption);
@@ -133,27 +133,17 @@ namespace ApiSdk.Drives.Item.List.Subscriptions.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the reauthorize method.
-        /// </summary>
-        public Command BuildMicrosoftGraphReauthorizeCommand() {
-            var command = new Command("microsoft-graph-reauthorize");
-            command.Description = "Provides operations to call the reauthorize method.";
-            var builder = new MicrosoftGraphReauthorizeRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property subscriptions in drives
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property subscriptions in drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var subscriptionIdOption = new Option<string>("--subscription-id", description: "key: id of subscription") {
+            var subscriptionIdOption = new Option<string>("--subscription-id", description: "The unique identifier of subscription") {
             };
             subscriptionIdOption.IsRequired = true;
             command.AddOption(subscriptionIdOption);
@@ -193,6 +183,7 @@ namespace ApiSdk.Drives.Item.List.Subscriptions.Item {
                 });
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (subscriptionId is not null) requestInfo.PathParameters.Add("subscription%2Did", subscriptionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -203,6 +194,16 @@ namespace ApiSdk.Drives.Item.List.Subscriptions.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the reauthorize method.
+        /// </summary>
+        public Command BuildReauthorizeCommand() {
+            var command = new Command("reauthorize");
+            command.Description = "Provides operations to call the reauthorize method.";
+            var builder = new ReauthorizeRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

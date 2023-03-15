@@ -34,7 +34,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property b2xUserFlows for identity";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
@@ -68,7 +68,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
             var command = new Command("get");
             command.Description = "Represents entry point for B2X/self-service sign-up identity userflows.";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
@@ -155,7 +155,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property b2xUserFlows in identity";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
@@ -193,6 +193,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (b2xIdentityUserFlowId is not null) requestInfo.PathParameters.Add("b2xIdentityUserFlow%2Did", b2xIdentityUserFlowId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -215,9 +216,9 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildGetOrderCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetOrderCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSetOrderCommand());
+            command.AddCommand(builder.BuildSetOrderCommand());
             return command;
         }
         /// <summary>

@@ -1,8 +1,8 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.OnlineMeetings.Count;
+using ApiSdk.Users.Item.OnlineMeetings.CreateOrGet;
 using ApiSdk.Users.Item.OnlineMeetings.Item;
-using ApiSdk.Users.Item.OnlineMeetings.MicrosoftGraphCreateOrGet;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -57,7 +57,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings {
             var command = new Command("create");
             command.Description = "Create an online meeting on behalf of a user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-post-onlinemeetings?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -95,6 +95,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -108,6 +109,16 @@ namespace ApiSdk.Users.Item.OnlineMeetings {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the createOrGet method.
+        /// </summary>
+        public Command BuildCreateOrGetCommand() {
+            var command = new Command("create-or-get");
+            command.Description = "Provides operations to call the createOrGet method.";
+            var builder = new CreateOrGetRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report is an online meeting artifact. For details, see Online meeting artifacts and permissions.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/onlinemeeting-get?view=graph-rest-1.0" />
         /// </summary>
@@ -115,7 +126,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings {
             var command = new Command("list");
             command.Description = "Retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report is an online meeting artifact. For details, see Online meeting artifacts and permissions.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/onlinemeeting-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -217,16 +228,6 @@ namespace ApiSdk.Users.Item.OnlineMeetings {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the createOrGet method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCreateOrGetCommand() {
-            var command = new Command("microsoft-graph-create-or-get");
-            command.Description = "Provides operations to call the createOrGet method.";
-            var builder = new MicrosoftGraphCreateOrGetRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

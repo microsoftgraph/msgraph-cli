@@ -30,7 +30,7 @@ namespace ApiSdk.Me.InferenceClassification.Overrides.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property overrides for me";
             // Create options for all the parameters
-            var inferenceClassificationOverrideIdOption = new Option<string>("--inference-classification-override-id", description: "key: id of inferenceClassificationOverride") {
+            var inferenceClassificationOverrideIdOption = new Option<string>("--inference-classification-override-id", description: "The unique identifier of inferenceClassificationOverride") {
             };
             inferenceClassificationOverrideIdOption.IsRequired = true;
             command.AddOption(inferenceClassificationOverrideIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Me.InferenceClassification.Overrides.Item {
             var command = new Command("get");
             command.Description = "A set of overrides for a user to always classify messages from specific senders in certain ways: focused, or other. Read-only. Nullable.";
             // Create options for all the parameters
-            var inferenceClassificationOverrideIdOption = new Option<string>("--inference-classification-override-id", description: "key: id of inferenceClassificationOverride") {
+            var inferenceClassificationOverrideIdOption = new Option<string>("--inference-classification-override-id", description: "The unique identifier of inferenceClassificationOverride") {
             };
             inferenceClassificationOverrideIdOption.IsRequired = true;
             command.AddOption(inferenceClassificationOverrideIdOption);
@@ -119,7 +119,7 @@ namespace ApiSdk.Me.InferenceClassification.Overrides.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property overrides in me";
             // Create options for all the parameters
-            var inferenceClassificationOverrideIdOption = new Option<string>("--inference-classification-override-id", description: "key: id of inferenceClassificationOverride") {
+            var inferenceClassificationOverrideIdOption = new Option<string>("--inference-classification-override-id", description: "The unique identifier of inferenceClassificationOverride") {
             };
             inferenceClassificationOverrideIdOption.IsRequired = true;
             command.AddOption(inferenceClassificationOverrideIdOption);
@@ -157,6 +157,7 @@ namespace ApiSdk.Me.InferenceClassification.Overrides.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (inferenceClassificationOverrideId is not null) requestInfo.PathParameters.Add("inferenceClassificationOverride%2Did", inferenceClassificationOverrideId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

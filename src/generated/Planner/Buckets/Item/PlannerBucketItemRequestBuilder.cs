@@ -31,7 +31,7 @@ namespace ApiSdk.Planner.Buckets.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property buckets for planner";
             // Create options for all the parameters
-            var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "key: id of plannerBucket") {
+            var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "The unique identifier of plannerBucket") {
             };
             plannerBucketIdOption.IsRequired = true;
             command.AddOption(plannerBucketIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.Planner.Buckets.Item {
             var command = new Command("get");
             command.Description = "Read-only. Nullable. Returns a collection of the specified buckets";
             // Create options for all the parameters
-            var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "key: id of plannerBucket") {
+            var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "The unique identifier of plannerBucket") {
             };
             plannerBucketIdOption.IsRequired = true;
             command.AddOption(plannerBucketIdOption);
@@ -127,7 +127,7 @@ namespace ApiSdk.Planner.Buckets.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property buckets in planner";
             // Create options for all the parameters
-            var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "key: id of plannerBucket") {
+            var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "The unique identifier of plannerBucket") {
             };
             plannerBucketIdOption.IsRequired = true;
             command.AddOption(plannerBucketIdOption);
@@ -172,6 +172,7 @@ namespace ApiSdk.Planner.Buckets.Item {
                 });
                 if (plannerBucketId is not null) requestInfo.PathParameters.Add("plannerBucket%2Did", plannerBucketId);
                 if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

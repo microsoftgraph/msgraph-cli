@@ -30,11 +30,11 @@ namespace ApiSdk.Applications.Item.HomeRealmDiscoveryPolicies.Item {
             var command = new Command("get");
             command.Description = "Get homeRealmDiscoveryPolicies from applications";
             // Create options for all the parameters
-            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
             command.AddOption(applicationIdOption);
-            var homeRealmDiscoveryPolicyIdOption = new Option<string>("--home-realm-discovery-policy-id", description: "key: id of homeRealmDiscoveryPolicy") {
+            var homeRealmDiscoveryPolicyIdOption = new Option<string>("--home-realm-discovery-policy-id", description: "The unique identifier of homeRealmDiscoveryPolicy") {
             };
             homeRealmDiscoveryPolicyIdOption.IsRequired = true;
             command.AddOption(homeRealmDiscoveryPolicyIdOption);

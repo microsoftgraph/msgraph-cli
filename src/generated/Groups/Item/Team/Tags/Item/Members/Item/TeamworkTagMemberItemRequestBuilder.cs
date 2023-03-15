@@ -30,15 +30,15 @@ namespace ApiSdk.Groups.Item.Team.Tags.Item.Members.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property members for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var teamworkTagIdOption = new Option<string>("--teamwork-tag-id", description: "key: id of teamworkTag") {
+            var teamworkTagIdOption = new Option<string>("--teamwork-tag-id", description: "The unique identifier of teamworkTag") {
             };
             teamworkTagIdOption.IsRequired = true;
             command.AddOption(teamworkTagIdOption);
-            var teamworkTagMemberIdOption = new Option<string>("--teamwork-tag-member-id", description: "key: id of teamworkTagMember") {
+            var teamworkTagMemberIdOption = new Option<string>("--teamwork-tag-member-id", description: "The unique identifier of teamworkTagMember") {
             };
             teamworkTagMemberIdOption.IsRequired = true;
             command.AddOption(teamworkTagMemberIdOption);
@@ -76,15 +76,15 @@ namespace ApiSdk.Groups.Item.Team.Tags.Item.Members.Item {
             var command = new Command("get");
             command.Description = "Users assigned to the tag.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var teamworkTagIdOption = new Option<string>("--teamwork-tag-id", description: "key: id of teamworkTag") {
+            var teamworkTagIdOption = new Option<string>("--teamwork-tag-id", description: "The unique identifier of teamworkTag") {
             };
             teamworkTagIdOption.IsRequired = true;
             command.AddOption(teamworkTagIdOption);
-            var teamworkTagMemberIdOption = new Option<string>("--teamwork-tag-member-id", description: "key: id of teamworkTagMember") {
+            var teamworkTagMemberIdOption = new Option<string>("--teamwork-tag-member-id", description: "The unique identifier of teamworkTagMember") {
             };
             teamworkTagMemberIdOption.IsRequired = true;
             command.AddOption(teamworkTagMemberIdOption);
@@ -150,15 +150,15 @@ namespace ApiSdk.Groups.Item.Team.Tags.Item.Members.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property members in groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var teamworkTagIdOption = new Option<string>("--teamwork-tag-id", description: "key: id of teamworkTag") {
+            var teamworkTagIdOption = new Option<string>("--teamwork-tag-id", description: "The unique identifier of teamworkTag") {
             };
             teamworkTagIdOption.IsRequired = true;
             command.AddOption(teamworkTagIdOption);
-            var teamworkTagMemberIdOption = new Option<string>("--teamwork-tag-member-id", description: "key: id of teamworkTagMember") {
+            var teamworkTagMemberIdOption = new Option<string>("--teamwork-tag-member-id", description: "The unique identifier of teamworkTagMember") {
             };
             teamworkTagMemberIdOption.IsRequired = true;
             command.AddOption(teamworkTagMemberIdOption);
@@ -200,6 +200,7 @@ namespace ApiSdk.Groups.Item.Team.Tags.Item.Members.Item {
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (teamworkTagId is not null) requestInfo.PathParameters.Add("teamworkTag%2Did", teamworkTagId);
                 if (teamworkTagMemberId is not null) requestInfo.PathParameters.Add("teamworkTagMember%2Did", teamworkTagMemberId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

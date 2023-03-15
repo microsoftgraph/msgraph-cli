@@ -33,11 +33,11 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts {
             var builder = new PostItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildAttachmentsCommand());
             command.AddCommand(builder.BuildExtensionsCommand());
+            command.AddCommand(builder.BuildForwardCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildInReplyToCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphForwardCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphReplyCommand());
             command.AddCommand(builder.BuildMultiValueExtendedPropertiesCommand());
+            command.AddCommand(builder.BuildReplyCommand());
             command.AddCommand(builder.BuildSingleValueExtendedPropertiesCommand());
             return command;
         }
@@ -59,11 +59,11 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts {
             var command = new Command("list");
             command.Description = "Get the properties and relationships of a post in a specified thread. You can specify both the parent conversation and the thread, or, you can specify the thread without referencing the parent conversation. Since the **post** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **post** instance.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/post-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "key: id of conversationThread") {
+            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "The unique identifier of conversationThread") {
             };
             conversationThreadIdOption.IsRequired = true;
             command.AddOption(conversationThreadIdOption);

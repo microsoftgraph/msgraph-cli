@@ -53,7 +53,7 @@ namespace ApiSdk.DirectoryRoles.Item.ScopedMembers {
             var command = new Command("create");
             command.Description = "Create new navigation property to scopedMembers for directoryRoles";
             // Create options for all the parameters
-            var directoryRoleIdOption = new Option<string>("--directory-role-id", description: "key: id of directoryRole") {
+            var directoryRoleIdOption = new Option<string>("--directory-role-id", description: "The unique identifier of directoryRole") {
             };
             directoryRoleIdOption.IsRequired = true;
             command.AddOption(directoryRoleIdOption);
@@ -91,6 +91,7 @@ namespace ApiSdk.DirectoryRoles.Item.ScopedMembers {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (directoryRoleId is not null) requestInfo.PathParameters.Add("directoryRole%2Did", directoryRoleId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -111,7 +112,7 @@ namespace ApiSdk.DirectoryRoles.Item.ScopedMembers {
             var command = new Command("list");
             command.Description = "Retrieve a list of scopedRoleMembership objects for a directory role.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directoryrole-list-scopedmembers?view=graph-rest-1.0";
             // Create options for all the parameters
-            var directoryRoleIdOption = new Option<string>("--directory-role-id", description: "key: id of directoryRole") {
+            var directoryRoleIdOption = new Option<string>("--directory-role-id", description: "The unique identifier of directoryRole") {
             };
             directoryRoleIdOption.IsRequired = true;
             command.AddOption(directoryRoleIdOption);

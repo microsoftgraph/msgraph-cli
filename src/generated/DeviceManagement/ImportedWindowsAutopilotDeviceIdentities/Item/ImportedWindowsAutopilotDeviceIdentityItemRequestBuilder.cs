@@ -30,7 +30,7 @@ namespace ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Item 
             var command = new Command("delete");
             command.Description = "Delete navigation property importedWindowsAutopilotDeviceIdentities for deviceManagement";
             // Create options for all the parameters
-            var importedWindowsAutopilotDeviceIdentityIdOption = new Option<string>("--imported-windows-autopilot-device-identity-id", description: "key: id of importedWindowsAutopilotDeviceIdentity") {
+            var importedWindowsAutopilotDeviceIdentityIdOption = new Option<string>("--imported-windows-autopilot-device-identity-id", description: "The unique identifier of importedWindowsAutopilotDeviceIdentity") {
             };
             importedWindowsAutopilotDeviceIdentityIdOption.IsRequired = true;
             command.AddOption(importedWindowsAutopilotDeviceIdentityIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Item 
             var command = new Command("get");
             command.Description = "Collection of imported Windows autopilot devices.";
             // Create options for all the parameters
-            var importedWindowsAutopilotDeviceIdentityIdOption = new Option<string>("--imported-windows-autopilot-device-identity-id", description: "key: id of importedWindowsAutopilotDeviceIdentity") {
+            var importedWindowsAutopilotDeviceIdentityIdOption = new Option<string>("--imported-windows-autopilot-device-identity-id", description: "The unique identifier of importedWindowsAutopilotDeviceIdentity") {
             };
             importedWindowsAutopilotDeviceIdentityIdOption.IsRequired = true;
             command.AddOption(importedWindowsAutopilotDeviceIdentityIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Item 
             var command = new Command("patch");
             command.Description = "Update the navigation property importedWindowsAutopilotDeviceIdentities in deviceManagement";
             // Create options for all the parameters
-            var importedWindowsAutopilotDeviceIdentityIdOption = new Option<string>("--imported-windows-autopilot-device-identity-id", description: "key: id of importedWindowsAutopilotDeviceIdentity") {
+            var importedWindowsAutopilotDeviceIdentityIdOption = new Option<string>("--imported-windows-autopilot-device-identity-id", description: "The unique identifier of importedWindowsAutopilotDeviceIdentity") {
             };
             importedWindowsAutopilotDeviceIdentityIdOption.IsRequired = true;
             command.AddOption(importedWindowsAutopilotDeviceIdentityIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Item 
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (importedWindowsAutopilotDeviceIdentityId is not null) requestInfo.PathParameters.Add("importedWindowsAutopilotDeviceIdentity%2Did", importedWindowsAutopilotDeviceIdentityId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -54,11 +54,11 @@ namespace ApiSdk.Me.Events.Item.Instances.Item.Extensions {
             var command = new Command("create");
             command.Description = "Create an open extension (openTypeExtension object) and add custom properties in a new or existing instance of a resource. You can create an open extension in a resource instance and store custom data to it all in the same operation, except for specific resources. See known limitations of open extensions for more information. The table in the Permissions section lists the resources that support open extensions.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/opentypeextension-post-opentypeextension?view=graph-rest-1.0";
             // Create options for all the parameters
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var eventId1Option = new Option<string>("--event-id1", description: "key: id of event") {
+            var eventId1Option = new Option<string>("--event-id1", description: "The unique identifier of event") {
             };
             eventId1Option.IsRequired = true;
             command.AddOption(eventId1Option);
@@ -98,6 +98,7 @@ namespace ApiSdk.Me.Events.Item.Instances.Item.Extensions {
                 });
                 if (eventId is not null) requestInfo.PathParameters.Add("event%2Did", eventId);
                 if (eventId1 is not null) requestInfo.PathParameters.Add("event%2Did1", eventId1);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -117,11 +118,11 @@ namespace ApiSdk.Me.Events.Item.Instances.Item.Extensions {
             var command = new Command("list");
             command.Description = "The collection of open extensions defined for the event. Nullable.";
             // Create options for all the parameters
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var eventId1Option = new Option<string>("--event-id1", description: "key: id of event") {
+            var eventId1Option = new Option<string>("--event-id1", description: "The unique identifier of event") {
             };
             eventId1Option.IsRequired = true;
             command.AddOption(eventId1Option);

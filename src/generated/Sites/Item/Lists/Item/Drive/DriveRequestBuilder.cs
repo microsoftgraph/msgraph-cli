@@ -30,11 +30,11 @@ namespace ApiSdk.Sites.Item.Lists.Item.Drive {
             var command = new Command("get");
             command.Description = "Only present on document libraries. Allows access to the list as a [drive][] resource with [driveItems][driveItem].";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            var listIdOption = new Option<string>("--list-id", description: "The unique identifier of list") {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);

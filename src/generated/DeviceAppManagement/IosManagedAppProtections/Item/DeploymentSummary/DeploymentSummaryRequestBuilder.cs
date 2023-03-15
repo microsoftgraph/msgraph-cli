@@ -30,7 +30,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.DeploymentSum
             var command = new Command("delete");
             command.Description = "Delete navigation property deploymentSummary for deviceAppManagement";
             // Create options for all the parameters
-            var iosManagedAppProtectionIdOption = new Option<string>("--ios-managed-app-protection-id", description: "key: id of iosManagedAppProtection") {
+            var iosManagedAppProtectionIdOption = new Option<string>("--ios-managed-app-protection-id", description: "The unique identifier of iosManagedAppProtection") {
             };
             iosManagedAppProtectionIdOption.IsRequired = true;
             command.AddOption(iosManagedAppProtectionIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.DeploymentSum
             var command = new Command("get");
             command.Description = "Navigation property to deployment summary of the configuration.";
             // Create options for all the parameters
-            var iosManagedAppProtectionIdOption = new Option<string>("--ios-managed-app-protection-id", description: "key: id of iosManagedAppProtection") {
+            var iosManagedAppProtectionIdOption = new Option<string>("--ios-managed-app-protection-id", description: "The unique identifier of iosManagedAppProtection") {
             };
             iosManagedAppProtectionIdOption.IsRequired = true;
             command.AddOption(iosManagedAppProtectionIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.DeploymentSum
             var command = new Command("patch");
             command.Description = "Update the navigation property deploymentSummary in deviceAppManagement";
             // Create options for all the parameters
-            var iosManagedAppProtectionIdOption = new Option<string>("--ios-managed-app-protection-id", description: "key: id of iosManagedAppProtection") {
+            var iosManagedAppProtectionIdOption = new Option<string>("--ios-managed-app-protection-id", description: "The unique identifier of iosManagedAppProtection") {
             };
             iosManagedAppProtectionIdOption.IsRequired = true;
             command.AddOption(iosManagedAppProtectionIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.DeploymentSum
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (iosManagedAppProtectionId is not null) requestInfo.PathParameters.Add("iosManagedAppProtection%2Did", iosManagedAppProtectionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

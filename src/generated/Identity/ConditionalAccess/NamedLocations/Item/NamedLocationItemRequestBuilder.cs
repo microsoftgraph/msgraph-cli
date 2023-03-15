@@ -30,7 +30,7 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property namedLocations for identity";
             // Create options for all the parameters
-            var namedLocationIdOption = new Option<string>("--named-location-id", description: "key: id of namedLocation") {
+            var namedLocationIdOption = new Option<string>("--named-location-id", description: "The unique identifier of namedLocation") {
             };
             namedLocationIdOption.IsRequired = true;
             command.AddOption(namedLocationIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
             var command = new Command("get");
             command.Description = "Read-only. Nullable. Returns a collection of the specified named locations.";
             // Create options for all the parameters
-            var namedLocationIdOption = new Option<string>("--named-location-id", description: "key: id of namedLocation") {
+            var namedLocationIdOption = new Option<string>("--named-location-id", description: "The unique identifier of namedLocation") {
             };
             namedLocationIdOption.IsRequired = true;
             command.AddOption(namedLocationIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property namedLocations in identity";
             // Create options for all the parameters
-            var namedLocationIdOption = new Option<string>("--named-location-id", description: "key: id of namedLocation") {
+            var namedLocationIdOption = new Option<string>("--named-location-id", description: "The unique identifier of namedLocation") {
             };
             namedLocationIdOption.IsRequired = true;
             command.AddOption(namedLocationIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (namedLocationId is not null) requestInfo.PathParameters.Add("namedLocation%2Did", namedLocationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

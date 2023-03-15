@@ -30,15 +30,15 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.FileNamespace.Loc
             var command = new Command("delete");
             command.Description = "Delete navigation property versions for identityGovernance";
             // Create options for all the parameters
-            var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement") {
+            var agreementIdOption = new Option<string>("--agreement-id", description: "The unique identifier of agreement") {
             };
             agreementIdOption.IsRequired = true;
             command.AddOption(agreementIdOption);
-            var agreementFileLocalizationIdOption = new Option<string>("--agreement-file-localization-id", description: "key: id of agreementFileLocalization") {
+            var agreementFileLocalizationIdOption = new Option<string>("--agreement-file-localization-id", description: "The unique identifier of agreementFileLocalization") {
             };
             agreementFileLocalizationIdOption.IsRequired = true;
             command.AddOption(agreementFileLocalizationIdOption);
-            var agreementFileVersionIdOption = new Option<string>("--agreement-file-version-id", description: "key: id of agreementFileVersion") {
+            var agreementFileVersionIdOption = new Option<string>("--agreement-file-version-id", description: "The unique identifier of agreementFileVersion") {
             };
             agreementFileVersionIdOption.IsRequired = true;
             command.AddOption(agreementFileVersionIdOption);
@@ -76,15 +76,15 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.FileNamespace.Loc
             var command = new Command("get");
             command.Description = "Read-only. Customized versions of the terms of use agreement in the Azure AD tenant.";
             // Create options for all the parameters
-            var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement") {
+            var agreementIdOption = new Option<string>("--agreement-id", description: "The unique identifier of agreement") {
             };
             agreementIdOption.IsRequired = true;
             command.AddOption(agreementIdOption);
-            var agreementFileLocalizationIdOption = new Option<string>("--agreement-file-localization-id", description: "key: id of agreementFileLocalization") {
+            var agreementFileLocalizationIdOption = new Option<string>("--agreement-file-localization-id", description: "The unique identifier of agreementFileLocalization") {
             };
             agreementFileLocalizationIdOption.IsRequired = true;
             command.AddOption(agreementFileLocalizationIdOption);
-            var agreementFileVersionIdOption = new Option<string>("--agreement-file-version-id", description: "key: id of agreementFileVersion") {
+            var agreementFileVersionIdOption = new Option<string>("--agreement-file-version-id", description: "The unique identifier of agreementFileVersion") {
             };
             agreementFileVersionIdOption.IsRequired = true;
             command.AddOption(agreementFileVersionIdOption);
@@ -150,15 +150,15 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.FileNamespace.Loc
             var command = new Command("patch");
             command.Description = "Update the navigation property versions in identityGovernance";
             // Create options for all the parameters
-            var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement") {
+            var agreementIdOption = new Option<string>("--agreement-id", description: "The unique identifier of agreement") {
             };
             agreementIdOption.IsRequired = true;
             command.AddOption(agreementIdOption);
-            var agreementFileLocalizationIdOption = new Option<string>("--agreement-file-localization-id", description: "key: id of agreementFileLocalization") {
+            var agreementFileLocalizationIdOption = new Option<string>("--agreement-file-localization-id", description: "The unique identifier of agreementFileLocalization") {
             };
             agreementFileLocalizationIdOption.IsRequired = true;
             command.AddOption(agreementFileLocalizationIdOption);
-            var agreementFileVersionIdOption = new Option<string>("--agreement-file-version-id", description: "key: id of agreementFileVersion") {
+            var agreementFileVersionIdOption = new Option<string>("--agreement-file-version-id", description: "The unique identifier of agreementFileVersion") {
             };
             agreementFileVersionIdOption.IsRequired = true;
             command.AddOption(agreementFileVersionIdOption);
@@ -200,6 +200,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.FileNamespace.Loc
                 if (agreementId is not null) requestInfo.PathParameters.Add("agreement%2Did", agreementId);
                 if (agreementFileLocalizationId is not null) requestInfo.PathParameters.Add("agreementFileLocalization%2Did", agreementFileLocalizationId);
                 if (agreementFileVersionId is not null) requestInfo.PathParameters.Add("agreementFileVersion%2Did", agreementFileVersionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

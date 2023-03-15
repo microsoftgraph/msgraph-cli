@@ -1,6 +1,6 @@
 using ApiSdk.Groups.Item.Team.Channels.Count;
+using ApiSdk.Groups.Item.Team.Channels.GetAllMessages;
 using ApiSdk.Groups.Item.Team.Channels.Item;
-using ApiSdk.Groups.Item.Team.Channels.MicrosoftGraphGetAllMessages;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,16 +32,16 @@ namespace ApiSdk.Groups.Item.Team.Channels {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new ChannelItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCompleteMigrationCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameCommand());
             command.AddCommand(builder.BuildFilesFolderCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildMembersCommand());
             command.AddCommand(builder.BuildMessagesCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCompleteMigrationCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphProvisionEmailCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRemoveEmailCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildProvisionEmailCommand());
+            command.AddCommand(builder.BuildRemoveEmailCommand());
             command.AddCommand(builder.BuildSharedWithTeamsCommand());
             command.AddCommand(builder.BuildTabsCommand());
             return command;
@@ -64,7 +64,7 @@ namespace ApiSdk.Groups.Item.Team.Channels {
             var command = new Command("create");
             command.Description = "Create a new channel in a team, as specified in the request body.  When you create a channel, the maximum length of the channel's `displayName` is 50 characters. This is the name that appears to the user in Microsoft Teams. If you're creating a private channel, you can add a maximum of 200 members.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-post?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
@@ -102,6 +102,7 @@ namespace ApiSdk.Groups.Item.Team.Channels {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -115,6 +116,16 @@ namespace ApiSdk.Groups.Item.Team.Channels {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the getAllMessages method.
+        /// </summary>
+        public Command BuildGetAllMessagesCommand() {
+            var command = new Command("get-all-messages");
+            command.Description = "Provides operations to call the getAllMessages method.";
+            var builder = new GetAllMessagesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Retrieve the list of channels in this team.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/channel-list?view=graph-rest-1.0" />
         /// </summary>
@@ -122,7 +133,7 @@ namespace ApiSdk.Groups.Item.Team.Channels {
             var command = new Command("list");
             command.Description = "Retrieve the list of channels in this team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-list?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
@@ -224,16 +235,6 @@ namespace ApiSdk.Groups.Item.Team.Channels {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getAllMessages method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetAllMessagesCommand() {
-            var command = new Command("microsoft-graph-get-all-messages");
-            command.Description = "Provides operations to call the getAllMessages method.";
-            var builder = new MicrosoftGraphGetAllMessagesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

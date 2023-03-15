@@ -30,7 +30,7 @@ namespace ApiSdk.DeviceManagement.ComplianceManagementPartners.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property complianceManagementPartners for deviceManagement";
             // Create options for all the parameters
-            var complianceManagementPartnerIdOption = new Option<string>("--compliance-management-partner-id", description: "key: id of complianceManagementPartner") {
+            var complianceManagementPartnerIdOption = new Option<string>("--compliance-management-partner-id", description: "The unique identifier of complianceManagementPartner") {
             };
             complianceManagementPartnerIdOption.IsRequired = true;
             command.AddOption(complianceManagementPartnerIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.DeviceManagement.ComplianceManagementPartners.Item {
             var command = new Command("get");
             command.Description = "The list of Compliance Management Partners configured by the tenant.";
             // Create options for all the parameters
-            var complianceManagementPartnerIdOption = new Option<string>("--compliance-management-partner-id", description: "key: id of complianceManagementPartner") {
+            var complianceManagementPartnerIdOption = new Option<string>("--compliance-management-partner-id", description: "The unique identifier of complianceManagementPartner") {
             };
             complianceManagementPartnerIdOption.IsRequired = true;
             command.AddOption(complianceManagementPartnerIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.DeviceManagement.ComplianceManagementPartners.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property complianceManagementPartners in deviceManagement";
             // Create options for all the parameters
-            var complianceManagementPartnerIdOption = new Option<string>("--compliance-management-partner-id", description: "key: id of complianceManagementPartner") {
+            var complianceManagementPartnerIdOption = new Option<string>("--compliance-management-partner-id", description: "The unique identifier of complianceManagementPartner") {
             };
             complianceManagementPartnerIdOption.IsRequired = true;
             command.AddOption(complianceManagementPartnerIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.DeviceManagement.ComplianceManagementPartners.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (complianceManagementPartnerId is not null) requestInfo.PathParameters.Add("complianceManagementPartner%2Did", complianceManagementPartnerId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

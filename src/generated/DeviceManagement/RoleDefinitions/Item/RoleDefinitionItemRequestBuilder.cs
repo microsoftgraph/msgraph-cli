@@ -31,7 +31,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property roleDefinitions for deviceManagement";
             // Create options for all the parameters
-            var roleDefinitionIdOption = new Option<string>("--role-definition-id", description: "key: id of roleDefinition") {
+            var roleDefinitionIdOption = new Option<string>("--role-definition-id", description: "The unique identifier of roleDefinition") {
             };
             roleDefinitionIdOption.IsRequired = true;
             command.AddOption(roleDefinitionIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
             var command = new Command("get");
             command.Description = "The Role Definitions.";
             // Create options for all the parameters
-            var roleDefinitionIdOption = new Option<string>("--role-definition-id", description: "key: id of roleDefinition") {
+            var roleDefinitionIdOption = new Option<string>("--role-definition-id", description: "The unique identifier of roleDefinition") {
             };
             roleDefinitionIdOption.IsRequired = true;
             command.AddOption(roleDefinitionIdOption);
@@ -127,7 +127,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property roleDefinitions in deviceManagement";
             // Create options for all the parameters
-            var roleDefinitionIdOption = new Option<string>("--role-definition-id", description: "key: id of roleDefinition") {
+            var roleDefinitionIdOption = new Option<string>("--role-definition-id", description: "The unique identifier of roleDefinition") {
             };
             roleDefinitionIdOption.IsRequired = true;
             command.AddOption(roleDefinitionIdOption);
@@ -165,6 +165,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (roleDefinitionId is not null) requestInfo.PathParameters.Add("roleDefinition%2Did", roleDefinitionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

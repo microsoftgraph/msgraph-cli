@@ -31,7 +31,7 @@ namespace ApiSdk.ServicePrincipals.Item.ClaimsMappingPolicies.Ref {
             var command = new Command("get");
             command.Description = "List the claimsMappingPolicy objects that are assigned to a servicePrincipal.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-list-claimsmappingpolicies?view=graph-rest-1.0";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
+            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
@@ -128,7 +128,7 @@ namespace ApiSdk.ServicePrincipals.Item.ClaimsMappingPolicies.Ref {
             var command = new Command("post");
             command.Description = "Create new navigation property ref to claimsMappingPolicies for servicePrincipals";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
+            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
@@ -148,6 +148,7 @@ namespace ApiSdk.ServicePrincipals.Item.ClaimsMappingPolicies.Ref {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (servicePrincipalId is not null) requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

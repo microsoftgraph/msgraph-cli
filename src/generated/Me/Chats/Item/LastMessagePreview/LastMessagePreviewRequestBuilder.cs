@@ -30,7 +30,7 @@ namespace ApiSdk.Me.Chats.Item.LastMessagePreview {
             var command = new Command("delete");
             command.Description = "Delete navigation property lastMessagePreview for me";
             // Create options for all the parameters
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Me.Chats.Item.LastMessagePreview {
             var command = new Command("get");
             command.Description = "Preview of the last message sent in the chat. Null if no messages have been sent in the chat. Currently, only the list chats operation supports this property.";
             // Create options for all the parameters
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.Me.Chats.Item.LastMessagePreview {
             var command = new Command("patch");
             command.Description = "Update the navigation property lastMessagePreview in me";
             // Create options for all the parameters
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.Me.Chats.Item.LastMessagePreview {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (chatId is not null) requestInfo.PathParameters.Add("chat%2Did", chatId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

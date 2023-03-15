@@ -30,11 +30,11 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimeOffReasons.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property timeOffReasons for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var timeOffReasonIdOption = new Option<string>("--time-off-reason-id", description: "key: id of timeOffReason") {
+            var timeOffReasonIdOption = new Option<string>("--time-off-reason-id", description: "The unique identifier of timeOffReason") {
             };
             timeOffReasonIdOption.IsRequired = true;
             command.AddOption(timeOffReasonIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimeOffReasons.Item {
             var command = new Command("get");
             command.Description = "The set of reasons for a time off in the schedule.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var timeOffReasonIdOption = new Option<string>("--time-off-reason-id", description: "key: id of timeOffReason") {
+            var timeOffReasonIdOption = new Option<string>("--time-off-reason-id", description: "The unique identifier of timeOffReason") {
             };
             timeOffReasonIdOption.IsRequired = true;
             command.AddOption(timeOffReasonIdOption);
@@ -131,11 +131,11 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimeOffReasons.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property timeOffReasons in groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var timeOffReasonIdOption = new Option<string>("--time-off-reason-id", description: "key: id of timeOffReason") {
+            var timeOffReasonIdOption = new Option<string>("--time-off-reason-id", description: "The unique identifier of timeOffReason") {
             };
             timeOffReasonIdOption.IsRequired = true;
             command.AddOption(timeOffReasonIdOption);
@@ -175,6 +175,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.TimeOffReasons.Item {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (timeOffReasonId is not null) requestInfo.PathParameters.Add("timeOffReason%2Did", timeOffReasonId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

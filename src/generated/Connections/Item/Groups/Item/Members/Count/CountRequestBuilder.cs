@@ -29,11 +29,11 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
+            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
             command.AddOption(externalConnectionIdOption);
-            var externalGroupIdOption = new Option<string>("--external-group-id", description: "key: id of externalGroup") {
+            var externalGroupIdOption = new Option<string>("--external-group-id", description: "The unique identifier of externalGroup") {
             };
             externalGroupIdOption.IsRequired = true;
             command.AddOption(externalGroupIdOption);

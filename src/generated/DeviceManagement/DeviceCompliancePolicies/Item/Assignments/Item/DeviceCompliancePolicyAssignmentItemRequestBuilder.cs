@@ -30,11 +30,11 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assignments.Item
             var command = new Command("delete");
             command.Description = "Delete navigation property assignments for deviceManagement";
             // Create options for all the parameters
-            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "key: id of deviceCompliancePolicy") {
+            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicyIdOption);
-            var deviceCompliancePolicyAssignmentIdOption = new Option<string>("--device-compliance-policy-assignment-id", description: "key: id of deviceCompliancePolicyAssignment") {
+            var deviceCompliancePolicyAssignmentIdOption = new Option<string>("--device-compliance-policy-assignment-id", description: "The unique identifier of deviceCompliancePolicyAssignment") {
             };
             deviceCompliancePolicyAssignmentIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicyAssignmentIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assignments.Item
             var command = new Command("get");
             command.Description = "The collection of assignments for this compliance policy.";
             // Create options for all the parameters
-            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "key: id of deviceCompliancePolicy") {
+            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicyIdOption);
-            var deviceCompliancePolicyAssignmentIdOption = new Option<string>("--device-compliance-policy-assignment-id", description: "key: id of deviceCompliancePolicyAssignment") {
+            var deviceCompliancePolicyAssignmentIdOption = new Option<string>("--device-compliance-policy-assignment-id", description: "The unique identifier of deviceCompliancePolicyAssignment") {
             };
             deviceCompliancePolicyAssignmentIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicyAssignmentIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assignments.Item
             var command = new Command("patch");
             command.Description = "Update the navigation property assignments in deviceManagement";
             // Create options for all the parameters
-            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "key: id of deviceCompliancePolicy") {
+            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicyIdOption);
-            var deviceCompliancePolicyAssignmentIdOption = new Option<string>("--device-compliance-policy-assignment-id", description: "key: id of deviceCompliancePolicyAssignment") {
+            var deviceCompliancePolicyAssignmentIdOption = new Option<string>("--device-compliance-policy-assignment-id", description: "The unique identifier of deviceCompliancePolicyAssignment") {
             };
             deviceCompliancePolicyAssignmentIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicyAssignmentIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assignments.Item
                 });
                 if (deviceCompliancePolicyId is not null) requestInfo.PathParameters.Add("deviceCompliancePolicy%2Did", deviceCompliancePolicyId);
                 if (deviceCompliancePolicyAssignmentId is not null) requestInfo.PathParameters.Add("deviceCompliancePolicyAssignment%2Did", deviceCompliancePolicyAssignmentId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -1,369 +1,369 @@
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphAbs;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphAccrInt;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphAccrIntM;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphAcos;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphAcosh;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphAcot;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphAcoth;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphAmorDegrc;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphAmorLinc;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphAnd;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphArabic;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphAreas;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphAsc;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphAsin;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphAsinh;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphAtan;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphAtan2;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphAtanh;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphAveDev;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphAverage;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphAverageA;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphAverageIf;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphAverageIfs;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphBahtText;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphBase;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphBesselI;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphBesselJ;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphBesselK;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphBesselY;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphBeta_Dist;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphBeta_Inv;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphBin2Dec;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphBin2Hex;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphBin2Oct;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphBinom_Dist_Range;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphBinom_Dist;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphBinom_Inv;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphBitand;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphBitlshift;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphBitor;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphBitrshift;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphBitxor;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphCeiling_Math;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphCeiling_Precise;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphChar;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphChiSq_Dist_RT;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphChiSq_Dist;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphChiSq_Inv_RT;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphChiSq_Inv;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphChoose;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphClean;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphCode;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphColumns;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphCombin;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphCombina;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphComplex;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphConcatenate;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphConfidence_Norm;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphConfidence_T;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphConvert;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphCos;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphCosh;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphCot;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphCoth;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphCount;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphCountA;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphCountBlank;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphCountIf;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphCountIfs;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphCoupDayBs;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphCoupDays;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphCoupDaysNc;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphCoupNcd;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphCoupNum;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphCoupPcd;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphCsc;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphCsch;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphCumIPmt;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphCumPrinc;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDate;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDatevalue;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDaverage;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDay;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDays;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDays360;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDb;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDbcs;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDcount;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDcountA;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDdb;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDec2Bin;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDec2Hex;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDec2Oct;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDecimal;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDegrees;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDelta;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDevSq;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDget;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDisc;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDmax;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDmin;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDollar;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDollarDe;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDollarFr;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDproduct;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDstDev;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDstDevP;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDsum;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDuration;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDvar;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphDvarP;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphEcma_Ceiling;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphEdate;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphEffect;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphEoMonth;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphErf_Precise;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphErf;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphErfC_Precise;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphErfC;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphError_Type;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphEven;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphExact;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphExp;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphExpon_Dist;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphF_Dist_RT;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphF_Dist;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphF_Inv_RT;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphF_Inv;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphFact;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphFactDouble;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphFalse;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphFind;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphFindB;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphFisher;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphFisherInv;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphFixed;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphFloor_Math;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphFloor_Precise;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphFv;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphFvschedule;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphGamma_Dist;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphGamma_Inv;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphGamma;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphGammaLn_Precise;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphGammaLn;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphGauss;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphGcd;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphGeoMean;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphGeStep;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphHarMean;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphHex2Bin;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphHex2Dec;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphHex2Oct;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphHlookup;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphHour;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphHyperlink;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphHypGeom_Dist;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphIf;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphImAbs;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphImaginary;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphImArgument;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphImConjugate;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphImCos;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphImCosh;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphImCot;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphImCsc;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphImCsch;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphImDiv;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphImExp;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphImLn;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphImLog10;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphImLog2;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphImPower;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphImProduct;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphImReal;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphImSec;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphImSech;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphImSin;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphImSinh;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphImSqrt;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphImSub;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphImSum;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphImTan;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphInt;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphIntRate;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphIpmt;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphIrr;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphIsErr;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphIsError;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphIsEven;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphIsFormula;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphIsLogical;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphIsNA;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphIsNonText;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphIsNumber;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphIso_Ceiling;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphIsOdd;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphIsoWeekNum;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphIspmt;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphIsref;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphIsText;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphKurt;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphLarge;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphLcm;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphLeft;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphLeftb;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphLen;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphLenb;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphLn;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphLog;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphLog10;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphLogNorm_Dist;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphLogNorm_Inv;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphLookup;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphLower;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphMatch;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphMax;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphMaxA;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphMduration;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphMedian;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphMid;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphMidb;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphMin;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphMinA;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphMinute;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphMirr;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphMod;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphMonth;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphMround;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphMultiNomial;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphN;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphNa;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphNegBinom_Dist;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphNetworkDays_Intl;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphNetworkDays;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphNominal;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphNorm_Dist;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphNorm_Inv;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphNorm_S_Dist;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphNorm_S_Inv;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphNot;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphNow;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphNper;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphNpv;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphNumberValue;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphOct2Bin;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphOct2Dec;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphOct2Hex;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphOdd;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphOddFPrice;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphOddFYield;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphOddLPrice;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphOddLYield;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphOr;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphPduration;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphPercentile_Exc;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphPercentile_Inc;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphPercentRank_Exc;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphPercentRank_Inc;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphPermut;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphPermutationa;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphPhi;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphPi;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphPmt;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphPoisson_Dist;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphPower;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphPpmt;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphPrice;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphPriceDisc;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphPriceMat;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphProduct;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphProper;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphPv;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphQuartile_Exc;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphQuartile_Inc;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphQuotient;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphRadians;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphRand;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphRandBetween;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphRank_Avg;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphRank_Eq;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphRate;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphReceived;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphReplace;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphReplaceB;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphRept;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphRight;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphRightb;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphRoman;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphRound;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphRoundDown;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphRoundUp;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphRows;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphRri;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphSec;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphSech;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphSecond;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphSeriesSum;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphSheet;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphSheets;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphSign;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphSin;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphSinh;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphSkew_p;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphSkew;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphSln;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphSmall;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphSqrt;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphSqrtPi;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphStandardize;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphStDev_P;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphStDev_S;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphStDevA;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphStDevPA;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphSubstitute;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphSubtotal;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphSum;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphSumIf;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphSumIfs;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphSumSq;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphSyd;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphT_Dist_2T;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphT_Dist_RT;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphT_Dist;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphT_Inv_2T;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphT_Inv;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphT;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphTan;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphTanh;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphTbillEq;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphTbillPrice;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphTbillYield;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphText;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphTime;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphTimevalue;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphToday;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphTrim;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphTrimMean;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphTrue;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphTrunc;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphType;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphUnichar;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphUnicode;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphUpper;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphUsdollar;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphValue;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphVar_P;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphVar_S;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphVarA;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphVarPA;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphVdb;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphVlookup;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphWeekday;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphWeekNum;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphWeibull_Dist;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphWorkDay_Intl;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphWorkDay;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphXirr;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphXnpv;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphXor;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphYear;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphYearFrac;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphYield;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphYieldDisc;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphYieldMat;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MicrosoftGraphZ_Test;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Abs;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.AccrInt;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.AccrIntM;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Acos;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Acosh;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Acot;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Acoth;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.AmorDegrc;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.AmorLinc;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.And;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Arabic;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Areas;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Asc;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Asin;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Asinh;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Atan;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Atan2;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Atanh;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.AveDev;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Average;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.AverageA;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.AverageIf;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.AverageIfs;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.BahtText;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Base;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.BesselI;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.BesselJ;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.BesselK;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.BesselY;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Beta_Dist;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Beta_Inv;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Bin2Dec;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Bin2Hex;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Bin2Oct;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Binom_Dist_Range;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Binom_Dist;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Binom_Inv;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Bitand;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Bitlshift;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Bitor;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Bitrshift;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Bitxor;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ceiling_Math;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ceiling_Precise;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CharNamespace;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ChiSq_Dist_RT;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ChiSq_Dist;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ChiSq_Inv_RT;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ChiSq_Inv;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Choose;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Clean;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Code;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Columns;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Combin;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Combina;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Complex;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Concatenate;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Confidence_Norm;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Confidence_T;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ConvertNamespace;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Cos;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Cosh;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Cot;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Coth;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Count;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CountA;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CountBlank;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CountIf;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CountIfs;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CoupDayBs;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CoupDays;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CoupDaysNc;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CoupNcd;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CoupNum;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CoupPcd;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Csc;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Csch;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CumIPmt;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CumPrinc;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Date;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Datevalue;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Daverage;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Day;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Days;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Days360;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Db;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dbcs;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dcount;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DcountA;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ddb;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dec2Bin;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dec2Hex;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dec2Oct;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DecimalNamespace;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Degrees;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Delta;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DevSq;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dget;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Disc;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dmax;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dmin;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dollar;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DollarDe;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DollarFr;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dproduct;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DstDev;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DstDevP;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dsum;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Duration;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Dvar;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DvarP;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ecma_Ceiling;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Edate;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Effect;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.EoMonth;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Erf_Precise;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Erf;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ErfC_Precise;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ErfC;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Error_Type;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Even;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Exact;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Exp;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Expon_Dist;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.F_Dist_RT;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.F_Dist;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.F_Inv_RT;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.F_Inv;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Fact;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.FactDouble;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.False;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Find;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.FindB;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Fisher;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.FisherInv;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Fixed;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Floor_Math;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Floor_Precise;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Fv;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Fvschedule;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Gamma_Dist;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Gamma_Inv;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Gamma;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.GammaLn_Precise;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.GammaLn;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Gauss;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Gcd;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.GeoMean;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.GeStep;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.HarMean;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Hex2Bin;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Hex2Dec;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Hex2Oct;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Hlookup;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Hour;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Hyperlink;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.HypGeom_Dist;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.If;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImAbs;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Imaginary;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImArgument;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImConjugate;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImCos;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImCosh;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImCot;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImCsc;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImCsch;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImDiv;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImExp;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImLn;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImLog10;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImLog2;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImPower;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImProduct;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImReal;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImSec;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImSech;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImSin;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImSinh;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImSqrt;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImSub;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImSum;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ImTan;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Int;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IntRate;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ipmt;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Irr;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsErr;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsError;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsEven;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsFormula;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsLogical;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsNA;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsNonText;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsNumber;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Iso_Ceiling;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsOdd;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsoWeekNum;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ispmt;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Isref;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.IsText;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Kurt;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Large;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Lcm;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Left;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Leftb;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Len;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Lenb;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ln;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Log;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Log10;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.LogNorm_Dist;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.LogNorm_Inv;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Lookup;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Lower;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Match;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Max;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MaxA;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Mduration;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Median;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Mid;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Midb;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Min;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MinA;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Minute;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Mirr;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Mod;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Month;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Mround;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.MultiNomial;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.N;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Na;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.NegBinom_Dist;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.NetworkDays_Intl;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.NetworkDays;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Nominal;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Norm_Dist;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Norm_Inv;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Norm_S_Dist;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Norm_S_Inv;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Not;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Now;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Nper;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Npv;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.NumberValue;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Oct2Bin;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Oct2Dec;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Oct2Hex;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Odd;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.OddFPrice;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.OddFYield;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.OddLPrice;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.OddLYield;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Or;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Pduration;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Percentile_Exc;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Percentile_Inc;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.PercentRank_Exc;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.PercentRank_Inc;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Permut;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Permutationa;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Phi;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Pi;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Pmt;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Poisson_Dist;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Power;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Ppmt;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Price;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.PriceDisc;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.PriceMat;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Product;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Proper;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Pv;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Quartile_Exc;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Quartile_Inc;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Quotient;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Radians;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rand;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.RandBetween;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rank_Avg;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rank_Eq;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rate;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Received;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Replace;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ReplaceB;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rept;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Right;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rightb;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Roman;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Round;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.RoundDown;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.RoundUp;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rows;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Rri;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Sec;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Sech;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Second;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.SeriesSum;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Sheet;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Sheets;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Sign;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Sin;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Sinh;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Skew_p;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Skew;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Sln;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Small;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Sqrt;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.SqrtPi;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Standardize;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.StDev_P;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.StDev_S;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.StDevA;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.StDevPA;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Substitute;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Subtotal;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Sum;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.SumIf;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.SumIfs;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.SumSq;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Syd;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.T_Dist_2T;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.T_Dist_RT;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.T_Dist;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.T_Inv_2T;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.T_Inv;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.T;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Tan;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Tanh;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.TbillEq;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.TbillPrice;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.TbillYield;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Text;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Time;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Timevalue;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Today;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Trim;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.TrimMean;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.True;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Trunc;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.TypeNamespace;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Unichar;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Unicode;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Upper;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Usdollar;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Value;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Var_P;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Var_S;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.VarA;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.VarPA;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Vdb;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Vlookup;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Weekday;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.WeekNum;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Weibull_Dist;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.WorkDay_Intl;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.WorkDay;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Xirr;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Xnpv;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Xor;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Year;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.YearFrac;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Yield;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.YieldDisc;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.YieldMat;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Z_Test;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -390,17 +390,967 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the abs method.
+        /// </summary>
+        public Command BuildAbsCommand() {
+            var command = new Command("abs");
+            command.Description = "Provides operations to call the abs method.";
+            var builder = new AbsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the accrInt method.
+        /// </summary>
+        public Command BuildAccrIntCommand() {
+            var command = new Command("accr-int");
+            command.Description = "Provides operations to call the accrInt method.";
+            var builder = new AccrIntRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the accrIntM method.
+        /// </summary>
+        public Command BuildAccrIntMCommand() {
+            var command = new Command("accr-int-m");
+            command.Description = "Provides operations to call the accrIntM method.";
+            var builder = new AccrIntMRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the acos method.
+        /// </summary>
+        public Command BuildAcosCommand() {
+            var command = new Command("acos");
+            command.Description = "Provides operations to call the acos method.";
+            var builder = new AcosRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the acosh method.
+        /// </summary>
+        public Command BuildAcoshCommand() {
+            var command = new Command("acosh");
+            command.Description = "Provides operations to call the acosh method.";
+            var builder = new AcoshRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the acot method.
+        /// </summary>
+        public Command BuildAcotCommand() {
+            var command = new Command("acot");
+            command.Description = "Provides operations to call the acot method.";
+            var builder = new AcotRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the acoth method.
+        /// </summary>
+        public Command BuildAcothCommand() {
+            var command = new Command("acoth");
+            command.Description = "Provides operations to call the acoth method.";
+            var builder = new AcothRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the amorDegrc method.
+        /// </summary>
+        public Command BuildAmorDegrcCommand() {
+            var command = new Command("amor-degrc");
+            command.Description = "Provides operations to call the amorDegrc method.";
+            var builder = new AmorDegrcRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the amorLinc method.
+        /// </summary>
+        public Command BuildAmorLincCommand() {
+            var command = new Command("amor-linc");
+            command.Description = "Provides operations to call the amorLinc method.";
+            var builder = new AmorLincRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the and method.
+        /// </summary>
+        public Command BuildAndCommand() {
+            var command = new Command("and");
+            command.Description = "Provides operations to call the and method.";
+            var builder = new AndRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the arabic method.
+        /// </summary>
+        public Command BuildArabicCommand() {
+            var command = new Command("arabic");
+            command.Description = "Provides operations to call the arabic method.";
+            var builder = new ArabicRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the areas method.
+        /// </summary>
+        public Command BuildAreasCommand() {
+            var command = new Command("areas");
+            command.Description = "Provides operations to call the areas method.";
+            var builder = new AreasRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the asc method.
+        /// </summary>
+        public Command BuildAscCommand() {
+            var command = new Command("asc");
+            command.Description = "Provides operations to call the asc method.";
+            var builder = new AscRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the asin method.
+        /// </summary>
+        public Command BuildAsinCommand() {
+            var command = new Command("asin");
+            command.Description = "Provides operations to call the asin method.";
+            var builder = new AsinRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the asinh method.
+        /// </summary>
+        public Command BuildAsinhCommand() {
+            var command = new Command("asinh");
+            command.Description = "Provides operations to call the asinh method.";
+            var builder = new AsinhRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the atan2 method.
+        /// </summary>
+        public Command BuildAtan2Command() {
+            var command = new Command("atan2");
+            command.Description = "Provides operations to call the atan2 method.";
+            var builder = new Atan2RequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the atan method.
+        /// </summary>
+        public Command BuildAtanCommand() {
+            var command = new Command("atan");
+            command.Description = "Provides operations to call the atan method.";
+            var builder = new AtanRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the atanh method.
+        /// </summary>
+        public Command BuildAtanhCommand() {
+            var command = new Command("atanh");
+            command.Description = "Provides operations to call the atanh method.";
+            var builder = new AtanhRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the aveDev method.
+        /// </summary>
+        public Command BuildAveDevCommand() {
+            var command = new Command("ave-dev");
+            command.Description = "Provides operations to call the aveDev method.";
+            var builder = new AveDevRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the averageA method.
+        /// </summary>
+        public Command BuildAverageACommand() {
+            var command = new Command("average-a");
+            command.Description = "Provides operations to call the averageA method.";
+            var builder = new AverageARequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the average method.
+        /// </summary>
+        public Command BuildAverageCommand() {
+            var command = new Command("average");
+            command.Description = "Provides operations to call the average method.";
+            var builder = new AverageRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the averageIf method.
+        /// </summary>
+        public Command BuildAverageIfCommand() {
+            var command = new Command("average-if");
+            command.Description = "Provides operations to call the averageIf method.";
+            var builder = new AverageIfRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the averageIfs method.
+        /// </summary>
+        public Command BuildAverageIfsCommand() {
+            var command = new Command("average-ifs");
+            command.Description = "Provides operations to call the averageIfs method.";
+            var builder = new AverageIfsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the bahtText method.
+        /// </summary>
+        public Command BuildBahtTextCommand() {
+            var command = new Command("baht-text");
+            command.Description = "Provides operations to call the bahtText method.";
+            var builder = new BahtTextRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the base method.
+        /// </summary>
+        public Command BuildBaseCommand() {
+            var command = new Command("base");
+            command.Description = "Provides operations to call the base method.";
+            var builder = new BaseRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the besselI method.
+        /// </summary>
+        public Command BuildBesselICommand() {
+            var command = new Command("bessel-i");
+            command.Description = "Provides operations to call the besselI method.";
+            var builder = new BesselIRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the besselJ method.
+        /// </summary>
+        public Command BuildBesselJCommand() {
+            var command = new Command("bessel-j");
+            command.Description = "Provides operations to call the besselJ method.";
+            var builder = new BesselJRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the besselK method.
+        /// </summary>
+        public Command BuildBesselKCommand() {
+            var command = new Command("bessel-k");
+            command.Description = "Provides operations to call the besselK method.";
+            var builder = new BesselKRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the besselY method.
+        /// </summary>
+        public Command BuildBesselYCommand() {
+            var command = new Command("bessel-y");
+            command.Description = "Provides operations to call the besselY method.";
+            var builder = new BesselYRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the beta_Dist method.
+        /// </summary>
+        public Command BuildBeta_DistCommand() {
+            var command = new Command("beta_-dist");
+            command.Description = "Provides operations to call the beta_Dist method.";
+            var builder = new Beta_DistRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the beta_Inv method.
+        /// </summary>
+        public Command BuildBeta_InvCommand() {
+            var command = new Command("beta_-inv");
+            command.Description = "Provides operations to call the beta_Inv method.";
+            var builder = new Beta_InvRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the bin2Dec method.
+        /// </summary>
+        public Command BuildBin2DecCommand() {
+            var command = new Command("bin2-dec");
+            command.Description = "Provides operations to call the bin2Dec method.";
+            var builder = new Bin2DecRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the bin2Hex method.
+        /// </summary>
+        public Command BuildBin2HexCommand() {
+            var command = new Command("bin2-hex");
+            command.Description = "Provides operations to call the bin2Hex method.";
+            var builder = new Bin2HexRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the bin2Oct method.
+        /// </summary>
+        public Command BuildBin2OctCommand() {
+            var command = new Command("bin2-oct");
+            command.Description = "Provides operations to call the bin2Oct method.";
+            var builder = new Bin2OctRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the binom_Dist_Range method.
+        /// </summary>
+        public Command BuildBinom_Dist_RangeCommand() {
+            var command = new Command("binom_-dist_-range");
+            command.Description = "Provides operations to call the binom_Dist_Range method.";
+            var builder = new Binom_Dist_RangeRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the binom_Dist method.
+        /// </summary>
+        public Command BuildBinom_DistCommand() {
+            var command = new Command("binom_-dist");
+            command.Description = "Provides operations to call the binom_Dist method.";
+            var builder = new Binom_DistRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the binom_Inv method.
+        /// </summary>
+        public Command BuildBinom_InvCommand() {
+            var command = new Command("binom_-inv");
+            command.Description = "Provides operations to call the binom_Inv method.";
+            var builder = new Binom_InvRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the bitand method.
+        /// </summary>
+        public Command BuildBitandCommand() {
+            var command = new Command("bitand");
+            command.Description = "Provides operations to call the bitand method.";
+            var builder = new BitandRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the bitlshift method.
+        /// </summary>
+        public Command BuildBitlshiftCommand() {
+            var command = new Command("bitlshift");
+            command.Description = "Provides operations to call the bitlshift method.";
+            var builder = new BitlshiftRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the bitor method.
+        /// </summary>
+        public Command BuildBitorCommand() {
+            var command = new Command("bitor");
+            command.Description = "Provides operations to call the bitor method.";
+            var builder = new BitorRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the bitrshift method.
+        /// </summary>
+        public Command BuildBitrshiftCommand() {
+            var command = new Command("bitrshift");
+            command.Description = "Provides operations to call the bitrshift method.";
+            var builder = new BitrshiftRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the bitxor method.
+        /// </summary>
+        public Command BuildBitxorCommand() {
+            var command = new Command("bitxor");
+            command.Description = "Provides operations to call the bitxor method.";
+            var builder = new BitxorRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the ceiling_Math method.
+        /// </summary>
+        public Command BuildCeiling_MathCommand() {
+            var command = new Command("ceiling_-math");
+            command.Description = "Provides operations to call the ceiling_Math method.";
+            var builder = new Ceiling_MathRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the ceiling_Precise method.
+        /// </summary>
+        public Command BuildCeiling_PreciseCommand() {
+            var command = new Command("ceiling_-precise");
+            command.Description = "Provides operations to call the ceiling_Precise method.";
+            var builder = new Ceiling_PreciseRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the char method.
+        /// </summary>
+        public Command BuildCharCommand() {
+            var command = new Command("char");
+            command.Description = "Provides operations to call the char method.";
+            var builder = new CharRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the chiSq_Dist_RT method.
+        /// </summary>
+        public Command BuildChiSq_Dist_RTCommand() {
+            var command = new Command("chi-sq_-dist_-r-t");
+            command.Description = "Provides operations to call the chiSq_Dist_RT method.";
+            var builder = new ChiSq_Dist_RTRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the chiSq_Dist method.
+        /// </summary>
+        public Command BuildChiSq_DistCommand() {
+            var command = new Command("chi-sq_-dist");
+            command.Description = "Provides operations to call the chiSq_Dist method.";
+            var builder = new ChiSq_DistRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the chiSq_Inv_RT method.
+        /// </summary>
+        public Command BuildChiSq_Inv_RTCommand() {
+            var command = new Command("chi-sq_-inv_-r-t");
+            command.Description = "Provides operations to call the chiSq_Inv_RT method.";
+            var builder = new ChiSq_Inv_RTRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the chiSq_Inv method.
+        /// </summary>
+        public Command BuildChiSq_InvCommand() {
+            var command = new Command("chi-sq_-inv");
+            command.Description = "Provides operations to call the chiSq_Inv method.";
+            var builder = new ChiSq_InvRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the choose method.
+        /// </summary>
+        public Command BuildChooseCommand() {
+            var command = new Command("choose");
+            command.Description = "Provides operations to call the choose method.";
+            var builder = new ChooseRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the clean method.
+        /// </summary>
+        public Command BuildCleanCommand() {
+            var command = new Command("clean");
+            command.Description = "Provides operations to call the clean method.";
+            var builder = new CleanRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the code method.
+        /// </summary>
+        public Command BuildCodeCommand() {
+            var command = new Command("code");
+            command.Description = "Provides operations to call the code method.";
+            var builder = new CodeRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the columns method.
+        /// </summary>
+        public Command BuildColumnsCommand() {
+            var command = new Command("columns");
+            command.Description = "Provides operations to call the columns method.";
+            var builder = new ColumnsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the combina method.
+        /// </summary>
+        public Command BuildCombinaCommand() {
+            var command = new Command("combina");
+            command.Description = "Provides operations to call the combina method.";
+            var builder = new CombinaRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the combin method.
+        /// </summary>
+        public Command BuildCombinCommand() {
+            var command = new Command("combin");
+            command.Description = "Provides operations to call the combin method.";
+            var builder = new CombinRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the complex method.
+        /// </summary>
+        public Command BuildComplexCommand() {
+            var command = new Command("complex");
+            command.Description = "Provides operations to call the complex method.";
+            var builder = new ComplexRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the concatenate method.
+        /// </summary>
+        public Command BuildConcatenateCommand() {
+            var command = new Command("concatenate");
+            command.Description = "Provides operations to call the concatenate method.";
+            var builder = new ConcatenateRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the confidence_Norm method.
+        /// </summary>
+        public Command BuildConfidence_NormCommand() {
+            var command = new Command("confidence_-norm");
+            command.Description = "Provides operations to call the confidence_Norm method.";
+            var builder = new Confidence_NormRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the confidence_T method.
+        /// </summary>
+        public Command BuildConfidence_TCommand() {
+            var command = new Command("confidence_-t");
+            command.Description = "Provides operations to call the confidence_T method.";
+            var builder = new Confidence_TRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the convert method.
+        /// </summary>
+        public Command BuildConvertCommand() {
+            var command = new Command("convert");
+            command.Description = "Provides operations to call the convert method.";
+            var builder = new ConvertRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the cos method.
+        /// </summary>
+        public Command BuildCosCommand() {
+            var command = new Command("cos");
+            command.Description = "Provides operations to call the cos method.";
+            var builder = new CosRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the cosh method.
+        /// </summary>
+        public Command BuildCoshCommand() {
+            var command = new Command("cosh");
+            command.Description = "Provides operations to call the cosh method.";
+            var builder = new CoshRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the cot method.
+        /// </summary>
+        public Command BuildCotCommand() {
+            var command = new Command("cot");
+            command.Description = "Provides operations to call the cot method.";
+            var builder = new CotRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the coth method.
+        /// </summary>
+        public Command BuildCothCommand() {
+            var command = new Command("coth");
+            command.Description = "Provides operations to call the coth method.";
+            var builder = new CothRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the countA method.
+        /// </summary>
+        public Command BuildCountACommand() {
+            var command = new Command("count-a");
+            command.Description = "Provides operations to call the countA method.";
+            var builder = new CountARequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the countBlank method.
+        /// </summary>
+        public Command BuildCountBlankCommand() {
+            var command = new Command("count-blank");
+            command.Description = "Provides operations to call the countBlank method.";
+            var builder = new CountBlankRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the count method.
+        /// </summary>
+        public Command BuildCountCommand() {
+            var command = new Command("count");
+            command.Description = "Provides operations to call the count method.";
+            var builder = new CountRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the countIf method.
+        /// </summary>
+        public Command BuildCountIfCommand() {
+            var command = new Command("count-if");
+            command.Description = "Provides operations to call the countIf method.";
+            var builder = new CountIfRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the countIfs method.
+        /// </summary>
+        public Command BuildCountIfsCommand() {
+            var command = new Command("count-ifs");
+            command.Description = "Provides operations to call the countIfs method.";
+            var builder = new CountIfsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the coupDayBs method.
+        /// </summary>
+        public Command BuildCoupDayBsCommand() {
+            var command = new Command("coup-day-bs");
+            command.Description = "Provides operations to call the coupDayBs method.";
+            var builder = new CoupDayBsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the coupDays method.
+        /// </summary>
+        public Command BuildCoupDaysCommand() {
+            var command = new Command("coup-days");
+            command.Description = "Provides operations to call the coupDays method.";
+            var builder = new CoupDaysRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the coupDaysNc method.
+        /// </summary>
+        public Command BuildCoupDaysNcCommand() {
+            var command = new Command("coup-days-nc");
+            command.Description = "Provides operations to call the coupDaysNc method.";
+            var builder = new CoupDaysNcRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the coupNcd method.
+        /// </summary>
+        public Command BuildCoupNcdCommand() {
+            var command = new Command("coup-ncd");
+            command.Description = "Provides operations to call the coupNcd method.";
+            var builder = new CoupNcdRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the coupNum method.
+        /// </summary>
+        public Command BuildCoupNumCommand() {
+            var command = new Command("coup-num");
+            command.Description = "Provides operations to call the coupNum method.";
+            var builder = new CoupNumRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the coupPcd method.
+        /// </summary>
+        public Command BuildCoupPcdCommand() {
+            var command = new Command("coup-pcd");
+            command.Description = "Provides operations to call the coupPcd method.";
+            var builder = new CoupPcdRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the csc method.
+        /// </summary>
+        public Command BuildCscCommand() {
+            var command = new Command("csc");
+            command.Description = "Provides operations to call the csc method.";
+            var builder = new CscRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the csch method.
+        /// </summary>
+        public Command BuildCschCommand() {
+            var command = new Command("csch");
+            command.Description = "Provides operations to call the csch method.";
+            var builder = new CschRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the cumIPmt method.
+        /// </summary>
+        public Command BuildCumIPmtCommand() {
+            var command = new Command("cum-i-pmt");
+            command.Description = "Provides operations to call the cumIPmt method.";
+            var builder = new CumIPmtRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the cumPrinc method.
+        /// </summary>
+        public Command BuildCumPrincCommand() {
+            var command = new Command("cum-princ");
+            command.Description = "Provides operations to call the cumPrinc method.";
+            var builder = new CumPrincRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the date method.
+        /// </summary>
+        public Command BuildDateCommand() {
+            var command = new Command("date");
+            command.Description = "Provides operations to call the date method.";
+            var builder = new DateRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the datevalue method.
+        /// </summary>
+        public Command BuildDatevalueCommand() {
+            var command = new Command("datevalue");
+            command.Description = "Provides operations to call the datevalue method.";
+            var builder = new DatevalueRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the daverage method.
+        /// </summary>
+        public Command BuildDaverageCommand() {
+            var command = new Command("daverage");
+            command.Description = "Provides operations to call the daverage method.";
+            var builder = new DaverageRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the day method.
+        /// </summary>
+        public Command BuildDayCommand() {
+            var command = new Command("day");
+            command.Description = "Provides operations to call the day method.";
+            var builder = new DayRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the days360 method.
+        /// </summary>
+        public Command BuildDays360Command() {
+            var command = new Command("days360");
+            command.Description = "Provides operations to call the days360 method.";
+            var builder = new Days360RequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the days method.
+        /// </summary>
+        public Command BuildDaysCommand() {
+            var command = new Command("days");
+            command.Description = "Provides operations to call the days method.";
+            var builder = new DaysRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the db method.
+        /// </summary>
+        public Command BuildDbCommand() {
+            var command = new Command("db");
+            command.Description = "Provides operations to call the db method.";
+            var builder = new DbRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the dbcs method.
+        /// </summary>
+        public Command BuildDbcsCommand() {
+            var command = new Command("dbcs");
+            command.Description = "Provides operations to call the dbcs method.";
+            var builder = new DbcsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the dcountA method.
+        /// </summary>
+        public Command BuildDcountACommand() {
+            var command = new Command("dcount-a");
+            command.Description = "Provides operations to call the dcountA method.";
+            var builder = new DcountARequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the dcount method.
+        /// </summary>
+        public Command BuildDcountCommand() {
+            var command = new Command("dcount");
+            command.Description = "Provides operations to call the dcount method.";
+            var builder = new DcountRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the ddb method.
+        /// </summary>
+        public Command BuildDdbCommand() {
+            var command = new Command("ddb");
+            command.Description = "Provides operations to call the ddb method.";
+            var builder = new DdbRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the dec2Bin method.
+        /// </summary>
+        public Command BuildDec2BinCommand() {
+            var command = new Command("dec2-bin");
+            command.Description = "Provides operations to call the dec2Bin method.";
+            var builder = new Dec2BinRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the dec2Hex method.
+        /// </summary>
+        public Command BuildDec2HexCommand() {
+            var command = new Command("dec2-hex");
+            command.Description = "Provides operations to call the dec2Hex method.";
+            var builder = new Dec2HexRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the dec2Oct method.
+        /// </summary>
+        public Command BuildDec2OctCommand() {
+            var command = new Command("dec2-oct");
+            command.Description = "Provides operations to call the dec2Oct method.";
+            var builder = new Dec2OctRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the decimal method.
+        /// </summary>
+        public Command BuildDecimalCommand() {
+            var command = new Command("decimal");
+            command.Description = "Provides operations to call the decimal method.";
+            var builder = new DecimalRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the degrees method.
+        /// </summary>
+        public Command BuildDegreesCommand() {
+            var command = new Command("degrees");
+            command.Description = "Provides operations to call the degrees method.";
+            var builder = new DegreesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete navigation property functions for drives
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property functions for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
@@ -430,17 +1380,557 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildDeltaCommand() {
+            var command = new Command("delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the devSq method.
+        /// </summary>
+        public Command BuildDevSqCommand() {
+            var command = new Command("dev-sq");
+            command.Description = "Provides operations to call the devSq method.";
+            var builder = new DevSqRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the dget method.
+        /// </summary>
+        public Command BuildDgetCommand() {
+            var command = new Command("dget");
+            command.Description = "Provides operations to call the dget method.";
+            var builder = new DgetRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the disc method.
+        /// </summary>
+        public Command BuildDiscCommand() {
+            var command = new Command("disc");
+            command.Description = "Provides operations to call the disc method.";
+            var builder = new DiscRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the dmax method.
+        /// </summary>
+        public Command BuildDmaxCommand() {
+            var command = new Command("dmax");
+            command.Description = "Provides operations to call the dmax method.";
+            var builder = new DmaxRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the dmin method.
+        /// </summary>
+        public Command BuildDminCommand() {
+            var command = new Command("dmin");
+            command.Description = "Provides operations to call the dmin method.";
+            var builder = new DminRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the dollar method.
+        /// </summary>
+        public Command BuildDollarCommand() {
+            var command = new Command("dollar");
+            command.Description = "Provides operations to call the dollar method.";
+            var builder = new DollarRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the dollarDe method.
+        /// </summary>
+        public Command BuildDollarDeCommand() {
+            var command = new Command("dollar-de");
+            command.Description = "Provides operations to call the dollarDe method.";
+            var builder = new DollarDeRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the dollarFr method.
+        /// </summary>
+        public Command BuildDollarFrCommand() {
+            var command = new Command("dollar-fr");
+            command.Description = "Provides operations to call the dollarFr method.";
+            var builder = new DollarFrRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the dproduct method.
+        /// </summary>
+        public Command BuildDproductCommand() {
+            var command = new Command("dproduct");
+            command.Description = "Provides operations to call the dproduct method.";
+            var builder = new DproductRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the dstDev method.
+        /// </summary>
+        public Command BuildDstDevCommand() {
+            var command = new Command("dst-dev");
+            command.Description = "Provides operations to call the dstDev method.";
+            var builder = new DstDevRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the dstDevP method.
+        /// </summary>
+        public Command BuildDstDevPCommand() {
+            var command = new Command("dst-dev-p");
+            command.Description = "Provides operations to call the dstDevP method.";
+            var builder = new DstDevPRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the dsum method.
+        /// </summary>
+        public Command BuildDsumCommand() {
+            var command = new Command("dsum");
+            command.Description = "Provides operations to call the dsum method.";
+            var builder = new DsumRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the duration method.
+        /// </summary>
+        public Command BuildDurationCommand() {
+            var command = new Command("duration");
+            command.Description = "Provides operations to call the duration method.";
+            var builder = new DurationRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the dvar method.
+        /// </summary>
+        public Command BuildDvarCommand() {
+            var command = new Command("dvar");
+            command.Description = "Provides operations to call the dvar method.";
+            var builder = new DvarRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the dvarP method.
+        /// </summary>
+        public Command BuildDvarPCommand() {
+            var command = new Command("dvar-p");
+            command.Description = "Provides operations to call the dvarP method.";
+            var builder = new DvarPRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the ecma_Ceiling method.
+        /// </summary>
+        public Command BuildEcma_CeilingCommand() {
+            var command = new Command("ecma_-ceiling");
+            command.Description = "Provides operations to call the ecma_Ceiling method.";
+            var builder = new Ecma_CeilingRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the edate method.
+        /// </summary>
+        public Command BuildEdateCommand() {
+            var command = new Command("edate");
+            command.Description = "Provides operations to call the edate method.";
+            var builder = new EdateRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the effect method.
+        /// </summary>
+        public Command BuildEffectCommand() {
+            var command = new Command("effect");
+            command.Description = "Provides operations to call the effect method.";
+            var builder = new EffectRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the eoMonth method.
+        /// </summary>
+        public Command BuildEoMonthCommand() {
+            var command = new Command("eo-month");
+            command.Description = "Provides operations to call the eoMonth method.";
+            var builder = new EoMonthRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the erf_Precise method.
+        /// </summary>
+        public Command BuildErf_PreciseCommand() {
+            var command = new Command("erf_-precise");
+            command.Description = "Provides operations to call the erf_Precise method.";
+            var builder = new Erf_PreciseRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the erfC_Precise method.
+        /// </summary>
+        public Command BuildErfC_PreciseCommand() {
+            var command = new Command("erf-c_-precise");
+            command.Description = "Provides operations to call the erfC_Precise method.";
+            var builder = new ErfC_PreciseRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the erfC method.
+        /// </summary>
+        public Command BuildErfCCommand() {
+            var command = new Command("erf-c");
+            command.Description = "Provides operations to call the erfC method.";
+            var builder = new ErfCRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the erf method.
+        /// </summary>
+        public Command BuildErfCommand() {
+            var command = new Command("erf");
+            command.Description = "Provides operations to call the erf method.";
+            var builder = new ErfRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the error_Type method.
+        /// </summary>
+        public Command BuildError_TypeCommand() {
+            var command = new Command("error_-type");
+            command.Description = "Provides operations to call the error_Type method.";
+            var builder = new Error_TypeRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the even method.
+        /// </summary>
+        public Command BuildEvenCommand() {
+            var command = new Command("even");
+            command.Description = "Provides operations to call the even method.";
+            var builder = new EvenRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the exact method.
+        /// </summary>
+        public Command BuildExactCommand() {
+            var command = new Command("exact");
+            command.Description = "Provides operations to call the exact method.";
+            var builder = new ExactRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the exp method.
+        /// </summary>
+        public Command BuildExpCommand() {
+            var command = new Command("exp");
+            command.Description = "Provides operations to call the exp method.";
+            var builder = new ExpRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the expon_Dist method.
+        /// </summary>
+        public Command BuildExpon_DistCommand() {
+            var command = new Command("expon_-dist");
+            command.Description = "Provides operations to call the expon_Dist method.";
+            var builder = new Expon_DistRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the f_Dist_RT method.
+        /// </summary>
+        public Command BuildF_Dist_RTCommand() {
+            var command = new Command("f_-dist_-r-t");
+            command.Description = "Provides operations to call the f_Dist_RT method.";
+            var builder = new F_Dist_RTRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the f_Dist method.
+        /// </summary>
+        public Command BuildF_DistCommand() {
+            var command = new Command("f_-dist");
+            command.Description = "Provides operations to call the f_Dist method.";
+            var builder = new F_DistRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the f_Inv_RT method.
+        /// </summary>
+        public Command BuildF_Inv_RTCommand() {
+            var command = new Command("f_-inv_-r-t");
+            command.Description = "Provides operations to call the f_Inv_RT method.";
+            var builder = new F_Inv_RTRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the f_Inv method.
+        /// </summary>
+        public Command BuildF_InvCommand() {
+            var command = new Command("f_-inv");
+            command.Description = "Provides operations to call the f_Inv method.";
+            var builder = new F_InvRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the fact method.
+        /// </summary>
+        public Command BuildFactCommand() {
+            var command = new Command("fact");
+            command.Description = "Provides operations to call the fact method.";
+            var builder = new FactRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the factDouble method.
+        /// </summary>
+        public Command BuildFactDoubleCommand() {
+            var command = new Command("fact-double");
+            command.Description = "Provides operations to call the factDouble method.";
+            var builder = new FactDoubleRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the false method.
+        /// </summary>
+        public Command BuildFalseCommand() {
+            var command = new Command("false");
+            command.Description = "Provides operations to call the false method.";
+            var builder = new FalseRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the findB method.
+        /// </summary>
+        public Command BuildFindBCommand() {
+            var command = new Command("find-b");
+            command.Description = "Provides operations to call the findB method.";
+            var builder = new FindBRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the find method.
+        /// </summary>
+        public Command BuildFindCommand() {
+            var command = new Command("find");
+            command.Description = "Provides operations to call the find method.";
+            var builder = new FindRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the fisher method.
+        /// </summary>
+        public Command BuildFisherCommand() {
+            var command = new Command("fisher");
+            command.Description = "Provides operations to call the fisher method.";
+            var builder = new FisherRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the fisherInv method.
+        /// </summary>
+        public Command BuildFisherInvCommand() {
+            var command = new Command("fisher-inv");
+            command.Description = "Provides operations to call the fisherInv method.";
+            var builder = new FisherInvRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the fixed method.
+        /// </summary>
+        public Command BuildFixedCommand() {
+            var command = new Command("fixed");
+            command.Description = "Provides operations to call the fixed method.";
+            var builder = new FixedRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the floor_Math method.
+        /// </summary>
+        public Command BuildFloor_MathCommand() {
+            var command = new Command("floor_-math");
+            command.Description = "Provides operations to call the floor_Math method.";
+            var builder = new Floor_MathRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the floor_Precise method.
+        /// </summary>
+        public Command BuildFloor_PreciseCommand() {
+            var command = new Command("floor_-precise");
+            command.Description = "Provides operations to call the floor_Precise method.";
+            var builder = new Floor_PreciseRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the fv method.
+        /// </summary>
+        public Command BuildFvCommand() {
+            var command = new Command("fv");
+            command.Description = "Provides operations to call the fv method.";
+            var builder = new FvRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the fvschedule method.
+        /// </summary>
+        public Command BuildFvscheduleCommand() {
+            var command = new Command("fvschedule");
+            command.Description = "Provides operations to call the fvschedule method.";
+            var builder = new FvscheduleRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the gamma_Dist method.
+        /// </summary>
+        public Command BuildGamma_DistCommand() {
+            var command = new Command("gamma_-dist");
+            command.Description = "Provides operations to call the gamma_Dist method.";
+            var builder = new Gamma_DistRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the gamma_Inv method.
+        /// </summary>
+        public Command BuildGamma_InvCommand() {
+            var command = new Command("gamma_-inv");
+            command.Description = "Provides operations to call the gamma_Inv method.";
+            var builder = new Gamma_InvRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the gamma method.
+        /// </summary>
+        public Command BuildGammaCommand() {
+            var command = new Command("gamma");
+            command.Description = "Provides operations to call the gamma method.";
+            var builder = new GammaRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the gammaLn_Precise method.
+        /// </summary>
+        public Command BuildGammaLn_PreciseCommand() {
+            var command = new Command("gamma-ln_-precise");
+            command.Description = "Provides operations to call the gammaLn_Precise method.";
+            var builder = new GammaLn_PreciseRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the gammaLn method.
+        /// </summary>
+        public Command BuildGammaLnCommand() {
+            var command = new Command("gamma-ln");
+            command.Description = "Provides operations to call the gammaLn method.";
+            var builder = new GammaLnRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the gauss method.
+        /// </summary>
+        public Command BuildGaussCommand() {
+            var command = new Command("gauss");
+            command.Description = "Provides operations to call the gauss method.";
+            var builder = new GaussRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the gcd method.
+        /// </summary>
+        public Command BuildGcdCommand() {
+            var command = new Command("gcd");
+            command.Description = "Provides operations to call the gcd method.";
+            var builder = new GcdRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the geoMean method.
+        /// </summary>
+        public Command BuildGeoMeanCommand() {
+            var command = new Command("geo-mean");
+            command.Description = "Provides operations to call the geoMean method.";
+            var builder = new GeoMeanRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the geStep method.
+        /// </summary>
+        public Command BuildGeStepCommand() {
+            var command = new Command("ge-step");
+            command.Description = "Provides operations to call the geStep method.";
+            var builder = new GeStepRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Get functions from drives
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get functions from drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
@@ -498,3662 +1988,1052 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the abs method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAbsCommand() {
-            var command = new Command("microsoft-graph-abs");
-            command.Description = "Provides operations to call the abs method.";
-            var builder = new MicrosoftGraphAbsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the accrInt method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAccrIntCommand() {
-            var command = new Command("microsoft-graph-accr-int");
-            command.Description = "Provides operations to call the accrInt method.";
-            var builder = new MicrosoftGraphAccrIntRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the accrIntM method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAccrIntMCommand() {
-            var command = new Command("microsoft-graph-accr-int-m");
-            command.Description = "Provides operations to call the accrIntM method.";
-            var builder = new MicrosoftGraphAccrIntMRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the acos method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAcosCommand() {
-            var command = new Command("microsoft-graph-acos");
-            command.Description = "Provides operations to call the acos method.";
-            var builder = new MicrosoftGraphAcosRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the acosh method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAcoshCommand() {
-            var command = new Command("microsoft-graph-acosh");
-            command.Description = "Provides operations to call the acosh method.";
-            var builder = new MicrosoftGraphAcoshRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the acot method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAcotCommand() {
-            var command = new Command("microsoft-graph-acot");
-            command.Description = "Provides operations to call the acot method.";
-            var builder = new MicrosoftGraphAcotRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the acoth method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAcothCommand() {
-            var command = new Command("microsoft-graph-acoth");
-            command.Description = "Provides operations to call the acoth method.";
-            var builder = new MicrosoftGraphAcothRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the amorDegrc method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAmorDegrcCommand() {
-            var command = new Command("microsoft-graph-amor-degrc");
-            command.Description = "Provides operations to call the amorDegrc method.";
-            var builder = new MicrosoftGraphAmorDegrcRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the amorLinc method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAmorLincCommand() {
-            var command = new Command("microsoft-graph-amor-linc");
-            command.Description = "Provides operations to call the amorLinc method.";
-            var builder = new MicrosoftGraphAmorLincRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the and method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAndCommand() {
-            var command = new Command("microsoft-graph-and");
-            command.Description = "Provides operations to call the and method.";
-            var builder = new MicrosoftGraphAndRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the arabic method.
-        /// </summary>
-        public Command BuildMicrosoftGraphArabicCommand() {
-            var command = new Command("microsoft-graph-arabic");
-            command.Description = "Provides operations to call the arabic method.";
-            var builder = new MicrosoftGraphArabicRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the areas method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAreasCommand() {
-            var command = new Command("microsoft-graph-areas");
-            command.Description = "Provides operations to call the areas method.";
-            var builder = new MicrosoftGraphAreasRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the asc method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAscCommand() {
-            var command = new Command("microsoft-graph-asc");
-            command.Description = "Provides operations to call the asc method.";
-            var builder = new MicrosoftGraphAscRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the asin method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAsinCommand() {
-            var command = new Command("microsoft-graph-asin");
-            command.Description = "Provides operations to call the asin method.";
-            var builder = new MicrosoftGraphAsinRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the asinh method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAsinhCommand() {
-            var command = new Command("microsoft-graph-asinh");
-            command.Description = "Provides operations to call the asinh method.";
-            var builder = new MicrosoftGraphAsinhRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the atan2 method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAtan2Command() {
-            var command = new Command("microsoft-graph-atan2");
-            command.Description = "Provides operations to call the atan2 method.";
-            var builder = new MicrosoftGraphAtan2RequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the atan method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAtanCommand() {
-            var command = new Command("microsoft-graph-atan");
-            command.Description = "Provides operations to call the atan method.";
-            var builder = new MicrosoftGraphAtanRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the atanh method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAtanhCommand() {
-            var command = new Command("microsoft-graph-atanh");
-            command.Description = "Provides operations to call the atanh method.";
-            var builder = new MicrosoftGraphAtanhRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the aveDev method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAveDevCommand() {
-            var command = new Command("microsoft-graph-ave-dev");
-            command.Description = "Provides operations to call the aveDev method.";
-            var builder = new MicrosoftGraphAveDevRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the averageA method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAverageACommand() {
-            var command = new Command("microsoft-graph-average-a");
-            command.Description = "Provides operations to call the averageA method.";
-            var builder = new MicrosoftGraphAverageARequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the average method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAverageCommand() {
-            var command = new Command("microsoft-graph-average");
-            command.Description = "Provides operations to call the average method.";
-            var builder = new MicrosoftGraphAverageRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the averageIf method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAverageIfCommand() {
-            var command = new Command("microsoft-graph-average-if");
-            command.Description = "Provides operations to call the averageIf method.";
-            var builder = new MicrosoftGraphAverageIfRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the averageIfs method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAverageIfsCommand() {
-            var command = new Command("microsoft-graph-average-ifs");
-            command.Description = "Provides operations to call the averageIfs method.";
-            var builder = new MicrosoftGraphAverageIfsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the bahtText method.
-        /// </summary>
-        public Command BuildMicrosoftGraphBahtTextCommand() {
-            var command = new Command("microsoft-graph-baht-text");
-            command.Description = "Provides operations to call the bahtText method.";
-            var builder = new MicrosoftGraphBahtTextRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the base method.
-        /// </summary>
-        public Command BuildMicrosoftGraphBaseCommand() {
-            var command = new Command("microsoft-graph-base");
-            command.Description = "Provides operations to call the base method.";
-            var builder = new MicrosoftGraphBaseRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the besselI method.
-        /// </summary>
-        public Command BuildMicrosoftGraphBesselICommand() {
-            var command = new Command("microsoft-graph-bessel-i");
-            command.Description = "Provides operations to call the besselI method.";
-            var builder = new MicrosoftGraphBesselIRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the besselJ method.
-        /// </summary>
-        public Command BuildMicrosoftGraphBesselJCommand() {
-            var command = new Command("microsoft-graph-bessel-j");
-            command.Description = "Provides operations to call the besselJ method.";
-            var builder = new MicrosoftGraphBesselJRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the besselK method.
-        /// </summary>
-        public Command BuildMicrosoftGraphBesselKCommand() {
-            var command = new Command("microsoft-graph-bessel-k");
-            command.Description = "Provides operations to call the besselK method.";
-            var builder = new MicrosoftGraphBesselKRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the besselY method.
-        /// </summary>
-        public Command BuildMicrosoftGraphBesselYCommand() {
-            var command = new Command("microsoft-graph-bessel-y");
-            command.Description = "Provides operations to call the besselY method.";
-            var builder = new MicrosoftGraphBesselYRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the beta_Dist method.
-        /// </summary>
-        public Command BuildMicrosoftGraphBeta_DistCommand() {
-            var command = new Command("microsoft-graph-beta_-dist");
-            command.Description = "Provides operations to call the beta_Dist method.";
-            var builder = new MicrosoftGraphBeta_DistRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the beta_Inv method.
-        /// </summary>
-        public Command BuildMicrosoftGraphBeta_InvCommand() {
-            var command = new Command("microsoft-graph-beta_-inv");
-            command.Description = "Provides operations to call the beta_Inv method.";
-            var builder = new MicrosoftGraphBeta_InvRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the bin2Dec method.
-        /// </summary>
-        public Command BuildMicrosoftGraphBin2DecCommand() {
-            var command = new Command("microsoft-graph-bin2-dec");
-            command.Description = "Provides operations to call the bin2Dec method.";
-            var builder = new MicrosoftGraphBin2DecRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the bin2Hex method.
-        /// </summary>
-        public Command BuildMicrosoftGraphBin2HexCommand() {
-            var command = new Command("microsoft-graph-bin2-hex");
-            command.Description = "Provides operations to call the bin2Hex method.";
-            var builder = new MicrosoftGraphBin2HexRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the bin2Oct method.
-        /// </summary>
-        public Command BuildMicrosoftGraphBin2OctCommand() {
-            var command = new Command("microsoft-graph-bin2-oct");
-            command.Description = "Provides operations to call the bin2Oct method.";
-            var builder = new MicrosoftGraphBin2OctRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the binom_Dist_Range method.
-        /// </summary>
-        public Command BuildMicrosoftGraphBinom_Dist_RangeCommand() {
-            var command = new Command("microsoft-graph-binom_-dist_-range");
-            command.Description = "Provides operations to call the binom_Dist_Range method.";
-            var builder = new MicrosoftGraphBinom_Dist_RangeRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the binom_Dist method.
-        /// </summary>
-        public Command BuildMicrosoftGraphBinom_DistCommand() {
-            var command = new Command("microsoft-graph-binom_-dist");
-            command.Description = "Provides operations to call the binom_Dist method.";
-            var builder = new MicrosoftGraphBinom_DistRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the binom_Inv method.
-        /// </summary>
-        public Command BuildMicrosoftGraphBinom_InvCommand() {
-            var command = new Command("microsoft-graph-binom_-inv");
-            command.Description = "Provides operations to call the binom_Inv method.";
-            var builder = new MicrosoftGraphBinom_InvRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the bitand method.
-        /// </summary>
-        public Command BuildMicrosoftGraphBitandCommand() {
-            var command = new Command("microsoft-graph-bitand");
-            command.Description = "Provides operations to call the bitand method.";
-            var builder = new MicrosoftGraphBitandRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the bitlshift method.
-        /// </summary>
-        public Command BuildMicrosoftGraphBitlshiftCommand() {
-            var command = new Command("microsoft-graph-bitlshift");
-            command.Description = "Provides operations to call the bitlshift method.";
-            var builder = new MicrosoftGraphBitlshiftRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the bitor method.
-        /// </summary>
-        public Command BuildMicrosoftGraphBitorCommand() {
-            var command = new Command("microsoft-graph-bitor");
-            command.Description = "Provides operations to call the bitor method.";
-            var builder = new MicrosoftGraphBitorRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the bitrshift method.
-        /// </summary>
-        public Command BuildMicrosoftGraphBitrshiftCommand() {
-            var command = new Command("microsoft-graph-bitrshift");
-            command.Description = "Provides operations to call the bitrshift method.";
-            var builder = new MicrosoftGraphBitrshiftRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the bitxor method.
-        /// </summary>
-        public Command BuildMicrosoftGraphBitxorCommand() {
-            var command = new Command("microsoft-graph-bitxor");
-            command.Description = "Provides operations to call the bitxor method.";
-            var builder = new MicrosoftGraphBitxorRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the ceiling_Math method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCeiling_MathCommand() {
-            var command = new Command("microsoft-graph-ceiling_-math");
-            command.Description = "Provides operations to call the ceiling_Math method.";
-            var builder = new MicrosoftGraphCeiling_MathRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the ceiling_Precise method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCeiling_PreciseCommand() {
-            var command = new Command("microsoft-graph-ceiling_-precise");
-            command.Description = "Provides operations to call the ceiling_Precise method.";
-            var builder = new MicrosoftGraphCeiling_PreciseRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the char method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCharCommand() {
-            var command = new Command("microsoft-graph-char");
-            command.Description = "Provides operations to call the char method.";
-            var builder = new MicrosoftGraphCharRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the chiSq_Dist_RT method.
-        /// </summary>
-        public Command BuildMicrosoftGraphChiSq_Dist_RTCommand() {
-            var command = new Command("microsoft-graph-chi-sq_-dist_-r-t");
-            command.Description = "Provides operations to call the chiSq_Dist_RT method.";
-            var builder = new MicrosoftGraphChiSq_Dist_RTRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the chiSq_Dist method.
-        /// </summary>
-        public Command BuildMicrosoftGraphChiSq_DistCommand() {
-            var command = new Command("microsoft-graph-chi-sq_-dist");
-            command.Description = "Provides operations to call the chiSq_Dist method.";
-            var builder = new MicrosoftGraphChiSq_DistRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the chiSq_Inv_RT method.
-        /// </summary>
-        public Command BuildMicrosoftGraphChiSq_Inv_RTCommand() {
-            var command = new Command("microsoft-graph-chi-sq_-inv_-r-t");
-            command.Description = "Provides operations to call the chiSq_Inv_RT method.";
-            var builder = new MicrosoftGraphChiSq_Inv_RTRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the chiSq_Inv method.
-        /// </summary>
-        public Command BuildMicrosoftGraphChiSq_InvCommand() {
-            var command = new Command("microsoft-graph-chi-sq_-inv");
-            command.Description = "Provides operations to call the chiSq_Inv method.";
-            var builder = new MicrosoftGraphChiSq_InvRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the choose method.
-        /// </summary>
-        public Command BuildMicrosoftGraphChooseCommand() {
-            var command = new Command("microsoft-graph-choose");
-            command.Description = "Provides operations to call the choose method.";
-            var builder = new MicrosoftGraphChooseRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the clean method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCleanCommand() {
-            var command = new Command("microsoft-graph-clean");
-            command.Description = "Provides operations to call the clean method.";
-            var builder = new MicrosoftGraphCleanRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the code method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCodeCommand() {
-            var command = new Command("microsoft-graph-code");
-            command.Description = "Provides operations to call the code method.";
-            var builder = new MicrosoftGraphCodeRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the columns method.
-        /// </summary>
-        public Command BuildMicrosoftGraphColumnsCommand() {
-            var command = new Command("microsoft-graph-columns");
-            command.Description = "Provides operations to call the columns method.";
-            var builder = new MicrosoftGraphColumnsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the combina method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCombinaCommand() {
-            var command = new Command("microsoft-graph-combina");
-            command.Description = "Provides operations to call the combina method.";
-            var builder = new MicrosoftGraphCombinaRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the combin method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCombinCommand() {
-            var command = new Command("microsoft-graph-combin");
-            command.Description = "Provides operations to call the combin method.";
-            var builder = new MicrosoftGraphCombinRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the complex method.
-        /// </summary>
-        public Command BuildMicrosoftGraphComplexCommand() {
-            var command = new Command("microsoft-graph-complex");
-            command.Description = "Provides operations to call the complex method.";
-            var builder = new MicrosoftGraphComplexRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the concatenate method.
-        /// </summary>
-        public Command BuildMicrosoftGraphConcatenateCommand() {
-            var command = new Command("microsoft-graph-concatenate");
-            command.Description = "Provides operations to call the concatenate method.";
-            var builder = new MicrosoftGraphConcatenateRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the confidence_Norm method.
-        /// </summary>
-        public Command BuildMicrosoftGraphConfidence_NormCommand() {
-            var command = new Command("microsoft-graph-confidence_-norm");
-            command.Description = "Provides operations to call the confidence_Norm method.";
-            var builder = new MicrosoftGraphConfidence_NormRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the confidence_T method.
-        /// </summary>
-        public Command BuildMicrosoftGraphConfidence_TCommand() {
-            var command = new Command("microsoft-graph-confidence_-t");
-            command.Description = "Provides operations to call the confidence_T method.";
-            var builder = new MicrosoftGraphConfidence_TRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the convert method.
-        /// </summary>
-        public Command BuildMicrosoftGraphConvertCommand() {
-            var command = new Command("microsoft-graph-convert");
-            command.Description = "Provides operations to call the convert method.";
-            var builder = new MicrosoftGraphConvertRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the cos method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCosCommand() {
-            var command = new Command("microsoft-graph-cos");
-            command.Description = "Provides operations to call the cos method.";
-            var builder = new MicrosoftGraphCosRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the cosh method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCoshCommand() {
-            var command = new Command("microsoft-graph-cosh");
-            command.Description = "Provides operations to call the cosh method.";
-            var builder = new MicrosoftGraphCoshRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the cot method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCotCommand() {
-            var command = new Command("microsoft-graph-cot");
-            command.Description = "Provides operations to call the cot method.";
-            var builder = new MicrosoftGraphCotRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the coth method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCothCommand() {
-            var command = new Command("microsoft-graph-coth");
-            command.Description = "Provides operations to call the coth method.";
-            var builder = new MicrosoftGraphCothRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the countA method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCountACommand() {
-            var command = new Command("microsoft-graph-count-a");
-            command.Description = "Provides operations to call the countA method.";
-            var builder = new MicrosoftGraphCountARequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the countBlank method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCountBlankCommand() {
-            var command = new Command("microsoft-graph-count-blank");
-            command.Description = "Provides operations to call the countBlank method.";
-            var builder = new MicrosoftGraphCountBlankRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the count method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCountCommand() {
-            var command = new Command("microsoft-graph-count");
-            command.Description = "Provides operations to call the count method.";
-            var builder = new MicrosoftGraphCountRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the countIf method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCountIfCommand() {
-            var command = new Command("microsoft-graph-count-if");
-            command.Description = "Provides operations to call the countIf method.";
-            var builder = new MicrosoftGraphCountIfRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the countIfs method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCountIfsCommand() {
-            var command = new Command("microsoft-graph-count-ifs");
-            command.Description = "Provides operations to call the countIfs method.";
-            var builder = new MicrosoftGraphCountIfsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the coupDayBs method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCoupDayBsCommand() {
-            var command = new Command("microsoft-graph-coup-day-bs");
-            command.Description = "Provides operations to call the coupDayBs method.";
-            var builder = new MicrosoftGraphCoupDayBsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the coupDays method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCoupDaysCommand() {
-            var command = new Command("microsoft-graph-coup-days");
-            command.Description = "Provides operations to call the coupDays method.";
-            var builder = new MicrosoftGraphCoupDaysRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the coupDaysNc method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCoupDaysNcCommand() {
-            var command = new Command("microsoft-graph-coup-days-nc");
-            command.Description = "Provides operations to call the coupDaysNc method.";
-            var builder = new MicrosoftGraphCoupDaysNcRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the coupNcd method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCoupNcdCommand() {
-            var command = new Command("microsoft-graph-coup-ncd");
-            command.Description = "Provides operations to call the coupNcd method.";
-            var builder = new MicrosoftGraphCoupNcdRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the coupNum method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCoupNumCommand() {
-            var command = new Command("microsoft-graph-coup-num");
-            command.Description = "Provides operations to call the coupNum method.";
-            var builder = new MicrosoftGraphCoupNumRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the coupPcd method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCoupPcdCommand() {
-            var command = new Command("microsoft-graph-coup-pcd");
-            command.Description = "Provides operations to call the coupPcd method.";
-            var builder = new MicrosoftGraphCoupPcdRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the csc method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCscCommand() {
-            var command = new Command("microsoft-graph-csc");
-            command.Description = "Provides operations to call the csc method.";
-            var builder = new MicrosoftGraphCscRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the csch method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCschCommand() {
-            var command = new Command("microsoft-graph-csch");
-            command.Description = "Provides operations to call the csch method.";
-            var builder = new MicrosoftGraphCschRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the cumIPmt method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCumIPmtCommand() {
-            var command = new Command("microsoft-graph-cum-i-pmt");
-            command.Description = "Provides operations to call the cumIPmt method.";
-            var builder = new MicrosoftGraphCumIPmtRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the cumPrinc method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCumPrincCommand() {
-            var command = new Command("microsoft-graph-cum-princ");
-            command.Description = "Provides operations to call the cumPrinc method.";
-            var builder = new MicrosoftGraphCumPrincRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the date method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDateCommand() {
-            var command = new Command("microsoft-graph-date");
-            command.Description = "Provides operations to call the date method.";
-            var builder = new MicrosoftGraphDateRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the datevalue method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDatevalueCommand() {
-            var command = new Command("microsoft-graph-datevalue");
-            command.Description = "Provides operations to call the datevalue method.";
-            var builder = new MicrosoftGraphDatevalueRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the daverage method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDaverageCommand() {
-            var command = new Command("microsoft-graph-daverage");
-            command.Description = "Provides operations to call the daverage method.";
-            var builder = new MicrosoftGraphDaverageRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the day method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDayCommand() {
-            var command = new Command("microsoft-graph-day");
-            command.Description = "Provides operations to call the day method.";
-            var builder = new MicrosoftGraphDayRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the days360 method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDays360Command() {
-            var command = new Command("microsoft-graph-days360");
-            command.Description = "Provides operations to call the days360 method.";
-            var builder = new MicrosoftGraphDays360RequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the days method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDaysCommand() {
-            var command = new Command("microsoft-graph-days");
-            command.Description = "Provides operations to call the days method.";
-            var builder = new MicrosoftGraphDaysRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the db method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDbCommand() {
-            var command = new Command("microsoft-graph-db");
-            command.Description = "Provides operations to call the db method.";
-            var builder = new MicrosoftGraphDbRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the dbcs method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDbcsCommand() {
-            var command = new Command("microsoft-graph-dbcs");
-            command.Description = "Provides operations to call the dbcs method.";
-            var builder = new MicrosoftGraphDbcsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the dcountA method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDcountACommand() {
-            var command = new Command("microsoft-graph-dcount-a");
-            command.Description = "Provides operations to call the dcountA method.";
-            var builder = new MicrosoftGraphDcountARequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the dcount method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDcountCommand() {
-            var command = new Command("microsoft-graph-dcount");
-            command.Description = "Provides operations to call the dcount method.";
-            var builder = new MicrosoftGraphDcountRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the ddb method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDdbCommand() {
-            var command = new Command("microsoft-graph-ddb");
-            command.Description = "Provides operations to call the ddb method.";
-            var builder = new MicrosoftGraphDdbRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the dec2Bin method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDec2BinCommand() {
-            var command = new Command("microsoft-graph-dec2-bin");
-            command.Description = "Provides operations to call the dec2Bin method.";
-            var builder = new MicrosoftGraphDec2BinRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the dec2Hex method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDec2HexCommand() {
-            var command = new Command("microsoft-graph-dec2-hex");
-            command.Description = "Provides operations to call the dec2Hex method.";
-            var builder = new MicrosoftGraphDec2HexRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the dec2Oct method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDec2OctCommand() {
-            var command = new Command("microsoft-graph-dec2-oct");
-            command.Description = "Provides operations to call the dec2Oct method.";
-            var builder = new MicrosoftGraphDec2OctRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the decimal method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDecimalCommand() {
-            var command = new Command("microsoft-graph-decimal");
-            command.Description = "Provides operations to call the decimal method.";
-            var builder = new MicrosoftGraphDecimalRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the degrees method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDegreesCommand() {
-            var command = new Command("microsoft-graph-degrees");
-            command.Description = "Provides operations to call the degrees method.";
-            var builder = new MicrosoftGraphDegreesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the delta method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDeltaCommand() {
-            var command = new Command("microsoft-graph-delta");
-            command.Description = "Provides operations to call the delta method.";
-            var builder = new MicrosoftGraphDeltaRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the devSq method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDevSqCommand() {
-            var command = new Command("microsoft-graph-dev-sq");
-            command.Description = "Provides operations to call the devSq method.";
-            var builder = new MicrosoftGraphDevSqRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the dget method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDgetCommand() {
-            var command = new Command("microsoft-graph-dget");
-            command.Description = "Provides operations to call the dget method.";
-            var builder = new MicrosoftGraphDgetRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the disc method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDiscCommand() {
-            var command = new Command("microsoft-graph-disc");
-            command.Description = "Provides operations to call the disc method.";
-            var builder = new MicrosoftGraphDiscRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the dmax method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDmaxCommand() {
-            var command = new Command("microsoft-graph-dmax");
-            command.Description = "Provides operations to call the dmax method.";
-            var builder = new MicrosoftGraphDmaxRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the dmin method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDminCommand() {
-            var command = new Command("microsoft-graph-dmin");
-            command.Description = "Provides operations to call the dmin method.";
-            var builder = new MicrosoftGraphDminRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the dollar method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDollarCommand() {
-            var command = new Command("microsoft-graph-dollar");
-            command.Description = "Provides operations to call the dollar method.";
-            var builder = new MicrosoftGraphDollarRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the dollarDe method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDollarDeCommand() {
-            var command = new Command("microsoft-graph-dollar-de");
-            command.Description = "Provides operations to call the dollarDe method.";
-            var builder = new MicrosoftGraphDollarDeRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the dollarFr method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDollarFrCommand() {
-            var command = new Command("microsoft-graph-dollar-fr");
-            command.Description = "Provides operations to call the dollarFr method.";
-            var builder = new MicrosoftGraphDollarFrRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the dproduct method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDproductCommand() {
-            var command = new Command("microsoft-graph-dproduct");
-            command.Description = "Provides operations to call the dproduct method.";
-            var builder = new MicrosoftGraphDproductRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the dstDev method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDstDevCommand() {
-            var command = new Command("microsoft-graph-dst-dev");
-            command.Description = "Provides operations to call the dstDev method.";
-            var builder = new MicrosoftGraphDstDevRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the dstDevP method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDstDevPCommand() {
-            var command = new Command("microsoft-graph-dst-dev-p");
-            command.Description = "Provides operations to call the dstDevP method.";
-            var builder = new MicrosoftGraphDstDevPRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the dsum method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDsumCommand() {
-            var command = new Command("microsoft-graph-dsum");
-            command.Description = "Provides operations to call the dsum method.";
-            var builder = new MicrosoftGraphDsumRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the duration method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDurationCommand() {
-            var command = new Command("microsoft-graph-duration");
-            command.Description = "Provides operations to call the duration method.";
-            var builder = new MicrosoftGraphDurationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the dvar method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDvarCommand() {
-            var command = new Command("microsoft-graph-dvar");
-            command.Description = "Provides operations to call the dvar method.";
-            var builder = new MicrosoftGraphDvarRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the dvarP method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDvarPCommand() {
-            var command = new Command("microsoft-graph-dvar-p");
-            command.Description = "Provides operations to call the dvarP method.";
-            var builder = new MicrosoftGraphDvarPRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the ecma_Ceiling method.
-        /// </summary>
-        public Command BuildMicrosoftGraphEcma_CeilingCommand() {
-            var command = new Command("microsoft-graph-ecma_-ceiling");
-            command.Description = "Provides operations to call the ecma_Ceiling method.";
-            var builder = new MicrosoftGraphEcma_CeilingRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the edate method.
-        /// </summary>
-        public Command BuildMicrosoftGraphEdateCommand() {
-            var command = new Command("microsoft-graph-edate");
-            command.Description = "Provides operations to call the edate method.";
-            var builder = new MicrosoftGraphEdateRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the effect method.
-        /// </summary>
-        public Command BuildMicrosoftGraphEffectCommand() {
-            var command = new Command("microsoft-graph-effect");
-            command.Description = "Provides operations to call the effect method.";
-            var builder = new MicrosoftGraphEffectRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the eoMonth method.
-        /// </summary>
-        public Command BuildMicrosoftGraphEoMonthCommand() {
-            var command = new Command("microsoft-graph-eo-month");
-            command.Description = "Provides operations to call the eoMonth method.";
-            var builder = new MicrosoftGraphEoMonthRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the erf_Precise method.
-        /// </summary>
-        public Command BuildMicrosoftGraphErf_PreciseCommand() {
-            var command = new Command("microsoft-graph-erf_-precise");
-            command.Description = "Provides operations to call the erf_Precise method.";
-            var builder = new MicrosoftGraphErf_PreciseRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the erfC_Precise method.
-        /// </summary>
-        public Command BuildMicrosoftGraphErfC_PreciseCommand() {
-            var command = new Command("microsoft-graph-erf-c_-precise");
-            command.Description = "Provides operations to call the erfC_Precise method.";
-            var builder = new MicrosoftGraphErfC_PreciseRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the erfC method.
-        /// </summary>
-        public Command BuildMicrosoftGraphErfCCommand() {
-            var command = new Command("microsoft-graph-erf-c");
-            command.Description = "Provides operations to call the erfC method.";
-            var builder = new MicrosoftGraphErfCRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the erf method.
-        /// </summary>
-        public Command BuildMicrosoftGraphErfCommand() {
-            var command = new Command("microsoft-graph-erf");
-            command.Description = "Provides operations to call the erf method.";
-            var builder = new MicrosoftGraphErfRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the error_Type method.
-        /// </summary>
-        public Command BuildMicrosoftGraphError_TypeCommand() {
-            var command = new Command("microsoft-graph-error_-type");
-            command.Description = "Provides operations to call the error_Type method.";
-            var builder = new MicrosoftGraphError_TypeRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the even method.
-        /// </summary>
-        public Command BuildMicrosoftGraphEvenCommand() {
-            var command = new Command("microsoft-graph-even");
-            command.Description = "Provides operations to call the even method.";
-            var builder = new MicrosoftGraphEvenRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the exact method.
-        /// </summary>
-        public Command BuildMicrosoftGraphExactCommand() {
-            var command = new Command("microsoft-graph-exact");
-            command.Description = "Provides operations to call the exact method.";
-            var builder = new MicrosoftGraphExactRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the exp method.
-        /// </summary>
-        public Command BuildMicrosoftGraphExpCommand() {
-            var command = new Command("microsoft-graph-exp");
-            command.Description = "Provides operations to call the exp method.";
-            var builder = new MicrosoftGraphExpRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the expon_Dist method.
-        /// </summary>
-        public Command BuildMicrosoftGraphExpon_DistCommand() {
-            var command = new Command("microsoft-graph-expon_-dist");
-            command.Description = "Provides operations to call the expon_Dist method.";
-            var builder = new MicrosoftGraphExpon_DistRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the f_Dist_RT method.
-        /// </summary>
-        public Command BuildMicrosoftGraphF_Dist_RTCommand() {
-            var command = new Command("microsoft-graph-f_-dist_-r-t");
-            command.Description = "Provides operations to call the f_Dist_RT method.";
-            var builder = new MicrosoftGraphF_Dist_RTRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the f_Dist method.
-        /// </summary>
-        public Command BuildMicrosoftGraphF_DistCommand() {
-            var command = new Command("microsoft-graph-f_-dist");
-            command.Description = "Provides operations to call the f_Dist method.";
-            var builder = new MicrosoftGraphF_DistRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the f_Inv_RT method.
-        /// </summary>
-        public Command BuildMicrosoftGraphF_Inv_RTCommand() {
-            var command = new Command("microsoft-graph-f_-inv_-r-t");
-            command.Description = "Provides operations to call the f_Inv_RT method.";
-            var builder = new MicrosoftGraphF_Inv_RTRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the f_Inv method.
-        /// </summary>
-        public Command BuildMicrosoftGraphF_InvCommand() {
-            var command = new Command("microsoft-graph-f_-inv");
-            command.Description = "Provides operations to call the f_Inv method.";
-            var builder = new MicrosoftGraphF_InvRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the fact method.
-        /// </summary>
-        public Command BuildMicrosoftGraphFactCommand() {
-            var command = new Command("microsoft-graph-fact");
-            command.Description = "Provides operations to call the fact method.";
-            var builder = new MicrosoftGraphFactRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the factDouble method.
-        /// </summary>
-        public Command BuildMicrosoftGraphFactDoubleCommand() {
-            var command = new Command("microsoft-graph-fact-double");
-            command.Description = "Provides operations to call the factDouble method.";
-            var builder = new MicrosoftGraphFactDoubleRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the false method.
-        /// </summary>
-        public Command BuildMicrosoftGraphFalseCommand() {
-            var command = new Command("microsoft-graph-false");
-            command.Description = "Provides operations to call the false method.";
-            var builder = new MicrosoftGraphFalseRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the findB method.
-        /// </summary>
-        public Command BuildMicrosoftGraphFindBCommand() {
-            var command = new Command("microsoft-graph-find-b");
-            command.Description = "Provides operations to call the findB method.";
-            var builder = new MicrosoftGraphFindBRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the find method.
-        /// </summary>
-        public Command BuildMicrosoftGraphFindCommand() {
-            var command = new Command("microsoft-graph-find");
-            command.Description = "Provides operations to call the find method.";
-            var builder = new MicrosoftGraphFindRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the fisher method.
-        /// </summary>
-        public Command BuildMicrosoftGraphFisherCommand() {
-            var command = new Command("microsoft-graph-fisher");
-            command.Description = "Provides operations to call the fisher method.";
-            var builder = new MicrosoftGraphFisherRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the fisherInv method.
-        /// </summary>
-        public Command BuildMicrosoftGraphFisherInvCommand() {
-            var command = new Command("microsoft-graph-fisher-inv");
-            command.Description = "Provides operations to call the fisherInv method.";
-            var builder = new MicrosoftGraphFisherInvRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the fixed method.
-        /// </summary>
-        public Command BuildMicrosoftGraphFixedCommand() {
-            var command = new Command("microsoft-graph-fixed");
-            command.Description = "Provides operations to call the fixed method.";
-            var builder = new MicrosoftGraphFixedRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the floor_Math method.
-        /// </summary>
-        public Command BuildMicrosoftGraphFloor_MathCommand() {
-            var command = new Command("microsoft-graph-floor_-math");
-            command.Description = "Provides operations to call the floor_Math method.";
-            var builder = new MicrosoftGraphFloor_MathRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the floor_Precise method.
-        /// </summary>
-        public Command BuildMicrosoftGraphFloor_PreciseCommand() {
-            var command = new Command("microsoft-graph-floor_-precise");
-            command.Description = "Provides operations to call the floor_Precise method.";
-            var builder = new MicrosoftGraphFloor_PreciseRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the fv method.
-        /// </summary>
-        public Command BuildMicrosoftGraphFvCommand() {
-            var command = new Command("microsoft-graph-fv");
-            command.Description = "Provides operations to call the fv method.";
-            var builder = new MicrosoftGraphFvRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the fvschedule method.
-        /// </summary>
-        public Command BuildMicrosoftGraphFvscheduleCommand() {
-            var command = new Command("microsoft-graph-fvschedule");
-            command.Description = "Provides operations to call the fvschedule method.";
-            var builder = new MicrosoftGraphFvscheduleRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the gamma_Dist method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGamma_DistCommand() {
-            var command = new Command("microsoft-graph-gamma_-dist");
-            command.Description = "Provides operations to call the gamma_Dist method.";
-            var builder = new MicrosoftGraphGamma_DistRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the gamma_Inv method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGamma_InvCommand() {
-            var command = new Command("microsoft-graph-gamma_-inv");
-            command.Description = "Provides operations to call the gamma_Inv method.";
-            var builder = new MicrosoftGraphGamma_InvRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the gamma method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGammaCommand() {
-            var command = new Command("microsoft-graph-gamma");
-            command.Description = "Provides operations to call the gamma method.";
-            var builder = new MicrosoftGraphGammaRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the gammaLn_Precise method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGammaLn_PreciseCommand() {
-            var command = new Command("microsoft-graph-gamma-ln_-precise");
-            command.Description = "Provides operations to call the gammaLn_Precise method.";
-            var builder = new MicrosoftGraphGammaLn_PreciseRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the gammaLn method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGammaLnCommand() {
-            var command = new Command("microsoft-graph-gamma-ln");
-            command.Description = "Provides operations to call the gammaLn method.";
-            var builder = new MicrosoftGraphGammaLnRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the gauss method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGaussCommand() {
-            var command = new Command("microsoft-graph-gauss");
-            command.Description = "Provides operations to call the gauss method.";
-            var builder = new MicrosoftGraphGaussRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the gcd method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGcdCommand() {
-            var command = new Command("microsoft-graph-gcd");
-            command.Description = "Provides operations to call the gcd method.";
-            var builder = new MicrosoftGraphGcdRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the geoMean method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGeoMeanCommand() {
-            var command = new Command("microsoft-graph-geo-mean");
-            command.Description = "Provides operations to call the geoMean method.";
-            var builder = new MicrosoftGraphGeoMeanRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the geStep method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGeStepCommand() {
-            var command = new Command("microsoft-graph-ge-step");
-            command.Description = "Provides operations to call the geStep method.";
-            var builder = new MicrosoftGraphGeStepRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to call the harMean method.
         /// </summary>
-        public Command BuildMicrosoftGraphHarMeanCommand() {
-            var command = new Command("microsoft-graph-har-mean");
+        public Command BuildHarMeanCommand() {
+            var command = new Command("har-mean");
             command.Description = "Provides operations to call the harMean method.";
-            var builder = new MicrosoftGraphHarMeanRequestBuilder(PathParameters);
+            var builder = new HarMeanRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the hex2Bin method.
         /// </summary>
-        public Command BuildMicrosoftGraphHex2BinCommand() {
-            var command = new Command("microsoft-graph-hex2-bin");
+        public Command BuildHex2BinCommand() {
+            var command = new Command("hex2-bin");
             command.Description = "Provides operations to call the hex2Bin method.";
-            var builder = new MicrosoftGraphHex2BinRequestBuilder(PathParameters);
+            var builder = new Hex2BinRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the hex2Dec method.
         /// </summary>
-        public Command BuildMicrosoftGraphHex2DecCommand() {
-            var command = new Command("microsoft-graph-hex2-dec");
+        public Command BuildHex2DecCommand() {
+            var command = new Command("hex2-dec");
             command.Description = "Provides operations to call the hex2Dec method.";
-            var builder = new MicrosoftGraphHex2DecRequestBuilder(PathParameters);
+            var builder = new Hex2DecRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the hex2Oct method.
         /// </summary>
-        public Command BuildMicrosoftGraphHex2OctCommand() {
-            var command = new Command("microsoft-graph-hex2-oct");
+        public Command BuildHex2OctCommand() {
+            var command = new Command("hex2-oct");
             command.Description = "Provides operations to call the hex2Oct method.";
-            var builder = new MicrosoftGraphHex2OctRequestBuilder(PathParameters);
+            var builder = new Hex2OctRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the hlookup method.
         /// </summary>
-        public Command BuildMicrosoftGraphHlookupCommand() {
-            var command = new Command("microsoft-graph-hlookup");
+        public Command BuildHlookupCommand() {
+            var command = new Command("hlookup");
             command.Description = "Provides operations to call the hlookup method.";
-            var builder = new MicrosoftGraphHlookupRequestBuilder(PathParameters);
+            var builder = new HlookupRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the hour method.
         /// </summary>
-        public Command BuildMicrosoftGraphHourCommand() {
-            var command = new Command("microsoft-graph-hour");
+        public Command BuildHourCommand() {
+            var command = new Command("hour");
             command.Description = "Provides operations to call the hour method.";
-            var builder = new MicrosoftGraphHourRequestBuilder(PathParameters);
+            var builder = new HourRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the hyperlink method.
         /// </summary>
-        public Command BuildMicrosoftGraphHyperlinkCommand() {
-            var command = new Command("microsoft-graph-hyperlink");
+        public Command BuildHyperlinkCommand() {
+            var command = new Command("hyperlink");
             command.Description = "Provides operations to call the hyperlink method.";
-            var builder = new MicrosoftGraphHyperlinkRequestBuilder(PathParameters);
+            var builder = new HyperlinkRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the hypGeom_Dist method.
         /// </summary>
-        public Command BuildMicrosoftGraphHypGeom_DistCommand() {
-            var command = new Command("microsoft-graph-hyp-geom_-dist");
+        public Command BuildHypGeom_DistCommand() {
+            var command = new Command("hyp-geom_-dist");
             command.Description = "Provides operations to call the hypGeom_Dist method.";
-            var builder = new MicrosoftGraphHypGeom_DistRequestBuilder(PathParameters);
+            var builder = new HypGeom_DistRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the if method.
         /// </summary>
-        public Command BuildMicrosoftGraphIfCommand() {
-            var command = new Command("microsoft-graph-if");
+        public Command BuildIfCommand() {
+            var command = new Command("if");
             command.Description = "Provides operations to call the if method.";
-            var builder = new MicrosoftGraphIfRequestBuilder(PathParameters);
+            var builder = new IfRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the imAbs method.
         /// </summary>
-        public Command BuildMicrosoftGraphImAbsCommand() {
-            var command = new Command("microsoft-graph-im-abs");
+        public Command BuildImAbsCommand() {
+            var command = new Command("im-abs");
             command.Description = "Provides operations to call the imAbs method.";
-            var builder = new MicrosoftGraphImAbsRequestBuilder(PathParameters);
+            var builder = new ImAbsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the imaginary method.
         /// </summary>
-        public Command BuildMicrosoftGraphImaginaryCommand() {
-            var command = new Command("microsoft-graph-imaginary");
+        public Command BuildImaginaryCommand() {
+            var command = new Command("imaginary");
             command.Description = "Provides operations to call the imaginary method.";
-            var builder = new MicrosoftGraphImaginaryRequestBuilder(PathParameters);
+            var builder = new ImaginaryRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the imArgument method.
         /// </summary>
-        public Command BuildMicrosoftGraphImArgumentCommand() {
-            var command = new Command("microsoft-graph-im-argument");
+        public Command BuildImArgumentCommand() {
+            var command = new Command("im-argument");
             command.Description = "Provides operations to call the imArgument method.";
-            var builder = new MicrosoftGraphImArgumentRequestBuilder(PathParameters);
+            var builder = new ImArgumentRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the imConjugate method.
         /// </summary>
-        public Command BuildMicrosoftGraphImConjugateCommand() {
-            var command = new Command("microsoft-graph-im-conjugate");
+        public Command BuildImConjugateCommand() {
+            var command = new Command("im-conjugate");
             command.Description = "Provides operations to call the imConjugate method.";
-            var builder = new MicrosoftGraphImConjugateRequestBuilder(PathParameters);
+            var builder = new ImConjugateRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the imCos method.
         /// </summary>
-        public Command BuildMicrosoftGraphImCosCommand() {
-            var command = new Command("microsoft-graph-im-cos");
+        public Command BuildImCosCommand() {
+            var command = new Command("im-cos");
             command.Description = "Provides operations to call the imCos method.";
-            var builder = new MicrosoftGraphImCosRequestBuilder(PathParameters);
+            var builder = new ImCosRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the imCosh method.
         /// </summary>
-        public Command BuildMicrosoftGraphImCoshCommand() {
-            var command = new Command("microsoft-graph-im-cosh");
+        public Command BuildImCoshCommand() {
+            var command = new Command("im-cosh");
             command.Description = "Provides operations to call the imCosh method.";
-            var builder = new MicrosoftGraphImCoshRequestBuilder(PathParameters);
+            var builder = new ImCoshRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the imCot method.
         /// </summary>
-        public Command BuildMicrosoftGraphImCotCommand() {
-            var command = new Command("microsoft-graph-im-cot");
+        public Command BuildImCotCommand() {
+            var command = new Command("im-cot");
             command.Description = "Provides operations to call the imCot method.";
-            var builder = new MicrosoftGraphImCotRequestBuilder(PathParameters);
+            var builder = new ImCotRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the imCsc method.
         /// </summary>
-        public Command BuildMicrosoftGraphImCscCommand() {
-            var command = new Command("microsoft-graph-im-csc");
+        public Command BuildImCscCommand() {
+            var command = new Command("im-csc");
             command.Description = "Provides operations to call the imCsc method.";
-            var builder = new MicrosoftGraphImCscRequestBuilder(PathParameters);
+            var builder = new ImCscRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the imCsch method.
         /// </summary>
-        public Command BuildMicrosoftGraphImCschCommand() {
-            var command = new Command("microsoft-graph-im-csch");
+        public Command BuildImCschCommand() {
+            var command = new Command("im-csch");
             command.Description = "Provides operations to call the imCsch method.";
-            var builder = new MicrosoftGraphImCschRequestBuilder(PathParameters);
+            var builder = new ImCschRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the imDiv method.
         /// </summary>
-        public Command BuildMicrosoftGraphImDivCommand() {
-            var command = new Command("microsoft-graph-im-div");
+        public Command BuildImDivCommand() {
+            var command = new Command("im-div");
             command.Description = "Provides operations to call the imDiv method.";
-            var builder = new MicrosoftGraphImDivRequestBuilder(PathParameters);
+            var builder = new ImDivRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the imExp method.
         /// </summary>
-        public Command BuildMicrosoftGraphImExpCommand() {
-            var command = new Command("microsoft-graph-im-exp");
+        public Command BuildImExpCommand() {
+            var command = new Command("im-exp");
             command.Description = "Provides operations to call the imExp method.";
-            var builder = new MicrosoftGraphImExpRequestBuilder(PathParameters);
+            var builder = new ImExpRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the imLn method.
         /// </summary>
-        public Command BuildMicrosoftGraphImLnCommand() {
-            var command = new Command("microsoft-graph-im-ln");
+        public Command BuildImLnCommand() {
+            var command = new Command("im-ln");
             command.Description = "Provides operations to call the imLn method.";
-            var builder = new MicrosoftGraphImLnRequestBuilder(PathParameters);
+            var builder = new ImLnRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the imLog10 method.
         /// </summary>
-        public Command BuildMicrosoftGraphImLog10Command() {
-            var command = new Command("microsoft-graph-im-log10");
+        public Command BuildImLog10Command() {
+            var command = new Command("im-log10");
             command.Description = "Provides operations to call the imLog10 method.";
-            var builder = new MicrosoftGraphImLog10RequestBuilder(PathParameters);
+            var builder = new ImLog10RequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the imLog2 method.
         /// </summary>
-        public Command BuildMicrosoftGraphImLog2Command() {
-            var command = new Command("microsoft-graph-im-log2");
+        public Command BuildImLog2Command() {
+            var command = new Command("im-log2");
             command.Description = "Provides operations to call the imLog2 method.";
-            var builder = new MicrosoftGraphImLog2RequestBuilder(PathParameters);
+            var builder = new ImLog2RequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the imPower method.
         /// </summary>
-        public Command BuildMicrosoftGraphImPowerCommand() {
-            var command = new Command("microsoft-graph-im-power");
+        public Command BuildImPowerCommand() {
+            var command = new Command("im-power");
             command.Description = "Provides operations to call the imPower method.";
-            var builder = new MicrosoftGraphImPowerRequestBuilder(PathParameters);
+            var builder = new ImPowerRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the imProduct method.
         /// </summary>
-        public Command BuildMicrosoftGraphImProductCommand() {
-            var command = new Command("microsoft-graph-im-product");
+        public Command BuildImProductCommand() {
+            var command = new Command("im-product");
             command.Description = "Provides operations to call the imProduct method.";
-            var builder = new MicrosoftGraphImProductRequestBuilder(PathParameters);
+            var builder = new ImProductRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the imReal method.
         /// </summary>
-        public Command BuildMicrosoftGraphImRealCommand() {
-            var command = new Command("microsoft-graph-im-real");
+        public Command BuildImRealCommand() {
+            var command = new Command("im-real");
             command.Description = "Provides operations to call the imReal method.";
-            var builder = new MicrosoftGraphImRealRequestBuilder(PathParameters);
+            var builder = new ImRealRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the imSec method.
         /// </summary>
-        public Command BuildMicrosoftGraphImSecCommand() {
-            var command = new Command("microsoft-graph-im-sec");
+        public Command BuildImSecCommand() {
+            var command = new Command("im-sec");
             command.Description = "Provides operations to call the imSec method.";
-            var builder = new MicrosoftGraphImSecRequestBuilder(PathParameters);
+            var builder = new ImSecRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the imSech method.
         /// </summary>
-        public Command BuildMicrosoftGraphImSechCommand() {
-            var command = new Command("microsoft-graph-im-sech");
+        public Command BuildImSechCommand() {
+            var command = new Command("im-sech");
             command.Description = "Provides operations to call the imSech method.";
-            var builder = new MicrosoftGraphImSechRequestBuilder(PathParameters);
+            var builder = new ImSechRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the imSin method.
         /// </summary>
-        public Command BuildMicrosoftGraphImSinCommand() {
-            var command = new Command("microsoft-graph-im-sin");
+        public Command BuildImSinCommand() {
+            var command = new Command("im-sin");
             command.Description = "Provides operations to call the imSin method.";
-            var builder = new MicrosoftGraphImSinRequestBuilder(PathParameters);
+            var builder = new ImSinRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the imSinh method.
         /// </summary>
-        public Command BuildMicrosoftGraphImSinhCommand() {
-            var command = new Command("microsoft-graph-im-sinh");
+        public Command BuildImSinhCommand() {
+            var command = new Command("im-sinh");
             command.Description = "Provides operations to call the imSinh method.";
-            var builder = new MicrosoftGraphImSinhRequestBuilder(PathParameters);
+            var builder = new ImSinhRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the imSqrt method.
         /// </summary>
-        public Command BuildMicrosoftGraphImSqrtCommand() {
-            var command = new Command("microsoft-graph-im-sqrt");
+        public Command BuildImSqrtCommand() {
+            var command = new Command("im-sqrt");
             command.Description = "Provides operations to call the imSqrt method.";
-            var builder = new MicrosoftGraphImSqrtRequestBuilder(PathParameters);
+            var builder = new ImSqrtRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the imSub method.
         /// </summary>
-        public Command BuildMicrosoftGraphImSubCommand() {
-            var command = new Command("microsoft-graph-im-sub");
+        public Command BuildImSubCommand() {
+            var command = new Command("im-sub");
             command.Description = "Provides operations to call the imSub method.";
-            var builder = new MicrosoftGraphImSubRequestBuilder(PathParameters);
+            var builder = new ImSubRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the imSum method.
         /// </summary>
-        public Command BuildMicrosoftGraphImSumCommand() {
-            var command = new Command("microsoft-graph-im-sum");
+        public Command BuildImSumCommand() {
+            var command = new Command("im-sum");
             command.Description = "Provides operations to call the imSum method.";
-            var builder = new MicrosoftGraphImSumRequestBuilder(PathParameters);
+            var builder = new ImSumRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the imTan method.
         /// </summary>
-        public Command BuildMicrosoftGraphImTanCommand() {
-            var command = new Command("microsoft-graph-im-tan");
+        public Command BuildImTanCommand() {
+            var command = new Command("im-tan");
             command.Description = "Provides operations to call the imTan method.";
-            var builder = new MicrosoftGraphImTanRequestBuilder(PathParameters);
+            var builder = new ImTanRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the int method.
         /// </summary>
-        public Command BuildMicrosoftGraphIntCommand() {
-            var command = new Command("microsoft-graph-int");
+        public Command BuildIntCommand() {
+            var command = new Command("int");
             command.Description = "Provides operations to call the int method.";
-            var builder = new MicrosoftGraphIntRequestBuilder(PathParameters);
+            var builder = new IntRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the intRate method.
         /// </summary>
-        public Command BuildMicrosoftGraphIntRateCommand() {
-            var command = new Command("microsoft-graph-int-rate");
+        public Command BuildIntRateCommand() {
+            var command = new Command("int-rate");
             command.Description = "Provides operations to call the intRate method.";
-            var builder = new MicrosoftGraphIntRateRequestBuilder(PathParameters);
+            var builder = new IntRateRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the ipmt method.
         /// </summary>
-        public Command BuildMicrosoftGraphIpmtCommand() {
-            var command = new Command("microsoft-graph-ipmt");
+        public Command BuildIpmtCommand() {
+            var command = new Command("ipmt");
             command.Description = "Provides operations to call the ipmt method.";
-            var builder = new MicrosoftGraphIpmtRequestBuilder(PathParameters);
+            var builder = new IpmtRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the irr method.
         /// </summary>
-        public Command BuildMicrosoftGraphIrrCommand() {
-            var command = new Command("microsoft-graph-irr");
+        public Command BuildIrrCommand() {
+            var command = new Command("irr");
             command.Description = "Provides operations to call the irr method.";
-            var builder = new MicrosoftGraphIrrRequestBuilder(PathParameters);
+            var builder = new IrrRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the isErr method.
         /// </summary>
-        public Command BuildMicrosoftGraphIsErrCommand() {
-            var command = new Command("microsoft-graph-is-err");
+        public Command BuildIsErrCommand() {
+            var command = new Command("is-err");
             command.Description = "Provides operations to call the isErr method.";
-            var builder = new MicrosoftGraphIsErrRequestBuilder(PathParameters);
+            var builder = new IsErrRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the isError method.
         /// </summary>
-        public Command BuildMicrosoftGraphIsErrorCommand() {
-            var command = new Command("microsoft-graph-is-error");
+        public Command BuildIsErrorCommand() {
+            var command = new Command("is-error");
             command.Description = "Provides operations to call the isError method.";
-            var builder = new MicrosoftGraphIsErrorRequestBuilder(PathParameters);
+            var builder = new IsErrorRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the isEven method.
         /// </summary>
-        public Command BuildMicrosoftGraphIsEvenCommand() {
-            var command = new Command("microsoft-graph-is-even");
+        public Command BuildIsEvenCommand() {
+            var command = new Command("is-even");
             command.Description = "Provides operations to call the isEven method.";
-            var builder = new MicrosoftGraphIsEvenRequestBuilder(PathParameters);
+            var builder = new IsEvenRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the isFormula method.
         /// </summary>
-        public Command BuildMicrosoftGraphIsFormulaCommand() {
-            var command = new Command("microsoft-graph-is-formula");
+        public Command BuildIsFormulaCommand() {
+            var command = new Command("is-formula");
             command.Description = "Provides operations to call the isFormula method.";
-            var builder = new MicrosoftGraphIsFormulaRequestBuilder(PathParameters);
+            var builder = new IsFormulaRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the isLogical method.
         /// </summary>
-        public Command BuildMicrosoftGraphIsLogicalCommand() {
-            var command = new Command("microsoft-graph-is-logical");
+        public Command BuildIsLogicalCommand() {
+            var command = new Command("is-logical");
             command.Description = "Provides operations to call the isLogical method.";
-            var builder = new MicrosoftGraphIsLogicalRequestBuilder(PathParameters);
+            var builder = new IsLogicalRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the isNA method.
         /// </summary>
-        public Command BuildMicrosoftGraphIsNACommand() {
-            var command = new Command("microsoft-graph-is-n-a");
+        public Command BuildIsNACommand() {
+            var command = new Command("is-n-a");
             command.Description = "Provides operations to call the isNA method.";
-            var builder = new MicrosoftGraphIsNARequestBuilder(PathParameters);
+            var builder = new IsNARequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the isNonText method.
         /// </summary>
-        public Command BuildMicrosoftGraphIsNonTextCommand() {
-            var command = new Command("microsoft-graph-is-non-text");
+        public Command BuildIsNonTextCommand() {
+            var command = new Command("is-non-text");
             command.Description = "Provides operations to call the isNonText method.";
-            var builder = new MicrosoftGraphIsNonTextRequestBuilder(PathParameters);
+            var builder = new IsNonTextRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the isNumber method.
         /// </summary>
-        public Command BuildMicrosoftGraphIsNumberCommand() {
-            var command = new Command("microsoft-graph-is-number");
+        public Command BuildIsNumberCommand() {
+            var command = new Command("is-number");
             command.Description = "Provides operations to call the isNumber method.";
-            var builder = new MicrosoftGraphIsNumberRequestBuilder(PathParameters);
+            var builder = new IsNumberRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the iso_Ceiling method.
         /// </summary>
-        public Command BuildMicrosoftGraphIso_CeilingCommand() {
-            var command = new Command("microsoft-graph-iso_-ceiling");
+        public Command BuildIso_CeilingCommand() {
+            var command = new Command("iso_-ceiling");
             command.Description = "Provides operations to call the iso_Ceiling method.";
-            var builder = new MicrosoftGraphIso_CeilingRequestBuilder(PathParameters);
+            var builder = new Iso_CeilingRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the isOdd method.
         /// </summary>
-        public Command BuildMicrosoftGraphIsOddCommand() {
-            var command = new Command("microsoft-graph-is-odd");
+        public Command BuildIsOddCommand() {
+            var command = new Command("is-odd");
             command.Description = "Provides operations to call the isOdd method.";
-            var builder = new MicrosoftGraphIsOddRequestBuilder(PathParameters);
+            var builder = new IsOddRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the isoWeekNum method.
         /// </summary>
-        public Command BuildMicrosoftGraphIsoWeekNumCommand() {
-            var command = new Command("microsoft-graph-iso-week-num");
+        public Command BuildIsoWeekNumCommand() {
+            var command = new Command("iso-week-num");
             command.Description = "Provides operations to call the isoWeekNum method.";
-            var builder = new MicrosoftGraphIsoWeekNumRequestBuilder(PathParameters);
+            var builder = new IsoWeekNumRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the ispmt method.
         /// </summary>
-        public Command BuildMicrosoftGraphIspmtCommand() {
-            var command = new Command("microsoft-graph-ispmt");
+        public Command BuildIspmtCommand() {
+            var command = new Command("ispmt");
             command.Description = "Provides operations to call the ispmt method.";
-            var builder = new MicrosoftGraphIspmtRequestBuilder(PathParameters);
+            var builder = new IspmtRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the isref method.
         /// </summary>
-        public Command BuildMicrosoftGraphIsrefCommand() {
-            var command = new Command("microsoft-graph-isref");
+        public Command BuildIsrefCommand() {
+            var command = new Command("isref");
             command.Description = "Provides operations to call the isref method.";
-            var builder = new MicrosoftGraphIsrefRequestBuilder(PathParameters);
+            var builder = new IsrefRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the isText method.
         /// </summary>
-        public Command BuildMicrosoftGraphIsTextCommand() {
-            var command = new Command("microsoft-graph-is-text");
+        public Command BuildIsTextCommand() {
+            var command = new Command("is-text");
             command.Description = "Provides operations to call the isText method.";
-            var builder = new MicrosoftGraphIsTextRequestBuilder(PathParameters);
+            var builder = new IsTextRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the kurt method.
         /// </summary>
-        public Command BuildMicrosoftGraphKurtCommand() {
-            var command = new Command("microsoft-graph-kurt");
+        public Command BuildKurtCommand() {
+            var command = new Command("kurt");
             command.Description = "Provides operations to call the kurt method.";
-            var builder = new MicrosoftGraphKurtRequestBuilder(PathParameters);
+            var builder = new KurtRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the large method.
         /// </summary>
-        public Command BuildMicrosoftGraphLargeCommand() {
-            var command = new Command("microsoft-graph-large");
+        public Command BuildLargeCommand() {
+            var command = new Command("large");
             command.Description = "Provides operations to call the large method.";
-            var builder = new MicrosoftGraphLargeRequestBuilder(PathParameters);
+            var builder = new LargeRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the lcm method.
         /// </summary>
-        public Command BuildMicrosoftGraphLcmCommand() {
-            var command = new Command("microsoft-graph-lcm");
+        public Command BuildLcmCommand() {
+            var command = new Command("lcm");
             command.Description = "Provides operations to call the lcm method.";
-            var builder = new MicrosoftGraphLcmRequestBuilder(PathParameters);
+            var builder = new LcmRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the leftb method.
         /// </summary>
-        public Command BuildMicrosoftGraphLeftbCommand() {
-            var command = new Command("microsoft-graph-leftb");
+        public Command BuildLeftbCommand() {
+            var command = new Command("leftb");
             command.Description = "Provides operations to call the leftb method.";
-            var builder = new MicrosoftGraphLeftbRequestBuilder(PathParameters);
+            var builder = new LeftbRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the left method.
         /// </summary>
-        public Command BuildMicrosoftGraphLeftCommand() {
-            var command = new Command("microsoft-graph-left");
+        public Command BuildLeftCommand() {
+            var command = new Command("left");
             command.Description = "Provides operations to call the left method.";
-            var builder = new MicrosoftGraphLeftRequestBuilder(PathParameters);
+            var builder = new LeftRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the lenb method.
         /// </summary>
-        public Command BuildMicrosoftGraphLenbCommand() {
-            var command = new Command("microsoft-graph-lenb");
+        public Command BuildLenbCommand() {
+            var command = new Command("lenb");
             command.Description = "Provides operations to call the lenb method.";
-            var builder = new MicrosoftGraphLenbRequestBuilder(PathParameters);
+            var builder = new LenbRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the len method.
         /// </summary>
-        public Command BuildMicrosoftGraphLenCommand() {
-            var command = new Command("microsoft-graph-len");
+        public Command BuildLenCommand() {
+            var command = new Command("len");
             command.Description = "Provides operations to call the len method.";
-            var builder = new MicrosoftGraphLenRequestBuilder(PathParameters);
+            var builder = new LenRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the ln method.
         /// </summary>
-        public Command BuildMicrosoftGraphLnCommand() {
-            var command = new Command("microsoft-graph-ln");
+        public Command BuildLnCommand() {
+            var command = new Command("ln");
             command.Description = "Provides operations to call the ln method.";
-            var builder = new MicrosoftGraphLnRequestBuilder(PathParameters);
+            var builder = new LnRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the log10 method.
         /// </summary>
-        public Command BuildMicrosoftGraphLog10Command() {
-            var command = new Command("microsoft-graph-log10");
+        public Command BuildLog10Command() {
+            var command = new Command("log10");
             command.Description = "Provides operations to call the log10 method.";
-            var builder = new MicrosoftGraphLog10RequestBuilder(PathParameters);
+            var builder = new Log10RequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the log method.
         /// </summary>
-        public Command BuildMicrosoftGraphLogCommand() {
-            var command = new Command("microsoft-graph-log");
+        public Command BuildLogCommand() {
+            var command = new Command("log");
             command.Description = "Provides operations to call the log method.";
-            var builder = new MicrosoftGraphLogRequestBuilder(PathParameters);
+            var builder = new LogRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the logNorm_Dist method.
         /// </summary>
-        public Command BuildMicrosoftGraphLogNorm_DistCommand() {
-            var command = new Command("microsoft-graph-log-norm_-dist");
+        public Command BuildLogNorm_DistCommand() {
+            var command = new Command("log-norm_-dist");
             command.Description = "Provides operations to call the logNorm_Dist method.";
-            var builder = new MicrosoftGraphLogNorm_DistRequestBuilder(PathParameters);
+            var builder = new LogNorm_DistRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the logNorm_Inv method.
         /// </summary>
-        public Command BuildMicrosoftGraphLogNorm_InvCommand() {
-            var command = new Command("microsoft-graph-log-norm_-inv");
+        public Command BuildLogNorm_InvCommand() {
+            var command = new Command("log-norm_-inv");
             command.Description = "Provides operations to call the logNorm_Inv method.";
-            var builder = new MicrosoftGraphLogNorm_InvRequestBuilder(PathParameters);
+            var builder = new LogNorm_InvRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the lookup method.
         /// </summary>
-        public Command BuildMicrosoftGraphLookupCommand() {
-            var command = new Command("microsoft-graph-lookup");
+        public Command BuildLookupCommand() {
+            var command = new Command("lookup");
             command.Description = "Provides operations to call the lookup method.";
-            var builder = new MicrosoftGraphLookupRequestBuilder(PathParameters);
+            var builder = new LookupRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the lower method.
         /// </summary>
-        public Command BuildMicrosoftGraphLowerCommand() {
-            var command = new Command("microsoft-graph-lower");
+        public Command BuildLowerCommand() {
+            var command = new Command("lower");
             command.Description = "Provides operations to call the lower method.";
-            var builder = new MicrosoftGraphLowerRequestBuilder(PathParameters);
+            var builder = new LowerRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the match method.
         /// </summary>
-        public Command BuildMicrosoftGraphMatchCommand() {
-            var command = new Command("microsoft-graph-match");
+        public Command BuildMatchCommand() {
+            var command = new Command("match");
             command.Description = "Provides operations to call the match method.";
-            var builder = new MicrosoftGraphMatchRequestBuilder(PathParameters);
+            var builder = new MatchRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the maxA method.
         /// </summary>
-        public Command BuildMicrosoftGraphMaxACommand() {
-            var command = new Command("microsoft-graph-max-a");
+        public Command BuildMaxACommand() {
+            var command = new Command("max-a");
             command.Description = "Provides operations to call the maxA method.";
-            var builder = new MicrosoftGraphMaxARequestBuilder(PathParameters);
+            var builder = new MaxARequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the max method.
         /// </summary>
-        public Command BuildMicrosoftGraphMaxCommand() {
-            var command = new Command("microsoft-graph-max");
+        public Command BuildMaxCommand() {
+            var command = new Command("max");
             command.Description = "Provides operations to call the max method.";
-            var builder = new MicrosoftGraphMaxRequestBuilder(PathParameters);
+            var builder = new MaxRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the mduration method.
         /// </summary>
-        public Command BuildMicrosoftGraphMdurationCommand() {
-            var command = new Command("microsoft-graph-mduration");
+        public Command BuildMdurationCommand() {
+            var command = new Command("mduration");
             command.Description = "Provides operations to call the mduration method.";
-            var builder = new MicrosoftGraphMdurationRequestBuilder(PathParameters);
+            var builder = new MdurationRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the median method.
         /// </summary>
-        public Command BuildMicrosoftGraphMedianCommand() {
-            var command = new Command("microsoft-graph-median");
+        public Command BuildMedianCommand() {
+            var command = new Command("median");
             command.Description = "Provides operations to call the median method.";
-            var builder = new MicrosoftGraphMedianRequestBuilder(PathParameters);
+            var builder = new MedianRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the midb method.
         /// </summary>
-        public Command BuildMicrosoftGraphMidbCommand() {
-            var command = new Command("microsoft-graph-midb");
+        public Command BuildMidbCommand() {
+            var command = new Command("midb");
             command.Description = "Provides operations to call the midb method.";
-            var builder = new MicrosoftGraphMidbRequestBuilder(PathParameters);
+            var builder = new MidbRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the mid method.
         /// </summary>
-        public Command BuildMicrosoftGraphMidCommand() {
-            var command = new Command("microsoft-graph-mid");
+        public Command BuildMidCommand() {
+            var command = new Command("mid");
             command.Description = "Provides operations to call the mid method.";
-            var builder = new MicrosoftGraphMidRequestBuilder(PathParameters);
+            var builder = new MidRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the minA method.
         /// </summary>
-        public Command BuildMicrosoftGraphMinACommand() {
-            var command = new Command("microsoft-graph-min-a");
+        public Command BuildMinACommand() {
+            var command = new Command("min-a");
             command.Description = "Provides operations to call the minA method.";
-            var builder = new MicrosoftGraphMinARequestBuilder(PathParameters);
+            var builder = new MinARequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the min method.
         /// </summary>
-        public Command BuildMicrosoftGraphMinCommand() {
-            var command = new Command("microsoft-graph-min");
+        public Command BuildMinCommand() {
+            var command = new Command("min");
             command.Description = "Provides operations to call the min method.";
-            var builder = new MicrosoftGraphMinRequestBuilder(PathParameters);
+            var builder = new MinRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the minute method.
         /// </summary>
-        public Command BuildMicrosoftGraphMinuteCommand() {
-            var command = new Command("microsoft-graph-minute");
+        public Command BuildMinuteCommand() {
+            var command = new Command("minute");
             command.Description = "Provides operations to call the minute method.";
-            var builder = new MicrosoftGraphMinuteRequestBuilder(PathParameters);
+            var builder = new MinuteRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the mirr method.
         /// </summary>
-        public Command BuildMicrosoftGraphMirrCommand() {
-            var command = new Command("microsoft-graph-mirr");
+        public Command BuildMirrCommand() {
+            var command = new Command("mirr");
             command.Description = "Provides operations to call the mirr method.";
-            var builder = new MicrosoftGraphMirrRequestBuilder(PathParameters);
+            var builder = new MirrRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the mod method.
         /// </summary>
-        public Command BuildMicrosoftGraphModCommand() {
-            var command = new Command("microsoft-graph-mod");
+        public Command BuildModCommand() {
+            var command = new Command("mod");
             command.Description = "Provides operations to call the mod method.";
-            var builder = new MicrosoftGraphModRequestBuilder(PathParameters);
+            var builder = new ModRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the month method.
         /// </summary>
-        public Command BuildMicrosoftGraphMonthCommand() {
-            var command = new Command("microsoft-graph-month");
+        public Command BuildMonthCommand() {
+            var command = new Command("month");
             command.Description = "Provides operations to call the month method.";
-            var builder = new MicrosoftGraphMonthRequestBuilder(PathParameters);
+            var builder = new MonthRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the mround method.
         /// </summary>
-        public Command BuildMicrosoftGraphMroundCommand() {
-            var command = new Command("microsoft-graph-mround");
+        public Command BuildMroundCommand() {
+            var command = new Command("mround");
             command.Description = "Provides operations to call the mround method.";
-            var builder = new MicrosoftGraphMroundRequestBuilder(PathParameters);
+            var builder = new MroundRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the multiNomial method.
         /// </summary>
-        public Command BuildMicrosoftGraphMultiNomialCommand() {
-            var command = new Command("microsoft-graph-multi-nomial");
+        public Command BuildMultiNomialCommand() {
+            var command = new Command("multi-nomial");
             command.Description = "Provides operations to call the multiNomial method.";
-            var builder = new MicrosoftGraphMultiNomialRequestBuilder(PathParameters);
+            var builder = new MultiNomialRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the na method.
         /// </summary>
-        public Command BuildMicrosoftGraphNaCommand() {
-            var command = new Command("microsoft-graph-na");
+        public Command BuildNaCommand() {
+            var command = new Command("na");
             command.Description = "Provides operations to call the na method.";
-            var builder = new MicrosoftGraphNaRequestBuilder(PathParameters);
+            var builder = new NaRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the n method.
         /// </summary>
-        public Command BuildMicrosoftGraphNCommand() {
-            var command = new Command("microsoft-graph-n");
+        public Command BuildNCommand() {
+            var command = new Command("n");
             command.Description = "Provides operations to call the n method.";
-            var builder = new MicrosoftGraphNRequestBuilder(PathParameters);
+            var builder = new NRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the negBinom_Dist method.
         /// </summary>
-        public Command BuildMicrosoftGraphNegBinom_DistCommand() {
-            var command = new Command("microsoft-graph-neg-binom_-dist");
+        public Command BuildNegBinom_DistCommand() {
+            var command = new Command("neg-binom_-dist");
             command.Description = "Provides operations to call the negBinom_Dist method.";
-            var builder = new MicrosoftGraphNegBinom_DistRequestBuilder(PathParameters);
+            var builder = new NegBinom_DistRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the networkDays_Intl method.
         /// </summary>
-        public Command BuildMicrosoftGraphNetworkDays_IntlCommand() {
-            var command = new Command("microsoft-graph-network-days_-intl");
+        public Command BuildNetworkDays_IntlCommand() {
+            var command = new Command("network-days_-intl");
             command.Description = "Provides operations to call the networkDays_Intl method.";
-            var builder = new MicrosoftGraphNetworkDays_IntlRequestBuilder(PathParameters);
+            var builder = new NetworkDays_IntlRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the networkDays method.
         /// </summary>
-        public Command BuildMicrosoftGraphNetworkDaysCommand() {
-            var command = new Command("microsoft-graph-network-days");
+        public Command BuildNetworkDaysCommand() {
+            var command = new Command("network-days");
             command.Description = "Provides operations to call the networkDays method.";
-            var builder = new MicrosoftGraphNetworkDaysRequestBuilder(PathParameters);
+            var builder = new NetworkDaysRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the nominal method.
         /// </summary>
-        public Command BuildMicrosoftGraphNominalCommand() {
-            var command = new Command("microsoft-graph-nominal");
+        public Command BuildNominalCommand() {
+            var command = new Command("nominal");
             command.Description = "Provides operations to call the nominal method.";
-            var builder = new MicrosoftGraphNominalRequestBuilder(PathParameters);
+            var builder = new NominalRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the norm_Dist method.
         /// </summary>
-        public Command BuildMicrosoftGraphNorm_DistCommand() {
-            var command = new Command("microsoft-graph-norm_-dist");
+        public Command BuildNorm_DistCommand() {
+            var command = new Command("norm_-dist");
             command.Description = "Provides operations to call the norm_Dist method.";
-            var builder = new MicrosoftGraphNorm_DistRequestBuilder(PathParameters);
+            var builder = new Norm_DistRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the norm_Inv method.
         /// </summary>
-        public Command BuildMicrosoftGraphNorm_InvCommand() {
-            var command = new Command("microsoft-graph-norm_-inv");
+        public Command BuildNorm_InvCommand() {
+            var command = new Command("norm_-inv");
             command.Description = "Provides operations to call the norm_Inv method.";
-            var builder = new MicrosoftGraphNorm_InvRequestBuilder(PathParameters);
+            var builder = new Norm_InvRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the norm_S_Dist method.
         /// </summary>
-        public Command BuildMicrosoftGraphNorm_S_DistCommand() {
-            var command = new Command("microsoft-graph-norm_-s_-dist");
+        public Command BuildNorm_S_DistCommand() {
+            var command = new Command("norm_-s_-dist");
             command.Description = "Provides operations to call the norm_S_Dist method.";
-            var builder = new MicrosoftGraphNorm_S_DistRequestBuilder(PathParameters);
+            var builder = new Norm_S_DistRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the norm_S_Inv method.
         /// </summary>
-        public Command BuildMicrosoftGraphNorm_S_InvCommand() {
-            var command = new Command("microsoft-graph-norm_-s_-inv");
+        public Command BuildNorm_S_InvCommand() {
+            var command = new Command("norm_-s_-inv");
             command.Description = "Provides operations to call the norm_S_Inv method.";
-            var builder = new MicrosoftGraphNorm_S_InvRequestBuilder(PathParameters);
+            var builder = new Norm_S_InvRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the not method.
         /// </summary>
-        public Command BuildMicrosoftGraphNotCommand() {
-            var command = new Command("microsoft-graph-not");
+        public Command BuildNotCommand() {
+            var command = new Command("not");
             command.Description = "Provides operations to call the not method.";
-            var builder = new MicrosoftGraphNotRequestBuilder(PathParameters);
+            var builder = new NotRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the now method.
         /// </summary>
-        public Command BuildMicrosoftGraphNowCommand() {
-            var command = new Command("microsoft-graph-now");
+        public Command BuildNowCommand() {
+            var command = new Command("now");
             command.Description = "Provides operations to call the now method.";
-            var builder = new MicrosoftGraphNowRequestBuilder(PathParameters);
+            var builder = new NowRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the nper method.
         /// </summary>
-        public Command BuildMicrosoftGraphNperCommand() {
-            var command = new Command("microsoft-graph-nper");
+        public Command BuildNperCommand() {
+            var command = new Command("nper");
             command.Description = "Provides operations to call the nper method.";
-            var builder = new MicrosoftGraphNperRequestBuilder(PathParameters);
+            var builder = new NperRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the npv method.
         /// </summary>
-        public Command BuildMicrosoftGraphNpvCommand() {
-            var command = new Command("microsoft-graph-npv");
+        public Command BuildNpvCommand() {
+            var command = new Command("npv");
             command.Description = "Provides operations to call the npv method.";
-            var builder = new MicrosoftGraphNpvRequestBuilder(PathParameters);
+            var builder = new NpvRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the numberValue method.
         /// </summary>
-        public Command BuildMicrosoftGraphNumberValueCommand() {
-            var command = new Command("microsoft-graph-number-value");
+        public Command BuildNumberValueCommand() {
+            var command = new Command("number-value");
             command.Description = "Provides operations to call the numberValue method.";
-            var builder = new MicrosoftGraphNumberValueRequestBuilder(PathParameters);
+            var builder = new NumberValueRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the oct2Bin method.
         /// </summary>
-        public Command BuildMicrosoftGraphOct2BinCommand() {
-            var command = new Command("microsoft-graph-oct2-bin");
+        public Command BuildOct2BinCommand() {
+            var command = new Command("oct2-bin");
             command.Description = "Provides operations to call the oct2Bin method.";
-            var builder = new MicrosoftGraphOct2BinRequestBuilder(PathParameters);
+            var builder = new Oct2BinRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the oct2Dec method.
         /// </summary>
-        public Command BuildMicrosoftGraphOct2DecCommand() {
-            var command = new Command("microsoft-graph-oct2-dec");
+        public Command BuildOct2DecCommand() {
+            var command = new Command("oct2-dec");
             command.Description = "Provides operations to call the oct2Dec method.";
-            var builder = new MicrosoftGraphOct2DecRequestBuilder(PathParameters);
+            var builder = new Oct2DecRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the oct2Hex method.
         /// </summary>
-        public Command BuildMicrosoftGraphOct2HexCommand() {
-            var command = new Command("microsoft-graph-oct2-hex");
+        public Command BuildOct2HexCommand() {
+            var command = new Command("oct2-hex");
             command.Description = "Provides operations to call the oct2Hex method.";
-            var builder = new MicrosoftGraphOct2HexRequestBuilder(PathParameters);
+            var builder = new Oct2HexRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the odd method.
         /// </summary>
-        public Command BuildMicrosoftGraphOddCommand() {
-            var command = new Command("microsoft-graph-odd");
+        public Command BuildOddCommand() {
+            var command = new Command("odd");
             command.Description = "Provides operations to call the odd method.";
-            var builder = new MicrosoftGraphOddRequestBuilder(PathParameters);
+            var builder = new OddRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the oddFPrice method.
         /// </summary>
-        public Command BuildMicrosoftGraphOddFPriceCommand() {
-            var command = new Command("microsoft-graph-odd-f-price");
+        public Command BuildOddFPriceCommand() {
+            var command = new Command("odd-f-price");
             command.Description = "Provides operations to call the oddFPrice method.";
-            var builder = new MicrosoftGraphOddFPriceRequestBuilder(PathParameters);
+            var builder = new OddFPriceRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the oddFYield method.
         /// </summary>
-        public Command BuildMicrosoftGraphOddFYieldCommand() {
-            var command = new Command("microsoft-graph-odd-f-yield");
+        public Command BuildOddFYieldCommand() {
+            var command = new Command("odd-f-yield");
             command.Description = "Provides operations to call the oddFYield method.";
-            var builder = new MicrosoftGraphOddFYieldRequestBuilder(PathParameters);
+            var builder = new OddFYieldRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the oddLPrice method.
         /// </summary>
-        public Command BuildMicrosoftGraphOddLPriceCommand() {
-            var command = new Command("microsoft-graph-odd-l-price");
+        public Command BuildOddLPriceCommand() {
+            var command = new Command("odd-l-price");
             command.Description = "Provides operations to call the oddLPrice method.";
-            var builder = new MicrosoftGraphOddLPriceRequestBuilder(PathParameters);
+            var builder = new OddLPriceRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the oddLYield method.
         /// </summary>
-        public Command BuildMicrosoftGraphOddLYieldCommand() {
-            var command = new Command("microsoft-graph-odd-l-yield");
+        public Command BuildOddLYieldCommand() {
+            var command = new Command("odd-l-yield");
             command.Description = "Provides operations to call the oddLYield method.";
-            var builder = new MicrosoftGraphOddLYieldRequestBuilder(PathParameters);
+            var builder = new OddLYieldRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the or method.
         /// </summary>
-        public Command BuildMicrosoftGraphOrCommand() {
-            var command = new Command("microsoft-graph-or");
+        public Command BuildOrCommand() {
+            var command = new Command("or");
             command.Description = "Provides operations to call the or method.";
-            var builder = new MicrosoftGraphOrRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the pduration method.
-        /// </summary>
-        public Command BuildMicrosoftGraphPdurationCommand() {
-            var command = new Command("microsoft-graph-pduration");
-            command.Description = "Provides operations to call the pduration method.";
-            var builder = new MicrosoftGraphPdurationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the percentile_Exc method.
-        /// </summary>
-        public Command BuildMicrosoftGraphPercentile_ExcCommand() {
-            var command = new Command("microsoft-graph-percentile_-exc");
-            command.Description = "Provides operations to call the percentile_Exc method.";
-            var builder = new MicrosoftGraphPercentile_ExcRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the percentile_Inc method.
-        /// </summary>
-        public Command BuildMicrosoftGraphPercentile_IncCommand() {
-            var command = new Command("microsoft-graph-percentile_-inc");
-            command.Description = "Provides operations to call the percentile_Inc method.";
-            var builder = new MicrosoftGraphPercentile_IncRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the percentRank_Exc method.
-        /// </summary>
-        public Command BuildMicrosoftGraphPercentRank_ExcCommand() {
-            var command = new Command("microsoft-graph-percent-rank_-exc");
-            command.Description = "Provides operations to call the percentRank_Exc method.";
-            var builder = new MicrosoftGraphPercentRank_ExcRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the percentRank_Inc method.
-        /// </summary>
-        public Command BuildMicrosoftGraphPercentRank_IncCommand() {
-            var command = new Command("microsoft-graph-percent-rank_-inc");
-            command.Description = "Provides operations to call the percentRank_Inc method.";
-            var builder = new MicrosoftGraphPercentRank_IncRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the permutationa method.
-        /// </summary>
-        public Command BuildMicrosoftGraphPermutationaCommand() {
-            var command = new Command("microsoft-graph-permutationa");
-            command.Description = "Provides operations to call the permutationa method.";
-            var builder = new MicrosoftGraphPermutationaRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the permut method.
-        /// </summary>
-        public Command BuildMicrosoftGraphPermutCommand() {
-            var command = new Command("microsoft-graph-permut");
-            command.Description = "Provides operations to call the permut method.";
-            var builder = new MicrosoftGraphPermutRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the phi method.
-        /// </summary>
-        public Command BuildMicrosoftGraphPhiCommand() {
-            var command = new Command("microsoft-graph-phi");
-            command.Description = "Provides operations to call the phi method.";
-            var builder = new MicrosoftGraphPhiRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the pi method.
-        /// </summary>
-        public Command BuildMicrosoftGraphPiCommand() {
-            var command = new Command("microsoft-graph-pi");
-            command.Description = "Provides operations to call the pi method.";
-            var builder = new MicrosoftGraphPiRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the pmt method.
-        /// </summary>
-        public Command BuildMicrosoftGraphPmtCommand() {
-            var command = new Command("microsoft-graph-pmt");
-            command.Description = "Provides operations to call the pmt method.";
-            var builder = new MicrosoftGraphPmtRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the poisson_Dist method.
-        /// </summary>
-        public Command BuildMicrosoftGraphPoisson_DistCommand() {
-            var command = new Command("microsoft-graph-poisson_-dist");
-            command.Description = "Provides operations to call the poisson_Dist method.";
-            var builder = new MicrosoftGraphPoisson_DistRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the power method.
-        /// </summary>
-        public Command BuildMicrosoftGraphPowerCommand() {
-            var command = new Command("microsoft-graph-power");
-            command.Description = "Provides operations to call the power method.";
-            var builder = new MicrosoftGraphPowerRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the ppmt method.
-        /// </summary>
-        public Command BuildMicrosoftGraphPpmtCommand() {
-            var command = new Command("microsoft-graph-ppmt");
-            command.Description = "Provides operations to call the ppmt method.";
-            var builder = new MicrosoftGraphPpmtRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the price method.
-        /// </summary>
-        public Command BuildMicrosoftGraphPriceCommand() {
-            var command = new Command("microsoft-graph-price");
-            command.Description = "Provides operations to call the price method.";
-            var builder = new MicrosoftGraphPriceRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the priceDisc method.
-        /// </summary>
-        public Command BuildMicrosoftGraphPriceDiscCommand() {
-            var command = new Command("microsoft-graph-price-disc");
-            command.Description = "Provides operations to call the priceDisc method.";
-            var builder = new MicrosoftGraphPriceDiscRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the priceMat method.
-        /// </summary>
-        public Command BuildMicrosoftGraphPriceMatCommand() {
-            var command = new Command("microsoft-graph-price-mat");
-            command.Description = "Provides operations to call the priceMat method.";
-            var builder = new MicrosoftGraphPriceMatRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the product method.
-        /// </summary>
-        public Command BuildMicrosoftGraphProductCommand() {
-            var command = new Command("microsoft-graph-product");
-            command.Description = "Provides operations to call the product method.";
-            var builder = new MicrosoftGraphProductRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the proper method.
-        /// </summary>
-        public Command BuildMicrosoftGraphProperCommand() {
-            var command = new Command("microsoft-graph-proper");
-            command.Description = "Provides operations to call the proper method.";
-            var builder = new MicrosoftGraphProperRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the pv method.
-        /// </summary>
-        public Command BuildMicrosoftGraphPvCommand() {
-            var command = new Command("microsoft-graph-pv");
-            command.Description = "Provides operations to call the pv method.";
-            var builder = new MicrosoftGraphPvRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the quartile_Exc method.
-        /// </summary>
-        public Command BuildMicrosoftGraphQuartile_ExcCommand() {
-            var command = new Command("microsoft-graph-quartile_-exc");
-            command.Description = "Provides operations to call the quartile_Exc method.";
-            var builder = new MicrosoftGraphQuartile_ExcRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the quartile_Inc method.
-        /// </summary>
-        public Command BuildMicrosoftGraphQuartile_IncCommand() {
-            var command = new Command("microsoft-graph-quartile_-inc");
-            command.Description = "Provides operations to call the quartile_Inc method.";
-            var builder = new MicrosoftGraphQuartile_IncRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the quotient method.
-        /// </summary>
-        public Command BuildMicrosoftGraphQuotientCommand() {
-            var command = new Command("microsoft-graph-quotient");
-            command.Description = "Provides operations to call the quotient method.";
-            var builder = new MicrosoftGraphQuotientRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the radians method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRadiansCommand() {
-            var command = new Command("microsoft-graph-radians");
-            command.Description = "Provides operations to call the radians method.";
-            var builder = new MicrosoftGraphRadiansRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the randBetween method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRandBetweenCommand() {
-            var command = new Command("microsoft-graph-rand-between");
-            command.Description = "Provides operations to call the randBetween method.";
-            var builder = new MicrosoftGraphRandBetweenRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the rand method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRandCommand() {
-            var command = new Command("microsoft-graph-rand");
-            command.Description = "Provides operations to call the rand method.";
-            var builder = new MicrosoftGraphRandRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the rank_Avg method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRank_AvgCommand() {
-            var command = new Command("microsoft-graph-rank_-avg");
-            command.Description = "Provides operations to call the rank_Avg method.";
-            var builder = new MicrosoftGraphRank_AvgRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the rank_Eq method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRank_EqCommand() {
-            var command = new Command("microsoft-graph-rank_-eq");
-            command.Description = "Provides operations to call the rank_Eq method.";
-            var builder = new MicrosoftGraphRank_EqRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the rate method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRateCommand() {
-            var command = new Command("microsoft-graph-rate");
-            command.Description = "Provides operations to call the rate method.";
-            var builder = new MicrosoftGraphRateRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the received method.
-        /// </summary>
-        public Command BuildMicrosoftGraphReceivedCommand() {
-            var command = new Command("microsoft-graph-received");
-            command.Description = "Provides operations to call the received method.";
-            var builder = new MicrosoftGraphReceivedRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the replaceB method.
-        /// </summary>
-        public Command BuildMicrosoftGraphReplaceBCommand() {
-            var command = new Command("microsoft-graph-replace-b");
-            command.Description = "Provides operations to call the replaceB method.";
-            var builder = new MicrosoftGraphReplaceBRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the replace method.
-        /// </summary>
-        public Command BuildMicrosoftGraphReplaceCommand() {
-            var command = new Command("microsoft-graph-replace");
-            command.Description = "Provides operations to call the replace method.";
-            var builder = new MicrosoftGraphReplaceRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the rept method.
-        /// </summary>
-        public Command BuildMicrosoftGraphReptCommand() {
-            var command = new Command("microsoft-graph-rept");
-            command.Description = "Provides operations to call the rept method.";
-            var builder = new MicrosoftGraphReptRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the rightb method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRightbCommand() {
-            var command = new Command("microsoft-graph-rightb");
-            command.Description = "Provides operations to call the rightb method.";
-            var builder = new MicrosoftGraphRightbRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the right method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRightCommand() {
-            var command = new Command("microsoft-graph-right");
-            command.Description = "Provides operations to call the right method.";
-            var builder = new MicrosoftGraphRightRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the roman method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRomanCommand() {
-            var command = new Command("microsoft-graph-roman");
-            command.Description = "Provides operations to call the roman method.";
-            var builder = new MicrosoftGraphRomanRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the round method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRoundCommand() {
-            var command = new Command("microsoft-graph-round");
-            command.Description = "Provides operations to call the round method.";
-            var builder = new MicrosoftGraphRoundRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the roundDown method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRoundDownCommand() {
-            var command = new Command("microsoft-graph-round-down");
-            command.Description = "Provides operations to call the roundDown method.";
-            var builder = new MicrosoftGraphRoundDownRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the roundUp method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRoundUpCommand() {
-            var command = new Command("microsoft-graph-round-up");
-            command.Description = "Provides operations to call the roundUp method.";
-            var builder = new MicrosoftGraphRoundUpRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the rows method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRowsCommand() {
-            var command = new Command("microsoft-graph-rows");
-            command.Description = "Provides operations to call the rows method.";
-            var builder = new MicrosoftGraphRowsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the rri method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRriCommand() {
-            var command = new Command("microsoft-graph-rri");
-            command.Description = "Provides operations to call the rri method.";
-            var builder = new MicrosoftGraphRriRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the sec method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSecCommand() {
-            var command = new Command("microsoft-graph-sec");
-            command.Description = "Provides operations to call the sec method.";
-            var builder = new MicrosoftGraphSecRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the sech method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSechCommand() {
-            var command = new Command("microsoft-graph-sech");
-            command.Description = "Provides operations to call the sech method.";
-            var builder = new MicrosoftGraphSechRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the second method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSecondCommand() {
-            var command = new Command("microsoft-graph-second");
-            command.Description = "Provides operations to call the second method.";
-            var builder = new MicrosoftGraphSecondRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the seriesSum method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSeriesSumCommand() {
-            var command = new Command("microsoft-graph-series-sum");
-            command.Description = "Provides operations to call the seriesSum method.";
-            var builder = new MicrosoftGraphSeriesSumRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the sheet method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSheetCommand() {
-            var command = new Command("microsoft-graph-sheet");
-            command.Description = "Provides operations to call the sheet method.";
-            var builder = new MicrosoftGraphSheetRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the sheets method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSheetsCommand() {
-            var command = new Command("microsoft-graph-sheets");
-            command.Description = "Provides operations to call the sheets method.";
-            var builder = new MicrosoftGraphSheetsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the sign method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSignCommand() {
-            var command = new Command("microsoft-graph-sign");
-            command.Description = "Provides operations to call the sign method.";
-            var builder = new MicrosoftGraphSignRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the sin method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSinCommand() {
-            var command = new Command("microsoft-graph-sin");
-            command.Description = "Provides operations to call the sin method.";
-            var builder = new MicrosoftGraphSinRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the sinh method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSinhCommand() {
-            var command = new Command("microsoft-graph-sinh");
-            command.Description = "Provides operations to call the sinh method.";
-            var builder = new MicrosoftGraphSinhRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the skew_p method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSkew_pCommand() {
-            var command = new Command("microsoft-graph-skew_p");
-            command.Description = "Provides operations to call the skew_p method.";
-            var builder = new MicrosoftGraphSkew_pRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the skew method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSkewCommand() {
-            var command = new Command("microsoft-graph-skew");
-            command.Description = "Provides operations to call the skew method.";
-            var builder = new MicrosoftGraphSkewRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the sln method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSlnCommand() {
-            var command = new Command("microsoft-graph-sln");
-            command.Description = "Provides operations to call the sln method.";
-            var builder = new MicrosoftGraphSlnRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the small method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSmallCommand() {
-            var command = new Command("microsoft-graph-small");
-            command.Description = "Provides operations to call the small method.";
-            var builder = new MicrosoftGraphSmallRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the sqrt method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSqrtCommand() {
-            var command = new Command("microsoft-graph-sqrt");
-            command.Description = "Provides operations to call the sqrt method.";
-            var builder = new MicrosoftGraphSqrtRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the sqrtPi method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSqrtPiCommand() {
-            var command = new Command("microsoft-graph-sqrt-pi");
-            command.Description = "Provides operations to call the sqrtPi method.";
-            var builder = new MicrosoftGraphSqrtPiRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the standardize method.
-        /// </summary>
-        public Command BuildMicrosoftGraphStandardizeCommand() {
-            var command = new Command("microsoft-graph-standardize");
-            command.Description = "Provides operations to call the standardize method.";
-            var builder = new MicrosoftGraphStandardizeRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the stDev_P method.
-        /// </summary>
-        public Command BuildMicrosoftGraphStDev_PCommand() {
-            var command = new Command("microsoft-graph-st-dev_-p");
-            command.Description = "Provides operations to call the stDev_P method.";
-            var builder = new MicrosoftGraphStDev_PRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the stDev_S method.
-        /// </summary>
-        public Command BuildMicrosoftGraphStDev_SCommand() {
-            var command = new Command("microsoft-graph-st-dev_-s");
-            command.Description = "Provides operations to call the stDev_S method.";
-            var builder = new MicrosoftGraphStDev_SRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the stDevA method.
-        /// </summary>
-        public Command BuildMicrosoftGraphStDevACommand() {
-            var command = new Command("microsoft-graph-st-dev-a");
-            command.Description = "Provides operations to call the stDevA method.";
-            var builder = new MicrosoftGraphStDevARequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the stDevPA method.
-        /// </summary>
-        public Command BuildMicrosoftGraphStDevPACommand() {
-            var command = new Command("microsoft-graph-st-dev-p-a");
-            command.Description = "Provides operations to call the stDevPA method.";
-            var builder = new MicrosoftGraphStDevPARequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the substitute method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSubstituteCommand() {
-            var command = new Command("microsoft-graph-substitute");
-            command.Description = "Provides operations to call the substitute method.";
-            var builder = new MicrosoftGraphSubstituteRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the subtotal method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSubtotalCommand() {
-            var command = new Command("microsoft-graph-subtotal");
-            command.Description = "Provides operations to call the subtotal method.";
-            var builder = new MicrosoftGraphSubtotalRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the sum method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSumCommand() {
-            var command = new Command("microsoft-graph-sum");
-            command.Description = "Provides operations to call the sum method.";
-            var builder = new MicrosoftGraphSumRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the sumIf method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSumIfCommand() {
-            var command = new Command("microsoft-graph-sum-if");
-            command.Description = "Provides operations to call the sumIf method.";
-            var builder = new MicrosoftGraphSumIfRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the sumIfs method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSumIfsCommand() {
-            var command = new Command("microsoft-graph-sum-ifs");
-            command.Description = "Provides operations to call the sumIfs method.";
-            var builder = new MicrosoftGraphSumIfsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the sumSq method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSumSqCommand() {
-            var command = new Command("microsoft-graph-sum-sq");
-            command.Description = "Provides operations to call the sumSq method.";
-            var builder = new MicrosoftGraphSumSqRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the syd method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSydCommand() {
-            var command = new Command("microsoft-graph-syd");
-            command.Description = "Provides operations to call the syd method.";
-            var builder = new MicrosoftGraphSydRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the t_Dist_2T method.
-        /// </summary>
-        public Command BuildMicrosoftGraphT_Dist_2TCommand() {
-            var command = new Command("microsoft-graph-t_-dist_2-t");
-            command.Description = "Provides operations to call the t_Dist_2T method.";
-            var builder = new MicrosoftGraphT_Dist_2TRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the t_Dist_RT method.
-        /// </summary>
-        public Command BuildMicrosoftGraphT_Dist_RTCommand() {
-            var command = new Command("microsoft-graph-t_-dist_-r-t");
-            command.Description = "Provides operations to call the t_Dist_RT method.";
-            var builder = new MicrosoftGraphT_Dist_RTRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the t_Dist method.
-        /// </summary>
-        public Command BuildMicrosoftGraphT_DistCommand() {
-            var command = new Command("microsoft-graph-t_-dist");
-            command.Description = "Provides operations to call the t_Dist method.";
-            var builder = new MicrosoftGraphT_DistRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the t_Inv_2T method.
-        /// </summary>
-        public Command BuildMicrosoftGraphT_Inv_2TCommand() {
-            var command = new Command("microsoft-graph-t_-inv_2-t");
-            command.Description = "Provides operations to call the t_Inv_2T method.";
-            var builder = new MicrosoftGraphT_Inv_2TRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the t_Inv method.
-        /// </summary>
-        public Command BuildMicrosoftGraphT_InvCommand() {
-            var command = new Command("microsoft-graph-t_-inv");
-            command.Description = "Provides operations to call the t_Inv method.";
-            var builder = new MicrosoftGraphT_InvRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the tan method.
-        /// </summary>
-        public Command BuildMicrosoftGraphTanCommand() {
-            var command = new Command("microsoft-graph-tan");
-            command.Description = "Provides operations to call the tan method.";
-            var builder = new MicrosoftGraphTanRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the tanh method.
-        /// </summary>
-        public Command BuildMicrosoftGraphTanhCommand() {
-            var command = new Command("microsoft-graph-tanh");
-            command.Description = "Provides operations to call the tanh method.";
-            var builder = new MicrosoftGraphTanhRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the tbillEq method.
-        /// </summary>
-        public Command BuildMicrosoftGraphTbillEqCommand() {
-            var command = new Command("microsoft-graph-tbill-eq");
-            command.Description = "Provides operations to call the tbillEq method.";
-            var builder = new MicrosoftGraphTbillEqRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the tbillPrice method.
-        /// </summary>
-        public Command BuildMicrosoftGraphTbillPriceCommand() {
-            var command = new Command("microsoft-graph-tbill-price");
-            command.Description = "Provides operations to call the tbillPrice method.";
-            var builder = new MicrosoftGraphTbillPriceRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the tbillYield method.
-        /// </summary>
-        public Command BuildMicrosoftGraphTbillYieldCommand() {
-            var command = new Command("microsoft-graph-tbill-yield");
-            command.Description = "Provides operations to call the tbillYield method.";
-            var builder = new MicrosoftGraphTbillYieldRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the t method.
-        /// </summary>
-        public Command BuildMicrosoftGraphTCommand() {
-            var command = new Command("microsoft-graph-t");
-            command.Description = "Provides operations to call the t method.";
-            var builder = new MicrosoftGraphTRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the text method.
-        /// </summary>
-        public Command BuildMicrosoftGraphTextCommand() {
-            var command = new Command("microsoft-graph-text");
-            command.Description = "Provides operations to call the text method.";
-            var builder = new MicrosoftGraphTextRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the time method.
-        /// </summary>
-        public Command BuildMicrosoftGraphTimeCommand() {
-            var command = new Command("microsoft-graph-time");
-            command.Description = "Provides operations to call the time method.";
-            var builder = new MicrosoftGraphTimeRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the timevalue method.
-        /// </summary>
-        public Command BuildMicrosoftGraphTimevalueCommand() {
-            var command = new Command("microsoft-graph-timevalue");
-            command.Description = "Provides operations to call the timevalue method.";
-            var builder = new MicrosoftGraphTimevalueRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the today method.
-        /// </summary>
-        public Command BuildMicrosoftGraphTodayCommand() {
-            var command = new Command("microsoft-graph-today");
-            command.Description = "Provides operations to call the today method.";
-            var builder = new MicrosoftGraphTodayRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the trim method.
-        /// </summary>
-        public Command BuildMicrosoftGraphTrimCommand() {
-            var command = new Command("microsoft-graph-trim");
-            command.Description = "Provides operations to call the trim method.";
-            var builder = new MicrosoftGraphTrimRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the trimMean method.
-        /// </summary>
-        public Command BuildMicrosoftGraphTrimMeanCommand() {
-            var command = new Command("microsoft-graph-trim-mean");
-            command.Description = "Provides operations to call the trimMean method.";
-            var builder = new MicrosoftGraphTrimMeanRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the true method.
-        /// </summary>
-        public Command BuildMicrosoftGraphTrueCommand() {
-            var command = new Command("microsoft-graph-true");
-            command.Description = "Provides operations to call the true method.";
-            var builder = new MicrosoftGraphTrueRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the trunc method.
-        /// </summary>
-        public Command BuildMicrosoftGraphTruncCommand() {
-            var command = new Command("microsoft-graph-trunc");
-            command.Description = "Provides operations to call the trunc method.";
-            var builder = new MicrosoftGraphTruncRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the type method.
-        /// </summary>
-        public Command BuildMicrosoftGraphTypeCommand() {
-            var command = new Command("microsoft-graph-type");
-            command.Description = "Provides operations to call the type method.";
-            var builder = new MicrosoftGraphTypeRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the unichar method.
-        /// </summary>
-        public Command BuildMicrosoftGraphUnicharCommand() {
-            var command = new Command("microsoft-graph-unichar");
-            command.Description = "Provides operations to call the unichar method.";
-            var builder = new MicrosoftGraphUnicharRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the unicode method.
-        /// </summary>
-        public Command BuildMicrosoftGraphUnicodeCommand() {
-            var command = new Command("microsoft-graph-unicode");
-            command.Description = "Provides operations to call the unicode method.";
-            var builder = new MicrosoftGraphUnicodeRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the upper method.
-        /// </summary>
-        public Command BuildMicrosoftGraphUpperCommand() {
-            var command = new Command("microsoft-graph-upper");
-            command.Description = "Provides operations to call the upper method.";
-            var builder = new MicrosoftGraphUpperRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the usdollar method.
-        /// </summary>
-        public Command BuildMicrosoftGraphUsdollarCommand() {
-            var command = new Command("microsoft-graph-usdollar");
-            command.Description = "Provides operations to call the usdollar method.";
-            var builder = new MicrosoftGraphUsdollarRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the value method.
-        /// </summary>
-        public Command BuildMicrosoftGraphValueCommand() {
-            var command = new Command("microsoft-graph-value");
-            command.Description = "Provides operations to call the value method.";
-            var builder = new MicrosoftGraphValueRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the var_P method.
-        /// </summary>
-        public Command BuildMicrosoftGraphVar_PCommand() {
-            var command = new Command("microsoft-graph-var_-p");
-            command.Description = "Provides operations to call the var_P method.";
-            var builder = new MicrosoftGraphVar_PRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the var_S method.
-        /// </summary>
-        public Command BuildMicrosoftGraphVar_SCommand() {
-            var command = new Command("microsoft-graph-var_-s");
-            command.Description = "Provides operations to call the var_S method.";
-            var builder = new MicrosoftGraphVar_SRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the varA method.
-        /// </summary>
-        public Command BuildMicrosoftGraphVarACommand() {
-            var command = new Command("microsoft-graph-var-a");
-            command.Description = "Provides operations to call the varA method.";
-            var builder = new MicrosoftGraphVarARequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the varPA method.
-        /// </summary>
-        public Command BuildMicrosoftGraphVarPACommand() {
-            var command = new Command("microsoft-graph-var-p-a");
-            command.Description = "Provides operations to call the varPA method.";
-            var builder = new MicrosoftGraphVarPARequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the vdb method.
-        /// </summary>
-        public Command BuildMicrosoftGraphVdbCommand() {
-            var command = new Command("microsoft-graph-vdb");
-            command.Description = "Provides operations to call the vdb method.";
-            var builder = new MicrosoftGraphVdbRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the vlookup method.
-        /// </summary>
-        public Command BuildMicrosoftGraphVlookupCommand() {
-            var command = new Command("microsoft-graph-vlookup");
-            command.Description = "Provides operations to call the vlookup method.";
-            var builder = new MicrosoftGraphVlookupRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the weekday method.
-        /// </summary>
-        public Command BuildMicrosoftGraphWeekdayCommand() {
-            var command = new Command("microsoft-graph-weekday");
-            command.Description = "Provides operations to call the weekday method.";
-            var builder = new MicrosoftGraphWeekdayRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the weekNum method.
-        /// </summary>
-        public Command BuildMicrosoftGraphWeekNumCommand() {
-            var command = new Command("microsoft-graph-week-num");
-            command.Description = "Provides operations to call the weekNum method.";
-            var builder = new MicrosoftGraphWeekNumRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the weibull_Dist method.
-        /// </summary>
-        public Command BuildMicrosoftGraphWeibull_DistCommand() {
-            var command = new Command("microsoft-graph-weibull_-dist");
-            command.Description = "Provides operations to call the weibull_Dist method.";
-            var builder = new MicrosoftGraphWeibull_DistRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the workDay_Intl method.
-        /// </summary>
-        public Command BuildMicrosoftGraphWorkDay_IntlCommand() {
-            var command = new Command("microsoft-graph-work-day_-intl");
-            command.Description = "Provides operations to call the workDay_Intl method.";
-            var builder = new MicrosoftGraphWorkDay_IntlRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the workDay method.
-        /// </summary>
-        public Command BuildMicrosoftGraphWorkDayCommand() {
-            var command = new Command("microsoft-graph-work-day");
-            command.Description = "Provides operations to call the workDay method.";
-            var builder = new MicrosoftGraphWorkDayRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the xirr method.
-        /// </summary>
-        public Command BuildMicrosoftGraphXirrCommand() {
-            var command = new Command("microsoft-graph-xirr");
-            command.Description = "Provides operations to call the xirr method.";
-            var builder = new MicrosoftGraphXirrRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the xnpv method.
-        /// </summary>
-        public Command BuildMicrosoftGraphXnpvCommand() {
-            var command = new Command("microsoft-graph-xnpv");
-            command.Description = "Provides operations to call the xnpv method.";
-            var builder = new MicrosoftGraphXnpvRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the xor method.
-        /// </summary>
-        public Command BuildMicrosoftGraphXorCommand() {
-            var command = new Command("microsoft-graph-xor");
-            command.Description = "Provides operations to call the xor method.";
-            var builder = new MicrosoftGraphXorRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the year method.
-        /// </summary>
-        public Command BuildMicrosoftGraphYearCommand() {
-            var command = new Command("microsoft-graph-year");
-            command.Description = "Provides operations to call the year method.";
-            var builder = new MicrosoftGraphYearRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the yearFrac method.
-        /// </summary>
-        public Command BuildMicrosoftGraphYearFracCommand() {
-            var command = new Command("microsoft-graph-year-frac");
-            command.Description = "Provides operations to call the yearFrac method.";
-            var builder = new MicrosoftGraphYearFracRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the yield method.
-        /// </summary>
-        public Command BuildMicrosoftGraphYieldCommand() {
-            var command = new Command("microsoft-graph-yield");
-            command.Description = "Provides operations to call the yield method.";
-            var builder = new MicrosoftGraphYieldRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the yieldDisc method.
-        /// </summary>
-        public Command BuildMicrosoftGraphYieldDiscCommand() {
-            var command = new Command("microsoft-graph-yield-disc");
-            command.Description = "Provides operations to call the yieldDisc method.";
-            var builder = new MicrosoftGraphYieldDiscRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the yieldMat method.
-        /// </summary>
-        public Command BuildMicrosoftGraphYieldMatCommand() {
-            var command = new Command("microsoft-graph-yield-mat");
-            command.Description = "Provides operations to call the yieldMat method.";
-            var builder = new MicrosoftGraphYieldMatRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the z_Test method.
-        /// </summary>
-        public Command BuildMicrosoftGraphZ_TestCommand() {
-            var command = new Command("microsoft-graph-z_-test");
-            command.Description = "Provides operations to call the z_Test method.";
-            var builder = new MicrosoftGraphZ_TestRequestBuilder(PathParameters);
+            var builder = new OrRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -4164,11 +3044,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
             var command = new Command("patch");
             command.Description = "Update the navigation property functions in drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
@@ -4208,6 +3088,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
                 });
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -4218,6 +3099,1126 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the pduration method.
+        /// </summary>
+        public Command BuildPdurationCommand() {
+            var command = new Command("pduration");
+            command.Description = "Provides operations to call the pduration method.";
+            var builder = new PdurationRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the percentile_Exc method.
+        /// </summary>
+        public Command BuildPercentile_ExcCommand() {
+            var command = new Command("percentile_-exc");
+            command.Description = "Provides operations to call the percentile_Exc method.";
+            var builder = new Percentile_ExcRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the percentile_Inc method.
+        /// </summary>
+        public Command BuildPercentile_IncCommand() {
+            var command = new Command("percentile_-inc");
+            command.Description = "Provides operations to call the percentile_Inc method.";
+            var builder = new Percentile_IncRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the percentRank_Exc method.
+        /// </summary>
+        public Command BuildPercentRank_ExcCommand() {
+            var command = new Command("percent-rank_-exc");
+            command.Description = "Provides operations to call the percentRank_Exc method.";
+            var builder = new PercentRank_ExcRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the percentRank_Inc method.
+        /// </summary>
+        public Command BuildPercentRank_IncCommand() {
+            var command = new Command("percent-rank_-inc");
+            command.Description = "Provides operations to call the percentRank_Inc method.";
+            var builder = new PercentRank_IncRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the permutationa method.
+        /// </summary>
+        public Command BuildPermutationaCommand() {
+            var command = new Command("permutationa");
+            command.Description = "Provides operations to call the permutationa method.";
+            var builder = new PermutationaRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the permut method.
+        /// </summary>
+        public Command BuildPermutCommand() {
+            var command = new Command("permut");
+            command.Description = "Provides operations to call the permut method.";
+            var builder = new PermutRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the phi method.
+        /// </summary>
+        public Command BuildPhiCommand() {
+            var command = new Command("phi");
+            command.Description = "Provides operations to call the phi method.";
+            var builder = new PhiRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the pi method.
+        /// </summary>
+        public Command BuildPiCommand() {
+            var command = new Command("pi");
+            command.Description = "Provides operations to call the pi method.";
+            var builder = new PiRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the pmt method.
+        /// </summary>
+        public Command BuildPmtCommand() {
+            var command = new Command("pmt");
+            command.Description = "Provides operations to call the pmt method.";
+            var builder = new PmtRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the poisson_Dist method.
+        /// </summary>
+        public Command BuildPoisson_DistCommand() {
+            var command = new Command("poisson_-dist");
+            command.Description = "Provides operations to call the poisson_Dist method.";
+            var builder = new Poisson_DistRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the power method.
+        /// </summary>
+        public Command BuildPowerCommand() {
+            var command = new Command("power");
+            command.Description = "Provides operations to call the power method.";
+            var builder = new PowerRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the ppmt method.
+        /// </summary>
+        public Command BuildPpmtCommand() {
+            var command = new Command("ppmt");
+            command.Description = "Provides operations to call the ppmt method.";
+            var builder = new PpmtRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the price method.
+        /// </summary>
+        public Command BuildPriceCommand() {
+            var command = new Command("price");
+            command.Description = "Provides operations to call the price method.";
+            var builder = new PriceRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the priceDisc method.
+        /// </summary>
+        public Command BuildPriceDiscCommand() {
+            var command = new Command("price-disc");
+            command.Description = "Provides operations to call the priceDisc method.";
+            var builder = new PriceDiscRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the priceMat method.
+        /// </summary>
+        public Command BuildPriceMatCommand() {
+            var command = new Command("price-mat");
+            command.Description = "Provides operations to call the priceMat method.";
+            var builder = new PriceMatRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the product method.
+        /// </summary>
+        public Command BuildProductCommand() {
+            var command = new Command("product");
+            command.Description = "Provides operations to call the product method.";
+            var builder = new ProductRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the proper method.
+        /// </summary>
+        public Command BuildProperCommand() {
+            var command = new Command("proper");
+            command.Description = "Provides operations to call the proper method.";
+            var builder = new ProperRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the pv method.
+        /// </summary>
+        public Command BuildPvCommand() {
+            var command = new Command("pv");
+            command.Description = "Provides operations to call the pv method.";
+            var builder = new PvRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the quartile_Exc method.
+        /// </summary>
+        public Command BuildQuartile_ExcCommand() {
+            var command = new Command("quartile_-exc");
+            command.Description = "Provides operations to call the quartile_Exc method.";
+            var builder = new Quartile_ExcRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the quartile_Inc method.
+        /// </summary>
+        public Command BuildQuartile_IncCommand() {
+            var command = new Command("quartile_-inc");
+            command.Description = "Provides operations to call the quartile_Inc method.";
+            var builder = new Quartile_IncRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the quotient method.
+        /// </summary>
+        public Command BuildQuotientCommand() {
+            var command = new Command("quotient");
+            command.Description = "Provides operations to call the quotient method.";
+            var builder = new QuotientRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the radians method.
+        /// </summary>
+        public Command BuildRadiansCommand() {
+            var command = new Command("radians");
+            command.Description = "Provides operations to call the radians method.";
+            var builder = new RadiansRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the randBetween method.
+        /// </summary>
+        public Command BuildRandBetweenCommand() {
+            var command = new Command("rand-between");
+            command.Description = "Provides operations to call the randBetween method.";
+            var builder = new RandBetweenRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the rand method.
+        /// </summary>
+        public Command BuildRandCommand() {
+            var command = new Command("rand");
+            command.Description = "Provides operations to call the rand method.";
+            var builder = new RandRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the rank_Avg method.
+        /// </summary>
+        public Command BuildRank_AvgCommand() {
+            var command = new Command("rank_-avg");
+            command.Description = "Provides operations to call the rank_Avg method.";
+            var builder = new Rank_AvgRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the rank_Eq method.
+        /// </summary>
+        public Command BuildRank_EqCommand() {
+            var command = new Command("rank_-eq");
+            command.Description = "Provides operations to call the rank_Eq method.";
+            var builder = new Rank_EqRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the rate method.
+        /// </summary>
+        public Command BuildRateCommand() {
+            var command = new Command("rate");
+            command.Description = "Provides operations to call the rate method.";
+            var builder = new RateRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the received method.
+        /// </summary>
+        public Command BuildReceivedCommand() {
+            var command = new Command("received");
+            command.Description = "Provides operations to call the received method.";
+            var builder = new ReceivedRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the replaceB method.
+        /// </summary>
+        public Command BuildReplaceBCommand() {
+            var command = new Command("replace-b");
+            command.Description = "Provides operations to call the replaceB method.";
+            var builder = new ReplaceBRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the replace method.
+        /// </summary>
+        public Command BuildReplaceCommand() {
+            var command = new Command("replace");
+            command.Description = "Provides operations to call the replace method.";
+            var builder = new ReplaceRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the rept method.
+        /// </summary>
+        public Command BuildReptCommand() {
+            var command = new Command("rept");
+            command.Description = "Provides operations to call the rept method.";
+            var builder = new ReptRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the rightb method.
+        /// </summary>
+        public Command BuildRightbCommand() {
+            var command = new Command("rightb");
+            command.Description = "Provides operations to call the rightb method.";
+            var builder = new RightbRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the right method.
+        /// </summary>
+        public Command BuildRightCommand() {
+            var command = new Command("right");
+            command.Description = "Provides operations to call the right method.";
+            var builder = new RightRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the roman method.
+        /// </summary>
+        public Command BuildRomanCommand() {
+            var command = new Command("roman");
+            command.Description = "Provides operations to call the roman method.";
+            var builder = new RomanRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the round method.
+        /// </summary>
+        public Command BuildRoundCommand() {
+            var command = new Command("round");
+            command.Description = "Provides operations to call the round method.";
+            var builder = new RoundRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the roundDown method.
+        /// </summary>
+        public Command BuildRoundDownCommand() {
+            var command = new Command("round-down");
+            command.Description = "Provides operations to call the roundDown method.";
+            var builder = new RoundDownRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the roundUp method.
+        /// </summary>
+        public Command BuildRoundUpCommand() {
+            var command = new Command("round-up");
+            command.Description = "Provides operations to call the roundUp method.";
+            var builder = new RoundUpRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the rows method.
+        /// </summary>
+        public Command BuildRowsCommand() {
+            var command = new Command("rows");
+            command.Description = "Provides operations to call the rows method.";
+            var builder = new RowsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the rri method.
+        /// </summary>
+        public Command BuildRriCommand() {
+            var command = new Command("rri");
+            command.Description = "Provides operations to call the rri method.";
+            var builder = new RriRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sec method.
+        /// </summary>
+        public Command BuildSecCommand() {
+            var command = new Command("sec");
+            command.Description = "Provides operations to call the sec method.";
+            var builder = new SecRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sech method.
+        /// </summary>
+        public Command BuildSechCommand() {
+            var command = new Command("sech");
+            command.Description = "Provides operations to call the sech method.";
+            var builder = new SechRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the second method.
+        /// </summary>
+        public Command BuildSecondCommand() {
+            var command = new Command("second");
+            command.Description = "Provides operations to call the second method.";
+            var builder = new SecondRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the seriesSum method.
+        /// </summary>
+        public Command BuildSeriesSumCommand() {
+            var command = new Command("series-sum");
+            command.Description = "Provides operations to call the seriesSum method.";
+            var builder = new SeriesSumRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sheet method.
+        /// </summary>
+        public Command BuildSheetCommand() {
+            var command = new Command("sheet");
+            command.Description = "Provides operations to call the sheet method.";
+            var builder = new SheetRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sheets method.
+        /// </summary>
+        public Command BuildSheetsCommand() {
+            var command = new Command("sheets");
+            command.Description = "Provides operations to call the sheets method.";
+            var builder = new SheetsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sign method.
+        /// </summary>
+        public Command BuildSignCommand() {
+            var command = new Command("sign");
+            command.Description = "Provides operations to call the sign method.";
+            var builder = new SignRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sin method.
+        /// </summary>
+        public Command BuildSinCommand() {
+            var command = new Command("sin");
+            command.Description = "Provides operations to call the sin method.";
+            var builder = new SinRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sinh method.
+        /// </summary>
+        public Command BuildSinhCommand() {
+            var command = new Command("sinh");
+            command.Description = "Provides operations to call the sinh method.";
+            var builder = new SinhRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the skew_p method.
+        /// </summary>
+        public Command BuildSkew_pCommand() {
+            var command = new Command("skew_p");
+            command.Description = "Provides operations to call the skew_p method.";
+            var builder = new Skew_pRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the skew method.
+        /// </summary>
+        public Command BuildSkewCommand() {
+            var command = new Command("skew");
+            command.Description = "Provides operations to call the skew method.";
+            var builder = new SkewRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sln method.
+        /// </summary>
+        public Command BuildSlnCommand() {
+            var command = new Command("sln");
+            command.Description = "Provides operations to call the sln method.";
+            var builder = new SlnRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the small method.
+        /// </summary>
+        public Command BuildSmallCommand() {
+            var command = new Command("small");
+            command.Description = "Provides operations to call the small method.";
+            var builder = new SmallRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sqrt method.
+        /// </summary>
+        public Command BuildSqrtCommand() {
+            var command = new Command("sqrt");
+            command.Description = "Provides operations to call the sqrt method.";
+            var builder = new SqrtRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sqrtPi method.
+        /// </summary>
+        public Command BuildSqrtPiCommand() {
+            var command = new Command("sqrt-pi");
+            command.Description = "Provides operations to call the sqrtPi method.";
+            var builder = new SqrtPiRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the standardize method.
+        /// </summary>
+        public Command BuildStandardizeCommand() {
+            var command = new Command("standardize");
+            command.Description = "Provides operations to call the standardize method.";
+            var builder = new StandardizeRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the stDev_P method.
+        /// </summary>
+        public Command BuildStDev_PCommand() {
+            var command = new Command("st-dev_-p");
+            command.Description = "Provides operations to call the stDev_P method.";
+            var builder = new StDev_PRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the stDev_S method.
+        /// </summary>
+        public Command BuildStDev_SCommand() {
+            var command = new Command("st-dev_-s");
+            command.Description = "Provides operations to call the stDev_S method.";
+            var builder = new StDev_SRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the stDevA method.
+        /// </summary>
+        public Command BuildStDevACommand() {
+            var command = new Command("st-dev-a");
+            command.Description = "Provides operations to call the stDevA method.";
+            var builder = new StDevARequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the stDevPA method.
+        /// </summary>
+        public Command BuildStDevPACommand() {
+            var command = new Command("st-dev-p-a");
+            command.Description = "Provides operations to call the stDevPA method.";
+            var builder = new StDevPARequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the substitute method.
+        /// </summary>
+        public Command BuildSubstituteCommand() {
+            var command = new Command("substitute");
+            command.Description = "Provides operations to call the substitute method.";
+            var builder = new SubstituteRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the subtotal method.
+        /// </summary>
+        public Command BuildSubtotalCommand() {
+            var command = new Command("subtotal");
+            command.Description = "Provides operations to call the subtotal method.";
+            var builder = new SubtotalRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sum method.
+        /// </summary>
+        public Command BuildSumCommand() {
+            var command = new Command("sum");
+            command.Description = "Provides operations to call the sum method.";
+            var builder = new SumRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sumIf method.
+        /// </summary>
+        public Command BuildSumIfCommand() {
+            var command = new Command("sum-if");
+            command.Description = "Provides operations to call the sumIf method.";
+            var builder = new SumIfRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sumIfs method.
+        /// </summary>
+        public Command BuildSumIfsCommand() {
+            var command = new Command("sum-ifs");
+            command.Description = "Provides operations to call the sumIfs method.";
+            var builder = new SumIfsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sumSq method.
+        /// </summary>
+        public Command BuildSumSqCommand() {
+            var command = new Command("sum-sq");
+            command.Description = "Provides operations to call the sumSq method.";
+            var builder = new SumSqRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the syd method.
+        /// </summary>
+        public Command BuildSydCommand() {
+            var command = new Command("syd");
+            command.Description = "Provides operations to call the syd method.";
+            var builder = new SydRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the t_Dist_2T method.
+        /// </summary>
+        public Command BuildT_Dist_2TCommand() {
+            var command = new Command("t_-dist_2-t");
+            command.Description = "Provides operations to call the t_Dist_2T method.";
+            var builder = new T_Dist_2TRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the t_Dist_RT method.
+        /// </summary>
+        public Command BuildT_Dist_RTCommand() {
+            var command = new Command("t_-dist_-r-t");
+            command.Description = "Provides operations to call the t_Dist_RT method.";
+            var builder = new T_Dist_RTRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the t_Dist method.
+        /// </summary>
+        public Command BuildT_DistCommand() {
+            var command = new Command("t_-dist");
+            command.Description = "Provides operations to call the t_Dist method.";
+            var builder = new T_DistRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the t_Inv_2T method.
+        /// </summary>
+        public Command BuildT_Inv_2TCommand() {
+            var command = new Command("t_-inv_2-t");
+            command.Description = "Provides operations to call the t_Inv_2T method.";
+            var builder = new T_Inv_2TRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the t_Inv method.
+        /// </summary>
+        public Command BuildT_InvCommand() {
+            var command = new Command("t_-inv");
+            command.Description = "Provides operations to call the t_Inv method.";
+            var builder = new T_InvRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the tan method.
+        /// </summary>
+        public Command BuildTanCommand() {
+            var command = new Command("tan");
+            command.Description = "Provides operations to call the tan method.";
+            var builder = new TanRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the tanh method.
+        /// </summary>
+        public Command BuildTanhCommand() {
+            var command = new Command("tanh");
+            command.Description = "Provides operations to call the tanh method.";
+            var builder = new TanhRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the tbillEq method.
+        /// </summary>
+        public Command BuildTbillEqCommand() {
+            var command = new Command("tbill-eq");
+            command.Description = "Provides operations to call the tbillEq method.";
+            var builder = new TbillEqRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the tbillPrice method.
+        /// </summary>
+        public Command BuildTbillPriceCommand() {
+            var command = new Command("tbill-price");
+            command.Description = "Provides operations to call the tbillPrice method.";
+            var builder = new TbillPriceRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the tbillYield method.
+        /// </summary>
+        public Command BuildTbillYieldCommand() {
+            var command = new Command("tbill-yield");
+            command.Description = "Provides operations to call the tbillYield method.";
+            var builder = new TbillYieldRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the t method.
+        /// </summary>
+        public Command BuildTCommand() {
+            var command = new Command("t");
+            command.Description = "Provides operations to call the t method.";
+            var builder = new TRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the text method.
+        /// </summary>
+        public Command BuildTextCommand() {
+            var command = new Command("text");
+            command.Description = "Provides operations to call the text method.";
+            var builder = new TextRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the time method.
+        /// </summary>
+        public Command BuildTimeCommand() {
+            var command = new Command("time");
+            command.Description = "Provides operations to call the time method.";
+            var builder = new TimeRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the timevalue method.
+        /// </summary>
+        public Command BuildTimevalueCommand() {
+            var command = new Command("timevalue");
+            command.Description = "Provides operations to call the timevalue method.";
+            var builder = new TimevalueRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the today method.
+        /// </summary>
+        public Command BuildTodayCommand() {
+            var command = new Command("today");
+            command.Description = "Provides operations to call the today method.";
+            var builder = new TodayRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the trim method.
+        /// </summary>
+        public Command BuildTrimCommand() {
+            var command = new Command("trim");
+            command.Description = "Provides operations to call the trim method.";
+            var builder = new TrimRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the trimMean method.
+        /// </summary>
+        public Command BuildTrimMeanCommand() {
+            var command = new Command("trim-mean");
+            command.Description = "Provides operations to call the trimMean method.";
+            var builder = new TrimMeanRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the true method.
+        /// </summary>
+        public Command BuildTrueCommand() {
+            var command = new Command("true");
+            command.Description = "Provides operations to call the true method.";
+            var builder = new TrueRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the trunc method.
+        /// </summary>
+        public Command BuildTruncCommand() {
+            var command = new Command("trunc");
+            command.Description = "Provides operations to call the trunc method.";
+            var builder = new TruncRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the type method.
+        /// </summary>
+        public Command BuildTypeCommand() {
+            var command = new Command("type");
+            command.Description = "Provides operations to call the type method.";
+            var builder = new TypeRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the unichar method.
+        /// </summary>
+        public Command BuildUnicharCommand() {
+            var command = new Command("unichar");
+            command.Description = "Provides operations to call the unichar method.";
+            var builder = new UnicharRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the unicode method.
+        /// </summary>
+        public Command BuildUnicodeCommand() {
+            var command = new Command("unicode");
+            command.Description = "Provides operations to call the unicode method.";
+            var builder = new UnicodeRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the upper method.
+        /// </summary>
+        public Command BuildUpperCommand() {
+            var command = new Command("upper");
+            command.Description = "Provides operations to call the upper method.";
+            var builder = new UpperRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the usdollar method.
+        /// </summary>
+        public Command BuildUsdollarCommand() {
+            var command = new Command("usdollar");
+            command.Description = "Provides operations to call the usdollar method.";
+            var builder = new UsdollarRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the value method.
+        /// </summary>
+        public Command BuildValueCommand() {
+            var command = new Command("value");
+            command.Description = "Provides operations to call the value method.";
+            var builder = new ValueRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the var_P method.
+        /// </summary>
+        public Command BuildVar_PCommand() {
+            var command = new Command("var_-p");
+            command.Description = "Provides operations to call the var_P method.";
+            var builder = new Var_PRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the var_S method.
+        /// </summary>
+        public Command BuildVar_SCommand() {
+            var command = new Command("var_-s");
+            command.Description = "Provides operations to call the var_S method.";
+            var builder = new Var_SRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the varA method.
+        /// </summary>
+        public Command BuildVarACommand() {
+            var command = new Command("var-a");
+            command.Description = "Provides operations to call the varA method.";
+            var builder = new VarARequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the varPA method.
+        /// </summary>
+        public Command BuildVarPACommand() {
+            var command = new Command("var-p-a");
+            command.Description = "Provides operations to call the varPA method.";
+            var builder = new VarPARequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the vdb method.
+        /// </summary>
+        public Command BuildVdbCommand() {
+            var command = new Command("vdb");
+            command.Description = "Provides operations to call the vdb method.";
+            var builder = new VdbRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the vlookup method.
+        /// </summary>
+        public Command BuildVlookupCommand() {
+            var command = new Command("vlookup");
+            command.Description = "Provides operations to call the vlookup method.";
+            var builder = new VlookupRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the weekday method.
+        /// </summary>
+        public Command BuildWeekdayCommand() {
+            var command = new Command("weekday");
+            command.Description = "Provides operations to call the weekday method.";
+            var builder = new WeekdayRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the weekNum method.
+        /// </summary>
+        public Command BuildWeekNumCommand() {
+            var command = new Command("week-num");
+            command.Description = "Provides operations to call the weekNum method.";
+            var builder = new WeekNumRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the weibull_Dist method.
+        /// </summary>
+        public Command BuildWeibull_DistCommand() {
+            var command = new Command("weibull_-dist");
+            command.Description = "Provides operations to call the weibull_Dist method.";
+            var builder = new Weibull_DistRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the workDay_Intl method.
+        /// </summary>
+        public Command BuildWorkDay_IntlCommand() {
+            var command = new Command("work-day_-intl");
+            command.Description = "Provides operations to call the workDay_Intl method.";
+            var builder = new WorkDay_IntlRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the workDay method.
+        /// </summary>
+        public Command BuildWorkDayCommand() {
+            var command = new Command("work-day");
+            command.Description = "Provides operations to call the workDay method.";
+            var builder = new WorkDayRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the xirr method.
+        /// </summary>
+        public Command BuildXirrCommand() {
+            var command = new Command("xirr");
+            command.Description = "Provides operations to call the xirr method.";
+            var builder = new XirrRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the xnpv method.
+        /// </summary>
+        public Command BuildXnpvCommand() {
+            var command = new Command("xnpv");
+            command.Description = "Provides operations to call the xnpv method.";
+            var builder = new XnpvRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the xor method.
+        /// </summary>
+        public Command BuildXorCommand() {
+            var command = new Command("xor");
+            command.Description = "Provides operations to call the xor method.";
+            var builder = new XorRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the year method.
+        /// </summary>
+        public Command BuildYearCommand() {
+            var command = new Command("year");
+            command.Description = "Provides operations to call the year method.";
+            var builder = new YearRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the yearFrac method.
+        /// </summary>
+        public Command BuildYearFracCommand() {
+            var command = new Command("year-frac");
+            command.Description = "Provides operations to call the yearFrac method.";
+            var builder = new YearFracRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the yield method.
+        /// </summary>
+        public Command BuildYieldCommand() {
+            var command = new Command("yield");
+            command.Description = "Provides operations to call the yield method.";
+            var builder = new YieldRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the yieldDisc method.
+        /// </summary>
+        public Command BuildYieldDiscCommand() {
+            var command = new Command("yield-disc");
+            command.Description = "Provides operations to call the yieldDisc method.";
+            var builder = new YieldDiscRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the yieldMat method.
+        /// </summary>
+        public Command BuildYieldMatCommand() {
+            var command = new Command("yield-mat");
+            command.Description = "Provides operations to call the yieldMat method.";
+            var builder = new YieldMatRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the z_Test method.
+        /// </summary>
+        public Command BuildZ_TestCommand() {
+            var command = new Command("z_-test");
+            command.Description = "Provides operations to call the z_Test method.";
+            var builder = new Z_TestRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

@@ -52,7 +52,7 @@ namespace ApiSdk.Drives.Item.Special {
             var command = new Command("list");
             command.Description = "Collection of common folders available in OneDrive. Read-only. Nullable.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);

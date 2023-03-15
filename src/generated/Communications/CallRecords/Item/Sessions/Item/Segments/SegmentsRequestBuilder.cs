@@ -53,11 +53,11 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments {
             var command = new Command("create");
             command.Description = "Create new navigation property to segments for communications";
             // Create options for all the parameters
-            var callRecordIdOption = new Option<string>("--call-record-id", description: "key: id of callRecord") {
+            var callRecordIdOption = new Option<string>("--call-record-id", description: "The unique identifier of callRecord") {
             };
             callRecordIdOption.IsRequired = true;
             command.AddOption(callRecordIdOption);
-            var sessionIdOption = new Option<string>("--session-id", description: "key: id of session") {
+            var sessionIdOption = new Option<string>("--session-id", description: "The unique identifier of session") {
             };
             sessionIdOption.IsRequired = true;
             command.AddOption(sessionIdOption);
@@ -97,6 +97,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments {
                 });
                 if (callRecordId is not null) requestInfo.PathParameters.Add("callRecord%2Did", callRecordId);
                 if (sessionId is not null) requestInfo.PathParameters.Add("session%2Did", sessionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -116,11 +117,11 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item.Segments {
             var command = new Command("list");
             command.Description = "The list of segments involved in the session. Read-only. Nullable.";
             // Create options for all the parameters
-            var callRecordIdOption = new Option<string>("--call-record-id", description: "key: id of callRecord") {
+            var callRecordIdOption = new Option<string>("--call-record-id", description: "The unique identifier of callRecord") {
             };
             callRecordIdOption.IsRequired = true;
             command.AddOption(callRecordIdOption);
-            var sessionIdOption = new Option<string>("--session-id", description: "key: id of session") {
+            var sessionIdOption = new Option<string>("--session-id", description: "The unique identifier of session") {
             };
             sessionIdOption.IsRequired = true;
             command.AddOption(sessionIdOption);

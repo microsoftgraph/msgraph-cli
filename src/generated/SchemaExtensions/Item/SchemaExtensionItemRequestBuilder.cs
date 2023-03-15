@@ -31,7 +31,7 @@ namespace ApiSdk.SchemaExtensions.Item {
             var command = new Command("delete");
             command.Description = "Delete the definition of a schema extension. Only the app that created the schema extension (owner app) can delete the schema extension definition, and only when the extension is in the `InDevelopment` state. Deleting a schema extension definition does not affect accessing custom data that has been added to resource instances based on that definition.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/schemaextension-delete?view=graph-rest-1.0";
             // Create options for all the parameters
-            var schemaExtensionIdOption = new Option<string>("--schema-extension-id", description: "key: id of schemaExtension") {
+            var schemaExtensionIdOption = new Option<string>("--schema-extension-id", description: "The unique identifier of schemaExtension") {
             };
             schemaExtensionIdOption.IsRequired = true;
             command.AddOption(schemaExtensionIdOption);
@@ -66,7 +66,7 @@ namespace ApiSdk.SchemaExtensions.Item {
             var command = new Command("get");
             command.Description = "Get schemaExtension\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/schemaextension-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var schemaExtensionIdOption = new Option<string>("--schema-extension-id", description: "key: id of schemaExtension") {
+            var schemaExtensionIdOption = new Option<string>("--schema-extension-id", description: "The unique identifier of schemaExtension") {
             };
             schemaExtensionIdOption.IsRequired = true;
             command.AddOption(schemaExtensionIdOption);
@@ -129,7 +129,7 @@ namespace ApiSdk.SchemaExtensions.Item {
             var command = new Command("patch");
             command.Description = "Update properties in the definition of the specified schemaExtension. Additive updates to the extension can only be made when the extension is in the `InDevelopment` or `Available` status. This means custom properties or target resource types cannot be removed from the definition, but new custom properties can be added and the description of the extension changed. The update applies to all the resources that are included in the **targetTypes** property of the extension. These resources are among the supporting resource types. For delegated flows, the signed-in user can update a schema extension as long as the **owner** property of the extension is set to the **appId** of an application the signed-in user owns. That application can be the one that initially created the extension, or some other application owned by the signed-in user.  This criteria for the **owner** property allows a signed-in user to make updates through other applications they don't own, such as Microsoft Graph Explorer. When using Graph Explorer to update a **schemaExtension** resource, include the **owner** property in the PATCH request body. For more information, see the Extensions section in Known issues with Microsoft Graph.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/schemaextension-update?view=graph-rest-1.0";
             // Create options for all the parameters
-            var schemaExtensionIdOption = new Option<string>("--schema-extension-id", description: "key: id of schemaExtension") {
+            var schemaExtensionIdOption = new Option<string>("--schema-extension-id", description: "The unique identifier of schemaExtension") {
             };
             schemaExtensionIdOption.IsRequired = true;
             command.AddOption(schemaExtensionIdOption);
@@ -167,6 +167,7 @@ namespace ApiSdk.SchemaExtensions.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (schemaExtensionId is not null) requestInfo.PathParameters.Add("schemaExtension%2Did", schemaExtensionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

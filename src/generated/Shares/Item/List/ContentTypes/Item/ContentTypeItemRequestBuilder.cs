@@ -1,15 +1,15 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Shares.Item.List.ContentTypes.Item.AssociateWithHubSites;
 using ApiSdk.Shares.Item.List.ContentTypes.Item.Base;
 using ApiSdk.Shares.Item.List.ContentTypes.Item.BaseTypes;
 using ApiSdk.Shares.Item.List.ContentTypes.Item.ColumnLinks;
 using ApiSdk.Shares.Item.List.ContentTypes.Item.ColumnPositions;
 using ApiSdk.Shares.Item.List.ContentTypes.Item.Columns;
-using ApiSdk.Shares.Item.List.ContentTypes.Item.MicrosoftGraphAssociateWithHubSites;
-using ApiSdk.Shares.Item.List.ContentTypes.Item.MicrosoftGraphCopyToDefaultContentLocation;
-using ApiSdk.Shares.Item.List.ContentTypes.Item.MicrosoftGraphIsPublished;
-using ApiSdk.Shares.Item.List.ContentTypes.Item.MicrosoftGraphPublish;
-using ApiSdk.Shares.Item.List.ContentTypes.Item.MicrosoftGraphUnpublish;
+using ApiSdk.Shares.Item.List.ContentTypes.Item.CopyToDefaultContentLocation;
+using ApiSdk.Shares.Item.List.ContentTypes.Item.IsPublished;
+using ApiSdk.Shares.Item.List.ContentTypes.Item.Publish;
+using ApiSdk.Shares.Item.List.ContentTypes.Item.Unpublish;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -33,6 +33,16 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
         private Dictionary<string, object> PathParameters { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        /// <summary>
+        /// Provides operations to call the associateWithHubSites method.
+        /// </summary>
+        public Command BuildAssociateWithHubSitesCommand() {
+            var command = new Command("associate-with-hub-sites");
+            command.Description = "Provides operations to call the associateWithHubSites method.";
+            var builder = new AssociateWithHubSitesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
         /// <summary>
         /// Provides operations to manage the base property of the microsoft.graph.contentType entity.
         /// </summary>
@@ -94,17 +104,27 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the copyToDefaultContentLocation method.
+        /// </summary>
+        public Command BuildCopyToDefaultContentLocationCommand() {
+            var command = new Command("copy-to-default-content-location");
+            command.Description = "Provides operations to call the copyToDefaultContentLocation method.";
+            var builder = new CopyToDefaultContentLocationRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete navigation property contentTypes for shares
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property contentTypes for shares";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
-            var contentTypeIdOption = new Option<string>("--content-type-id", description: "key: id of contentType") {
+            var contentTypeIdOption = new Option<string>("--content-type-id", description: "The unique identifier of contentType") {
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
@@ -140,11 +160,11 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
             var command = new Command("get");
             command.Description = "The collection of content types present in this list.";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
-            var contentTypeIdOption = new Option<string>("--content-type-id", description: "key: id of contentType") {
+            var contentTypeIdOption = new Option<string>("--content-type-id", description: "The unique identifier of contentType") {
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
@@ -202,53 +222,13 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the associateWithHubSites method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAssociateWithHubSitesCommand() {
-            var command = new Command("microsoft-graph-associate-with-hub-sites");
-            command.Description = "Provides operations to call the associateWithHubSites method.";
-            var builder = new MicrosoftGraphAssociateWithHubSitesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the copyToDefaultContentLocation method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCopyToDefaultContentLocationCommand() {
-            var command = new Command("microsoft-graph-copy-to-default-content-location");
-            command.Description = "Provides operations to call the copyToDefaultContentLocation method.";
-            var builder = new MicrosoftGraphCopyToDefaultContentLocationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to call the isPublished method.
         /// </summary>
-        public Command BuildMicrosoftGraphIsPublishedCommand() {
-            var command = new Command("microsoft-graph-is-published");
+        public Command BuildIsPublishedCommand() {
+            var command = new Command("is-published");
             command.Description = "Provides operations to call the isPublished method.";
-            var builder = new MicrosoftGraphIsPublishedRequestBuilder(PathParameters);
+            var builder = new IsPublishedRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the publish method.
-        /// </summary>
-        public Command BuildMicrosoftGraphPublishCommand() {
-            var command = new Command("microsoft-graph-publish");
-            command.Description = "Provides operations to call the publish method.";
-            var builder = new MicrosoftGraphPublishRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the unpublish method.
-        /// </summary>
-        public Command BuildMicrosoftGraphUnpublishCommand() {
-            var command = new Command("microsoft-graph-unpublish");
-            command.Description = "Provides operations to call the unpublish method.";
-            var builder = new MicrosoftGraphUnpublishRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -258,11 +238,11 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property contentTypes in shares";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
-            var contentTypeIdOption = new Option<string>("--content-type-id", description: "key: id of contentType") {
+            var contentTypeIdOption = new Option<string>("--content-type-id", description: "The unique identifier of contentType") {
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
@@ -302,6 +282,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
                 });
                 if (sharedDriveItemId is not null) requestInfo.PathParameters.Add("sharedDriveItem%2Did", sharedDriveItemId);
                 if (contentTypeId is not null) requestInfo.PathParameters.Add("contentType%2Did", contentTypeId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -312,6 +293,26 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the publish method.
+        /// </summary>
+        public Command BuildPublishCommand() {
+            var command = new Command("publish");
+            command.Description = "Provides operations to call the publish method.";
+            var builder = new PublishRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the unpublish method.
+        /// </summary>
+        public Command BuildUnpublishCommand() {
+            var command = new Command("unpublish");
+            command.Description = "Provides operations to call the unpublish method.";
+            var builder = new UnpublishRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

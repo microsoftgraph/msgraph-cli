@@ -33,9 +33,9 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets {
             var builder = new EdiscoveryReviewSetItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSecurityAddToReviewSetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildQueriesCommand());
+            command.AddCommand(builder.BuildSecurityAddToReviewSetCommand());
             return command;
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets {
             var command = new Command("create");
             command.Description = "Create a new ediscoveryReviewSet object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-post-reviewsets?view=graph-rest-1.0";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
@@ -94,6 +94,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (ediscoveryCaseId is not null) requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -114,7 +115,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets {
             var command = new Command("list");
             command.Description = "Get a list of ediscoveryReviewSet objects associated with an eDiscovery case.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-list-reviewsets?view=graph-rest-1.0";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);

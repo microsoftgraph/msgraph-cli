@@ -1,6 +1,6 @@
 using ApiSdk.Me.Activities.Count;
 using ApiSdk.Me.Activities.Item;
-using ApiSdk.Me.Activities.MicrosoftGraphRecent;
+using ApiSdk.Me.Activities.Recent;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -87,6 +87,7 @@ namespace ApiSdk.Me.Activities {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -207,10 +208,10 @@ namespace ApiSdk.Me.Activities {
         /// <summary>
         /// Provides operations to call the recent method.
         /// </summary>
-        public Command BuildMicrosoftGraphRecentCommand() {
-            var command = new Command("microsoft-graph-recent");
+        public Command BuildRecentCommand() {
+            var command = new Command("recent");
             command.Description = "Provides operations to call the recent method.";
-            var builder = new MicrosoftGraphRecentRequestBuilder(PathParameters);
+            var builder = new RecentRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }

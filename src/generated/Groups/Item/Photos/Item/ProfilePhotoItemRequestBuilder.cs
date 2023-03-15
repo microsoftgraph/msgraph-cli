@@ -42,11 +42,11 @@ namespace ApiSdk.Groups.Item.Photos.Item {
             var command = new Command("get");
             command.Description = "The profile photos owned by the group. Read-only. Nullable.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var profilePhotoIdOption = new Option<string>("--profile-photo-id", description: "key: id of profilePhoto") {
+            var profilePhotoIdOption = new Option<string>("--profile-photo-id", description: "The unique identifier of profilePhoto") {
             };
             profilePhotoIdOption.IsRequired = true;
             command.AddOption(profilePhotoIdOption);

@@ -1,5 +1,5 @@
 using ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNotificationMessages;
-using ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.MicrosoftGraphSendTestMessage;
+using ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.SendTestMessage;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,7 +32,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property notificationMessageTemplates for deviceManagement";
             // Create options for all the parameters
-            var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "key: id of notificationMessageTemplate") {
+            var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "The unique identifier of notificationMessageTemplate") {
             };
             notificationMessageTemplateIdOption.IsRequired = true;
             command.AddOption(notificationMessageTemplateIdOption);
@@ -66,7 +66,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
             var command = new Command("get");
             command.Description = "The Notification Message Templates.";
             // Create options for all the parameters
-            var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "key: id of notificationMessageTemplate") {
+            var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "The unique identifier of notificationMessageTemplate") {
             };
             notificationMessageTemplateIdOption.IsRequired = true;
             command.AddOption(notificationMessageTemplateIdOption);
@@ -135,23 +135,13 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the sendTestMessage method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSendTestMessageCommand() {
-            var command = new Command("microsoft-graph-send-test-message");
-            command.Description = "Provides operations to call the sendTestMessage method.";
-            var builder = new MicrosoftGraphSendTestMessageRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property notificationMessageTemplates in deviceManagement
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property notificationMessageTemplates in deviceManagement";
             // Create options for all the parameters
-            var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "key: id of notificationMessageTemplate") {
+            var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "The unique identifier of notificationMessageTemplate") {
             };
             notificationMessageTemplateIdOption.IsRequired = true;
             command.AddOption(notificationMessageTemplateIdOption);
@@ -189,6 +179,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (notificationMessageTemplateId is not null) requestInfo.PathParameters.Add("notificationMessageTemplate%2Did", notificationMessageTemplateId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -199,6 +190,16 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sendTestMessage method.
+        /// </summary>
+        public Command BuildSendTestMessageCommand() {
+            var command = new Command("send-test-message");
+            command.Description = "Provides operations to call the sendTestMessage method.";
+            var builder = new SendTestMessageRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

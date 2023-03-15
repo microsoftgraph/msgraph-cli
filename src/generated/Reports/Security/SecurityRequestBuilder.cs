@@ -1,8 +1,8 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.Reports.Security.MicrosoftGraphGetAttackSimulationRepeatOffenders;
-using ApiSdk.Reports.Security.MicrosoftGraphGetAttackSimulationSimulationUserCoverage;
-using ApiSdk.Reports.Security.MicrosoftGraphGetAttackSimulationTrainingUserCoverage;
+using ApiSdk.Reports.Security.GetAttackSimulationRepeatOffenders;
+using ApiSdk.Reports.Security.GetAttackSimulationSimulationUserCoverage;
+using ApiSdk.Reports.Security.GetAttackSimulationTrainingUserCoverage;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -52,6 +52,36 @@ namespace ApiSdk.Reports.Security {
                 await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getAttackSimulationRepeatOffenders method.
+        /// </summary>
+        public Command BuildGetAttackSimulationRepeatOffendersCommand() {
+            var command = new Command("get-attack-simulation-repeat-offenders");
+            command.Description = "Provides operations to call the getAttackSimulationRepeatOffenders method.";
+            var builder = new GetAttackSimulationRepeatOffendersRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getAttackSimulationSimulationUserCoverage method.
+        /// </summary>
+        public Command BuildGetAttackSimulationSimulationUserCoverageCommand() {
+            var command = new Command("get-attack-simulation-simulation-user-coverage");
+            command.Description = "Provides operations to call the getAttackSimulationSimulationUserCoverage method.";
+            var builder = new GetAttackSimulationSimulationUserCoverageRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getAttackSimulationTrainingUserCoverage method.
+        /// </summary>
+        public Command BuildGetAttackSimulationTrainingUserCoverageCommand() {
+            var command = new Command("get-attack-simulation-training-user-coverage");
+            command.Description = "Provides operations to call the getAttackSimulationTrainingUserCoverage method.";
+            var builder = new GetAttackSimulationTrainingUserCoverageRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -111,36 +141,6 @@ namespace ApiSdk.Reports.Security {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the getAttackSimulationRepeatOffenders method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetAttackSimulationRepeatOffendersCommand() {
-            var command = new Command("microsoft-graph-get-attack-simulation-repeat-offenders");
-            command.Description = "Provides operations to call the getAttackSimulationRepeatOffenders method.";
-            var builder = new MicrosoftGraphGetAttackSimulationRepeatOffendersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getAttackSimulationSimulationUserCoverage method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetAttackSimulationSimulationUserCoverageCommand() {
-            var command = new Command("microsoft-graph-get-attack-simulation-simulation-user-coverage");
-            command.Description = "Provides operations to call the getAttackSimulationSimulationUserCoverage method.";
-            var builder = new MicrosoftGraphGetAttackSimulationSimulationUserCoverageRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getAttackSimulationTrainingUserCoverage method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetAttackSimulationTrainingUserCoverageCommand() {
-            var command = new Command("microsoft-graph-get-attack-simulation-training-user-coverage");
-            command.Description = "Provides operations to call the getAttackSimulationTrainingUserCoverage method.";
-            var builder = new MicrosoftGraphGetAttackSimulationTrainingUserCoverageRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property security in reports
         /// </summary>
         public Command BuildPatchCommand() {
@@ -179,6 +179,7 @@ namespace ApiSdk.Reports.Security {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

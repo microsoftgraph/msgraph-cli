@@ -30,11 +30,11 @@ namespace ApiSdk.ServicePrincipals.Item.Endpoints.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property endpoints for servicePrincipals";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
+            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
-            var endpointIdOption = new Option<string>("--endpoint-id", description: "key: id of endpoint") {
+            var endpointIdOption = new Option<string>("--endpoint-id", description: "The unique identifier of endpoint") {
             };
             endpointIdOption.IsRequired = true;
             command.AddOption(endpointIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.ServicePrincipals.Item.Endpoints.Item {
             var command = new Command("get");
             command.Description = "Get endpoints from servicePrincipals";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
+            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
-            var endpointIdOption = new Option<string>("--endpoint-id", description: "key: id of endpoint") {
+            var endpointIdOption = new Option<string>("--endpoint-id", description: "The unique identifier of endpoint") {
             };
             endpointIdOption.IsRequired = true;
             command.AddOption(endpointIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.ServicePrincipals.Item.Endpoints.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property endpoints in servicePrincipals";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
+            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
-            var endpointIdOption = new Option<string>("--endpoint-id", description: "key: id of endpoint") {
+            var endpointIdOption = new Option<string>("--endpoint-id", description: "The unique identifier of endpoint") {
             };
             endpointIdOption.IsRequired = true;
             command.AddOption(endpointIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.ServicePrincipals.Item.Endpoints.Item {
                 });
                 if (servicePrincipalId is not null) requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
                 if (endpointId is not null) requestInfo.PathParameters.Add("endpoint%2Did", endpointId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -54,7 +54,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Schedule.TimesOff {
             var command = new Command("create");
             command.Description = "Create a new timeOff instance in a schedule.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/schedule-post-timesoff?view=graph-rest-1.0";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
@@ -92,6 +92,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Schedule.TimesOff {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,7 +113,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Schedule.TimesOff {
             var command = new Command("list");
             command.Description = "Get the list of timeOff instances in a schedule.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/schedule-list-timesoff?view=graph-rest-1.0";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);

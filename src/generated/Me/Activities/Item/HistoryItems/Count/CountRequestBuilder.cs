@@ -29,7 +29,7 @@ namespace ApiSdk.Me.Activities.Item.HistoryItems.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var userActivityIdOption = new Option<string>("--user-activity-id", description: "key: id of userActivity") {
+            var userActivityIdOption = new Option<string>("--user-activity-id", description: "The unique identifier of userActivity") {
             };
             userActivityIdOption.IsRequired = true;
             command.AddOption(userActivityIdOption);

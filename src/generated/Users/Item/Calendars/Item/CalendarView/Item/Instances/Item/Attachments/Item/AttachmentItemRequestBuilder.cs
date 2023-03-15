@@ -30,23 +30,23 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item.Atta
             var command = new Command("delete");
             command.Description = "Delete navigation property attachments for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            var calendarIdOption = new Option<string>("--calendar-id", description: "The unique identifier of calendar") {
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var eventId1Option = new Option<string>("--event-id1", description: "key: id of event") {
+            var eventId1Option = new Option<string>("--event-id1", description: "The unique identifier of event") {
             };
             eventId1Option.IsRequired = true;
             command.AddOption(eventId1Option);
-            var attachmentIdOption = new Option<string>("--attachment-id", description: "key: id of attachment") {
+            var attachmentIdOption = new Option<string>("--attachment-id", description: "The unique identifier of attachment") {
             };
             attachmentIdOption.IsRequired = true;
             command.AddOption(attachmentIdOption);
@@ -88,23 +88,23 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item.Atta
             var command = new Command("get");
             command.Description = "The collection of FileAttachment, ItemAttachment, and referenceAttachment attachments for the event. Navigation property. Read-only. Nullable.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            var calendarIdOption = new Option<string>("--calendar-id", description: "The unique identifier of calendar") {
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var eventId1Option = new Option<string>("--event-id1", description: "key: id of event") {
+            var eventId1Option = new Option<string>("--event-id1", description: "The unique identifier of event") {
             };
             eventId1Option.IsRequired = true;
             command.AddOption(eventId1Option);
-            var attachmentIdOption = new Option<string>("--attachment-id", description: "key: id of attachment") {
+            var attachmentIdOption = new Option<string>("--attachment-id", description: "The unique identifier of attachment") {
             };
             attachmentIdOption.IsRequired = true;
             command.AddOption(attachmentIdOption);

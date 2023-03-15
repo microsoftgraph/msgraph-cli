@@ -1,7 +1,7 @@
+using ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assign;
 using ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments;
 using ApiSdk.DeviceAppManagement.ManagedEBooks.Item.DeviceStates;
 using ApiSdk.DeviceAppManagement.ManagedEBooks.Item.InstallSummary;
-using ApiSdk.DeviceAppManagement.ManagedEBooks.Item.MicrosoftGraphAssign;
 using ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
@@ -29,6 +29,16 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the assign method.
+        /// </summary>
+        public Command BuildAssignCommand() {
+            var command = new Command("assign");
+            command.Description = "Provides operations to call the assign method.";
+            var builder = new AssignRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.managedEBook entity.
         /// </summary>
         public Command BuildAssignmentsCommand() {
@@ -48,7 +58,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property managedEBooks for deviceAppManagement";
             // Create options for all the parameters
-            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "key: id of managedEBook") {
+            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
             command.AddOption(managedEBookIdOption);
@@ -95,7 +105,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
             var command = new Command("get");
             command.Description = "The Managed eBook.";
             // Create options for all the parameters
-            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "key: id of managedEBook") {
+            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
             command.AddOption(managedEBookIdOption);
@@ -163,23 +173,13 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the assign method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAssignCommand() {
-            var command = new Command("microsoft-graph-assign");
-            command.Description = "Provides operations to call the assign method.";
-            var builder = new MicrosoftGraphAssignRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property managedEBooks in deviceAppManagement
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property managedEBooks in deviceAppManagement";
             // Create options for all the parameters
-            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "key: id of managedEBook") {
+            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
             command.AddOption(managedEBookIdOption);
@@ -217,6 +217,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (managedEBookId is not null) requestInfo.PathParameters.Add("managedEBook%2Did", managedEBookId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

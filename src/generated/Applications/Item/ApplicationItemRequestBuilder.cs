@@ -1,22 +1,23 @@
+using ApiSdk.Applications.Item.AddKey;
+using ApiSdk.Applications.Item.AddPassword;
+using ApiSdk.Applications.Item.AppManagementPolicies;
+using ApiSdk.Applications.Item.CheckMemberGroups;
+using ApiSdk.Applications.Item.CheckMemberObjects;
 using ApiSdk.Applications.Item.CreatedOnBehalfOf;
 using ApiSdk.Applications.Item.ExtensionProperties;
 using ApiSdk.Applications.Item.FederatedIdentityCredentials;
+using ApiSdk.Applications.Item.GetMemberGroups;
+using ApiSdk.Applications.Item.GetMemberObjects;
 using ApiSdk.Applications.Item.HomeRealmDiscoveryPolicies;
 using ApiSdk.Applications.Item.Logo;
-using ApiSdk.Applications.Item.MicrosoftGraphAddKey;
-using ApiSdk.Applications.Item.MicrosoftGraphAddPassword;
-using ApiSdk.Applications.Item.MicrosoftGraphCheckMemberGroups;
-using ApiSdk.Applications.Item.MicrosoftGraphCheckMemberObjects;
-using ApiSdk.Applications.Item.MicrosoftGraphGetMemberGroups;
-using ApiSdk.Applications.Item.MicrosoftGraphGetMemberObjects;
-using ApiSdk.Applications.Item.MicrosoftGraphRemoveKey;
-using ApiSdk.Applications.Item.MicrosoftGraphRemovePassword;
-using ApiSdk.Applications.Item.MicrosoftGraphRestore;
-using ApiSdk.Applications.Item.MicrosoftGraphSetVerifiedPublisher;
-using ApiSdk.Applications.Item.MicrosoftGraphUnsetVerifiedPublisher;
 using ApiSdk.Applications.Item.Owners;
+using ApiSdk.Applications.Item.RemoveKey;
+using ApiSdk.Applications.Item.RemovePassword;
+using ApiSdk.Applications.Item.Restore;
+using ApiSdk.Applications.Item.SetVerifiedPublisher;
 using ApiSdk.Applications.Item.TokenIssuancePolicies;
 using ApiSdk.Applications.Item.TokenLifetimePolicies;
+using ApiSdk.Applications.Item.UnsetVerifiedPublisher;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,6 +44,59 @@ namespace ApiSdk.Applications.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the addKey method.
+        /// </summary>
+        public Command BuildAddKeyCommand() {
+            var command = new Command("add-key");
+            command.Description = "Provides operations to call the addKey method.";
+            var builder = new AddKeyRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the addPassword method.
+        /// </summary>
+        public Command BuildAddPasswordCommand() {
+            var command = new Command("add-password");
+            command.Description = "Provides operations to call the addPassword method.";
+            var builder = new AddPasswordRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the appManagementPolicies property of the microsoft.graph.application entity.
+        /// </summary>
+        public Command BuildAppManagementPoliciesCommand() {
+            var command = new Command("app-management-policies");
+            command.Description = "Provides operations to manage the appManagementPolicies property of the microsoft.graph.application entity.";
+            var builder = new AppManagementPoliciesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildListCommand());
+            command.AddCommand(builder.BuildRefCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the checkMemberGroups method.
+        /// </summary>
+        public Command BuildCheckMemberGroupsCommand() {
+            var command = new Command("check-member-groups");
+            command.Description = "Provides operations to call the checkMemberGroups method.";
+            var builder = new CheckMemberGroupsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the checkMemberObjects method.
+        /// </summary>
+        public Command BuildCheckMemberObjectsCommand() {
+            var command = new Command("check-member-objects");
+            command.Description = "Provides operations to call the checkMemberObjects method.";
+            var builder = new CheckMemberObjectsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the createdOnBehalfOf property of the microsoft.graph.application entity.
         /// </summary>
         public Command BuildCreatedOnBehalfOfCommand() {
@@ -60,7 +114,7 @@ namespace ApiSdk.Applications.Item {
             var command = new Command("delete");
             command.Description = "Delete an application object. When deleted, apps are moved to a temporary container and can be restored within 30 days. After that time, they are permanently deleted.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-delete?view=graph-rest-1.0";
             // Create options for all the parameters
-            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
             command.AddOption(applicationIdOption);
@@ -121,7 +175,7 @@ namespace ApiSdk.Applications.Item {
             var command = new Command("get");
             command.Description = "Get the properties and relationships of an application object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
             command.AddOption(applicationIdOption);
@@ -177,6 +231,26 @@ namespace ApiSdk.Applications.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the getMemberGroups method.
+        /// </summary>
+        public Command BuildGetMemberGroupsCommand() {
+            var command = new Command("get-member-groups");
+            command.Description = "Provides operations to call the getMemberGroups method.";
+            var builder = new GetMemberGroupsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getMemberObjects method.
+        /// </summary>
+        public Command BuildGetMemberObjectsCommand() {
+            var command = new Command("get-member-objects");
+            command.Description = "Provides operations to call the getMemberObjects method.";
+            var builder = new GetMemberObjectsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.application entity.
         /// </summary>
         public Command BuildHomeRealmDiscoveryPoliciesCommand() {
@@ -200,116 +274,6 @@ namespace ApiSdk.Applications.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the addKey method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAddKeyCommand() {
-            var command = new Command("microsoft-graph-add-key");
-            command.Description = "Provides operations to call the addKey method.";
-            var builder = new MicrosoftGraphAddKeyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the addPassword method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAddPasswordCommand() {
-            var command = new Command("microsoft-graph-add-password");
-            command.Description = "Provides operations to call the addPassword method.";
-            var builder = new MicrosoftGraphAddPasswordRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the checkMemberGroups method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCheckMemberGroupsCommand() {
-            var command = new Command("microsoft-graph-check-member-groups");
-            command.Description = "Provides operations to call the checkMemberGroups method.";
-            var builder = new MicrosoftGraphCheckMemberGroupsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the checkMemberObjects method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCheckMemberObjectsCommand() {
-            var command = new Command("microsoft-graph-check-member-objects");
-            command.Description = "Provides operations to call the checkMemberObjects method.";
-            var builder = new MicrosoftGraphCheckMemberObjectsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getMemberGroups method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetMemberGroupsCommand() {
-            var command = new Command("microsoft-graph-get-member-groups");
-            command.Description = "Provides operations to call the getMemberGroups method.";
-            var builder = new MicrosoftGraphGetMemberGroupsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getMemberObjects method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetMemberObjectsCommand() {
-            var command = new Command("microsoft-graph-get-member-objects");
-            command.Description = "Provides operations to call the getMemberObjects method.";
-            var builder = new MicrosoftGraphGetMemberObjectsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the removeKey method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRemoveKeyCommand() {
-            var command = new Command("microsoft-graph-remove-key");
-            command.Description = "Provides operations to call the removeKey method.";
-            var builder = new MicrosoftGraphRemoveKeyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the removePassword method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRemovePasswordCommand() {
-            var command = new Command("microsoft-graph-remove-password");
-            command.Description = "Provides operations to call the removePassword method.";
-            var builder = new MicrosoftGraphRemovePasswordRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the restore method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRestoreCommand() {
-            var command = new Command("microsoft-graph-restore");
-            command.Description = "Provides operations to call the restore method.";
-            var builder = new MicrosoftGraphRestoreRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the setVerifiedPublisher method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSetVerifiedPublisherCommand() {
-            var command = new Command("microsoft-graph-set-verified-publisher");
-            command.Description = "Provides operations to call the setVerifiedPublisher method.";
-            var builder = new MicrosoftGraphSetVerifiedPublisherRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the unsetVerifiedPublisher method.
-        /// </summary>
-        public Command BuildMicrosoftGraphUnsetVerifiedPublisherCommand() {
-            var command = new Command("microsoft-graph-unset-verified-publisher");
-            command.Description = "Provides operations to call the unsetVerifiedPublisher method.";
-            var builder = new MicrosoftGraphUnsetVerifiedPublisherRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the owners property of the microsoft.graph.application entity.
         /// </summary>
         public Command BuildOwnersCommand() {
@@ -318,11 +282,11 @@ namespace ApiSdk.Applications.Item {
             var builder = new OwnersRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGraphAppRoleAssignmentCommand());
+            command.AddCommand(builder.BuildGraphEndpointCommand());
+            command.AddCommand(builder.BuildGraphServicePrincipalCommand());
+            command.AddCommand(builder.BuildGraphUserCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAppRoleAssignmentCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphEndpointCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphServicePrincipalCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUserCommand());
             command.AddCommand(builder.BuildRefCommand());
             return command;
         }
@@ -334,7 +298,7 @@ namespace ApiSdk.Applications.Item {
             var command = new Command("patch");
             command.Description = "Update the properties of an application object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-update?view=graph-rest-1.0";
             // Create options for all the parameters
-            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
             command.AddOption(applicationIdOption);
@@ -372,6 +336,7 @@ namespace ApiSdk.Applications.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (applicationId is not null) requestInfo.PathParameters.Add("application%2Did", applicationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -382,6 +347,46 @@ namespace ApiSdk.Applications.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the removeKey method.
+        /// </summary>
+        public Command BuildRemoveKeyCommand() {
+            var command = new Command("remove-key");
+            command.Description = "Provides operations to call the removeKey method.";
+            var builder = new RemoveKeyRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the removePassword method.
+        /// </summary>
+        public Command BuildRemovePasswordCommand() {
+            var command = new Command("remove-password");
+            command.Description = "Provides operations to call the removePassword method.";
+            var builder = new RemovePasswordRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the restore method.
+        /// </summary>
+        public Command BuildRestoreCommand() {
+            var command = new Command("restore");
+            command.Description = "Provides operations to call the restore method.";
+            var builder = new RestoreRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the setVerifiedPublisher method.
+        /// </summary>
+        public Command BuildSetVerifiedPublisherCommand() {
+            var command = new Command("set-verified-publisher");
+            command.Description = "Provides operations to call the setVerifiedPublisher method.";
+            var builder = new SetVerifiedPublisherRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -408,6 +413,16 @@ namespace ApiSdk.Applications.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
             command.AddCommand(builder.BuildRefCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the unsetVerifiedPublisher method.
+        /// </summary>
+        public Command BuildUnsetVerifiedPublisherCommand() {
+            var command = new Command("unset-verified-publisher");
+            command.Description = "Provides operations to call the unsetVerifiedPublisher method.";
+            var builder = new UnsetVerifiedPublisherRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

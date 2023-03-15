@@ -1,26 +1,26 @@
 using ApiSdk.Drives.Item.Items.Item.Analytics;
+using ApiSdk.Drives.Item.Items.Item.Checkin;
+using ApiSdk.Drives.Item.Items.Item.Checkout;
 using ApiSdk.Drives.Item.Items.Item.Children;
 using ApiSdk.Drives.Item.Items.Item.Content;
+using ApiSdk.Drives.Item.Items.Item.Copy;
+using ApiSdk.Drives.Item.Items.Item.CreateLink;
+using ApiSdk.Drives.Item.Items.Item.CreateUploadSession;
+using ApiSdk.Drives.Item.Items.Item.Delta;
+using ApiSdk.Drives.Item.Items.Item.DeltaWithToken;
+using ApiSdk.Drives.Item.Items.Item.Follow;
+using ApiSdk.Drives.Item.Items.Item.GetActivitiesByInterval;
+using ApiSdk.Drives.Item.Items.Item.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval;
+using ApiSdk.Drives.Item.Items.Item.Invite;
 using ApiSdk.Drives.Item.Items.Item.ListItem;
-using ApiSdk.Drives.Item.Items.Item.MicrosoftGraphCheckin;
-using ApiSdk.Drives.Item.Items.Item.MicrosoftGraphCheckout;
-using ApiSdk.Drives.Item.Items.Item.MicrosoftGraphCopy;
-using ApiSdk.Drives.Item.Items.Item.MicrosoftGraphCreateLink;
-using ApiSdk.Drives.Item.Items.Item.MicrosoftGraphCreateUploadSession;
-using ApiSdk.Drives.Item.Items.Item.MicrosoftGraphDelta;
-using ApiSdk.Drives.Item.Items.Item.MicrosoftGraphDeltaWithToken;
-using ApiSdk.Drives.Item.Items.Item.MicrosoftGraphFollow;
-using ApiSdk.Drives.Item.Items.Item.MicrosoftGraphGetActivitiesByInterval;
-using ApiSdk.Drives.Item.Items.Item.MicrosoftGraphGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval;
-using ApiSdk.Drives.Item.Items.Item.MicrosoftGraphInvite;
-using ApiSdk.Drives.Item.Items.Item.MicrosoftGraphPreview;
-using ApiSdk.Drives.Item.Items.Item.MicrosoftGraphRestore;
-using ApiSdk.Drives.Item.Items.Item.MicrosoftGraphSearchWithQ;
-using ApiSdk.Drives.Item.Items.Item.MicrosoftGraphUnfollow;
-using ApiSdk.Drives.Item.Items.Item.MicrosoftGraphValidatePermission;
 using ApiSdk.Drives.Item.Items.Item.Permissions;
+using ApiSdk.Drives.Item.Items.Item.Preview;
+using ApiSdk.Drives.Item.Items.Item.Restore;
+using ApiSdk.Drives.Item.Items.Item.SearchWithQ;
 using ApiSdk.Drives.Item.Items.Item.Subscriptions;
 using ApiSdk.Drives.Item.Items.Item.Thumbnails;
+using ApiSdk.Drives.Item.Items.Item.Unfollow;
+using ApiSdk.Drives.Item.Items.Item.ValidatePermission;
 using ApiSdk.Drives.Item.Items.Item.Versions;
 using ApiSdk.Drives.Item.Items.Item.Workbook;
 using ApiSdk.Models;
@@ -64,6 +64,26 @@ namespace ApiSdk.Drives.Item.Items.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the checkin method.
+        /// </summary>
+        public Command BuildCheckinCommand() {
+            var command = new Command("checkin");
+            command.Description = "Provides operations to call the checkin method.";
+            var builder = new CheckinRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the checkout method.
+        /// </summary>
+        public Command BuildCheckoutCommand() {
+            var command = new Command("checkout");
+            command.Description = "Provides operations to call the checkout method.";
+            var builder = new CheckoutRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the children property of the microsoft.graph.driveItem entity.
         /// </summary>
         public Command BuildChildrenCommand() {
@@ -88,17 +108,47 @@ namespace ApiSdk.Drives.Item.Items.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the copy method.
+        /// </summary>
+        public Command BuildCopyCommand() {
+            var command = new Command("copy");
+            command.Description = "Provides operations to call the copy method.";
+            var builder = new CopyRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the createLink method.
+        /// </summary>
+        public Command BuildCreateLinkCommand() {
+            var command = new Command("create-link");
+            command.Description = "Provides operations to call the createLink method.";
+            var builder = new CreateLinkRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the createUploadSession method.
+        /// </summary>
+        public Command BuildCreateUploadSessionCommand() {
+            var command = new Command("create-upload-session");
+            command.Description = "Provides operations to call the createUploadSession method.";
+            var builder = new CreateUploadSessionRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete navigation property items for drives
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property items for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
@@ -128,17 +178,47 @@ namespace ApiSdk.Drives.Item.Items.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildDeltaCommand() {
+            var command = new Command("delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the follow method.
+        /// </summary>
+        public Command BuildFollowCommand() {
+            var command = new Command("follow");
+            command.Description = "Provides operations to call the follow method.";
+            var builder = new FollowRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getActivitiesByInterval method.
+        /// </summary>
+        public Command BuildGetActivitiesByIntervalCommand() {
+            var command = new Command("get-activities-by-interval");
+            command.Description = "Provides operations to call the getActivitiesByInterval method.";
+            var builder = new GetActivitiesByIntervalRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// All items contained in the drive. Read-only. Nullable.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "All items contained in the drive. Read-only. Nullable.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
@@ -196,6 +276,16 @@ namespace ApiSdk.Drives.Item.Items.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the invite method.
+        /// </summary>
+        public Command BuildInviteCommand() {
+            var command = new Command("invite");
+            command.Description = "Provides operations to call the invite method.";
+            var builder = new InviteRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the listItem property of the microsoft.graph.driveItem entity.
         /// </summary>
         public Command BuildListItemCommand() {
@@ -206,147 +296,17 @@ namespace ApiSdk.Drives.Item.Items.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the checkin method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCheckinCommand() {
-            var command = new Command("microsoft-graph-checkin");
-            command.Description = "Provides operations to call the checkin method.";
-            var builder = new MicrosoftGraphCheckinRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the checkout method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCheckoutCommand() {
-            var command = new Command("microsoft-graph-checkout");
-            command.Description = "Provides operations to call the checkout method.";
-            var builder = new MicrosoftGraphCheckoutRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the copy method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCopyCommand() {
-            var command = new Command("microsoft-graph-copy");
-            command.Description = "Provides operations to call the copy method.";
-            var builder = new MicrosoftGraphCopyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the createLink method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCreateLinkCommand() {
-            var command = new Command("microsoft-graph-create-link");
-            command.Description = "Provides operations to call the createLink method.";
-            var builder = new MicrosoftGraphCreateLinkRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the createUploadSession method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCreateUploadSessionCommand() {
-            var command = new Command("microsoft-graph-create-upload-session");
-            command.Description = "Provides operations to call the createUploadSession method.";
-            var builder = new MicrosoftGraphCreateUploadSessionRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the delta method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDeltaCommand() {
-            var command = new Command("microsoft-graph-delta");
-            command.Description = "Provides operations to call the delta method.";
-            var builder = new MicrosoftGraphDeltaRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the follow method.
-        /// </summary>
-        public Command BuildMicrosoftGraphFollowCommand() {
-            var command = new Command("microsoft-graph-follow");
-            command.Description = "Provides operations to call the follow method.";
-            var builder = new MicrosoftGraphFollowRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getActivitiesByInterval method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetActivitiesByIntervalCommand() {
-            var command = new Command("microsoft-graph-get-activities-by-interval");
-            command.Description = "Provides operations to call the getActivitiesByInterval method.";
-            var builder = new MicrosoftGraphGetActivitiesByIntervalRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the invite method.
-        /// </summary>
-        public Command BuildMicrosoftGraphInviteCommand() {
-            var command = new Command("microsoft-graph-invite");
-            command.Description = "Provides operations to call the invite method.";
-            var builder = new MicrosoftGraphInviteRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the preview method.
-        /// </summary>
-        public Command BuildMicrosoftGraphPreviewCommand() {
-            var command = new Command("microsoft-graph-preview");
-            command.Description = "Provides operations to call the preview method.";
-            var builder = new MicrosoftGraphPreviewRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the restore method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRestoreCommand() {
-            var command = new Command("microsoft-graph-restore");
-            command.Description = "Provides operations to call the restore method.";
-            var builder = new MicrosoftGraphRestoreRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the unfollow method.
-        /// </summary>
-        public Command BuildMicrosoftGraphUnfollowCommand() {
-            var command = new Command("microsoft-graph-unfollow");
-            command.Description = "Provides operations to call the unfollow method.";
-            var builder = new MicrosoftGraphUnfollowRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the validatePermission method.
-        /// </summary>
-        public Command BuildMicrosoftGraphValidatePermissionCommand() {
-            var command = new Command("microsoft-graph-validate-permission");
-            command.Description = "Provides operations to call the validatePermission method.";
-            var builder = new MicrosoftGraphValidatePermissionRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property items in drives
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property items in drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
@@ -386,6 +346,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
                 });
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -409,6 +370,26 @@ namespace ApiSdk.Drives.Item.Items.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the preview method.
+        /// </summary>
+        public Command BuildPreviewCommand() {
+            var command = new Command("preview");
+            command.Description = "Provides operations to call the preview method.";
+            var builder = new PreviewRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the restore method.
+        /// </summary>
+        public Command BuildRestoreCommand() {
+            var command = new Command("restore");
+            command.Description = "Provides operations to call the restore method.";
+            var builder = new RestoreRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -438,6 +419,26 @@ namespace ApiSdk.Drives.Item.Items.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the unfollow method.
+        /// </summary>
+        public Command BuildUnfollowCommand() {
+            var command = new Command("unfollow");
+            command.Description = "Provides operations to call the unfollow method.";
+            var builder = new UnfollowRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the validatePermission method.
+        /// </summary>
+        public Command BuildValidatePermissionCommand() {
+            var command = new Command("validate-permission");
+            command.Description = "Provides operations to call the validatePermission method.";
+            var builder = new ValidatePermissionRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the versions property of the microsoft.graph.driveItem entity.
         /// </summary>
         public Command BuildVersionsCommand() {
@@ -458,16 +459,16 @@ namespace ApiSdk.Drives.Item.Items.Item {
             command.Description = "Provides operations to manage the workbook property of the microsoft.graph.driveItem entity.";
             var builder = new WorkbookRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildApplicationCommand());
+            command.AddCommand(builder.BuildCloseSessionCommand());
             command.AddCommand(builder.BuildCommentsCommand());
+            command.AddCommand(builder.BuildCreateSessionCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildFunctionsCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCloseSessionCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCreateSessionCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRefreshSessionCommand());
             command.AddCommand(builder.BuildNamesCommand());
             command.AddCommand(builder.BuildOperationsCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildRefreshSessionCommand());
             command.AddCommand(builder.BuildTablesCommand());
             command.AddCommand(builder.BuildWorksheetsCommand());
             return command;

@@ -30,7 +30,7 @@ namespace ApiSdk.Groups.Item.Team.Group {
             var command = new Command("get");
             command.Description = "Get group from groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);

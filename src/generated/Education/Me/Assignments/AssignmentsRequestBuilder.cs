@@ -1,6 +1,6 @@
 using ApiSdk.Education.Me.Assignments.Count;
+using ApiSdk.Education.Me.Assignments.Delta;
 using ApiSdk.Education.Me.Assignments.Item;
-using ApiSdk.Education.Me.Assignments.MicrosoftGraphDelta;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,12 +35,12 @@ namespace ApiSdk.Education.Me.Assignments {
             command.AddCommand(builder.BuildCategoriesCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphPublishCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSetUpFeedbackResourcesFolderCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSetUpResourcesFolderCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildPublishCommand());
             command.AddCommand(builder.BuildResourcesCommand());
             command.AddCommand(builder.BuildRubricCommand());
+            command.AddCommand(builder.BuildSetUpFeedbackResourcesFolderCommand());
+            command.AddCommand(builder.BuildSetUpResourcesFolderCommand());
             command.AddCommand(builder.BuildSubmissionsCommand());
             return command;
         }
@@ -93,6 +93,7 @@ namespace ApiSdk.Education.Me.Assignments {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -103,6 +104,16 @@ namespace ApiSdk.Education.Me.Assignments {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildDeltaCommand() {
+            var command = new Command("delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -209,16 +220,6 @@ namespace ApiSdk.Education.Me.Assignments {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the delta method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDeltaCommand() {
-            var command = new Command("microsoft-graph-delta");
-            command.Description = "Provides operations to call the delta method.";
-            var builder = new MicrosoftGraphDeltaRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

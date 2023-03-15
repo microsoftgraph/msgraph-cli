@@ -1,10 +1,10 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Users.Item.Calendar.AllowedCalendarSharingRolesWithUser;
 using ApiSdk.Users.Item.Calendar.CalendarPermissions;
 using ApiSdk.Users.Item.Calendar.CalendarView;
 using ApiSdk.Users.Item.Calendar.Events;
-using ApiSdk.Users.Item.Calendar.MicrosoftGraphAllowedCalendarSharingRolesWithUser;
-using ApiSdk.Users.Item.Calendar.MicrosoftGraphGetSchedule;
+using ApiSdk.Users.Item.Calendar.GetSchedule;
 using ApiSdk.Users.Item.Calendar.MultiValueExtendedProperties;
 using ApiSdk.Users.Item.Calendar.SingleValueExtendedProperties;
 using Microsoft.Extensions.DependencyInjection;
@@ -52,8 +52,8 @@ namespace ApiSdk.Users.Item.Calendar {
             var builder = new CalendarViewRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             return command;
         }
         /// <summary>
@@ -66,8 +66,8 @@ namespace ApiSdk.Users.Item.Calendar {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             return command;
         }
         /// <summary>
@@ -78,7 +78,7 @@ namespace ApiSdk.Users.Item.Calendar {
             var command = new Command("get");
             command.Description = "Get the properties and relationships of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user's calendar:\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/calendar-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -129,10 +129,10 @@ namespace ApiSdk.Users.Item.Calendar {
         /// <summary>
         /// Provides operations to call the getSchedule method.
         /// </summary>
-        public Command BuildMicrosoftGraphGetScheduleCommand() {
-            var command = new Command("microsoft-graph-get-schedule");
+        public Command BuildGetScheduleCommand() {
+            var command = new Command("get-schedule");
             command.Description = "Provides operations to call the getSchedule method.";
-            var builder = new MicrosoftGraphGetScheduleRequestBuilder(PathParameters);
+            var builder = new GetScheduleRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -157,7 +157,7 @@ namespace ApiSdk.Users.Item.Calendar {
             var command = new Command("patch");
             command.Description = "Update the properties of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/calendar-update?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -195,6 +195,7 @@ namespace ApiSdk.Users.Item.Calendar {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -31,9 +31,9 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new BookingAppointmentItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCancelCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCancelCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
@@ -55,7 +55,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments {
             var command = new Command("create");
             command.Description = "Create a new bookingAppointment for the specified bookingBusiness.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bookingbusiness-post-appointments?view=graph-rest-1.0";
             // Create options for all the parameters
-            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
+            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
             command.AddOption(bookingBusinessIdOption);
@@ -93,6 +93,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (bookingBusinessId is not null) requestInfo.PathParameters.Add("bookingBusiness%2Did", bookingBusinessId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -113,7 +114,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments {
             var command = new Command("list");
             command.Description = "Get a list of bookingAppointment objects for the specified bookingBusiness.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bookingbusiness-list-appointments?view=graph-rest-1.0";
             // Create options for all the parameters
-            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
+            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
             command.AddOption(bookingBusinessIdOption);

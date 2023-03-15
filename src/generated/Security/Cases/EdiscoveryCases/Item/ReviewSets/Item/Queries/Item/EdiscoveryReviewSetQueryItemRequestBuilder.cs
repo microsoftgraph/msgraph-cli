@@ -1,6 +1,6 @@
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.Security;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Item.MicrosoftGraphSecurityApplyTags;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Item.SecurityApplyTags;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -31,15 +31,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Ite
             var command = new Command("delete");
             command.Description = "Delete navigation property queries for security";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoveryReviewSetIdOption = new Option<string>("--ediscovery-review-set-id", description: "key: id of ediscoveryReviewSet") {
+            var ediscoveryReviewSetIdOption = new Option<string>("--ediscovery-review-set-id", description: "The unique identifier of ediscoveryReviewSet") {
             };
             ediscoveryReviewSetIdOption.IsRequired = true;
             command.AddOption(ediscoveryReviewSetIdOption);
-            var ediscoveryReviewSetQueryIdOption = new Option<string>("--ediscovery-review-set-query-id", description: "key: id of ediscoveryReviewSetQuery") {
+            var ediscoveryReviewSetQueryIdOption = new Option<string>("--ediscovery-review-set-query-id", description: "The unique identifier of ediscoveryReviewSetQuery") {
             };
             ediscoveryReviewSetQueryIdOption.IsRequired = true;
             command.AddOption(ediscoveryReviewSetQueryIdOption);
@@ -77,15 +77,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Ite
             var command = new Command("get");
             command.Description = "Represents queries within the review set.";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoveryReviewSetIdOption = new Option<string>("--ediscovery-review-set-id", description: "key: id of ediscoveryReviewSet") {
+            var ediscoveryReviewSetIdOption = new Option<string>("--ediscovery-review-set-id", description: "The unique identifier of ediscoveryReviewSet") {
             };
             ediscoveryReviewSetIdOption.IsRequired = true;
             command.AddOption(ediscoveryReviewSetIdOption);
-            var ediscoveryReviewSetQueryIdOption = new Option<string>("--ediscovery-review-set-query-id", description: "key: id of ediscoveryReviewSetQuery") {
+            var ediscoveryReviewSetQueryIdOption = new Option<string>("--ediscovery-review-set-query-id", description: "The unique identifier of ediscoveryReviewSetQuery") {
             };
             ediscoveryReviewSetQueryIdOption.IsRequired = true;
             command.AddOption(ediscoveryReviewSetQueryIdOption);
@@ -145,31 +145,21 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Ite
             return command;
         }
         /// <summary>
-        /// Provides operations to call the applyTags method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSecurityApplyTagsCommand() {
-            var command = new Command("microsoft-graph-security-apply-tags");
-            command.Description = "Provides operations to call the applyTags method.";
-            var builder = new MicrosoftGraphSecurityApplyTagsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property queries in security
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property queries in security";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoveryReviewSetIdOption = new Option<string>("--ediscovery-review-set-id", description: "key: id of ediscoveryReviewSet") {
+            var ediscoveryReviewSetIdOption = new Option<string>("--ediscovery-review-set-id", description: "The unique identifier of ediscoveryReviewSet") {
             };
             ediscoveryReviewSetIdOption.IsRequired = true;
             command.AddOption(ediscoveryReviewSetIdOption);
-            var ediscoveryReviewSetQueryIdOption = new Option<string>("--ediscovery-review-set-query-id", description: "key: id of ediscoveryReviewSetQuery") {
+            var ediscoveryReviewSetQueryIdOption = new Option<string>("--ediscovery-review-set-query-id", description: "The unique identifier of ediscoveryReviewSetQuery") {
             };
             ediscoveryReviewSetQueryIdOption.IsRequired = true;
             command.AddOption(ediscoveryReviewSetQueryIdOption);
@@ -211,6 +201,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Ite
                 if (ediscoveryCaseId is not null) requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
                 if (ediscoveryReviewSetId is not null) requestInfo.PathParameters.Add("ediscoveryReviewSet%2Did", ediscoveryReviewSetId);
                 if (ediscoveryReviewSetQueryId is not null) requestInfo.PathParameters.Add("ediscoveryReviewSetQuery%2Did", ediscoveryReviewSetQueryId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -221,6 +212,16 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Ite
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the applyTags method.
+        /// </summary>
+        public Command BuildSecurityApplyTagsCommand() {
+            var command = new Command("security-apply-tags");
+            command.Description = "Provides operations to call the applyTags method.";
+            var builder = new SecurityApplyTagsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

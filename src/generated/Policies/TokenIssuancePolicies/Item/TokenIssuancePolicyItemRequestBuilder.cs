@@ -30,7 +30,7 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property tokenIssuancePolicies for policies";
             // Create options for all the parameters
-            var tokenIssuancePolicyIdOption = new Option<string>("--token-issuance-policy-id", description: "key: id of tokenIssuancePolicy") {
+            var tokenIssuancePolicyIdOption = new Option<string>("--token-issuance-policy-id", description: "The unique identifier of tokenIssuancePolicy") {
             };
             tokenIssuancePolicyIdOption.IsRequired = true;
             command.AddOption(tokenIssuancePolicyIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
             var command = new Command("get");
             command.Description = "The policy that specifies the characteristics of SAML tokens issued by Azure AD.";
             // Create options for all the parameters
-            var tokenIssuancePolicyIdOption = new Option<string>("--token-issuance-policy-id", description: "key: id of tokenIssuancePolicy") {
+            var tokenIssuancePolicyIdOption = new Option<string>("--token-issuance-policy-id", description: "The unique identifier of tokenIssuancePolicy") {
             };
             tokenIssuancePolicyIdOption.IsRequired = true;
             command.AddOption(tokenIssuancePolicyIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property tokenIssuancePolicies in policies";
             // Create options for all the parameters
-            var tokenIssuancePolicyIdOption = new Option<string>("--token-issuance-policy-id", description: "key: id of tokenIssuancePolicy") {
+            var tokenIssuancePolicyIdOption = new Option<string>("--token-issuance-policy-id", description: "The unique identifier of tokenIssuancePolicy") {
             };
             tokenIssuancePolicyIdOption.IsRequired = true;
             command.AddOption(tokenIssuancePolicyIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (tokenIssuancePolicyId is not null) requestInfo.PathParameters.Add("tokenIssuancePolicy%2Did", tokenIssuancePolicyId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

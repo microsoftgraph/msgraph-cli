@@ -29,19 +29,19 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item.C
             var command = new Command("get");
             command.Description = "The content streams that are uploaded.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "key: id of todoTaskList") {
+            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "The unique identifier of todoTaskList") {
             };
             todoTaskListIdOption.IsRequired = true;
             command.AddOption(todoTaskListIdOption);
-            var todoTaskIdOption = new Option<string>("--todo-task-id", description: "key: id of todoTask") {
+            var todoTaskIdOption = new Option<string>("--todo-task-id", description: "The unique identifier of todoTask") {
             };
             todoTaskIdOption.IsRequired = true;
             command.AddOption(todoTaskIdOption);
-            var attachmentSessionIdOption = new Option<string>("--attachment-session-id", description: "key: id of attachmentSession") {
+            var attachmentSessionIdOption = new Option<string>("--attachment-session-id", description: "The unique identifier of attachmentSession") {
             };
             attachmentSessionIdOption.IsRequired = true;
             command.AddOption(attachmentSessionIdOption);
@@ -86,19 +86,19 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.AttachmentSessions.Item.C
             var command = new Command("put");
             command.Description = "The content streams that are uploaded.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "key: id of todoTaskList") {
+            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "The unique identifier of todoTaskList") {
             };
             todoTaskListIdOption.IsRequired = true;
             command.AddOption(todoTaskListIdOption);
-            var todoTaskIdOption = new Option<string>("--todo-task-id", description: "key: id of todoTask") {
+            var todoTaskIdOption = new Option<string>("--todo-task-id", description: "The unique identifier of todoTask") {
             };
             todoTaskIdOption.IsRequired = true;
             command.AddOption(todoTaskIdOption);
-            var attachmentSessionIdOption = new Option<string>("--attachment-session-id", description: "key: id of attachmentSession") {
+            var attachmentSessionIdOption = new Option<string>("--attachment-session-id", description: "The unique identifier of attachmentSession") {
             };
             attachmentSessionIdOption.IsRequired = true;
             command.AddOption(attachmentSessionIdOption);

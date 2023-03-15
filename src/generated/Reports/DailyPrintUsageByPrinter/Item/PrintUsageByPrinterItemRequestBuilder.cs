@@ -30,7 +30,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByPrinter.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property dailyPrintUsageByPrinter for reports";
             // Create options for all the parameters
-            var printUsageByPrinterIdOption = new Option<string>("--print-usage-by-printer-id", description: "key: id of printUsageByPrinter") {
+            var printUsageByPrinterIdOption = new Option<string>("--print-usage-by-printer-id", description: "The unique identifier of printUsageByPrinter") {
             };
             printUsageByPrinterIdOption.IsRequired = true;
             command.AddOption(printUsageByPrinterIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByPrinter.Item {
             var command = new Command("get");
             command.Description = "Get dailyPrintUsageByPrinter from reports";
             // Create options for all the parameters
-            var printUsageByPrinterIdOption = new Option<string>("--print-usage-by-printer-id", description: "key: id of printUsageByPrinter") {
+            var printUsageByPrinterIdOption = new Option<string>("--print-usage-by-printer-id", description: "The unique identifier of printUsageByPrinter") {
             };
             printUsageByPrinterIdOption.IsRequired = true;
             command.AddOption(printUsageByPrinterIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByPrinter.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property dailyPrintUsageByPrinter in reports";
             // Create options for all the parameters
-            var printUsageByPrinterIdOption = new Option<string>("--print-usage-by-printer-id", description: "key: id of printUsageByPrinter") {
+            var printUsageByPrinterIdOption = new Option<string>("--print-usage-by-printer-id", description: "The unique identifier of printUsageByPrinter") {
             };
             printUsageByPrinterIdOption.IsRequired = true;
             command.AddOption(printUsageByPrinterIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByPrinter.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (printUsageByPrinterId is not null) requestInfo.PathParameters.Add("printUsageByPrinter%2Did", printUsageByPrinterId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

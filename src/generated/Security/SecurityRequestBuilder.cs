@@ -5,9 +5,9 @@ using ApiSdk.Security.Alerts;
 using ApiSdk.Security.AttackSimulation;
 using ApiSdk.Security.Cases;
 using ApiSdk.Security.Incidents;
-using ApiSdk.Security.MicrosoftGraphSecurityRunHuntingQuery;
 using ApiSdk.Security.SecureScoreControlProfiles;
 using ApiSdk.Security.SecureScores;
+using ApiSdk.Security.SecurityRunHuntingQuery;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -154,16 +154,6 @@ namespace ApiSdk.Security {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the runHuntingQuery method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSecurityRunHuntingQueryCommand() {
-            var command = new Command("microsoft-graph-security-run-hunting-query");
-            command.Description = "Provides operations to call the runHuntingQuery method.";
-            var builder = new MicrosoftGraphSecurityRunHuntingQueryRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update security
         /// </summary>
         public Command BuildPatchCommand() {
@@ -202,6 +192,7 @@ namespace ApiSdk.Security {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -238,6 +229,16 @@ namespace ApiSdk.Security {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the runHuntingQuery method.
+        /// </summary>
+        public Command BuildSecurityRunHuntingQueryCommand() {
+            var command = new Command("security-run-hunting-query");
+            command.Description = "Provides operations to call the runHuntingQuery method.";
+            var builder = new SecurityRunHuntingQueryRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

@@ -30,11 +30,11 @@ namespace ApiSdk.Sites.Item.Sites.Item {
             var command = new Command("get");
             command.Description = "The collection of the sub-sites under this site.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var siteId1Option = new Option<string>("--site-id1", description: "key: id of site") {
+            var siteId1Option = new Option<string>("--site-id1", description: "The unique identifier of site") {
             };
             siteId1Option.IsRequired = true;
             command.AddOption(siteId1Option);

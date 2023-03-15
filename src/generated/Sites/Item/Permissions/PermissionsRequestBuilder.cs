@@ -33,7 +33,7 @@ namespace ApiSdk.Sites.Item.Permissions {
             var builder = new PermissionItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGrantCommand());
+            command.AddCommand(builder.BuildGrantCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
@@ -48,14 +48,14 @@ namespace ApiSdk.Sites.Item.Permissions {
             return command;
         }
         /// <summary>
-        /// Create a new permission object on a site.
+        /// Create a new permission object on a site. 
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/site-post-permissions?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new permission object on a site.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/site-post-permissions?view=graph-rest-1.0";
+            command.Description = "Create a new permission object on a site. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/site-post-permissions?view=graph-rest-1.0";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
@@ -93,6 +93,7 @@ namespace ApiSdk.Sites.Item.Permissions {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -113,7 +114,7 @@ namespace ApiSdk.Sites.Item.Permissions {
             var command = new Command("list");
             command.Description = "Get the permission resources from the permissions navigation property on a site.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/site-list-permissions?view=graph-rest-1.0";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
@@ -254,7 +255,7 @@ namespace ApiSdk.Sites.Item.Permissions {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new permission object on a site.
+        /// Create a new permission object on a site. 
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

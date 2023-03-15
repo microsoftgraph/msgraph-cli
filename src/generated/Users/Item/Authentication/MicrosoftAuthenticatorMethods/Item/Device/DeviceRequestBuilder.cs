@@ -30,11 +30,11 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item.De
             var command = new Command("get");
             command.Description = "The registered device on which Microsoft Authenticator resides. This property is null if the device is not registered for passwordless Phone Sign-In.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var microsoftAuthenticatorAuthenticationMethodIdOption = new Option<string>("--microsoft-authenticator-authentication-method-id", description: "key: id of microsoftAuthenticatorAuthenticationMethod") {
+            var microsoftAuthenticatorAuthenticationMethodIdOption = new Option<string>("--microsoft-authenticator-authentication-method-id", description: "The unique identifier of microsoftAuthenticatorAuthenticationMethod") {
             };
             microsoftAuthenticatorAuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(microsoftAuthenticatorAuthenticationMethodIdOption);

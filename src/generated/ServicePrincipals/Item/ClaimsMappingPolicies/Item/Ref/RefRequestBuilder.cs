@@ -29,11 +29,11 @@ namespace ApiSdk.ServicePrincipals.Item.ClaimsMappingPolicies.Item.Ref {
             var command = new Command("delete");
             command.Description = "Delete ref of navigation property claimsMappingPolicies for servicePrincipals";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
+            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
-            var claimsMappingPolicyIdOption = new Option<string>("--claims-mapping-policy-id", description: "key: id of claimsMappingPolicy") {
+            var claimsMappingPolicyIdOption = new Option<string>("--claims-mapping-policy-id", description: "The unique identifier of claimsMappingPolicy") {
             };
             claimsMappingPolicyIdOption.IsRequired = true;
             command.AddOption(claimsMappingPolicyIdOption);

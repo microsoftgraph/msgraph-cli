@@ -30,11 +30,11 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property customQuestions for solutions";
             // Create options for all the parameters
-            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
+            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
             command.AddOption(bookingBusinessIdOption);
-            var bookingCustomQuestionIdOption = new Option<string>("--booking-custom-question-id", description: "key: id of bookingCustomQuestion") {
+            var bookingCustomQuestionIdOption = new Option<string>("--booking-custom-question-id", description: "The unique identifier of bookingCustomQuestion") {
             };
             bookingCustomQuestionIdOption.IsRequired = true;
             command.AddOption(bookingCustomQuestionIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions.Item {
             var command = new Command("get");
             command.Description = "All the custom questions of this business. Read-only. Nullable.";
             // Create options for all the parameters
-            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
+            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
             command.AddOption(bookingBusinessIdOption);
-            var bookingCustomQuestionIdOption = new Option<string>("--booking-custom-question-id", description: "key: id of bookingCustomQuestion") {
+            var bookingCustomQuestionIdOption = new Option<string>("--booking-custom-question-id", description: "The unique identifier of bookingCustomQuestion") {
             };
             bookingCustomQuestionIdOption.IsRequired = true;
             command.AddOption(bookingCustomQuestionIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property customQuestions in solutions";
             // Create options for all the parameters
-            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
+            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
             command.AddOption(bookingBusinessIdOption);
-            var bookingCustomQuestionIdOption = new Option<string>("--booking-custom-question-id", description: "key: id of bookingCustomQuestion") {
+            var bookingCustomQuestionIdOption = new Option<string>("--booking-custom-question-id", description: "The unique identifier of bookingCustomQuestion") {
             };
             bookingCustomQuestionIdOption.IsRequired = true;
             command.AddOption(bookingCustomQuestionIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions.Item {
                 });
                 if (bookingBusinessId is not null) requestInfo.PathParameters.Add("bookingBusiness%2Did", bookingBusinessId);
                 if (bookingCustomQuestionId is not null) requestInfo.PathParameters.Add("bookingCustomQuestion%2Did", bookingCustomQuestionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

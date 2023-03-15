@@ -30,7 +30,7 @@ namespace ApiSdk.DeviceManagement.RoleAssignments.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property roleAssignments for deviceManagement";
             // Create options for all the parameters
-            var deviceAndAppManagementRoleAssignmentIdOption = new Option<string>("--device-and-app-management-role-assignment-id", description: "key: id of deviceAndAppManagementRoleAssignment") {
+            var deviceAndAppManagementRoleAssignmentIdOption = new Option<string>("--device-and-app-management-role-assignment-id", description: "The unique identifier of deviceAndAppManagementRoleAssignment") {
             };
             deviceAndAppManagementRoleAssignmentIdOption.IsRequired = true;
             command.AddOption(deviceAndAppManagementRoleAssignmentIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.DeviceManagement.RoleAssignments.Item {
             var command = new Command("get");
             command.Description = "The Role Assignments.";
             // Create options for all the parameters
-            var deviceAndAppManagementRoleAssignmentIdOption = new Option<string>("--device-and-app-management-role-assignment-id", description: "key: id of deviceAndAppManagementRoleAssignment") {
+            var deviceAndAppManagementRoleAssignmentIdOption = new Option<string>("--device-and-app-management-role-assignment-id", description: "The unique identifier of deviceAndAppManagementRoleAssignment") {
             };
             deviceAndAppManagementRoleAssignmentIdOption.IsRequired = true;
             command.AddOption(deviceAndAppManagementRoleAssignmentIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.DeviceManagement.RoleAssignments.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property roleAssignments in deviceManagement";
             // Create options for all the parameters
-            var deviceAndAppManagementRoleAssignmentIdOption = new Option<string>("--device-and-app-management-role-assignment-id", description: "key: id of deviceAndAppManagementRoleAssignment") {
+            var deviceAndAppManagementRoleAssignmentIdOption = new Option<string>("--device-and-app-management-role-assignment-id", description: "The unique identifier of deviceAndAppManagementRoleAssignment") {
             };
             deviceAndAppManagementRoleAssignmentIdOption.IsRequired = true;
             command.AddOption(deviceAndAppManagementRoleAssignmentIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.DeviceManagement.RoleAssignments.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (deviceAndAppManagementRoleAssignmentId is not null) requestInfo.PathParameters.Add("deviceAndAppManagementRoleAssignment%2Did", deviceAndAppManagementRoleAssignmentId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

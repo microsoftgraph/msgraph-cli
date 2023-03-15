@@ -30,15 +30,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item.Content {
             var command = new Command("get");
             command.Description = "The content stream for this version of the item.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitem-list-versions?view=graph-rest-1.0";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var driveItemVersionIdOption = new Option<string>("--drive-item-version-id", description: "key: id of driveItemVersion") {
+            var driveItemVersionIdOption = new Option<string>("--drive-item-version-id", description: "The unique identifier of driveItemVersion") {
             };
             driveItemVersionIdOption.IsRequired = true;
             command.AddOption(driveItemVersionIdOption);
@@ -81,15 +81,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item.Content {
             var command = new Command("put");
             command.Description = "The content stream for this version of the item.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var driveItemVersionIdOption = new Option<string>("--drive-item-version-id", description: "key: id of driveItemVersion") {
+            var driveItemVersionIdOption = new Option<string>("--drive-item-version-id", description: "The unique identifier of driveItemVersion") {
             };
             driveItemVersionIdOption.IsRequired = true;
             command.AddOption(driveItemVersionIdOption);

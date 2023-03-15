@@ -1,8 +1,8 @@
-using ApiSdk.Contracts.Item.MicrosoftGraphCheckMemberGroups;
-using ApiSdk.Contracts.Item.MicrosoftGraphCheckMemberObjects;
-using ApiSdk.Contracts.Item.MicrosoftGraphGetMemberGroups;
-using ApiSdk.Contracts.Item.MicrosoftGraphGetMemberObjects;
-using ApiSdk.Contracts.Item.MicrosoftGraphRestore;
+using ApiSdk.Contracts.Item.CheckMemberGroups;
+using ApiSdk.Contracts.Item.CheckMemberObjects;
+using ApiSdk.Contracts.Item.GetMemberGroups;
+using ApiSdk.Contracts.Item.GetMemberObjects;
+using ApiSdk.Contracts.Item.Restore;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,13 +29,33 @@ namespace ApiSdk.Contracts.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the checkMemberGroups method.
+        /// </summary>
+        public Command BuildCheckMemberGroupsCommand() {
+            var command = new Command("check-member-groups");
+            command.Description = "Provides operations to call the checkMemberGroups method.";
+            var builder = new CheckMemberGroupsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the checkMemberObjects method.
+        /// </summary>
+        public Command BuildCheckMemberObjectsCommand() {
+            var command = new Command("check-member-objects");
+            command.Description = "Provides operations to call the checkMemberObjects method.";
+            var builder = new CheckMemberObjectsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete entity from contracts
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete entity from contracts";
             // Create options for all the parameters
-            var contractIdOption = new Option<string>("--contract-id", description: "key: id of contract") {
+            var contractIdOption = new Option<string>("--contract-id", description: "The unique identifier of contract") {
             };
             contractIdOption.IsRequired = true;
             command.AddOption(contractIdOption);
@@ -70,7 +90,7 @@ namespace ApiSdk.Contracts.Item {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of contract object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contract-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var contractIdOption = new Option<string>("--contract-id", description: "key: id of contract") {
+            var contractIdOption = new Option<string>("--contract-id", description: "The unique identifier of contract") {
             };
             contractIdOption.IsRequired = true;
             command.AddOption(contractIdOption);
@@ -126,52 +146,22 @@ namespace ApiSdk.Contracts.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the checkMemberGroups method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCheckMemberGroupsCommand() {
-            var command = new Command("microsoft-graph-check-member-groups");
-            command.Description = "Provides operations to call the checkMemberGroups method.";
-            var builder = new MicrosoftGraphCheckMemberGroupsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the checkMemberObjects method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCheckMemberObjectsCommand() {
-            var command = new Command("microsoft-graph-check-member-objects");
-            command.Description = "Provides operations to call the checkMemberObjects method.";
-            var builder = new MicrosoftGraphCheckMemberObjectsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to call the getMemberGroups method.
         /// </summary>
-        public Command BuildMicrosoftGraphGetMemberGroupsCommand() {
-            var command = new Command("microsoft-graph-get-member-groups");
+        public Command BuildGetMemberGroupsCommand() {
+            var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
-            var builder = new MicrosoftGraphGetMemberGroupsRequestBuilder(PathParameters);
+            var builder = new GetMemberGroupsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the getMemberObjects method.
         /// </summary>
-        public Command BuildMicrosoftGraphGetMemberObjectsCommand() {
-            var command = new Command("microsoft-graph-get-member-objects");
+        public Command BuildGetMemberObjectsCommand() {
+            var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
-            var builder = new MicrosoftGraphGetMemberObjectsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the restore method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRestoreCommand() {
-            var command = new Command("microsoft-graph-restore");
-            command.Description = "Provides operations to call the restore method.";
-            var builder = new MicrosoftGraphRestoreRequestBuilder(PathParameters);
+            var builder = new GetMemberObjectsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -182,7 +172,7 @@ namespace ApiSdk.Contracts.Item {
             var command = new Command("patch");
             command.Description = "Update entity in contracts";
             // Create options for all the parameters
-            var contractIdOption = new Option<string>("--contract-id", description: "key: id of contract") {
+            var contractIdOption = new Option<string>("--contract-id", description: "The unique identifier of contract") {
             };
             contractIdOption.IsRequired = true;
             command.AddOption(contractIdOption);
@@ -220,6 +210,7 @@ namespace ApiSdk.Contracts.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (contractId is not null) requestInfo.PathParameters.Add("contract%2Did", contractId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -230,6 +221,16 @@ namespace ApiSdk.Contracts.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the restore method.
+        /// </summary>
+        public Command BuildRestoreCommand() {
+            var command = new Command("restore");
+            command.Description = "Provides operations to call the restore method.";
+            var builder = new RestoreRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

@@ -53,7 +53,7 @@ namespace ApiSdk.Drives.Item.Following {
             var command = new Command("list");
             command.Description = "List the items that have been followed by the signed in user.This collection includes items that are in the user's drive as well as items they have access to from other drives.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/drive-list-following?view=graph-rest-1.0";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);

@@ -31,11 +31,11 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property conversations for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var conversationIdOption = new Option<string>("--conversation-id", description: "key: id of conversation") {
+            var conversationIdOption = new Option<string>("--conversation-id", description: "The unique identifier of conversation") {
             };
             conversationIdOption.IsRequired = true;
             command.AddOption(conversationIdOption);
@@ -71,11 +71,11 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
             var command = new Command("get");
             command.Description = "The group's conversations.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var conversationIdOption = new Option<string>("--conversation-id", description: "key: id of conversation") {
+            var conversationIdOption = new Option<string>("--conversation-id", description: "The unique identifier of conversation") {
             };
             conversationIdOption.IsRequired = true;
             command.AddOption(conversationIdOption);

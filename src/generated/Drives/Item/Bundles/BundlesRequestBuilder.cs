@@ -46,13 +46,71 @@ namespace ApiSdk.Drives.Item.Bundles {
             return command;
         }
         /// <summary>
+        /// Create new navigation property to bundles for drives
+        /// </summary>
+        public Command BuildCreateCommand() {
+            var command = new Command("create");
+            command.Description = "Create new navigation property to bundles for drives";
+            // Create options for all the parameters
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
+            };
+            driveIdOption.IsRequired = true;
+            command.AddOption(driveIdOption);
+            var bodyOption = new Option<string>("--body", description: "The request body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
+            command.SetHandler(async (invocationContext) => {
+                var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
+                using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
+                var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.DriveItem>(ApiSdk.Models.DriveItem.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
+                var requestInfo = ToPostRequestInformation(model, q => {
+                });
+                if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+            });
+            return command;
+        }
+        /// <summary>
         /// Collection of [bundles][bundle] (albums and multi-select-shared sets of items). Only in personal OneDrive.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Collection of [bundles][bundle] (albums and multi-select-shared sets of items). Only in personal OneDrive.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
@@ -193,6 +251,33 @@ namespace ApiSdk.Drives.Item.Bundles {
             return requestInfo;
         }
         /// <summary>
+        /// Create new navigation property to bundles for drives
+        /// </summary>
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.DriveItem body, Action<BundlesRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.DriveItem body, Action<BundlesRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+#endif
+            _ = body ?? throw new ArgumentNullException(nameof(body));
+            var requestInfo = new RequestInformation {
+                HttpMethod = Method.POST,
+                UrlTemplate = UrlTemplate,
+                PathParameters = PathParameters,
+            };
+            requestInfo.Headers.Add("Accept", "application/json");
+            if (requestConfiguration != null) {
+                var requestConfig = new BundlesRequestBuilderPostRequestConfiguration();
+                requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddRequestOptions(requestConfig.Options);
+                requestInfo.AddHeaders(requestConfig.Headers);
+            }
+            return requestInfo;
+        }
+        /// <summary>
         /// Collection of [bundles][bundle] (albums and multi-select-shared sets of items). Only in personal OneDrive.
         /// </summary>
         public class BundlesRequestBuilderGetQueryParameters {
@@ -270,6 +355,22 @@ namespace ApiSdk.Drives.Item.Bundles {
             /// Instantiates a new bundlesRequestBuilderGetRequestConfiguration and sets the default values.
             /// </summary>
             public BundlesRequestBuilderGetRequestConfiguration() {
+                Options = new List<IRequestOption>();
+                Headers = new RequestHeaders();
+            }
+        }
+        /// <summary>
+        /// Configuration for the request such as headers, query parameters, and middleware options.
+        /// </summary>
+        public class BundlesRequestBuilderPostRequestConfiguration {
+            /// <summary>Request headers</summary>
+            public RequestHeaders Headers { get; set; }
+            /// <summary>Request options</summary>
+            public IList<IRequestOption> Options { get; set; }
+            /// <summary>
+            /// Instantiates a new bundlesRequestBuilderPostRequestConfiguration and sets the default values.
+            /// </summary>
+            public BundlesRequestBuilderPostRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new RequestHeaders();
             }

@@ -31,7 +31,7 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property roleManagementPolicyAssignments for policies";
             // Create options for all the parameters
-            var unifiedRoleManagementPolicyAssignmentIdOption = new Option<string>("--unified-role-management-policy-assignment-id", description: "key: id of unifiedRoleManagementPolicyAssignment") {
+            var unifiedRoleManagementPolicyAssignmentIdOption = new Option<string>("--unified-role-management-policy-assignment-id", description: "The unique identifier of unifiedRoleManagementPolicyAssignment") {
             };
             unifiedRoleManagementPolicyAssignmentIdOption.IsRequired = true;
             command.AddOption(unifiedRoleManagementPolicyAssignmentIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments.Item {
             var command = new Command("get");
             command.Description = "The assignment of a role management policy to a role definition object.";
             // Create options for all the parameters
-            var unifiedRoleManagementPolicyAssignmentIdOption = new Option<string>("--unified-role-management-policy-assignment-id", description: "key: id of unifiedRoleManagementPolicyAssignment") {
+            var unifiedRoleManagementPolicyAssignmentIdOption = new Option<string>("--unified-role-management-policy-assignment-id", description: "The unique identifier of unifiedRoleManagementPolicyAssignment") {
             };
             unifiedRoleManagementPolicyAssignmentIdOption.IsRequired = true;
             command.AddOption(unifiedRoleManagementPolicyAssignmentIdOption);
@@ -127,7 +127,7 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property roleManagementPolicyAssignments in policies";
             // Create options for all the parameters
-            var unifiedRoleManagementPolicyAssignmentIdOption = new Option<string>("--unified-role-management-policy-assignment-id", description: "key: id of unifiedRoleManagementPolicyAssignment") {
+            var unifiedRoleManagementPolicyAssignmentIdOption = new Option<string>("--unified-role-management-policy-assignment-id", description: "The unique identifier of unifiedRoleManagementPolicyAssignment") {
             };
             unifiedRoleManagementPolicyAssignmentIdOption.IsRequired = true;
             command.AddOption(unifiedRoleManagementPolicyAssignmentIdOption);
@@ -165,6 +165,7 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (unifiedRoleManagementPolicyAssignmentId is not null) requestInfo.PathParameters.Add("unifiedRoleManagementPolicyAssignment%2Did", unifiedRoleManagementPolicyAssignmentId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -30,7 +30,7 @@ namespace ApiSdk.Sites.Item.Analytics {
             var command = new Command("get");
             command.Description = "Analytics about the view activities that took place in this site.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);

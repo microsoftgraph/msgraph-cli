@@ -1,7 +1,7 @@
+using ApiSdk.Communications.CallRecords.CallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTime;
+using ApiSdk.Communications.CallRecords.CallRecordsGetPstnCallsWithFromDateTimeWithToDateTime;
 using ApiSdk.Communications.CallRecords.Count;
 using ApiSdk.Communications.CallRecords.Item;
-using ApiSdk.Communications.CallRecords.MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTime;
-using ApiSdk.Communications.CallRecords.MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTime;
 using ApiSdk.Models.CallRecords;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -88,6 +88,7 @@ namespace ApiSdk.Communications.CallRecords {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -1,6 +1,6 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.Shares.Item.Permission.MicrosoftGraphGrant;
+using ApiSdk.Shares.Item.Permission.Grant;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -31,7 +31,7 @@ namespace ApiSdk.Shares.Item.Permission {
             var command = new Command("delete");
             command.Description = "Delete navigation property permission for shares";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.Shares.Item.Permission {
             var command = new Command("get");
             command.Description = "Used to access the permission representing the underlying sharing link";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
@@ -123,10 +123,10 @@ namespace ApiSdk.Shares.Item.Permission {
         /// <summary>
         /// Provides operations to call the grant method.
         /// </summary>
-        public Command BuildMicrosoftGraphGrantCommand() {
-            var command = new Command("microsoft-graph-grant");
+        public Command BuildGrantCommand() {
+            var command = new Command("grant");
             command.Description = "Provides operations to call the grant method.";
-            var builder = new MicrosoftGraphGrantRequestBuilder(PathParameters);
+            var builder = new GrantRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -137,7 +137,7 @@ namespace ApiSdk.Shares.Item.Permission {
             var command = new Command("patch");
             command.Description = "Update the navigation property permission in shares";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
@@ -175,6 +175,7 @@ namespace ApiSdk.Shares.Item.Permission {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (sharedDriveItemId is not null) requestInfo.PathParameters.Add("sharedDriveItem%2Did", sharedDriveItemId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

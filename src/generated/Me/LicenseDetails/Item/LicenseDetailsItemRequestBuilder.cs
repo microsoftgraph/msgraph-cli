@@ -30,7 +30,7 @@ namespace ApiSdk.Me.LicenseDetails.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property licenseDetails for me";
             // Create options for all the parameters
-            var licenseDetailsIdOption = new Option<string>("--license-details-id", description: "key: id of licenseDetails") {
+            var licenseDetailsIdOption = new Option<string>("--license-details-id", description: "The unique identifier of licenseDetails") {
             };
             licenseDetailsIdOption.IsRequired = true;
             command.AddOption(licenseDetailsIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Me.LicenseDetails.Item {
             var command = new Command("get");
             command.Description = "A collection of this user's license details. Read-only.";
             // Create options for all the parameters
-            var licenseDetailsIdOption = new Option<string>("--license-details-id", description: "key: id of licenseDetails") {
+            var licenseDetailsIdOption = new Option<string>("--license-details-id", description: "The unique identifier of licenseDetails") {
             };
             licenseDetailsIdOption.IsRequired = true;
             command.AddOption(licenseDetailsIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.Me.LicenseDetails.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property licenseDetails in me";
             // Create options for all the parameters
-            var licenseDetailsIdOption = new Option<string>("--license-details-id", description: "key: id of licenseDetails") {
+            var licenseDetailsIdOption = new Option<string>("--license-details-id", description: "The unique identifier of licenseDetails") {
             };
             licenseDetailsIdOption.IsRequired = true;
             command.AddOption(licenseDetailsIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.Me.LicenseDetails.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (licenseDetailsId is not null) requestInfo.PathParameters.Add("licenseDetails%2Did", licenseDetailsId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

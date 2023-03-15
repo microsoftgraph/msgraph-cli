@@ -53,11 +53,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item.De
             var command = new Command("create");
             command.Description = "Create new navigation property to deviceStates for deviceAppManagement";
             // Create options for all the parameters
-            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "key: id of managedEBook") {
+            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
             command.AddOption(managedEBookIdOption);
-            var userInstallStateSummaryIdOption = new Option<string>("--user-install-state-summary-id", description: "key: id of userInstallStateSummary") {
+            var userInstallStateSummaryIdOption = new Option<string>("--user-install-state-summary-id", description: "The unique identifier of userInstallStateSummary") {
             };
             userInstallStateSummaryIdOption.IsRequired = true;
             command.AddOption(userInstallStateSummaryIdOption);
@@ -97,6 +97,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item.De
                 });
                 if (managedEBookId is not null) requestInfo.PathParameters.Add("managedEBook%2Did", managedEBookId);
                 if (userInstallStateSummaryId is not null) requestInfo.PathParameters.Add("userInstallStateSummary%2Did", userInstallStateSummaryId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -116,11 +117,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item.De
             var command = new Command("list");
             command.Description = "The install state of the eBook.";
             // Create options for all the parameters
-            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "key: id of managedEBook") {
+            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
             command.AddOption(managedEBookIdOption);
-            var userInstallStateSummaryIdOption = new Option<string>("--user-install-state-summary-id", description: "key: id of userInstallStateSummary") {
+            var userInstallStateSummaryIdOption = new Option<string>("--user-install-state-summary-id", description: "The unique identifier of userInstallStateSummary") {
             };
             userInstallStateSummaryIdOption.IsRequired = true;
             command.AddOption(userInstallStateSummaryIdOption);

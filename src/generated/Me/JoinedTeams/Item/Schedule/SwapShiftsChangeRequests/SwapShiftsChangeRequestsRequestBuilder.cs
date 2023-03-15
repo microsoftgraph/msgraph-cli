@@ -54,7 +54,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Schedule.SwapShiftsChangeRequests {
             var command = new Command("create");
             command.Description = "Create an instance of a swapShiftsChangeRequest object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/swapshiftschangerequest-post?view=graph-rest-1.0";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
@@ -92,6 +92,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Schedule.SwapShiftsChangeRequests {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,7 +113,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Schedule.SwapShiftsChangeRequests {
             var command = new Command("list");
             command.Description = "Retrieve a list of swapShiftsChangeRequest objects in the team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/swapshiftschangerequest-list?view=graph-rest-1.0";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);

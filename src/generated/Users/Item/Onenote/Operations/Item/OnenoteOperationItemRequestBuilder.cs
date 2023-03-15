@@ -30,11 +30,11 @@ namespace ApiSdk.Users.Item.Onenote.Operations.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property operations for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var onenoteOperationIdOption = new Option<string>("--onenote-operation-id", description: "key: id of onenoteOperation") {
+            var onenoteOperationIdOption = new Option<string>("--onenote-operation-id", description: "The unique identifier of onenoteOperation") {
             };
             onenoteOperationIdOption.IsRequired = true;
             command.AddOption(onenoteOperationIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Users.Item.Onenote.Operations.Item {
             var command = new Command("get");
             command.Description = "The status of OneNote operations. Getting an operations collection is not supported, but you can get the status of long-running operations if the Operation-Location header is returned in the response. Read-only. Nullable.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var onenoteOperationIdOption = new Option<string>("--onenote-operation-id", description: "key: id of onenoteOperation") {
+            var onenoteOperationIdOption = new Option<string>("--onenote-operation-id", description: "The unique identifier of onenoteOperation") {
             };
             onenoteOperationIdOption.IsRequired = true;
             command.AddOption(onenoteOperationIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Users.Item.Onenote.Operations.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property operations in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var onenoteOperationIdOption = new Option<string>("--onenote-operation-id", description: "key: id of onenoteOperation") {
+            var onenoteOperationIdOption = new Option<string>("--onenote-operation-id", description: "The unique identifier of onenoteOperation") {
             };
             onenoteOperationIdOption.IsRequired = true;
             command.AddOption(onenoteOperationIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Users.Item.Onenote.Operations.Item {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (onenoteOperationId is not null) requestInfo.PathParameters.Add("onenoteOperation%2Did", onenoteOperationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

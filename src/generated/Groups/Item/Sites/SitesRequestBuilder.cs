@@ -1,7 +1,7 @@
+using ApiSdk.Groups.Item.Sites.Add;
 using ApiSdk.Groups.Item.Sites.Count;
 using ApiSdk.Groups.Item.Sites.Item;
-using ApiSdk.Groups.Item.Sites.MicrosoftGraphAdd;
-using ApiSdk.Groups.Item.Sites.MicrosoftGraphRemove;
+using ApiSdk.Groups.Item.Sites.Remove;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +28,16 @@ namespace ApiSdk.Groups.Item.Sites {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the add method.
+        /// </summary>
+        public Command BuildAddCommand() {
+            var command = new Command("add");
+            command.Description = "Provides operations to call the add method.";
+            var builder = new AddRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the sites property of the microsoft.graph.group entity.
         /// </summary>
         public Command BuildCommand() {
@@ -39,10 +49,10 @@ namespace ApiSdk.Groups.Item.Sites {
             command.AddCommand(builder.BuildDriveCommand());
             command.AddCommand(builder.BuildDrivesCommand());
             command.AddCommand(builder.BuildExternalColumnsCommand());
+            command.AddCommand(builder.BuildGetActivitiesByIntervalCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildItemsCommand());
             command.AddCommand(builder.BuildListsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetActivitiesByIntervalCommand());
             command.AddCommand(builder.BuildOnenoteCommand());
             command.AddCommand(builder.BuildOperationsCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -69,7 +79,7 @@ namespace ApiSdk.Groups.Item.Sites {
             var command = new Command("list");
             command.Description = "The list of SharePoint sites in this group. Access the default site with /sites/root.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
@@ -174,22 +184,12 @@ namespace ApiSdk.Groups.Item.Sites {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the add method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAddCommand() {
-            var command = new Command("microsoft-graph-add");
-            command.Description = "Provides operations to call the add method.";
-            var builder = new MicrosoftGraphAddRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to call the remove method.
         /// </summary>
-        public Command BuildMicrosoftGraphRemoveCommand() {
-            var command = new Command("microsoft-graph-remove");
+        public Command BuildRemoveCommand() {
+            var command = new Command("remove");
             command.Description = "Provides operations to call the remove method.";
-            var builder = new MicrosoftGraphRemoveRequestBuilder(PathParameters);
+            var builder = new RemoveRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }

@@ -30,11 +30,11 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.AccessAssi
             var command = new Command("delete");
             command.Description = "Delete navigation property accessAssignments for tenantRelationships";
             // Create options for all the parameters
-            var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "key: id of delegatedAdminRelationship") {
+            var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "The unique identifier of delegatedAdminRelationship") {
             };
             delegatedAdminRelationshipIdOption.IsRequired = true;
             command.AddOption(delegatedAdminRelationshipIdOption);
-            var delegatedAdminAccessAssignmentIdOption = new Option<string>("--delegated-admin-access-assignment-id", description: "key: id of delegatedAdminAccessAssignment") {
+            var delegatedAdminAccessAssignmentIdOption = new Option<string>("--delegated-admin-access-assignment-id", description: "The unique identifier of delegatedAdminAccessAssignment") {
             };
             delegatedAdminAccessAssignmentIdOption.IsRequired = true;
             command.AddOption(delegatedAdminAccessAssignmentIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.AccessAssi
             var command = new Command("get");
             command.Description = "The access assignments associated with the delegated admin relationship.";
             // Create options for all the parameters
-            var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "key: id of delegatedAdminRelationship") {
+            var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "The unique identifier of delegatedAdminRelationship") {
             };
             delegatedAdminRelationshipIdOption.IsRequired = true;
             command.AddOption(delegatedAdminRelationshipIdOption);
-            var delegatedAdminAccessAssignmentIdOption = new Option<string>("--delegated-admin-access-assignment-id", description: "key: id of delegatedAdminAccessAssignment") {
+            var delegatedAdminAccessAssignmentIdOption = new Option<string>("--delegated-admin-access-assignment-id", description: "The unique identifier of delegatedAdminAccessAssignment") {
             };
             delegatedAdminAccessAssignmentIdOption.IsRequired = true;
             command.AddOption(delegatedAdminAccessAssignmentIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.AccessAssi
             var command = new Command("patch");
             command.Description = "Update the navigation property accessAssignments in tenantRelationships";
             // Create options for all the parameters
-            var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "key: id of delegatedAdminRelationship") {
+            var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "The unique identifier of delegatedAdminRelationship") {
             };
             delegatedAdminRelationshipIdOption.IsRequired = true;
             command.AddOption(delegatedAdminRelationshipIdOption);
-            var delegatedAdminAccessAssignmentIdOption = new Option<string>("--delegated-admin-access-assignment-id", description: "key: id of delegatedAdminAccessAssignment") {
+            var delegatedAdminAccessAssignmentIdOption = new Option<string>("--delegated-admin-access-assignment-id", description: "The unique identifier of delegatedAdminAccessAssignment") {
             };
             delegatedAdminAccessAssignmentIdOption.IsRequired = true;
             command.AddOption(delegatedAdminAccessAssignmentIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.AccessAssi
                 });
                 if (delegatedAdminRelationshipId is not null) requestInfo.PathParameters.Add("delegatedAdminRelationship%2Did", delegatedAdminRelationshipId);
                 if (delegatedAdminAccessAssignmentId is not null) requestInfo.PathParameters.Add("delegatedAdminAccessAssignment%2Did", delegatedAdminAccessAssignmentId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

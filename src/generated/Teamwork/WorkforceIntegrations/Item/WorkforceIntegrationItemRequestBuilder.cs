@@ -30,7 +30,7 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property workforceIntegrations for teamwork";
             // Create options for all the parameters
-            var workforceIntegrationIdOption = new Option<string>("--workforce-integration-id", description: "key: id of workforceIntegration") {
+            var workforceIntegrationIdOption = new Option<string>("--workforce-integration-id", description: "The unique identifier of workforceIntegration") {
             };
             workforceIntegrationIdOption.IsRequired = true;
             command.AddOption(workforceIntegrationIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations.Item {
             var command = new Command("get");
             command.Description = "Get workforceIntegrations from teamwork";
             // Create options for all the parameters
-            var workforceIntegrationIdOption = new Option<string>("--workforce-integration-id", description: "key: id of workforceIntegration") {
+            var workforceIntegrationIdOption = new Option<string>("--workforce-integration-id", description: "The unique identifier of workforceIntegration") {
             };
             workforceIntegrationIdOption.IsRequired = true;
             command.AddOption(workforceIntegrationIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property workforceIntegrations in teamwork";
             // Create options for all the parameters
-            var workforceIntegrationIdOption = new Option<string>("--workforce-integration-id", description: "key: id of workforceIntegration") {
+            var workforceIntegrationIdOption = new Option<string>("--workforce-integration-id", description: "The unique identifier of workforceIntegration") {
             };
             workforceIntegrationIdOption.IsRequired = true;
             command.AddOption(workforceIntegrationIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (workforceIntegrationId is not null) requestInfo.PathParameters.Add("workforceIntegration%2Did", workforceIntegrationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -34,8 +34,8 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy {
             var builder = new DefaultRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphResetToSystemDefaultCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildResetToSystemDefaultCommand());
             return command;
         }
         /// <summary>
@@ -176,6 +176,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

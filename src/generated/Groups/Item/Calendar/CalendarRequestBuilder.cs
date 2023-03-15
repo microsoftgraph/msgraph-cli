@@ -1,8 +1,8 @@
+using ApiSdk.Groups.Item.Calendar.AllowedCalendarSharingRolesWithUser;
 using ApiSdk.Groups.Item.Calendar.CalendarPermissions;
 using ApiSdk.Groups.Item.Calendar.CalendarView;
 using ApiSdk.Groups.Item.Calendar.Events;
-using ApiSdk.Groups.Item.Calendar.MicrosoftGraphAllowedCalendarSharingRolesWithUser;
-using ApiSdk.Groups.Item.Calendar.MicrosoftGraphGetSchedule;
+using ApiSdk.Groups.Item.Calendar.GetSchedule;
 using ApiSdk.Groups.Item.Calendar.MultiValueExtendedProperties;
 using ApiSdk.Groups.Item.Calendar.SingleValueExtendedProperties;
 using ApiSdk.Models;
@@ -52,8 +52,8 @@ namespace ApiSdk.Groups.Item.Calendar {
             var builder = new CalendarViewRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             return command;
         }
         /// <summary>
@@ -66,8 +66,8 @@ namespace ApiSdk.Groups.Item.Calendar {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             return command;
         }
         /// <summary>
@@ -77,7 +77,7 @@ namespace ApiSdk.Groups.Item.Calendar {
             var command = new Command("get");
             command.Description = "The group's calendar. Read-only.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
@@ -128,10 +128,10 @@ namespace ApiSdk.Groups.Item.Calendar {
         /// <summary>
         /// Provides operations to call the getSchedule method.
         /// </summary>
-        public Command BuildMicrosoftGraphGetScheduleCommand() {
-            var command = new Command("microsoft-graph-get-schedule");
+        public Command BuildGetScheduleCommand() {
+            var command = new Command("get-schedule");
             command.Description = "Provides operations to call the getSchedule method.";
-            var builder = new MicrosoftGraphGetScheduleRequestBuilder(PathParameters);
+            var builder = new GetScheduleRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }

@@ -31,7 +31,7 @@ namespace ApiSdk.Me.Teamwork.InstalledApps.Item.Chat {
             var command = new Command("get");
             command.Description = "Retrieve the chat of the specified user and Teams app.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/userscopeteamsappinstallation-get-chat?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userScopeTeamsAppInstallationIdOption = new Option<string>("--user-scope-teams-app-installation-id", description: "key: id of userScopeTeamsAppInstallation") {
+            var userScopeTeamsAppInstallationIdOption = new Option<string>("--user-scope-teams-app-installation-id", description: "The unique identifier of userScopeTeamsAppInstallation") {
             };
             userScopeTeamsAppInstallationIdOption.IsRequired = true;
             command.AddOption(userScopeTeamsAppInstallationIdOption);

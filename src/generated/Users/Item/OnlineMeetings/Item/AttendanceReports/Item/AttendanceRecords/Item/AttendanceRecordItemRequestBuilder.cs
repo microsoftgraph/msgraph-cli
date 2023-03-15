@@ -30,19 +30,19 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item.Attendanc
             var command = new Command("delete");
             command.Description = "Delete navigation property attendanceRecords for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "key: id of onlineMeeting") {
+            var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "The unique identifier of onlineMeeting") {
             };
             onlineMeetingIdOption.IsRequired = true;
             command.AddOption(onlineMeetingIdOption);
-            var meetingAttendanceReportIdOption = new Option<string>("--meeting-attendance-report-id", description: "key: id of meetingAttendanceReport") {
+            var meetingAttendanceReportIdOption = new Option<string>("--meeting-attendance-report-id", description: "The unique identifier of meetingAttendanceReport") {
             };
             meetingAttendanceReportIdOption.IsRequired = true;
             command.AddOption(meetingAttendanceReportIdOption);
-            var attendanceRecordIdOption = new Option<string>("--attendance-record-id", description: "key: id of attendanceRecord") {
+            var attendanceRecordIdOption = new Option<string>("--attendance-record-id", description: "The unique identifier of attendanceRecord") {
             };
             attendanceRecordIdOption.IsRequired = true;
             command.AddOption(attendanceRecordIdOption);
@@ -82,19 +82,19 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item.Attendanc
             var command = new Command("get");
             command.Description = "List of attendance records of an attendance report. Read-only.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "key: id of onlineMeeting") {
+            var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "The unique identifier of onlineMeeting") {
             };
             onlineMeetingIdOption.IsRequired = true;
             command.AddOption(onlineMeetingIdOption);
-            var meetingAttendanceReportIdOption = new Option<string>("--meeting-attendance-report-id", description: "key: id of meetingAttendanceReport") {
+            var meetingAttendanceReportIdOption = new Option<string>("--meeting-attendance-report-id", description: "The unique identifier of meetingAttendanceReport") {
             };
             meetingAttendanceReportIdOption.IsRequired = true;
             command.AddOption(meetingAttendanceReportIdOption);
-            var attendanceRecordIdOption = new Option<string>("--attendance-record-id", description: "key: id of attendanceRecord") {
+            var attendanceRecordIdOption = new Option<string>("--attendance-record-id", description: "The unique identifier of attendanceRecord") {
             };
             attendanceRecordIdOption.IsRequired = true;
             command.AddOption(attendanceRecordIdOption);
@@ -162,19 +162,19 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item.Attendanc
             var command = new Command("patch");
             command.Description = "Update the navigation property attendanceRecords in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "key: id of onlineMeeting") {
+            var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "The unique identifier of onlineMeeting") {
             };
             onlineMeetingIdOption.IsRequired = true;
             command.AddOption(onlineMeetingIdOption);
-            var meetingAttendanceReportIdOption = new Option<string>("--meeting-attendance-report-id", description: "key: id of meetingAttendanceReport") {
+            var meetingAttendanceReportIdOption = new Option<string>("--meeting-attendance-report-id", description: "The unique identifier of meetingAttendanceReport") {
             };
             meetingAttendanceReportIdOption.IsRequired = true;
             command.AddOption(meetingAttendanceReportIdOption);
-            var attendanceRecordIdOption = new Option<string>("--attendance-record-id", description: "key: id of attendanceRecord") {
+            var attendanceRecordIdOption = new Option<string>("--attendance-record-id", description: "The unique identifier of attendanceRecord") {
             };
             attendanceRecordIdOption.IsRequired = true;
             command.AddOption(attendanceRecordIdOption);
@@ -218,6 +218,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item.Attendanc
                 if (onlineMeetingId is not null) requestInfo.PathParameters.Add("onlineMeeting%2Did", onlineMeetingId);
                 if (meetingAttendanceReportId is not null) requestInfo.PathParameters.Add("meetingAttendanceReport%2Did", meetingAttendanceReportId);
                 if (attendanceRecordId is not null) requestInfo.PathParameters.Add("attendanceRecord%2Did", attendanceRecordId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

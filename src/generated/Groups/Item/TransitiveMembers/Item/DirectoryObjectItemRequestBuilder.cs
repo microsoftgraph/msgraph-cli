@@ -1,9 +1,9 @@
-using ApiSdk.Groups.Item.TransitiveMembers.Item.MicrosoftGraphApplication;
-using ApiSdk.Groups.Item.TransitiveMembers.Item.MicrosoftGraphDevice;
-using ApiSdk.Groups.Item.TransitiveMembers.Item.MicrosoftGraphGroup;
-using ApiSdk.Groups.Item.TransitiveMembers.Item.MicrosoftGraphOrgContact;
-using ApiSdk.Groups.Item.TransitiveMembers.Item.MicrosoftGraphServicePrincipal;
-using ApiSdk.Groups.Item.TransitiveMembers.Item.MicrosoftGraphUser;
+using ApiSdk.Groups.Item.TransitiveMembers.Item.GraphApplication;
+using ApiSdk.Groups.Item.TransitiveMembers.Item.GraphDevice;
+using ApiSdk.Groups.Item.TransitiveMembers.Item.GraphGroup;
+using ApiSdk.Groups.Item.TransitiveMembers.Item.GraphOrgContact;
+using ApiSdk.Groups.Item.TransitiveMembers.Item.GraphServicePrincipal;
+using ApiSdk.Groups.Item.TransitiveMembers.Item.GraphUser;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,11 +36,11 @@ namespace ApiSdk.Groups.Item.TransitiveMembers.Item {
             var command = new Command("get");
             command.Description = "The direct and transitive members of a group. Nullable.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "key: id of directoryObject") {
+            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "The unique identifier of directoryObject") {
             };
             directoryObjectIdOption.IsRequired = true;
             command.AddOption(directoryObjectIdOption);
@@ -107,60 +107,60 @@ namespace ApiSdk.Groups.Item.TransitiveMembers.Item {
         /// <summary>
         /// Casts the previous resource to application.
         /// </summary>
-        public Command BuildMicrosoftGraphApplicationCommand() {
-            var command = new Command("microsoft-graph-application");
+        public Command BuildGraphApplicationCommand() {
+            var command = new Command("graph-application");
             command.Description = "Casts the previous resource to application.";
-            var builder = new MicrosoftGraphApplicationRequestBuilder(PathParameters);
+            var builder = new GraphApplicationRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Casts the previous resource to device.
         /// </summary>
-        public Command BuildMicrosoftGraphDeviceCommand() {
-            var command = new Command("microsoft-graph-device");
+        public Command BuildGraphDeviceCommand() {
+            var command = new Command("graph-device");
             command.Description = "Casts the previous resource to device.";
-            var builder = new MicrosoftGraphDeviceRequestBuilder(PathParameters);
+            var builder = new GraphDeviceRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
-        public Command BuildMicrosoftGraphGroupCommand() {
-            var command = new Command("microsoft-graph-group");
+        public Command BuildGraphGroupCommand() {
+            var command = new Command("graph-group");
             command.Description = "Casts the previous resource to group.";
-            var builder = new MicrosoftGraphGroupRequestBuilder(PathParameters);
+            var builder = new GraphGroupRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Casts the previous resource to orgContact.
         /// </summary>
-        public Command BuildMicrosoftGraphOrgContactCommand() {
-            var command = new Command("microsoft-graph-org-contact");
+        public Command BuildGraphOrgContactCommand() {
+            var command = new Command("graph-org-contact");
             command.Description = "Casts the previous resource to orgContact.";
-            var builder = new MicrosoftGraphOrgContactRequestBuilder(PathParameters);
+            var builder = new GraphOrgContactRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        public Command BuildMicrosoftGraphServicePrincipalCommand() {
-            var command = new Command("microsoft-graph-service-principal");
+        public Command BuildGraphServicePrincipalCommand() {
+            var command = new Command("graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
-            var builder = new MicrosoftGraphServicePrincipalRequestBuilder(PathParameters);
+            var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
-        public Command BuildMicrosoftGraphUserCommand() {
-            var command = new Command("microsoft-graph-user");
+        public Command BuildGraphUserCommand() {
+            var command = new Command("graph-user");
             command.Description = "Casts the previous resource to user.";
-            var builder = new MicrosoftGraphUserRequestBuilder(PathParameters);
+            var builder = new GraphUserRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }

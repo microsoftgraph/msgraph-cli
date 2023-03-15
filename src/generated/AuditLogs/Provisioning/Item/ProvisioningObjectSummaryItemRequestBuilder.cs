@@ -30,7 +30,7 @@ namespace ApiSdk.AuditLogs.Provisioning.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property provisioning for auditLogs";
             // Create options for all the parameters
-            var provisioningObjectSummaryIdOption = new Option<string>("--provisioning-object-summary-id", description: "key: id of provisioningObjectSummary") {
+            var provisioningObjectSummaryIdOption = new Option<string>("--provisioning-object-summary-id", description: "The unique identifier of provisioningObjectSummary") {
             };
             provisioningObjectSummaryIdOption.IsRequired = true;
             command.AddOption(provisioningObjectSummaryIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.AuditLogs.Provisioning.Item {
             var command = new Command("get");
             command.Description = "Get provisioning from auditLogs";
             // Create options for all the parameters
-            var provisioningObjectSummaryIdOption = new Option<string>("--provisioning-object-summary-id", description: "key: id of provisioningObjectSummary") {
+            var provisioningObjectSummaryIdOption = new Option<string>("--provisioning-object-summary-id", description: "The unique identifier of provisioningObjectSummary") {
             };
             provisioningObjectSummaryIdOption.IsRequired = true;
             command.AddOption(provisioningObjectSummaryIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.AuditLogs.Provisioning.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property provisioning in auditLogs";
             // Create options for all the parameters
-            var provisioningObjectSummaryIdOption = new Option<string>("--provisioning-object-summary-id", description: "key: id of provisioningObjectSummary") {
+            var provisioningObjectSummaryIdOption = new Option<string>("--provisioning-object-summary-id", description: "The unique identifier of provisioningObjectSummary") {
             };
             provisioningObjectSummaryIdOption.IsRequired = true;
             command.AddOption(provisioningObjectSummaryIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.AuditLogs.Provisioning.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (provisioningObjectSummaryId is not null) requestInfo.PathParameters.Add("provisioningObjectSummary%2Did", provisioningObjectSummaryId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

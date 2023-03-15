@@ -29,7 +29,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item.Apps.Coun
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var androidManagedAppProtectionIdOption = new Option<string>("--android-managed-app-protection-id", description: "key: id of androidManagedAppProtection") {
+            var androidManagedAppProtectionIdOption = new Option<string>("--android-managed-app-protection-id", description: "The unique identifier of androidManagedAppProtection") {
             };
             androidManagedAppProtectionIdOption.IsRequired = true;
             command.AddOption(androidManagedAppProtectionIdOption);

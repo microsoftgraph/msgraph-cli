@@ -30,7 +30,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Templates.Item {
             var command = new Command("get");
             command.Description = "Read-only. Nullable. Returns a collection of the specified Conditional Access templates.";
             // Create options for all the parameters
-            var conditionalAccessTemplateIdOption = new Option<string>("--conditional-access-template-id", description: "key: id of conditionalAccessTemplate") {
+            var conditionalAccessTemplateIdOption = new Option<string>("--conditional-access-template-id", description: "The unique identifier of conditionalAccessTemplate") {
             };
             conditionalAccessTemplateIdOption.IsRequired = true;
             command.AddOption(conditionalAccessTemplateIdOption);

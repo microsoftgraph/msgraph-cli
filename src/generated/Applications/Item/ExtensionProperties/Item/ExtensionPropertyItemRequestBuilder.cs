@@ -30,11 +30,11 @@ namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property extensionProperties for applications";
             // Create options for all the parameters
-            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
             command.AddOption(applicationIdOption);
-            var extensionPropertyIdOption = new Option<string>("--extension-property-id", description: "key: id of extensionProperty") {
+            var extensionPropertyIdOption = new Option<string>("--extension-property-id", description: "The unique identifier of extensionProperty") {
             };
             extensionPropertyIdOption.IsRequired = true;
             command.AddOption(extensionPropertyIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
             var command = new Command("get");
             command.Description = "Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0).";
             // Create options for all the parameters
-            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
             command.AddOption(applicationIdOption);
-            var extensionPropertyIdOption = new Option<string>("--extension-property-id", description: "key: id of extensionProperty") {
+            var extensionPropertyIdOption = new Option<string>("--extension-property-id", description: "The unique identifier of extensionProperty") {
             };
             extensionPropertyIdOption.IsRequired = true;
             command.AddOption(extensionPropertyIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property extensionProperties in applications";
             // Create options for all the parameters
-            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
             command.AddOption(applicationIdOption);
-            var extensionPropertyIdOption = new Option<string>("--extension-property-id", description: "key: id of extensionProperty") {
+            var extensionPropertyIdOption = new Option<string>("--extension-property-id", description: "The unique identifier of extensionProperty") {
             };
             extensionPropertyIdOption.IsRequired = true;
             command.AddOption(extensionPropertyIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties.Item {
                 });
                 if (applicationId is not null) requestInfo.PathParameters.Add("application%2Did", applicationId);
                 if (extensionPropertyId is not null) requestInfo.PathParameters.Add("extensionProperty%2Did", extensionPropertyId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

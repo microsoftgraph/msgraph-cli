@@ -30,11 +30,11 @@ namespace ApiSdk.Groups.Item.Settings.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property settings for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var groupSettingIdOption = new Option<string>("--group-setting-id", description: "key: id of groupSetting") {
+            var groupSettingIdOption = new Option<string>("--group-setting-id", description: "The unique identifier of groupSetting") {
             };
             groupSettingIdOption.IsRequired = true;
             command.AddOption(groupSettingIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Groups.Item.Settings.Item {
             var command = new Command("get");
             command.Description = "Settings that can govern this group's behavior, like whether members can invite guest users to the group. Nullable.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var groupSettingIdOption = new Option<string>("--group-setting-id", description: "key: id of groupSetting") {
+            var groupSettingIdOption = new Option<string>("--group-setting-id", description: "The unique identifier of groupSetting") {
             };
             groupSettingIdOption.IsRequired = true;
             command.AddOption(groupSettingIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Groups.Item.Settings.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property settings in groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var groupSettingIdOption = new Option<string>("--group-setting-id", description: "key: id of groupSetting") {
+            var groupSettingIdOption = new Option<string>("--group-setting-id", description: "The unique identifier of groupSetting") {
             };
             groupSettingIdOption.IsRequired = true;
             command.AddOption(groupSettingIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Groups.Item.Settings.Item {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (groupSettingId is not null) requestInfo.PathParameters.Add("groupSetting%2Did", groupSettingId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -53,7 +53,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations {
             var command = new Command("create");
             command.Description = "Create new navigation property to operations for deviceAppManagement";
             // Create options for all the parameters
-            var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "key: id of managedAppRegistration") {
+            var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "The unique identifier of managedAppRegistration") {
             };
             managedAppRegistrationIdOption.IsRequired = true;
             command.AddOption(managedAppRegistrationIdOption);
@@ -91,6 +91,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (managedAppRegistrationId is not null) requestInfo.PathParameters.Add("managedAppRegistration%2Did", managedAppRegistrationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -110,7 +111,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations {
             var command = new Command("list");
             command.Description = "Zero or more long running operations triggered on the app registration.";
             // Create options for all the parameters
-            var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "key: id of managedAppRegistration") {
+            var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "The unique identifier of managedAppRegistration") {
             };
             managedAppRegistrationIdOption.IsRequired = true;
             command.AddOption(managedAppRegistrationIdOption);

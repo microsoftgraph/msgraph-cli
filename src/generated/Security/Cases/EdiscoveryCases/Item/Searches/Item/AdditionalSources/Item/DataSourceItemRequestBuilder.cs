@@ -30,15 +30,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AdditionalSou
             var command = new Command("delete");
             command.Description = "Delete navigation property additionalSources for security";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoverySearchIdOption = new Option<string>("--ediscovery-search-id", description: "key: id of ediscoverySearch") {
+            var ediscoverySearchIdOption = new Option<string>("--ediscovery-search-id", description: "The unique identifier of ediscoverySearch") {
             };
             ediscoverySearchIdOption.IsRequired = true;
             command.AddOption(ediscoverySearchIdOption);
-            var dataSourceIdOption = new Option<string>("--data-source-id", description: "key: id of dataSource") {
+            var dataSourceIdOption = new Option<string>("--data-source-id", description: "The unique identifier of dataSource") {
             };
             dataSourceIdOption.IsRequired = true;
             command.AddOption(dataSourceIdOption);
@@ -76,15 +76,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AdditionalSou
             var command = new Command("get");
             command.Description = "Adds an additional source to the eDiscovery search.";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoverySearchIdOption = new Option<string>("--ediscovery-search-id", description: "key: id of ediscoverySearch") {
+            var ediscoverySearchIdOption = new Option<string>("--ediscovery-search-id", description: "The unique identifier of ediscoverySearch") {
             };
             ediscoverySearchIdOption.IsRequired = true;
             command.AddOption(ediscoverySearchIdOption);
-            var dataSourceIdOption = new Option<string>("--data-source-id", description: "key: id of dataSource") {
+            var dataSourceIdOption = new Option<string>("--data-source-id", description: "The unique identifier of dataSource") {
             };
             dataSourceIdOption.IsRequired = true;
             command.AddOption(dataSourceIdOption);
@@ -150,15 +150,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AdditionalSou
             var command = new Command("patch");
             command.Description = "Update the navigation property additionalSources in security";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoverySearchIdOption = new Option<string>("--ediscovery-search-id", description: "key: id of ediscoverySearch") {
+            var ediscoverySearchIdOption = new Option<string>("--ediscovery-search-id", description: "The unique identifier of ediscoverySearch") {
             };
             ediscoverySearchIdOption.IsRequired = true;
             command.AddOption(ediscoverySearchIdOption);
-            var dataSourceIdOption = new Option<string>("--data-source-id", description: "key: id of dataSource") {
+            var dataSourceIdOption = new Option<string>("--data-source-id", description: "The unique identifier of dataSource") {
             };
             dataSourceIdOption.IsRequired = true;
             command.AddOption(dataSourceIdOption);
@@ -200,6 +200,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AdditionalSou
                 if (ediscoveryCaseId is not null) requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
                 if (ediscoverySearchId is not null) requestInfo.PathParameters.Add("ediscoverySearch%2Did", ediscoverySearchId);
                 if (dataSourceId is not null) requestInfo.PathParameters.Add("dataSource%2Did", dataSourceId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

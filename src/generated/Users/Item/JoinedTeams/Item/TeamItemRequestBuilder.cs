@@ -1,22 +1,22 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.JoinedTeams.Item.AllChannels;
+using ApiSdk.Users.Item.JoinedTeams.Item.Archive;
 using ApiSdk.Users.Item.JoinedTeams.Item.Channels;
+using ApiSdk.Users.Item.JoinedTeams.Item.Clone;
+using ApiSdk.Users.Item.JoinedTeams.Item.CompleteMigration;
 using ApiSdk.Users.Item.JoinedTeams.Item.Group;
 using ApiSdk.Users.Item.JoinedTeams.Item.IncomingChannels;
 using ApiSdk.Users.Item.JoinedTeams.Item.InstalledApps;
 using ApiSdk.Users.Item.JoinedTeams.Item.Members;
-using ApiSdk.Users.Item.JoinedTeams.Item.MicrosoftGraphArchive;
-using ApiSdk.Users.Item.JoinedTeams.Item.MicrosoftGraphClone;
-using ApiSdk.Users.Item.JoinedTeams.Item.MicrosoftGraphCompleteMigration;
-using ApiSdk.Users.Item.JoinedTeams.Item.MicrosoftGraphSendActivityNotification;
-using ApiSdk.Users.Item.JoinedTeams.Item.MicrosoftGraphUnarchive;
 using ApiSdk.Users.Item.JoinedTeams.Item.Operations;
 using ApiSdk.Users.Item.JoinedTeams.Item.Photo;
 using ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel;
 using ApiSdk.Users.Item.JoinedTeams.Item.Schedule;
+using ApiSdk.Users.Item.JoinedTeams.Item.SendActivityNotification;
 using ApiSdk.Users.Item.JoinedTeams.Item.Tags;
 using ApiSdk.Users.Item.JoinedTeams.Item.Template;
+using ApiSdk.Users.Item.JoinedTeams.Item.Unarchive;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -53,6 +53,16 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the archive method.
+        /// </summary>
+        public Command BuildArchiveCommand() {
+            var command = new Command("archive");
+            command.Description = "Provides operations to call the archive method.";
+            var builder = new ArchiveRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the channels property of the microsoft.graph.team entity.
         /// </summary>
         public Command BuildChannelsCommand() {
@@ -62,8 +72,28 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildGetAllMessagesCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetAllMessagesCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the clone method.
+        /// </summary>
+        public Command BuildCloneCommand() {
+            var command = new Command("clone");
+            command.Description = "Provides operations to call the clone method.";
+            var builder = new CloneRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the completeMigration method.
+        /// </summary>
+        public Command BuildCompleteMigrationCommand() {
+            var command = new Command("complete-migration");
+            command.Description = "Provides operations to call the completeMigration method.";
+            var builder = new CompleteMigrationRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -73,11 +103,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property joinedTeams for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
@@ -113,11 +143,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item {
             var command = new Command("get");
             command.Description = "Get joinedTeams from users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
@@ -216,61 +246,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item {
             var command = new Command("members");
             command.Description = "Provides operations to manage the members property of the microsoft.graph.team entity.";
             var builder = new MembersRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAddCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAddCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the archive method.
-        /// </summary>
-        public Command BuildMicrosoftGraphArchiveCommand() {
-            var command = new Command("microsoft-graph-archive");
-            command.Description = "Provides operations to call the archive method.";
-            var builder = new MicrosoftGraphArchiveRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the clone method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCloneCommand() {
-            var command = new Command("microsoft-graph-clone");
-            command.Description = "Provides operations to call the clone method.";
-            var builder = new MicrosoftGraphCloneRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the completeMigration method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCompleteMigrationCommand() {
-            var command = new Command("microsoft-graph-complete-migration");
-            command.Description = "Provides operations to call the completeMigration method.";
-            var builder = new MicrosoftGraphCompleteMigrationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the sendActivityNotification method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSendActivityNotificationCommand() {
-            var command = new Command("microsoft-graph-send-activity-notification");
-            command.Description = "Provides operations to call the sendActivityNotification method.";
-            var builder = new MicrosoftGraphSendActivityNotificationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the unarchive method.
-        /// </summary>
-        public Command BuildMicrosoftGraphUnarchiveCommand() {
-            var command = new Command("microsoft-graph-unarchive");
-            command.Description = "Provides operations to call the unarchive method.";
-            var builder = new MicrosoftGraphUnarchiveRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -293,11 +273,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property joinedTeams in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
@@ -337,6 +317,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -369,16 +350,16 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item {
             var command = new Command("primary-channel");
             command.Description = "Provides operations to manage the primaryChannel property of the microsoft.graph.team entity.";
             var builder = new PrimaryChannelRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCompleteMigrationCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameCommand());
             command.AddCommand(builder.BuildFilesFolderCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildMembersCommand());
             command.AddCommand(builder.BuildMessagesCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCompleteMigrationCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphProvisionEmailCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRemoveEmailCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildProvisionEmailCommand());
+            command.AddCommand(builder.BuildRemoveEmailCommand());
             command.AddCommand(builder.BuildSharedWithTeamsCommand());
             command.AddCommand(builder.BuildTabsCommand());
             return command;
@@ -392,17 +373,27 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item {
             var builder = new ScheduleRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphShareCommand());
             command.AddCommand(builder.BuildOfferShiftRequestsCommand());
             command.AddCommand(builder.BuildOpenShiftChangeRequestsCommand());
             command.AddCommand(builder.BuildOpenShiftsCommand());
             command.AddCommand(builder.BuildPutCommand());
             command.AddCommand(builder.BuildSchedulingGroupsCommand());
+            command.AddCommand(builder.BuildShareCommand());
             command.AddCommand(builder.BuildShiftsCommand());
             command.AddCommand(builder.BuildSwapShiftsChangeRequestsCommand());
             command.AddCommand(builder.BuildTimeOffReasonsCommand());
             command.AddCommand(builder.BuildTimeOffRequestsCommand());
             command.AddCommand(builder.BuildTimesOffCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sendActivityNotification method.
+        /// </summary>
+        public Command BuildSendActivityNotificationCommand() {
+            var command = new Command("send-activity-notification");
+            command.Description = "Provides operations to call the sendActivityNotification method.";
+            var builder = new SendActivityNotificationRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -426,6 +417,16 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item {
             command.Description = "Provides operations to manage the template property of the microsoft.graph.team entity.";
             var builder = new TemplateRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the unarchive method.
+        /// </summary>
+        public Command BuildUnarchiveCommand() {
+            var command = new Command("unarchive");
+            command.Description = "Provides operations to call the unarchive method.";
+            var builder = new UnarchiveRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

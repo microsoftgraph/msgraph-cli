@@ -33,8 +33,8 @@ namespace ApiSdk.Privacy.SubjectRightsRequests {
             var builder = new SubjectRightsRequestItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetFinalAttachmentCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetFinalReportCommand());
+            command.AddCommand(builder.BuildGetFinalAttachmentCommand());
+            command.AddCommand(builder.BuildGetFinalReportCommand());
             command.AddCommand(builder.BuildNotesCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildTeamCommand());
@@ -90,6 +90,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
