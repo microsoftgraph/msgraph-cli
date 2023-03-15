@@ -30,15 +30,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.CustodianSour
             var command = new Command("get");
             command.Description = "Custodian sources that are included in the eDiscovery search.";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoverySearchIdOption = new Option<string>("--ediscovery-search-id", description: "key: id of ediscoverySearch") {
+            var ediscoverySearchIdOption = new Option<string>("--ediscovery-search-id", description: "The unique identifier of ediscoverySearch") {
             };
             ediscoverySearchIdOption.IsRequired = true;
             command.AddOption(ediscoverySearchIdOption);
-            var dataSourceIdOption = new Option<string>("--data-source-id", description: "key: id of dataSource") {
+            var dataSourceIdOption = new Option<string>("--data-source-id", description: "The unique identifier of dataSource") {
             };
             dataSourceIdOption.IsRequired = true;
             command.AddOption(dataSourceIdOption);

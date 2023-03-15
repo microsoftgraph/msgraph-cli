@@ -30,15 +30,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.UnifiedGrou
             var command = new Command("get");
             command.Description = "Represents a group.";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoveryCustodianIdOption = new Option<string>("--ediscovery-custodian-id", description: "key: id of ediscoveryCustodian") {
+            var ediscoveryCustodianIdOption = new Option<string>("--ediscovery-custodian-id", description: "The unique identifier of ediscoveryCustodian") {
             };
             ediscoveryCustodianIdOption.IsRequired = true;
             command.AddOption(ediscoveryCustodianIdOption);
-            var unifiedGroupSourceIdOption = new Option<string>("--unified-group-source-id", description: "key: id of unifiedGroupSource") {
+            var unifiedGroupSourceIdOption = new Option<string>("--unified-group-source-id", description: "The unique identifier of unifiedGroupSource") {
             };
             unifiedGroupSourceIdOption.IsRequired = true;
             command.AddOption(unifiedGroupSourceIdOption);

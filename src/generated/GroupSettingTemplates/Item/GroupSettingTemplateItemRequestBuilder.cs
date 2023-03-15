@@ -1,8 +1,8 @@
-using ApiSdk.GroupSettingTemplates.Item.MicrosoftGraphCheckMemberGroups;
-using ApiSdk.GroupSettingTemplates.Item.MicrosoftGraphCheckMemberObjects;
-using ApiSdk.GroupSettingTemplates.Item.MicrosoftGraphGetMemberGroups;
-using ApiSdk.GroupSettingTemplates.Item.MicrosoftGraphGetMemberObjects;
-using ApiSdk.GroupSettingTemplates.Item.MicrosoftGraphRestore;
+using ApiSdk.GroupSettingTemplates.Item.CheckMemberGroups;
+using ApiSdk.GroupSettingTemplates.Item.CheckMemberObjects;
+using ApiSdk.GroupSettingTemplates.Item.GetMemberGroups;
+using ApiSdk.GroupSettingTemplates.Item.GetMemberObjects;
+using ApiSdk.GroupSettingTemplates.Item.Restore;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,13 +29,33 @@ namespace ApiSdk.GroupSettingTemplates.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the checkMemberGroups method.
+        /// </summary>
+        public Command BuildCheckMemberGroupsCommand() {
+            var command = new Command("check-member-groups");
+            command.Description = "Provides operations to call the checkMemberGroups method.";
+            var builder = new CheckMemberGroupsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the checkMemberObjects method.
+        /// </summary>
+        public Command BuildCheckMemberObjectsCommand() {
+            var command = new Command("check-member-objects");
+            command.Description = "Provides operations to call the checkMemberObjects method.";
+            var builder = new CheckMemberObjectsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete entity from groupSettingTemplates
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete entity from groupSettingTemplates";
             // Create options for all the parameters
-            var groupSettingTemplateIdOption = new Option<string>("--group-setting-template-id", description: "key: id of groupSettingTemplate") {
+            var groupSettingTemplateIdOption = new Option<string>("--group-setting-template-id", description: "The unique identifier of groupSettingTemplate") {
             };
             groupSettingTemplateIdOption.IsRequired = true;
             command.AddOption(groupSettingTemplateIdOption);
@@ -70,7 +90,7 @@ namespace ApiSdk.GroupSettingTemplates.Item {
             var command = new Command("get");
             command.Description = "A group setting template represents a template of settings from which settings may be created within a tenant. This operation allows retrieval of the properties of the groupSettingTemplate object, including the available settings and their defaults.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/groupsettingtemplate-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupSettingTemplateIdOption = new Option<string>("--group-setting-template-id", description: "key: id of groupSettingTemplate") {
+            var groupSettingTemplateIdOption = new Option<string>("--group-setting-template-id", description: "The unique identifier of groupSettingTemplate") {
             };
             groupSettingTemplateIdOption.IsRequired = true;
             command.AddOption(groupSettingTemplateIdOption);
@@ -126,52 +146,22 @@ namespace ApiSdk.GroupSettingTemplates.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the checkMemberGroups method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCheckMemberGroupsCommand() {
-            var command = new Command("microsoft-graph-check-member-groups");
-            command.Description = "Provides operations to call the checkMemberGroups method.";
-            var builder = new MicrosoftGraphCheckMemberGroupsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the checkMemberObjects method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCheckMemberObjectsCommand() {
-            var command = new Command("microsoft-graph-check-member-objects");
-            command.Description = "Provides operations to call the checkMemberObjects method.";
-            var builder = new MicrosoftGraphCheckMemberObjectsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to call the getMemberGroups method.
         /// </summary>
-        public Command BuildMicrosoftGraphGetMemberGroupsCommand() {
-            var command = new Command("microsoft-graph-get-member-groups");
+        public Command BuildGetMemberGroupsCommand() {
+            var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
-            var builder = new MicrosoftGraphGetMemberGroupsRequestBuilder(PathParameters);
+            var builder = new GetMemberGroupsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the getMemberObjects method.
         /// </summary>
-        public Command BuildMicrosoftGraphGetMemberObjectsCommand() {
-            var command = new Command("microsoft-graph-get-member-objects");
+        public Command BuildGetMemberObjectsCommand() {
+            var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
-            var builder = new MicrosoftGraphGetMemberObjectsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the restore method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRestoreCommand() {
-            var command = new Command("microsoft-graph-restore");
-            command.Description = "Provides operations to call the restore method.";
-            var builder = new MicrosoftGraphRestoreRequestBuilder(PathParameters);
+            var builder = new GetMemberObjectsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -182,7 +172,7 @@ namespace ApiSdk.GroupSettingTemplates.Item {
             var command = new Command("patch");
             command.Description = "Update entity in groupSettingTemplates";
             // Create options for all the parameters
-            var groupSettingTemplateIdOption = new Option<string>("--group-setting-template-id", description: "key: id of groupSettingTemplate") {
+            var groupSettingTemplateIdOption = new Option<string>("--group-setting-template-id", description: "The unique identifier of groupSettingTemplate") {
             };
             groupSettingTemplateIdOption.IsRequired = true;
             command.AddOption(groupSettingTemplateIdOption);
@@ -220,6 +210,7 @@ namespace ApiSdk.GroupSettingTemplates.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (groupSettingTemplateId is not null) requestInfo.PathParameters.Add("groupSettingTemplate%2Did", groupSettingTemplateId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -230,6 +221,16 @@ namespace ApiSdk.GroupSettingTemplates.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the restore method.
+        /// </summary>
+        public Command BuildRestoreCommand() {
+            var command = new Command("restore");
+            command.Description = "Provides operations to call the restore method.";
+            var builder = new RestoreRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

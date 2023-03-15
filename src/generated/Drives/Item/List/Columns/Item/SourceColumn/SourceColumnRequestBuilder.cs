@@ -30,11 +30,11 @@ namespace ApiSdk.Drives.Item.List.Columns.Item.SourceColumn {
             var command = new Command("get");
             command.Description = "The source column for the content type column.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var columnDefinitionIdOption = new Option<string>("--column-definition-id", description: "key: id of columnDefinition") {
+            var columnDefinitionIdOption = new Option<string>("--column-definition-id", description: "The unique identifier of columnDefinition") {
             };
             columnDefinitionIdOption.IsRequired = true;
             command.AddOption(columnDefinitionIdOption);

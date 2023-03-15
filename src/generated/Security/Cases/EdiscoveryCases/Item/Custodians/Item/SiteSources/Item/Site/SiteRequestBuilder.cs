@@ -30,15 +30,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.SiteSources
             var command = new Command("get");
             command.Description = "The SharePoint site associated with the siteSource.";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoveryCustodianIdOption = new Option<string>("--ediscovery-custodian-id", description: "key: id of ediscoveryCustodian") {
+            var ediscoveryCustodianIdOption = new Option<string>("--ediscovery-custodian-id", description: "The unique identifier of ediscoveryCustodian") {
             };
             ediscoveryCustodianIdOption.IsRequired = true;
             command.AddOption(ediscoveryCustodianIdOption);
-            var siteSourceIdOption = new Option<string>("--site-source-id", description: "key: id of siteSource") {
+            var siteSourceIdOption = new Option<string>("--site-source-id", description: "The unique identifier of siteSource") {
             };
             siteSourceIdOption.IsRequired = true;
             command.AddOption(siteSourceIdOption);

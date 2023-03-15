@@ -29,7 +29,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
+            var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
             command.AddOption(educationUserIdOption);

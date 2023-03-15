@@ -1,7 +1,7 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.Privacy.SubjectRightsRequests.Item.MicrosoftGraphGetFinalAttachment;
-using ApiSdk.Privacy.SubjectRightsRequests.Item.MicrosoftGraphGetFinalReport;
+using ApiSdk.Privacy.SubjectRightsRequests.Item.GetFinalAttachment;
+using ApiSdk.Privacy.SubjectRightsRequests.Item.GetFinalReport;
 using ApiSdk.Privacy.SubjectRightsRequests.Item.Notes;
 using ApiSdk.Privacy.SubjectRightsRequests.Item.Team;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,7 +34,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property subjectRightsRequests for privacy";
             // Create options for all the parameters
-            var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "key: id of subjectRightsRequest") {
+            var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "The unique identifier of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
             command.AddOption(subjectRightsRequestIdOption);
@@ -68,7 +68,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             var command = new Command("get");
             command.Description = "Get subjectRightsRequests from privacy";
             // Create options for all the parameters
-            var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "key: id of subjectRightsRequest") {
+            var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "The unique identifier of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
             command.AddOption(subjectRightsRequestIdOption);
@@ -126,20 +126,20 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
         /// <summary>
         /// Provides operations to call the getFinalAttachment method.
         /// </summary>
-        public Command BuildMicrosoftGraphGetFinalAttachmentCommand() {
-            var command = new Command("microsoft-graph-get-final-attachment");
+        public Command BuildGetFinalAttachmentCommand() {
+            var command = new Command("get-final-attachment");
             command.Description = "Provides operations to call the getFinalAttachment method.";
-            var builder = new MicrosoftGraphGetFinalAttachmentRequestBuilder(PathParameters);
+            var builder = new GetFinalAttachmentRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the getFinalReport method.
         /// </summary>
-        public Command BuildMicrosoftGraphGetFinalReportCommand() {
-            var command = new Command("microsoft-graph-get-final-report");
+        public Command BuildGetFinalReportCommand() {
+            var command = new Command("get-final-report");
             command.Description = "Provides operations to call the getFinalReport method.";
-            var builder = new MicrosoftGraphGetFinalReportRequestBuilder(PathParameters);
+            var builder = new GetFinalReportRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -163,7 +163,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property subjectRightsRequests in privacy";
             // Create options for all the parameters
-            var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "key: id of subjectRightsRequest") {
+            var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "The unique identifier of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
             command.AddOption(subjectRightsRequestIdOption);
@@ -201,6 +201,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (subjectRightsRequestId is not null) requestInfo.PathParameters.Add("subjectRightsRequest%2Did", subjectRightsRequestId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

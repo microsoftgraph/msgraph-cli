@@ -30,11 +30,11 @@ namespace ApiSdk.Domains.Item.DomainNameReferences.Item {
             var command = new Command("get");
             command.Description = "The objects such as users and groups that reference the domain ID. Read-only, Nullable. Supports $expand and $filter by the OData type of objects returned. For example /domains/{domainId}/domainNameReferences/microsoft.graph.user and /domains/{domainId}/domainNameReferences/microsoft.graph.group.";
             // Create options for all the parameters
-            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
+            var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
             command.AddOption(domainIdOption);
-            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "key: id of directoryObject") {
+            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "The unique identifier of directoryObject") {
             };
             directoryObjectIdOption.IsRequired = true;
             command.AddOption(directoryObjectIdOption);

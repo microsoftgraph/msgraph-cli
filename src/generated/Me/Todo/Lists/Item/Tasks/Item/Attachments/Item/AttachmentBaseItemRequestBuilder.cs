@@ -42,15 +42,15 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.Attachments.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property attachments for me";
             // Create options for all the parameters
-            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "key: id of todoTaskList") {
+            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "The unique identifier of todoTaskList") {
             };
             todoTaskListIdOption.IsRequired = true;
             command.AddOption(todoTaskListIdOption);
-            var todoTaskIdOption = new Option<string>("--todo-task-id", description: "key: id of todoTask") {
+            var todoTaskIdOption = new Option<string>("--todo-task-id", description: "The unique identifier of todoTask") {
             };
             todoTaskIdOption.IsRequired = true;
             command.AddOption(todoTaskIdOption);
-            var attachmentBaseIdOption = new Option<string>("--attachment-base-id", description: "key: id of attachmentBase") {
+            var attachmentBaseIdOption = new Option<string>("--attachment-base-id", description: "The unique identifier of attachmentBase") {
             };
             attachmentBaseIdOption.IsRequired = true;
             command.AddOption(attachmentBaseIdOption);
@@ -88,15 +88,15 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.Attachments.Item {
             var command = new Command("get");
             command.Description = "A collection of file attachments for the task.";
             // Create options for all the parameters
-            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "key: id of todoTaskList") {
+            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "The unique identifier of todoTaskList") {
             };
             todoTaskListIdOption.IsRequired = true;
             command.AddOption(todoTaskListIdOption);
-            var todoTaskIdOption = new Option<string>("--todo-task-id", description: "key: id of todoTask") {
+            var todoTaskIdOption = new Option<string>("--todo-task-id", description: "The unique identifier of todoTask") {
             };
             todoTaskIdOption.IsRequired = true;
             command.AddOption(todoTaskIdOption);
-            var attachmentBaseIdOption = new Option<string>("--attachment-base-id", description: "key: id of attachmentBase") {
+            var attachmentBaseIdOption = new Option<string>("--attachment-base-id", description: "The unique identifier of attachmentBase") {
             };
             attachmentBaseIdOption.IsRequired = true;
             command.AddOption(attachmentBaseIdOption);

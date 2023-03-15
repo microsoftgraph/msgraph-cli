@@ -1,4 +1,4 @@
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Rows.Item.MicrosoftGraphRange;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Rows.Item.RangeNamespace;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,23 +31,23 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Row
             var command = new Command("delete");
             command.Description = "Delete navigation property rows for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
-            var workbookTableIdOption = new Option<string>("--workbook-table-id", description: "key: id of workbookTable") {
+            var workbookTableIdOption = new Option<string>("--workbook-table-id", description: "The unique identifier of workbookTable") {
             };
             workbookTableIdOption.IsRequired = true;
             command.AddOption(workbookTableIdOption);
-            var workbookTableRowIdOption = new Option<string>("--workbook-table-row-id", description: "key: id of workbookTableRow") {
+            var workbookTableRowIdOption = new Option<string>("--workbook-table-row-id", description: "The unique identifier of workbookTableRow") {
             };
             workbookTableRowIdOption.IsRequired = true;
             command.AddOption(workbookTableRowIdOption);
@@ -89,23 +89,23 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Row
             var command = new Command("get");
             command.Description = "Represents a collection of all the rows in the table. Read-only.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
-            var workbookTableIdOption = new Option<string>("--workbook-table-id", description: "key: id of workbookTable") {
+            var workbookTableIdOption = new Option<string>("--workbook-table-id", description: "The unique identifier of workbookTable") {
             };
             workbookTableIdOption.IsRequired = true;
             command.AddOption(workbookTableIdOption);
-            var workbookTableRowIdOption = new Option<string>("--workbook-table-row-id", description: "key: id of workbookTableRow") {
+            var workbookTableRowIdOption = new Option<string>("--workbook-table-row-id", description: "The unique identifier of workbookTableRow") {
             };
             workbookTableRowIdOption.IsRequired = true;
             command.AddOption(workbookTableRowIdOption);
@@ -169,39 +169,29 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Row
             return command;
         }
         /// <summary>
-        /// Provides operations to call the range method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRangeCommand() {
-            var command = new Command("microsoft-graph-range");
-            command.Description = "Provides operations to call the range method.";
-            var builder = new MicrosoftGraphRangeRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property rows in drives
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property rows in drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
-            var workbookTableIdOption = new Option<string>("--workbook-table-id", description: "key: id of workbookTable") {
+            var workbookTableIdOption = new Option<string>("--workbook-table-id", description: "The unique identifier of workbookTable") {
             };
             workbookTableIdOption.IsRequired = true;
             command.AddOption(workbookTableIdOption);
-            var workbookTableRowIdOption = new Option<string>("--workbook-table-row-id", description: "key: id of workbookTableRow") {
+            var workbookTableRowIdOption = new Option<string>("--workbook-table-row-id", description: "The unique identifier of workbookTableRow") {
             };
             workbookTableRowIdOption.IsRequired = true;
             command.AddOption(workbookTableRowIdOption);
@@ -247,6 +237,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Row
                 if (workbookWorksheetId is not null) requestInfo.PathParameters.Add("workbookWorksheet%2Did", workbookWorksheetId);
                 if (workbookTableId is not null) requestInfo.PathParameters.Add("workbookTable%2Did", workbookTableId);
                 if (workbookTableRowId is not null) requestInfo.PathParameters.Add("workbookTableRow%2Did", workbookTableRowId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -257,6 +248,16 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Row
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the range method.
+        /// </summary>
+        public Command BuildRangeCommand() {
+            var command = new Command("range");
+            command.Description = "Provides operations to call the range method.";
+            var builder = new RangeRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

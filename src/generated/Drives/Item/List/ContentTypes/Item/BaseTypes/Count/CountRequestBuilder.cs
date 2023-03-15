@@ -29,11 +29,11 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.BaseTypes.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var contentTypeIdOption = new Option<string>("--content-type-id", description: "key: id of contentType") {
+            var contentTypeIdOption = new Option<string>("--content-type-id", description: "The unique identifier of contentType") {
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);

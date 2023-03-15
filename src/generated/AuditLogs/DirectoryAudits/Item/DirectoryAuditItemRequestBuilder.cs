@@ -30,7 +30,7 @@ namespace ApiSdk.AuditLogs.DirectoryAudits.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property directoryAudits for auditLogs";
             // Create options for all the parameters
-            var directoryAuditIdOption = new Option<string>("--directory-audit-id", description: "key: id of directoryAudit") {
+            var directoryAuditIdOption = new Option<string>("--directory-audit-id", description: "The unique identifier of directoryAudit") {
             };
             directoryAuditIdOption.IsRequired = true;
             command.AddOption(directoryAuditIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.AuditLogs.DirectoryAudits.Item {
             var command = new Command("get");
             command.Description = "Get directoryAudits from auditLogs";
             // Create options for all the parameters
-            var directoryAuditIdOption = new Option<string>("--directory-audit-id", description: "key: id of directoryAudit") {
+            var directoryAuditIdOption = new Option<string>("--directory-audit-id", description: "The unique identifier of directoryAudit") {
             };
             directoryAuditIdOption.IsRequired = true;
             command.AddOption(directoryAuditIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.AuditLogs.DirectoryAudits.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property directoryAudits in auditLogs";
             // Create options for all the parameters
-            var directoryAuditIdOption = new Option<string>("--directory-audit-id", description: "key: id of directoryAudit") {
+            var directoryAuditIdOption = new Option<string>("--directory-audit-id", description: "The unique identifier of directoryAudit") {
             };
             directoryAuditIdOption.IsRequired = true;
             command.AddOption(directoryAuditIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.AuditLogs.DirectoryAudits.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (directoryAuditId is not null) requestInfo.PathParameters.Add("directoryAudit%2Did", directoryAuditId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

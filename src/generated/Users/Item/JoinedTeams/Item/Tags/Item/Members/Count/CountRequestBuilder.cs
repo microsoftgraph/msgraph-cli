@@ -29,15 +29,15 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Tags.Item.Members.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var teamworkTagIdOption = new Option<string>("--teamwork-tag-id", description: "key: id of teamworkTag") {
+            var teamworkTagIdOption = new Option<string>("--teamwork-tag-id", description: "The unique identifier of teamworkTag") {
             };
             teamworkTagIdOption.IsRequired = true;
             command.AddOption(teamworkTagIdOption);

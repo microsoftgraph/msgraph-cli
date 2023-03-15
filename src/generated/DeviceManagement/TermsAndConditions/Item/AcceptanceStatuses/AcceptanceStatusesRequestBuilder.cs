@@ -54,7 +54,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses {
             var command = new Command("create");
             command.Description = "Create new navigation property to acceptanceStatuses for deviceManagement";
             // Create options for all the parameters
-            var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "key: id of termsAndConditions") {
+            var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "The unique identifier of termsAndConditions") {
             };
             termsAndConditionsIdOption.IsRequired = true;
             command.AddOption(termsAndConditionsIdOption);
@@ -92,6 +92,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (termsAndConditionsId is not null) requestInfo.PathParameters.Add("termsAndConditions%2Did", termsAndConditionsId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -111,7 +112,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses {
             var command = new Command("list");
             command.Description = "The list of acceptance statuses for this T&C policy.";
             // Create options for all the parameters
-            var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "key: id of termsAndConditions") {
+            var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "The unique identifier of termsAndConditions") {
             };
             termsAndConditionsIdOption.IsRequired = true;
             command.AddOption(termsAndConditionsIdOption);

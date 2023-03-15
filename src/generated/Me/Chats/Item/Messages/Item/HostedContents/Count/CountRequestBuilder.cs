@@ -29,11 +29,11 @@ namespace ApiSdk.Me.Chats.Item.Messages.Item.HostedContents.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
-            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "key: id of chatMessage") {
+            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "The unique identifier of chatMessage") {
             };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);

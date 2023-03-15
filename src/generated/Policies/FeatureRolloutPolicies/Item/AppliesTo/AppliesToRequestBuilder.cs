@@ -1,11 +1,12 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Count;
+using ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Delta;
+using ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.GetAvailableExtensionProperties;
+using ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.GetByIds;
 using ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Item;
-using ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.MicrosoftGraphGetAvailableExtensionProperties;
-using ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.MicrosoftGraphGetByIds;
-using ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.MicrosoftGraphValidateProperties;
 using ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Ref;
+using ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.ValidateProperties;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -55,7 +56,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo {
             var command = new Command("create");
             command.Description = "Create new navigation property to appliesTo for policies";
             // Create options for all the parameters
-            var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "key: id of featureRolloutPolicy") {
+            var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "The unique identifier of featureRolloutPolicy") {
             };
             featureRolloutPolicyIdOption.IsRequired = true;
             command.AddOption(featureRolloutPolicyIdOption);
@@ -93,6 +94,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (featureRolloutPolicyId is not null) requestInfo.PathParameters.Add("featureRolloutPolicy%2Did", featureRolloutPolicyId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -106,13 +108,43 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildDeltaCommand() {
+            var command = new Command("delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getAvailableExtensionProperties method.
+        /// </summary>
+        public Command BuildGetAvailableExtensionPropertiesCommand() {
+            var command = new Command("get-available-extension-properties");
+            command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
+            var builder = new GetAvailableExtensionPropertiesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getByIds method.
+        /// </summary>
+        public Command BuildGetByIdsCommand() {
+            var command = new Command("get-by-ids");
+            command.Description = "Provides operations to call the getByIds method.";
+            var builder = new GetByIdsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Nullable. Specifies a list of directoryObjects that feature is enabled for.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Nullable. Specifies a list of directoryObjects that feature is enabled for.";
             // Create options for all the parameters
-            var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "key: id of featureRolloutPolicy") {
+            var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "The unique identifier of featureRolloutPolicy") {
             };
             featureRolloutPolicyIdOption.IsRequired = true;
             command.AddOption(featureRolloutPolicyIdOption);
@@ -217,36 +249,6 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the getAvailableExtensionProperties method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetAvailableExtensionPropertiesCommand() {
-            var command = new Command("microsoft-graph-get-available-extension-properties");
-            command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
-            var builder = new MicrosoftGraphGetAvailableExtensionPropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getByIds method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetByIdsCommand() {
-            var command = new Command("microsoft-graph-get-by-ids");
-            command.Description = "Provides operations to call the getByIds method.";
-            var builder = new MicrosoftGraphGetByIdsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the validateProperties method.
-        /// </summary>
-        public Command BuildMicrosoftGraphValidatePropertiesCommand() {
-            var command = new Command("microsoft-graph-validate-properties");
-            command.Description = "Provides operations to call the validateProperties method.";
-            var builder = new MicrosoftGraphValidatePropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the collection of policyRoot entities.
         /// </summary>
         public Command BuildRefCommand() {
@@ -254,6 +256,16 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo {
             command.Description = "Provides operations to manage the collection of policyRoot entities.";
             var builder = new RefRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the validateProperties method.
+        /// </summary>
+        public Command BuildValidatePropertiesCommand() {
+            var command = new Command("validate-properties");
+            command.Description = "Provides operations to call the validateProperties method.";
+            var builder = new ValidatePropertiesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }

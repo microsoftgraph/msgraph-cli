@@ -29,11 +29,11 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem.Content {
             var command = new Command("get");
             command.Description = "The content stream, if the item represents a file.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var listItemIdOption = new Option<string>("--list-item-id", description: "key: id of listItem") {
+            var listItemIdOption = new Option<string>("--list-item-id", description: "The unique identifier of listItem") {
             };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
@@ -74,11 +74,11 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DriveItem.Content {
             var command = new Command("put");
             command.Description = "The content stream, if the item represents a file.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var listItemIdOption = new Option<string>("--list-item-id", description: "key: id of listItem") {
+            var listItemIdOption = new Option<string>("--list-item-id", description: "The unique identifier of listItem") {
             };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);

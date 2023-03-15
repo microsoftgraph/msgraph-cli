@@ -30,15 +30,15 @@ namespace ApiSdk.Users.Item.Chats.Item.Tabs.Item.TeamsApp {
             var command = new Command("get");
             command.Description = "The application that is linked to the tab. This cannot be changed after tab creation.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
-            var teamsTabIdOption = new Option<string>("--teams-tab-id", description: "key: id of teamsTab") {
+            var teamsTabIdOption = new Option<string>("--teams-tab-id", description: "The unique identifier of teamsTab") {
             };
             teamsTabIdOption.IsRequired = true;
             command.AddOption(teamsTabIdOption);

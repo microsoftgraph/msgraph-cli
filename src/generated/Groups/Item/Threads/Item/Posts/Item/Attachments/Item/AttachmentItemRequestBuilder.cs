@@ -30,19 +30,19 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property attachments for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "key: id of conversationThread") {
+            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "The unique identifier of conversationThread") {
             };
             conversationThreadIdOption.IsRequired = true;
             command.AddOption(conversationThreadIdOption);
-            var postIdOption = new Option<string>("--post-id", description: "key: id of post") {
+            var postIdOption = new Option<string>("--post-id", description: "The unique identifier of post") {
             };
             postIdOption.IsRequired = true;
             command.AddOption(postIdOption);
-            var attachmentIdOption = new Option<string>("--attachment-id", description: "key: id of attachment") {
+            var attachmentIdOption = new Option<string>("--attachment-id", description: "The unique identifier of attachment") {
             };
             attachmentIdOption.IsRequired = true;
             command.AddOption(attachmentIdOption);
@@ -82,19 +82,19 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments.Item {
             var command = new Command("get");
             command.Description = "Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "key: id of conversationThread") {
+            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "The unique identifier of conversationThread") {
             };
             conversationThreadIdOption.IsRequired = true;
             command.AddOption(conversationThreadIdOption);
-            var postIdOption = new Option<string>("--post-id", description: "key: id of post") {
+            var postIdOption = new Option<string>("--post-id", description: "The unique identifier of post") {
             };
             postIdOption.IsRequired = true;
             command.AddOption(postIdOption);
-            var attachmentIdOption = new Option<string>("--attachment-id", description: "key: id of attachment") {
+            var attachmentIdOption = new Option<string>("--attachment-id", description: "The unique identifier of attachment") {
             };
             attachmentIdOption.IsRequired = true;
             command.AddOption(attachmentIdOption);

@@ -58,7 +58,7 @@ namespace ApiSdk.Me.Planner.Tasks.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property tasks for me";
             // Create options for all the parameters
-            var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "key: id of plannerTask") {
+            var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "The unique identifier of plannerTask") {
             };
             plannerTaskIdOption.IsRequired = true;
             command.AddOption(plannerTaskIdOption);
@@ -104,7 +104,7 @@ namespace ApiSdk.Me.Planner.Tasks.Item {
             var command = new Command("get");
             command.Description = "Read-only. Nullable. Returns the plannerPlans shared with the user.";
             // Create options for all the parameters
-            var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "key: id of plannerTask") {
+            var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "The unique identifier of plannerTask") {
             };
             plannerTaskIdOption.IsRequired = true;
             command.AddOption(plannerTaskIdOption);
@@ -166,7 +166,7 @@ namespace ApiSdk.Me.Planner.Tasks.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property tasks in me";
             // Create options for all the parameters
-            var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "key: id of plannerTask") {
+            var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "The unique identifier of plannerTask") {
             };
             plannerTaskIdOption.IsRequired = true;
             command.AddOption(plannerTaskIdOption);
@@ -204,6 +204,7 @@ namespace ApiSdk.Me.Planner.Tasks.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (plannerTaskId is not null) requestInfo.PathParameters.Add("plannerTask%2Did", plannerTaskId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

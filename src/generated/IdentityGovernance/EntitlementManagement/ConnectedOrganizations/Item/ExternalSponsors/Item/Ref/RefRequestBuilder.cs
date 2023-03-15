@@ -29,11 +29,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             var command = new Command("delete");
             command.Description = "Delete ref of navigation property externalSponsors for identityGovernance";
             // Create options for all the parameters
-            var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "key: id of connectedOrganization") {
+            var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "The unique identifier of connectedOrganization") {
             };
             connectedOrganizationIdOption.IsRequired = true;
             command.AddOption(connectedOrganizationIdOption);
-            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "key: id of directoryObject") {
+            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "The unique identifier of directoryObject") {
             };
             directoryObjectIdOption.IsRequired = true;
             command.AddOption(directoryObjectIdOption);

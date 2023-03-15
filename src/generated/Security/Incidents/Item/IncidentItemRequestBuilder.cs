@@ -43,7 +43,7 @@ namespace ApiSdk.Security.Incidents.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property incidents for security";
             // Create options for all the parameters
-            var incidentIdOption = new Option<string>("--incident-id", description: "key: id of incident") {
+            var incidentIdOption = new Option<string>("--incident-id", description: "The unique identifier of incident") {
             };
             incidentIdOption.IsRequired = true;
             command.AddOption(incidentIdOption);
@@ -77,7 +77,7 @@ namespace ApiSdk.Security.Incidents.Item {
             var command = new Command("get");
             command.Description = "A collection of incidents in Microsoft 365 Defender, each of which is a set of correlated alerts and associated metadata that reflects the story of an attack.";
             // Create options for all the parameters
-            var incidentIdOption = new Option<string>("--incident-id", description: "key: id of incident") {
+            var incidentIdOption = new Option<string>("--incident-id", description: "The unique identifier of incident") {
             };
             incidentIdOption.IsRequired = true;
             command.AddOption(incidentIdOption);
@@ -139,7 +139,7 @@ namespace ApiSdk.Security.Incidents.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property incidents in security";
             // Create options for all the parameters
-            var incidentIdOption = new Option<string>("--incident-id", description: "key: id of incident") {
+            var incidentIdOption = new Option<string>("--incident-id", description: "The unique identifier of incident") {
             };
             incidentIdOption.IsRequired = true;
             command.AddOption(incidentIdOption);
@@ -177,6 +177,7 @@ namespace ApiSdk.Security.Incidents.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (incidentId is not null) requestInfo.PathParameters.Add("incident%2Did", incidentId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -31,11 +31,11 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property sessions for communications";
             // Create options for all the parameters
-            var callRecordIdOption = new Option<string>("--call-record-id", description: "key: id of callRecord") {
+            var callRecordIdOption = new Option<string>("--call-record-id", description: "The unique identifier of callRecord") {
             };
             callRecordIdOption.IsRequired = true;
             command.AddOption(callRecordIdOption);
-            var sessionIdOption = new Option<string>("--session-id", description: "key: id of session") {
+            var sessionIdOption = new Option<string>("--session-id", description: "The unique identifier of session") {
             };
             sessionIdOption.IsRequired = true;
             command.AddOption(sessionIdOption);
@@ -71,11 +71,11 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item {
             var command = new Command("get");
             command.Description = "List of sessions involved in the call. Peer-to-peer calls typically only have one session, whereas group calls typically have at least one session per participant. Read-only. Nullable.";
             // Create options for all the parameters
-            var callRecordIdOption = new Option<string>("--call-record-id", description: "key: id of callRecord") {
+            var callRecordIdOption = new Option<string>("--call-record-id", description: "The unique identifier of callRecord") {
             };
             callRecordIdOption.IsRequired = true;
             command.AddOption(callRecordIdOption);
-            var sessionIdOption = new Option<string>("--session-id", description: "key: id of session") {
+            var sessionIdOption = new Option<string>("--session-id", description: "The unique identifier of session") {
             };
             sessionIdOption.IsRequired = true;
             command.AddOption(sessionIdOption);
@@ -139,11 +139,11 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property sessions in communications";
             // Create options for all the parameters
-            var callRecordIdOption = new Option<string>("--call-record-id", description: "key: id of callRecord") {
+            var callRecordIdOption = new Option<string>("--call-record-id", description: "The unique identifier of callRecord") {
             };
             callRecordIdOption.IsRequired = true;
             command.AddOption(callRecordIdOption);
-            var sessionIdOption = new Option<string>("--session-id", description: "key: id of session") {
+            var sessionIdOption = new Option<string>("--session-id", description: "The unique identifier of session") {
             };
             sessionIdOption.IsRequired = true;
             command.AddOption(sessionIdOption);
@@ -183,6 +183,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item {
                 });
                 if (callRecordId is not null) requestInfo.PathParameters.Add("callRecord%2Did", callRecordId);
                 if (sessionId is not null) requestInfo.PathParameters.Add("session%2Did", sessionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

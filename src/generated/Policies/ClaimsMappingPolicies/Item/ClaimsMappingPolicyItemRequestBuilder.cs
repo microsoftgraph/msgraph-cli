@@ -30,7 +30,7 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property claimsMappingPolicies for policies";
             // Create options for all the parameters
-            var claimsMappingPolicyIdOption = new Option<string>("--claims-mapping-policy-id", description: "key: id of claimsMappingPolicy") {
+            var claimsMappingPolicyIdOption = new Option<string>("--claims-mapping-policy-id", description: "The unique identifier of claimsMappingPolicy") {
             };
             claimsMappingPolicyIdOption.IsRequired = true;
             command.AddOption(claimsMappingPolicyIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies.Item {
             var command = new Command("get");
             command.Description = "The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.";
             // Create options for all the parameters
-            var claimsMappingPolicyIdOption = new Option<string>("--claims-mapping-policy-id", description: "key: id of claimsMappingPolicy") {
+            var claimsMappingPolicyIdOption = new Option<string>("--claims-mapping-policy-id", description: "The unique identifier of claimsMappingPolicy") {
             };
             claimsMappingPolicyIdOption.IsRequired = true;
             command.AddOption(claimsMappingPolicyIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property claimsMappingPolicies in policies";
             // Create options for all the parameters
-            var claimsMappingPolicyIdOption = new Option<string>("--claims-mapping-policy-id", description: "key: id of claimsMappingPolicy") {
+            var claimsMappingPolicyIdOption = new Option<string>("--claims-mapping-policy-id", description: "The unique identifier of claimsMappingPolicy") {
             };
             claimsMappingPolicyIdOption.IsRequired = true;
             command.AddOption(claimsMappingPolicyIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (claimsMappingPolicyId is not null) requestInfo.PathParameters.Add("claimsMappingPolicy%2Did", claimsMappingPolicyId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

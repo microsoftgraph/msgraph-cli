@@ -30,15 +30,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Thumbnails.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property thumbnails for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var thumbnailSetIdOption = new Option<string>("--thumbnail-set-id", description: "key: id of thumbnailSet") {
+            var thumbnailSetIdOption = new Option<string>("--thumbnail-set-id", description: "The unique identifier of thumbnailSet") {
             };
             thumbnailSetIdOption.IsRequired = true;
             command.AddOption(thumbnailSetIdOption);
@@ -76,15 +76,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Thumbnails.Item {
             var command = new Command("get");
             command.Description = "Collection containing [ThumbnailSet][] objects associated with the item. For more info, see [getting thumbnails][]. Read-only. Nullable.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var thumbnailSetIdOption = new Option<string>("--thumbnail-set-id", description: "key: id of thumbnailSet") {
+            var thumbnailSetIdOption = new Option<string>("--thumbnail-set-id", description: "The unique identifier of thumbnailSet") {
             };
             thumbnailSetIdOption.IsRequired = true;
             command.AddOption(thumbnailSetIdOption);
@@ -150,15 +150,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Thumbnails.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property thumbnails in drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var thumbnailSetIdOption = new Option<string>("--thumbnail-set-id", description: "key: id of thumbnailSet") {
+            var thumbnailSetIdOption = new Option<string>("--thumbnail-set-id", description: "The unique identifier of thumbnailSet") {
             };
             thumbnailSetIdOption.IsRequired = true;
             command.AddOption(thumbnailSetIdOption);
@@ -200,6 +200,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Thumbnails.Item {
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
                 if (thumbnailSetId is not null) requestInfo.PathParameters.Add("thumbnailSet%2Did", thumbnailSetId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

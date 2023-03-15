@@ -31,7 +31,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property appConsentRequests for identityGovernance";
             // Create options for all the parameters
-            var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "key: id of appConsentRequest") {
+            var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "The unique identifier of appConsentRequest") {
             };
             appConsentRequestIdOption.IsRequired = true;
             command.AddOption(appConsentRequestIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item {
             var command = new Command("get");
             command.Description = "A collection of userConsentRequest objects for a specific application.";
             // Create options for all the parameters
-            var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "key: id of appConsentRequest") {
+            var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "The unique identifier of appConsentRequest") {
             };
             appConsentRequestIdOption.IsRequired = true;
             command.AddOption(appConsentRequestIdOption);
@@ -127,7 +127,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property appConsentRequests in identityGovernance";
             // Create options for all the parameters
-            var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "key: id of appConsentRequest") {
+            var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "The unique identifier of appConsentRequest") {
             };
             appConsentRequestIdOption.IsRequired = true;
             command.AddOption(appConsentRequestIdOption);
@@ -165,6 +165,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (appConsentRequestId is not null) requestInfo.PathParameters.Add("appConsentRequest%2Did", appConsentRequestId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -30,11 +30,11 @@ namespace ApiSdk.Sites.Item.Drives.Item {
             var command = new Command("get");
             command.Description = "The collection of drives (document libraries) under this site.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);

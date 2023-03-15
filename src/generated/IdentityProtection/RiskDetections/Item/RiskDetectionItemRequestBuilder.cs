@@ -30,7 +30,7 @@ namespace ApiSdk.IdentityProtection.RiskDetections.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property riskDetections for identityProtection";
             // Create options for all the parameters
-            var riskDetectionIdOption = new Option<string>("--risk-detection-id", description: "key: id of riskDetection") {
+            var riskDetectionIdOption = new Option<string>("--risk-detection-id", description: "The unique identifier of riskDetection") {
             };
             riskDetectionIdOption.IsRequired = true;
             command.AddOption(riskDetectionIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.IdentityProtection.RiskDetections.Item {
             var command = new Command("get");
             command.Description = "Risk detection in Azure AD Identity Protection and the associated information about the detection.";
             // Create options for all the parameters
-            var riskDetectionIdOption = new Option<string>("--risk-detection-id", description: "key: id of riskDetection") {
+            var riskDetectionIdOption = new Option<string>("--risk-detection-id", description: "The unique identifier of riskDetection") {
             };
             riskDetectionIdOption.IsRequired = true;
             command.AddOption(riskDetectionIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.IdentityProtection.RiskDetections.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property riskDetections in identityProtection";
             // Create options for all the parameters
-            var riskDetectionIdOption = new Option<string>("--risk-detection-id", description: "key: id of riskDetection") {
+            var riskDetectionIdOption = new Option<string>("--risk-detection-id", description: "The unique identifier of riskDetection") {
             };
             riskDetectionIdOption.IsRequired = true;
             command.AddOption(riskDetectionIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.IdentityProtection.RiskDetections.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (riskDetectionId is not null) requestInfo.PathParameters.Add("riskDetection%2Did", riskDetectionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

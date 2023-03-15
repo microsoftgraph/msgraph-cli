@@ -29,7 +29,7 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item.ManagedDevices.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var detectedAppIdOption = new Option<string>("--detected-app-id", description: "key: id of detectedApp") {
+            var detectedAppIdOption = new Option<string>("--detected-app-id", description: "The unique identifier of detectedApp") {
             };
             detectedAppIdOption.IsRequired = true;
             command.AddOption(detectedAppIdOption);

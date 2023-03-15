@@ -30,19 +30,19 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.MultiValueExtendedPro
             var command = new Command("delete");
             command.Description = "Delete navigation property multiValueExtendedProperties for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
+            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "The unique identifier of mailFolder") {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
-            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            var messageIdOption = new Option<string>("--message-id", description: "The unique identifier of message") {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
-            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multi-value-legacy-extended-property-id", description: "key: id of multiValueLegacyExtendedProperty") {
+            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multi-value-legacy-extended-property-id", description: "The unique identifier of multiValueLegacyExtendedProperty") {
             };
             multiValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(multiValueLegacyExtendedPropertyIdOption);
@@ -82,19 +82,19 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.MultiValueExtendedPro
             var command = new Command("get");
             command.Description = "The collection of multi-value extended properties defined for the message. Nullable.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
+            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "The unique identifier of mailFolder") {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
-            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            var messageIdOption = new Option<string>("--message-id", description: "The unique identifier of message") {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
-            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multi-value-legacy-extended-property-id", description: "key: id of multiValueLegacyExtendedProperty") {
+            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multi-value-legacy-extended-property-id", description: "The unique identifier of multiValueLegacyExtendedProperty") {
             };
             multiValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(multiValueLegacyExtendedPropertyIdOption);
@@ -162,19 +162,19 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.MultiValueExtendedPro
             var command = new Command("patch");
             command.Description = "Update the navigation property multiValueExtendedProperties in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
+            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "The unique identifier of mailFolder") {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
-            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            var messageIdOption = new Option<string>("--message-id", description: "The unique identifier of message") {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
-            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multi-value-legacy-extended-property-id", description: "key: id of multiValueLegacyExtendedProperty") {
+            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multi-value-legacy-extended-property-id", description: "The unique identifier of multiValueLegacyExtendedProperty") {
             };
             multiValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(multiValueLegacyExtendedPropertyIdOption);
@@ -218,6 +218,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.MultiValueExtendedPro
                 if (mailFolderId is not null) requestInfo.PathParameters.Add("mailFolder%2Did", mailFolderId);
                 if (messageId is not null) requestInfo.PathParameters.Add("message%2Did", messageId);
                 if (multiValueLegacyExtendedPropertyId is not null) requestInfo.PathParameters.Add("multiValueLegacyExtendedProperty%2Did", multiValueLegacyExtendedPropertyId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

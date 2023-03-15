@@ -1,6 +1,6 @@
 using ApiSdk.Education.Me.Assignments.Item.Categories.Count;
+using ApiSdk.Education.Me.Assignments.Item.Categories.Delta;
 using ApiSdk.Education.Me.Assignments.Item.Categories.Item;
-using ApiSdk.Education.Me.Assignments.Item.Categories.MicrosoftGraphDelta;
 using ApiSdk.Education.Me.Assignments.Item.Categories.Ref;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
@@ -53,7 +53,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Categories {
             var command = new Command("create");
             command.Description = "Create new navigation property to categories for education";
             // Create options for all the parameters
-            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
+            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
@@ -91,6 +91,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Categories {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (educationAssignmentId is not null) requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -104,6 +105,16 @@ namespace ApiSdk.Education.Me.Assignments.Item.Categories {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildDeltaCommand() {
+            var command = new Command("delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationassignment-list-categories?view=graph-rest-1.0" />
         /// </summary>
@@ -111,7 +122,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Categories {
             var command = new Command("list");
             command.Description = "List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationassignment-list-categories?view=graph-rest-1.0";
             // Create options for all the parameters
-            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
+            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
@@ -213,16 +224,6 @@ namespace ApiSdk.Education.Me.Assignments.Item.Categories {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the delta method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDeltaCommand() {
-            var command = new Command("microsoft-graph-delta");
-            command.Description = "Provides operations to call the delta method.";
-            var builder = new MicrosoftGraphDeltaRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

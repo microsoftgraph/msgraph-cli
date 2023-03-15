@@ -4,11 +4,11 @@ using ApiSdk.Solutions.BookingBusinesses.Item.Appointments;
 using ApiSdk.Solutions.BookingBusinesses.Item.CalendarView;
 using ApiSdk.Solutions.BookingBusinesses.Item.Customers;
 using ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions;
-using ApiSdk.Solutions.BookingBusinesses.Item.MicrosoftGraphGetStaffAvailability;
-using ApiSdk.Solutions.BookingBusinesses.Item.MicrosoftGraphPublish;
-using ApiSdk.Solutions.BookingBusinesses.Item.MicrosoftGraphUnpublish;
+using ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability;
+using ApiSdk.Solutions.BookingBusinesses.Item.Publish;
 using ApiSdk.Solutions.BookingBusinesses.Item.Services;
 using ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers;
+using ApiSdk.Solutions.BookingBusinesses.Item.Unpublish;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -91,7 +91,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property bookingBusinesses for solutions";
             // Create options for all the parameters
-            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
+            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
             command.AddOption(bookingBusinessIdOption);
@@ -125,7 +125,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
             var command = new Command("get");
             command.Description = "Get bookingBusinesses from solutions";
             // Create options for all the parameters
-            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
+            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
             command.AddOption(bookingBusinessIdOption);
@@ -183,30 +183,10 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         /// <summary>
         /// Provides operations to call the getStaffAvailability method.
         /// </summary>
-        public Command BuildMicrosoftGraphGetStaffAvailabilityCommand() {
-            var command = new Command("microsoft-graph-get-staff-availability");
+        public Command BuildGetStaffAvailabilityCommand() {
+            var command = new Command("get-staff-availability");
             command.Description = "Provides operations to call the getStaffAvailability method.";
-            var builder = new MicrosoftGraphGetStaffAvailabilityRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the publish method.
-        /// </summary>
-        public Command BuildMicrosoftGraphPublishCommand() {
-            var command = new Command("microsoft-graph-publish");
-            command.Description = "Provides operations to call the publish method.";
-            var builder = new MicrosoftGraphPublishRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the unpublish method.
-        /// </summary>
-        public Command BuildMicrosoftGraphUnpublishCommand() {
-            var command = new Command("microsoft-graph-unpublish");
-            command.Description = "Provides operations to call the unpublish method.";
-            var builder = new MicrosoftGraphUnpublishRequestBuilder(PathParameters);
+            var builder = new GetStaffAvailabilityRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -217,7 +197,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property bookingBusinesses in solutions";
             // Create options for all the parameters
-            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
+            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
             command.AddOption(bookingBusinessIdOption);
@@ -255,6 +235,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (bookingBusinessId is not null) requestInfo.PathParameters.Add("bookingBusiness%2Did", bookingBusinessId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -265,6 +246,16 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the publish method.
+        /// </summary>
+        public Command BuildPublishCommand() {
+            var command = new Command("publish");
+            command.Description = "Provides operations to call the publish method.";
+            var builder = new PublishRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -291,6 +282,16 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the unpublish method.
+        /// </summary>
+        public Command BuildUnpublishCommand() {
+            var command = new Command("unpublish");
+            command.Description = "Provides operations to call the unpublish method.";
+            var builder = new UnpublishRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

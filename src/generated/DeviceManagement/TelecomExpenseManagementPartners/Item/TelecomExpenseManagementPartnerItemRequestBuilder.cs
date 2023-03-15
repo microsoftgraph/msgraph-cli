@@ -30,7 +30,7 @@ namespace ApiSdk.DeviceManagement.TelecomExpenseManagementPartners.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property telecomExpenseManagementPartners for deviceManagement";
             // Create options for all the parameters
-            var telecomExpenseManagementPartnerIdOption = new Option<string>("--telecom-expense-management-partner-id", description: "key: id of telecomExpenseManagementPartner") {
+            var telecomExpenseManagementPartnerIdOption = new Option<string>("--telecom-expense-management-partner-id", description: "The unique identifier of telecomExpenseManagementPartner") {
             };
             telecomExpenseManagementPartnerIdOption.IsRequired = true;
             command.AddOption(telecomExpenseManagementPartnerIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.DeviceManagement.TelecomExpenseManagementPartners.Item {
             var command = new Command("get");
             command.Description = "The telecom expense management partners.";
             // Create options for all the parameters
-            var telecomExpenseManagementPartnerIdOption = new Option<string>("--telecom-expense-management-partner-id", description: "key: id of telecomExpenseManagementPartner") {
+            var telecomExpenseManagementPartnerIdOption = new Option<string>("--telecom-expense-management-partner-id", description: "The unique identifier of telecomExpenseManagementPartner") {
             };
             telecomExpenseManagementPartnerIdOption.IsRequired = true;
             command.AddOption(telecomExpenseManagementPartnerIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.DeviceManagement.TelecomExpenseManagementPartners.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property telecomExpenseManagementPartners in deviceManagement";
             // Create options for all the parameters
-            var telecomExpenseManagementPartnerIdOption = new Option<string>("--telecom-expense-management-partner-id", description: "key: id of telecomExpenseManagementPartner") {
+            var telecomExpenseManagementPartnerIdOption = new Option<string>("--telecom-expense-management-partner-id", description: "The unique identifier of telecomExpenseManagementPartner") {
             };
             telecomExpenseManagementPartnerIdOption.IsRequired = true;
             command.AddOption(telecomExpenseManagementPartnerIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.DeviceManagement.TelecomExpenseManagementPartners.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (telecomExpenseManagementPartnerId is not null) requestInfo.PathParameters.Add("telecomExpenseManagementPartner%2Did", telecomExpenseManagementPartnerId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

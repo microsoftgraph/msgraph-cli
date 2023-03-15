@@ -29,15 +29,15 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "key: id of accessReviewScheduleDefinition") {
+            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "The unique identifier of accessReviewScheduleDefinition") {
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
             command.AddOption(accessReviewScheduleDefinitionIdOption);
-            var accessReviewInstanceIdOption = new Option<string>("--access-review-instance-id", description: "key: id of accessReviewInstance") {
+            var accessReviewInstanceIdOption = new Option<string>("--access-review-instance-id", description: "The unique identifier of accessReviewInstance") {
             };
             accessReviewInstanceIdOption.IsRequired = true;
             command.AddOption(accessReviewInstanceIdOption);
-            var accessReviewStageIdOption = new Option<string>("--access-review-stage-id", description: "key: id of accessReviewStage") {
+            var accessReviewStageIdOption = new Option<string>("--access-review-stage-id", description: "The unique identifier of accessReviewStage") {
             };
             accessReviewStageIdOption.IsRequired = true;
             command.AddOption(accessReviewStageIdOption);

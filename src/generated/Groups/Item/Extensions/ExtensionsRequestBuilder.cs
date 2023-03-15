@@ -53,7 +53,7 @@ namespace ApiSdk.Groups.Item.Extensions {
             var command = new Command("create");
             command.Description = "Create new navigation property to extensions for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
@@ -91,6 +91,7 @@ namespace ApiSdk.Groups.Item.Extensions {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -110,7 +111,7 @@ namespace ApiSdk.Groups.Item.Extensions {
             var command = new Command("list");
             command.Description = "The collection of open extensions defined for the group. Read-only. Nullable.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);

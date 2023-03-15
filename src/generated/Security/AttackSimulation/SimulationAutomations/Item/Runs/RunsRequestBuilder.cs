@@ -53,7 +53,7 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item.Runs {
             var command = new Command("create");
             command.Description = "Create new navigation property to runs for security";
             // Create options for all the parameters
-            var simulationAutomationIdOption = new Option<string>("--simulation-automation-id", description: "key: id of simulationAutomation") {
+            var simulationAutomationIdOption = new Option<string>("--simulation-automation-id", description: "The unique identifier of simulationAutomation") {
             };
             simulationAutomationIdOption.IsRequired = true;
             command.AddOption(simulationAutomationIdOption);
@@ -91,6 +91,7 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item.Runs {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (simulationAutomationId is not null) requestInfo.PathParameters.Add("simulationAutomation%2Did", simulationAutomationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -111,7 +112,7 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item.Runs {
             var command = new Command("list");
             command.Description = "Get a list of the attack simulation automation runs for a tenant.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/simulationautomation-list-runs?view=graph-rest-1.0";
             // Create options for all the parameters
-            var simulationAutomationIdOption = new Option<string>("--simulation-automation-id", description: "key: id of simulationAutomation") {
+            var simulationAutomationIdOption = new Option<string>("--simulation-automation-id", description: "The unique identifier of simulationAutomation") {
             };
             simulationAutomationIdOption.IsRequired = true;
             command.AddOption(simulationAutomationIdOption);

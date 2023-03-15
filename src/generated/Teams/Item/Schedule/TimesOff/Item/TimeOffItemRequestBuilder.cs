@@ -30,11 +30,11 @@ namespace ApiSdk.Teams.Item.Schedule.TimesOff.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property timesOff for teams";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var timeOffIdOption = new Option<string>("--time-off-id", description: "key: id of timeOff") {
+            var timeOffIdOption = new Option<string>("--time-off-id", description: "The unique identifier of timeOff") {
             };
             timeOffIdOption.IsRequired = true;
             command.AddOption(timeOffIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Teams.Item.Schedule.TimesOff.Item {
             var command = new Command("get");
             command.Description = "The instances of times off in the schedule.";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var timeOffIdOption = new Option<string>("--time-off-id", description: "key: id of timeOff") {
+            var timeOffIdOption = new Option<string>("--time-off-id", description: "The unique identifier of timeOff") {
             };
             timeOffIdOption.IsRequired = true;
             command.AddOption(timeOffIdOption);
@@ -131,11 +131,11 @@ namespace ApiSdk.Teams.Item.Schedule.TimesOff.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property timesOff in teams";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var timeOffIdOption = new Option<string>("--time-off-id", description: "key: id of timeOff") {
+            var timeOffIdOption = new Option<string>("--time-off-id", description: "The unique identifier of timeOff") {
             };
             timeOffIdOption.IsRequired = true;
             command.AddOption(timeOffIdOption);
@@ -175,6 +175,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimesOff.Item {
                 });
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
                 if (timeOffId is not null) requestInfo.PathParameters.Add("timeOff%2Did", timeOffId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

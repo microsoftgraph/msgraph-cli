@@ -1,8 +1,8 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Count;
+using ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.FilterByCurrentUserWithOn;
 using ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item;
-using ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.MicrosoftGraphFilterByCurrentUserWithOn;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -87,6 +87,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

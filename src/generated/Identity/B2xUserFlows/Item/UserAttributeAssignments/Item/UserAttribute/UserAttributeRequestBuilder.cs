@@ -30,11 +30,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item.UserAt
             var command = new Command("get");
             command.Description = "The user attribute that you want to add to your user flow.";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
-            var identityUserFlowAttributeAssignmentIdOption = new Option<string>("--identity-user-flow-attribute-assignment-id", description: "key: id of identityUserFlowAttributeAssignment") {
+            var identityUserFlowAttributeAssignmentIdOption = new Option<string>("--identity-user-flow-attribute-assignment-id", description: "The unique identifier of identityUserFlowAttributeAssignment") {
             };
             identityUserFlowAttributeAssignmentIdOption.IsRequired = true;
             command.AddOption(identityUserFlowAttributeAssignmentIdOption);

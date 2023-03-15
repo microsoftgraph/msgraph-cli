@@ -32,19 +32,19 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.For
             var command = new Command("delete");
             command.Description = "Delete navigation property format for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
-            var workbookChartIdOption = new Option<string>("--workbook-chart-id", description: "key: id of workbookChart") {
+            var workbookChartIdOption = new Option<string>("--workbook-chart-id", description: "The unique identifier of workbookChart") {
             };
             workbookChartIdOption.IsRequired = true;
             command.AddOption(workbookChartIdOption);
@@ -84,11 +84,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.For
             var command = new Command("fill");
             command.Description = "Provides operations to manage the fill property of the microsoft.graph.workbookChartAreaFormat entity.";
             var builder = new FillRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildClearCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphClearCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSetSolidColorCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildSetSolidColorCommand());
             return command;
         }
         /// <summary>
@@ -110,19 +110,19 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.For
             var command = new Command("get");
             command.Description = "Encapsulates the format properties for the chart area. Read-only.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
-            var workbookChartIdOption = new Option<string>("--workbook-chart-id", description: "key: id of workbookChart") {
+            var workbookChartIdOption = new Option<string>("--workbook-chart-id", description: "The unique identifier of workbookChart") {
             };
             workbookChartIdOption.IsRequired = true;
             command.AddOption(workbookChartIdOption);
@@ -190,19 +190,19 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.For
             var command = new Command("patch");
             command.Description = "Update the navigation property format in drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
-            var workbookChartIdOption = new Option<string>("--workbook-chart-id", description: "key: id of workbookChart") {
+            var workbookChartIdOption = new Option<string>("--workbook-chart-id", description: "The unique identifier of workbookChart") {
             };
             workbookChartIdOption.IsRequired = true;
             command.AddOption(workbookChartIdOption);
@@ -246,6 +246,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.For
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
                 if (workbookWorksheetId is not null) requestInfo.PathParameters.Add("workbookWorksheet%2Did", workbookWorksheetId);
                 if (workbookChartId is not null) requestInfo.PathParameters.Add("workbookChart%2Did", workbookChartId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

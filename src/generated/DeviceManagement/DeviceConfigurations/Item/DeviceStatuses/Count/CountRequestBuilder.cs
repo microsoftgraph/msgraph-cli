@@ -29,7 +29,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses.Count
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "key: id of deviceConfiguration") {
+            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationIdOption);

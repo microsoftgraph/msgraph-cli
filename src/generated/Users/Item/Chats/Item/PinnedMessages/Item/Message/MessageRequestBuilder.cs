@@ -30,15 +30,15 @@ namespace ApiSdk.Users.Item.Chats.Item.PinnedMessages.Item.Message {
             var command = new Command("get");
             command.Description = "Represents details about the chat message that is pinned.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
-            var pinnedChatMessageInfoIdOption = new Option<string>("--pinned-chat-message-info-id", description: "key: id of pinnedChatMessageInfo") {
+            var pinnedChatMessageInfoIdOption = new Option<string>("--pinned-chat-message-info-id", description: "The unique identifier of pinnedChatMessageInfo") {
             };
             pinnedChatMessageInfoIdOption.IsRequired = true;
             command.AddOption(pinnedChatMessageInfoIdOption);

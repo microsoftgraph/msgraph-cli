@@ -1,11 +1,11 @@
-using ApiSdk.DirectoryNamespace.DeletedItems.Item.MicrosoftGraphApplication;
-using ApiSdk.DirectoryNamespace.DeletedItems.Item.MicrosoftGraphCheckMemberGroups;
-using ApiSdk.DirectoryNamespace.DeletedItems.Item.MicrosoftGraphCheckMemberObjects;
-using ApiSdk.DirectoryNamespace.DeletedItems.Item.MicrosoftGraphGetMemberGroups;
-using ApiSdk.DirectoryNamespace.DeletedItems.Item.MicrosoftGraphGetMemberObjects;
-using ApiSdk.DirectoryNamespace.DeletedItems.Item.MicrosoftGraphGroup;
-using ApiSdk.DirectoryNamespace.DeletedItems.Item.MicrosoftGraphRestore;
-using ApiSdk.DirectoryNamespace.DeletedItems.Item.MicrosoftGraphUser;
+using ApiSdk.DirectoryNamespace.DeletedItems.Item.CheckMemberGroups;
+using ApiSdk.DirectoryNamespace.DeletedItems.Item.CheckMemberObjects;
+using ApiSdk.DirectoryNamespace.DeletedItems.Item.GetMemberGroups;
+using ApiSdk.DirectoryNamespace.DeletedItems.Item.GetMemberObjects;
+using ApiSdk.DirectoryNamespace.DeletedItems.Item.GraphApplication;
+using ApiSdk.DirectoryNamespace.DeletedItems.Item.GraphGroup;
+using ApiSdk.DirectoryNamespace.DeletedItems.Item.GraphUser;
+using ApiSdk.DirectoryNamespace.DeletedItems.Item.Restore;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,13 +32,33 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the checkMemberGroups method.
+        /// </summary>
+        public Command BuildCheckMemberGroupsCommand() {
+            var command = new Command("check-member-groups");
+            command.Description = "Provides operations to call the checkMemberGroups method.";
+            var builder = new CheckMemberGroupsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the checkMemberObjects method.
+        /// </summary>
+        public Command BuildCheckMemberObjectsCommand() {
+            var command = new Command("check-member-objects");
+            command.Description = "Provides operations to call the checkMemberObjects method.";
+            var builder = new CheckMemberObjectsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete navigation property deletedItems for directory
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property deletedItems for directory";
             // Create options for all the parameters
-            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "key: id of directoryObject") {
+            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "The unique identifier of directoryObject") {
             };
             directoryObjectIdOption.IsRequired = true;
             command.AddOption(directoryObjectIdOption);
@@ -72,7 +92,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
             var command = new Command("get");
             command.Description = "Recently deleted items. Read-only. Nullable.";
             // Create options for all the parameters
-            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "key: id of directoryObject") {
+            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "The unique identifier of directoryObject") {
             };
             directoryObjectIdOption.IsRequired = true;
             command.AddOption(directoryObjectIdOption);
@@ -128,82 +148,52 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
             return command;
         }
         /// <summary>
-        /// Casts the previous resource to application.
-        /// </summary>
-        public Command BuildMicrosoftGraphApplicationCommand() {
-            var command = new Command("microsoft-graph-application");
-            command.Description = "Casts the previous resource to application.";
-            var builder = new MicrosoftGraphApplicationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the checkMemberGroups method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCheckMemberGroupsCommand() {
-            var command = new Command("microsoft-graph-check-member-groups");
-            command.Description = "Provides operations to call the checkMemberGroups method.";
-            var builder = new MicrosoftGraphCheckMemberGroupsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the checkMemberObjects method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCheckMemberObjectsCommand() {
-            var command = new Command("microsoft-graph-check-member-objects");
-            command.Description = "Provides operations to call the checkMemberObjects method.";
-            var builder = new MicrosoftGraphCheckMemberObjectsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to call the getMemberGroups method.
         /// </summary>
-        public Command BuildMicrosoftGraphGetMemberGroupsCommand() {
-            var command = new Command("microsoft-graph-get-member-groups");
+        public Command BuildGetMemberGroupsCommand() {
+            var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
-            var builder = new MicrosoftGraphGetMemberGroupsRequestBuilder(PathParameters);
+            var builder = new GetMemberGroupsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the getMemberObjects method.
         /// </summary>
-        public Command BuildMicrosoftGraphGetMemberObjectsCommand() {
-            var command = new Command("microsoft-graph-get-member-objects");
+        public Command BuildGetMemberObjectsCommand() {
+            var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
-            var builder = new MicrosoftGraphGetMemberObjectsRequestBuilder(PathParameters);
+            var builder = new GetMemberObjectsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to application.
+        /// </summary>
+        public Command BuildGraphApplicationCommand() {
+            var command = new Command("graph-application");
+            command.Description = "Casts the previous resource to application.";
+            var builder = new GraphApplicationRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
-        public Command BuildMicrosoftGraphGroupCommand() {
-            var command = new Command("microsoft-graph-group");
+        public Command BuildGraphGroupCommand() {
+            var command = new Command("graph-group");
             command.Description = "Casts the previous resource to group.";
-            var builder = new MicrosoftGraphGroupRequestBuilder(PathParameters);
+            var builder = new GraphGroupRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the restore method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRestoreCommand() {
-            var command = new Command("microsoft-graph-restore");
-            command.Description = "Provides operations to call the restore method.";
-            var builder = new MicrosoftGraphRestoreRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
-        public Command BuildMicrosoftGraphUserCommand() {
-            var command = new Command("microsoft-graph-user");
+        public Command BuildGraphUserCommand() {
+            var command = new Command("graph-user");
             command.Description = "Casts the previous resource to user.";
-            var builder = new MicrosoftGraphUserRequestBuilder(PathParameters);
+            var builder = new GraphUserRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -214,7 +204,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property deletedItems in directory";
             // Create options for all the parameters
-            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "key: id of directoryObject") {
+            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "The unique identifier of directoryObject") {
             };
             directoryObjectIdOption.IsRequired = true;
             command.AddOption(directoryObjectIdOption);
@@ -252,6 +242,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (directoryObjectId is not null) requestInfo.PathParameters.Add("directoryObject%2Did", directoryObjectId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -262,6 +253,16 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the restore method.
+        /// </summary>
+        public Command BuildRestoreCommand() {
+            var command = new Command("restore");
+            command.Description = "Provides operations to call the restore method.";
+            var builder = new RestoreRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

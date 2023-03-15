@@ -29,7 +29,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var serviceHealthIdOption = new Option<string>("--service-health-id", description: "key: id of serviceHealth") {
+            var serviceHealthIdOption = new Option<string>("--service-health-id", description: "The unique identifier of serviceHealth") {
             };
             serviceHealthIdOption.IsRequired = true;
             command.AddOption(serviceHealthIdOption);

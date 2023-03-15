@@ -53,11 +53,11 @@ namespace ApiSdk.Me.Chats.Item.Messages.Item.HostedContents {
             var command = new Command("create");
             command.Description = "Create new navigation property to hostedContents for me";
             // Create options for all the parameters
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
-            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "key: id of chatMessage") {
+            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "The unique identifier of chatMessage") {
             };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);
@@ -97,6 +97,7 @@ namespace ApiSdk.Me.Chats.Item.Messages.Item.HostedContents {
                 });
                 if (chatId is not null) requestInfo.PathParameters.Add("chat%2Did", chatId);
                 if (chatMessageId is not null) requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -117,11 +118,11 @@ namespace ApiSdk.Me.Chats.Item.Messages.Item.HostedContents {
             var command = new Command("list");
             command.Description = "Retrieve the list of chatMessageHostedContent objects from a message. This API only lists the hosted content objects. To get the content bytes, see get chatmessage hosted content\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chatmessage-list-hostedcontents?view=graph-rest-1.0";
             // Create options for all the parameters
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
-            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "key: id of chatMessage") {
+            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "The unique identifier of chatMessage") {
             };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);

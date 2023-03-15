@@ -6,10 +6,10 @@ using ApiSdk.DeviceAppManagement.ManagedAppRegistrations;
 using ApiSdk.DeviceAppManagement.ManagedAppStatuses;
 using ApiSdk.DeviceAppManagement.ManagedEBooks;
 using ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies;
-using ApiSdk.DeviceAppManagement.MicrosoftGraphSyncMicrosoftStoreForBusinessApps;
 using ApiSdk.DeviceAppManagement.MobileAppCategories;
 using ApiSdk.DeviceAppManagement.MobileAppConfigurations;
 using ApiSdk.DeviceAppManagement.MobileApps;
+using ApiSdk.DeviceAppManagement.SyncMicrosoftStoreForBusinessApps;
 using ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations;
 using ApiSdk.DeviceAppManagement.VppTokens;
 using ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies;
@@ -156,8 +156,8 @@ namespace ApiSdk.DeviceAppManagement {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildGetUserIdsWithFlaggedAppRegistrationCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetUserIdsWithFlaggedAppRegistrationCommand());
             return command;
         }
         /// <summary>
@@ -200,16 +200,6 @@ namespace ApiSdk.DeviceAppManagement {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the syncMicrosoftStoreForBusinessApps method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSyncMicrosoftStoreForBusinessAppsCommand() {
-            var command = new Command("microsoft-graph-sync-microsoft-store-for-business-apps");
-            command.Description = "Provides operations to call the syncMicrosoftStoreForBusinessApps method.";
-            var builder = new MicrosoftGraphSyncMicrosoftStoreForBusinessAppsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the mobileAppCategories property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
         public Command BuildMobileAppCategoriesCommand() {
@@ -245,9 +235,9 @@ namespace ApiSdk.DeviceAppManagement {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildGraphManagedMobileLobAppCommand());
+            command.AddCommand(builder.BuildGraphMobileLobAppCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphManagedMobileLobAppCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphMobileLobAppCommand());
             return command;
         }
         /// <summary>
@@ -289,6 +279,7 @@ namespace ApiSdk.DeviceAppManagement {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -299,6 +290,16 @@ namespace ApiSdk.DeviceAppManagement {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the syncMicrosoftStoreForBusinessApps method.
+        /// </summary>
+        public Command BuildSyncMicrosoftStoreForBusinessAppsCommand() {
+            var command = new Command("sync-microsoft-store-for-business-apps");
+            command.Description = "Provides operations to call the syncMicrosoftStoreForBusinessApps method.";
+            var builder = new SyncMicrosoftStoreForBusinessAppsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

@@ -1,9 +1,4 @@
-using ApiSdk.Me.TransitiveMemberOf.Item.MicrosoftGraphApplication;
-using ApiSdk.Me.TransitiveMemberOf.Item.MicrosoftGraphDevice;
-using ApiSdk.Me.TransitiveMemberOf.Item.MicrosoftGraphGroup;
-using ApiSdk.Me.TransitiveMemberOf.Item.MicrosoftGraphOrgContact;
-using ApiSdk.Me.TransitiveMemberOf.Item.MicrosoftGraphServicePrincipal;
-using ApiSdk.Me.TransitiveMemberOf.Item.MicrosoftGraphUser;
+using ApiSdk.Me.TransitiveMemberOf.Item.GraphGroup;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,7 +31,7 @@ namespace ApiSdk.Me.TransitiveMemberOf.Item {
             var command = new Command("get");
             command.Description = "The groups, including nested groups, and directory roles that a user is a member of. Nullable.";
             // Create options for all the parameters
-            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "key: id of directoryObject") {
+            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "The unique identifier of directoryObject") {
             };
             directoryObjectIdOption.IsRequired = true;
             command.AddOption(directoryObjectIdOption);
@@ -99,62 +94,12 @@ namespace ApiSdk.Me.TransitiveMemberOf.Item {
             return command;
         }
         /// <summary>
-        /// Casts the previous resource to application.
-        /// </summary>
-        public Command BuildMicrosoftGraphApplicationCommand() {
-            var command = new Command("microsoft-graph-application");
-            command.Description = "Casts the previous resource to application.";
-            var builder = new MicrosoftGraphApplicationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to device.
-        /// </summary>
-        public Command BuildMicrosoftGraphDeviceCommand() {
-            var command = new Command("microsoft-graph-device");
-            command.Description = "Casts the previous resource to device.";
-            var builder = new MicrosoftGraphDeviceRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
-        public Command BuildMicrosoftGraphGroupCommand() {
-            var command = new Command("microsoft-graph-group");
+        public Command BuildGraphGroupCommand() {
+            var command = new Command("graph-group");
             command.Description = "Casts the previous resource to group.";
-            var builder = new MicrosoftGraphGroupRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to orgContact.
-        /// </summary>
-        public Command BuildMicrosoftGraphOrgContactCommand() {
-            var command = new Command("microsoft-graph-org-contact");
-            command.Description = "Casts the previous resource to orgContact.";
-            var builder = new MicrosoftGraphOrgContactRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to servicePrincipal.
-        /// </summary>
-        public Command BuildMicrosoftGraphServicePrincipalCommand() {
-            var command = new Command("microsoft-graph-service-principal");
-            command.Description = "Casts the previous resource to servicePrincipal.";
-            var builder = new MicrosoftGraphServicePrincipalRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to user.
-        /// </summary>
-        public Command BuildMicrosoftGraphUserCommand() {
-            var command = new Command("microsoft-graph-user");
-            command.Description = "Casts the previous resource to user.";
-            var builder = new MicrosoftGraphUserRequestBuilder(PathParameters);
+            var builder = new GraphGroupRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }

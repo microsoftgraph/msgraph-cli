@@ -56,11 +56,11 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property onlineMeetings for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "key: id of onlineMeeting") {
+            var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "The unique identifier of onlineMeeting") {
             };
             onlineMeetingIdOption.IsRequired = true;
             command.AddOption(onlineMeetingIdOption);
@@ -96,11 +96,11 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
             var command = new Command("get");
             command.Description = "Get onlineMeetings from users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "key: id of onlineMeeting") {
+            var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "The unique identifier of onlineMeeting") {
             };
             onlineMeetingIdOption.IsRequired = true;
             command.AddOption(onlineMeetingIdOption);
@@ -164,11 +164,11 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property onlineMeetings in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "key: id of onlineMeeting") {
+            var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "The unique identifier of onlineMeeting") {
             };
             onlineMeetingIdOption.IsRequired = true;
             command.AddOption(onlineMeetingIdOption);
@@ -208,6 +208,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (onlineMeetingId is not null) requestInfo.PathParameters.Add("onlineMeeting%2Did", onlineMeetingId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

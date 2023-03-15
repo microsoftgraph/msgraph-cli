@@ -1,6 +1,6 @@
 using ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Count;
+using ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Import;
 using ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Item;
-using ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.MicrosoftGraphImport;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -86,6 +86,7 @@ namespace ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -96,6 +97,16 @@ namespace ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the import method.
+        /// </summary>
+        public Command BuildImportCommand() {
+            var command = new Command("import");
+            command.Description = "Provides operations to call the import method.";
+            var builder = new ImportRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -201,16 +212,6 @@ namespace ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the import method.
-        /// </summary>
-        public Command BuildMicrosoftGraphImportCommand() {
-            var command = new Command("microsoft-graph-import");
-            command.Description = "Provides operations to call the import method.";
-            var builder = new MicrosoftGraphImportRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

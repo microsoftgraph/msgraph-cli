@@ -53,7 +53,7 @@ namespace ApiSdk.Print.Services.Item.Endpoints {
             var command = new Command("create");
             command.Description = "Create new navigation property to endpoints for print";
             // Create options for all the parameters
-            var printServiceIdOption = new Option<string>("--print-service-id", description: "key: id of printService") {
+            var printServiceIdOption = new Option<string>("--print-service-id", description: "The unique identifier of printService") {
             };
             printServiceIdOption.IsRequired = true;
             command.AddOption(printServiceIdOption);
@@ -91,6 +91,7 @@ namespace ApiSdk.Print.Services.Item.Endpoints {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (printServiceId is not null) requestInfo.PathParameters.Add("printService%2Did", printServiceId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -111,7 +112,7 @@ namespace ApiSdk.Print.Services.Item.Endpoints {
             var command = new Command("list");
             command.Description = "Retrieve a list of endpoints exposed by a print service.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printservice-list-endpoints?view=graph-rest-1.0";
             // Create options for all the parameters
-            var printServiceIdOption = new Option<string>("--print-service-id", description: "key: id of printService") {
+            var printServiceIdOption = new Option<string>("--print-service-id", description: "The unique identifier of printService") {
             };
             printServiceIdOption.IsRequired = true;
             command.AddOption(printServiceIdOption);

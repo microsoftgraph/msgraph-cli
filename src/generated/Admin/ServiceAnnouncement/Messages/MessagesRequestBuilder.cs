@@ -1,11 +1,11 @@
+using ApiSdk.Admin.ServiceAnnouncement.Messages.Archive;
 using ApiSdk.Admin.ServiceAnnouncement.Messages.Count;
+using ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite;
 using ApiSdk.Admin.ServiceAnnouncement.Messages.Item;
-using ApiSdk.Admin.ServiceAnnouncement.Messages.MicrosoftGraphArchive;
-using ApiSdk.Admin.ServiceAnnouncement.Messages.MicrosoftGraphFavorite;
-using ApiSdk.Admin.ServiceAnnouncement.Messages.MicrosoftGraphMarkRead;
-using ApiSdk.Admin.ServiceAnnouncement.Messages.MicrosoftGraphMarkUnread;
-using ApiSdk.Admin.ServiceAnnouncement.Messages.MicrosoftGraphUnarchive;
-using ApiSdk.Admin.ServiceAnnouncement.Messages.MicrosoftGraphUnfavorite;
+using ApiSdk.Admin.ServiceAnnouncement.Messages.MarkRead;
+using ApiSdk.Admin.ServiceAnnouncement.Messages.MarkUnread;
+using ApiSdk.Admin.ServiceAnnouncement.Messages.Unarchive;
+using ApiSdk.Admin.ServiceAnnouncement.Messages.Unfavorite;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,6 +31,16 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         private Dictionary<string, object> PathParameters { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        /// <summary>
+        /// Provides operations to call the archive method.
+        /// </summary>
+        public Command BuildArchiveCommand() {
+            var command = new Command("archive");
+            command.Description = "Provides operations to call the archive method.";
+            var builder = new ArchiveRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
         /// <summary>
         /// Provides operations to manage the messages property of the microsoft.graph.serviceAnnouncement entity.
         /// </summary>
@@ -93,6 +103,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -103,6 +114,16 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the favorite method.
+        /// </summary>
+        public Command BuildFavoriteCommand() {
+            var command = new Command("favorite");
+            command.Description = "Provides operations to call the favorite method.";
+            var builder = new FavoriteRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -212,62 +233,42 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the archive method.
-        /// </summary>
-        public Command BuildMicrosoftGraphArchiveCommand() {
-            var command = new Command("microsoft-graph-archive");
-            command.Description = "Provides operations to call the archive method.";
-            var builder = new MicrosoftGraphArchiveRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the favorite method.
-        /// </summary>
-        public Command BuildMicrosoftGraphFavoriteCommand() {
-            var command = new Command("microsoft-graph-favorite");
-            command.Description = "Provides operations to call the favorite method.";
-            var builder = new MicrosoftGraphFavoriteRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to call the markRead method.
         /// </summary>
-        public Command BuildMicrosoftGraphMarkReadCommand() {
-            var command = new Command("microsoft-graph-mark-read");
+        public Command BuildMarkReadCommand() {
+            var command = new Command("mark-read");
             command.Description = "Provides operations to call the markRead method.";
-            var builder = new MicrosoftGraphMarkReadRequestBuilder(PathParameters);
+            var builder = new MarkReadRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the markUnread method.
         /// </summary>
-        public Command BuildMicrosoftGraphMarkUnreadCommand() {
-            var command = new Command("microsoft-graph-mark-unread");
+        public Command BuildMarkUnreadCommand() {
+            var command = new Command("mark-unread");
             command.Description = "Provides operations to call the markUnread method.";
-            var builder = new MicrosoftGraphMarkUnreadRequestBuilder(PathParameters);
+            var builder = new MarkUnreadRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the unarchive method.
         /// </summary>
-        public Command BuildMicrosoftGraphUnarchiveCommand() {
-            var command = new Command("microsoft-graph-unarchive");
+        public Command BuildUnarchiveCommand() {
+            var command = new Command("unarchive");
             command.Description = "Provides operations to call the unarchive method.";
-            var builder = new MicrosoftGraphUnarchiveRequestBuilder(PathParameters);
+            var builder = new UnarchiveRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the unfavorite method.
         /// </summary>
-        public Command BuildMicrosoftGraphUnfavoriteCommand() {
-            var command = new Command("microsoft-graph-unfavorite");
+        public Command BuildUnfavoriteCommand() {
+            var command = new Command("unfavorite");
             command.Description = "Provides operations to call the unfavorite method.";
-            var builder = new MicrosoftGraphUnfavoriteRequestBuilder(PathParameters);
+            var builder = new UnfavoriteRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }

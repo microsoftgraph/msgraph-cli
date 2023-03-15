@@ -53,7 +53,7 @@ namespace ApiSdk.Education.Schools.Item.Classes {
             var command = new Command("list");
             command.Description = "Get the educationClass resources owned by an educationSchool.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationschool-list-classes?view=graph-rest-1.0";
             // Create options for all the parameters
-            var educationSchoolIdOption = new Option<string>("--education-school-id", description: "key: id of educationSchool") {
+            var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
             command.AddOption(educationSchoolIdOption);

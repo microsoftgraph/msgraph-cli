@@ -1,7 +1,7 @@
 using ApiSdk.Me.DirectReports.Count;
+using ApiSdk.Me.DirectReports.GraphOrgContact;
+using ApiSdk.Me.DirectReports.GraphUser;
 using ApiSdk.Me.DirectReports.Item;
-using ApiSdk.Me.DirectReports.MicrosoftGraphOrgContact;
-using ApiSdk.Me.DirectReports.MicrosoftGraphUser;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,8 +34,8 @@ namespace ApiSdk.Me.DirectReports {
             var command = new Command("item");
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphOrgContactCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUserCommand());
+            command.AddCommand(builder.BuildGraphOrgContactCommand());
+            command.AddCommand(builder.BuildGraphUserCommand());
             return command;
         }
         /// <summary>
@@ -45,6 +45,28 @@ namespace ApiSdk.Me.DirectReports {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to orgContact.
+        /// </summary>
+        public Command BuildGraphOrgContactCommand() {
+            var command = new Command("graph-org-contact");
+            command.Description = "Casts the previous resource to orgContact.";
+            var builder = new GraphOrgContactRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to user.
+        /// </summary>
+        public Command BuildGraphUserCommand() {
+            var command = new Command("graph-user");
+            command.Description = "Casts the previous resource to user.";
+            var builder = new GraphUserRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -159,28 +181,6 @@ namespace ApiSdk.Me.DirectReports {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to orgContact.
-        /// </summary>
-        public Command BuildMicrosoftGraphOrgContactCommand() {
-            var command = new Command("microsoft-graph-org-contact");
-            command.Description = "Casts the previous resource to orgContact.";
-            var builder = new MicrosoftGraphOrgContactRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to user.
-        /// </summary>
-        public Command BuildMicrosoftGraphUserCommand() {
-            var command = new Command("microsoft-graph-user");
-            command.Description = "Casts the previous resource to user.";
-            var builder = new MicrosoftGraphUserRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

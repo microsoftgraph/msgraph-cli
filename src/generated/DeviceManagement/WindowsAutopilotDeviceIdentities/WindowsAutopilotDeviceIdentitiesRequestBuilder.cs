@@ -31,12 +31,12 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new WindowsAutopilotDeviceIdentityItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAssignUserToDeviceCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAssignUserToDeviceCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUnassignUserFromDeviceCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUpdateDevicePropertiesCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildUnassignUserFromDeviceCommand());
+            command.AddCommand(builder.BuildUpdateDevicePropertiesCommand());
             return command;
         }
         /// <summary>
@@ -88,6 +88,7 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

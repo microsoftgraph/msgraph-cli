@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class SkypeForBusinessUserConversationMember : ConversationMember, IParsable {
-        /// <summary>The tenantId property</summary>
+        /// <summary>ID of the tenant that the user belongs to.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TenantId { get; set; }
@@ -13,7 +13,7 @@ namespace ApiSdk.Models {
 #else
         public string TenantId { get; set; }
 #endif
-        /// <summary>The userId property</summary>
+        /// <summary>Azure Active Directory ID of the user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? UserId { get; set; }

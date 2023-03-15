@@ -55,7 +55,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers {
             var command = new Command("create");
             command.Description = "Create a new task trigger on the specified printer. Currently, only **one** task trigger can be specified per printer, but this limit might be removed in the future. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printer-post-tasktriggers?view=graph-rest-1.0";
             // Create options for all the parameters
-            var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer") {
+            var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
             };
             printerIdOption.IsRequired = true;
             command.AddOption(printerIdOption);
@@ -93,6 +93,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (printerId is not null) requestInfo.PathParameters.Add("printer%2Did", printerId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -113,7 +114,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers {
             var command = new Command("list");
             command.Description = "Retrieve a list of task triggers associated with the printer. The list of task triggers defines which tasks will be triggered as a result of events that occur during printing. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printer-list-tasktriggers?view=graph-rest-1.0";
             // Create options for all the parameters
-            var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer") {
+            var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
             };
             printerIdOption.IsRequired = true;
             command.AddOption(printerIdOption);

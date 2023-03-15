@@ -1,5 +1,5 @@
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item.Format.Fill.MicrosoftGraphClear;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item.Format.Fill.MicrosoftGraphSetSolidColor;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item.Format.Fill.Clear;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item.Format.Fill.SetSolidColor;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,29 +26,39 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the clear method.
+        /// </summary>
+        public Command BuildClearCommand() {
+            var command = new Command("clear");
+            command.Description = "Provides operations to call the clear method.";
+            var builder = new ClearRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete navigation property fill for drives
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property fill for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
-            var workbookChartIdOption = new Option<string>("--workbook-chart-id", description: "key: id of workbookChart") {
+            var workbookChartIdOption = new Option<string>("--workbook-chart-id", description: "The unique identifier of workbookChart") {
             };
             workbookChartIdOption.IsRequired = true;
             command.AddOption(workbookChartIdOption);
-            var workbookChartSeriesIdOption = new Option<string>("--workbook-chart-series-id", description: "key: id of workbookChartSeries") {
+            var workbookChartSeriesIdOption = new Option<string>("--workbook-chart-series-id", description: "The unique identifier of workbookChartSeries") {
             };
             workbookChartSeriesIdOption.IsRequired = true;
             command.AddOption(workbookChartSeriesIdOption);
@@ -90,23 +100,23 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
             var command = new Command("get");
             command.Description = "Represents the fill format of a chart series, which includes background formating information. Read-only.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
-            var workbookChartIdOption = new Option<string>("--workbook-chart-id", description: "key: id of workbookChart") {
+            var workbookChartIdOption = new Option<string>("--workbook-chart-id", description: "The unique identifier of workbookChart") {
             };
             workbookChartIdOption.IsRequired = true;
             command.AddOption(workbookChartIdOption);
-            var workbookChartSeriesIdOption = new Option<string>("--workbook-chart-series-id", description: "key: id of workbookChartSeries") {
+            var workbookChartSeriesIdOption = new Option<string>("--workbook-chart-series-id", description: "The unique identifier of workbookChartSeries") {
             };
             workbookChartSeriesIdOption.IsRequired = true;
             command.AddOption(workbookChartSeriesIdOption);
@@ -170,49 +180,29 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
             return command;
         }
         /// <summary>
-        /// Provides operations to call the clear method.
-        /// </summary>
-        public Command BuildMicrosoftGraphClearCommand() {
-            var command = new Command("microsoft-graph-clear");
-            command.Description = "Provides operations to call the clear method.";
-            var builder = new MicrosoftGraphClearRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the setSolidColor method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSetSolidColorCommand() {
-            var command = new Command("microsoft-graph-set-solid-color");
-            command.Description = "Provides operations to call the setSolidColor method.";
-            var builder = new MicrosoftGraphSetSolidColorRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property fill in drives
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property fill in drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
-            var workbookChartIdOption = new Option<string>("--workbook-chart-id", description: "key: id of workbookChart") {
+            var workbookChartIdOption = new Option<string>("--workbook-chart-id", description: "The unique identifier of workbookChart") {
             };
             workbookChartIdOption.IsRequired = true;
             command.AddOption(workbookChartIdOption);
-            var workbookChartSeriesIdOption = new Option<string>("--workbook-chart-series-id", description: "key: id of workbookChartSeries") {
+            var workbookChartSeriesIdOption = new Option<string>("--workbook-chart-series-id", description: "The unique identifier of workbookChartSeries") {
             };
             workbookChartSeriesIdOption.IsRequired = true;
             command.AddOption(workbookChartSeriesIdOption);
@@ -258,6 +248,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
                 if (workbookWorksheetId is not null) requestInfo.PathParameters.Add("workbookWorksheet%2Did", workbookWorksheetId);
                 if (workbookChartId is not null) requestInfo.PathParameters.Add("workbookChart%2Did", workbookChartId);
                 if (workbookChartSeriesId is not null) requestInfo.PathParameters.Add("workbookChartSeries%2Did", workbookChartSeriesId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -268,6 +259,16 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the setSolidColor method.
+        /// </summary>
+        public Command BuildSetSolidColorCommand() {
+            var command = new Command("set-solid-color");
+            command.Description = "Provides operations to call the setSolidColor method.";
+            var builder = new SetSolidColorRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

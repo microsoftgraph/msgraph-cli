@@ -1,12 +1,12 @@
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.Security;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.MicrosoftGraphSecurityClose;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.MicrosoftGraphSecurityReopen;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Operations;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.SecurityClose;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.SecurityReopen;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,8 +43,8 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSecurityApplyHoldCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSecurityRemoveHoldCommand());
+            command.AddCommand(builder.BuildSecurityApplyHoldCommand());
+            command.AddCommand(builder.BuildSecurityRemoveHoldCommand());
             return command;
         }
         /// <summary>
@@ -54,7 +54,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property ediscoveryCases for security";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
@@ -88,7 +88,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             var command = new Command("get");
             command.Description = "Get ediscoveryCases from security";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
@@ -144,26 +144,6 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the close method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSecurityCloseCommand() {
-            var command = new Command("microsoft-graph-security-close");
-            command.Description = "Provides operations to call the close method.";
-            var builder = new MicrosoftGraphSecurityCloseRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the reopen method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSecurityReopenCommand() {
-            var command = new Command("microsoft-graph-security-reopen");
-            command.Description = "Provides operations to call the reopen method.";
-            var builder = new MicrosoftGraphSecurityReopenRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the noncustodialDataSources property of the microsoft.graph.security.ediscoveryCase entity.
         /// </summary>
         public Command BuildNoncustodialDataSourcesCommand() {
@@ -174,8 +154,8 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSecurityApplyHoldCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSecurityRemoveHoldCommand());
+            command.AddCommand(builder.BuildSecurityApplyHoldCommand());
+            command.AddCommand(builder.BuildSecurityRemoveHoldCommand());
             return command;
         }
         /// <summary>
@@ -198,7 +178,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property ediscoveryCases in security";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
@@ -236,6 +216,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (ediscoveryCaseId is not null) requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -275,6 +256,26 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the close method.
+        /// </summary>
+        public Command BuildSecurityCloseCommand() {
+            var command = new Command("security-close");
+            command.Description = "Provides operations to call the close method.";
+            var builder = new SecurityCloseRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the reopen method.
+        /// </summary>
+        public Command BuildSecurityReopenCommand() {
+            var command = new Command("security-reopen");
+            command.Description = "Provides operations to call the reopen method.";
+            var builder = new SecurityReopenRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the settings property of the microsoft.graph.security.ediscoveryCase entity.
         /// </summary>
         public Command BuildSettingsCommand() {
@@ -283,8 +284,8 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             var builder = new SettingsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSecurityResetToDefaultCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildSecurityResetToDefaultCommand());
             return command;
         }
         /// <summary>
@@ -298,7 +299,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSecurityAsHierarchyCommand());
+            command.AddCommand(builder.BuildSecurityAsHierarchyCommand());
             return command;
         }
         /// <summary>

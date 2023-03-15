@@ -30,7 +30,7 @@ namespace ApiSdk.ScopedRoleMemberships.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from scopedRoleMemberships";
             // Create options for all the parameters
-            var scopedRoleMembershipIdOption = new Option<string>("--scoped-role-membership-id", description: "key: id of scopedRoleMembership") {
+            var scopedRoleMembershipIdOption = new Option<string>("--scoped-role-membership-id", description: "The unique identifier of scopedRoleMembership") {
             };
             scopedRoleMembershipIdOption.IsRequired = true;
             command.AddOption(scopedRoleMembershipIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.ScopedRoleMemberships.Item {
             var command = new Command("get");
             command.Description = "Get entity from scopedRoleMemberships by key";
             // Create options for all the parameters
-            var scopedRoleMembershipIdOption = new Option<string>("--scoped-role-membership-id", description: "key: id of scopedRoleMembership") {
+            var scopedRoleMembershipIdOption = new Option<string>("--scoped-role-membership-id", description: "The unique identifier of scopedRoleMembership") {
             };
             scopedRoleMembershipIdOption.IsRequired = true;
             command.AddOption(scopedRoleMembershipIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.ScopedRoleMemberships.Item {
             var command = new Command("patch");
             command.Description = "Update entity in scopedRoleMemberships";
             // Create options for all the parameters
-            var scopedRoleMembershipIdOption = new Option<string>("--scoped-role-membership-id", description: "key: id of scopedRoleMembership") {
+            var scopedRoleMembershipIdOption = new Option<string>("--scoped-role-membership-id", description: "The unique identifier of scopedRoleMembership") {
             };
             scopedRoleMembershipIdOption.IsRequired = true;
             command.AddOption(scopedRoleMembershipIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.ScopedRoleMemberships.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (scopedRoleMembershipId is not null) requestInfo.PathParameters.Add("scopedRoleMembership%2Did", scopedRoleMembershipId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

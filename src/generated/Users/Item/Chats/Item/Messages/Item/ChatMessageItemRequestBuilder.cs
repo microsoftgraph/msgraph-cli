@@ -1,9 +1,9 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.Chats.Item.Messages.Item.HostedContents;
-using ApiSdk.Users.Item.Chats.Item.Messages.Item.MicrosoftGraphSoftDelete;
-using ApiSdk.Users.Item.Chats.Item.Messages.Item.MicrosoftGraphUndoSoftDelete;
 using ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies;
+using ApiSdk.Users.Item.Chats.Item.Messages.Item.SoftDelete;
+using ApiSdk.Users.Item.Chats.Item.Messages.Item.UndoSoftDelete;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -34,15 +34,15 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property messages for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
-            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "key: id of chatMessage") {
+            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "The unique identifier of chatMessage") {
             };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);
@@ -80,15 +80,15 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item {
             var command = new Command("get");
             command.Description = "A collection of all the messages in the chat. Nullable.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
-            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "key: id of chatMessage") {
+            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "The unique identifier of chatMessage") {
             };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);
@@ -161,41 +161,21 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the softDelete method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSoftDeleteCommand() {
-            var command = new Command("microsoft-graph-soft-delete");
-            command.Description = "Provides operations to call the softDelete method.";
-            var builder = new MicrosoftGraphSoftDeleteRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the undoSoftDelete method.
-        /// </summary>
-        public Command BuildMicrosoftGraphUndoSoftDeleteCommand() {
-            var command = new Command("microsoft-graph-undo-soft-delete");
-            command.Description = "Provides operations to call the undoSoftDelete method.";
-            var builder = new MicrosoftGraphUndoSoftDeleteRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property messages in users
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property messages in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
-            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "key: id of chatMessage") {
+            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "The unique identifier of chatMessage") {
             };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);
@@ -237,6 +217,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item {
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (chatId is not null) requestInfo.PathParameters.Add("chat%2Did", chatId);
                 if (chatMessageId is not null) requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -259,8 +240,28 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the softDelete method.
+        /// </summary>
+        public Command BuildSoftDeleteCommand() {
+            var command = new Command("soft-delete");
+            command.Description = "Provides operations to call the softDelete method.";
+            var builder = new SoftDeleteRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the undoSoftDelete method.
+        /// </summary>
+        public Command BuildUndoSoftDeleteCommand() {
+            var command = new Command("undo-soft-delete");
+            command.Description = "Provides operations to call the undoSoftDelete method.";
+            var builder = new UndoSoftDeleteRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

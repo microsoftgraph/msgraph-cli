@@ -30,11 +30,11 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property staffMembers for solutions";
             // Create options for all the parameters
-            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
+            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
             command.AddOption(bookingBusinessIdOption);
-            var bookingStaffMemberBaseIdOption = new Option<string>("--booking-staff-member-base-id", description: "key: id of bookingStaffMemberBase") {
+            var bookingStaffMemberBaseIdOption = new Option<string>("--booking-staff-member-base-id", description: "The unique identifier of bookingStaffMemberBase") {
             };
             bookingStaffMemberBaseIdOption.IsRequired = true;
             command.AddOption(bookingStaffMemberBaseIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers.Item {
             var command = new Command("get");
             command.Description = "All the staff members that provide services in this business. Read-only. Nullable.";
             // Create options for all the parameters
-            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
+            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
             command.AddOption(bookingBusinessIdOption);
-            var bookingStaffMemberBaseIdOption = new Option<string>("--booking-staff-member-base-id", description: "key: id of bookingStaffMemberBase") {
+            var bookingStaffMemberBaseIdOption = new Option<string>("--booking-staff-member-base-id", description: "The unique identifier of bookingStaffMemberBase") {
             };
             bookingStaffMemberBaseIdOption.IsRequired = true;
             command.AddOption(bookingStaffMemberBaseIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property staffMembers in solutions";
             // Create options for all the parameters
-            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
+            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
             command.AddOption(bookingBusinessIdOption);
-            var bookingStaffMemberBaseIdOption = new Option<string>("--booking-staff-member-base-id", description: "key: id of bookingStaffMemberBase") {
+            var bookingStaffMemberBaseIdOption = new Option<string>("--booking-staff-member-base-id", description: "The unique identifier of bookingStaffMemberBase") {
             };
             bookingStaffMemberBaseIdOption.IsRequired = true;
             command.AddOption(bookingStaffMemberBaseIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers.Item {
                 });
                 if (bookingBusinessId is not null) requestInfo.PathParameters.Add("bookingBusiness%2Did", bookingBusinessId);
                 if (bookingStaffMemberBaseId is not null) requestInfo.PathParameters.Add("bookingStaffMemberBase%2Did", bookingStaffMemberBaseId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

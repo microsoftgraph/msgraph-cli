@@ -52,7 +52,7 @@ namespace ApiSdk.Users.Item.Photos {
             var command = new Command("list");
             command.Description = "Get photos from users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

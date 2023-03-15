@@ -1,7 +1,7 @@
 using ApiSdk.DeviceAppManagement.MobileApps.Count;
+using ApiSdk.DeviceAppManagement.MobileApps.GraphManagedMobileLobApp;
+using ApiSdk.DeviceAppManagement.MobileApps.GraphMobileLobApp;
 using ApiSdk.DeviceAppManagement.MobileApps.Item;
-using ApiSdk.DeviceAppManagement.MobileApps.MicrosoftGraphManagedMobileLobApp;
-using ApiSdk.DeviceAppManagement.MobileApps.MicrosoftGraphMobileLobApp;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,13 +33,13 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new MobileAppItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAssignCommand());
             command.AddCommand(builder.BuildAssignmentsCommand());
             command.AddCommand(builder.BuildCategoriesCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAssignCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphManagedMobileLobAppCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphMobileLobAppCommand());
+            command.AddCommand(builder.BuildGraphManagedMobileLobAppCommand());
+            command.AddCommand(builder.BuildGraphMobileLobAppCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
@@ -92,6 +92,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -102,6 +103,28 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to managedMobileLobApp.
+        /// </summary>
+        public Command BuildGraphManagedMobileLobAppCommand() {
+            var command = new Command("graph-managed-mobile-lob-app");
+            command.Description = "Casts the previous resource to managedMobileLobApp.";
+            var builder = new GraphManagedMobileLobAppRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to mobileLobApp.
+        /// </summary>
+        public Command BuildGraphMobileLobAppCommand() {
+            var command = new Command("graph-mobile-lob-app");
+            command.Description = "Casts the previous resource to mobileLobApp.";
+            var builder = new GraphMobileLobAppRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -207,28 +230,6 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to managedMobileLobApp.
-        /// </summary>
-        public Command BuildMicrosoftGraphManagedMobileLobAppCommand() {
-            var command = new Command("microsoft-graph-managed-mobile-lob-app");
-            command.Description = "Casts the previous resource to managedMobileLobApp.";
-            var builder = new MicrosoftGraphManagedMobileLobAppRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to mobileLobApp.
-        /// </summary>
-        public Command BuildMicrosoftGraphMobileLobAppCommand() {
-            var command = new Command("microsoft-graph-mobile-lob-app");
-            command.Description = "Casts the previous resource to mobileLobApp.";
-            var builder = new MicrosoftGraphMobileLobAppRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

@@ -32,28 +32,28 @@ namespace ApiSdk.Drives.Item.Items {
             var command = new Command("item");
             var builder = new DriveItemItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildAnalyticsCommand());
+            command.AddCommand(builder.BuildCheckinCommand());
+            command.AddCommand(builder.BuildCheckoutCommand());
             command.AddCommand(builder.BuildChildrenCommand());
             command.AddCommand(builder.BuildContentCommand());
+            command.AddCommand(builder.BuildCopyCommand());
+            command.AddCommand(builder.BuildCreateLinkCommand());
+            command.AddCommand(builder.BuildCreateUploadSessionCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
+            command.AddCommand(builder.BuildFollowCommand());
+            command.AddCommand(builder.BuildGetActivitiesByIntervalCommand());
             command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildInviteCommand());
             command.AddCommand(builder.BuildListItemCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCheckinCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCheckoutCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCopyCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCreateLinkCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCreateUploadSessionCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphFollowCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetActivitiesByIntervalCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphInviteCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphPreviewCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRestoreCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUnfollowCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphValidatePermissionCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildPermissionsCommand());
+            command.AddCommand(builder.BuildPreviewCommand());
+            command.AddCommand(builder.BuildRestoreCommand());
             command.AddCommand(builder.BuildSubscriptionsCommand());
             command.AddCommand(builder.BuildThumbnailsCommand());
+            command.AddCommand(builder.BuildUnfollowCommand());
+            command.AddCommand(builder.BuildValidatePermissionCommand());
             command.AddCommand(builder.BuildVersionsCommand());
             command.AddCommand(builder.BuildWorkbookCommand());
             return command;
@@ -75,7 +75,7 @@ namespace ApiSdk.Drives.Item.Items {
             var command = new Command("create");
             command.Description = "Create new navigation property to items for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
@@ -113,6 +113,7 @@ namespace ApiSdk.Drives.Item.Items {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -132,7 +133,7 @@ namespace ApiSdk.Drives.Item.Items {
             var command = new Command("list");
             command.Description = "All items contained in the drive. Read-only. Nullable.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);

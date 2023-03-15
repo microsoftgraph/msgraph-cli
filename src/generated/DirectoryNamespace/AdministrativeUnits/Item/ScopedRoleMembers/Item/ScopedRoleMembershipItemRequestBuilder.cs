@@ -30,11 +30,11 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.ScopedRoleMembers.I
             var command = new Command("delete");
             command.Description = "Delete navigation property scopedRoleMembers for directory";
             // Create options for all the parameters
-            var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "key: id of administrativeUnit") {
+            var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
             command.AddOption(administrativeUnitIdOption);
-            var scopedRoleMembershipIdOption = new Option<string>("--scoped-role-membership-id", description: "key: id of scopedRoleMembership") {
+            var scopedRoleMembershipIdOption = new Option<string>("--scoped-role-membership-id", description: "The unique identifier of scopedRoleMembership") {
             };
             scopedRoleMembershipIdOption.IsRequired = true;
             command.AddOption(scopedRoleMembershipIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.ScopedRoleMembers.I
             var command = new Command("get");
             command.Description = "Scoped-role members of this administrative unit.";
             // Create options for all the parameters
-            var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "key: id of administrativeUnit") {
+            var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
             command.AddOption(administrativeUnitIdOption);
-            var scopedRoleMembershipIdOption = new Option<string>("--scoped-role-membership-id", description: "key: id of scopedRoleMembership") {
+            var scopedRoleMembershipIdOption = new Option<string>("--scoped-role-membership-id", description: "The unique identifier of scopedRoleMembership") {
             };
             scopedRoleMembershipIdOption.IsRequired = true;
             command.AddOption(scopedRoleMembershipIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.ScopedRoleMembers.I
             var command = new Command("patch");
             command.Description = "Update the navigation property scopedRoleMembers in directory";
             // Create options for all the parameters
-            var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "key: id of administrativeUnit") {
+            var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
             command.AddOption(administrativeUnitIdOption);
-            var scopedRoleMembershipIdOption = new Option<string>("--scoped-role-membership-id", description: "key: id of scopedRoleMembership") {
+            var scopedRoleMembershipIdOption = new Option<string>("--scoped-role-membership-id", description: "The unique identifier of scopedRoleMembership") {
             };
             scopedRoleMembershipIdOption.IsRequired = true;
             command.AddOption(scopedRoleMembershipIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.ScopedRoleMembers.I
                 });
                 if (administrativeUnitId is not null) requestInfo.PathParameters.Add("administrativeUnit%2Did", administrativeUnitId);
                 if (scopedRoleMembershipId is not null) requestInfo.PathParameters.Add("scopedRoleMembership%2Did", scopedRoleMembershipId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

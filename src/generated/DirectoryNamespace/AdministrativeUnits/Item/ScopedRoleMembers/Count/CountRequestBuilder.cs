@@ -29,7 +29,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.ScopedRoleMembers.C
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "key: id of administrativeUnit") {
+            var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
             command.AddOption(administrativeUnitIdOption);

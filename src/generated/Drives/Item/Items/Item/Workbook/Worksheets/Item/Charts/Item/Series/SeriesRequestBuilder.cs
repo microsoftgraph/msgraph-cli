@@ -1,7 +1,6 @@
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series.Count;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series.Item;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series.MicrosoftGraphCount;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series.MicrosoftGraphItemAtWithIndex;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series.ItemAtWithIndex;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -41,11 +40,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
             return command;
         }
         /// <summary>
-        /// Provides operations to count the resources in the collection.
+        /// Provides operations to call the count method.
         /// </summary>
         public Command BuildCountCommand() {
             var command = new Command("count");
-            command.Description = "Provides operations to count the resources in the collection.";
+            command.Description = "Provides operations to call the count method.";
             var builder = new CountRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
@@ -58,19 +57,19 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
             var command = new Command("create");
             command.Description = "Use this API to create a new ChartSeries.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chart-post-series?view=graph-rest-1.0";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
-            var workbookChartIdOption = new Option<string>("--workbook-chart-id", description: "key: id of workbookChart") {
+            var workbookChartIdOption = new Option<string>("--workbook-chart-id", description: "The unique identifier of workbookChart") {
             };
             workbookChartIdOption.IsRequired = true;
             command.AddOption(workbookChartIdOption);
@@ -114,6 +113,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
                 if (workbookWorksheetId is not null) requestInfo.PathParameters.Add("workbookWorksheet%2Did", workbookWorksheetId);
                 if (workbookChartId is not null) requestInfo.PathParameters.Add("workbookChart%2Did", workbookChartId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -134,19 +134,19 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
             var command = new Command("list");
             command.Description = "Retrieve a list of chartseries objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chartseries-list?view=graph-rest-1.0";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
-            var workbookChartIdOption = new Option<string>("--workbook-chart-id", description: "key: id of workbookChart") {
+            var workbookChartIdOption = new Option<string>("--workbook-chart-id", description: "The unique identifier of workbookChart") {
             };
             workbookChartIdOption.IsRequired = true;
             command.AddOption(workbookChartIdOption);
@@ -254,16 +254,6 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the count method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCountCommand() {
-            var command = new Command("microsoft-graph-count");
-            command.Description = "Provides operations to call the count method.";
-            var builder = new MicrosoftGraphCountRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

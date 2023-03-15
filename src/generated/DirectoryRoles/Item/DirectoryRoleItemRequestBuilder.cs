@@ -1,9 +1,9 @@
+using ApiSdk.DirectoryRoles.Item.CheckMemberGroups;
+using ApiSdk.DirectoryRoles.Item.CheckMemberObjects;
+using ApiSdk.DirectoryRoles.Item.GetMemberGroups;
+using ApiSdk.DirectoryRoles.Item.GetMemberObjects;
 using ApiSdk.DirectoryRoles.Item.Members;
-using ApiSdk.DirectoryRoles.Item.MicrosoftGraphCheckMemberGroups;
-using ApiSdk.DirectoryRoles.Item.MicrosoftGraphCheckMemberObjects;
-using ApiSdk.DirectoryRoles.Item.MicrosoftGraphGetMemberGroups;
-using ApiSdk.DirectoryRoles.Item.MicrosoftGraphGetMemberObjects;
-using ApiSdk.DirectoryRoles.Item.MicrosoftGraphRestore;
+using ApiSdk.DirectoryRoles.Item.Restore;
 using ApiSdk.DirectoryRoles.Item.ScopedMembers;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
@@ -31,13 +31,33 @@ namespace ApiSdk.DirectoryRoles.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the checkMemberGroups method.
+        /// </summary>
+        public Command BuildCheckMemberGroupsCommand() {
+            var command = new Command("check-member-groups");
+            command.Description = "Provides operations to call the checkMemberGroups method.";
+            var builder = new CheckMemberGroupsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the checkMemberObjects method.
+        /// </summary>
+        public Command BuildCheckMemberObjectsCommand() {
+            var command = new Command("check-member-objects");
+            command.Description = "Provides operations to call the checkMemberObjects method.";
+            var builder = new CheckMemberObjectsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete entity from directoryRoles
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete entity from directoryRoles";
             // Create options for all the parameters
-            var directoryRoleIdOption = new Option<string>("--directory-role-id", description: "key: id of directoryRole") {
+            var directoryRoleIdOption = new Option<string>("--directory-role-id", description: "The unique identifier of directoryRole") {
             };
             directoryRoleIdOption.IsRequired = true;
             command.AddOption(directoryRoleIdOption);
@@ -72,7 +92,7 @@ namespace ApiSdk.DirectoryRoles.Item {
             var command = new Command("get");
             command.Description = "Retrieve the properties of a directoryRole object. The role must be activated in tenant for a successful response. You can use both the object ID and template ID of the **directoryRole** with this API. The template ID of a built-in role is immutable and can be seen in the role description on the Azure portal. For details, see Role template IDs.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directoryrole-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var directoryRoleIdOption = new Option<string>("--directory-role-id", description: "key: id of directoryRole") {
+            var directoryRoleIdOption = new Option<string>("--directory-role-id", description: "The unique identifier of directoryRole") {
             };
             directoryRoleIdOption.IsRequired = true;
             command.AddOption(directoryRoleIdOption);
@@ -128,6 +148,26 @@ namespace ApiSdk.DirectoryRoles.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the getMemberGroups method.
+        /// </summary>
+        public Command BuildGetMemberGroupsCommand() {
+            var command = new Command("get-member-groups");
+            command.Description = "Provides operations to call the getMemberGroups method.";
+            var builder = new GetMemberGroupsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getMemberObjects method.
+        /// </summary>
+        public Command BuildGetMemberObjectsCommand() {
+            var command = new Command("get-member-objects");
+            command.Description = "Provides operations to call the getMemberObjects method.";
+            var builder = new GetMemberObjectsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the members property of the microsoft.graph.directoryRole entity.
         /// </summary>
         public Command BuildMembersCommand() {
@@ -136,64 +176,14 @@ namespace ApiSdk.DirectoryRoles.Item {
             var builder = new MembersRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGraphApplicationCommand());
+            command.AddCommand(builder.BuildGraphDeviceCommand());
+            command.AddCommand(builder.BuildGraphGroupCommand());
+            command.AddCommand(builder.BuildGraphOrgContactCommand());
+            command.AddCommand(builder.BuildGraphServicePrincipalCommand());
+            command.AddCommand(builder.BuildGraphUserCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphApplicationCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeviceCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGroupCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphOrgContactCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphServicePrincipalCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUserCommand());
             command.AddCommand(builder.BuildRefCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the checkMemberGroups method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCheckMemberGroupsCommand() {
-            var command = new Command("microsoft-graph-check-member-groups");
-            command.Description = "Provides operations to call the checkMemberGroups method.";
-            var builder = new MicrosoftGraphCheckMemberGroupsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the checkMemberObjects method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCheckMemberObjectsCommand() {
-            var command = new Command("microsoft-graph-check-member-objects");
-            command.Description = "Provides operations to call the checkMemberObjects method.";
-            var builder = new MicrosoftGraphCheckMemberObjectsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getMemberGroups method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetMemberGroupsCommand() {
-            var command = new Command("microsoft-graph-get-member-groups");
-            command.Description = "Provides operations to call the getMemberGroups method.";
-            var builder = new MicrosoftGraphGetMemberGroupsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getMemberObjects method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetMemberObjectsCommand() {
-            var command = new Command("microsoft-graph-get-member-objects");
-            command.Description = "Provides operations to call the getMemberObjects method.";
-            var builder = new MicrosoftGraphGetMemberObjectsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the restore method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRestoreCommand() {
-            var command = new Command("microsoft-graph-restore");
-            command.Description = "Provides operations to call the restore method.";
-            var builder = new MicrosoftGraphRestoreRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -203,7 +193,7 @@ namespace ApiSdk.DirectoryRoles.Item {
             var command = new Command("patch");
             command.Description = "Update entity in directoryRoles";
             // Create options for all the parameters
-            var directoryRoleIdOption = new Option<string>("--directory-role-id", description: "key: id of directoryRole") {
+            var directoryRoleIdOption = new Option<string>("--directory-role-id", description: "The unique identifier of directoryRole") {
             };
             directoryRoleIdOption.IsRequired = true;
             command.AddOption(directoryRoleIdOption);
@@ -241,6 +231,7 @@ namespace ApiSdk.DirectoryRoles.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (directoryRoleId is not null) requestInfo.PathParameters.Add("directoryRole%2Did", directoryRoleId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -251,6 +242,16 @@ namespace ApiSdk.DirectoryRoles.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the restore method.
+        /// </summary>
+        public Command BuildRestoreCommand() {
+            var command = new Command("restore");
+            command.Description = "Provides operations to call the restore method.";
+            var builder = new RestoreRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

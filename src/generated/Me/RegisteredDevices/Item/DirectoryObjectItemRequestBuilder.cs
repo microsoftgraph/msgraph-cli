@@ -1,6 +1,6 @@
-using ApiSdk.Me.RegisteredDevices.Item.MicrosoftGraphAppRoleAssignment;
-using ApiSdk.Me.RegisteredDevices.Item.MicrosoftGraphDevice;
-using ApiSdk.Me.RegisteredDevices.Item.MicrosoftGraphEndpoint;
+using ApiSdk.Me.RegisteredDevices.Item.GraphAppRoleAssignment;
+using ApiSdk.Me.RegisteredDevices.Item.GraphDevice;
+using ApiSdk.Me.RegisteredDevices.Item.GraphEndpoint;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,7 +33,7 @@ namespace ApiSdk.Me.RegisteredDevices.Item {
             var command = new Command("get");
             command.Description = "Devices that are registered for the user. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
-            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "key: id of directoryObject") {
+            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "The unique identifier of directoryObject") {
             };
             directoryObjectIdOption.IsRequired = true;
             command.AddOption(directoryObjectIdOption);
@@ -98,30 +98,30 @@ namespace ApiSdk.Me.RegisteredDevices.Item {
         /// <summary>
         /// Casts the previous resource to appRoleAssignment.
         /// </summary>
-        public Command BuildMicrosoftGraphAppRoleAssignmentCommand() {
-            var command = new Command("microsoft-graph-app-role-assignment");
+        public Command BuildGraphAppRoleAssignmentCommand() {
+            var command = new Command("graph-app-role-assignment");
             command.Description = "Casts the previous resource to appRoleAssignment.";
-            var builder = new MicrosoftGraphAppRoleAssignmentRequestBuilder(PathParameters);
+            var builder = new GraphAppRoleAssignmentRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Casts the previous resource to device.
         /// </summary>
-        public Command BuildMicrosoftGraphDeviceCommand() {
-            var command = new Command("microsoft-graph-device");
+        public Command BuildGraphDeviceCommand() {
+            var command = new Command("graph-device");
             command.Description = "Casts the previous resource to device.";
-            var builder = new MicrosoftGraphDeviceRequestBuilder(PathParameters);
+            var builder = new GraphDeviceRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Casts the previous resource to endpoint.
         /// </summary>
-        public Command BuildMicrosoftGraphEndpointCommand() {
-            var command = new Command("microsoft-graph-endpoint");
+        public Command BuildGraphEndpointCommand() {
+            var command = new Command("graph-endpoint");
             command.Description = "Casts the previous resource to endpoint.";
-            var builder = new MicrosoftGraphEndpointRequestBuilder(PathParameters);
+            var builder = new GraphEndpointRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }

@@ -42,7 +42,7 @@ namespace ApiSdk.Groups.Item.Team.Photo {
             var command = new Command("delete");
             command.Description = "Delete navigation property photo for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
@@ -76,7 +76,7 @@ namespace ApiSdk.Groups.Item.Team.Photo {
             var command = new Command("get");
             command.Description = "The profile photo for the team.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
@@ -138,7 +138,7 @@ namespace ApiSdk.Groups.Item.Team.Photo {
             var command = new Command("patch");
             command.Description = "Update the navigation property photo in groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
@@ -176,6 +176,7 @@ namespace ApiSdk.Groups.Item.Team.Photo {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

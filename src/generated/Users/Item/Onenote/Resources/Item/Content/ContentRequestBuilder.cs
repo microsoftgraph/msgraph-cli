@@ -29,11 +29,11 @@ namespace ApiSdk.Users.Item.Onenote.Resources.Item.Content {
             var command = new Command("get");
             command.Description = "The content stream";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var onenoteResourceIdOption = new Option<string>("--onenote-resource-id", description: "key: id of onenoteResource") {
+            var onenoteResourceIdOption = new Option<string>("--onenote-resource-id", description: "The unique identifier of onenoteResource") {
             };
             onenoteResourceIdOption.IsRequired = true;
             command.AddOption(onenoteResourceIdOption);
@@ -74,11 +74,11 @@ namespace ApiSdk.Users.Item.Onenote.Resources.Item.Content {
             var command = new Command("put");
             command.Description = "The content stream";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var onenoteResourceIdOption = new Option<string>("--onenote-resource-id", description: "key: id of onenoteResource") {
+            var onenoteResourceIdOption = new Option<string>("--onenote-resource-id", description: "The unique identifier of onenoteResource") {
             };
             onenoteResourceIdOption.IsRequired = true;
             command.AddOption(onenoteResourceIdOption);

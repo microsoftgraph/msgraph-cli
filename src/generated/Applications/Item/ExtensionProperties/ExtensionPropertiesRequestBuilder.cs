@@ -54,7 +54,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties {
             var command = new Command("create");
             command.Description = "Create a new directory extension definition, represented by an extensionProperty object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-post-extensionproperty?view=graph-rest-1.0";
             // Create options for all the parameters
-            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
             command.AddOption(applicationIdOption);
@@ -92,6 +92,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (applicationId is not null) requestInfo.PathParameters.Add("application%2Did", applicationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,7 +113,7 @@ namespace ApiSdk.Applications.Item.ExtensionProperties {
             var command = new Command("list");
             command.Description = "Retrieve the list of directory extension definitions, represented by extensionProperty objects on an application.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-list-extensionproperty?view=graph-rest-1.0";
             // Create options for all the parameters
-            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
             command.AddOption(applicationIdOption);

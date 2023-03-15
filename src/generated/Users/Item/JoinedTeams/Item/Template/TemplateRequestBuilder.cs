@@ -30,11 +30,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Template {
             var command = new Command("get");
             command.Description = "The template this team was created from. See available templates.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);

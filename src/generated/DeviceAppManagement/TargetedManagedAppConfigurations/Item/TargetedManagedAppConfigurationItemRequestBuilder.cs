@@ -1,8 +1,8 @@
 using ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Apps;
+using ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assign;
 using ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assignments;
 using ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.DeploymentSummary;
-using ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.MicrosoftGraphAssign;
-using ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.MicrosoftGraphTargetApps;
+using ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.TargetApps;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -42,6 +42,16 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the assign method.
+        /// </summary>
+        public Command BuildAssignCommand() {
+            var command = new Command("assign");
+            command.Description = "Provides operations to call the assign method.";
+            var builder = new AssignRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.targetedManagedAppConfiguration entity.
         /// </summary>
         public Command BuildAssignmentsCommand() {
@@ -61,7 +71,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property targetedManagedAppConfigurations for deviceAppManagement";
             // Create options for all the parameters
-            var targetedManagedAppConfigurationIdOption = new Option<string>("--targeted-managed-app-configuration-id", description: "key: id of targetedManagedAppConfiguration") {
+            var targetedManagedAppConfigurationIdOption = new Option<string>("--targeted-managed-app-configuration-id", description: "The unique identifier of targetedManagedAppConfiguration") {
             };
             targetedManagedAppConfigurationIdOption.IsRequired = true;
             command.AddOption(targetedManagedAppConfigurationIdOption);
@@ -107,7 +117,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
             var command = new Command("get");
             command.Description = "Targeted managed app configurations.";
             // Create options for all the parameters
-            var targetedManagedAppConfigurationIdOption = new Option<string>("--targeted-managed-app-configuration-id", description: "key: id of targetedManagedAppConfiguration") {
+            var targetedManagedAppConfigurationIdOption = new Option<string>("--targeted-managed-app-configuration-id", description: "The unique identifier of targetedManagedAppConfiguration") {
             };
             targetedManagedAppConfigurationIdOption.IsRequired = true;
             command.AddOption(targetedManagedAppConfigurationIdOption);
@@ -163,33 +173,13 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the assign method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAssignCommand() {
-            var command = new Command("microsoft-graph-assign");
-            command.Description = "Provides operations to call the assign method.";
-            var builder = new MicrosoftGraphAssignRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the targetApps method.
-        /// </summary>
-        public Command BuildMicrosoftGraphTargetAppsCommand() {
-            var command = new Command("microsoft-graph-target-apps");
-            command.Description = "Provides operations to call the targetApps method.";
-            var builder = new MicrosoftGraphTargetAppsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property targetedManagedAppConfigurations in deviceAppManagement
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property targetedManagedAppConfigurations in deviceAppManagement";
             // Create options for all the parameters
-            var targetedManagedAppConfigurationIdOption = new Option<string>("--targeted-managed-app-configuration-id", description: "key: id of targetedManagedAppConfiguration") {
+            var targetedManagedAppConfigurationIdOption = new Option<string>("--targeted-managed-app-configuration-id", description: "The unique identifier of targetedManagedAppConfiguration") {
             };
             targetedManagedAppConfigurationIdOption.IsRequired = true;
             command.AddOption(targetedManagedAppConfigurationIdOption);
@@ -227,6 +217,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (targetedManagedAppConfigurationId is not null) requestInfo.PathParameters.Add("targetedManagedAppConfiguration%2Did", targetedManagedAppConfigurationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -237,6 +228,16 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the targetApps method.
+        /// </summary>
+        public Command BuildTargetAppsCommand() {
+            var command = new Command("target-apps");
+            command.Description = "Provides operations to call the targetApps method.";
+            var builder = new TargetAppsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

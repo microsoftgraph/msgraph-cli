@@ -32,7 +32,7 @@ namespace ApiSdk.ApplicationTemplates {
             var command = new Command("item");
             var builder = new ApplicationTemplateItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphInstantiateCommand());
+            command.AddCommand(builder.BuildInstantiateCommand());
             return command;
         }
         /// <summary>

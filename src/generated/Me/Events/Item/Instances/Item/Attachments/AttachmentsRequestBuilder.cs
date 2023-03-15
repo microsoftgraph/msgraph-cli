@@ -1,6 +1,6 @@
 using ApiSdk.Me.Events.Item.Instances.Item.Attachments.Count;
+using ApiSdk.Me.Events.Item.Instances.Item.Attachments.CreateUploadSession;
 using ApiSdk.Me.Events.Item.Instances.Item.Attachments.Item;
-using ApiSdk.Me.Events.Item.Instances.Item.Attachments.MicrosoftGraphCreateUploadSession;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -54,11 +54,11 @@ namespace ApiSdk.Me.Events.Item.Instances.Item.Attachments {
             var command = new Command("create");
             command.Description = "Use this API to create a new Attachment. An attachment can be one of the following types: All these types of attachment resources are derived from the attachmentresource. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/eventmessage-post-attachments?view=graph-rest-1.0";
             // Create options for all the parameters
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var eventId1Option = new Option<string>("--event-id1", description: "key: id of event") {
+            var eventId1Option = new Option<string>("--event-id1", description: "The unique identifier of event") {
             };
             eventId1Option.IsRequired = true;
             command.AddOption(eventId1Option);
@@ -98,6 +98,7 @@ namespace ApiSdk.Me.Events.Item.Instances.Item.Attachments {
                 });
                 if (eventId is not null) requestInfo.PathParameters.Add("event%2Did", eventId);
                 if (eventId1 is not null) requestInfo.PathParameters.Add("event%2Did1", eventId1);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -111,6 +112,16 @@ namespace ApiSdk.Me.Events.Item.Instances.Item.Attachments {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the createUploadSession method.
+        /// </summary>
+        public Command BuildCreateUploadSessionCommand() {
+            var command = new Command("create-upload-session");
+            command.Description = "Provides operations to call the createUploadSession method.";
+            var builder = new CreateUploadSessionRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Retrieve a list of attachment objects attached to an event.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/event-list-attachments?view=graph-rest-1.0" />
         /// </summary>
@@ -118,11 +129,11 @@ namespace ApiSdk.Me.Events.Item.Instances.Item.Attachments {
             var command = new Command("list");
             command.Description = "Retrieve a list of attachment objects attached to an event.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/event-list-attachments?view=graph-rest-1.0";
             // Create options for all the parameters
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var eventId1Option = new Option<string>("--event-id1", description: "key: id of event") {
+            var eventId1Option = new Option<string>("--event-id1", description: "The unique identifier of event") {
             };
             eventId1Option.IsRequired = true;
             command.AddOption(eventId1Option);
@@ -220,16 +231,6 @@ namespace ApiSdk.Me.Events.Item.Instances.Item.Attachments {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the createUploadSession method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCreateUploadSessionCommand() {
-            var command = new Command("microsoft-graph-create-upload-session");
-            command.Description = "Provides operations to call the createUploadSession method.";
-            var builder = new MicrosoftGraphCreateUploadSessionRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

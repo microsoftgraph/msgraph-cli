@@ -31,10 +31,10 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Ite
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new OnenoteSectionItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCopyToNotebookCommand());
+            command.AddCommand(builder.BuildCopyToSectionGroupCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCopyToNotebookCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCopyToSectionGroupCommand());
             command.AddCommand(builder.BuildPagesCommand());
             command.AddCommand(builder.BuildParentNotebookCommand());
             command.AddCommand(builder.BuildParentSectionGroupCommand());
@@ -59,19 +59,19 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Ite
             var command = new Command("create");
             command.Description = "Create a new onenoteSection in the specified section group.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/sectiongroup-post-sections?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var notebookIdOption = new Option<string>("--notebook-id", description: "key: id of notebook") {
+            var notebookIdOption = new Option<string>("--notebook-id", description: "The unique identifier of notebook") {
             };
             notebookIdOption.IsRequired = true;
             command.AddOption(notebookIdOption);
-            var sectionGroupIdOption = new Option<string>("--section-group-id", description: "key: id of sectionGroup") {
+            var sectionGroupIdOption = new Option<string>("--section-group-id", description: "The unique identifier of sectionGroup") {
             };
             sectionGroupIdOption.IsRequired = true;
             command.AddOption(sectionGroupIdOption);
@@ -115,6 +115,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Ite
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
                 if (notebookId is not null) requestInfo.PathParameters.Add("notebook%2Did", notebookId);
                 if (sectionGroupId is not null) requestInfo.PathParameters.Add("sectionGroup%2Did", sectionGroupId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -135,19 +136,19 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Ite
             var command = new Command("list");
             command.Description = "Retrieve a list of onenoteSection objects from the specified section group.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/sectiongroup-list-sections?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var notebookIdOption = new Option<string>("--notebook-id", description: "key: id of notebook") {
+            var notebookIdOption = new Option<string>("--notebook-id", description: "The unique identifier of notebook") {
             };
             notebookIdOption.IsRequired = true;
             command.AddOption(notebookIdOption);
-            var sectionGroupIdOption = new Option<string>("--section-group-id", description: "key: id of sectionGroup") {
+            var sectionGroupIdOption = new Option<string>("--section-group-id", description: "The unique identifier of sectionGroup") {
             };
             sectionGroupIdOption.IsRequired = true;
             command.AddOption(sectionGroupIdOption);

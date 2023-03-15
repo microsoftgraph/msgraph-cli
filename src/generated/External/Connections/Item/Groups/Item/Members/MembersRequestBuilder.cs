@@ -54,11 +54,11 @@ namespace ApiSdk.External.Connections.Item.Groups.Item.Members {
             var command = new Command("create");
             command.Description = "Create an identity resource for a new member in an externalGroup.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/externalconnectors-externalgroup-post-members?view=graph-rest-1.0";
             // Create options for all the parameters
-            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
+            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
             command.AddOption(externalConnectionIdOption);
-            var externalGroupIdOption = new Option<string>("--external-group-id", description: "key: id of externalGroup") {
+            var externalGroupIdOption = new Option<string>("--external-group-id", description: "The unique identifier of externalGroup") {
             };
             externalGroupIdOption.IsRequired = true;
             command.AddOption(externalGroupIdOption);
@@ -98,6 +98,7 @@ namespace ApiSdk.External.Connections.Item.Groups.Item.Members {
                 });
                 if (externalConnectionId is not null) requestInfo.PathParameters.Add("externalConnection%2Did", externalConnectionId);
                 if (externalGroupId is not null) requestInfo.PathParameters.Add("externalGroup%2Did", externalGroupId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -117,11 +118,11 @@ namespace ApiSdk.External.Connections.Item.Groups.Item.Members {
             var command = new Command("list");
             command.Description = "A member added to an externalGroup. You can add Azure Active Directory users, Azure Active Directory groups, or an externalGroup as members.";
             // Create options for all the parameters
-            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
+            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
             command.AddOption(externalConnectionIdOption);
-            var externalGroupIdOption = new Option<string>("--external-group-id", description: "key: id of externalGroup") {
+            var externalGroupIdOption = new Option<string>("--external-group-id", description: "The unique identifier of externalGroup") {
             };
             externalGroupIdOption.IsRequired = true;
             command.AddOption(externalGroupIdOption);

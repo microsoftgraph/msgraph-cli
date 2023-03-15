@@ -30,15 +30,15 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.Instances.Item.Calendar {
             var command = new Command("get");
             command.Description = "The calendar that contains the event. Navigation property. Read-only.";
             // Create options for all the parameters
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            var calendarIdOption = new Option<string>("--calendar-id", description: "The unique identifier of calendar") {
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var eventId1Option = new Option<string>("--event-id1", description: "key: id of event") {
+            var eventId1Option = new Option<string>("--event-id1", description: "The unique identifier of event") {
             };
             eventId1Option.IsRequired = true;
             command.AddOption(eventId1Option);

@@ -29,7 +29,7 @@ namespace ApiSdk.Shares.Item.Root.Content {
             var command = new Command("get");
             command.Description = "The content stream, if the item represents a file.";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
@@ -68,7 +68,7 @@ namespace ApiSdk.Shares.Item.Root.Content {
             var command = new Command("put");
             command.Description = "The content stream, if the item represents a file.";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);

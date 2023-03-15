@@ -30,11 +30,11 @@ namespace ApiSdk.Groups.Item.Photos.Item.Value {
             var command = new Command("get");
             command.Description = "Get media content for the navigation property photos from groups\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-list-photos?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var profilePhotoIdOption = new Option<string>("--profile-photo-id", description: "key: id of profilePhoto") {
+            var profilePhotoIdOption = new Option<string>("--profile-photo-id", description: "The unique identifier of profilePhoto") {
             };
             profilePhotoIdOption.IsRequired = true;
             command.AddOption(profilePhotoIdOption);
@@ -75,11 +75,11 @@ namespace ApiSdk.Groups.Item.Photos.Item.Value {
             var command = new Command("put");
             command.Description = "Update media content for the navigation property photos in groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var profilePhotoIdOption = new Option<string>("--profile-photo-id", description: "key: id of profilePhoto") {
+            var profilePhotoIdOption = new Option<string>("--profile-photo-id", description: "The unique identifier of profilePhoto") {
             };
             profilePhotoIdOption.IsRequired = true;
             command.AddOption(profilePhotoIdOption);

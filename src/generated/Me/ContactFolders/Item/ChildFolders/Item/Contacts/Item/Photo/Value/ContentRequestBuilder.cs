@@ -29,15 +29,15 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Item.Contacts.Item.Photo.Va
             var command = new Command("get");
             command.Description = "Get media content for the navigation property photo from me";
             // Create options for all the parameters
-            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
+            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "The unique identifier of contactFolder") {
             };
             contactFolderIdOption.IsRequired = true;
             command.AddOption(contactFolderIdOption);
-            var contactFolderId1Option = new Option<string>("--contact-folder-id1", description: "key: id of contactFolder") {
+            var contactFolderId1Option = new Option<string>("--contact-folder-id1", description: "The unique identifier of contactFolder") {
             };
             contactFolderId1Option.IsRequired = true;
             command.AddOption(contactFolderId1Option);
-            var contactIdOption = new Option<string>("--contact-id", description: "key: id of contact") {
+            var contactIdOption = new Option<string>("--contact-id", description: "The unique identifier of contact") {
             };
             contactIdOption.IsRequired = true;
             command.AddOption(contactIdOption);
@@ -80,15 +80,15 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Item.Contacts.Item.Photo.Va
             var command = new Command("put");
             command.Description = "Update media content for the navigation property photo in me";
             // Create options for all the parameters
-            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
+            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "The unique identifier of contactFolder") {
             };
             contactFolderIdOption.IsRequired = true;
             command.AddOption(contactFolderIdOption);
-            var contactFolderId1Option = new Option<string>("--contact-folder-id1", description: "key: id of contactFolder") {
+            var contactFolderId1Option = new Option<string>("--contact-folder-id1", description: "The unique identifier of contactFolder") {
             };
             contactFolderId1Option.IsRequired = true;
             command.AddOption(contactFolderId1Option);
-            var contactIdOption = new Option<string>("--contact-id", description: "key: id of contact") {
+            var contactIdOption = new Option<string>("--contact-id", description: "The unique identifier of contact") {
             };
             contactIdOption.IsRequired = true;
             command.AddOption(contactIdOption);

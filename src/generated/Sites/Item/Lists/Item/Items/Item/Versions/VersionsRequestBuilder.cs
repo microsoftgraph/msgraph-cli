@@ -34,8 +34,8 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions {
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildFieldsCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRestoreVersionCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildRestoreVersionCommand());
             return command;
         }
         /// <summary>
@@ -55,15 +55,15 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions {
             var command = new Command("create");
             command.Description = "Create new navigation property to versions for sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            var listIdOption = new Option<string>("--list-id", description: "The unique identifier of list") {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
-            var listItemIdOption = new Option<string>("--list-item-id", description: "key: id of listItem") {
+            var listItemIdOption = new Option<string>("--list-item-id", description: "The unique identifier of listItem") {
             };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
@@ -105,6 +105,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions {
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
                 if (listId is not null) requestInfo.PathParameters.Add("list%2Did", listId);
                 if (listItemId is not null) requestInfo.PathParameters.Add("listItem%2Did", listItemId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -125,15 +126,15 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions {
             var command = new Command("list");
             command.Description = "SharePoint can be configured to retain the history for list items. Previous versions may be retained for a finite period of time depending on admin settings which may be unique per user or location.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/listitem-list-versions?view=graph-rest-1.0";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            var listIdOption = new Option<string>("--list-id", description: "The unique identifier of list") {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
-            var listItemIdOption = new Option<string>("--list-item-id", description: "key: id of listItem") {
+            var listItemIdOption = new Option<string>("--list-item-id", description: "The unique identifier of listItem") {
             };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);

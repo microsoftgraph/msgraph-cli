@@ -29,11 +29,11 @@ namespace ApiSdk.Users.Item.MailFolders.Item.MessageRules.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
+            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "The unique identifier of mailFolder") {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);

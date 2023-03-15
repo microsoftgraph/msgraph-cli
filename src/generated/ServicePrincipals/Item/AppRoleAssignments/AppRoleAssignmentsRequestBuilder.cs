@@ -54,7 +54,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments {
             var command = new Command("create");
             command.Description = "Assign an app role to a client service principal. App roles that are assigned to service principals are also known as application permissions. Application permissions can be granted directly with app role assignments, or through a consent experience. To grant an app role assignment to a client service principal, you need three identifiers:\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-post-approleassignments?view=graph-rest-1.0";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
+            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
@@ -92,6 +92,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (servicePrincipalId is not null) requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,7 +113,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments {
             var command = new Command("list");
             command.Description = "App role assignment for another app or service, granted to this service principal. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
+            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);

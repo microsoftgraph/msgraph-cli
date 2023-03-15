@@ -5,6 +5,14 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     public class Teamwork : Entity, IParsable {
+        /// <summary>The deletedTeams property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<DeletedTeam>? DeletedTeams { get; set; }
+#nullable restore
+#else
+        public List<DeletedTeam> DeletedTeams { get; set; }
+#endif
         /// <summary>The workforceIntegrations property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -26,6 +34,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+                {"deletedTeams", n => { DeletedTeams = n.GetCollectionOfObjectValues<DeletedTeam>(DeletedTeam.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"workforceIntegrations", n => { WorkforceIntegrations = n.GetCollectionOfObjectValues<WorkforceIntegration>(WorkforceIntegration.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
@@ -36,6 +45,7 @@ namespace ApiSdk.Models {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
+            writer.WriteCollectionOfObjectValues<DeletedTeam>("deletedTeams", DeletedTeams);
             writer.WriteCollectionOfObjectValues<WorkforceIntegration>("workforceIntegrations", WorkforceIntegrations);
         }
     }

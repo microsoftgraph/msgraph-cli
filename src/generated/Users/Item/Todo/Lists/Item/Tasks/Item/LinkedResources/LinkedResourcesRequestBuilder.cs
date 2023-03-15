@@ -54,15 +54,15 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources {
             var command = new Command("create");
             command.Description = "Create a linkedResource object to associate a specified task with an item in a partner application. For example, you can associate a task with an email item in Outlook that spurred the task, and you can create a **linkedResource** object to track its association. You can also create a **linkedResource** object while creating a task.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/todotask-post-linkedresources?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "key: id of todoTaskList") {
+            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "The unique identifier of todoTaskList") {
             };
             todoTaskListIdOption.IsRequired = true;
             command.AddOption(todoTaskListIdOption);
-            var todoTaskIdOption = new Option<string>("--todo-task-id", description: "key: id of todoTask") {
+            var todoTaskIdOption = new Option<string>("--todo-task-id", description: "The unique identifier of todoTask") {
             };
             todoTaskIdOption.IsRequired = true;
             command.AddOption(todoTaskIdOption);
@@ -104,6 +104,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources {
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (todoTaskListId is not null) requestInfo.PathParameters.Add("todoTaskList%2Did", todoTaskListId);
                 if (todoTaskId is not null) requestInfo.PathParameters.Add("todoTask%2Did", todoTaskId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -124,15 +125,15 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks.Item.LinkedResources {
             var command = new Command("list");
             command.Description = "Get information of one or more items in a partner application, based on which a specified task was created. The information is represented in a linkedResource object for each item. It includes an external ID for the item in the partner application, and if applicable, a deep link to that item in the application.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/todotask-list-linkedresources?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "key: id of todoTaskList") {
+            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "The unique identifier of todoTaskList") {
             };
             todoTaskListIdOption.IsRequired = true;
             command.AddOption(todoTaskListIdOption);
-            var todoTaskIdOption = new Option<string>("--todo-task-id", description: "key: id of todoTask") {
+            var todoTaskIdOption = new Option<string>("--todo-task-id", description: "The unique identifier of todoTask") {
             };
             todoTaskIdOption.IsRequired = true;
             command.AddOption(todoTaskIdOption);

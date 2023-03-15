@@ -29,7 +29,7 @@ namespace ApiSdk.Print.Services.Item.Endpoints.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var printServiceIdOption = new Option<string>("--print-service-id", description: "key: id of printService") {
+            var printServiceIdOption = new Option<string>("--print-service-id", description: "The unique identifier of printService") {
             };
             printServiceIdOption.IsRequired = true;
             command.AddOption(printServiceIdOption);

@@ -1,12 +1,12 @@
+using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.AcceptRecommendations;
+using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.ApplyDecisions;
+using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.BatchRecordDecisions;
 using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.ContactedReviewers;
 using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.Decisions;
-using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.MicrosoftGraphAcceptRecommendations;
-using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.MicrosoftGraphApplyDecisions;
-using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.MicrosoftGraphBatchRecordDecisions;
-using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.MicrosoftGraphResetDecisions;
-using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.MicrosoftGraphSendReminder;
-using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.MicrosoftGraphStop;
+using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.ResetDecisions;
+using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.SendReminder;
 using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.Stages;
+using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.Stop;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,6 +32,36 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         private Dictionary<string, object> PathParameters { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        /// <summary>
+        /// Provides operations to call the acceptRecommendations method.
+        /// </summary>
+        public Command BuildAcceptRecommendationsCommand() {
+            var command = new Command("accept-recommendations");
+            command.Description = "Provides operations to call the acceptRecommendations method.";
+            var builder = new AcceptRecommendationsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the applyDecisions method.
+        /// </summary>
+        public Command BuildApplyDecisionsCommand() {
+            var command = new Command("apply-decisions");
+            command.Description = "Provides operations to call the applyDecisions method.";
+            var builder = new ApplyDecisionsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the batchRecordDecisions method.
+        /// </summary>
+        public Command BuildBatchRecordDecisionsCommand() {
+            var command = new Command("batch-record-decisions");
+            command.Description = "Provides operations to call the batchRecordDecisions method.";
+            var builder = new BatchRecordDecisionsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
         /// <summary>
         /// Provides operations to manage the contactedReviewers property of the microsoft.graph.accessReviewInstance entity.
         /// </summary>
@@ -65,11 +95,11 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             var command = new Command("delete");
             command.Description = "Delete navigation property instances for identityGovernance";
             // Create options for all the parameters
-            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "key: id of accessReviewScheduleDefinition") {
+            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "The unique identifier of accessReviewScheduleDefinition") {
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
             command.AddOption(accessReviewScheduleDefinitionIdOption);
-            var accessReviewInstanceIdOption = new Option<string>("--access-review-instance-id", description: "key: id of accessReviewInstance") {
+            var accessReviewInstanceIdOption = new Option<string>("--access-review-instance-id", description: "The unique identifier of accessReviewInstance") {
             };
             accessReviewInstanceIdOption.IsRequired = true;
             command.AddOption(accessReviewInstanceIdOption);
@@ -105,11 +135,11 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             var command = new Command("get");
             command.Description = "If the accessReviewScheduleDefinition is a recurring access review, instances represent each recurrence. A review that does not recur will have exactly one instance. Instances also represent each unique resource under review in the accessReviewScheduleDefinition. If a review has multiple resources and multiple instances, each resource will have a unique instance for each recurrence.";
             // Create options for all the parameters
-            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "key: id of accessReviewScheduleDefinition") {
+            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "The unique identifier of accessReviewScheduleDefinition") {
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
             command.AddOption(accessReviewScheduleDefinitionIdOption);
-            var accessReviewInstanceIdOption = new Option<string>("--access-review-instance-id", description: "key: id of accessReviewInstance") {
+            var accessReviewInstanceIdOption = new Option<string>("--access-review-instance-id", description: "The unique identifier of accessReviewInstance") {
             };
             accessReviewInstanceIdOption.IsRequired = true;
             command.AddOption(accessReviewInstanceIdOption);
@@ -167,77 +197,17 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             return command;
         }
         /// <summary>
-        /// Provides operations to call the acceptRecommendations method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAcceptRecommendationsCommand() {
-            var command = new Command("microsoft-graph-accept-recommendations");
-            command.Description = "Provides operations to call the acceptRecommendations method.";
-            var builder = new MicrosoftGraphAcceptRecommendationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the applyDecisions method.
-        /// </summary>
-        public Command BuildMicrosoftGraphApplyDecisionsCommand() {
-            var command = new Command("microsoft-graph-apply-decisions");
-            command.Description = "Provides operations to call the applyDecisions method.";
-            var builder = new MicrosoftGraphApplyDecisionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the batchRecordDecisions method.
-        /// </summary>
-        public Command BuildMicrosoftGraphBatchRecordDecisionsCommand() {
-            var command = new Command("microsoft-graph-batch-record-decisions");
-            command.Description = "Provides operations to call the batchRecordDecisions method.";
-            var builder = new MicrosoftGraphBatchRecordDecisionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the resetDecisions method.
-        /// </summary>
-        public Command BuildMicrosoftGraphResetDecisionsCommand() {
-            var command = new Command("microsoft-graph-reset-decisions");
-            command.Description = "Provides operations to call the resetDecisions method.";
-            var builder = new MicrosoftGraphResetDecisionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the sendReminder method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSendReminderCommand() {
-            var command = new Command("microsoft-graph-send-reminder");
-            command.Description = "Provides operations to call the sendReminder method.";
-            var builder = new MicrosoftGraphSendReminderRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the stop method.
-        /// </summary>
-        public Command BuildMicrosoftGraphStopCommand() {
-            var command = new Command("microsoft-graph-stop");
-            command.Description = "Provides operations to call the stop method.";
-            var builder = new MicrosoftGraphStopRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property instances in identityGovernance
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property instances in identityGovernance";
             // Create options for all the parameters
-            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "key: id of accessReviewScheduleDefinition") {
+            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "The unique identifier of accessReviewScheduleDefinition") {
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
             command.AddOption(accessReviewScheduleDefinitionIdOption);
-            var accessReviewInstanceIdOption = new Option<string>("--access-review-instance-id", description: "key: id of accessReviewInstance") {
+            var accessReviewInstanceIdOption = new Option<string>("--access-review-instance-id", description: "The unique identifier of accessReviewInstance") {
             };
             accessReviewInstanceIdOption.IsRequired = true;
             command.AddOption(accessReviewInstanceIdOption);
@@ -277,6 +247,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
                 });
                 if (accessReviewScheduleDefinitionId is not null) requestInfo.PathParameters.Add("accessReviewScheduleDefinition%2Did", accessReviewScheduleDefinitionId);
                 if (accessReviewInstanceId is not null) requestInfo.PathParameters.Add("accessReviewInstance%2Did", accessReviewInstanceId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -290,6 +261,26 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             return command;
         }
         /// <summary>
+        /// Provides operations to call the resetDecisions method.
+        /// </summary>
+        public Command BuildResetDecisionsCommand() {
+            var command = new Command("reset-decisions");
+            command.Description = "Provides operations to call the resetDecisions method.";
+            var builder = new ResetDecisionsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sendReminder method.
+        /// </summary>
+        public Command BuildSendReminderCommand() {
+            var command = new Command("send-reminder");
+            command.Description = "Provides operations to call the sendReminder method.";
+            var builder = new SendReminderRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the stages property of the microsoft.graph.accessReviewInstance entity.
         /// </summary>
         public Command BuildStagesCommand() {
@@ -300,6 +291,16 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the stop method.
+        /// </summary>
+        public Command BuildStopCommand() {
+            var command = new Command("stop");
+            command.Description = "Provides operations to call the stop method.";
+            var builder = new StopRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

@@ -31,19 +31,19 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup {
             var command = new Command("delete");
             command.Description = "Delete navigation property parentGroup for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var storeIdOption = new Option<string>("--store-id", description: "key: id of store") {
+            var storeIdOption = new Option<string>("--store-id", description: "The unique identifier of store") {
             };
             storeIdOption.IsRequired = true;
             command.AddOption(storeIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            var setIdOption = new Option<string>("--set-id", description: "The unique identifier of set") {
             };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
@@ -83,19 +83,19 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup {
             var command = new Command("get");
             command.Description = "The parent [group] that contains the set.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var storeIdOption = new Option<string>("--store-id", description: "key: id of store") {
+            var storeIdOption = new Option<string>("--store-id", description: "The unique identifier of store") {
             };
             storeIdOption.IsRequired = true;
             command.AddOption(storeIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            var setIdOption = new Option<string>("--set-id", description: "The unique identifier of set") {
             };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
@@ -163,19 +163,19 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup {
             var command = new Command("patch");
             command.Description = "Update the navigation property parentGroup in groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var storeIdOption = new Option<string>("--store-id", description: "key: id of store") {
+            var storeIdOption = new Option<string>("--store-id", description: "The unique identifier of store") {
             };
             storeIdOption.IsRequired = true;
             command.AddOption(storeIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            var setIdOption = new Option<string>("--set-id", description: "The unique identifier of set") {
             };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
@@ -219,6 +219,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup {
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
                 if (storeId is not null) requestInfo.PathParameters.Add("store%2Did", storeId);
                 if (setId is not null) requestInfo.PathParameters.Add("set%2Did", setId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

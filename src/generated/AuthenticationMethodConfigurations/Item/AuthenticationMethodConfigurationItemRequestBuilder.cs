@@ -30,7 +30,7 @@ namespace ApiSdk.AuthenticationMethodConfigurations.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from authenticationMethodConfigurations";
             // Create options for all the parameters
-            var authenticationMethodConfigurationIdOption = new Option<string>("--authentication-method-configuration-id", description: "key: id of authenticationMethodConfiguration") {
+            var authenticationMethodConfigurationIdOption = new Option<string>("--authentication-method-configuration-id", description: "The unique identifier of authenticationMethodConfiguration") {
             };
             authenticationMethodConfigurationIdOption.IsRequired = true;
             command.AddOption(authenticationMethodConfigurationIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.AuthenticationMethodConfigurations.Item {
             var command = new Command("get");
             command.Description = "Get entity from authenticationMethodConfigurations by key";
             // Create options for all the parameters
-            var authenticationMethodConfigurationIdOption = new Option<string>("--authentication-method-configuration-id", description: "key: id of authenticationMethodConfiguration") {
+            var authenticationMethodConfigurationIdOption = new Option<string>("--authentication-method-configuration-id", description: "The unique identifier of authenticationMethodConfiguration") {
             };
             authenticationMethodConfigurationIdOption.IsRequired = true;
             command.AddOption(authenticationMethodConfigurationIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.AuthenticationMethodConfigurations.Item {
             var command = new Command("patch");
             command.Description = "Update entity in authenticationMethodConfigurations";
             // Create options for all the parameters
-            var authenticationMethodConfigurationIdOption = new Option<string>("--authentication-method-configuration-id", description: "key: id of authenticationMethodConfiguration") {
+            var authenticationMethodConfigurationIdOption = new Option<string>("--authentication-method-configuration-id", description: "The unique identifier of authenticationMethodConfiguration") {
             };
             authenticationMethodConfigurationIdOption.IsRequired = true;
             command.AddOption(authenticationMethodConfigurationIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.AuthenticationMethodConfigurations.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (authenticationMethodConfigurationId is not null) requestInfo.PathParameters.Add("authenticationMethodConfiguration%2Did", authenticationMethodConfigurationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

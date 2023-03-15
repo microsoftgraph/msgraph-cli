@@ -32,11 +32,11 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property shared for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var sharedInsightIdOption = new Option<string>("--shared-insight-id", description: "key: id of sharedInsight") {
+            var sharedInsightIdOption = new Option<string>("--shared-insight-id", description: "The unique identifier of sharedInsight") {
             };
             sharedInsightIdOption.IsRequired = true;
             command.AddOption(sharedInsightIdOption);
@@ -72,11 +72,11 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item {
             var command = new Command("get");
             command.Description = "Calculated relationship identifying documents shared with or by the user. This includes URLs, file attachments, and reference attachments to OneDrive for Business and SharePoint files found in Outlook messages and meetings. This also includes URLs and reference attachments to Teams conversations. Ordered by recency of share.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var sharedInsightIdOption = new Option<string>("--shared-insight-id", description: "key: id of sharedInsight") {
+            var sharedInsightIdOption = new Option<string>("--shared-insight-id", description: "The unique identifier of sharedInsight") {
             };
             sharedInsightIdOption.IsRequired = true;
             command.AddOption(sharedInsightIdOption);
@@ -150,11 +150,11 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property shared in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var sharedInsightIdOption = new Option<string>("--shared-insight-id", description: "key: id of sharedInsight") {
+            var sharedInsightIdOption = new Option<string>("--shared-insight-id", description: "The unique identifier of sharedInsight") {
             };
             sharedInsightIdOption.IsRequired = true;
             command.AddOption(sharedInsightIdOption);
@@ -194,6 +194,7 @@ namespace ApiSdk.Users.Item.Insights.Shared.Item {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (sharedInsightId is not null) requestInfo.PathParameters.Add("sharedInsight%2Did", sharedInsightId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

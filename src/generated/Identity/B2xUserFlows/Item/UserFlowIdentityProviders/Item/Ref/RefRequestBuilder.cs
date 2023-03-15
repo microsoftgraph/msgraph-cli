@@ -29,11 +29,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders.Item.Ref {
             var command = new Command("delete");
             command.Description = "Delete ref of navigation property userFlowIdentityProviders for identity";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
-            var identityProviderBaseIdOption = new Option<string>("--identity-provider-base-id", description: "key: id of identityProviderBase") {
+            var identityProviderBaseIdOption = new Option<string>("--identity-provider-base-id", description: "The unique identifier of identityProviderBase") {
             };
             identityProviderBaseIdOption.IsRequired = true;
             command.AddOption(identityProviderBaseIdOption);

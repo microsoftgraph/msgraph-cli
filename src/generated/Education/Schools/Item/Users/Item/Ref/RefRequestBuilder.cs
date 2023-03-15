@@ -29,11 +29,11 @@ namespace ApiSdk.Education.Schools.Item.Users.Item.Ref {
             var command = new Command("delete");
             command.Description = "Delete ref of navigation property users for education";
             // Create options for all the parameters
-            var educationSchoolIdOption = new Option<string>("--education-school-id", description: "key: id of educationSchool") {
+            var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
             command.AddOption(educationSchoolIdOption);
-            var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
+            var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
             command.AddOption(educationUserIdOption);

@@ -31,31 +31,31 @@ namespace ApiSdk.Me.ManagedDevices {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new ManagedDeviceItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildBypassActivationLockCommand());
+            command.AddCommand(builder.BuildCleanWindowsDeviceCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildDeleteUserFromSharedAppleDeviceCommand());
             command.AddCommand(builder.BuildDeviceCategoryCommand());
             command.AddCommand(builder.BuildDeviceCompliancePolicyStatesCommand());
             command.AddCommand(builder.BuildDeviceConfigurationStatesCommand());
+            command.AddCommand(builder.BuildDisableLostModeCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphBypassActivationLockCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCleanWindowsDeviceCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeleteUserFromSharedAppleDeviceCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDisableLostModeCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphLocateDeviceCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphLogoutSharedAppleDeviceActiveUserCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRebootNowCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRecoverPasscodeCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRemoteLockCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRequestRemoteAssistanceCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphResetPasscodeCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRetireCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphShutDownCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSyncDeviceCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUpdateWindowsDeviceAccountCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphWindowsDefenderScanCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphWindowsDefenderUpdateSignaturesCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphWipeCommand());
+            command.AddCommand(builder.BuildLocateDeviceCommand());
+            command.AddCommand(builder.BuildLogoutSharedAppleDeviceActiveUserCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildRebootNowCommand());
+            command.AddCommand(builder.BuildRecoverPasscodeCommand());
+            command.AddCommand(builder.BuildRemoteLockCommand());
+            command.AddCommand(builder.BuildRequestRemoteAssistanceCommand());
+            command.AddCommand(builder.BuildResetPasscodeCommand());
+            command.AddCommand(builder.BuildRetireCommand());
+            command.AddCommand(builder.BuildShutDownCommand());
+            command.AddCommand(builder.BuildSyncDeviceCommand());
+            command.AddCommand(builder.BuildUpdateWindowsDeviceAccountCommand());
             command.AddCommand(builder.BuildUsersCommand());
+            command.AddCommand(builder.BuildWindowsDefenderScanCommand());
+            command.AddCommand(builder.BuildWindowsDefenderUpdateSignaturesCommand());
+            command.AddCommand(builder.BuildWipeCommand());
             return command;
         }
         /// <summary>
@@ -107,6 +107,7 @@ namespace ApiSdk.Me.ManagedDevices {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

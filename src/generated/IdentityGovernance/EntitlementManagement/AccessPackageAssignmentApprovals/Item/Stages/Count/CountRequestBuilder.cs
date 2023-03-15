@@ -29,7 +29,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var approvalIdOption = new Option<string>("--approval-id", description: "key: id of approval") {
+            var approvalIdOption = new Option<string>("--approval-id", description: "The unique identifier of approval") {
             };
             approvalIdOption.IsRequired = true;
             command.AddOption(approvalIdOption);

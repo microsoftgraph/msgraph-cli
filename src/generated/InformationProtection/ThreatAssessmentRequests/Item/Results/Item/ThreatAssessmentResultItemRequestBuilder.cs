@@ -30,11 +30,11 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item.Results.Ite
             var command = new Command("delete");
             command.Description = "Delete navigation property results for informationProtection";
             // Create options for all the parameters
-            var threatAssessmentRequestIdOption = new Option<string>("--threat-assessment-request-id", description: "key: id of threatAssessmentRequest") {
+            var threatAssessmentRequestIdOption = new Option<string>("--threat-assessment-request-id", description: "The unique identifier of threatAssessmentRequest") {
             };
             threatAssessmentRequestIdOption.IsRequired = true;
             command.AddOption(threatAssessmentRequestIdOption);
-            var threatAssessmentResultIdOption = new Option<string>("--threat-assessment-result-id", description: "key: id of threatAssessmentResult") {
+            var threatAssessmentResultIdOption = new Option<string>("--threat-assessment-result-id", description: "The unique identifier of threatAssessmentResult") {
             };
             threatAssessmentResultIdOption.IsRequired = true;
             command.AddOption(threatAssessmentResultIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item.Results.Ite
             var command = new Command("get");
             command.Description = "A collection of threat assessment results. Read-only. By default, a GET /threatAssessmentRequests/{id} does not return this property unless you apply $expand on it.";
             // Create options for all the parameters
-            var threatAssessmentRequestIdOption = new Option<string>("--threat-assessment-request-id", description: "key: id of threatAssessmentRequest") {
+            var threatAssessmentRequestIdOption = new Option<string>("--threat-assessment-request-id", description: "The unique identifier of threatAssessmentRequest") {
             };
             threatAssessmentRequestIdOption.IsRequired = true;
             command.AddOption(threatAssessmentRequestIdOption);
-            var threatAssessmentResultIdOption = new Option<string>("--threat-assessment-result-id", description: "key: id of threatAssessmentResult") {
+            var threatAssessmentResultIdOption = new Option<string>("--threat-assessment-result-id", description: "The unique identifier of threatAssessmentResult") {
             };
             threatAssessmentResultIdOption.IsRequired = true;
             command.AddOption(threatAssessmentResultIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item.Results.Ite
             var command = new Command("patch");
             command.Description = "Update the navigation property results in informationProtection";
             // Create options for all the parameters
-            var threatAssessmentRequestIdOption = new Option<string>("--threat-assessment-request-id", description: "key: id of threatAssessmentRequest") {
+            var threatAssessmentRequestIdOption = new Option<string>("--threat-assessment-request-id", description: "The unique identifier of threatAssessmentRequest") {
             };
             threatAssessmentRequestIdOption.IsRequired = true;
             command.AddOption(threatAssessmentRequestIdOption);
-            var threatAssessmentResultIdOption = new Option<string>("--threat-assessment-result-id", description: "key: id of threatAssessmentResult") {
+            var threatAssessmentResultIdOption = new Option<string>("--threat-assessment-result-id", description: "The unique identifier of threatAssessmentResult") {
             };
             threatAssessmentResultIdOption.IsRequired = true;
             command.AddOption(threatAssessmentResultIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item.Results.Ite
                 });
                 if (threatAssessmentRequestId is not null) requestInfo.PathParameters.Add("threatAssessmentRequest%2Did", threatAssessmentRequestId);
                 if (threatAssessmentResultId is not null) requestInfo.PathParameters.Add("threatAssessmentResult%2Did", threatAssessmentResultId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

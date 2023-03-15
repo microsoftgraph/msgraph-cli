@@ -1,5 +1,5 @@
-using ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.MicrosoftGraphBeginOnboarding;
-using ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.MicrosoftGraphDisconnect;
+using ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.BeginOnboarding;
+using ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.Disconnect;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,13 +26,23 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the beginOnboarding method.
+        /// </summary>
+        public Command BuildBeginOnboardingCommand() {
+            var command = new Command("begin-onboarding");
+            command.Description = "Provides operations to call the beginOnboarding method.";
+            var builder = new BeginOnboardingRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete navigation property remoteAssistancePartners for deviceManagement
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property remoteAssistancePartners for deviceManagement";
             // Create options for all the parameters
-            var remoteAssistancePartnerIdOption = new Option<string>("--remote-assistance-partner-id", description: "key: id of remoteAssistancePartner") {
+            var remoteAssistancePartnerIdOption = new Option<string>("--remote-assistance-partner-id", description: "The unique identifier of remoteAssistancePartner") {
             };
             remoteAssistancePartnerIdOption.IsRequired = true;
             command.AddOption(remoteAssistancePartnerIdOption);
@@ -60,13 +70,23 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the disconnect method.
+        /// </summary>
+        public Command BuildDisconnectCommand() {
+            var command = new Command("disconnect");
+            command.Description = "Provides operations to call the disconnect method.";
+            var builder = new DisconnectRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// The remote assist partners.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The remote assist partners.";
             // Create options for all the parameters
-            var remoteAssistancePartnerIdOption = new Option<string>("--remote-assistance-partner-id", description: "key: id of remoteAssistancePartner") {
+            var remoteAssistancePartnerIdOption = new Option<string>("--remote-assistance-partner-id", description: "The unique identifier of remoteAssistancePartner") {
             };
             remoteAssistancePartnerIdOption.IsRequired = true;
             command.AddOption(remoteAssistancePartnerIdOption);
@@ -122,33 +142,13 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the beginOnboarding method.
-        /// </summary>
-        public Command BuildMicrosoftGraphBeginOnboardingCommand() {
-            var command = new Command("microsoft-graph-begin-onboarding");
-            command.Description = "Provides operations to call the beginOnboarding method.";
-            var builder = new MicrosoftGraphBeginOnboardingRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the disconnect method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDisconnectCommand() {
-            var command = new Command("microsoft-graph-disconnect");
-            command.Description = "Provides operations to call the disconnect method.";
-            var builder = new MicrosoftGraphDisconnectRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property remoteAssistancePartners in deviceManagement
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property remoteAssistancePartners in deviceManagement";
             // Create options for all the parameters
-            var remoteAssistancePartnerIdOption = new Option<string>("--remote-assistance-partner-id", description: "key: id of remoteAssistancePartner") {
+            var remoteAssistancePartnerIdOption = new Option<string>("--remote-assistance-partner-id", description: "The unique identifier of remoteAssistancePartner") {
             };
             remoteAssistancePartnerIdOption.IsRequired = true;
             command.AddOption(remoteAssistancePartnerIdOption);
@@ -186,6 +186,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (remoteAssistancePartnerId is not null) requestInfo.PathParameters.Add("remoteAssistancePartner%2Did", remoteAssistancePartnerId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -31,7 +31,7 @@ namespace ApiSdk.Me.Activities.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property activities for me";
             // Create options for all the parameters
-            var userActivityIdOption = new Option<string>("--user-activity-id", description: "key: id of userActivity") {
+            var userActivityIdOption = new Option<string>("--user-activity-id", description: "The unique identifier of userActivity") {
             };
             userActivityIdOption.IsRequired = true;
             command.AddOption(userActivityIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.Me.Activities.Item {
             var command = new Command("get");
             command.Description = "The user's activities across devices. Read-only. Nullable.";
             // Create options for all the parameters
-            var userActivityIdOption = new Option<string>("--user-activity-id", description: "key: id of userActivity") {
+            var userActivityIdOption = new Option<string>("--user-activity-id", description: "The unique identifier of userActivity") {
             };
             userActivityIdOption.IsRequired = true;
             command.AddOption(userActivityIdOption);
@@ -140,7 +140,7 @@ namespace ApiSdk.Me.Activities.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property activities in me";
             // Create options for all the parameters
-            var userActivityIdOption = new Option<string>("--user-activity-id", description: "key: id of userActivity") {
+            var userActivityIdOption = new Option<string>("--user-activity-id", description: "The unique identifier of userActivity") {
             };
             userActivityIdOption.IsRequired = true;
             command.AddOption(userActivityIdOption);
@@ -178,6 +178,7 @@ namespace ApiSdk.Me.Activities.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (userActivityId is not null) requestInfo.PathParameters.Add("userActivity%2Did", userActivityId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

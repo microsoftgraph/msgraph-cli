@@ -29,7 +29,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Operations
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "key: id of delegatedAdminRelationship") {
+            var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "The unique identifier of delegatedAdminRelationship") {
             };
             delegatedAdminRelationshipIdOption.IsRequired = true;
             command.AddOption(delegatedAdminRelationshipIdOption);

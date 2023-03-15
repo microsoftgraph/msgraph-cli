@@ -30,23 +30,23 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.Extensio
             var command = new Command("delete");
             command.Description = "Delete navigation property extensions for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var conversationIdOption = new Option<string>("--conversation-id", description: "key: id of conversation") {
+            var conversationIdOption = new Option<string>("--conversation-id", description: "The unique identifier of conversation") {
             };
             conversationIdOption.IsRequired = true;
             command.AddOption(conversationIdOption);
-            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "key: id of conversationThread") {
+            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "The unique identifier of conversationThread") {
             };
             conversationThreadIdOption.IsRequired = true;
             command.AddOption(conversationThreadIdOption);
-            var postIdOption = new Option<string>("--post-id", description: "key: id of post") {
+            var postIdOption = new Option<string>("--post-id", description: "The unique identifier of post") {
             };
             postIdOption.IsRequired = true;
             command.AddOption(postIdOption);
-            var extensionIdOption = new Option<string>("--extension-id", description: "key: id of extension") {
+            var extensionIdOption = new Option<string>("--extension-id", description: "The unique identifier of extension") {
             };
             extensionIdOption.IsRequired = true;
             command.AddOption(extensionIdOption);
@@ -88,23 +88,23 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.Extensio
             var command = new Command("get");
             command.Description = "The collection of open extensions defined for the post. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var conversationIdOption = new Option<string>("--conversation-id", description: "key: id of conversation") {
+            var conversationIdOption = new Option<string>("--conversation-id", description: "The unique identifier of conversation") {
             };
             conversationIdOption.IsRequired = true;
             command.AddOption(conversationIdOption);
-            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "key: id of conversationThread") {
+            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "The unique identifier of conversationThread") {
             };
             conversationThreadIdOption.IsRequired = true;
             command.AddOption(conversationThreadIdOption);
-            var postIdOption = new Option<string>("--post-id", description: "key: id of post") {
+            var postIdOption = new Option<string>("--post-id", description: "The unique identifier of post") {
             };
             postIdOption.IsRequired = true;
             command.AddOption(postIdOption);
-            var extensionIdOption = new Option<string>("--extension-id", description: "key: id of extension") {
+            var extensionIdOption = new Option<string>("--extension-id", description: "The unique identifier of extension") {
             };
             extensionIdOption.IsRequired = true;
             command.AddOption(extensionIdOption);
@@ -174,23 +174,23 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.Extensio
             var command = new Command("patch");
             command.Description = "Update the navigation property extensions in groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var conversationIdOption = new Option<string>("--conversation-id", description: "key: id of conversation") {
+            var conversationIdOption = new Option<string>("--conversation-id", description: "The unique identifier of conversation") {
             };
             conversationIdOption.IsRequired = true;
             command.AddOption(conversationIdOption);
-            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "key: id of conversationThread") {
+            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "The unique identifier of conversationThread") {
             };
             conversationThreadIdOption.IsRequired = true;
             command.AddOption(conversationThreadIdOption);
-            var postIdOption = new Option<string>("--post-id", description: "key: id of post") {
+            var postIdOption = new Option<string>("--post-id", description: "The unique identifier of post") {
             };
             postIdOption.IsRequired = true;
             command.AddOption(postIdOption);
-            var extensionIdOption = new Option<string>("--extension-id", description: "key: id of extension") {
+            var extensionIdOption = new Option<string>("--extension-id", description: "The unique identifier of extension") {
             };
             extensionIdOption.IsRequired = true;
             command.AddOption(extensionIdOption);
@@ -236,6 +236,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.Extensio
                 if (conversationThreadId is not null) requestInfo.PathParameters.Add("conversationThread%2Did", conversationThreadId);
                 if (postId is not null) requestInfo.PathParameters.Add("post%2Did", postId);
                 if (extensionId is not null) requestInfo.PathParameters.Add("extension%2Did", extensionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

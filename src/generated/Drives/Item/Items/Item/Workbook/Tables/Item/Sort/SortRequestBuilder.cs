@@ -1,6 +1,6 @@
-using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort.MicrosoftGraphApply;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort.MicrosoftGraphClear;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort.MicrosoftGraphReapply;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort.Apply;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort.Clear;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort.Reapply;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,21 +27,41 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the apply method.
+        /// </summary>
+        public Command BuildApplyCommand() {
+            var command = new Command("apply");
+            command.Description = "Provides operations to call the apply method.";
+            var builder = new ApplyRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the clear method.
+        /// </summary>
+        public Command BuildClearCommand() {
+            var command = new Command("clear");
+            command.Description = "Provides operations to call the clear method.";
+            var builder = new ClearRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete navigation property sort for drives
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property sort for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookTableIdOption = new Option<string>("--workbook-table-id", description: "key: id of workbookTable") {
+            var workbookTableIdOption = new Option<string>("--workbook-table-id", description: "The unique identifier of workbookTable") {
             };
             workbookTableIdOption.IsRequired = true;
             command.AddOption(workbookTableIdOption);
@@ -80,15 +100,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of tablesort object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/tablesort-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookTableIdOption = new Option<string>("--workbook-table-id", description: "key: id of workbookTable") {
+            var workbookTableIdOption = new Option<string>("--workbook-table-id", description: "The unique identifier of workbookTable") {
             };
             workbookTableIdOption.IsRequired = true;
             command.AddOption(workbookTableIdOption);
@@ -148,51 +168,21 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the apply method.
-        /// </summary>
-        public Command BuildMicrosoftGraphApplyCommand() {
-            var command = new Command("microsoft-graph-apply");
-            command.Description = "Provides operations to call the apply method.";
-            var builder = new MicrosoftGraphApplyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the clear method.
-        /// </summary>
-        public Command BuildMicrosoftGraphClearCommand() {
-            var command = new Command("microsoft-graph-clear");
-            command.Description = "Provides operations to call the clear method.";
-            var builder = new MicrosoftGraphClearRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the reapply method.
-        /// </summary>
-        public Command BuildMicrosoftGraphReapplyCommand() {
-            var command = new Command("microsoft-graph-reapply");
-            command.Description = "Provides operations to call the reapply method.";
-            var builder = new MicrosoftGraphReapplyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property sort in drives
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property sort in drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookTableIdOption = new Option<string>("--workbook-table-id", description: "key: id of workbookTable") {
+            var workbookTableIdOption = new Option<string>("--workbook-table-id", description: "The unique identifier of workbookTable") {
             };
             workbookTableIdOption.IsRequired = true;
             command.AddOption(workbookTableIdOption);
@@ -234,6 +224,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort {
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
                 if (workbookTableId is not null) requestInfo.PathParameters.Add("workbookTable%2Did", workbookTableId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -244,6 +235,16 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the reapply method.
+        /// </summary>
+        public Command BuildReapplyCommand() {
+            var command = new Command("reapply");
+            command.Description = "Provides operations to call the reapply method.";
+            var builder = new ReapplyRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

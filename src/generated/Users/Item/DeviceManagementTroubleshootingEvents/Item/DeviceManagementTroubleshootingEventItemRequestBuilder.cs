@@ -30,11 +30,11 @@ namespace ApiSdk.Users.Item.DeviceManagementTroubleshootingEvents.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property deviceManagementTroubleshootingEvents for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var deviceManagementTroubleshootingEventIdOption = new Option<string>("--device-management-troubleshooting-event-id", description: "key: id of deviceManagementTroubleshootingEvent") {
+            var deviceManagementTroubleshootingEventIdOption = new Option<string>("--device-management-troubleshooting-event-id", description: "The unique identifier of deviceManagementTroubleshootingEvent") {
             };
             deviceManagementTroubleshootingEventIdOption.IsRequired = true;
             command.AddOption(deviceManagementTroubleshootingEventIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Users.Item.DeviceManagementTroubleshootingEvents.Item {
             var command = new Command("get");
             command.Description = "The list of troubleshooting events for this user.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var deviceManagementTroubleshootingEventIdOption = new Option<string>("--device-management-troubleshooting-event-id", description: "key: id of deviceManagementTroubleshootingEvent") {
+            var deviceManagementTroubleshootingEventIdOption = new Option<string>("--device-management-troubleshooting-event-id", description: "The unique identifier of deviceManagementTroubleshootingEvent") {
             };
             deviceManagementTroubleshootingEventIdOption.IsRequired = true;
             command.AddOption(deviceManagementTroubleshootingEventIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Users.Item.DeviceManagementTroubleshootingEvents.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property deviceManagementTroubleshootingEvents in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var deviceManagementTroubleshootingEventIdOption = new Option<string>("--device-management-troubleshooting-event-id", description: "key: id of deviceManagementTroubleshootingEvent") {
+            var deviceManagementTroubleshootingEventIdOption = new Option<string>("--device-management-troubleshooting-event-id", description: "The unique identifier of deviceManagementTroubleshootingEvent") {
             };
             deviceManagementTroubleshootingEventIdOption.IsRequired = true;
             command.AddOption(deviceManagementTroubleshootingEventIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Users.Item.DeviceManagementTroubleshootingEvents.Item {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (deviceManagementTroubleshootingEventId is not null) requestInfo.PathParameters.Add("deviceManagementTroubleshootingEvent%2Did", deviceManagementTroubleshootingEventId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -30,11 +30,11 @@ namespace ApiSdk.Education.Users.Item.Rubrics.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property rubrics for education";
             // Create options for all the parameters
-            var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
+            var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
             command.AddOption(educationUserIdOption);
-            var educationRubricIdOption = new Option<string>("--education-rubric-id", description: "key: id of educationRubric") {
+            var educationRubricIdOption = new Option<string>("--education-rubric-id", description: "The unique identifier of educationRubric") {
             };
             educationRubricIdOption.IsRequired = true;
             command.AddOption(educationRubricIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Education.Users.Item.Rubrics.Item {
             var command = new Command("get");
             command.Description = "When set, the grading rubric attached to the assignment.";
             // Create options for all the parameters
-            var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
+            var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
             command.AddOption(educationUserIdOption);
-            var educationRubricIdOption = new Option<string>("--education-rubric-id", description: "key: id of educationRubric") {
+            var educationRubricIdOption = new Option<string>("--education-rubric-id", description: "The unique identifier of educationRubric") {
             };
             educationRubricIdOption.IsRequired = true;
             command.AddOption(educationRubricIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Education.Users.Item.Rubrics.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property rubrics in education";
             // Create options for all the parameters
-            var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
+            var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
             command.AddOption(educationUserIdOption);
-            var educationRubricIdOption = new Option<string>("--education-rubric-id", description: "key: id of educationRubric") {
+            var educationRubricIdOption = new Option<string>("--education-rubric-id", description: "The unique identifier of educationRubric") {
             };
             educationRubricIdOption.IsRequired = true;
             command.AddOption(educationRubricIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Education.Users.Item.Rubrics.Item {
                 });
                 if (educationUserId is not null) requestInfo.PathParameters.Add("educationUser%2Did", educationUserId);
                 if (educationRubricId is not null) requestInfo.PathParameters.Add("educationRubric%2Did", educationRubricId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -1,6 +1,6 @@
-using ApiSdk.Communications.Calls.Item.Participants.Item.MicrosoftGraphMute;
-using ApiSdk.Communications.Calls.Item.Participants.Item.MicrosoftGraphStartHoldMusic;
-using ApiSdk.Communications.Calls.Item.Participants.Item.MicrosoftGraphStopHoldMusic;
+using ApiSdk.Communications.Calls.Item.Participants.Item.Mute;
+using ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic;
+using ApiSdk.Communications.Calls.Item.Participants.Item.StopHoldMusic;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,11 +33,11 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property participants for communications";
             // Create options for all the parameters
-            var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
+            var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
             command.AddOption(callIdOption);
-            var participantIdOption = new Option<string>("--participant-id", description: "key: id of participant") {
+            var participantIdOption = new Option<string>("--participant-id", description: "The unique identifier of participant") {
             };
             participantIdOption.IsRequired = true;
             command.AddOption(participantIdOption);
@@ -73,11 +73,11 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item {
             var command = new Command("get");
             command.Description = "Get participants from communications";
             // Create options for all the parameters
-            var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
+            var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
             command.AddOption(callIdOption);
-            var participantIdOption = new Option<string>("--participant-id", description: "key: id of participant") {
+            var participantIdOption = new Option<string>("--participant-id", description: "The unique identifier of participant") {
             };
             participantIdOption.IsRequired = true;
             command.AddOption(participantIdOption);
@@ -137,30 +137,10 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item {
         /// <summary>
         /// Provides operations to call the mute method.
         /// </summary>
-        public Command BuildMicrosoftGraphMuteCommand() {
-            var command = new Command("microsoft-graph-mute");
+        public Command BuildMuteCommand() {
+            var command = new Command("mute");
             command.Description = "Provides operations to call the mute method.";
-            var builder = new MicrosoftGraphMuteRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the startHoldMusic method.
-        /// </summary>
-        public Command BuildMicrosoftGraphStartHoldMusicCommand() {
-            var command = new Command("microsoft-graph-start-hold-music");
-            command.Description = "Provides operations to call the startHoldMusic method.";
-            var builder = new MicrosoftGraphStartHoldMusicRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the stopHoldMusic method.
-        /// </summary>
-        public Command BuildMicrosoftGraphStopHoldMusicCommand() {
-            var command = new Command("microsoft-graph-stop-hold-music");
-            command.Description = "Provides operations to call the stopHoldMusic method.";
-            var builder = new MicrosoftGraphStopHoldMusicRequestBuilder(PathParameters);
+            var builder = new MuteRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -171,11 +151,11 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property participants in communications";
             // Create options for all the parameters
-            var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
+            var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
             command.AddOption(callIdOption);
-            var participantIdOption = new Option<string>("--participant-id", description: "key: id of participant") {
+            var participantIdOption = new Option<string>("--participant-id", description: "The unique identifier of participant") {
             };
             participantIdOption.IsRequired = true;
             command.AddOption(participantIdOption);
@@ -215,6 +195,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item {
                 });
                 if (callId is not null) requestInfo.PathParameters.Add("call%2Did", callId);
                 if (participantId is not null) requestInfo.PathParameters.Add("participant%2Did", participantId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -225,6 +206,26 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the startHoldMusic method.
+        /// </summary>
+        public Command BuildStartHoldMusicCommand() {
+            var command = new Command("start-hold-music");
+            command.Description = "Provides operations to call the startHoldMusic method.";
+            var builder = new StartHoldMusicRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the stopHoldMusic method.
+        /// </summary>
+        public Command BuildStopHoldMusicCommand() {
+            var command = new Command("stop-hold-music");
+            command.Description = "Provides operations to call the stopHoldMusic method.";
+            var builder = new StopHoldMusicRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

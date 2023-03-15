@@ -1,14 +1,14 @@
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axes;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.DataLabels;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Format;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Image;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.ImageWithWidth;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.ImageWithWidthWithHeight;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.ImageWithWidthWithHeightWithFittingMode;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Legend;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.MicrosoftGraphImage;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.MicrosoftGraphImageWithWidth;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.MicrosoftGraphImageWithWidthWithHeight;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.MicrosoftGraphImageWithWidthWithHeightWithFittingMode;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.MicrosoftGraphSetData;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.MicrosoftGraphSetPosition;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Series;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.SetData;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.SetPosition;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Title;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Worksheet;
 using ApiSdk.Models;
@@ -71,19 +71,19 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property charts for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
-            var workbookChartIdOption = new Option<string>("--workbook-chart-id", description: "key: id of workbookChart") {
+            var workbookChartIdOption = new Option<string>("--workbook-chart-id", description: "The unique identifier of workbookChart") {
             };
             workbookChartIdOption.IsRequired = true;
             command.AddOption(workbookChartIdOption);
@@ -137,19 +137,19 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
             var command = new Command("get");
             command.Description = "Returns collection of charts that are part of the worksheet. Read-only.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
-            var workbookChartIdOption = new Option<string>("--workbook-chart-id", description: "key: id of workbookChart") {
+            var workbookChartIdOption = new Option<string>("--workbook-chart-id", description: "The unique identifier of workbookChart") {
             };
             workbookChartIdOption.IsRequired = true;
             command.AddOption(workbookChartIdOption);
@@ -211,6 +211,16 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the image method.
+        /// </summary>
+        public Command BuildImageCommand() {
+            var command = new Command("image");
+            command.Description = "Provides operations to call the image method.";
+            var builder = new ImageRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the legend property of the microsoft.graph.workbookChart entity.
         /// </summary>
         public Command BuildLegendCommand() {
@@ -224,55 +234,25 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the image method.
-        /// </summary>
-        public Command BuildMicrosoftGraphImageCommand() {
-            var command = new Command("microsoft-graph-image");
-            command.Description = "Provides operations to call the image method.";
-            var builder = new MicrosoftGraphImageRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the setData method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSetDataCommand() {
-            var command = new Command("microsoft-graph-set-data");
-            command.Description = "Provides operations to call the setData method.";
-            var builder = new MicrosoftGraphSetDataRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the setPosition method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSetPositionCommand() {
-            var command = new Command("microsoft-graph-set-position");
-            command.Description = "Provides operations to call the setPosition method.";
-            var builder = new MicrosoftGraphSetPositionRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property charts in drives
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property charts in drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
-            var workbookChartIdOption = new Option<string>("--workbook-chart-id", description: "key: id of workbookChart") {
+            var workbookChartIdOption = new Option<string>("--workbook-chart-id", description: "The unique identifier of workbookChart") {
             };
             workbookChartIdOption.IsRequired = true;
             command.AddOption(workbookChartIdOption);
@@ -316,6 +296,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
                 if (workbookWorksheetId is not null) requestInfo.PathParameters.Add("workbookWorksheet%2Did", workbookWorksheetId);
                 if (workbookChartId is not null) requestInfo.PathParameters.Add("workbookChart%2Did", workbookChartId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -339,7 +320,26 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCountCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the setData method.
+        /// </summary>
+        public Command BuildSetDataCommand() {
+            var command = new Command("set-data");
+            command.Description = "Provides operations to call the setData method.";
+            var builder = new SetDataRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the setPosition method.
+        /// </summary>
+        public Command BuildSetPositionCommand() {
+            var command = new Command("set-position");
+            command.Description = "Provides operations to call the setPosition method.";
+            var builder = new SetPositionRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

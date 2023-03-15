@@ -1,6 +1,6 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.Sites.Item.Lists.Item.Subscriptions.Item.MicrosoftGraphReauthorize;
+using ApiSdk.Sites.Item.Lists.Item.Subscriptions.Item.Reauthorize;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -31,15 +31,15 @@ namespace ApiSdk.Sites.Item.Lists.Item.Subscriptions.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property subscriptions for sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            var listIdOption = new Option<string>("--list-id", description: "The unique identifier of list") {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
-            var subscriptionIdOption = new Option<string>("--subscription-id", description: "key: id of subscription") {
+            var subscriptionIdOption = new Option<string>("--subscription-id", description: "The unique identifier of subscription") {
             };
             subscriptionIdOption.IsRequired = true;
             command.AddOption(subscriptionIdOption);
@@ -77,15 +77,15 @@ namespace ApiSdk.Sites.Item.Lists.Item.Subscriptions.Item {
             var command = new Command("get");
             command.Description = "The set of subscriptions on the list.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            var listIdOption = new Option<string>("--list-id", description: "The unique identifier of list") {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
-            var subscriptionIdOption = new Option<string>("--subscription-id", description: "key: id of subscription") {
+            var subscriptionIdOption = new Option<string>("--subscription-id", description: "The unique identifier of subscription") {
             };
             subscriptionIdOption.IsRequired = true;
             command.AddOption(subscriptionIdOption);
@@ -145,31 +145,21 @@ namespace ApiSdk.Sites.Item.Lists.Item.Subscriptions.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the reauthorize method.
-        /// </summary>
-        public Command BuildMicrosoftGraphReauthorizeCommand() {
-            var command = new Command("microsoft-graph-reauthorize");
-            command.Description = "Provides operations to call the reauthorize method.";
-            var builder = new MicrosoftGraphReauthorizeRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property subscriptions in sites
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property subscriptions in sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            var listIdOption = new Option<string>("--list-id", description: "The unique identifier of list") {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
-            var subscriptionIdOption = new Option<string>("--subscription-id", description: "key: id of subscription") {
+            var subscriptionIdOption = new Option<string>("--subscription-id", description: "The unique identifier of subscription") {
             };
             subscriptionIdOption.IsRequired = true;
             command.AddOption(subscriptionIdOption);
@@ -211,6 +201,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Subscriptions.Item {
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
                 if (listId is not null) requestInfo.PathParameters.Add("list%2Did", listId);
                 if (subscriptionId is not null) requestInfo.PathParameters.Add("subscription%2Did", subscriptionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -221,6 +212,16 @@ namespace ApiSdk.Sites.Item.Lists.Item.Subscriptions.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the reauthorize method.
+        /// </summary>
+        public Command BuildReauthorizeCommand() {
+            var command = new Command("reauthorize");
+            command.Description = "Provides operations to call the reauthorize method.";
+            var builder = new ReauthorizeRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

@@ -31,7 +31,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
             var command = new Command("delete");
             command.Description = "Delete navigation property accessPackageAssignmentApprovals for identityGovernance";
             // Create options for all the parameters
-            var approvalIdOption = new Option<string>("--approval-id", description: "key: id of approval") {
+            var approvalIdOption = new Option<string>("--approval-id", description: "The unique identifier of approval") {
             };
             approvalIdOption.IsRequired = true;
             command.AddOption(approvalIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
             var command = new Command("get");
             command.Description = "Approval stages for decisions associated with access package assignment requests.";
             // Create options for all the parameters
-            var approvalIdOption = new Option<string>("--approval-id", description: "key: id of approval") {
+            var approvalIdOption = new Option<string>("--approval-id", description: "The unique identifier of approval") {
             };
             approvalIdOption.IsRequired = true;
             command.AddOption(approvalIdOption);
@@ -127,7 +127,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
             var command = new Command("patch");
             command.Description = "Update the navigation property accessPackageAssignmentApprovals in identityGovernance";
             // Create options for all the parameters
-            var approvalIdOption = new Option<string>("--approval-id", description: "key: id of approval") {
+            var approvalIdOption = new Option<string>("--approval-id", description: "The unique identifier of approval") {
             };
             approvalIdOption.IsRequired = true;
             command.AddOption(approvalIdOption);
@@ -165,6 +165,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (approvalId is not null) requestInfo.PathParameters.Add("approval%2Did", approvalId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

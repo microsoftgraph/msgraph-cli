@@ -29,7 +29,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
+            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
             command.AddOption(bookingBusinessIdOption);

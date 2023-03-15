@@ -30,7 +30,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property policies for identity";
             // Create options for all the parameters
-            var conditionalAccessPolicyIdOption = new Option<string>("--conditional-access-policy-id", description: "key: id of conditionalAccessPolicy") {
+            var conditionalAccessPolicyIdOption = new Option<string>("--conditional-access-policy-id", description: "The unique identifier of conditionalAccessPolicy") {
             };
             conditionalAccessPolicyIdOption.IsRequired = true;
             command.AddOption(conditionalAccessPolicyIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             var command = new Command("get");
             command.Description = "Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.";
             // Create options for all the parameters
-            var conditionalAccessPolicyIdOption = new Option<string>("--conditional-access-policy-id", description: "key: id of conditionalAccessPolicy") {
+            var conditionalAccessPolicyIdOption = new Option<string>("--conditional-access-policy-id", description: "The unique identifier of conditionalAccessPolicy") {
             };
             conditionalAccessPolicyIdOption.IsRequired = true;
             command.AddOption(conditionalAccessPolicyIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property policies in identity";
             // Create options for all the parameters
-            var conditionalAccessPolicyIdOption = new Option<string>("--conditional-access-policy-id", description: "key: id of conditionalAccessPolicy") {
+            var conditionalAccessPolicyIdOption = new Option<string>("--conditional-access-policy-id", description: "The unique identifier of conditionalAccessPolicy") {
             };
             conditionalAccessPolicyIdOption.IsRequired = true;
             command.AddOption(conditionalAccessPolicyIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (conditionalAccessPolicyId is not null) requestInfo.PathParameters.Add("conditionalAccessPolicy%2Did", conditionalAccessPolicyId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

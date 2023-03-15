@@ -30,7 +30,7 @@ namespace ApiSdk.Policies.ActivityBasedTimeoutPolicies.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property activityBasedTimeoutPolicies for policies";
             // Create options for all the parameters
-            var activityBasedTimeoutPolicyIdOption = new Option<string>("--activity-based-timeout-policy-id", description: "key: id of activityBasedTimeoutPolicy") {
+            var activityBasedTimeoutPolicyIdOption = new Option<string>("--activity-based-timeout-policy-id", description: "The unique identifier of activityBasedTimeoutPolicy") {
             };
             activityBasedTimeoutPolicyIdOption.IsRequired = true;
             command.AddOption(activityBasedTimeoutPolicyIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Policies.ActivityBasedTimeoutPolicies.Item {
             var command = new Command("get");
             command.Description = "The policy that controls the idle time out for web sessions for applications.";
             // Create options for all the parameters
-            var activityBasedTimeoutPolicyIdOption = new Option<string>("--activity-based-timeout-policy-id", description: "key: id of activityBasedTimeoutPolicy") {
+            var activityBasedTimeoutPolicyIdOption = new Option<string>("--activity-based-timeout-policy-id", description: "The unique identifier of activityBasedTimeoutPolicy") {
             };
             activityBasedTimeoutPolicyIdOption.IsRequired = true;
             command.AddOption(activityBasedTimeoutPolicyIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.Policies.ActivityBasedTimeoutPolicies.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property activityBasedTimeoutPolicies in policies";
             // Create options for all the parameters
-            var activityBasedTimeoutPolicyIdOption = new Option<string>("--activity-based-timeout-policy-id", description: "key: id of activityBasedTimeoutPolicy") {
+            var activityBasedTimeoutPolicyIdOption = new Option<string>("--activity-based-timeout-policy-id", description: "The unique identifier of activityBasedTimeoutPolicy") {
             };
             activityBasedTimeoutPolicyIdOption.IsRequired = true;
             command.AddOption(activityBasedTimeoutPolicyIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.Policies.ActivityBasedTimeoutPolicies.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (activityBasedTimeoutPolicyId is not null) requestInfo.PathParameters.Add("activityBasedTimeoutPolicy%2Did", activityBasedTimeoutPolicyId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

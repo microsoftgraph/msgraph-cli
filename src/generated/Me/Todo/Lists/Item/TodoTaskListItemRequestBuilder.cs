@@ -32,7 +32,7 @@ namespace ApiSdk.Me.Todo.Lists.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property lists for me";
             // Create options for all the parameters
-            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "key: id of todoTaskList") {
+            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "The unique identifier of todoTaskList") {
             };
             todoTaskListIdOption.IsRequired = true;
             command.AddOption(todoTaskListIdOption);
@@ -79,7 +79,7 @@ namespace ApiSdk.Me.Todo.Lists.Item {
             var command = new Command("get");
             command.Description = "The task lists in the users mailbox.";
             // Create options for all the parameters
-            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "key: id of todoTaskList") {
+            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "The unique identifier of todoTaskList") {
             };
             todoTaskListIdOption.IsRequired = true;
             command.AddOption(todoTaskListIdOption);
@@ -141,7 +141,7 @@ namespace ApiSdk.Me.Todo.Lists.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property lists in me";
             // Create options for all the parameters
-            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "key: id of todoTaskList") {
+            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "The unique identifier of todoTaskList") {
             };
             todoTaskListIdOption.IsRequired = true;
             command.AddOption(todoTaskListIdOption);
@@ -179,6 +179,7 @@ namespace ApiSdk.Me.Todo.Lists.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (todoTaskListId is not null) requestInfo.PathParameters.Add("todoTaskList%2Did", todoTaskListId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -201,8 +202,8 @@ namespace ApiSdk.Me.Todo.Lists.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             return command;
         }
         /// <summary>

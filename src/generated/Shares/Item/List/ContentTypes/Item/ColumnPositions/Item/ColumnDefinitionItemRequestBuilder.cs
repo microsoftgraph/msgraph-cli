@@ -30,15 +30,15 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.ColumnPositions.Item {
             var command = new Command("get");
             command.Description = "Column order information in a content type.";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
-            var contentTypeIdOption = new Option<string>("--content-type-id", description: "key: id of contentType") {
+            var contentTypeIdOption = new Option<string>("--content-type-id", description: "The unique identifier of contentType") {
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
-            var columnDefinitionIdOption = new Option<string>("--column-definition-id", description: "key: id of columnDefinition") {
+            var columnDefinitionIdOption = new Option<string>("--column-definition-id", description: "The unique identifier of columnDefinition") {
             };
             columnDefinitionIdOption.IsRequired = true;
             command.AddOption(columnDefinitionIdOption);

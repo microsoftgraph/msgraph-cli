@@ -30,7 +30,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilitySchedules.Item
             var command = new Command("delete");
             command.Description = "Delete navigation property roleEligibilitySchedules for roleManagement";
             // Create options for all the parameters
-            var unifiedRoleEligibilityScheduleIdOption = new Option<string>("--unified-role-eligibility-schedule-id", description: "key: id of unifiedRoleEligibilitySchedule") {
+            var unifiedRoleEligibilityScheduleIdOption = new Option<string>("--unified-role-eligibility-schedule-id", description: "The unique identifier of unifiedRoleEligibilitySchedule") {
             };
             unifiedRoleEligibilityScheduleIdOption.IsRequired = true;
             command.AddOption(unifiedRoleEligibilityScheduleIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilitySchedules.Item
             var command = new Command("get");
             command.Description = "Schedules for role eligibility operations.";
             // Create options for all the parameters
-            var unifiedRoleEligibilityScheduleIdOption = new Option<string>("--unified-role-eligibility-schedule-id", description: "key: id of unifiedRoleEligibilitySchedule") {
+            var unifiedRoleEligibilityScheduleIdOption = new Option<string>("--unified-role-eligibility-schedule-id", description: "The unique identifier of unifiedRoleEligibilitySchedule") {
             };
             unifiedRoleEligibilityScheduleIdOption.IsRequired = true;
             command.AddOption(unifiedRoleEligibilityScheduleIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilitySchedules.Item
             var command = new Command("patch");
             command.Description = "Update the navigation property roleEligibilitySchedules in roleManagement";
             // Create options for all the parameters
-            var unifiedRoleEligibilityScheduleIdOption = new Option<string>("--unified-role-eligibility-schedule-id", description: "key: id of unifiedRoleEligibilitySchedule") {
+            var unifiedRoleEligibilityScheduleIdOption = new Option<string>("--unified-role-eligibility-schedule-id", description: "The unique identifier of unifiedRoleEligibilitySchedule") {
             };
             unifiedRoleEligibilityScheduleIdOption.IsRequired = true;
             command.AddOption(unifiedRoleEligibilityScheduleIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilitySchedules.Item
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (unifiedRoleEligibilityScheduleId is not null) requestInfo.PathParameters.Add("unifiedRoleEligibilitySchedule%2Did", unifiedRoleEligibilityScheduleId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

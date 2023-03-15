@@ -30,11 +30,11 @@ namespace ApiSdk.Sites.Item.ExternalColumns.Item {
             var command = new Command("get");
             command.Description = "Get externalColumns from sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var columnDefinitionIdOption = new Option<string>("--column-definition-id", description: "key: id of columnDefinition") {
+            var columnDefinitionIdOption = new Option<string>("--column-definition-id", description: "The unique identifier of columnDefinition") {
             };
             columnDefinitionIdOption.IsRequired = true;
             command.AddOption(columnDefinitionIdOption);

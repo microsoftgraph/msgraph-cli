@@ -18,7 +18,7 @@ namespace ApiSdk.Models {
         /// <summary>Indicates whether the timeOffReason can be used when creating new entities or updating existing ones. Required.</summary>
         public bool? IsActive { get; set; }
         /// <summary>
-        /// Instantiates a new TimeOffReason and sets the default values.
+        /// Instantiates a new timeOffReason and sets the default values.
         /// </summary>
         public TimeOffReason() : base() {
             OdataType = "#microsoft.graph.timeOffReason";

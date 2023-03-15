@@ -1,4 +1,4 @@
-using ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item.Instances.Item.MicrosoftGraphGenerateDownloadUri;
+using ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item.Instances.Item.GenerateDownloadUri;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,11 +31,11 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item.Instan
             var command = new Command("delete");
             command.Description = "Delete navigation property instances for identityGovernance";
             // Create options for all the parameters
-            var accessReviewHistoryDefinitionIdOption = new Option<string>("--access-review-history-definition-id", description: "key: id of accessReviewHistoryDefinition") {
+            var accessReviewHistoryDefinitionIdOption = new Option<string>("--access-review-history-definition-id", description: "The unique identifier of accessReviewHistoryDefinition") {
             };
             accessReviewHistoryDefinitionIdOption.IsRequired = true;
             command.AddOption(accessReviewHistoryDefinitionIdOption);
-            var accessReviewHistoryInstanceIdOption = new Option<string>("--access-review-history-instance-id", description: "key: id of accessReviewHistoryInstance") {
+            var accessReviewHistoryInstanceIdOption = new Option<string>("--access-review-history-instance-id", description: "The unique identifier of accessReviewHistoryInstance") {
             };
             accessReviewHistoryInstanceIdOption.IsRequired = true;
             command.AddOption(accessReviewHistoryInstanceIdOption);
@@ -65,17 +65,27 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item.Instan
             return command;
         }
         /// <summary>
+        /// Provides operations to call the generateDownloadUri method.
+        /// </summary>
+        public Command BuildGenerateDownloadUriCommand() {
+            var command = new Command("generate-download-uri");
+            command.Description = "Provides operations to call the generateDownloadUri method.";
+            var builder = new GenerateDownloadUriRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// If the accessReviewHistoryDefinition is a recurring definition, instances represent each recurrence. A definition that does not recur will have exactly one instance.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "If the accessReviewHistoryDefinition is a recurring definition, instances represent each recurrence. A definition that does not recur will have exactly one instance.";
             // Create options for all the parameters
-            var accessReviewHistoryDefinitionIdOption = new Option<string>("--access-review-history-definition-id", description: "key: id of accessReviewHistoryDefinition") {
+            var accessReviewHistoryDefinitionIdOption = new Option<string>("--access-review-history-definition-id", description: "The unique identifier of accessReviewHistoryDefinition") {
             };
             accessReviewHistoryDefinitionIdOption.IsRequired = true;
             command.AddOption(accessReviewHistoryDefinitionIdOption);
-            var accessReviewHistoryInstanceIdOption = new Option<string>("--access-review-history-instance-id", description: "key: id of accessReviewHistoryInstance") {
+            var accessReviewHistoryInstanceIdOption = new Option<string>("--access-review-history-instance-id", description: "The unique identifier of accessReviewHistoryInstance") {
             };
             accessReviewHistoryInstanceIdOption.IsRequired = true;
             command.AddOption(accessReviewHistoryInstanceIdOption);
@@ -133,27 +143,17 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item.Instan
             return command;
         }
         /// <summary>
-        /// Provides operations to call the generateDownloadUri method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGenerateDownloadUriCommand() {
-            var command = new Command("microsoft-graph-generate-download-uri");
-            command.Description = "Provides operations to call the generateDownloadUri method.";
-            var builder = new MicrosoftGraphGenerateDownloadUriRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property instances in identityGovernance
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property instances in identityGovernance";
             // Create options for all the parameters
-            var accessReviewHistoryDefinitionIdOption = new Option<string>("--access-review-history-definition-id", description: "key: id of accessReviewHistoryDefinition") {
+            var accessReviewHistoryDefinitionIdOption = new Option<string>("--access-review-history-definition-id", description: "The unique identifier of accessReviewHistoryDefinition") {
             };
             accessReviewHistoryDefinitionIdOption.IsRequired = true;
             command.AddOption(accessReviewHistoryDefinitionIdOption);
-            var accessReviewHistoryInstanceIdOption = new Option<string>("--access-review-history-instance-id", description: "key: id of accessReviewHistoryInstance") {
+            var accessReviewHistoryInstanceIdOption = new Option<string>("--access-review-history-instance-id", description: "The unique identifier of accessReviewHistoryInstance") {
             };
             accessReviewHistoryInstanceIdOption.IsRequired = true;
             command.AddOption(accessReviewHistoryInstanceIdOption);
@@ -193,6 +193,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item.Instan
                 });
                 if (accessReviewHistoryDefinitionId is not null) requestInfo.PathParameters.Add("accessReviewHistoryDefinition%2Did", accessReviewHistoryDefinitionId);
                 if (accessReviewHistoryInstanceId is not null) requestInfo.PathParameters.Add("accessReviewHistoryInstance%2Did", accessReviewHistoryInstanceId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

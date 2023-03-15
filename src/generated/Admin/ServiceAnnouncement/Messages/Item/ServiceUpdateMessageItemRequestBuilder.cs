@@ -56,7 +56,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property messages for admin";
             // Create options for all the parameters
-            var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "key: id of serviceUpdateMessage") {
+            var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "The unique identifier of serviceUpdateMessage") {
             };
             serviceUpdateMessageIdOption.IsRequired = true;
             command.AddOption(serviceUpdateMessageIdOption);
@@ -90,7 +90,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
             var command = new Command("get");
             command.Description = "A collection of service messages for tenant. This property is a contained navigation property, it is nullable and readonly.";
             // Create options for all the parameters
-            var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "key: id of serviceUpdateMessage") {
+            var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "The unique identifier of serviceUpdateMessage") {
             };
             serviceUpdateMessageIdOption.IsRequired = true;
             command.AddOption(serviceUpdateMessageIdOption);
@@ -152,7 +152,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property messages in admin";
             // Create options for all the parameters
-            var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "key: id of serviceUpdateMessage") {
+            var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "The unique identifier of serviceUpdateMessage") {
             };
             serviceUpdateMessageIdOption.IsRequired = true;
             command.AddOption(serviceUpdateMessageIdOption);
@@ -190,6 +190,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (serviceUpdateMessageId is not null) requestInfo.PathParameters.Add("serviceUpdateMessage%2Did", serviceUpdateMessageId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

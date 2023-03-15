@@ -37,12 +37,12 @@ namespace ApiSdk.Solutions.BookingBusinesses {
             command.AddCommand(builder.BuildCustomQuestionsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetStaffAvailabilityCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphPublishCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUnpublishCommand());
+            command.AddCommand(builder.BuildGetStaffAvailabilityCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildPublishCommand());
             command.AddCommand(builder.BuildServicesCommand());
             command.AddCommand(builder.BuildStaffMembersCommand());
+            command.AddCommand(builder.BuildUnpublishCommand());
             return command;
         }
         /// <summary>
@@ -95,6 +95,7 @@ namespace ApiSdk.Solutions.BookingBusinesses {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

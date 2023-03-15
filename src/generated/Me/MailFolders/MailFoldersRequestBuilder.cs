@@ -1,6 +1,6 @@
 using ApiSdk.Me.MailFolders.Count;
+using ApiSdk.Me.MailFolders.Delta;
 using ApiSdk.Me.MailFolders.Item;
-using ApiSdk.Me.MailFolders.MicrosoftGraphDelta;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,12 +33,12 @@ namespace ApiSdk.Me.MailFolders {
             var command = new Command("item");
             var builder = new MailFolderItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildChildFoldersCommand());
+            command.AddCommand(builder.BuildCopyCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildMessageRulesCommand());
             command.AddCommand(builder.BuildMessagesCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCopyCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphMoveCommand());
+            command.AddCommand(builder.BuildMoveCommand());
             command.AddCommand(builder.BuildMultiValueExtendedPropertiesCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildSingleValueExtendedPropertiesCommand());
@@ -94,6 +94,7 @@ namespace ApiSdk.Me.MailFolders {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -104,6 +105,16 @@ namespace ApiSdk.Me.MailFolders {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildDeltaCommand() {
+            var command = new Command("delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -197,16 +208,6 @@ namespace ApiSdk.Me.MailFolders {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the delta method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDeltaCommand() {
-            var command = new Command("microsoft-graph-delta");
-            command.Description = "Provides operations to call the delta method.";
-            var builder = new MicrosoftGraphDeltaRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

@@ -42,15 +42,15 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property overridesPages for identity";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
-            var userFlowLanguageConfigurationIdOption = new Option<string>("--user-flow-language-configuration-id", description: "key: id of userFlowLanguageConfiguration") {
+            var userFlowLanguageConfigurationIdOption = new Option<string>("--user-flow-language-configuration-id", description: "The unique identifier of userFlowLanguageConfiguration") {
             };
             userFlowLanguageConfigurationIdOption.IsRequired = true;
             command.AddOption(userFlowLanguageConfigurationIdOption);
-            var userFlowLanguagePageIdOption = new Option<string>("--user-flow-language-page-id", description: "key: id of userFlowLanguagePage") {
+            var userFlowLanguagePageIdOption = new Option<string>("--user-flow-language-page-id", description: "The unique identifier of userFlowLanguagePage") {
             };
             userFlowLanguagePageIdOption.IsRequired = true;
             command.AddOption(userFlowLanguagePageIdOption);
@@ -88,15 +88,15 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages.Item {
             var command = new Command("get");
             command.Description = "Collection of pages with the overrides messages to display in a user flow for a specified language. This collection only allows to modify the content of the page, any other modification is not allowed (creation or deletion of pages).";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
-            var userFlowLanguageConfigurationIdOption = new Option<string>("--user-flow-language-configuration-id", description: "key: id of userFlowLanguageConfiguration") {
+            var userFlowLanguageConfigurationIdOption = new Option<string>("--user-flow-language-configuration-id", description: "The unique identifier of userFlowLanguageConfiguration") {
             };
             userFlowLanguageConfigurationIdOption.IsRequired = true;
             command.AddOption(userFlowLanguageConfigurationIdOption);
-            var userFlowLanguagePageIdOption = new Option<string>("--user-flow-language-page-id", description: "key: id of userFlowLanguagePage") {
+            var userFlowLanguagePageIdOption = new Option<string>("--user-flow-language-page-id", description: "The unique identifier of userFlowLanguagePage") {
             };
             userFlowLanguagePageIdOption.IsRequired = true;
             command.AddOption(userFlowLanguagePageIdOption);
@@ -162,15 +162,15 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property overridesPages in identity";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
-            var userFlowLanguageConfigurationIdOption = new Option<string>("--user-flow-language-configuration-id", description: "key: id of userFlowLanguageConfiguration") {
+            var userFlowLanguageConfigurationIdOption = new Option<string>("--user-flow-language-configuration-id", description: "The unique identifier of userFlowLanguageConfiguration") {
             };
             userFlowLanguageConfigurationIdOption.IsRequired = true;
             command.AddOption(userFlowLanguageConfigurationIdOption);
-            var userFlowLanguagePageIdOption = new Option<string>("--user-flow-language-page-id", description: "key: id of userFlowLanguagePage") {
+            var userFlowLanguagePageIdOption = new Option<string>("--user-flow-language-page-id", description: "The unique identifier of userFlowLanguagePage") {
             };
             userFlowLanguagePageIdOption.IsRequired = true;
             command.AddOption(userFlowLanguagePageIdOption);
@@ -212,6 +212,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages.Item {
                 if (b2xIdentityUserFlowId is not null) requestInfo.PathParameters.Add("b2xIdentityUserFlow%2Did", b2xIdentityUserFlowId);
                 if (userFlowLanguageConfigurationId is not null) requestInfo.PathParameters.Add("userFlowLanguageConfiguration%2Did", userFlowLanguageConfigurationId);
                 if (userFlowLanguagePageId is not null) requestInfo.PathParameters.Add("userFlowLanguagePage%2Did", userFlowLanguagePageId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -30,15 +30,15 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.Messages.Item.HostedContents.It
             var command = new Command("delete");
             command.Description = "Delete navigation property hostedContents for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "key: id of chatMessage") {
+            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "The unique identifier of chatMessage") {
             };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);
-            var chatMessageHostedContentIdOption = new Option<string>("--chat-message-hosted-content-id", description: "key: id of chatMessageHostedContent") {
+            var chatMessageHostedContentIdOption = new Option<string>("--chat-message-hosted-content-id", description: "The unique identifier of chatMessageHostedContent") {
             };
             chatMessageHostedContentIdOption.IsRequired = true;
             command.AddOption(chatMessageHostedContentIdOption);
@@ -76,15 +76,15 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.Messages.Item.HostedContents.It
             var command = new Command("get");
             command.Description = "Content in a message hosted by Microsoft Teams - for example, images or code snippets.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "key: id of chatMessage") {
+            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "The unique identifier of chatMessage") {
             };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);
-            var chatMessageHostedContentIdOption = new Option<string>("--chat-message-hosted-content-id", description: "key: id of chatMessageHostedContent") {
+            var chatMessageHostedContentIdOption = new Option<string>("--chat-message-hosted-content-id", description: "The unique identifier of chatMessageHostedContent") {
             };
             chatMessageHostedContentIdOption.IsRequired = true;
             command.AddOption(chatMessageHostedContentIdOption);
@@ -150,15 +150,15 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.Messages.Item.HostedContents.It
             var command = new Command("patch");
             command.Description = "Update the navigation property hostedContents in groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "key: id of chatMessage") {
+            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "The unique identifier of chatMessage") {
             };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);
-            var chatMessageHostedContentIdOption = new Option<string>("--chat-message-hosted-content-id", description: "key: id of chatMessageHostedContent") {
+            var chatMessageHostedContentIdOption = new Option<string>("--chat-message-hosted-content-id", description: "The unique identifier of chatMessageHostedContent") {
             };
             chatMessageHostedContentIdOption.IsRequired = true;
             command.AddOption(chatMessageHostedContentIdOption);
@@ -200,6 +200,7 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.Messages.Item.HostedContents.It
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (chatMessageId is not null) requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
                 if (chatMessageHostedContentId is not null) requestInfo.PathParameters.Add("chatMessageHostedContent%2Did", chatMessageHostedContentId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

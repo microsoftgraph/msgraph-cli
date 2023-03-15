@@ -42,11 +42,11 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property tasks for print";
             // Create options for all the parameters
-            var printTaskDefinitionIdOption = new Option<string>("--print-task-definition-id", description: "key: id of printTaskDefinition") {
+            var printTaskDefinitionIdOption = new Option<string>("--print-task-definition-id", description: "The unique identifier of printTaskDefinition") {
             };
             printTaskDefinitionIdOption.IsRequired = true;
             command.AddOption(printTaskDefinitionIdOption);
-            var printTaskIdOption = new Option<string>("--print-task-id", description: "key: id of printTask") {
+            var printTaskIdOption = new Option<string>("--print-task-id", description: "The unique identifier of printTask") {
             };
             printTaskIdOption.IsRequired = true;
             command.AddOption(printTaskIdOption);
@@ -82,11 +82,11 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item {
             var command = new Command("get");
             command.Description = "A list of tasks that have been created based on this definition. The list includes currently running tasks and recently completed tasks. Read-only.";
             // Create options for all the parameters
-            var printTaskDefinitionIdOption = new Option<string>("--print-task-definition-id", description: "key: id of printTaskDefinition") {
+            var printTaskDefinitionIdOption = new Option<string>("--print-task-definition-id", description: "The unique identifier of printTaskDefinition") {
             };
             printTaskDefinitionIdOption.IsRequired = true;
             command.AddOption(printTaskDefinitionIdOption);
-            var printTaskIdOption = new Option<string>("--print-task-id", description: "key: id of printTask") {
+            var printTaskIdOption = new Option<string>("--print-task-id", description: "The unique identifier of printTask") {
             };
             printTaskIdOption.IsRequired = true;
             command.AddOption(printTaskIdOption);
@@ -150,11 +150,11 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property tasks in print";
             // Create options for all the parameters
-            var printTaskDefinitionIdOption = new Option<string>("--print-task-definition-id", description: "key: id of printTaskDefinition") {
+            var printTaskDefinitionIdOption = new Option<string>("--print-task-definition-id", description: "The unique identifier of printTaskDefinition") {
             };
             printTaskDefinitionIdOption.IsRequired = true;
             command.AddOption(printTaskDefinitionIdOption);
-            var printTaskIdOption = new Option<string>("--print-task-id", description: "key: id of printTask") {
+            var printTaskIdOption = new Option<string>("--print-task-id", description: "The unique identifier of printTask") {
             };
             printTaskIdOption.IsRequired = true;
             command.AddOption(printTaskIdOption);
@@ -194,6 +194,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item {
                 });
                 if (printTaskDefinitionId is not null) requestInfo.PathParameters.Add("printTaskDefinition%2Did", printTaskDefinitionId);
                 if (printTaskId is not null) requestInfo.PathParameters.Add("printTask%2Did", printTaskId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

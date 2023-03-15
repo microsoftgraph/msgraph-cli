@@ -30,15 +30,15 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Pages.Item.ParentSection {
             var command = new Command("get");
             command.Description = "The section that contains the page. Read-only.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var onenotePageIdOption = new Option<string>("--onenote-page-id", description: "key: id of onenotePage") {
+            var onenotePageIdOption = new Option<string>("--onenote-page-id", description: "The unique identifier of onenotePage") {
             };
             onenotePageIdOption.IsRequired = true;
             command.AddOption(onenotePageIdOption);

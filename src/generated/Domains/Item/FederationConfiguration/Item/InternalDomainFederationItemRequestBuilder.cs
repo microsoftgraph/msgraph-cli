@@ -30,11 +30,11 @@ namespace ApiSdk.Domains.Item.FederationConfiguration.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property federationConfiguration for domains";
             // Create options for all the parameters
-            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
+            var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
             command.AddOption(domainIdOption);
-            var internalDomainFederationIdOption = new Option<string>("--internal-domain-federation-id", description: "key: id of internalDomainFederation") {
+            var internalDomainFederationIdOption = new Option<string>("--internal-domain-federation-id", description: "The unique identifier of internalDomainFederation") {
             };
             internalDomainFederationIdOption.IsRequired = true;
             command.AddOption(internalDomainFederationIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Domains.Item.FederationConfiguration.Item {
             var command = new Command("get");
             command.Description = "Domain settings configured by a customer when federated with Azure AD. Supports $expand.";
             // Create options for all the parameters
-            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
+            var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
             command.AddOption(domainIdOption);
-            var internalDomainFederationIdOption = new Option<string>("--internal-domain-federation-id", description: "key: id of internalDomainFederation") {
+            var internalDomainFederationIdOption = new Option<string>("--internal-domain-federation-id", description: "The unique identifier of internalDomainFederation") {
             };
             internalDomainFederationIdOption.IsRequired = true;
             command.AddOption(internalDomainFederationIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Domains.Item.FederationConfiguration.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property federationConfiguration in domains";
             // Create options for all the parameters
-            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
+            var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
             command.AddOption(domainIdOption);
-            var internalDomainFederationIdOption = new Option<string>("--internal-domain-federation-id", description: "key: id of internalDomainFederation") {
+            var internalDomainFederationIdOption = new Option<string>("--internal-domain-federation-id", description: "The unique identifier of internalDomainFederation") {
             };
             internalDomainFederationIdOption.IsRequired = true;
             command.AddOption(internalDomainFederationIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Domains.Item.FederationConfiguration.Item {
                 });
                 if (domainId is not null) requestInfo.PathParameters.Add("domain%2Did", domainId);
                 if (internalDomainFederationId is not null) requestInfo.PathParameters.Add("internalDomainFederation%2Did", internalDomainFederationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

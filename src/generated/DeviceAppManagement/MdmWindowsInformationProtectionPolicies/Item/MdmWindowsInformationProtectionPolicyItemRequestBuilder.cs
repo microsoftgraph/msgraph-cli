@@ -30,7 +30,7 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
             var command = new Command("delete");
             command.Description = "Delete navigation property mdmWindowsInformationProtectionPolicies for deviceAppManagement";
             // Create options for all the parameters
-            var mdmWindowsInformationProtectionPolicyIdOption = new Option<string>("--mdm-windows-information-protection-policy-id", description: "key: id of mdmWindowsInformationProtectionPolicy") {
+            var mdmWindowsInformationProtectionPolicyIdOption = new Option<string>("--mdm-windows-information-protection-policy-id", description: "The unique identifier of mdmWindowsInformationProtectionPolicy") {
             };
             mdmWindowsInformationProtectionPolicyIdOption.IsRequired = true;
             command.AddOption(mdmWindowsInformationProtectionPolicyIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
             var command = new Command("get");
             command.Description = "Windows information protection for apps running on devices which are MDM enrolled.";
             // Create options for all the parameters
-            var mdmWindowsInformationProtectionPolicyIdOption = new Option<string>("--mdm-windows-information-protection-policy-id", description: "key: id of mdmWindowsInformationProtectionPolicy") {
+            var mdmWindowsInformationProtectionPolicyIdOption = new Option<string>("--mdm-windows-information-protection-policy-id", description: "The unique identifier of mdmWindowsInformationProtectionPolicy") {
             };
             mdmWindowsInformationProtectionPolicyIdOption.IsRequired = true;
             command.AddOption(mdmWindowsInformationProtectionPolicyIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
             var command = new Command("patch");
             command.Description = "Update the navigation property mdmWindowsInformationProtectionPolicies in deviceAppManagement";
             // Create options for all the parameters
-            var mdmWindowsInformationProtectionPolicyIdOption = new Option<string>("--mdm-windows-information-protection-policy-id", description: "key: id of mdmWindowsInformationProtectionPolicy") {
+            var mdmWindowsInformationProtectionPolicyIdOption = new Option<string>("--mdm-windows-information-protection-policy-id", description: "The unique identifier of mdmWindowsInformationProtectionPolicy") {
             };
             mdmWindowsInformationProtectionPolicyIdOption.IsRequired = true;
             command.AddOption(mdmWindowsInformationProtectionPolicyIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.DeviceAppManagement.MdmWindowsInformationProtectionPolicies.Ite
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (mdmWindowsInformationProtectionPolicyId is not null) requestInfo.PathParameters.Add("mdmWindowsInformationProtectionPolicy%2Did", mdmWindowsInformationProtectionPolicyId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

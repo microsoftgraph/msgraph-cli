@@ -1,4 +1,4 @@
-using ApiSdk.DeviceManagement.DeviceManagementPartners.Item.MicrosoftGraphTerminate;
+using ApiSdk.DeviceManagement.DeviceManagementPartners.Item.Terminate;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,7 +31,7 @@ namespace ApiSdk.DeviceManagement.DeviceManagementPartners.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property deviceManagementPartners for deviceManagement";
             // Create options for all the parameters
-            var deviceManagementPartnerIdOption = new Option<string>("--device-management-partner-id", description: "key: id of deviceManagementPartner") {
+            var deviceManagementPartnerIdOption = new Option<string>("--device-management-partner-id", description: "The unique identifier of deviceManagementPartner") {
             };
             deviceManagementPartnerIdOption.IsRequired = true;
             command.AddOption(deviceManagementPartnerIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.DeviceManagement.DeviceManagementPartners.Item {
             var command = new Command("get");
             command.Description = "The list of Device Management Partners configured by the tenant.";
             // Create options for all the parameters
-            var deviceManagementPartnerIdOption = new Option<string>("--device-management-partner-id", description: "key: id of deviceManagementPartner") {
+            var deviceManagementPartnerIdOption = new Option<string>("--device-management-partner-id", description: "The unique identifier of deviceManagementPartner") {
             };
             deviceManagementPartnerIdOption.IsRequired = true;
             command.AddOption(deviceManagementPartnerIdOption);
@@ -121,23 +121,13 @@ namespace ApiSdk.DeviceManagement.DeviceManagementPartners.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the terminate method.
-        /// </summary>
-        public Command BuildMicrosoftGraphTerminateCommand() {
-            var command = new Command("microsoft-graph-terminate");
-            command.Description = "Provides operations to call the terminate method.";
-            var builder = new MicrosoftGraphTerminateRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property deviceManagementPartners in deviceManagement
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property deviceManagementPartners in deviceManagement";
             // Create options for all the parameters
-            var deviceManagementPartnerIdOption = new Option<string>("--device-management-partner-id", description: "key: id of deviceManagementPartner") {
+            var deviceManagementPartnerIdOption = new Option<string>("--device-management-partner-id", description: "The unique identifier of deviceManagementPartner") {
             };
             deviceManagementPartnerIdOption.IsRequired = true;
             command.AddOption(deviceManagementPartnerIdOption);
@@ -175,6 +165,7 @@ namespace ApiSdk.DeviceManagement.DeviceManagementPartners.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (deviceManagementPartnerId is not null) requestInfo.PathParameters.Add("deviceManagementPartner%2Did", deviceManagementPartnerId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -185,6 +176,16 @@ namespace ApiSdk.DeviceManagement.DeviceManagementPartners.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the terminate method.
+        /// </summary>
+        public Command BuildTerminateCommand() {
+            var command = new Command("terminate");
+            command.Description = "Provides operations to call the terminate method.";
+            var builder = new TerminateRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

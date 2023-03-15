@@ -1,7 +1,7 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.MicrosoftGraphCopyToNotebook;
-using ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.MicrosoftGraphCopyToSectionGroup;
+using ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.CopyToNotebook;
+using ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.CopyToSectionGroup;
 using ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.Pages;
 using ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.ParentNotebook;
 using ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.ParentSectionGroup;
@@ -29,21 +29,41 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the copyToNotebook method.
+        /// </summary>
+        public Command BuildCopyToNotebookCommand() {
+            var command = new Command("copy-to-notebook");
+            command.Description = "Provides operations to call the copyToNotebook method.";
+            var builder = new CopyToNotebookRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the copyToSectionGroup method.
+        /// </summary>
+        public Command BuildCopyToSectionGroupCommand() {
+            var command = new Command("copy-to-section-group");
+            command.Description = "Provides operations to call the copyToSectionGroup method.";
+            var builder = new CopyToSectionGroupRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete navigation property sections for sites
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property sections for sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var notebookIdOption = new Option<string>("--notebook-id", description: "key: id of notebook") {
+            var notebookIdOption = new Option<string>("--notebook-id", description: "The unique identifier of notebook") {
             };
             notebookIdOption.IsRequired = true;
             command.AddOption(notebookIdOption);
-            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "key: id of onenoteSection") {
+            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "The unique identifier of onenoteSection") {
             };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
@@ -81,15 +101,15 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item {
             var command = new Command("get");
             command.Description = "The sections in the notebook. Read-only. Nullable.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var notebookIdOption = new Option<string>("--notebook-id", description: "key: id of notebook") {
+            var notebookIdOption = new Option<string>("--notebook-id", description: "The unique identifier of notebook") {
             };
             notebookIdOption.IsRequired = true;
             command.AddOption(notebookIdOption);
-            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "key: id of onenoteSection") {
+            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "The unique identifier of onenoteSection") {
             };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
@@ -149,26 +169,6 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the copyToNotebook method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCopyToNotebookCommand() {
-            var command = new Command("microsoft-graph-copy-to-notebook");
-            command.Description = "Provides operations to call the copyToNotebook method.";
-            var builder = new MicrosoftGraphCopyToNotebookRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the copyToSectionGroup method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCopyToSectionGroupCommand() {
-            var command = new Command("microsoft-graph-copy-to-section-group");
-            command.Description = "Provides operations to call the copyToSectionGroup method.";
-            var builder = new MicrosoftGraphCopyToSectionGroupRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the pages property of the microsoft.graph.onenoteSection entity.
         /// </summary>
         public Command BuildPagesCommand() {
@@ -208,15 +208,15 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property sections in sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var notebookIdOption = new Option<string>("--notebook-id", description: "key: id of notebook") {
+            var notebookIdOption = new Option<string>("--notebook-id", description: "The unique identifier of notebook") {
             };
             notebookIdOption.IsRequired = true;
             command.AddOption(notebookIdOption);
-            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "key: id of onenoteSection") {
+            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "The unique identifier of onenoteSection") {
             };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
@@ -258,6 +258,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item {
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
                 if (notebookId is not null) requestInfo.PathParameters.Add("notebook%2Did", notebookId);
                 if (onenoteSectionId is not null) requestInfo.PathParameters.Add("onenoteSection%2Did", onenoteSectionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

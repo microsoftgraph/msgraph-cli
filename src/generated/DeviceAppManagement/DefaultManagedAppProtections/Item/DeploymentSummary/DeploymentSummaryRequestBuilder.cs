@@ -30,7 +30,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Deploymen
             var command = new Command("delete");
             command.Description = "Delete navigation property deploymentSummary for deviceAppManagement";
             // Create options for all the parameters
-            var defaultManagedAppProtectionIdOption = new Option<string>("--default-managed-app-protection-id", description: "key: id of defaultManagedAppProtection") {
+            var defaultManagedAppProtectionIdOption = new Option<string>("--default-managed-app-protection-id", description: "The unique identifier of defaultManagedAppProtection") {
             };
             defaultManagedAppProtectionIdOption.IsRequired = true;
             command.AddOption(defaultManagedAppProtectionIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Deploymen
             var command = new Command("get");
             command.Description = "Navigation property to deployment summary of the configuration.";
             // Create options for all the parameters
-            var defaultManagedAppProtectionIdOption = new Option<string>("--default-managed-app-protection-id", description: "key: id of defaultManagedAppProtection") {
+            var defaultManagedAppProtectionIdOption = new Option<string>("--default-managed-app-protection-id", description: "The unique identifier of defaultManagedAppProtection") {
             };
             defaultManagedAppProtectionIdOption.IsRequired = true;
             command.AddOption(defaultManagedAppProtectionIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Deploymen
             var command = new Command("patch");
             command.Description = "Update the navigation property deploymentSummary in deviceAppManagement";
             // Create options for all the parameters
-            var defaultManagedAppProtectionIdOption = new Option<string>("--default-managed-app-protection-id", description: "key: id of defaultManagedAppProtection") {
+            var defaultManagedAppProtectionIdOption = new Option<string>("--default-managed-app-protection-id", description: "The unique identifier of defaultManagedAppProtection") {
             };
             defaultManagedAppProtectionIdOption.IsRequired = true;
             command.AddOption(defaultManagedAppProtectionIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Deploymen
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (defaultManagedAppProtectionId is not null) requestInfo.PathParameters.Add("defaultManagedAppProtection%2Did", defaultManagedAppProtectionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

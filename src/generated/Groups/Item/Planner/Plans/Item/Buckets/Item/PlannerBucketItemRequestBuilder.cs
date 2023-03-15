@@ -31,15 +31,15 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Buckets.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property buckets for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "key: id of plannerPlan") {
+            var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
             };
             plannerPlanIdOption.IsRequired = true;
             command.AddOption(plannerPlanIdOption);
-            var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "key: id of plannerBucket") {
+            var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "The unique identifier of plannerBucket") {
             };
             plannerBucketIdOption.IsRequired = true;
             command.AddOption(plannerBucketIdOption);
@@ -77,15 +77,15 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Buckets.Item {
             var command = new Command("get");
             command.Description = "Read-only. Nullable. Collection of buckets in the plan.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "key: id of plannerPlan") {
+            var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
             };
             plannerPlanIdOption.IsRequired = true;
             command.AddOption(plannerPlanIdOption);
-            var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "key: id of plannerBucket") {
+            var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "The unique identifier of plannerBucket") {
             };
             plannerBucketIdOption.IsRequired = true;
             command.AddOption(plannerBucketIdOption);
@@ -151,15 +151,15 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Buckets.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property buckets in groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "key: id of plannerPlan") {
+            var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
             };
             plannerPlanIdOption.IsRequired = true;
             command.AddOption(plannerPlanIdOption);
-            var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "key: id of plannerBucket") {
+            var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "The unique identifier of plannerBucket") {
             };
             plannerBucketIdOption.IsRequired = true;
             command.AddOption(plannerBucketIdOption);
@@ -201,6 +201,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Buckets.Item {
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (plannerPlanId is not null) requestInfo.PathParameters.Add("plannerPlan%2Did", plannerPlanId);
                 if (plannerBucketId is not null) requestInfo.PathParameters.Add("plannerBucket%2Did", plannerBucketId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

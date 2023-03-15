@@ -29,7 +29,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.AppliedPolicie
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "key: id of managedAppRegistration") {
+            var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "The unique identifier of managedAppRegistration") {
             };
             managedAppRegistrationIdOption.IsRequired = true;
             command.AddOption(managedAppRegistrationIdOption);

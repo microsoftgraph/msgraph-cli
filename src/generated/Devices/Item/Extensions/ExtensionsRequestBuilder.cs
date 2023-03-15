@@ -53,7 +53,7 @@ namespace ApiSdk.Devices.Item.Extensions {
             var command = new Command("create");
             command.Description = "Create new navigation property to extensions for devices";
             // Create options for all the parameters
-            var deviceIdOption = new Option<string>("--device-id", description: "key: id of device") {
+            var deviceIdOption = new Option<string>("--device-id", description: "The unique identifier of device") {
             };
             deviceIdOption.IsRequired = true;
             command.AddOption(deviceIdOption);
@@ -91,6 +91,7 @@ namespace ApiSdk.Devices.Item.Extensions {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (deviceId is not null) requestInfo.PathParameters.Add("device%2Did", deviceId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -110,7 +111,7 @@ namespace ApiSdk.Devices.Item.Extensions {
             var command = new Command("list");
             command.Description = "The collection of open extensions defined for the device. Read-only. Nullable.";
             // Create options for all the parameters
-            var deviceIdOption = new Option<string>("--device-id", description: "key: id of device") {
+            var deviceIdOption = new Option<string>("--device-id", description: "The unique identifier of device") {
             };
             deviceIdOption.IsRequired = true;
             command.AddOption(deviceIdOption);

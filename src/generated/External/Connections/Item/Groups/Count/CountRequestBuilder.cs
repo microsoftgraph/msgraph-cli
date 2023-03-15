@@ -29,7 +29,7 @@ namespace ApiSdk.External.Connections.Item.Groups.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
+            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
             command.AddOption(externalConnectionIdOption);

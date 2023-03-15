@@ -53,7 +53,7 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Item.History {
             var command = new Command("create");
             command.Description = "Create new navigation property to history for identityProtection";
             // Create options for all the parameters
-            var riskyServicePrincipalIdOption = new Option<string>("--risky-service-principal-id", description: "key: id of riskyServicePrincipal") {
+            var riskyServicePrincipalIdOption = new Option<string>("--risky-service-principal-id", description: "The unique identifier of riskyServicePrincipal") {
             };
             riskyServicePrincipalIdOption.IsRequired = true;
             command.AddOption(riskyServicePrincipalIdOption);
@@ -91,6 +91,7 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Item.History {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (riskyServicePrincipalId is not null) requestInfo.PathParameters.Add("riskyServicePrincipal%2Did", riskyServicePrincipalId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -111,7 +112,7 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Item.History {
             var command = new Command("list");
             command.Description = "Get the risk history of a riskyServicePrincipal object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/riskyserviceprincipal-list-history?view=graph-rest-1.0";
             // Create options for all the parameters
-            var riskyServicePrincipalIdOption = new Option<string>("--risky-service-principal-id", description: "key: id of riskyServicePrincipal") {
+            var riskyServicePrincipalIdOption = new Option<string>("--risky-service-principal-id", description: "The unique identifier of riskyServicePrincipal") {
             };
             riskyServicePrincipalIdOption.IsRequired = true;
             command.AddOption(riskyServicePrincipalIdOption);

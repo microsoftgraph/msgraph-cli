@@ -1,8 +1,8 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleRequests.Count;
+using ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleRequests.FilterByCurrentUserWithOn;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleRequests.Item;
-using ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleRequests.MicrosoftGraphFilterByCurrentUserWithOn;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -33,10 +33,10 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleReq
             var command = new Command("item");
             var builder = new UnifiedRoleEligibilityScheduleRequestItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildAppScopeCommand());
+            command.AddCommand(builder.BuildCancelCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildDirectoryScopeCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCancelCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildPrincipalCommand());
             command.AddCommand(builder.BuildRoleDefinitionCommand());
@@ -93,6 +93,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleReq
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -30,7 +30,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentSettings {
             var command = new Command("delete");
             command.Description = "Delete navigation property assignmentSettings for education";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentSettings {
             var command = new Command("get");
             command.Description = "Specifies class-level assignments settings.";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
@@ -127,7 +127,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentSettings {
             var command = new Command("patch");
             command.Description = "Update the properties of an educationAssignmentSettings object. Only Teachers can update these settings.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationassignmentsettings-update?view=graph-rest-1.0";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
@@ -165,6 +165,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentSettings {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (educationClassId is not null) requestInfo.PathParameters.Add("educationClass%2Did", educationClassId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

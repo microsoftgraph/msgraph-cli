@@ -29,15 +29,15 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarView.Item.Instances.Item.Extension
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var eventId1Option = new Option<string>("--event-id1", description: "key: id of event") {
+            var eventId1Option = new Option<string>("--event-id1", description: "The unique identifier of event") {
             };
             eventId1Option.IsRequired = true;
             command.AddOption(eventId1Option);

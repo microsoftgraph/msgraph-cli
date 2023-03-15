@@ -1,5 +1,5 @@
 using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.Stages.Item.Decisions;
-using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.Stages.Item.MicrosoftGraphStop;
+using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.Stages.Item.Stop;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -45,15 +45,15 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             var command = new Command("delete");
             command.Description = "Delete navigation property stages for identityGovernance";
             // Create options for all the parameters
-            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "key: id of accessReviewScheduleDefinition") {
+            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "The unique identifier of accessReviewScheduleDefinition") {
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
             command.AddOption(accessReviewScheduleDefinitionIdOption);
-            var accessReviewInstanceIdOption = new Option<string>("--access-review-instance-id", description: "key: id of accessReviewInstance") {
+            var accessReviewInstanceIdOption = new Option<string>("--access-review-instance-id", description: "The unique identifier of accessReviewInstance") {
             };
             accessReviewInstanceIdOption.IsRequired = true;
             command.AddOption(accessReviewInstanceIdOption);
-            var accessReviewStageIdOption = new Option<string>("--access-review-stage-id", description: "key: id of accessReviewStage") {
+            var accessReviewStageIdOption = new Option<string>("--access-review-stage-id", description: "The unique identifier of accessReviewStage") {
             };
             accessReviewStageIdOption.IsRequired = true;
             command.AddOption(accessReviewStageIdOption);
@@ -91,15 +91,15 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             var command = new Command("get");
             command.Description = "If the instance has multiple stages, this returns the collection of stages. A new stage will only be created when the previous stage ends. The existence, number, and settings of stages on a review instance are created based on the accessReviewStageSettings on the parent accessReviewScheduleDefinition.";
             // Create options for all the parameters
-            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "key: id of accessReviewScheduleDefinition") {
+            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "The unique identifier of accessReviewScheduleDefinition") {
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
             command.AddOption(accessReviewScheduleDefinitionIdOption);
-            var accessReviewInstanceIdOption = new Option<string>("--access-review-instance-id", description: "key: id of accessReviewInstance") {
+            var accessReviewInstanceIdOption = new Option<string>("--access-review-instance-id", description: "The unique identifier of accessReviewInstance") {
             };
             accessReviewInstanceIdOption.IsRequired = true;
             command.AddOption(accessReviewInstanceIdOption);
-            var accessReviewStageIdOption = new Option<string>("--access-review-stage-id", description: "key: id of accessReviewStage") {
+            var accessReviewStageIdOption = new Option<string>("--access-review-stage-id", description: "The unique identifier of accessReviewStage") {
             };
             accessReviewStageIdOption.IsRequired = true;
             command.AddOption(accessReviewStageIdOption);
@@ -159,31 +159,21 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             return command;
         }
         /// <summary>
-        /// Provides operations to call the stop method.
-        /// </summary>
-        public Command BuildMicrosoftGraphStopCommand() {
-            var command = new Command("microsoft-graph-stop");
-            command.Description = "Provides operations to call the stop method.";
-            var builder = new MicrosoftGraphStopRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property stages in identityGovernance
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property stages in identityGovernance";
             // Create options for all the parameters
-            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "key: id of accessReviewScheduleDefinition") {
+            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "The unique identifier of accessReviewScheduleDefinition") {
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
             command.AddOption(accessReviewScheduleDefinitionIdOption);
-            var accessReviewInstanceIdOption = new Option<string>("--access-review-instance-id", description: "key: id of accessReviewInstance") {
+            var accessReviewInstanceIdOption = new Option<string>("--access-review-instance-id", description: "The unique identifier of accessReviewInstance") {
             };
             accessReviewInstanceIdOption.IsRequired = true;
             command.AddOption(accessReviewInstanceIdOption);
-            var accessReviewStageIdOption = new Option<string>("--access-review-stage-id", description: "key: id of accessReviewStage") {
+            var accessReviewStageIdOption = new Option<string>("--access-review-stage-id", description: "The unique identifier of accessReviewStage") {
             };
             accessReviewStageIdOption.IsRequired = true;
             command.AddOption(accessReviewStageIdOption);
@@ -225,6 +215,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
                 if (accessReviewScheduleDefinitionId is not null) requestInfo.PathParameters.Add("accessReviewScheduleDefinition%2Did", accessReviewScheduleDefinitionId);
                 if (accessReviewInstanceId is not null) requestInfo.PathParameters.Add("accessReviewInstance%2Did", accessReviewInstanceId);
                 if (accessReviewStageId is not null) requestInfo.PathParameters.Add("accessReviewStage%2Did", accessReviewStageId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -235,6 +226,16 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the stop method.
+        /// </summary>
+        public Command BuildStopCommand() {
+            var command = new Command("stop");
+            command.Description = "Provides operations to call the stop method.";
+            var builder = new StopRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

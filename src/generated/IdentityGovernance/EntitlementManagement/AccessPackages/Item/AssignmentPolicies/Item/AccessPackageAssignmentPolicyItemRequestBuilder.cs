@@ -1,5 +1,6 @@
 using ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.AssignmentPolicies.Item.AccessPackage;
 using ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.AssignmentPolicies.Item.Catalog;
+using ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.AssignmentPolicies.Item.Questions;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -52,11 +53,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.As
             var command = new Command("delete");
             command.Description = "Delete navigation property assignmentPolicies for identityGovernance";
             // Create options for all the parameters
-            var accessPackageIdOption = new Option<string>("--access-package-id", description: "key: id of accessPackage") {
+            var accessPackageIdOption = new Option<string>("--access-package-id", description: "The unique identifier of accessPackage") {
             };
             accessPackageIdOption.IsRequired = true;
             command.AddOption(accessPackageIdOption);
-            var accessPackageAssignmentPolicyIdOption = new Option<string>("--access-package-assignment-policy-id", description: "key: id of accessPackageAssignmentPolicy") {
+            var accessPackageAssignmentPolicyIdOption = new Option<string>("--access-package-assignment-policy-id", description: "The unique identifier of accessPackageAssignmentPolicy") {
             };
             accessPackageAssignmentPolicyIdOption.IsRequired = true;
             command.AddOption(accessPackageAssignmentPolicyIdOption);
@@ -92,11 +93,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.As
             var command = new Command("get");
             command.Description = "Get assignmentPolicies from identityGovernance";
             // Create options for all the parameters
-            var accessPackageIdOption = new Option<string>("--access-package-id", description: "key: id of accessPackage") {
+            var accessPackageIdOption = new Option<string>("--access-package-id", description: "The unique identifier of accessPackage") {
             };
             accessPackageIdOption.IsRequired = true;
             command.AddOption(accessPackageIdOption);
-            var accessPackageAssignmentPolicyIdOption = new Option<string>("--access-package-assignment-policy-id", description: "key: id of accessPackageAssignmentPolicy") {
+            var accessPackageAssignmentPolicyIdOption = new Option<string>("--access-package-assignment-policy-id", description: "The unique identifier of accessPackageAssignmentPolicy") {
             };
             accessPackageAssignmentPolicyIdOption.IsRequired = true;
             command.AddOption(accessPackageAssignmentPolicyIdOption);
@@ -160,11 +161,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.As
             var command = new Command("patch");
             command.Description = "Update the navigation property assignmentPolicies in identityGovernance";
             // Create options for all the parameters
-            var accessPackageIdOption = new Option<string>("--access-package-id", description: "key: id of accessPackage") {
+            var accessPackageIdOption = new Option<string>("--access-package-id", description: "The unique identifier of accessPackage") {
             };
             accessPackageIdOption.IsRequired = true;
             command.AddOption(accessPackageIdOption);
-            var accessPackageAssignmentPolicyIdOption = new Option<string>("--access-package-assignment-policy-id", description: "key: id of accessPackageAssignmentPolicy") {
+            var accessPackageAssignmentPolicyIdOption = new Option<string>("--access-package-assignment-policy-id", description: "The unique identifier of accessPackageAssignmentPolicy") {
             };
             accessPackageAssignmentPolicyIdOption.IsRequired = true;
             command.AddOption(accessPackageAssignmentPolicyIdOption);
@@ -204,6 +205,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.As
                 });
                 if (accessPackageId is not null) requestInfo.PathParameters.Add("accessPackage%2Did", accessPackageId);
                 if (accessPackageAssignmentPolicyId is not null) requestInfo.PathParameters.Add("accessPackageAssignmentPolicy%2Did", accessPackageAssignmentPolicyId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -214,6 +216,19 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.As
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the questions property of the microsoft.graph.accessPackageAssignmentPolicy entity.
+        /// </summary>
+        public Command BuildQuestionsCommand() {
+            var command = new Command("questions");
+            command.Description = "Provides operations to manage the questions property of the microsoft.graph.accessPackageAssignmentPolicy entity.";
+            var builder = new QuestionsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>

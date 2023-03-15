@@ -33,8 +33,8 @@ namespace ApiSdk.Shares.Item.List.Subscriptions {
             var builder = new SubscriptionItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphReauthorizeCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildReauthorizeCommand());
             return command;
         }
         /// <summary>
@@ -54,7 +54,7 @@ namespace ApiSdk.Shares.Item.List.Subscriptions {
             var command = new Command("create");
             command.Description = "Create new navigation property to subscriptions for shares";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
@@ -92,6 +92,7 @@ namespace ApiSdk.Shares.Item.List.Subscriptions {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (sharedDriveItemId is not null) requestInfo.PathParameters.Add("sharedDriveItem%2Did", sharedDriveItemId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -111,7 +112,7 @@ namespace ApiSdk.Shares.Item.List.Subscriptions {
             var command = new Command("list");
             command.Description = "The set of subscriptions on the list.";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);

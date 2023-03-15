@@ -30,11 +30,11 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition {
             var command = new Command("get");
             command.Description = "An abstract definition that will be used to create a printTask when triggered by a print event. Read-only.";
             // Create options for all the parameters
-            var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer") {
+            var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
             };
             printerIdOption.IsRequired = true;
             command.AddOption(printerIdOption);
-            var printTaskTriggerIdOption = new Option<string>("--print-task-trigger-id", description: "key: id of printTaskTrigger") {
+            var printTaskTriggerIdOption = new Option<string>("--print-task-trigger-id", description: "The unique identifier of printTaskTrigger") {
             };
             printTaskTriggerIdOption.IsRequired = true;
             command.AddOption(printTaskTriggerIdOption);

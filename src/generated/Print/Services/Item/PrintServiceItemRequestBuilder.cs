@@ -31,7 +31,7 @@ namespace ApiSdk.Print.Services.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property services for print";
             // Create options for all the parameters
-            var printServiceIdOption = new Option<string>("--print-service-id", description: "key: id of printService") {
+            var printServiceIdOption = new Option<string>("--print-service-id", description: "The unique identifier of printService") {
             };
             printServiceIdOption.IsRequired = true;
             command.AddOption(printServiceIdOption);
@@ -78,7 +78,7 @@ namespace ApiSdk.Print.Services.Item {
             var command = new Command("get");
             command.Description = "The list of available Universal Print service endpoints.";
             // Create options for all the parameters
-            var printServiceIdOption = new Option<string>("--print-service-id", description: "key: id of printService") {
+            var printServiceIdOption = new Option<string>("--print-service-id", description: "The unique identifier of printService") {
             };
             printServiceIdOption.IsRequired = true;
             command.AddOption(printServiceIdOption);
@@ -140,7 +140,7 @@ namespace ApiSdk.Print.Services.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property services in print";
             // Create options for all the parameters
-            var printServiceIdOption = new Option<string>("--print-service-id", description: "key: id of printService") {
+            var printServiceIdOption = new Option<string>("--print-service-id", description: "The unique identifier of printService") {
             };
             printServiceIdOption.IsRequired = true;
             command.AddOption(printServiceIdOption);
@@ -178,6 +178,7 @@ namespace ApiSdk.Print.Services.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (printServiceId is not null) requestInfo.PathParameters.Add("printService%2Did", printServiceId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

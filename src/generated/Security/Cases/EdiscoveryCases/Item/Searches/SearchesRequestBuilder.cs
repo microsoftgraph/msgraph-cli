@@ -37,10 +37,10 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches {
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildLastEstimateStatisticsOperationCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSecurityEstimateStatisticsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSecurityPurgeDataCommand());
             command.AddCommand(builder.BuildNoncustodialSourcesCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildSecurityEstimateStatisticsCommand());
+            command.AddCommand(builder.BuildSecurityPurgeDataCommand());
             return command;
         }
         /// <summary>
@@ -61,7 +61,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches {
             var command = new Command("create");
             command.Description = "Create a new ediscoverySearch object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-post-searches?view=graph-rest-1.0";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
@@ -99,6 +99,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (ediscoveryCaseId is not null) requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -119,7 +120,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches {
             var command = new Command("list");
             command.Description = "Get the list of ediscoverySearch resources from an eDiscoveryCase object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-list-searches?view=graph-rest-1.0";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);

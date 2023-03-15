@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// Android Work Profile general device configuration.
+    /// </summary>
     public class AndroidWorkProfileGeneralDeviceConfiguration : DeviceConfiguration, IParsable {
         /// <summary>Indicates whether or not to block fingerprint unlock.</summary>
         public bool? PasswordBlockFingerprintUnlock { get; set; }
@@ -74,7 +77,7 @@ namespace ApiSdk.Models {
         /// <summary>Password is required or not for work profile</summary>
         public bool? WorkProfileRequirePassword { get; set; }
         /// <summary>
-        /// Instantiates a new AndroidWorkProfileGeneralDeviceConfiguration and sets the default values.
+        /// Instantiates a new androidWorkProfileGeneralDeviceConfiguration and sets the default values.
         /// </summary>
         public AndroidWorkProfileGeneralDeviceConfiguration() : base() {
             OdataType = "#microsoft.graph.androidWorkProfileGeneralDeviceConfiguration";

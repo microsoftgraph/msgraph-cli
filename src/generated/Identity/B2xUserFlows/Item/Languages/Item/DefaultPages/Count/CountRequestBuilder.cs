@@ -29,11 +29,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.DefaultPages.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
-            var userFlowLanguageConfigurationIdOption = new Option<string>("--user-flow-language-configuration-id", description: "key: id of userFlowLanguageConfiguration") {
+            var userFlowLanguageConfigurationIdOption = new Option<string>("--user-flow-language-configuration-id", description: "The unique identifier of userFlowLanguageConfiguration") {
             };
             userFlowLanguageConfigurationIdOption.IsRequired = true;
             command.AddOption(userFlowLanguageConfigurationIdOption);

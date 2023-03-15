@@ -30,7 +30,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentSchedules.It
             var command = new Command("get");
             command.Description = "If the request is from an eligible administrator to activate a role, this parameter will show the related eligible assignment for that activation. Otherwise, it is null. Supports $expand.";
             // Create options for all the parameters
-            var unifiedRoleAssignmentScheduleIdOption = new Option<string>("--unified-role-assignment-schedule-id", description: "key: id of unifiedRoleAssignmentSchedule") {
+            var unifiedRoleAssignmentScheduleIdOption = new Option<string>("--unified-role-assignment-schedule-id", description: "The unique identifier of unifiedRoleAssignmentSchedule") {
             };
             unifiedRoleAssignmentScheduleIdOption.IsRequired = true;
             command.AddOption(unifiedRoleAssignmentScheduleIdOption);

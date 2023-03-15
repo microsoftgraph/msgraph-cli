@@ -29,7 +29,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions.Item.Inher
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "key: id of unifiedRoleDefinition") {
+            var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "The unique identifier of unifiedRoleDefinition") {
             };
             unifiedRoleDefinitionIdOption.IsRequired = true;
             command.AddOption(unifiedRoleDefinitionIdOption);

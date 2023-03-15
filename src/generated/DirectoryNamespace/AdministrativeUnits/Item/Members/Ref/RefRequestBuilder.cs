@@ -31,7 +31,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Ref {
             var command = new Command("get");
             command.Description = "Users and groups that are members of this administrative unit. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/administrativeunit-list-members?view=graph-rest-1.0";
             // Create options for all the parameters
-            var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "key: id of administrativeUnit") {
+            var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
             command.AddOption(administrativeUnitIdOption);
@@ -136,7 +136,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Ref {
             var command = new Command("post");
             command.Description = "Use this API to add a member (user, group, or device) to an administrative unit. Currently it's only possible to add one member at a time to an administrative unit.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/administrativeunit-post-members?view=graph-rest-1.0";
             // Create options for all the parameters
-            var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "key: id of administrativeUnit") {
+            var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
             command.AddOption(administrativeUnitIdOption);
@@ -156,6 +156,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Ref {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (administrativeUnitId is not null) requestInfo.PathParameters.Add("administrativeUnit%2Did", administrativeUnitId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

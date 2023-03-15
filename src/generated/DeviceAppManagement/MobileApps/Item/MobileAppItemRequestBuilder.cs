@@ -1,8 +1,8 @@
+using ApiSdk.DeviceAppManagement.MobileApps.Item.Assign;
 using ApiSdk.DeviceAppManagement.MobileApps.Item.Assignments;
 using ApiSdk.DeviceAppManagement.MobileApps.Item.Categories;
-using ApiSdk.DeviceAppManagement.MobileApps.Item.MicrosoftGraphAssign;
-using ApiSdk.DeviceAppManagement.MobileApps.Item.MicrosoftGraphManagedMobileLobApp;
-using ApiSdk.DeviceAppManagement.MobileApps.Item.MicrosoftGraphMobileLobApp;
+using ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedMobileLobApp;
+using ApiSdk.DeviceAppManagement.MobileApps.Item.GraphMobileLobApp;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,6 +28,16 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         private Dictionary<string, object> PathParameters { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        /// <summary>
+        /// Provides operations to call the assign method.
+        /// </summary>
+        public Command BuildAssignCommand() {
+            var command = new Command("assign");
+            command.Description = "Provides operations to call the assign method.";
+            var builder = new AssignRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.
         /// </summary>
@@ -60,7 +70,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property mobileApps for deviceAppManagement";
             // Create options for all the parameters
-            var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "key: id of mobileApp") {
+            var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "The unique identifier of mobileApp") {
             };
             mobileAppIdOption.IsRequired = true;
             command.AddOption(mobileAppIdOption);
@@ -94,7 +104,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             var command = new Command("get");
             command.Description = "The mobile apps.";
             // Create options for all the parameters
-            var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "key: id of mobileApp") {
+            var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "The unique identifier of mobileApp") {
             };
             mobileAppIdOption.IsRequired = true;
             command.AddOption(mobileAppIdOption);
@@ -150,32 +160,22 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the assign method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAssignCommand() {
-            var command = new Command("microsoft-graph-assign");
-            command.Description = "Provides operations to call the assign method.";
-            var builder = new MicrosoftGraphAssignRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Casts the previous resource to managedMobileLobApp.
         /// </summary>
-        public Command BuildMicrosoftGraphManagedMobileLobAppCommand() {
-            var command = new Command("microsoft-graph-managed-mobile-lob-app");
+        public Command BuildGraphManagedMobileLobAppCommand() {
+            var command = new Command("graph-managed-mobile-lob-app");
             command.Description = "Casts the previous resource to managedMobileLobApp.";
-            var builder = new MicrosoftGraphManagedMobileLobAppRequestBuilder(PathParameters);
+            var builder = new GraphManagedMobileLobAppRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Casts the previous resource to mobileLobApp.
         /// </summary>
-        public Command BuildMicrosoftGraphMobileLobAppCommand() {
-            var command = new Command("microsoft-graph-mobile-lob-app");
+        public Command BuildGraphMobileLobAppCommand() {
+            var command = new Command("graph-mobile-lob-app");
             command.Description = "Casts the previous resource to mobileLobApp.";
-            var builder = new MicrosoftGraphMobileLobAppRequestBuilder(PathParameters);
+            var builder = new GraphMobileLobAppRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -186,7 +186,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property mobileApps in deviceAppManagement";
             // Create options for all the parameters
-            var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "key: id of mobileApp") {
+            var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "The unique identifier of mobileApp") {
             };
             mobileAppIdOption.IsRequired = true;
             command.AddOption(mobileAppIdOption);
@@ -224,6 +224,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (mobileAppId is not null) requestInfo.PathParameters.Add("mobileApp%2Did", mobileAppId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

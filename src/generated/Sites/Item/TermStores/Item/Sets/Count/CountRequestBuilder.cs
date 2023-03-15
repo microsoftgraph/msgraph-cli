@@ -29,11 +29,11 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var storeIdOption = new Option<string>("--store-id", description: "key: id of store") {
+            var storeIdOption = new Option<string>("--store-id", description: "The unique identifier of store") {
             };
             storeIdOption.IsRequired = true;
             command.AddOption(storeIdOption);

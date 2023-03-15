@@ -53,7 +53,7 @@ namespace ApiSdk.Models.CallRecords {
 #endif
         /// <summary>Connection fee price.</summary>
         public decimal? ConnectionCharge { get; set; }
-        /// <summary>Type of currency used to calculate the cost of the call (ISO 4217).</summary>
+        /// <summary>Type of currency used to calculate the cost of the call. For details, see (ISO 4217.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Currency { get; set; }
@@ -123,7 +123,7 @@ namespace ApiSdk.Models.CallRecords {
 #endif
         /// <summary>Call start time.</summary>
         public DateTimeOffset? StartDateTime { get; set; }
-        /// <summary>Country code of the tenant, ISO 3166-1 alpha-2.</summary>
+        /// <summary>Country code of the tenant. For details, see ISO 3166-1 alpha-2.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TenantCountryCode { get; set; }
@@ -131,7 +131,7 @@ namespace ApiSdk.Models.CallRecords {
 #else
         public string TenantCountryCode { get; set; }
 #endif
-        /// <summary>Country code of the user, ISO 3166-1 alpha-2.</summary>
+        /// <summary>Country code of the user. For details, see ISO 3166-1 alpha-2.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? UsageCountryCode { get; set; }
@@ -155,7 +155,7 @@ namespace ApiSdk.Models.CallRecords {
 #else
         public string UserId { get; set; }
 #endif
-        /// <summary>UserPrincipalName (sign-in name) in Azure Active Directory. This is usually the same as user&apos;s SIP Address, and can be same as user&apos;s e-mail address.</summary>
+        /// <summary>The user principal name (sign-in name) in Azure Active Directory. This is usually the same as the user&apos;s SIP address, and can be same as the user&apos;s e-mail address.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? UserPrincipalName { get; set; }

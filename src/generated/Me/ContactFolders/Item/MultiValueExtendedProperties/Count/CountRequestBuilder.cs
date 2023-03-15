@@ -29,7 +29,7 @@ namespace ApiSdk.Me.ContactFolders.Item.MultiValueExtendedProperties.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
+            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "The unique identifier of contactFolder") {
             };
             contactFolderIdOption.IsRequired = true;
             command.AddOption(contactFolderIdOption);

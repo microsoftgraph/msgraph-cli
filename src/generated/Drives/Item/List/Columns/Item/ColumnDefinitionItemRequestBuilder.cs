@@ -31,11 +31,11 @@ namespace ApiSdk.Drives.Item.List.Columns.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property columns for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var columnDefinitionIdOption = new Option<string>("--column-definition-id", description: "key: id of columnDefinition") {
+            var columnDefinitionIdOption = new Option<string>("--column-definition-id", description: "The unique identifier of columnDefinition") {
             };
             columnDefinitionIdOption.IsRequired = true;
             command.AddOption(columnDefinitionIdOption);
@@ -71,11 +71,11 @@ namespace ApiSdk.Drives.Item.List.Columns.Item {
             var command = new Command("get");
             command.Description = "The collection of field definitions for this list.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var columnDefinitionIdOption = new Option<string>("--column-definition-id", description: "key: id of columnDefinition") {
+            var columnDefinitionIdOption = new Option<string>("--column-definition-id", description: "The unique identifier of columnDefinition") {
             };
             columnDefinitionIdOption.IsRequired = true;
             command.AddOption(columnDefinitionIdOption);
@@ -139,11 +139,11 @@ namespace ApiSdk.Drives.Item.List.Columns.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property columns in drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var columnDefinitionIdOption = new Option<string>("--column-definition-id", description: "key: id of columnDefinition") {
+            var columnDefinitionIdOption = new Option<string>("--column-definition-id", description: "The unique identifier of columnDefinition") {
             };
             columnDefinitionIdOption.IsRequired = true;
             command.AddOption(columnDefinitionIdOption);
@@ -183,6 +183,7 @@ namespace ApiSdk.Drives.Item.List.Columns.Item {
                 });
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (columnDefinitionId is not null) requestInfo.PathParameters.Add("columnDefinition%2Did", columnDefinitionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

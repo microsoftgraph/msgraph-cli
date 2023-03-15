@@ -55,7 +55,7 @@ namespace ApiSdk.Shares.Item.List.Columns {
             var command = new Command("create");
             command.Description = "Create a column for a [list][list] with a request that specifies a [columnDefinition][columnDefinition].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/list-post-columns?view=graph-rest-1.0";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
@@ -93,6 +93,7 @@ namespace ApiSdk.Shares.Item.List.Columns {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (sharedDriveItemId is not null) requestInfo.PathParameters.Add("sharedDriveItem%2Did", sharedDriveItemId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -113,7 +114,7 @@ namespace ApiSdk.Shares.Item.List.Columns {
             var command = new Command("list");
             command.Description = "Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [list][list].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/list-list-columns?view=graph-rest-1.0";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);

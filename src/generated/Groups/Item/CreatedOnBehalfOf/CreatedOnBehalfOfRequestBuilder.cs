@@ -30,7 +30,7 @@ namespace ApiSdk.Groups.Item.CreatedOnBehalfOf {
             var command = new Command("get");
             command.Description = "The user (or application) that created the group. NOTE: This is not set if the user is an administrator. Read-only.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);

@@ -2,13 +2,13 @@ using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Organization.Item.Branding;
 using ApiSdk.Organization.Item.CertificateBasedAuthConfiguration;
+using ApiSdk.Organization.Item.CheckMemberGroups;
+using ApiSdk.Organization.Item.CheckMemberObjects;
 using ApiSdk.Organization.Item.Extensions;
-using ApiSdk.Organization.Item.MicrosoftGraphCheckMemberGroups;
-using ApiSdk.Organization.Item.MicrosoftGraphCheckMemberObjects;
-using ApiSdk.Organization.Item.MicrosoftGraphGetMemberGroups;
-using ApiSdk.Organization.Item.MicrosoftGraphGetMemberObjects;
-using ApiSdk.Organization.Item.MicrosoftGraphRestore;
-using ApiSdk.Organization.Item.MicrosoftGraphSetMobileDeviceManagementAuthority;
+using ApiSdk.Organization.Item.GetMemberGroups;
+using ApiSdk.Organization.Item.GetMemberObjects;
+using ApiSdk.Organization.Item.Restore;
+using ApiSdk.Organization.Item.SetMobileDeviceManagementAuthority;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -61,13 +61,33 @@ namespace ApiSdk.Organization.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the checkMemberGroups method.
+        /// </summary>
+        public Command BuildCheckMemberGroupsCommand() {
+            var command = new Command("check-member-groups");
+            command.Description = "Provides operations to call the checkMemberGroups method.";
+            var builder = new CheckMemberGroupsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the checkMemberObjects method.
+        /// </summary>
+        public Command BuildCheckMemberObjectsCommand() {
+            var command = new Command("check-member-objects");
+            command.Description = "Provides operations to call the checkMemberObjects method.";
+            var builder = new CheckMemberObjectsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete entity from organization
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete entity from organization";
             // Create options for all the parameters
-            var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization") {
+            var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
             };
             organizationIdOption.IsRequired = true;
             command.AddOption(organizationIdOption);
@@ -115,7 +135,7 @@ namespace ApiSdk.Organization.Item {
             var command = new Command("get");
             command.Description = "Get the properties and relationships of the currently authenticated organization. Since the **organization** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in an **organization** instance.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/organization-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization") {
+            var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
             };
             organizationIdOption.IsRequired = true;
             command.AddOption(organizationIdOption);
@@ -171,62 +191,22 @@ namespace ApiSdk.Organization.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the checkMemberGroups method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCheckMemberGroupsCommand() {
-            var command = new Command("microsoft-graph-check-member-groups");
-            command.Description = "Provides operations to call the checkMemberGroups method.";
-            var builder = new MicrosoftGraphCheckMemberGroupsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the checkMemberObjects method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCheckMemberObjectsCommand() {
-            var command = new Command("microsoft-graph-check-member-objects");
-            command.Description = "Provides operations to call the checkMemberObjects method.";
-            var builder = new MicrosoftGraphCheckMemberObjectsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to call the getMemberGroups method.
         /// </summary>
-        public Command BuildMicrosoftGraphGetMemberGroupsCommand() {
-            var command = new Command("microsoft-graph-get-member-groups");
+        public Command BuildGetMemberGroupsCommand() {
+            var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
-            var builder = new MicrosoftGraphGetMemberGroupsRequestBuilder(PathParameters);
+            var builder = new GetMemberGroupsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the getMemberObjects method.
         /// </summary>
-        public Command BuildMicrosoftGraphGetMemberObjectsCommand() {
-            var command = new Command("microsoft-graph-get-member-objects");
+        public Command BuildGetMemberObjectsCommand() {
+            var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
-            var builder = new MicrosoftGraphGetMemberObjectsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the restore method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRestoreCommand() {
-            var command = new Command("microsoft-graph-restore");
-            command.Description = "Provides operations to call the restore method.";
-            var builder = new MicrosoftGraphRestoreRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the setMobileDeviceManagementAuthority method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSetMobileDeviceManagementAuthorityCommand() {
-            var command = new Command("microsoft-graph-set-mobile-device-management-authority");
-            command.Description = "Provides operations to call the setMobileDeviceManagementAuthority method.";
-            var builder = new MicrosoftGraphSetMobileDeviceManagementAuthorityRequestBuilder(PathParameters);
+            var builder = new GetMemberObjectsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -238,7 +218,7 @@ namespace ApiSdk.Organization.Item {
             var command = new Command("patch");
             command.Description = "Update the properties of the currently authenticated organization. In this case, `organization` is defined as a collection of exactly one record, and so its **ID** must be specified in the request.  The **ID** is also known as the **tenantId** of the organization.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/organization-update?view=graph-rest-1.0";
             // Create options for all the parameters
-            var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization") {
+            var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
             };
             organizationIdOption.IsRequired = true;
             command.AddOption(organizationIdOption);
@@ -276,6 +256,7 @@ namespace ApiSdk.Organization.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (organizationId is not null) requestInfo.PathParameters.Add("organization%2Did", organizationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -286,6 +267,26 @@ namespace ApiSdk.Organization.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the restore method.
+        /// </summary>
+        public Command BuildRestoreCommand() {
+            var command = new Command("restore");
+            command.Description = "Provides operations to call the restore method.";
+            var builder = new RestoreRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the setMobileDeviceManagementAuthority method.
+        /// </summary>
+        public Command BuildSetMobileDeviceManagementAuthorityCommand() {
+            var command = new Command("set-mobile-device-management-authority");
+            command.Description = "Provides operations to call the setMobileDeviceManagementAuthority method.";
+            var builder = new SetMobileDeviceManagementAuthorityRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

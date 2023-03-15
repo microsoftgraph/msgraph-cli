@@ -33,15 +33,15 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Relations.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property relations for sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            var setIdOption = new Option<string>("--set-id", description: "The unique identifier of set") {
             };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
-            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation") {
+            var relationIdOption = new Option<string>("--relation-id", description: "The unique identifier of relation") {
             };
             relationIdOption.IsRequired = true;
             command.AddOption(relationIdOption);
@@ -89,15 +89,15 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Relations.Item {
             var command = new Command("get");
             command.Description = "Indicates which terms have been pinned or reused directly under the set.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            var setIdOption = new Option<string>("--set-id", description: "The unique identifier of set") {
             };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
-            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation") {
+            var relationIdOption = new Option<string>("--relation-id", description: "The unique identifier of relation") {
             };
             relationIdOption.IsRequired = true;
             command.AddOption(relationIdOption);
@@ -163,15 +163,15 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Relations.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property relations in sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            var setIdOption = new Option<string>("--set-id", description: "The unique identifier of set") {
             };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
-            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation") {
+            var relationIdOption = new Option<string>("--relation-id", description: "The unique identifier of relation") {
             };
             relationIdOption.IsRequired = true;
             command.AddOption(relationIdOption);
@@ -213,6 +213,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Relations.Item {
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
                 if (setId is not null) requestInfo.PathParameters.Add("set%2Did", setId);
                 if (relationId is not null) requestInfo.PathParameters.Add("relation%2Did", relationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

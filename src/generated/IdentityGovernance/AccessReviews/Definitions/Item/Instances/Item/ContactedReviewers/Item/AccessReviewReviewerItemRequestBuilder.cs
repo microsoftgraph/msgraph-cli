@@ -30,15 +30,15 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             var command = new Command("delete");
             command.Description = "Delete navigation property contactedReviewers for identityGovernance";
             // Create options for all the parameters
-            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "key: id of accessReviewScheduleDefinition") {
+            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "The unique identifier of accessReviewScheduleDefinition") {
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
             command.AddOption(accessReviewScheduleDefinitionIdOption);
-            var accessReviewInstanceIdOption = new Option<string>("--access-review-instance-id", description: "key: id of accessReviewInstance") {
+            var accessReviewInstanceIdOption = new Option<string>("--access-review-instance-id", description: "The unique identifier of accessReviewInstance") {
             };
             accessReviewInstanceIdOption.IsRequired = true;
             command.AddOption(accessReviewInstanceIdOption);
-            var accessReviewReviewerIdOption = new Option<string>("--access-review-reviewer-id", description: "key: id of accessReviewReviewer") {
+            var accessReviewReviewerIdOption = new Option<string>("--access-review-reviewer-id", description: "The unique identifier of accessReviewReviewer") {
             };
             accessReviewReviewerIdOption.IsRequired = true;
             command.AddOption(accessReviewReviewerIdOption);
@@ -76,15 +76,15 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             var command = new Command("get");
             command.Description = "Returns the collection of reviewers who were contacted to complete this review. While the reviewers and fallbackReviewers properties of the accessReviewScheduleDefinition might specify group owners or managers as reviewers, contactedReviewers returns their individual identities. Supports $select. Read-only.";
             // Create options for all the parameters
-            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "key: id of accessReviewScheduleDefinition") {
+            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "The unique identifier of accessReviewScheduleDefinition") {
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
             command.AddOption(accessReviewScheduleDefinitionIdOption);
-            var accessReviewInstanceIdOption = new Option<string>("--access-review-instance-id", description: "key: id of accessReviewInstance") {
+            var accessReviewInstanceIdOption = new Option<string>("--access-review-instance-id", description: "The unique identifier of accessReviewInstance") {
             };
             accessReviewInstanceIdOption.IsRequired = true;
             command.AddOption(accessReviewInstanceIdOption);
-            var accessReviewReviewerIdOption = new Option<string>("--access-review-reviewer-id", description: "key: id of accessReviewReviewer") {
+            var accessReviewReviewerIdOption = new Option<string>("--access-review-reviewer-id", description: "The unique identifier of accessReviewReviewer") {
             };
             accessReviewReviewerIdOption.IsRequired = true;
             command.AddOption(accessReviewReviewerIdOption);
@@ -150,15 +150,15 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             var command = new Command("patch");
             command.Description = "Update the navigation property contactedReviewers in identityGovernance";
             // Create options for all the parameters
-            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "key: id of accessReviewScheduleDefinition") {
+            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "The unique identifier of accessReviewScheduleDefinition") {
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
             command.AddOption(accessReviewScheduleDefinitionIdOption);
-            var accessReviewInstanceIdOption = new Option<string>("--access-review-instance-id", description: "key: id of accessReviewInstance") {
+            var accessReviewInstanceIdOption = new Option<string>("--access-review-instance-id", description: "The unique identifier of accessReviewInstance") {
             };
             accessReviewInstanceIdOption.IsRequired = true;
             command.AddOption(accessReviewInstanceIdOption);
-            var accessReviewReviewerIdOption = new Option<string>("--access-review-reviewer-id", description: "key: id of accessReviewReviewer") {
+            var accessReviewReviewerIdOption = new Option<string>("--access-review-reviewer-id", description: "The unique identifier of accessReviewReviewer") {
             };
             accessReviewReviewerIdOption.IsRequired = true;
             command.AddOption(accessReviewReviewerIdOption);
@@ -200,6 +200,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
                 if (accessReviewScheduleDefinitionId is not null) requestInfo.PathParameters.Add("accessReviewScheduleDefinition%2Did", accessReviewScheduleDefinitionId);
                 if (accessReviewInstanceId is not null) requestInfo.PathParameters.Add("accessReviewInstance%2Did", accessReviewInstanceId);
                 if (accessReviewReviewerId is not null) requestInfo.PathParameters.Add("accessReviewReviewer%2Did", accessReviewReviewerId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -1,8 +1,8 @@
+using ApiSdk.Me.CalendarGroups.Item.Calendars.Item.AllowedCalendarSharingRolesWithUser;
 using ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarPermissions;
 using ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarView;
 using ApiSdk.Me.CalendarGroups.Item.Calendars.Item.Events;
-using ApiSdk.Me.CalendarGroups.Item.Calendars.Item.MicrosoftGraphAllowedCalendarSharingRolesWithUser;
-using ApiSdk.Me.CalendarGroups.Item.Calendars.Item.MicrosoftGraphGetSchedule;
+using ApiSdk.Me.CalendarGroups.Item.Calendars.Item.GetSchedule;
 using ApiSdk.Me.CalendarGroups.Item.Calendars.Item.MultiValueExtendedProperties;
 using ApiSdk.Me.CalendarGroups.Item.Calendars.Item.SingleValueExtendedProperties;
 using ApiSdk.Models;
@@ -52,8 +52,8 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item {
             var builder = new CalendarViewRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             return command;
         }
         /// <summary>
@@ -63,11 +63,11 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property calendars for me";
             // Create options for all the parameters
-            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "key: id of calendarGroup") {
+            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "The unique identifier of calendarGroup") {
             };
             calendarGroupIdOption.IsRequired = true;
             command.AddOption(calendarGroupIdOption);
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            var calendarIdOption = new Option<string>("--calendar-id", description: "The unique identifier of calendar") {
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
@@ -106,8 +106,8 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             return command;
         }
         /// <summary>
@@ -117,11 +117,11 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item {
             var command = new Command("get");
             command.Description = "The calendars in the calendar group. Navigation property. Read-only. Nullable.";
             // Create options for all the parameters
-            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "key: id of calendarGroup") {
+            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "The unique identifier of calendarGroup") {
             };
             calendarGroupIdOption.IsRequired = true;
             command.AddOption(calendarGroupIdOption);
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            var calendarIdOption = new Option<string>("--calendar-id", description: "The unique identifier of calendar") {
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
@@ -174,10 +174,10 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item {
         /// <summary>
         /// Provides operations to call the getSchedule method.
         /// </summary>
-        public Command BuildMicrosoftGraphGetScheduleCommand() {
-            var command = new Command("microsoft-graph-get-schedule");
+        public Command BuildGetScheduleCommand() {
+            var command = new Command("get-schedule");
             command.Description = "Provides operations to call the getSchedule method.";
-            var builder = new MicrosoftGraphGetScheduleRequestBuilder(PathParameters);
+            var builder = new GetScheduleRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -201,11 +201,11 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property calendars in me";
             // Create options for all the parameters
-            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "key: id of calendarGroup") {
+            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "The unique identifier of calendarGroup") {
             };
             calendarGroupIdOption.IsRequired = true;
             command.AddOption(calendarGroupIdOption);
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            var calendarIdOption = new Option<string>("--calendar-id", description: "The unique identifier of calendar") {
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
@@ -245,6 +245,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item {
                 });
                 if (calendarGroupId is not null) requestInfo.PathParameters.Add("calendarGroup%2Did", calendarGroupId);
                 if (calendarId is not null) requestInfo.PathParameters.Add("calendar%2Did", calendarId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

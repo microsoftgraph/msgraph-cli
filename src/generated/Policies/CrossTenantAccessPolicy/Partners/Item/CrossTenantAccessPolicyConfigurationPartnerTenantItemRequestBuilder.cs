@@ -30,7 +30,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property partners for policies";
             // Create options for all the parameters
-            var crossTenantAccessPolicyConfigurationPartnerTenantIdOption = new Option<string>("--cross-tenant-access-policy-configuration-partner-tenant-id", description: "key: tenantId of crossTenantAccessPolicyConfigurationPartner") {
+            var crossTenantAccessPolicyConfigurationPartnerTenantIdOption = new Option<string>("--cross-tenant-access-policy-configuration-partner-tenant-id", description: "The unique identifier of crossTenantAccessPolicyConfigurationPartner") {
             };
             crossTenantAccessPolicyConfigurationPartnerTenantIdOption.IsRequired = true;
             command.AddOption(crossTenantAccessPolicyConfigurationPartnerTenantIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item {
             var command = new Command("get");
             command.Description = "Defines partner-specific configurations for external Azure Active Directory organizations.";
             // Create options for all the parameters
-            var crossTenantAccessPolicyConfigurationPartnerTenantIdOption = new Option<string>("--cross-tenant-access-policy-configuration-partner-tenant-id", description: "key: tenantId of crossTenantAccessPolicyConfigurationPartner") {
+            var crossTenantAccessPolicyConfigurationPartnerTenantIdOption = new Option<string>("--cross-tenant-access-policy-configuration-partner-tenant-id", description: "The unique identifier of crossTenantAccessPolicyConfigurationPartner") {
             };
             crossTenantAccessPolicyConfigurationPartnerTenantIdOption.IsRequired = true;
             command.AddOption(crossTenantAccessPolicyConfigurationPartnerTenantIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property partners in policies";
             // Create options for all the parameters
-            var crossTenantAccessPolicyConfigurationPartnerTenantIdOption = new Option<string>("--cross-tenant-access-policy-configuration-partner-tenant-id", description: "key: tenantId of crossTenantAccessPolicyConfigurationPartner") {
+            var crossTenantAccessPolicyConfigurationPartnerTenantIdOption = new Option<string>("--cross-tenant-access-policy-configuration-partner-tenant-id", description: "The unique identifier of crossTenantAccessPolicyConfigurationPartner") {
             };
             crossTenantAccessPolicyConfigurationPartnerTenantIdOption.IsRequired = true;
             command.AddOption(crossTenantAccessPolicyConfigurationPartnerTenantIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (crossTenantAccessPolicyConfigurationPartnerTenantId is not null) requestInfo.PathParameters.Add("crossTenantAccessPolicyConfigurationPartner%2DtenantId", crossTenantAccessPolicyConfigurationPartnerTenantId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

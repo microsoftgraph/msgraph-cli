@@ -30,15 +30,15 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.Columns.Item.SourceColumn {
             var command = new Command("get");
             command.Description = "The source column for the content type column.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var contentTypeIdOption = new Option<string>("--content-type-id", description: "key: id of contentType") {
+            var contentTypeIdOption = new Option<string>("--content-type-id", description: "The unique identifier of contentType") {
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
-            var columnDefinitionIdOption = new Option<string>("--column-definition-id", description: "key: id of columnDefinition") {
+            var columnDefinitionIdOption = new Option<string>("--column-definition-id", description: "The unique identifier of columnDefinition") {
             };
             columnDefinitionIdOption.IsRequired = true;
             command.AddOption(columnDefinitionIdOption);

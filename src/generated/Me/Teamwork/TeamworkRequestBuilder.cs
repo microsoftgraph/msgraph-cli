@@ -1,6 +1,6 @@
 using ApiSdk.Me.Teamwork.AssociatedTeams;
 using ApiSdk.Me.Teamwork.InstalledApps;
-using ApiSdk.Me.Teamwork.MicrosoftGraphSendActivityNotification;
+using ApiSdk.Me.Teamwork.SendActivityNotification;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -137,16 +137,6 @@ namespace ApiSdk.Me.Teamwork {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the sendActivityNotification method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSendActivityNotificationCommand() {
-            var command = new Command("microsoft-graph-send-activity-notification");
-            command.Description = "Provides operations to call the sendActivityNotification method.";
-            var builder = new MicrosoftGraphSendActivityNotificationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property teamwork in me
         /// </summary>
         public Command BuildPatchCommand() {
@@ -185,6 +175,7 @@ namespace ApiSdk.Me.Teamwork {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -195,6 +186,16 @@ namespace ApiSdk.Me.Teamwork {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sendActivityNotification method.
+        /// </summary>
+        public Command BuildSendActivityNotificationCommand() {
+            var command = new Command("send-activity-notification");
+            command.Description = "Provides operations to call the sendActivityNotification method.";
+            var builder = new SendActivityNotificationRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

@@ -31,15 +31,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.UnifiedGrou
             var command = new Command("delete");
             command.Description = "Delete navigation property unifiedGroupSources for security";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoveryCustodianIdOption = new Option<string>("--ediscovery-custodian-id", description: "key: id of ediscoveryCustodian") {
+            var ediscoveryCustodianIdOption = new Option<string>("--ediscovery-custodian-id", description: "The unique identifier of ediscoveryCustodian") {
             };
             ediscoveryCustodianIdOption.IsRequired = true;
             command.AddOption(ediscoveryCustodianIdOption);
-            var unifiedGroupSourceIdOption = new Option<string>("--unified-group-source-id", description: "key: id of unifiedGroupSource") {
+            var unifiedGroupSourceIdOption = new Option<string>("--unified-group-source-id", description: "The unique identifier of unifiedGroupSource") {
             };
             unifiedGroupSourceIdOption.IsRequired = true;
             command.AddOption(unifiedGroupSourceIdOption);
@@ -77,15 +77,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.UnifiedGrou
             var command = new Command("get");
             command.Description = "Data source entity for groups associated with the custodian.";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoveryCustodianIdOption = new Option<string>("--ediscovery-custodian-id", description: "key: id of ediscoveryCustodian") {
+            var ediscoveryCustodianIdOption = new Option<string>("--ediscovery-custodian-id", description: "The unique identifier of ediscoveryCustodian") {
             };
             ediscoveryCustodianIdOption.IsRequired = true;
             command.AddOption(ediscoveryCustodianIdOption);
-            var unifiedGroupSourceIdOption = new Option<string>("--unified-group-source-id", description: "key: id of unifiedGroupSource") {
+            var unifiedGroupSourceIdOption = new Option<string>("--unified-group-source-id", description: "The unique identifier of unifiedGroupSource") {
             };
             unifiedGroupSourceIdOption.IsRequired = true;
             command.AddOption(unifiedGroupSourceIdOption);
@@ -161,15 +161,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.UnifiedGrou
             var command = new Command("patch");
             command.Description = "Update the navigation property unifiedGroupSources in security";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoveryCustodianIdOption = new Option<string>("--ediscovery-custodian-id", description: "key: id of ediscoveryCustodian") {
+            var ediscoveryCustodianIdOption = new Option<string>("--ediscovery-custodian-id", description: "The unique identifier of ediscoveryCustodian") {
             };
             ediscoveryCustodianIdOption.IsRequired = true;
             command.AddOption(ediscoveryCustodianIdOption);
-            var unifiedGroupSourceIdOption = new Option<string>("--unified-group-source-id", description: "key: id of unifiedGroupSource") {
+            var unifiedGroupSourceIdOption = new Option<string>("--unified-group-source-id", description: "The unique identifier of unifiedGroupSource") {
             };
             unifiedGroupSourceIdOption.IsRequired = true;
             command.AddOption(unifiedGroupSourceIdOption);
@@ -211,6 +211,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.UnifiedGrou
                 if (ediscoveryCaseId is not null) requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
                 if (ediscoveryCustodianId is not null) requestInfo.PathParameters.Add("ediscoveryCustodian%2Did", ediscoveryCustodianId);
                 if (unifiedGroupSourceId is not null) requestInfo.PathParameters.Add("unifiedGroupSource%2Did", unifiedGroupSourceId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

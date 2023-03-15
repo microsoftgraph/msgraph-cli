@@ -30,11 +30,11 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport {
             var command = new Command("get");
             command.Description = "The content stream of the attendee report of a Microsoft Teams live event. Read-only.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/onlinemeeting-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "key: id of onlineMeeting") {
+            var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "The unique identifier of onlineMeeting") {
             };
             onlineMeetingIdOption.IsRequired = true;
             command.AddOption(onlineMeetingIdOption);
@@ -75,11 +75,11 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport {
             var command = new Command("put");
             command.Description = "The content stream of the attendee report of a Microsoft Teams live event. Read-only.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "key: id of onlineMeeting") {
+            var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "The unique identifier of onlineMeeting") {
             };
             onlineMeetingIdOption.IsRequired = true;
             command.AddOption(onlineMeetingIdOption);

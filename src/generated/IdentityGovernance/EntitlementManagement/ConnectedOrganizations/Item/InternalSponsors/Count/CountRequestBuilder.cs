@@ -29,7 +29,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "key: id of connectedOrganization") {
+            var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "The unique identifier of connectedOrganization") {
             };
             connectedOrganizationIdOption.IsRequired = true;
             command.AddOption(connectedOrganizationIdOption);

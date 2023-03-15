@@ -30,11 +30,11 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item.ServiceManagem
             var command = new Command("delete");
             command.Description = "Delete navigation property serviceManagementDetails for tenantRelationships";
             // Create options for all the parameters
-            var delegatedAdminCustomerIdOption = new Option<string>("--delegated-admin-customer-id", description: "key: id of delegatedAdminCustomer") {
+            var delegatedAdminCustomerIdOption = new Option<string>("--delegated-admin-customer-id", description: "The unique identifier of delegatedAdminCustomer") {
             };
             delegatedAdminCustomerIdOption.IsRequired = true;
             command.AddOption(delegatedAdminCustomerIdOption);
-            var delegatedAdminServiceManagementDetailIdOption = new Option<string>("--delegated-admin-service-management-detail-id", description: "key: id of delegatedAdminServiceManagementDetail") {
+            var delegatedAdminServiceManagementDetailIdOption = new Option<string>("--delegated-admin-service-management-detail-id", description: "The unique identifier of delegatedAdminServiceManagementDetail") {
             };
             delegatedAdminServiceManagementDetailIdOption.IsRequired = true;
             command.AddOption(delegatedAdminServiceManagementDetailIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item.ServiceManagem
             var command = new Command("get");
             command.Description = "Contains the management details of a service in the customer tenant that's managed by delegated administration.";
             // Create options for all the parameters
-            var delegatedAdminCustomerIdOption = new Option<string>("--delegated-admin-customer-id", description: "key: id of delegatedAdminCustomer") {
+            var delegatedAdminCustomerIdOption = new Option<string>("--delegated-admin-customer-id", description: "The unique identifier of delegatedAdminCustomer") {
             };
             delegatedAdminCustomerIdOption.IsRequired = true;
             command.AddOption(delegatedAdminCustomerIdOption);
-            var delegatedAdminServiceManagementDetailIdOption = new Option<string>("--delegated-admin-service-management-detail-id", description: "key: id of delegatedAdminServiceManagementDetail") {
+            var delegatedAdminServiceManagementDetailIdOption = new Option<string>("--delegated-admin-service-management-detail-id", description: "The unique identifier of delegatedAdminServiceManagementDetail") {
             };
             delegatedAdminServiceManagementDetailIdOption.IsRequired = true;
             command.AddOption(delegatedAdminServiceManagementDetailIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item.ServiceManagem
             var command = new Command("patch");
             command.Description = "Update the navigation property serviceManagementDetails in tenantRelationships";
             // Create options for all the parameters
-            var delegatedAdminCustomerIdOption = new Option<string>("--delegated-admin-customer-id", description: "key: id of delegatedAdminCustomer") {
+            var delegatedAdminCustomerIdOption = new Option<string>("--delegated-admin-customer-id", description: "The unique identifier of delegatedAdminCustomer") {
             };
             delegatedAdminCustomerIdOption.IsRequired = true;
             command.AddOption(delegatedAdminCustomerIdOption);
-            var delegatedAdminServiceManagementDetailIdOption = new Option<string>("--delegated-admin-service-management-detail-id", description: "key: id of delegatedAdminServiceManagementDetail") {
+            var delegatedAdminServiceManagementDetailIdOption = new Option<string>("--delegated-admin-service-management-detail-id", description: "The unique identifier of delegatedAdminServiceManagementDetail") {
             };
             delegatedAdminServiceManagementDetailIdOption.IsRequired = true;
             command.AddOption(delegatedAdminServiceManagementDetailIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item.ServiceManagem
                 });
                 if (delegatedAdminCustomerId is not null) requestInfo.PathParameters.Add("delegatedAdminCustomer%2Did", delegatedAdminCustomerId);
                 if (delegatedAdminServiceManagementDetailId is not null) requestInfo.PathParameters.Add("delegatedAdminServiceManagementDetail%2Did", delegatedAdminServiceManagementDetailId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

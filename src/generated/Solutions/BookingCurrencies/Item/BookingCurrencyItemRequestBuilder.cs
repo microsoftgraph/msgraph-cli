@@ -30,7 +30,7 @@ namespace ApiSdk.Solutions.BookingCurrencies.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property bookingCurrencies for solutions";
             // Create options for all the parameters
-            var bookingCurrencyIdOption = new Option<string>("--booking-currency-id", description: "key: id of bookingCurrency") {
+            var bookingCurrencyIdOption = new Option<string>("--booking-currency-id", description: "The unique identifier of bookingCurrency") {
             };
             bookingCurrencyIdOption.IsRequired = true;
             command.AddOption(bookingCurrencyIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Solutions.BookingCurrencies.Item {
             var command = new Command("get");
             command.Description = "Get bookingCurrencies from solutions";
             // Create options for all the parameters
-            var bookingCurrencyIdOption = new Option<string>("--booking-currency-id", description: "key: id of bookingCurrency") {
+            var bookingCurrencyIdOption = new Option<string>("--booking-currency-id", description: "The unique identifier of bookingCurrency") {
             };
             bookingCurrencyIdOption.IsRequired = true;
             command.AddOption(bookingCurrencyIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.Solutions.BookingCurrencies.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property bookingCurrencies in solutions";
             // Create options for all the parameters
-            var bookingCurrencyIdOption = new Option<string>("--booking-currency-id", description: "key: id of bookingCurrency") {
+            var bookingCurrencyIdOption = new Option<string>("--booking-currency-id", description: "The unique identifier of bookingCurrency") {
             };
             bookingCurrencyIdOption.IsRequired = true;
             command.AddOption(bookingCurrencyIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.Solutions.BookingCurrencies.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (bookingCurrencyId is not null) requestInfo.PathParameters.Add("bookingCurrency%2Did", bookingCurrencyId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

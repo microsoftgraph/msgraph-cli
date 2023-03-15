@@ -30,7 +30,7 @@ namespace ApiSdk.Print.Shares.Item.Printer {
             var command = new Command("get");
             command.Description = "The printer that this printer share is related to.";
             // Create options for all the parameters
-            var printerShareIdOption = new Option<string>("--printer-share-id", description: "key: id of printerShare") {
+            var printerShareIdOption = new Option<string>("--printer-share-id", description: "The unique identifier of printerShare") {
             };
             printerShareIdOption.IsRequired = true;
             command.AddOption(printerShareIdOption);

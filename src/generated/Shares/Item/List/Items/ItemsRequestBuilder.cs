@@ -36,8 +36,8 @@ namespace ApiSdk.Shares.Item.List.Items {
             command.AddCommand(builder.BuildDocumentSetVersionsCommand());
             command.AddCommand(builder.BuildDriveItemCommand());
             command.AddCommand(builder.BuildFieldsCommand());
+            command.AddCommand(builder.BuildGetActivitiesByIntervalCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetActivitiesByIntervalCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildVersionsCommand());
             return command;
@@ -60,7 +60,7 @@ namespace ApiSdk.Shares.Item.List.Items {
             var command = new Command("create");
             command.Description = "Create a new [listItem][] in a [list][].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/listitem-create?view=graph-rest-1.0";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
@@ -98,6 +98,7 @@ namespace ApiSdk.Shares.Item.List.Items {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (sharedDriveItemId is not null) requestInfo.PathParameters.Add("sharedDriveItem%2Did", sharedDriveItemId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -118,7 +119,7 @@ namespace ApiSdk.Shares.Item.List.Items {
             var command = new Command("list");
             command.Description = "Get the collection of [items][item] in a [list][].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/listitem-list?view=graph-rest-1.0";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);

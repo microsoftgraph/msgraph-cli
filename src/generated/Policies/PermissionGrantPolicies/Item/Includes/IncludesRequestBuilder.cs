@@ -54,7 +54,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes {
             var command = new Command("create");
             command.Description = "Add conditions under which a permission grant event is *included* in a permission grant policy. You do this by adding a permissionGrantConditionSet to the **includes** collection of a  permissionGrantPolicy.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/permissiongrantpolicy-post-includes?view=graph-rest-1.0";
             // Create options for all the parameters
-            var permissionGrantPolicyIdOption = new Option<string>("--permission-grant-policy-id", description: "key: id of permissionGrantPolicy") {
+            var permissionGrantPolicyIdOption = new Option<string>("--permission-grant-policy-id", description: "The unique identifier of permissionGrantPolicy") {
             };
             permissionGrantPolicyIdOption.IsRequired = true;
             command.AddOption(permissionGrantPolicyIdOption);
@@ -92,6 +92,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (permissionGrantPolicyId is not null) requestInfo.PathParameters.Add("permissionGrantPolicy%2Did", permissionGrantPolicyId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,7 +113,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes {
             var command = new Command("list");
             command.Description = "Retrieve the condition sets which are *included* in a permissionGrantPolicy.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/permissiongrantpolicy-list-includes?view=graph-rest-1.0";
             // Create options for all the parameters
-            var permissionGrantPolicyIdOption = new Option<string>("--permission-grant-policy-id", description: "key: id of permissionGrantPolicy") {
+            var permissionGrantPolicyIdOption = new Option<string>("--permission-grant-policy-id", description: "The unique identifier of permissionGrantPolicy") {
             };
             permissionGrantPolicyIdOption.IsRequired = true;
             command.AddOption(permissionGrantPolicyIdOption);

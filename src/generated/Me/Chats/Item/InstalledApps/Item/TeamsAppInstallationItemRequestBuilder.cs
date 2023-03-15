@@ -1,6 +1,6 @@
-using ApiSdk.Me.Chats.Item.InstalledApps.Item.MicrosoftGraphUpgrade;
 using ApiSdk.Me.Chats.Item.InstalledApps.Item.TeamsApp;
 using ApiSdk.Me.Chats.Item.InstalledApps.Item.TeamsAppDefinition;
+using ApiSdk.Me.Chats.Item.InstalledApps.Item.Upgrade;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,11 +33,11 @@ namespace ApiSdk.Me.Chats.Item.InstalledApps.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property installedApps for me";
             // Create options for all the parameters
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
-            var teamsAppInstallationIdOption = new Option<string>("--teams-app-installation-id", description: "key: id of teamsAppInstallation") {
+            var teamsAppInstallationIdOption = new Option<string>("--teams-app-installation-id", description: "The unique identifier of teamsAppInstallation") {
             };
             teamsAppInstallationIdOption.IsRequired = true;
             command.AddOption(teamsAppInstallationIdOption);
@@ -73,11 +73,11 @@ namespace ApiSdk.Me.Chats.Item.InstalledApps.Item {
             var command = new Command("get");
             command.Description = "A collection of all the apps in the chat. Nullable.";
             // Create options for all the parameters
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
-            var teamsAppInstallationIdOption = new Option<string>("--teams-app-installation-id", description: "key: id of teamsAppInstallation") {
+            var teamsAppInstallationIdOption = new Option<string>("--teams-app-installation-id", description: "The unique identifier of teamsAppInstallation") {
             };
             teamsAppInstallationIdOption.IsRequired = true;
             command.AddOption(teamsAppInstallationIdOption);
@@ -135,27 +135,17 @@ namespace ApiSdk.Me.Chats.Item.InstalledApps.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the upgrade method.
-        /// </summary>
-        public Command BuildMicrosoftGraphUpgradeCommand() {
-            var command = new Command("microsoft-graph-upgrade");
-            command.Description = "Provides operations to call the upgrade method.";
-            var builder = new MicrosoftGraphUpgradeRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property installedApps in me
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property installedApps in me";
             // Create options for all the parameters
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
-            var teamsAppInstallationIdOption = new Option<string>("--teams-app-installation-id", description: "key: id of teamsAppInstallation") {
+            var teamsAppInstallationIdOption = new Option<string>("--teams-app-installation-id", description: "The unique identifier of teamsAppInstallation") {
             };
             teamsAppInstallationIdOption.IsRequired = true;
             command.AddOption(teamsAppInstallationIdOption);
@@ -195,6 +185,7 @@ namespace ApiSdk.Me.Chats.Item.InstalledApps.Item {
                 });
                 if (chatId is not null) requestInfo.PathParameters.Add("chat%2Did", chatId);
                 if (teamsAppInstallationId is not null) requestInfo.PathParameters.Add("teamsAppInstallation%2Did", teamsAppInstallationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -225,6 +216,16 @@ namespace ApiSdk.Me.Chats.Item.InstalledApps.Item {
             command.Description = "Provides operations to manage the teamsAppDefinition property of the microsoft.graph.teamsAppInstallation entity.";
             var builder = new TeamsAppDefinitionRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the upgrade method.
+        /// </summary>
+        public Command BuildUpgradeCommand() {
+            var command = new Command("upgrade");
+            command.Description = "Provides operations to call the upgrade method.";
+            var builder = new UpgradeRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

@@ -1,11 +1,11 @@
 using ApiSdk.DirectoryRoles.Item.Members.Count;
+using ApiSdk.DirectoryRoles.Item.Members.GraphApplication;
+using ApiSdk.DirectoryRoles.Item.Members.GraphDevice;
+using ApiSdk.DirectoryRoles.Item.Members.GraphGroup;
+using ApiSdk.DirectoryRoles.Item.Members.GraphOrgContact;
+using ApiSdk.DirectoryRoles.Item.Members.GraphServicePrincipal;
+using ApiSdk.DirectoryRoles.Item.Members.GraphUser;
 using ApiSdk.DirectoryRoles.Item.Members.Item;
-using ApiSdk.DirectoryRoles.Item.Members.MicrosoftGraphApplication;
-using ApiSdk.DirectoryRoles.Item.Members.MicrosoftGraphDevice;
-using ApiSdk.DirectoryRoles.Item.Members.MicrosoftGraphGroup;
-using ApiSdk.DirectoryRoles.Item.Members.MicrosoftGraphOrgContact;
-using ApiSdk.DirectoryRoles.Item.Members.MicrosoftGraphServicePrincipal;
-using ApiSdk.DirectoryRoles.Item.Members.MicrosoftGraphUser;
 using ApiSdk.DirectoryRoles.Item.Members.Ref;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
@@ -38,12 +38,12 @@ namespace ApiSdk.DirectoryRoles.Item.Members {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildMicrosoftGraphApplicationCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeviceCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGroupCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphOrgContactCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphServicePrincipalCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUserCommand());
+            command.AddCommand(builder.BuildGraphApplicationCommand());
+            command.AddCommand(builder.BuildGraphDeviceCommand());
+            command.AddCommand(builder.BuildGraphGroupCommand());
+            command.AddCommand(builder.BuildGraphOrgContactCommand());
+            command.AddCommand(builder.BuildGraphServicePrincipalCommand());
+            command.AddCommand(builder.BuildGraphUserCommand());
             command.AddCommand(builder.BuildRefCommand());
             return command;
         }
@@ -58,6 +58,72 @@ namespace ApiSdk.DirectoryRoles.Item.Members {
             return command;
         }
         /// <summary>
+        /// Casts the previous resource to application.
+        /// </summary>
+        public Command BuildGraphApplicationCommand() {
+            var command = new Command("graph-application");
+            command.Description = "Casts the previous resource to application.";
+            var builder = new GraphApplicationRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to device.
+        /// </summary>
+        public Command BuildGraphDeviceCommand() {
+            var command = new Command("graph-device");
+            command.Description = "Casts the previous resource to device.";
+            var builder = new GraphDeviceRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to group.
+        /// </summary>
+        public Command BuildGraphGroupCommand() {
+            var command = new Command("graph-group");
+            command.Description = "Casts the previous resource to group.";
+            var builder = new GraphGroupRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to orgContact.
+        /// </summary>
+        public Command BuildGraphOrgContactCommand() {
+            var command = new Command("graph-org-contact");
+            command.Description = "Casts the previous resource to orgContact.";
+            var builder = new GraphOrgContactRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to servicePrincipal.
+        /// </summary>
+        public Command BuildGraphServicePrincipalCommand() {
+            var command = new Command("graph-service-principal");
+            command.Description = "Casts the previous resource to servicePrincipal.";
+            var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to user.
+        /// </summary>
+        public Command BuildGraphUserCommand() {
+            var command = new Command("graph-user");
+            command.Description = "Casts the previous resource to user.";
+            var builder = new GraphUserRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Users that are members of this directory role. HTTP Methods: GET, POST, DELETE. Read-only. Nullable. Supports $expand.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/directoryrole-list-members?view=graph-rest-1.0" />
         /// </summary>
@@ -65,7 +131,7 @@ namespace ApiSdk.DirectoryRoles.Item.Members {
             var command = new Command("list");
             command.Description = "Users that are members of this directory role. HTTP Methods: GET, POST, DELETE. Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directoryrole-list-members?view=graph-rest-1.0";
             // Create options for all the parameters
-            var directoryRoleIdOption = new Option<string>("--directory-role-id", description: "key: id of directoryRole") {
+            var directoryRoleIdOption = new Option<string>("--directory-role-id", description: "The unique identifier of directoryRole") {
             };
             directoryRoleIdOption.IsRequired = true;
             command.AddOption(directoryRoleIdOption);
@@ -174,72 +240,6 @@ namespace ApiSdk.DirectoryRoles.Item.Members {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to application.
-        /// </summary>
-        public Command BuildMicrosoftGraphApplicationCommand() {
-            var command = new Command("microsoft-graph-application");
-            command.Description = "Casts the previous resource to application.";
-            var builder = new MicrosoftGraphApplicationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to device.
-        /// </summary>
-        public Command BuildMicrosoftGraphDeviceCommand() {
-            var command = new Command("microsoft-graph-device");
-            command.Description = "Casts the previous resource to device.";
-            var builder = new MicrosoftGraphDeviceRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to group.
-        /// </summary>
-        public Command BuildMicrosoftGraphGroupCommand() {
-            var command = new Command("microsoft-graph-group");
-            command.Description = "Casts the previous resource to group.";
-            var builder = new MicrosoftGraphGroupRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to orgContact.
-        /// </summary>
-        public Command BuildMicrosoftGraphOrgContactCommand() {
-            var command = new Command("microsoft-graph-org-contact");
-            command.Description = "Casts the previous resource to orgContact.";
-            var builder = new MicrosoftGraphOrgContactRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to servicePrincipal.
-        /// </summary>
-        public Command BuildMicrosoftGraphServicePrincipalCommand() {
-            var command = new Command("microsoft-graph-service-principal");
-            command.Description = "Casts the previous resource to servicePrincipal.";
-            var builder = new MicrosoftGraphServicePrincipalRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to user.
-        /// </summary>
-        public Command BuildMicrosoftGraphUserCommand() {
-            var command = new Command("microsoft-graph-user");
-            command.Description = "Casts the previous resource to user.";
-            var builder = new MicrosoftGraphUserRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

@@ -54,7 +54,7 @@ namespace ApiSdk.Groups.Item.Settings {
             var command = new Command("create");
             command.Description = "Create a new setting based on the templates available in groupSettingTemplates. These settings can be at the tenant-level or at the group level. Group settings apply to only Microsoft 365 groups. The template named `Group.Unified` can be used to configure tenant-wide Microsoft 365 group settings, while the template named `Group.Unified.Guest` can be used to configure group-specific settings.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-post-settings?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
@@ -92,6 +92,7 @@ namespace ApiSdk.Groups.Item.Settings {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,7 +113,7 @@ namespace ApiSdk.Groups.Item.Settings {
             var command = new Command("list");
             command.Description = "Retrieve a list of tenant-level or group-specific group settings objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-list-settings?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);

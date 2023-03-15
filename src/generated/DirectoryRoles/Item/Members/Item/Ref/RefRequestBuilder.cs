@@ -29,11 +29,11 @@ namespace ApiSdk.DirectoryRoles.Item.Members.Item.Ref {
             var command = new Command("delete");
             command.Description = "Delete ref of navigation property members for directoryRoles";
             // Create options for all the parameters
-            var directoryRoleIdOption = new Option<string>("--directory-role-id", description: "key: id of directoryRole") {
+            var directoryRoleIdOption = new Option<string>("--directory-role-id", description: "The unique identifier of directoryRole") {
             };
             directoryRoleIdOption.IsRequired = true;
             command.AddOption(directoryRoleIdOption);
-            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "key: id of directoryObject") {
+            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "The unique identifier of directoryObject") {
             };
             directoryObjectIdOption.IsRequired = true;
             command.AddOption(directoryObjectIdOption);

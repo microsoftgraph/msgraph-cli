@@ -53,7 +53,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNot
             var command = new Command("create");
             command.Description = "Create new navigation property to localizedNotificationMessages for deviceManagement";
             // Create options for all the parameters
-            var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "key: id of notificationMessageTemplate") {
+            var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "The unique identifier of notificationMessageTemplate") {
             };
             notificationMessageTemplateIdOption.IsRequired = true;
             command.AddOption(notificationMessageTemplateIdOption);
@@ -91,6 +91,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNot
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (notificationMessageTemplateId is not null) requestInfo.PathParameters.Add("notificationMessageTemplate%2Did", notificationMessageTemplateId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -110,7 +111,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNot
             var command = new Command("list");
             command.Description = "The list of localized messages for this Notification Message Template.";
             // Create options for all the parameters
-            var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "key: id of notificationMessageTemplate") {
+            var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "The unique identifier of notificationMessageTemplate") {
             };
             notificationMessageTemplateIdOption.IsRequired = true;
             command.AddOption(notificationMessageTemplateIdOption);

@@ -31,7 +31,7 @@ namespace ApiSdk.Contacts.Item.Manager {
             var command = new Command("get");
             command.Description = "Get this organizational contact's manager.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/orgcontact-get-manager?view=graph-rest-1.0";
             // Create options for all the parameters
-            var orgContactIdOption = new Option<string>("--org-contact-id", description: "key: id of orgContact") {
+            var orgContactIdOption = new Option<string>("--org-contact-id", description: "The unique identifier of orgContact") {
             };
             orgContactIdOption.IsRequired = true;
             command.AddOption(orgContactIdOption);

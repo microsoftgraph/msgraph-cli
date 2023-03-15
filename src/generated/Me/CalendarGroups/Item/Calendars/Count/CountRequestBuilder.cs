@@ -29,7 +29,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "key: id of calendarGroup") {
+            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "The unique identifier of calendarGroup") {
             };
             calendarGroupIdOption.IsRequired = true;
             command.AddOption(calendarGroupIdOption);

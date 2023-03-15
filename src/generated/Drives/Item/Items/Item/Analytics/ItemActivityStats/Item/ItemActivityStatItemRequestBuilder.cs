@@ -44,15 +44,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Analytics.ItemActivityStats.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property itemActivityStats for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var itemActivityStatIdOption = new Option<string>("--item-activity-stat-id", description: "key: id of itemActivityStat") {
+            var itemActivityStatIdOption = new Option<string>("--item-activity-stat-id", description: "The unique identifier of itemActivityStat") {
             };
             itemActivityStatIdOption.IsRequired = true;
             command.AddOption(itemActivityStatIdOption);
@@ -90,15 +90,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Analytics.ItemActivityStats.Item {
             var command = new Command("get");
             command.Description = "Get itemActivityStats from drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var itemActivityStatIdOption = new Option<string>("--item-activity-stat-id", description: "key: id of itemActivityStat") {
+            var itemActivityStatIdOption = new Option<string>("--item-activity-stat-id", description: "The unique identifier of itemActivityStat") {
             };
             itemActivityStatIdOption.IsRequired = true;
             command.AddOption(itemActivityStatIdOption);
@@ -164,15 +164,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Analytics.ItemActivityStats.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property itemActivityStats in drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var itemActivityStatIdOption = new Option<string>("--item-activity-stat-id", description: "key: id of itemActivityStat") {
+            var itemActivityStatIdOption = new Option<string>("--item-activity-stat-id", description: "The unique identifier of itemActivityStat") {
             };
             itemActivityStatIdOption.IsRequired = true;
             command.AddOption(itemActivityStatIdOption);
@@ -214,6 +214,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Analytics.ItemActivityStats.Item {
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
                 if (itemActivityStatId is not null) requestInfo.PathParameters.Add("itemActivityStat%2Did", itemActivityStatId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -1,5 +1,5 @@
-using ApiSdk.GroupLifecyclePolicies.Item.MicrosoftGraphAddGroup;
-using ApiSdk.GroupLifecyclePolicies.Item.MicrosoftGraphRemoveGroup;
+using ApiSdk.GroupLifecyclePolicies.Item.AddGroup;
+using ApiSdk.GroupLifecyclePolicies.Item.RemoveGroup;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,6 +26,16 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the addGroup method.
+        /// </summary>
+        public Command BuildAddGroupCommand() {
+            var command = new Command("add-group");
+            command.Description = "Provides operations to call the addGroup method.";
+            var builder = new AddGroupRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete a groupLifecyclePolicy.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/grouplifecyclepolicy-delete?view=graph-rest-1.0" />
         /// </summary>
@@ -33,7 +43,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
             var command = new Command("delete");
             command.Description = "Delete a groupLifecyclePolicy.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/grouplifecyclepolicy-delete?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupLifecyclePolicyIdOption = new Option<string>("--group-lifecycle-policy-id", description: "key: id of groupLifecyclePolicy") {
+            var groupLifecyclePolicyIdOption = new Option<string>("--group-lifecycle-policy-id", description: "The unique identifier of groupLifecyclePolicy") {
             };
             groupLifecyclePolicyIdOption.IsRequired = true;
             command.AddOption(groupLifecyclePolicyIdOption);
@@ -68,7 +78,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a groupLifecyclePolicies object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/grouplifecyclepolicy-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupLifecyclePolicyIdOption = new Option<string>("--group-lifecycle-policy-id", description: "key: id of groupLifecyclePolicy") {
+            var groupLifecyclePolicyIdOption = new Option<string>("--group-lifecycle-policy-id", description: "The unique identifier of groupLifecyclePolicy") {
             };
             groupLifecyclePolicyIdOption.IsRequired = true;
             command.AddOption(groupLifecyclePolicyIdOption);
@@ -124,26 +134,6 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the addGroup method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAddGroupCommand() {
-            var command = new Command("microsoft-graph-add-group");
-            command.Description = "Provides operations to call the addGroup method.";
-            var builder = new MicrosoftGraphAddGroupRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the removeGroup method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRemoveGroupCommand() {
-            var command = new Command("microsoft-graph-remove-group");
-            command.Description = "Provides operations to call the removeGroup method.";
-            var builder = new MicrosoftGraphRemoveGroupRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the properties of a groupLifecyclePolicygroupLifecyclePolicy resource type object.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/grouplifecyclepolicy-update?view=graph-rest-1.0" />
         /// </summary>
@@ -151,7 +141,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
             var command = new Command("patch");
             command.Description = "Update the properties of a groupLifecyclePolicygroupLifecyclePolicy resource type object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/grouplifecyclepolicy-update?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupLifecyclePolicyIdOption = new Option<string>("--group-lifecycle-policy-id", description: "key: id of groupLifecyclePolicy") {
+            var groupLifecyclePolicyIdOption = new Option<string>("--group-lifecycle-policy-id", description: "The unique identifier of groupLifecyclePolicy") {
             };
             groupLifecyclePolicyIdOption.IsRequired = true;
             command.AddOption(groupLifecyclePolicyIdOption);
@@ -189,6 +179,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (groupLifecyclePolicyId is not null) requestInfo.PathParameters.Add("groupLifecyclePolicy%2Did", groupLifecyclePolicyId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -199,6 +190,16 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the removeGroup method.
+        /// </summary>
+        public Command BuildRemoveGroupCommand() {
+            var command = new Command("remove-group");
+            command.Description = "Provides operations to call the removeGroup method.";
+            var builder = new RemoveGroupRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

@@ -53,11 +53,11 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.FileNamespace.Loc
             var command = new Command("create");
             command.Description = "Create new navigation property to versions for identityGovernance";
             // Create options for all the parameters
-            var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement") {
+            var agreementIdOption = new Option<string>("--agreement-id", description: "The unique identifier of agreement") {
             };
             agreementIdOption.IsRequired = true;
             command.AddOption(agreementIdOption);
-            var agreementFileLocalizationIdOption = new Option<string>("--agreement-file-localization-id", description: "key: id of agreementFileLocalization") {
+            var agreementFileLocalizationIdOption = new Option<string>("--agreement-file-localization-id", description: "The unique identifier of agreementFileLocalization") {
             };
             agreementFileLocalizationIdOption.IsRequired = true;
             command.AddOption(agreementFileLocalizationIdOption);
@@ -97,6 +97,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.FileNamespace.Loc
                 });
                 if (agreementId is not null) requestInfo.PathParameters.Add("agreement%2Did", agreementId);
                 if (agreementFileLocalizationId is not null) requestInfo.PathParameters.Add("agreementFileLocalization%2Did", agreementFileLocalizationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -116,11 +117,11 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item.FileNamespace.Loc
             var command = new Command("list");
             command.Description = "Read-only. Customized versions of the terms of use agreement in the Azure AD tenant.";
             // Create options for all the parameters
-            var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement") {
+            var agreementIdOption = new Option<string>("--agreement-id", description: "The unique identifier of agreement") {
             };
             agreementIdOption.IsRequired = true;
             command.AddOption(agreementIdOption);
-            var agreementFileLocalizationIdOption = new Option<string>("--agreement-file-localization-id", description: "key: id of agreementFileLocalization") {
+            var agreementFileLocalizationIdOption = new Option<string>("--agreement-file-localization-id", description: "The unique identifier of agreementFileLocalization") {
             };
             agreementFileLocalizationIdOption.IsRequired = true;
             command.AddOption(agreementFileLocalizationIdOption);

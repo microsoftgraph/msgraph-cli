@@ -54,7 +54,7 @@ namespace ApiSdk.Me.Activities.Item.HistoryItems {
             var command = new Command("create");
             command.Description = "Create new navigation property to historyItems for me";
             // Create options for all the parameters
-            var userActivityIdOption = new Option<string>("--user-activity-id", description: "key: id of userActivity") {
+            var userActivityIdOption = new Option<string>("--user-activity-id", description: "The unique identifier of userActivity") {
             };
             userActivityIdOption.IsRequired = true;
             command.AddOption(userActivityIdOption);
@@ -92,6 +92,7 @@ namespace ApiSdk.Me.Activities.Item.HistoryItems {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (userActivityId is not null) requestInfo.PathParameters.Add("userActivity%2Did", userActivityId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -111,7 +112,7 @@ namespace ApiSdk.Me.Activities.Item.HistoryItems {
             var command = new Command("list");
             command.Description = "Optional. NavigationProperty/Containment; navigation property to the activity's historyItems.";
             // Create options for all the parameters
-            var userActivityIdOption = new Option<string>("--user-activity-id", description: "key: id of userActivity") {
+            var userActivityIdOption = new Option<string>("--user-activity-id", description: "The unique identifier of userActivity") {
             };
             userActivityIdOption.IsRequired = true;
             command.AddOption(userActivityIdOption);

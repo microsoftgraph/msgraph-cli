@@ -1,5 +1,5 @@
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection.MicrosoftGraphProtect;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection.MicrosoftGraphUnprotect;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection.Protect;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection.Unprotect;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,15 +32,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection {
             var command = new Command("delete");
             command.Description = "Delete navigation property protection for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
@@ -79,15 +79,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of worksheetprotection object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/worksheetprotection-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
@@ -147,41 +147,21 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the protect method.
-        /// </summary>
-        public Command BuildMicrosoftGraphProtectCommand() {
-            var command = new Command("microsoft-graph-protect");
-            command.Description = "Provides operations to call the protect method.";
-            var builder = new MicrosoftGraphProtectRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the unprotect method.
-        /// </summary>
-        public Command BuildMicrosoftGraphUnprotectCommand() {
-            var command = new Command("microsoft-graph-unprotect");
-            command.Description = "Provides operations to call the unprotect method.";
-            var builder = new MicrosoftGraphUnprotectRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property protection in drives
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property protection in drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
@@ -223,6 +203,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection {
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
                 if (workbookWorksheetId is not null) requestInfo.PathParameters.Add("workbookWorksheet%2Did", workbookWorksheetId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -233,6 +214,26 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the protect method.
+        /// </summary>
+        public Command BuildProtectCommand() {
+            var command = new Command("protect");
+            command.Description = "Provides operations to call the protect method.";
+            var builder = new ProtectRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the unprotect method.
+        /// </summary>
+        public Command BuildUnprotectCommand() {
+            var command = new Command("unprotect");
+            command.Description = "Provides operations to call the unprotect method.";
+            var builder = new UnprotectRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

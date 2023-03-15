@@ -30,11 +30,11 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assignment
             var command = new Command("delete");
             command.Description = "Delete navigation property assignments for deviceManagement";
             // Create options for all the parameters
-            var deviceEnrollmentConfigurationIdOption = new Option<string>("--device-enrollment-configuration-id", description: "key: id of deviceEnrollmentConfiguration") {
+            var deviceEnrollmentConfigurationIdOption = new Option<string>("--device-enrollment-configuration-id", description: "The unique identifier of deviceEnrollmentConfiguration") {
             };
             deviceEnrollmentConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceEnrollmentConfigurationIdOption);
-            var enrollmentConfigurationAssignmentIdOption = new Option<string>("--enrollment-configuration-assignment-id", description: "key: id of enrollmentConfigurationAssignment") {
+            var enrollmentConfigurationAssignmentIdOption = new Option<string>("--enrollment-configuration-assignment-id", description: "The unique identifier of enrollmentConfigurationAssignment") {
             };
             enrollmentConfigurationAssignmentIdOption.IsRequired = true;
             command.AddOption(enrollmentConfigurationAssignmentIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assignment
             var command = new Command("get");
             command.Description = "The list of group assignments for the device configuration profile";
             // Create options for all the parameters
-            var deviceEnrollmentConfigurationIdOption = new Option<string>("--device-enrollment-configuration-id", description: "key: id of deviceEnrollmentConfiguration") {
+            var deviceEnrollmentConfigurationIdOption = new Option<string>("--device-enrollment-configuration-id", description: "The unique identifier of deviceEnrollmentConfiguration") {
             };
             deviceEnrollmentConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceEnrollmentConfigurationIdOption);
-            var enrollmentConfigurationAssignmentIdOption = new Option<string>("--enrollment-configuration-assignment-id", description: "key: id of enrollmentConfigurationAssignment") {
+            var enrollmentConfigurationAssignmentIdOption = new Option<string>("--enrollment-configuration-assignment-id", description: "The unique identifier of enrollmentConfigurationAssignment") {
             };
             enrollmentConfigurationAssignmentIdOption.IsRequired = true;
             command.AddOption(enrollmentConfigurationAssignmentIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assignment
             var command = new Command("patch");
             command.Description = "Update the navigation property assignments in deviceManagement";
             // Create options for all the parameters
-            var deviceEnrollmentConfigurationIdOption = new Option<string>("--device-enrollment-configuration-id", description: "key: id of deviceEnrollmentConfiguration") {
+            var deviceEnrollmentConfigurationIdOption = new Option<string>("--device-enrollment-configuration-id", description: "The unique identifier of deviceEnrollmentConfiguration") {
             };
             deviceEnrollmentConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceEnrollmentConfigurationIdOption);
-            var enrollmentConfigurationAssignmentIdOption = new Option<string>("--enrollment-configuration-assignment-id", description: "key: id of enrollmentConfigurationAssignment") {
+            var enrollmentConfigurationAssignmentIdOption = new Option<string>("--enrollment-configuration-assignment-id", description: "The unique identifier of enrollmentConfigurationAssignment") {
             };
             enrollmentConfigurationAssignmentIdOption.IsRequired = true;
             command.AddOption(enrollmentConfigurationAssignmentIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assignment
                 });
                 if (deviceEnrollmentConfigurationId is not null) requestInfo.PathParameters.Add("deviceEnrollmentConfiguration%2Did", deviceEnrollmentConfigurationId);
                 if (enrollmentConfigurationAssignmentId is not null) requestInfo.PathParameters.Add("enrollmentConfigurationAssignment%2Did", enrollmentConfigurationAssignmentId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

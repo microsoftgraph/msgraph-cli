@@ -29,7 +29,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var deviceCompliancePolicySettingStateSummaryIdOption = new Option<string>("--device-compliance-policy-setting-state-summary-id", description: "key: id of deviceCompliancePolicySettingStateSummary") {
+            var deviceCompliancePolicySettingStateSummaryIdOption = new Option<string>("--device-compliance-policy-setting-state-summary-id", description: "The unique identifier of deviceCompliancePolicySettingStateSummary") {
             };
             deviceCompliancePolicySettingStateSummaryIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicySettingStateSummaryIdOption);

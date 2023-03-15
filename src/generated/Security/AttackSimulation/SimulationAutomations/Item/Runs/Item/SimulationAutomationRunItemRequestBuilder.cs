@@ -30,11 +30,11 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item.Runs.Item 
             var command = new Command("delete");
             command.Description = "Delete navigation property runs for security";
             // Create options for all the parameters
-            var simulationAutomationIdOption = new Option<string>("--simulation-automation-id", description: "key: id of simulationAutomation") {
+            var simulationAutomationIdOption = new Option<string>("--simulation-automation-id", description: "The unique identifier of simulationAutomation") {
             };
             simulationAutomationIdOption.IsRequired = true;
             command.AddOption(simulationAutomationIdOption);
-            var simulationAutomationRunIdOption = new Option<string>("--simulation-automation-run-id", description: "key: id of simulationAutomationRun") {
+            var simulationAutomationRunIdOption = new Option<string>("--simulation-automation-run-id", description: "The unique identifier of simulationAutomationRun") {
             };
             simulationAutomationRunIdOption.IsRequired = true;
             command.AddOption(simulationAutomationRunIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item.Runs.Item 
             var command = new Command("get");
             command.Description = "A collection of simulation automation runs.";
             // Create options for all the parameters
-            var simulationAutomationIdOption = new Option<string>("--simulation-automation-id", description: "key: id of simulationAutomation") {
+            var simulationAutomationIdOption = new Option<string>("--simulation-automation-id", description: "The unique identifier of simulationAutomation") {
             };
             simulationAutomationIdOption.IsRequired = true;
             command.AddOption(simulationAutomationIdOption);
-            var simulationAutomationRunIdOption = new Option<string>("--simulation-automation-run-id", description: "key: id of simulationAutomationRun") {
+            var simulationAutomationRunIdOption = new Option<string>("--simulation-automation-run-id", description: "The unique identifier of simulationAutomationRun") {
             };
             simulationAutomationRunIdOption.IsRequired = true;
             command.AddOption(simulationAutomationRunIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item.Runs.Item 
             var command = new Command("patch");
             command.Description = "Update the navigation property runs in security";
             // Create options for all the parameters
-            var simulationAutomationIdOption = new Option<string>("--simulation-automation-id", description: "key: id of simulationAutomation") {
+            var simulationAutomationIdOption = new Option<string>("--simulation-automation-id", description: "The unique identifier of simulationAutomation") {
             };
             simulationAutomationIdOption.IsRequired = true;
             command.AddOption(simulationAutomationIdOption);
-            var simulationAutomationRunIdOption = new Option<string>("--simulation-automation-run-id", description: "key: id of simulationAutomationRun") {
+            var simulationAutomationRunIdOption = new Option<string>("--simulation-automation-run-id", description: "The unique identifier of simulationAutomationRun") {
             };
             simulationAutomationRunIdOption.IsRequired = true;
             command.AddOption(simulationAutomationRunIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item.Runs.Item 
                 });
                 if (simulationAutomationId is not null) requestInfo.PathParameters.Add("simulationAutomation%2Did", simulationAutomationId);
                 if (simulationAutomationRunId is not null) requestInfo.PathParameters.Add("simulationAutomationRun%2Did", simulationAutomationRunId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

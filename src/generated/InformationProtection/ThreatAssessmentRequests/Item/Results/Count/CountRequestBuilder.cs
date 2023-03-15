@@ -29,7 +29,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item.Results.Cou
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var threatAssessmentRequestIdOption = new Option<string>("--threat-assessment-request-id", description: "key: id of threatAssessmentRequest") {
+            var threatAssessmentRequestIdOption = new Option<string>("--threat-assessment-request-id", description: "The unique identifier of threatAssessmentRequest") {
             };
             threatAssessmentRequestIdOption.IsRequired = true;
             command.AddOption(threatAssessmentRequestIdOption);

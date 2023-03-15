@@ -30,11 +30,11 @@ namespace ApiSdk.Me.Messages.Item.Extensions.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property extensions for me";
             // Create options for all the parameters
-            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            var messageIdOption = new Option<string>("--message-id", description: "The unique identifier of message") {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
-            var extensionIdOption = new Option<string>("--extension-id", description: "key: id of extension") {
+            var extensionIdOption = new Option<string>("--extension-id", description: "The unique identifier of extension") {
             };
             extensionIdOption.IsRequired = true;
             command.AddOption(extensionIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Me.Messages.Item.Extensions.Item {
             var command = new Command("get");
             command.Description = "The collection of open extensions defined for the message. Nullable.";
             // Create options for all the parameters
-            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            var messageIdOption = new Option<string>("--message-id", description: "The unique identifier of message") {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
-            var extensionIdOption = new Option<string>("--extension-id", description: "key: id of extension") {
+            var extensionIdOption = new Option<string>("--extension-id", description: "The unique identifier of extension") {
             };
             extensionIdOption.IsRequired = true;
             command.AddOption(extensionIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Me.Messages.Item.Extensions.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property extensions in me";
             // Create options for all the parameters
-            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            var messageIdOption = new Option<string>("--message-id", description: "The unique identifier of message") {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
-            var extensionIdOption = new Option<string>("--extension-id", description: "key: id of extension") {
+            var extensionIdOption = new Option<string>("--extension-id", description: "The unique identifier of extension") {
             };
             extensionIdOption.IsRequired = true;
             command.AddOption(extensionIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Me.Messages.Item.Extensions.Item {
                 });
                 if (messageId is not null) requestInfo.PathParameters.Add("message%2Did", messageId);
                 if (extensionId is not null) requestInfo.PathParameters.Add("extension%2Did", extensionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

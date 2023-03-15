@@ -33,8 +33,8 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DocumentSetVersions {
             var builder = new DocumentSetVersionItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRestoreCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildRestoreCommand());
             return command;
         }
         /// <summary>
@@ -55,11 +55,11 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DocumentSetVersions {
             var command = new Command("create");
             command.Description = "Create a new version of a document set item in a list.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/listitem-post-documentsetversions?view=graph-rest-1.0";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var listItemIdOption = new Option<string>("--list-item-id", description: "key: id of listItem") {
+            var listItemIdOption = new Option<string>("--list-item-id", description: "The unique identifier of listItem") {
             };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
@@ -99,6 +99,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DocumentSetVersions {
                 });
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (listItemId is not null) requestInfo.PathParameters.Add("listItem%2Did", listItemId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -119,11 +120,11 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DocumentSetVersions {
             var command = new Command("list");
             command.Description = "Get a list of the versions of a document set item in a list.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/listitem-list-documentsetversions?view=graph-rest-1.0";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var listItemIdOption = new Option<string>("--list-item-id", description: "key: id of listItem") {
+            var listItemIdOption = new Option<string>("--list-item-id", description: "The unique identifier of listItem") {
             };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);

@@ -1,6 +1,6 @@
 using ApiSdk.Me.Events.Count;
+using ApiSdk.Me.Events.Delta;
 using ApiSdk.Me.Events.Item;
-using ApiSdk.Me.Events.MicrosoftGraphDelta;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,22 +32,22 @@ namespace ApiSdk.Me.Events {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new EventItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAcceptCommand());
             command.AddCommand(builder.BuildAttachmentsCommand());
             command.AddCommand(builder.BuildCalendarCommand());
+            command.AddCommand(builder.BuildCancelCommand());
+            command.AddCommand(builder.BuildDeclineCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildDismissReminderCommand());
             command.AddCommand(builder.BuildExtensionsCommand());
+            command.AddCommand(builder.BuildForwardCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildInstancesCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAcceptCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCancelCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeclineCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDismissReminderCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphForwardCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSnoozeReminderCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphTentativelyAcceptCommand());
             command.AddCommand(builder.BuildMultiValueExtendedPropertiesCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildSingleValueExtendedPropertiesCommand());
+            command.AddCommand(builder.BuildSnoozeReminderCommand());
+            command.AddCommand(builder.BuildTentativelyAcceptCommand());
             return command;
         }
         /// <summary>
@@ -100,6 +100,7 @@ namespace ApiSdk.Me.Events {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -110,6 +111,16 @@ namespace ApiSdk.Me.Events {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildDeltaCommand() {
+            var command = new Command("delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -203,16 +214,6 @@ namespace ApiSdk.Me.Events {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the delta method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDeltaCommand() {
-            var command = new Command("microsoft-graph-delta");
-            command.Description = "Provides operations to call the delta method.";
-            var builder = new MicrosoftGraphDeltaRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

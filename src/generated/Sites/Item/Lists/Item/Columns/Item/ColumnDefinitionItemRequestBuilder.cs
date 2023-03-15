@@ -31,15 +31,15 @@ namespace ApiSdk.Sites.Item.Lists.Item.Columns.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property columns for sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            var listIdOption = new Option<string>("--list-id", description: "The unique identifier of list") {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
-            var columnDefinitionIdOption = new Option<string>("--column-definition-id", description: "key: id of columnDefinition") {
+            var columnDefinitionIdOption = new Option<string>("--column-definition-id", description: "The unique identifier of columnDefinition") {
             };
             columnDefinitionIdOption.IsRequired = true;
             command.AddOption(columnDefinitionIdOption);
@@ -77,15 +77,15 @@ namespace ApiSdk.Sites.Item.Lists.Item.Columns.Item {
             var command = new Command("get");
             command.Description = "The collection of field definitions for this list.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            var listIdOption = new Option<string>("--list-id", description: "The unique identifier of list") {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
-            var columnDefinitionIdOption = new Option<string>("--column-definition-id", description: "key: id of columnDefinition") {
+            var columnDefinitionIdOption = new Option<string>("--column-definition-id", description: "The unique identifier of columnDefinition") {
             };
             columnDefinitionIdOption.IsRequired = true;
             command.AddOption(columnDefinitionIdOption);
@@ -151,15 +151,15 @@ namespace ApiSdk.Sites.Item.Lists.Item.Columns.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property columns in sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            var listIdOption = new Option<string>("--list-id", description: "The unique identifier of list") {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
-            var columnDefinitionIdOption = new Option<string>("--column-definition-id", description: "key: id of columnDefinition") {
+            var columnDefinitionIdOption = new Option<string>("--column-definition-id", description: "The unique identifier of columnDefinition") {
             };
             columnDefinitionIdOption.IsRequired = true;
             command.AddOption(columnDefinitionIdOption);
@@ -201,6 +201,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Columns.Item {
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
                 if (listId is not null) requestInfo.PathParameters.Add("list%2Did", listId);
                 if (columnDefinitionId is not null) requestInfo.PathParameters.Add("columnDefinition%2Did", columnDefinitionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

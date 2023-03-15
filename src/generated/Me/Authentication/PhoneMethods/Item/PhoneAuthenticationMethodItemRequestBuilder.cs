@@ -1,5 +1,5 @@
-using ApiSdk.Me.Authentication.PhoneMethods.Item.MicrosoftGraphDisableSmsSignIn;
-using ApiSdk.Me.Authentication.PhoneMethods.Item.MicrosoftGraphEnableSmsSignIn;
+using ApiSdk.Me.Authentication.PhoneMethods.Item.DisableSmsSignIn;
+using ApiSdk.Me.Authentication.PhoneMethods.Item.EnableSmsSignIn;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,7 +32,7 @@ namespace ApiSdk.Me.Authentication.PhoneMethods.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property phoneMethods for me";
             // Create options for all the parameters
-            var phoneAuthenticationMethodIdOption = new Option<string>("--phone-authentication-method-id", description: "key: id of phoneAuthenticationMethod") {
+            var phoneAuthenticationMethodIdOption = new Option<string>("--phone-authentication-method-id", description: "The unique identifier of phoneAuthenticationMethod") {
             };
             phoneAuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(phoneAuthenticationMethodIdOption);
@@ -60,13 +60,33 @@ namespace ApiSdk.Me.Authentication.PhoneMethods.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the disableSmsSignIn method.
+        /// </summary>
+        public Command BuildDisableSmsSignInCommand() {
+            var command = new Command("disable-sms-sign-in");
+            command.Description = "Provides operations to call the disableSmsSignIn method.";
+            var builder = new DisableSmsSignInRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the enableSmsSignIn method.
+        /// </summary>
+        public Command BuildEnableSmsSignInCommand() {
+            var command = new Command("enable-sms-sign-in");
+            command.Description = "Provides operations to call the enableSmsSignIn method.";
+            var builder = new EnableSmsSignInRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// The phone numbers registered to a user for authentication.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The phone numbers registered to a user for authentication.";
             // Create options for all the parameters
-            var phoneAuthenticationMethodIdOption = new Option<string>("--phone-authentication-method-id", description: "key: id of phoneAuthenticationMethod") {
+            var phoneAuthenticationMethodIdOption = new Option<string>("--phone-authentication-method-id", description: "The unique identifier of phoneAuthenticationMethod") {
             };
             phoneAuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(phoneAuthenticationMethodIdOption);
@@ -122,33 +142,13 @@ namespace ApiSdk.Me.Authentication.PhoneMethods.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the disableSmsSignIn method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDisableSmsSignInCommand() {
-            var command = new Command("microsoft-graph-disable-sms-sign-in");
-            command.Description = "Provides operations to call the disableSmsSignIn method.";
-            var builder = new MicrosoftGraphDisableSmsSignInRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the enableSmsSignIn method.
-        /// </summary>
-        public Command BuildMicrosoftGraphEnableSmsSignInCommand() {
-            var command = new Command("microsoft-graph-enable-sms-sign-in");
-            command.Description = "Provides operations to call the enableSmsSignIn method.";
-            var builder = new MicrosoftGraphEnableSmsSignInRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property phoneMethods in me
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property phoneMethods in me";
             // Create options for all the parameters
-            var phoneAuthenticationMethodIdOption = new Option<string>("--phone-authentication-method-id", description: "key: id of phoneAuthenticationMethod") {
+            var phoneAuthenticationMethodIdOption = new Option<string>("--phone-authentication-method-id", description: "The unique identifier of phoneAuthenticationMethod") {
             };
             phoneAuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(phoneAuthenticationMethodIdOption);
@@ -186,6 +186,7 @@ namespace ApiSdk.Me.Authentication.PhoneMethods.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (phoneAuthenticationMethodId is not null) requestInfo.PathParameters.Add("phoneAuthenticationMethod%2Did", phoneAuthenticationMethodId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

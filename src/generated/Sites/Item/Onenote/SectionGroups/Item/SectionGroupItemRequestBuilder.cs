@@ -34,11 +34,11 @@ namespace ApiSdk.Sites.Item.Onenote.SectionGroups.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property sectionGroups for sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var sectionGroupIdOption = new Option<string>("--section-group-id", description: "key: id of sectionGroup") {
+            var sectionGroupIdOption = new Option<string>("--section-group-id", description: "The unique identifier of sectionGroup") {
             };
             sectionGroupIdOption.IsRequired = true;
             command.AddOption(sectionGroupIdOption);
@@ -74,11 +74,11 @@ namespace ApiSdk.Sites.Item.Onenote.SectionGroups.Item {
             var command = new Command("get");
             command.Description = "The section groups in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var sectionGroupIdOption = new Option<string>("--section-group-id", description: "key: id of sectionGroup") {
+            var sectionGroupIdOption = new Option<string>("--section-group-id", description: "The unique identifier of sectionGroup") {
             };
             sectionGroupIdOption.IsRequired = true;
             command.AddOption(sectionGroupIdOption);
@@ -162,11 +162,11 @@ namespace ApiSdk.Sites.Item.Onenote.SectionGroups.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property sectionGroups in sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var sectionGroupIdOption = new Option<string>("--section-group-id", description: "key: id of sectionGroup") {
+            var sectionGroupIdOption = new Option<string>("--section-group-id", description: "The unique identifier of sectionGroup") {
             };
             sectionGroupIdOption.IsRequired = true;
             command.AddOption(sectionGroupIdOption);
@@ -206,6 +206,7 @@ namespace ApiSdk.Sites.Item.Onenote.SectionGroups.Item {
                 });
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
                 if (sectionGroupId is not null) requestInfo.PathParameters.Add("sectionGroup%2Did", sectionGroupId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -32,7 +32,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property permissionGrantPolicies for policies";
             // Create options for all the parameters
-            var permissionGrantPolicyIdOption = new Option<string>("--permission-grant-policy-id", description: "key: id of permissionGrantPolicy") {
+            var permissionGrantPolicyIdOption = new Option<string>("--permission-grant-policy-id", description: "The unique identifier of permissionGrantPolicy") {
             };
             permissionGrantPolicyIdOption.IsRequired = true;
             command.AddOption(permissionGrantPolicyIdOption);
@@ -79,7 +79,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item {
             var command = new Command("get");
             command.Description = "The policy that specifies the conditions under which consent can be granted.";
             // Create options for all the parameters
-            var permissionGrantPolicyIdOption = new Option<string>("--permission-grant-policy-id", description: "key: id of permissionGrantPolicy") {
+            var permissionGrantPolicyIdOption = new Option<string>("--permission-grant-policy-id", description: "The unique identifier of permissionGrantPolicy") {
             };
             permissionGrantPolicyIdOption.IsRequired = true;
             command.AddOption(permissionGrantPolicyIdOption);
@@ -154,7 +154,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property permissionGrantPolicies in policies";
             // Create options for all the parameters
-            var permissionGrantPolicyIdOption = new Option<string>("--permission-grant-policy-id", description: "key: id of permissionGrantPolicy") {
+            var permissionGrantPolicyIdOption = new Option<string>("--permission-grant-policy-id", description: "The unique identifier of permissionGrantPolicy") {
             };
             permissionGrantPolicyIdOption.IsRequired = true;
             command.AddOption(permissionGrantPolicyIdOption);
@@ -192,6 +192,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (permissionGrantPolicyId is not null) requestInfo.PathParameters.Add("permissionGrantPolicy%2Did", permissionGrantPolicyId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

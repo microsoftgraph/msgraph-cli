@@ -54,7 +54,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments {
             var command = new Command("create");
             command.Description = "Create new navigation property to roleAssignments for deviceManagement";
             // Create options for all the parameters
-            var roleDefinitionIdOption = new Option<string>("--role-definition-id", description: "key: id of roleDefinition") {
+            var roleDefinitionIdOption = new Option<string>("--role-definition-id", description: "The unique identifier of roleDefinition") {
             };
             roleDefinitionIdOption.IsRequired = true;
             command.AddOption(roleDefinitionIdOption);
@@ -92,6 +92,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (roleDefinitionId is not null) requestInfo.PathParameters.Add("roleDefinition%2Did", roleDefinitionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -111,7 +112,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments {
             var command = new Command("list");
             command.Description = "List of Role assignments for this role definition.";
             // Create options for all the parameters
-            var roleDefinitionIdOption = new Option<string>("--role-definition-id", description: "key: id of roleDefinition") {
+            var roleDefinitionIdOption = new Option<string>("--role-definition-id", description: "The unique identifier of roleDefinition") {
             };
             roleDefinitionIdOption.IsRequired = true;
             command.AddOption(roleDefinitionIdOption);

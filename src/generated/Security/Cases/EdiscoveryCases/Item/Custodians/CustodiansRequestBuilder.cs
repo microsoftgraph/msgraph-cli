@@ -2,8 +2,8 @@ using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.Security;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Count;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.MicrosoftGraphSecurityApplyHold;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.MicrosoftGraphSecurityRemoveHold;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.SecurityApplyHold;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.SecurityRemoveHold;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -36,12 +36,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildLastIndexOperationCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSecurityActivateCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSecurityApplyHoldCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSecurityReleaseCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSecurityRemoveHoldCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSecurityUpdateIndexCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildSecurityActivateCommand());
+            command.AddCommand(builder.BuildSecurityApplyHoldCommand());
+            command.AddCommand(builder.BuildSecurityReleaseCommand());
+            command.AddCommand(builder.BuildSecurityRemoveHoldCommand());
+            command.AddCommand(builder.BuildSecurityUpdateIndexCommand());
             command.AddCommand(builder.BuildSiteSourcesCommand());
             command.AddCommand(builder.BuildUnifiedGroupSourcesCommand());
             command.AddCommand(builder.BuildUserSourcesCommand());
@@ -65,7 +65,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
             var command = new Command("create");
             command.Description = "Create a new ediscoveryCustodian object.After the custodian object is created, you will need to create the custodian's userSource to reference their mailbox and OneDrive for Business site.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-post-custodians?view=graph-rest-1.0";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
@@ -103,6 +103,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (ediscoveryCaseId is not null) requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -123,7 +124,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
             var command = new Command("list");
             command.Description = "Get a list of the custodian objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-list-custodians?view=graph-rest-1.0";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
@@ -230,20 +231,20 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
         /// <summary>
         /// Provides operations to call the applyHold method.
         /// </summary>
-        public Command BuildMicrosoftGraphSecurityApplyHoldCommand() {
-            var command = new Command("microsoft-graph-security-apply-hold");
+        public Command BuildSecurityApplyHoldCommand() {
+            var command = new Command("security-apply-hold");
             command.Description = "Provides operations to call the applyHold method.";
-            var builder = new MicrosoftGraphSecurityApplyHoldRequestBuilder(PathParameters);
+            var builder = new SecurityApplyHoldRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the removeHold method.
         /// </summary>
-        public Command BuildMicrosoftGraphSecurityRemoveHoldCommand() {
-            var command = new Command("microsoft-graph-security-remove-hold");
+        public Command BuildSecurityRemoveHoldCommand() {
+            var command = new Command("security-remove-hold");
             command.Description = "Provides operations to call the removeHold method.";
-            var builder = new MicrosoftGraphSecurityRemoveHoldRequestBuilder(PathParameters);
+            var builder = new SecurityRemoveHoldRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }

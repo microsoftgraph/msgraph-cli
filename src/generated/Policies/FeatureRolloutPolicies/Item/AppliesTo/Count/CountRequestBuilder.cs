@@ -29,7 +29,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "key: id of featureRolloutPolicy") {
+            var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "The unique identifier of featureRolloutPolicy") {
             };
             featureRolloutPolicyIdOption.IsRequired = true;
             command.AddOption(featureRolloutPolicyIdOption);

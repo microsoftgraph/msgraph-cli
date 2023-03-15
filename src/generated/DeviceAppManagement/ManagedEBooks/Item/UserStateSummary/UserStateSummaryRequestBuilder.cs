@@ -54,7 +54,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary {
             var command = new Command("create");
             command.Description = "Create new navigation property to userStateSummary for deviceAppManagement";
             // Create options for all the parameters
-            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "key: id of managedEBook") {
+            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
             command.AddOption(managedEBookIdOption);
@@ -92,6 +92,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (managedEBookId is not null) requestInfo.PathParameters.Add("managedEBook%2Did", managedEBookId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -111,7 +112,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary {
             var command = new Command("list");
             command.Description = "The list of installation states for this eBook.";
             // Create options for all the parameters
-            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "key: id of managedEBook") {
+            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
             command.AddOption(managedEBookIdOption);

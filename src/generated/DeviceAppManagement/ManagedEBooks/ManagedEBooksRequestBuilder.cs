@@ -31,12 +31,12 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new ManagedEBookItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAssignCommand());
             command.AddCommand(builder.BuildAssignmentsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildDeviceStatesCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildInstallSummaryCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAssignCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildUserStateSummaryCommand());
             return command;
@@ -90,6 +90,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

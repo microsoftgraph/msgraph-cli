@@ -30,11 +30,11 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions.Item.Inher
             var command = new Command("delete");
             command.Description = "Delete navigation property inheritsPermissionsFrom for roleManagement";
             // Create options for all the parameters
-            var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "key: id of unifiedRoleDefinition") {
+            var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "The unique identifier of unifiedRoleDefinition") {
             };
             unifiedRoleDefinitionIdOption.IsRequired = true;
             command.AddOption(unifiedRoleDefinitionIdOption);
-            var unifiedRoleDefinitionId1Option = new Option<string>("--unified-role-definition-id1", description: "key: id of unifiedRoleDefinition") {
+            var unifiedRoleDefinitionId1Option = new Option<string>("--unified-role-definition-id1", description: "The unique identifier of unifiedRoleDefinition") {
             };
             unifiedRoleDefinitionId1Option.IsRequired = true;
             command.AddOption(unifiedRoleDefinitionId1Option);
@@ -70,11 +70,11 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions.Item.Inher
             var command = new Command("get");
             command.Description = "Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles (isBuiltIn is true) support this attribute. Supports $expand.";
             // Create options for all the parameters
-            var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "key: id of unifiedRoleDefinition") {
+            var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "The unique identifier of unifiedRoleDefinition") {
             };
             unifiedRoleDefinitionIdOption.IsRequired = true;
             command.AddOption(unifiedRoleDefinitionIdOption);
-            var unifiedRoleDefinitionId1Option = new Option<string>("--unified-role-definition-id1", description: "key: id of unifiedRoleDefinition") {
+            var unifiedRoleDefinitionId1Option = new Option<string>("--unified-role-definition-id1", description: "The unique identifier of unifiedRoleDefinition") {
             };
             unifiedRoleDefinitionId1Option.IsRequired = true;
             command.AddOption(unifiedRoleDefinitionId1Option);
@@ -138,11 +138,11 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions.Item.Inher
             var command = new Command("patch");
             command.Description = "Update the navigation property inheritsPermissionsFrom in roleManagement";
             // Create options for all the parameters
-            var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "key: id of unifiedRoleDefinition") {
+            var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "The unique identifier of unifiedRoleDefinition") {
             };
             unifiedRoleDefinitionIdOption.IsRequired = true;
             command.AddOption(unifiedRoleDefinitionIdOption);
-            var unifiedRoleDefinitionId1Option = new Option<string>("--unified-role-definition-id1", description: "key: id of unifiedRoleDefinition") {
+            var unifiedRoleDefinitionId1Option = new Option<string>("--unified-role-definition-id1", description: "The unique identifier of unifiedRoleDefinition") {
             };
             unifiedRoleDefinitionId1Option.IsRequired = true;
             command.AddOption(unifiedRoleDefinitionId1Option);
@@ -182,6 +182,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions.Item.Inher
                 });
                 if (unifiedRoleDefinitionId is not null) requestInfo.PathParameters.Add("unifiedRoleDefinition%2Did", unifiedRoleDefinitionId);
                 if (unifiedRoleDefinitionId1 is not null) requestInfo.PathParameters.Add("unifiedRoleDefinition%2Did1", unifiedRoleDefinitionId1);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

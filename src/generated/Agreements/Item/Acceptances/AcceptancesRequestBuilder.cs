@@ -53,7 +53,7 @@ namespace ApiSdk.Agreements.Item.Acceptances {
             var command = new Command("create");
             command.Description = "Create new navigation property to acceptances for agreements";
             // Create options for all the parameters
-            var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement") {
+            var agreementIdOption = new Option<string>("--agreement-id", description: "The unique identifier of agreement") {
             };
             agreementIdOption.IsRequired = true;
             command.AddOption(agreementIdOption);
@@ -91,6 +91,7 @@ namespace ApiSdk.Agreements.Item.Acceptances {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (agreementId is not null) requestInfo.PathParameters.Add("agreement%2Did", agreementId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -111,7 +112,7 @@ namespace ApiSdk.Agreements.Item.Acceptances {
             var command = new Command("list");
             command.Description = "Get the details about the acceptance records for a specific agreement.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/agreement-list-acceptances?view=graph-rest-1.0";
             // Create options for all the parameters
-            var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement") {
+            var agreementIdOption = new Option<string>("--agreement-id", description: "The unique identifier of agreement") {
             };
             agreementIdOption.IsRequired = true;
             command.AddOption(agreementIdOption);

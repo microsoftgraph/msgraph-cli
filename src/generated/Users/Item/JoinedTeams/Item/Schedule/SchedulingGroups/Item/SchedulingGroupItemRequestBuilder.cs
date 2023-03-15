@@ -30,15 +30,15 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.SchedulingGroups.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property schedulingGroups for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var schedulingGroupIdOption = new Option<string>("--scheduling-group-id", description: "key: id of schedulingGroup") {
+            var schedulingGroupIdOption = new Option<string>("--scheduling-group-id", description: "The unique identifier of schedulingGroup") {
             };
             schedulingGroupIdOption.IsRequired = true;
             command.AddOption(schedulingGroupIdOption);
@@ -76,15 +76,15 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.SchedulingGroups.Item {
             var command = new Command("get");
             command.Description = "The logical grouping of users in the schedule (usually by role).";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var schedulingGroupIdOption = new Option<string>("--scheduling-group-id", description: "key: id of schedulingGroup") {
+            var schedulingGroupIdOption = new Option<string>("--scheduling-group-id", description: "The unique identifier of schedulingGroup") {
             };
             schedulingGroupIdOption.IsRequired = true;
             command.AddOption(schedulingGroupIdOption);
@@ -143,15 +143,15 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.SchedulingGroups.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property schedulingGroups in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var schedulingGroupIdOption = new Option<string>("--scheduling-group-id", description: "key: id of schedulingGroup") {
+            var schedulingGroupIdOption = new Option<string>("--scheduling-group-id", description: "The unique identifier of schedulingGroup") {
             };
             schedulingGroupIdOption.IsRequired = true;
             command.AddOption(schedulingGroupIdOption);
@@ -193,6 +193,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.SchedulingGroups.Item {
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
                 if (schedulingGroupId is not null) requestInfo.PathParameters.Add("schedulingGroup%2Did", schedulingGroupId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

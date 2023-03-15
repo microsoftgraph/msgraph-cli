@@ -31,10 +31,10 @@ namespace ApiSdk.Sites.Item.Onenote.Sections {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new OnenoteSectionItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCopyToNotebookCommand());
+            command.AddCommand(builder.BuildCopyToSectionGroupCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCopyToNotebookCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCopyToSectionGroupCommand());
             command.AddCommand(builder.BuildPagesCommand());
             command.AddCommand(builder.BuildParentNotebookCommand());
             command.AddCommand(builder.BuildParentSectionGroupCommand());
@@ -58,7 +58,7 @@ namespace ApiSdk.Sites.Item.Onenote.Sections {
             var command = new Command("create");
             command.Description = "Create new navigation property to sections for sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
@@ -96,6 +96,7 @@ namespace ApiSdk.Sites.Item.Onenote.Sections {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -116,7 +117,7 @@ namespace ApiSdk.Sites.Item.Onenote.Sections {
             var command = new Command("list");
             command.Description = "Retrieve a list of onenoteSection objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/onenote-list-sections?view=graph-rest-1.0";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);

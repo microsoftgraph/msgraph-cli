@@ -29,11 +29,11 @@ namespace ApiSdk.Applications.Item.Owners.Item.Ref {
             var command = new Command("delete");
             command.Description = "Delete ref of navigation property owners for applications";
             // Create options for all the parameters
-            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
             command.AddOption(applicationIdOption);
-            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "key: id of directoryObject") {
+            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "The unique identifier of directoryObject") {
             };
             directoryObjectIdOption.IsRequired = true;
             command.AddOption(directoryObjectIdOption);

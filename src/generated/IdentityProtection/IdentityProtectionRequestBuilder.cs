@@ -122,6 +122,7 @@ namespace ApiSdk.IdentityProtection {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -155,11 +156,11 @@ namespace ApiSdk.IdentityProtection {
             command.Description = "Provides operations to manage the riskyServicePrincipals property of the microsoft.graph.identityProtectionRoot entity.";
             var builder = new RiskyServicePrincipalsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildConfirmCompromisedCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDismissCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphConfirmCompromisedCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDismissCommand());
             return command;
         }
         /// <summary>
@@ -170,11 +171,11 @@ namespace ApiSdk.IdentityProtection {
             command.Description = "Provides operations to manage the riskyUsers property of the microsoft.graph.identityProtectionRoot entity.";
             var builder = new RiskyUsersRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildConfirmCompromisedCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDismissCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphConfirmCompromisedCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDismissCommand());
             return command;
         }
         /// <summary>

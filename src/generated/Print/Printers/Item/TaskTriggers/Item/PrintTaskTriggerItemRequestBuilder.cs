@@ -41,11 +41,11 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property taskTriggers for print";
             // Create options for all the parameters
-            var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer") {
+            var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
             };
             printerIdOption.IsRequired = true;
             command.AddOption(printerIdOption);
-            var printTaskTriggerIdOption = new Option<string>("--print-task-trigger-id", description: "key: id of printTaskTrigger") {
+            var printTaskTriggerIdOption = new Option<string>("--print-task-trigger-id", description: "The unique identifier of printTaskTrigger") {
             };
             printTaskTriggerIdOption.IsRequired = true;
             command.AddOption(printTaskTriggerIdOption);
@@ -81,11 +81,11 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item {
             var command = new Command("get");
             command.Description = "A list of task triggers that are associated with the printer.";
             // Create options for all the parameters
-            var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer") {
+            var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
             };
             printerIdOption.IsRequired = true;
             command.AddOption(printerIdOption);
-            var printTaskTriggerIdOption = new Option<string>("--print-task-trigger-id", description: "key: id of printTaskTrigger") {
+            var printTaskTriggerIdOption = new Option<string>("--print-task-trigger-id", description: "The unique identifier of printTaskTrigger") {
             };
             printTaskTriggerIdOption.IsRequired = true;
             command.AddOption(printTaskTriggerIdOption);
@@ -149,11 +149,11 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property taskTriggers in print";
             // Create options for all the parameters
-            var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer") {
+            var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
             };
             printerIdOption.IsRequired = true;
             command.AddOption(printerIdOption);
-            var printTaskTriggerIdOption = new Option<string>("--print-task-trigger-id", description: "key: id of printTaskTrigger") {
+            var printTaskTriggerIdOption = new Option<string>("--print-task-trigger-id", description: "The unique identifier of printTaskTrigger") {
             };
             printTaskTriggerIdOption.IsRequired = true;
             command.AddOption(printTaskTriggerIdOption);
@@ -193,6 +193,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item {
                 });
                 if (printerId is not null) requestInfo.PathParameters.Add("printer%2Did", printerId);
                 if (printTaskTriggerId is not null) requestInfo.PathParameters.Add("printTaskTrigger%2Did", printTaskTriggerId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

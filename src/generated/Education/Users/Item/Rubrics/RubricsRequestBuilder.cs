@@ -54,7 +54,7 @@ namespace ApiSdk.Education.Users.Item.Rubrics {
             var command = new Command("create");
             command.Description = "Create a new educationRubric object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationuser-post-rubrics?view=graph-rest-1.0";
             // Create options for all the parameters
-            var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
+            var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
             command.AddOption(educationUserIdOption);
@@ -92,6 +92,7 @@ namespace ApiSdk.Education.Users.Item.Rubrics {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (educationUserId is not null) requestInfo.PathParameters.Add("educationUser%2Did", educationUserId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,7 +113,7 @@ namespace ApiSdk.Education.Users.Item.Rubrics {
             var command = new Command("list");
             command.Description = "Retrieve a list of educationRubric objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationuser-list-rubrics?view=graph-rest-1.0";
             // Create options for all the parameters
-            var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
+            var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
             command.AddOption(educationUserIdOption);

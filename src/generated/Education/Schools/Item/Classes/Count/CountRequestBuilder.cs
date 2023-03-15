@@ -29,7 +29,7 @@ namespace ApiSdk.Education.Schools.Item.Classes.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var educationSchoolIdOption = new Option<string>("--education-school-id", description: "key: id of educationSchool") {
+            var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
             command.AddOption(educationSchoolIdOption);

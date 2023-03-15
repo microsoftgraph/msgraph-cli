@@ -44,11 +44,11 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             var command = new Command("delete");
             command.Description = "Delete navigation property userConsentRequests for identityGovernance";
             // Create options for all the parameters
-            var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "key: id of appConsentRequest") {
+            var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "The unique identifier of appConsentRequest") {
             };
             appConsentRequestIdOption.IsRequired = true;
             command.AddOption(appConsentRequestIdOption);
-            var userConsentRequestIdOption = new Option<string>("--user-consent-request-id", description: "key: id of userConsentRequest") {
+            var userConsentRequestIdOption = new Option<string>("--user-consent-request-id", description: "The unique identifier of userConsentRequest") {
             };
             userConsentRequestIdOption.IsRequired = true;
             command.AddOption(userConsentRequestIdOption);
@@ -84,11 +84,11 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             var command = new Command("get");
             command.Description = "A list of pending user consent requests. Supports $filter (eq).";
             // Create options for all the parameters
-            var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "key: id of appConsentRequest") {
+            var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "The unique identifier of appConsentRequest") {
             };
             appConsentRequestIdOption.IsRequired = true;
             command.AddOption(appConsentRequestIdOption);
-            var userConsentRequestIdOption = new Option<string>("--user-consent-request-id", description: "key: id of userConsentRequest") {
+            var userConsentRequestIdOption = new Option<string>("--user-consent-request-id", description: "The unique identifier of userConsentRequest") {
             };
             userConsentRequestIdOption.IsRequired = true;
             command.AddOption(userConsentRequestIdOption);
@@ -152,11 +152,11 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             var command = new Command("patch");
             command.Description = "Update the navigation property userConsentRequests in identityGovernance";
             // Create options for all the parameters
-            var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "key: id of appConsentRequest") {
+            var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "The unique identifier of appConsentRequest") {
             };
             appConsentRequestIdOption.IsRequired = true;
             command.AddOption(appConsentRequestIdOption);
-            var userConsentRequestIdOption = new Option<string>("--user-consent-request-id", description: "key: id of userConsentRequest") {
+            var userConsentRequestIdOption = new Option<string>("--user-consent-request-id", description: "The unique identifier of userConsentRequest") {
             };
             userConsentRequestIdOption.IsRequired = true;
             command.AddOption(userConsentRequestIdOption);
@@ -196,6 +196,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
                 });
                 if (appConsentRequestId is not null) requestInfo.PathParameters.Add("appConsentRequest%2Did", appConsentRequestId);
                 if (userConsentRequestId is not null) requestInfo.PathParameters.Add("userConsentRequest%2Did", userConsentRequestId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

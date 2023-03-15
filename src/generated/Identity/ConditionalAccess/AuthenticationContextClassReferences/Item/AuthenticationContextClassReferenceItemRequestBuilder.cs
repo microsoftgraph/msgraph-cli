@@ -30,7 +30,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
             var command = new Command("delete");
             command.Description = "Delete navigation property authenticationContextClassReferences for identity";
             // Create options for all the parameters
-            var authenticationContextClassReferenceIdOption = new Option<string>("--authentication-context-class-reference-id", description: "key: id of authenticationContextClassReference") {
+            var authenticationContextClassReferenceIdOption = new Option<string>("--authentication-context-class-reference-id", description: "The unique identifier of authenticationContextClassReference") {
             };
             authenticationContextClassReferenceIdOption.IsRequired = true;
             command.AddOption(authenticationContextClassReferenceIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
             var command = new Command("get");
             command.Description = "Read-only. Nullable. Returns a collection of the specified authentication context class references.";
             // Create options for all the parameters
-            var authenticationContextClassReferenceIdOption = new Option<string>("--authentication-context-class-reference-id", description: "key: id of authenticationContextClassReference") {
+            var authenticationContextClassReferenceIdOption = new Option<string>("--authentication-context-class-reference-id", description: "The unique identifier of authenticationContextClassReference") {
             };
             authenticationContextClassReferenceIdOption.IsRequired = true;
             command.AddOption(authenticationContextClassReferenceIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
             var command = new Command("patch");
             command.Description = "Update the navigation property authenticationContextClassReferences in identity";
             // Create options for all the parameters
-            var authenticationContextClassReferenceIdOption = new Option<string>("--authentication-context-class-reference-id", description: "key: id of authenticationContextClassReference") {
+            var authenticationContextClassReferenceIdOption = new Option<string>("--authentication-context-class-reference-id", description: "The unique identifier of authenticationContextClassReference") {
             };
             authenticationContextClassReferenceIdOption.IsRequired = true;
             command.AddOption(authenticationContextClassReferenceIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (authenticationContextClassReferenceId is not null) requestInfo.PathParameters.Add("authenticationContextClassReference%2Did", authenticationContextClassReferenceId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -52,7 +52,7 @@ namespace ApiSdk.Sites.Item.Sites {
             var command = new Command("list");
             command.Description = "Get a collection of subsites defined for a [site][].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/site-list-subsites?view=graph-rest-1.0";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);

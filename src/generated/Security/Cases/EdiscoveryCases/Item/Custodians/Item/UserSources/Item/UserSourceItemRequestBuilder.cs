@@ -30,15 +30,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.UserSources
             var command = new Command("delete");
             command.Description = "Delete navigation property userSources for security";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoveryCustodianIdOption = new Option<string>("--ediscovery-custodian-id", description: "key: id of ediscoveryCustodian") {
+            var ediscoveryCustodianIdOption = new Option<string>("--ediscovery-custodian-id", description: "The unique identifier of ediscoveryCustodian") {
             };
             ediscoveryCustodianIdOption.IsRequired = true;
             command.AddOption(ediscoveryCustodianIdOption);
-            var userSourceIdOption = new Option<string>("--user-source-id", description: "key: id of userSource") {
+            var userSourceIdOption = new Option<string>("--user-source-id", description: "The unique identifier of userSource") {
             };
             userSourceIdOption.IsRequired = true;
             command.AddOption(userSourceIdOption);
@@ -76,15 +76,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.UserSources
             var command = new Command("get");
             command.Description = "Data source entity for a the custodian. This is the container for a custodian's mailbox and OneDrive for Business site.";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoveryCustodianIdOption = new Option<string>("--ediscovery-custodian-id", description: "key: id of ediscoveryCustodian") {
+            var ediscoveryCustodianIdOption = new Option<string>("--ediscovery-custodian-id", description: "The unique identifier of ediscoveryCustodian") {
             };
             ediscoveryCustodianIdOption.IsRequired = true;
             command.AddOption(ediscoveryCustodianIdOption);
-            var userSourceIdOption = new Option<string>("--user-source-id", description: "key: id of userSource") {
+            var userSourceIdOption = new Option<string>("--user-source-id", description: "The unique identifier of userSource") {
             };
             userSourceIdOption.IsRequired = true;
             command.AddOption(userSourceIdOption);
@@ -150,15 +150,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.UserSources
             var command = new Command("patch");
             command.Description = "Update the navigation property userSources in security";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoveryCustodianIdOption = new Option<string>("--ediscovery-custodian-id", description: "key: id of ediscoveryCustodian") {
+            var ediscoveryCustodianIdOption = new Option<string>("--ediscovery-custodian-id", description: "The unique identifier of ediscoveryCustodian") {
             };
             ediscoveryCustodianIdOption.IsRequired = true;
             command.AddOption(ediscoveryCustodianIdOption);
-            var userSourceIdOption = new Option<string>("--user-source-id", description: "key: id of userSource") {
+            var userSourceIdOption = new Option<string>("--user-source-id", description: "The unique identifier of userSource") {
             };
             userSourceIdOption.IsRequired = true;
             command.AddOption(userSourceIdOption);
@@ -200,6 +200,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.UserSources
                 if (ediscoveryCaseId is not null) requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
                 if (ediscoveryCustodianId is not null) requestInfo.PathParameters.Add("ediscoveryCustodian%2Did", ediscoveryCustodianId);
                 if (userSourceId is not null) requestInfo.PathParameters.Add("userSource%2Did", userSourceId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

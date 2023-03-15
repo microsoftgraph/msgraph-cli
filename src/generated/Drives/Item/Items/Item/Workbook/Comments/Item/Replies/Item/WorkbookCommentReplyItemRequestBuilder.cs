@@ -30,19 +30,19 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item.Replies.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property replies for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookCommentIdOption = new Option<string>("--workbook-comment-id", description: "key: id of workbookComment") {
+            var workbookCommentIdOption = new Option<string>("--workbook-comment-id", description: "The unique identifier of workbookComment") {
             };
             workbookCommentIdOption.IsRequired = true;
             command.AddOption(workbookCommentIdOption);
-            var workbookCommentReplyIdOption = new Option<string>("--workbook-comment-reply-id", description: "key: id of workbookCommentReply") {
+            var workbookCommentReplyIdOption = new Option<string>("--workbook-comment-reply-id", description: "The unique identifier of workbookCommentReply") {
             };
             workbookCommentReplyIdOption.IsRequired = true;
             command.AddOption(workbookCommentReplyIdOption);
@@ -82,19 +82,19 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item.Replies.Item {
             var command = new Command("get");
             command.Description = "Get replies from drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookCommentIdOption = new Option<string>("--workbook-comment-id", description: "key: id of workbookComment") {
+            var workbookCommentIdOption = new Option<string>("--workbook-comment-id", description: "The unique identifier of workbookComment") {
             };
             workbookCommentIdOption.IsRequired = true;
             command.AddOption(workbookCommentIdOption);
-            var workbookCommentReplyIdOption = new Option<string>("--workbook-comment-reply-id", description: "key: id of workbookCommentReply") {
+            var workbookCommentReplyIdOption = new Option<string>("--workbook-comment-reply-id", description: "The unique identifier of workbookCommentReply") {
             };
             workbookCommentReplyIdOption.IsRequired = true;
             command.AddOption(workbookCommentReplyIdOption);
@@ -162,19 +162,19 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item.Replies.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property replies in drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookCommentIdOption = new Option<string>("--workbook-comment-id", description: "key: id of workbookComment") {
+            var workbookCommentIdOption = new Option<string>("--workbook-comment-id", description: "The unique identifier of workbookComment") {
             };
             workbookCommentIdOption.IsRequired = true;
             command.AddOption(workbookCommentIdOption);
-            var workbookCommentReplyIdOption = new Option<string>("--workbook-comment-reply-id", description: "key: id of workbookCommentReply") {
+            var workbookCommentReplyIdOption = new Option<string>("--workbook-comment-reply-id", description: "The unique identifier of workbookCommentReply") {
             };
             workbookCommentReplyIdOption.IsRequired = true;
             command.AddOption(workbookCommentReplyIdOption);
@@ -218,6 +218,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item.Replies.Item {
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
                 if (workbookCommentId is not null) requestInfo.PathParameters.Add("workbookComment%2Did", workbookCommentId);
                 if (workbookCommentReplyId is not null) requestInfo.PathParameters.Add("workbookCommentReply%2Did", workbookCommentReplyId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

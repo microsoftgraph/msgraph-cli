@@ -29,15 +29,15 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.ParentGroup.Sets.Item.Relations.
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            var setIdOption = new Option<string>("--set-id", description: "The unique identifier of set") {
             };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
-            var setId1Option = new Option<string>("--set-id1", description: "key: id of set") {
+            var setId1Option = new Option<string>("--set-id1", description: "The unique identifier of set") {
             };
             setId1Option.IsRequired = true;
             command.AddOption(setId1Option);

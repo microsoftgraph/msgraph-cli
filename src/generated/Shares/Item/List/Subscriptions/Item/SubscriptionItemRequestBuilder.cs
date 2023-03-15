@@ -1,6 +1,6 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.Shares.Item.List.Subscriptions.Item.MicrosoftGraphReauthorize;
+using ApiSdk.Shares.Item.List.Subscriptions.Item.Reauthorize;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -31,11 +31,11 @@ namespace ApiSdk.Shares.Item.List.Subscriptions.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property subscriptions for shares";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
-            var subscriptionIdOption = new Option<string>("--subscription-id", description: "key: id of subscription") {
+            var subscriptionIdOption = new Option<string>("--subscription-id", description: "The unique identifier of subscription") {
             };
             subscriptionIdOption.IsRequired = true;
             command.AddOption(subscriptionIdOption);
@@ -71,11 +71,11 @@ namespace ApiSdk.Shares.Item.List.Subscriptions.Item {
             var command = new Command("get");
             command.Description = "The set of subscriptions on the list.";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
-            var subscriptionIdOption = new Option<string>("--subscription-id", description: "key: id of subscription") {
+            var subscriptionIdOption = new Option<string>("--subscription-id", description: "The unique identifier of subscription") {
             };
             subscriptionIdOption.IsRequired = true;
             command.AddOption(subscriptionIdOption);
@@ -133,27 +133,17 @@ namespace ApiSdk.Shares.Item.List.Subscriptions.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the reauthorize method.
-        /// </summary>
-        public Command BuildMicrosoftGraphReauthorizeCommand() {
-            var command = new Command("microsoft-graph-reauthorize");
-            command.Description = "Provides operations to call the reauthorize method.";
-            var builder = new MicrosoftGraphReauthorizeRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property subscriptions in shares
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property subscriptions in shares";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
-            var subscriptionIdOption = new Option<string>("--subscription-id", description: "key: id of subscription") {
+            var subscriptionIdOption = new Option<string>("--subscription-id", description: "The unique identifier of subscription") {
             };
             subscriptionIdOption.IsRequired = true;
             command.AddOption(subscriptionIdOption);
@@ -193,6 +183,7 @@ namespace ApiSdk.Shares.Item.List.Subscriptions.Item {
                 });
                 if (sharedDriveItemId is not null) requestInfo.PathParameters.Add("sharedDriveItem%2Did", sharedDriveItemId);
                 if (subscriptionId is not null) requestInfo.PathParameters.Add("subscription%2Did", subscriptionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -203,6 +194,16 @@ namespace ApiSdk.Shares.Item.List.Subscriptions.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the reauthorize method.
+        /// </summary>
+        public Command BuildReauthorizeCommand() {
+            var command = new Command("reauthorize");
+            command.Description = "Provides operations to call the reauthorize method.";
+            var builder = new ReauthorizeRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

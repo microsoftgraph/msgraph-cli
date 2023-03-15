@@ -30,7 +30,7 @@ namespace ApiSdk.Me.Calendar.CalendarPermissions.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property calendarPermissions for me";
             // Create options for all the parameters
-            var calendarPermissionIdOption = new Option<string>("--calendar-permission-id", description: "key: id of calendarPermission") {
+            var calendarPermissionIdOption = new Option<string>("--calendar-permission-id", description: "The unique identifier of calendarPermission") {
             };
             calendarPermissionIdOption.IsRequired = true;
             command.AddOption(calendarPermissionIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Me.Calendar.CalendarPermissions.Item {
             var command = new Command("get");
             command.Description = "The permissions of the users with whom the calendar is shared.";
             // Create options for all the parameters
-            var calendarPermissionIdOption = new Option<string>("--calendar-permission-id", description: "key: id of calendarPermission") {
+            var calendarPermissionIdOption = new Option<string>("--calendar-permission-id", description: "The unique identifier of calendarPermission") {
             };
             calendarPermissionIdOption.IsRequired = true;
             command.AddOption(calendarPermissionIdOption);
@@ -119,7 +119,7 @@ namespace ApiSdk.Me.Calendar.CalendarPermissions.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property calendarPermissions in me";
             // Create options for all the parameters
-            var calendarPermissionIdOption = new Option<string>("--calendar-permission-id", description: "key: id of calendarPermission") {
+            var calendarPermissionIdOption = new Option<string>("--calendar-permission-id", description: "The unique identifier of calendarPermission") {
             };
             calendarPermissionIdOption.IsRequired = true;
             command.AddOption(calendarPermissionIdOption);
@@ -157,6 +157,7 @@ namespace ApiSdk.Me.Calendar.CalendarPermissions.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (calendarPermissionId is not null) requestInfo.PathParameters.Add("calendarPermission%2Did", calendarPermissionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

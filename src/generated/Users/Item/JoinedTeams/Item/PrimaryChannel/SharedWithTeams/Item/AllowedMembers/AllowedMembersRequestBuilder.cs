@@ -52,15 +52,15 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.SharedWithTeams.Item
             var command = new Command("list");
             command.Description = "Get the list of conversationMembers who can access a shared channel. This method does not return the following conversationMembers from the team:- Users with `Guest` role- Users who are externally authenticated in the tenant\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/sharedwithchannelteaminfo-list-allowedmembers?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var sharedWithChannelTeamInfoIdOption = new Option<string>("--shared-with-channel-team-info-id", description: "key: id of sharedWithChannelTeamInfo") {
+            var sharedWithChannelTeamInfoIdOption = new Option<string>("--shared-with-channel-team-info-id", description: "The unique identifier of sharedWithChannelTeamInfo") {
             };
             sharedWithChannelTeamInfoIdOption.IsRequired = true;
             command.AddOption(sharedWithChannelTeamInfoIdOption);

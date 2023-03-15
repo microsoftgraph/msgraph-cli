@@ -1,8 +1,8 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Print.Printers.Count;
+using ApiSdk.Print.Printers.Create;
 using ApiSdk.Print.Printers.Item;
-using ApiSdk.Print.Printers.MicrosoftGraphCreate;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -35,8 +35,8 @@ namespace ApiSdk.Print.Printers {
             command.AddCommand(builder.BuildConnectorsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRestoreFactoryDefaultsCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildRestoreFactoryDefaultsCommand());
             command.AddCommand(builder.BuildSharesCommand());
             command.AddCommand(builder.BuildTaskTriggersCommand());
             return command;
@@ -52,54 +52,13 @@ namespace ApiSdk.Print.Printers {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to printers for print
+        /// Provides operations to call the create method.
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to printers for print";
-            // Create options for all the parameters
-            var bodyOption = new Option<string>("--body", description: "The request body") {
-            };
-            bodyOption.IsRequired = true;
-            command.AddOption(bodyOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
-            command.AddOption(outputOption);
-            var queryOption = new Option<string>("--query");
-            command.AddOption(queryOption);
-            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
-                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
-                    return value;
-                }
-                return true;
-            }, description: "Disable indentation for the JSON output formatter.");
-            command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (invocationContext) => {
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
-                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
-                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
-                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var cancellationToken = invocationContext.GetCancellationToken();
-                var reqAdapter = invocationContext.GetRequestAdapter();
-                using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
-                var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Models.Printer>(ApiSdk.Models.Printer.CreateFromDiscriminatorValue);
-                if (model is null) return; // Cannot create a POST request from a null model.
-                var requestInfo = ToPostRequestInformation(model, q => {
-                });
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
-                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
-                var formatter = outputFormatterFactory.GetFormatter(output);
-                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            });
+            command.Description = "Provides operations to call the create method.";
+            var builder = new CreateRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -206,16 +165,6 @@ namespace ApiSdk.Print.Printers {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the create method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCreateCommand() {
-            var command = new Command("microsoft-graph-create");
-            command.Description = "Provides operations to call the create method.";
-            var builder = new MicrosoftGraphCreateRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

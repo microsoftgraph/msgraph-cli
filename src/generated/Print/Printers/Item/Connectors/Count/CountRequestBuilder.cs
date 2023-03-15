@@ -29,7 +29,7 @@ namespace ApiSdk.Print.Printers.Item.Connectors.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer") {
+            var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
             };
             printerIdOption.IsRequired = true;
             command.AddOption(printerIdOption);

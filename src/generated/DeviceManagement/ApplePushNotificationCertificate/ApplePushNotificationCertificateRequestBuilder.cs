@@ -1,4 +1,4 @@
-using ApiSdk.DeviceManagement.ApplePushNotificationCertificate.MicrosoftGraphDownloadApplePushNotificationCertificateSigningRequest;
+using ApiSdk.DeviceManagement.ApplePushNotificationCertificate.DownloadApplePushNotificationCertificateSigningRequest;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -50,6 +50,16 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate {
                 await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the downloadApplePushNotificationCertificateSigningRequest method.
+        /// </summary>
+        public Command BuildDownloadApplePushNotificationCertificateSigningRequestCommand() {
+            var command = new Command("download-apple-push-notification-certificate-signing-request");
+            command.Description = "Provides operations to call the downloadApplePushNotificationCertificateSigningRequest method.";
+            var builder = new DownloadApplePushNotificationCertificateSigningRequestRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -109,16 +119,6 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the downloadApplePushNotificationCertificateSigningRequest method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDownloadApplePushNotificationCertificateSigningRequestCommand() {
-            var command = new Command("microsoft-graph-download-apple-push-notification-certificate-signing-request");
-            command.Description = "Provides operations to call the downloadApplePushNotificationCertificateSigningRequest method.";
-            var builder = new MicrosoftGraphDownloadApplePushNotificationCertificateSigningRequestRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property applePushNotificationCertificate in deviceManagement
         /// </summary>
         public Command BuildPatchCommand() {
@@ -157,6 +157,7 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

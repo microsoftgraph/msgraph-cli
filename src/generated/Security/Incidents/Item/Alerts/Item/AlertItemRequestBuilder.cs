@@ -30,11 +30,11 @@ namespace ApiSdk.Security.Incidents.Item.Alerts.Item {
             var command = new Command("get");
             command.Description = "The list of related alerts. Supports $expand.";
             // Create options for all the parameters
-            var incidentIdOption = new Option<string>("--incident-id", description: "key: id of incident") {
+            var incidentIdOption = new Option<string>("--incident-id", description: "The unique identifier of incident") {
             };
             incidentIdOption.IsRequired = true;
             command.AddOption(incidentIdOption);
-            var alertIdOption = new Option<string>("--alert-id", description: "key: id of alert") {
+            var alertIdOption = new Option<string>("--alert-id", description: "The unique identifier of alert") {
             };
             alertIdOption.IsRequired = true;
             command.AddOption(alertIdOption);

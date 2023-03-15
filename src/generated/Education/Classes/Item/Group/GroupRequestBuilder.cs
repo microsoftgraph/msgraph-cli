@@ -30,7 +30,7 @@ namespace ApiSdk.Education.Classes.Item.Group {
             var command = new Command("get");
             command.Description = "The underlying Microsoft 365 group object.";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);

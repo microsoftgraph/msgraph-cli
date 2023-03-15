@@ -33,10 +33,10 @@ namespace ApiSdk.Groups.Item.Team.InstalledApps {
             var builder = new TeamsAppInstallationItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUpgradeCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildTeamsAppCommand());
             command.AddCommand(builder.BuildTeamsAppDefinitionCommand());
+            command.AddCommand(builder.BuildUpgradeCommand());
             return command;
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace ApiSdk.Groups.Item.Team.InstalledApps {
             var command = new Command("create");
             command.Description = "Install an app to the specified team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-post-installedapps?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
@@ -95,6 +95,7 @@ namespace ApiSdk.Groups.Item.Team.InstalledApps {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -115,7 +116,7 @@ namespace ApiSdk.Groups.Item.Team.InstalledApps {
             var command = new Command("list");
             command.Description = "Retrieve a list of apps installed in the specified team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-list-installedapps?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);

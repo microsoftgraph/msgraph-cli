@@ -54,11 +54,11 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item.AttachmentSessions {
             var command = new Command("list");
             command.Description = "Get attachmentSessions from me";
             // Create options for all the parameters
-            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "key: id of todoTaskList") {
+            var todoTaskListIdOption = new Option<string>("--todo-task-list-id", description: "The unique identifier of todoTaskList") {
             };
             todoTaskListIdOption.IsRequired = true;
             command.AddOption(todoTaskListIdOption);
-            var todoTaskIdOption = new Option<string>("--todo-task-id", description: "key: id of todoTask") {
+            var todoTaskIdOption = new Option<string>("--todo-task-id", description: "The unique identifier of todoTask") {
             };
             todoTaskIdOption.IsRequired = true;
             command.AddOption(todoTaskIdOption);

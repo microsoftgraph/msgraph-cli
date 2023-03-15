@@ -1,7 +1,7 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Print.Printers.Item.Connectors;
-using ApiSdk.Print.Printers.Item.MicrosoftGraphRestoreFactoryDefaults;
+using ApiSdk.Print.Printers.Item.RestoreFactoryDefaults;
 using ApiSdk.Print.Printers.Item.Shares;
 using ApiSdk.Print.Printers.Item.TaskTriggers;
 using Microsoft.Extensions.DependencyInjection;
@@ -46,7 +46,7 @@ namespace ApiSdk.Print.Printers.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property printers for print";
             // Create options for all the parameters
-            var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer") {
+            var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
             };
             printerIdOption.IsRequired = true;
             command.AddOption(printerIdOption);
@@ -80,7 +80,7 @@ namespace ApiSdk.Print.Printers.Item {
             var command = new Command("get");
             command.Description = "The list of printers registered in the tenant.";
             // Create options for all the parameters
-            var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer") {
+            var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
             };
             printerIdOption.IsRequired = true;
             command.AddOption(printerIdOption);
@@ -136,23 +136,13 @@ namespace ApiSdk.Print.Printers.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the restoreFactoryDefaults method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRestoreFactoryDefaultsCommand() {
-            var command = new Command("microsoft-graph-restore-factory-defaults");
-            command.Description = "Provides operations to call the restoreFactoryDefaults method.";
-            var builder = new MicrosoftGraphRestoreFactoryDefaultsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property printers in print
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property printers in print";
             // Create options for all the parameters
-            var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer") {
+            var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
             };
             printerIdOption.IsRequired = true;
             command.AddOption(printerIdOption);
@@ -190,6 +180,7 @@ namespace ApiSdk.Print.Printers.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (printerId is not null) requestInfo.PathParameters.Add("printer%2Did", printerId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -200,6 +191,16 @@ namespace ApiSdk.Print.Printers.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the restoreFactoryDefaults method.
+        /// </summary>
+        public Command BuildRestoreFactoryDefaultsCommand() {
+            var command = new Command("restore-factory-defaults");
+            command.Description = "Provides operations to call the restoreFactoryDefaults method.";
+            var builder = new RestoreFactoryDefaultsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

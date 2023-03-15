@@ -55,7 +55,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups {
             var command = new Command("create");
             command.Description = "Create a new group object in a term store.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/termstore-group-post?view=graph-rest-1.0";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
@@ -93,6 +93,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -113,7 +114,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups {
             var command = new Command("list");
             command.Description = "Get a list of group objects in a term store.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/termstore-list-groups?view=graph-rest-1.0";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);

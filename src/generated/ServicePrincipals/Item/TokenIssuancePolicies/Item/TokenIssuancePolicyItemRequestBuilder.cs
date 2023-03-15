@@ -30,11 +30,11 @@ namespace ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies.Item {
             var command = new Command("get");
             command.Description = "The tokenIssuancePolicies assigned to this service principal.";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
+            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
-            var tokenIssuancePolicyIdOption = new Option<string>("--token-issuance-policy-id", description: "key: id of tokenIssuancePolicy") {
+            var tokenIssuancePolicyIdOption = new Option<string>("--token-issuance-policy-id", description: "The unique identifier of tokenIssuancePolicy") {
             };
             tokenIssuancePolicyIdOption.IsRequired = true;
             command.AddOption(tokenIssuancePolicyIdOption);

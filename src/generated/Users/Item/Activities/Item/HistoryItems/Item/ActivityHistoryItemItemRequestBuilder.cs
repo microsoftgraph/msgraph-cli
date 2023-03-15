@@ -41,15 +41,15 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property historyItems for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var userActivityIdOption = new Option<string>("--user-activity-id", description: "key: id of userActivity") {
+            var userActivityIdOption = new Option<string>("--user-activity-id", description: "The unique identifier of userActivity") {
             };
             userActivityIdOption.IsRequired = true;
             command.AddOption(userActivityIdOption);
-            var activityHistoryItemIdOption = new Option<string>("--activity-history-item-id", description: "key: id of activityHistoryItem") {
+            var activityHistoryItemIdOption = new Option<string>("--activity-history-item-id", description: "The unique identifier of activityHistoryItem") {
             };
             activityHistoryItemIdOption.IsRequired = true;
             command.AddOption(activityHistoryItemIdOption);
@@ -87,15 +87,15 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item {
             var command = new Command("get");
             command.Description = "Optional. NavigationProperty/Containment; navigation property to the activity's historyItems.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var userActivityIdOption = new Option<string>("--user-activity-id", description: "key: id of userActivity") {
+            var userActivityIdOption = new Option<string>("--user-activity-id", description: "The unique identifier of userActivity") {
             };
             userActivityIdOption.IsRequired = true;
             command.AddOption(userActivityIdOption);
-            var activityHistoryItemIdOption = new Option<string>("--activity-history-item-id", description: "key: id of activityHistoryItem") {
+            var activityHistoryItemIdOption = new Option<string>("--activity-history-item-id", description: "The unique identifier of activityHistoryItem") {
             };
             activityHistoryItemIdOption.IsRequired = true;
             command.AddOption(activityHistoryItemIdOption);
@@ -161,15 +161,15 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property historyItems in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var userActivityIdOption = new Option<string>("--user-activity-id", description: "key: id of userActivity") {
+            var userActivityIdOption = new Option<string>("--user-activity-id", description: "The unique identifier of userActivity") {
             };
             userActivityIdOption.IsRequired = true;
             command.AddOption(userActivityIdOption);
-            var activityHistoryItemIdOption = new Option<string>("--activity-history-item-id", description: "key: id of activityHistoryItem") {
+            var activityHistoryItemIdOption = new Option<string>("--activity-history-item-id", description: "The unique identifier of activityHistoryItem") {
             };
             activityHistoryItemIdOption.IsRequired = true;
             command.AddOption(activityHistoryItemIdOption);
@@ -211,6 +211,7 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item {
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (userActivityId is not null) requestInfo.PathParameters.Add("userActivity%2Did", userActivityId);
                 if (activityHistoryItemId is not null) requestInfo.PathParameters.Add("activityHistoryItem%2Did", activityHistoryItemId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

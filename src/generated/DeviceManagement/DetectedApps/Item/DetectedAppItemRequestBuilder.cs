@@ -31,7 +31,7 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property detectedApps for deviceManagement";
             // Create options for all the parameters
-            var detectedAppIdOption = new Option<string>("--detected-app-id", description: "key: id of detectedApp") {
+            var detectedAppIdOption = new Option<string>("--detected-app-id", description: "The unique identifier of detectedApp") {
             };
             detectedAppIdOption.IsRequired = true;
             command.AddOption(detectedAppIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
             var command = new Command("get");
             command.Description = "The list of detected apps associated with a device.";
             // Create options for all the parameters
-            var detectedAppIdOption = new Option<string>("--detected-app-id", description: "key: id of detectedApp") {
+            var detectedAppIdOption = new Option<string>("--detected-app-id", description: "The unique identifier of detectedApp") {
             };
             detectedAppIdOption.IsRequired = true;
             command.AddOption(detectedAppIdOption);
@@ -139,7 +139,7 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property detectedApps in deviceManagement";
             // Create options for all the parameters
-            var detectedAppIdOption = new Option<string>("--detected-app-id", description: "key: id of detectedApp") {
+            var detectedAppIdOption = new Option<string>("--detected-app-id", description: "The unique identifier of detectedApp") {
             };
             detectedAppIdOption.IsRequired = true;
             command.AddOption(detectedAppIdOption);
@@ -177,6 +177,7 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (detectedAppId is not null) requestInfo.PathParameters.Add("detectedApp%2Did", detectedAppId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

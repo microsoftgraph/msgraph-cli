@@ -31,7 +31,7 @@ namespace ApiSdk.Devices.Item.RegisteredOwners.Ref {
             var command = new Command("get");
             command.Description = "The user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Currently, there can be only one owner. Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/device-list-registeredowners?view=graph-rest-1.0";
             // Create options for all the parameters
-            var deviceIdOption = new Option<string>("--device-id", description: "key: id of device") {
+            var deviceIdOption = new Option<string>("--device-id", description: "The unique identifier of device") {
             };
             deviceIdOption.IsRequired = true;
             command.AddOption(deviceIdOption);
@@ -135,7 +135,7 @@ namespace ApiSdk.Devices.Item.RegisteredOwners.Ref {
             var command = new Command("post");
             command.Description = "Create new navigation property ref to registeredOwners for devices";
             // Create options for all the parameters
-            var deviceIdOption = new Option<string>("--device-id", description: "key: id of device") {
+            var deviceIdOption = new Option<string>("--device-id", description: "The unique identifier of device") {
             };
             deviceIdOption.IsRequired = true;
             command.AddOption(deviceIdOption);
@@ -155,6 +155,7 @@ namespace ApiSdk.Devices.Item.RegisteredOwners.Ref {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (deviceId is not null) requestInfo.PathParameters.Add("device%2Did", deviceId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -31,7 +31,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property delegatedAdminCustomers for tenantRelationships";
             // Create options for all the parameters
-            var delegatedAdminCustomerIdOption = new Option<string>("--delegated-admin-customer-id", description: "key: id of delegatedAdminCustomer") {
+            var delegatedAdminCustomerIdOption = new Option<string>("--delegated-admin-customer-id", description: "The unique identifier of delegatedAdminCustomer") {
             };
             delegatedAdminCustomerIdOption.IsRequired = true;
             command.AddOption(delegatedAdminCustomerIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item {
             var command = new Command("get");
             command.Description = "The customer who has a delegated admin relationship with a Microsoft partner.";
             // Create options for all the parameters
-            var delegatedAdminCustomerIdOption = new Option<string>("--delegated-admin-customer-id", description: "key: id of delegatedAdminCustomer") {
+            var delegatedAdminCustomerIdOption = new Option<string>("--delegated-admin-customer-id", description: "The unique identifier of delegatedAdminCustomer") {
             };
             delegatedAdminCustomerIdOption.IsRequired = true;
             command.AddOption(delegatedAdminCustomerIdOption);
@@ -127,7 +127,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property delegatedAdminCustomers in tenantRelationships";
             // Create options for all the parameters
-            var delegatedAdminCustomerIdOption = new Option<string>("--delegated-admin-customer-id", description: "key: id of delegatedAdminCustomer") {
+            var delegatedAdminCustomerIdOption = new Option<string>("--delegated-admin-customer-id", description: "The unique identifier of delegatedAdminCustomer") {
             };
             delegatedAdminCustomerIdOption.IsRequired = true;
             command.AddOption(delegatedAdminCustomerIdOption);
@@ -165,6 +165,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (delegatedAdminCustomerId is not null) requestInfo.PathParameters.Add("delegatedAdminCustomer%2Did", delegatedAdminCustomerId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

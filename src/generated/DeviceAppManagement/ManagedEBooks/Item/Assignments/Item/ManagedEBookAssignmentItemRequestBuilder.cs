@@ -30,11 +30,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property assignments for deviceAppManagement";
             // Create options for all the parameters
-            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "key: id of managedEBook") {
+            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
             command.AddOption(managedEBookIdOption);
-            var managedEBookAssignmentIdOption = new Option<string>("--managed-ebook-assignment-id", description: "key: id of managedEBookAssignment") {
+            var managedEBookAssignmentIdOption = new Option<string>("--managed-ebook-assignment-id", description: "The unique identifier of managedEBookAssignment") {
             };
             managedEBookAssignmentIdOption.IsRequired = true;
             command.AddOption(managedEBookAssignmentIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments.Item {
             var command = new Command("get");
             command.Description = "The list of assignments for this eBook.";
             // Create options for all the parameters
-            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "key: id of managedEBook") {
+            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
             command.AddOption(managedEBookIdOption);
-            var managedEBookAssignmentIdOption = new Option<string>("--managed-ebook-assignment-id", description: "key: id of managedEBookAssignment") {
+            var managedEBookAssignmentIdOption = new Option<string>("--managed-ebook-assignment-id", description: "The unique identifier of managedEBookAssignment") {
             };
             managedEBookAssignmentIdOption.IsRequired = true;
             command.AddOption(managedEBookAssignmentIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property assignments in deviceAppManagement";
             // Create options for all the parameters
-            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "key: id of managedEBook") {
+            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
             command.AddOption(managedEBookIdOption);
-            var managedEBookAssignmentIdOption = new Option<string>("--managed-ebook-assignment-id", description: "key: id of managedEBookAssignment") {
+            var managedEBookAssignmentIdOption = new Option<string>("--managed-ebook-assignment-id", description: "The unique identifier of managedEBookAssignment") {
             };
             managedEBookAssignmentIdOption.IsRequired = true;
             command.AddOption(managedEBookAssignmentIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments.Item {
                 });
                 if (managedEBookId is not null) requestInfo.PathParameters.Add("managedEBook%2Did", managedEBookId);
                 if (managedEBookAssignmentId is not null) requestInfo.PathParameters.Add("managedEBookAssignment%2Did", managedEBookAssignmentId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

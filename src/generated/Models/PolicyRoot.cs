@@ -21,6 +21,14 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.AdminConsentRequestPolicy AdminConsentRequestPolicy { get; set; }
 #endif
+        /// <summary>The appManagementPolicies property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AppManagementPolicy>? AppManagementPolicies { get; set; }
+#nullable restore
+#else
+        public List<AppManagementPolicy> AppManagementPolicies { get; set; }
+#endif
         /// <summary>The policy configuration of the self-service sign-up experience of external users.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -68,6 +76,14 @@ namespace ApiSdk.Models {
 #nullable restore
 #else
         public ApiSdk.Models.CrossTenantAccessPolicy CrossTenantAccessPolicy { get; set; }
+#endif
+        /// <summary>The defaultAppManagementPolicy property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public TenantAppManagementPolicy? DefaultAppManagementPolicy { get; set; }
+#nullable restore
+#else
+        public TenantAppManagementPolicy DefaultAppManagementPolicy { get; set; }
 #endif
         /// <summary>The feature rollout policy associated with a directory object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -148,12 +164,14 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"activityBasedTimeoutPolicies", n => { ActivityBasedTimeoutPolicies = n.GetCollectionOfObjectValues<ActivityBasedTimeoutPolicy>(ActivityBasedTimeoutPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"adminConsentRequestPolicy", n => { AdminConsentRequestPolicy = n.GetObjectValue<ApiSdk.Models.AdminConsentRequestPolicy>(ApiSdk.Models.AdminConsentRequestPolicy.CreateFromDiscriminatorValue); } },
+                {"appManagementPolicies", n => { AppManagementPolicies = n.GetCollectionOfObjectValues<AppManagementPolicy>(AppManagementPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"authenticationFlowsPolicy", n => { AuthenticationFlowsPolicy = n.GetObjectValue<ApiSdk.Models.AuthenticationFlowsPolicy>(ApiSdk.Models.AuthenticationFlowsPolicy.CreateFromDiscriminatorValue); } },
                 {"authenticationMethodsPolicy", n => { AuthenticationMethodsPolicy = n.GetObjectValue<ApiSdk.Models.AuthenticationMethodsPolicy>(ApiSdk.Models.AuthenticationMethodsPolicy.CreateFromDiscriminatorValue); } },
                 {"authorizationPolicy", n => { AuthorizationPolicy = n.GetObjectValue<ApiSdk.Models.AuthorizationPolicy>(ApiSdk.Models.AuthorizationPolicy.CreateFromDiscriminatorValue); } },
                 {"claimsMappingPolicies", n => { ClaimsMappingPolicies = n.GetCollectionOfObjectValues<ClaimsMappingPolicy>(ClaimsMappingPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"conditionalAccessPolicies", n => { ConditionalAccessPolicies = n.GetCollectionOfObjectValues<ConditionalAccessPolicy>(ConditionalAccessPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"crossTenantAccessPolicy", n => { CrossTenantAccessPolicy = n.GetObjectValue<ApiSdk.Models.CrossTenantAccessPolicy>(ApiSdk.Models.CrossTenantAccessPolicy.CreateFromDiscriminatorValue); } },
+                {"defaultAppManagementPolicy", n => { DefaultAppManagementPolicy = n.GetObjectValue<TenantAppManagementPolicy>(TenantAppManagementPolicy.CreateFromDiscriminatorValue); } },
                 {"featureRolloutPolicies", n => { FeatureRolloutPolicies = n.GetCollectionOfObjectValues<FeatureRolloutPolicy>(FeatureRolloutPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"homeRealmDiscoveryPolicies", n => { HomeRealmDiscoveryPolicies = n.GetCollectionOfObjectValues<HomeRealmDiscoveryPolicy>(HomeRealmDiscoveryPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"identitySecurityDefaultsEnforcementPolicy", n => { IdentitySecurityDefaultsEnforcementPolicy = n.GetObjectValue<ApiSdk.Models.IdentitySecurityDefaultsEnforcementPolicy>(ApiSdk.Models.IdentitySecurityDefaultsEnforcementPolicy.CreateFromDiscriminatorValue); } },
@@ -173,12 +191,14 @@ namespace ApiSdk.Models {
             base.Serialize(writer);
             writer.WriteCollectionOfObjectValues<ActivityBasedTimeoutPolicy>("activityBasedTimeoutPolicies", ActivityBasedTimeoutPolicies);
             writer.WriteObjectValue<ApiSdk.Models.AdminConsentRequestPolicy>("adminConsentRequestPolicy", AdminConsentRequestPolicy);
+            writer.WriteCollectionOfObjectValues<AppManagementPolicy>("appManagementPolicies", AppManagementPolicies);
             writer.WriteObjectValue<ApiSdk.Models.AuthenticationFlowsPolicy>("authenticationFlowsPolicy", AuthenticationFlowsPolicy);
             writer.WriteObjectValue<ApiSdk.Models.AuthenticationMethodsPolicy>("authenticationMethodsPolicy", AuthenticationMethodsPolicy);
             writer.WriteObjectValue<ApiSdk.Models.AuthorizationPolicy>("authorizationPolicy", AuthorizationPolicy);
             writer.WriteCollectionOfObjectValues<ClaimsMappingPolicy>("claimsMappingPolicies", ClaimsMappingPolicies);
             writer.WriteCollectionOfObjectValues<ConditionalAccessPolicy>("conditionalAccessPolicies", ConditionalAccessPolicies);
             writer.WriteObjectValue<ApiSdk.Models.CrossTenantAccessPolicy>("crossTenantAccessPolicy", CrossTenantAccessPolicy);
+            writer.WriteObjectValue<TenantAppManagementPolicy>("defaultAppManagementPolicy", DefaultAppManagementPolicy);
             writer.WriteCollectionOfObjectValues<FeatureRolloutPolicy>("featureRolloutPolicies", FeatureRolloutPolicies);
             writer.WriteCollectionOfObjectValues<HomeRealmDiscoveryPolicy>("homeRealmDiscoveryPolicies", HomeRealmDiscoveryPolicies);
             writer.WriteObjectValue<ApiSdk.Models.IdentitySecurityDefaultsEnforcementPolicy>("identitySecurityDefaultsEnforcementPolicy", IdentitySecurityDefaultsEnforcementPolicy);

@@ -30,15 +30,15 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.ColumnLinks.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property columnLinks for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var contentTypeIdOption = new Option<string>("--content-type-id", description: "key: id of contentType") {
+            var contentTypeIdOption = new Option<string>("--content-type-id", description: "The unique identifier of contentType") {
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
-            var columnLinkIdOption = new Option<string>("--column-link-id", description: "key: id of columnLink") {
+            var columnLinkIdOption = new Option<string>("--column-link-id", description: "The unique identifier of columnLink") {
             };
             columnLinkIdOption.IsRequired = true;
             command.AddOption(columnLinkIdOption);
@@ -76,15 +76,15 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.ColumnLinks.Item {
             var command = new Command("get");
             command.Description = "The collection of columns that are required by this content type.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var contentTypeIdOption = new Option<string>("--content-type-id", description: "key: id of contentType") {
+            var contentTypeIdOption = new Option<string>("--content-type-id", description: "The unique identifier of contentType") {
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
-            var columnLinkIdOption = new Option<string>("--column-link-id", description: "key: id of columnLink") {
+            var columnLinkIdOption = new Option<string>("--column-link-id", description: "The unique identifier of columnLink") {
             };
             columnLinkIdOption.IsRequired = true;
             command.AddOption(columnLinkIdOption);
@@ -150,15 +150,15 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.ColumnLinks.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property columnLinks in drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var contentTypeIdOption = new Option<string>("--content-type-id", description: "key: id of contentType") {
+            var contentTypeIdOption = new Option<string>("--content-type-id", description: "The unique identifier of contentType") {
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
-            var columnLinkIdOption = new Option<string>("--column-link-id", description: "key: id of columnLink") {
+            var columnLinkIdOption = new Option<string>("--column-link-id", description: "The unique identifier of columnLink") {
             };
             columnLinkIdOption.IsRequired = true;
             command.AddOption(columnLinkIdOption);
@@ -200,6 +200,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.ColumnLinks.Item {
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (contentTypeId is not null) requestInfo.PathParameters.Add("contentType%2Did", contentTypeId);
                 if (columnLinkId is not null) requestInfo.PathParameters.Add("columnLink%2Did", columnLinkId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

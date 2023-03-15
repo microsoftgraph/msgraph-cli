@@ -30,7 +30,7 @@ namespace ApiSdk.Education.Me.Schools.Item {
             var command = new Command("get");
             command.Description = "Schools to which the user belongs. Nullable.";
             // Create options for all the parameters
-            var educationSchoolIdOption = new Option<string>("--education-school-id", description: "key: id of educationSchool") {
+            var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
             command.AddOption(educationSchoolIdOption);

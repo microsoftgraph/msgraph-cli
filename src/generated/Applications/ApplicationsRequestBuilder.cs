@@ -1,9 +1,9 @@
 using ApiSdk.Applications.Count;
+using ApiSdk.Applications.Delta;
+using ApiSdk.Applications.GetAvailableExtensionProperties;
+using ApiSdk.Applications.GetByIds;
 using ApiSdk.Applications.Item;
-using ApiSdk.Applications.MicrosoftGraphDelta;
-using ApiSdk.Applications.MicrosoftGraphGetAvailableExtensionProperties;
-using ApiSdk.Applications.MicrosoftGraphGetByIds;
-using ApiSdk.Applications.MicrosoftGraphValidateProperties;
+using ApiSdk.Applications.ValidateProperties;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,28 +35,29 @@ namespace ApiSdk.Applications {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new ApplicationItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAddKeyCommand());
+            command.AddCommand(builder.BuildAddPasswordCommand());
+            command.AddCommand(builder.BuildAppManagementPoliciesCommand());
+            command.AddCommand(builder.BuildCheckMemberGroupsCommand());
+            command.AddCommand(builder.BuildCheckMemberObjectsCommand());
             command.AddCommand(builder.BuildCreatedOnBehalfOfCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildExtensionPropertiesCommand());
             command.AddCommand(builder.BuildFederatedIdentityCredentialsCommand());
             command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildGetMemberGroupsCommand());
+            command.AddCommand(builder.BuildGetMemberObjectsCommand());
             command.AddCommand(builder.BuildHomeRealmDiscoveryPoliciesCommand());
             command.AddCommand(builder.BuildLogoCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAddKeyCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAddPasswordCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCheckMemberGroupsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCheckMemberObjectsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetMemberGroupsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetMemberObjectsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRemoveKeyCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRemovePasswordCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRestoreCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSetVerifiedPublisherCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUnsetVerifiedPublisherCommand());
             command.AddCommand(builder.BuildOwnersCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildRemoveKeyCommand());
+            command.AddCommand(builder.BuildRemovePasswordCommand());
+            command.AddCommand(builder.BuildRestoreCommand());
+            command.AddCommand(builder.BuildSetVerifiedPublisherCommand());
             command.AddCommand(builder.BuildTokenIssuancePoliciesCommand());
             command.AddCommand(builder.BuildTokenLifetimePoliciesCommand());
+            command.AddCommand(builder.BuildUnsetVerifiedPublisherCommand());
             return command;
         }
         /// <summary>
@@ -109,6 +110,7 @@ namespace ApiSdk.Applications {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -119,6 +121,36 @@ namespace ApiSdk.Applications {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildDeltaCommand() {
+            var command = new Command("delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getAvailableExtensionProperties method.
+        /// </summary>
+        public Command BuildGetAvailableExtensionPropertiesCommand() {
+            var command = new Command("get-available-extension-properties");
+            command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
+            var builder = new GetAvailableExtensionPropertiesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getByIds method.
+        /// </summary>
+        public Command BuildGetByIdsCommand() {
+            var command = new Command("get-by-ids");
+            command.Description = "Provides operations to call the getByIds method.";
+            var builder = new GetByIdsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -235,42 +267,12 @@ namespace ApiSdk.Applications {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the delta method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDeltaCommand() {
-            var command = new Command("microsoft-graph-delta");
-            command.Description = "Provides operations to call the delta method.";
-            var builder = new MicrosoftGraphDeltaRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getAvailableExtensionProperties method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetAvailableExtensionPropertiesCommand() {
-            var command = new Command("microsoft-graph-get-available-extension-properties");
-            command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
-            var builder = new MicrosoftGraphGetAvailableExtensionPropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getByIds method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetByIdsCommand() {
-            var command = new Command("microsoft-graph-get-by-ids");
-            command.Description = "Provides operations to call the getByIds method.";
-            var builder = new MicrosoftGraphGetByIdsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to call the validateProperties method.
         /// </summary>
-        public Command BuildMicrosoftGraphValidatePropertiesCommand() {
-            var command = new Command("microsoft-graph-validate-properties");
+        public Command BuildValidatePropertiesCommand() {
+            var command = new Command("validate-properties");
             command.Description = "Provides operations to call the validateProperties method.";
-            var builder = new MicrosoftGraphValidatePropertiesRequestBuilder(PathParameters);
+            var builder = new ValidatePropertiesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }

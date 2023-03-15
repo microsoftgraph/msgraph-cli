@@ -46,7 +46,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property roleAssignments for roleManagement";
             // Create options for all the parameters
-            var unifiedRoleAssignmentIdOption = new Option<string>("--unified-role-assignment-id", description: "key: id of unifiedRoleAssignment") {
+            var unifiedRoleAssignmentIdOption = new Option<string>("--unified-role-assignment-id", description: "The unique identifier of unifiedRoleAssignment") {
             };
             unifiedRoleAssignmentIdOption.IsRequired = true;
             command.AddOption(unifiedRoleAssignmentIdOption);
@@ -90,7 +90,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item {
             var command = new Command("get");
             command.Description = "Resource to grant access to users or groups.";
             // Create options for all the parameters
-            var unifiedRoleAssignmentIdOption = new Option<string>("--unified-role-assignment-id", description: "key: id of unifiedRoleAssignment") {
+            var unifiedRoleAssignmentIdOption = new Option<string>("--unified-role-assignment-id", description: "The unique identifier of unifiedRoleAssignment") {
             };
             unifiedRoleAssignmentIdOption.IsRequired = true;
             command.AddOption(unifiedRoleAssignmentIdOption);
@@ -152,7 +152,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property roleAssignments in roleManagement";
             // Create options for all the parameters
-            var unifiedRoleAssignmentIdOption = new Option<string>("--unified-role-assignment-id", description: "key: id of unifiedRoleAssignment") {
+            var unifiedRoleAssignmentIdOption = new Option<string>("--unified-role-assignment-id", description: "The unique identifier of unifiedRoleAssignment") {
             };
             unifiedRoleAssignmentIdOption.IsRequired = true;
             command.AddOption(unifiedRoleAssignmentIdOption);
@@ -190,6 +190,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (unifiedRoleAssignmentId is not null) requestInfo.PathParameters.Add("unifiedRoleAssignment%2Did", unifiedRoleAssignmentId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

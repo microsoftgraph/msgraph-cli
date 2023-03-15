@@ -52,7 +52,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders {
             var command = new Command("list");
             command.Description = "Get the identity providers in a b2xIdentityUserFlow object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/b2xidentityuserflow-list-identityproviders?view=graph-rest-1.0";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);

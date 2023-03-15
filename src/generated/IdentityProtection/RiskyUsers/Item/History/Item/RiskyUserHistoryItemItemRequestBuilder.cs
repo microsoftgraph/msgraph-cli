@@ -30,11 +30,11 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property history for identityProtection";
             // Create options for all the parameters
-            var riskyUserIdOption = new Option<string>("--risky-user-id", description: "key: id of riskyUser") {
+            var riskyUserIdOption = new Option<string>("--risky-user-id", description: "The unique identifier of riskyUser") {
             };
             riskyUserIdOption.IsRequired = true;
             command.AddOption(riskyUserIdOption);
-            var riskyUserHistoryItemIdOption = new Option<string>("--risky-user-history-item-id", description: "key: id of riskyUserHistoryItem") {
+            var riskyUserHistoryItemIdOption = new Option<string>("--risky-user-history-item-id", description: "The unique identifier of riskyUserHistoryItem") {
             };
             riskyUserHistoryItemIdOption.IsRequired = true;
             command.AddOption(riskyUserHistoryItemIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History.Item {
             var command = new Command("get");
             command.Description = "The activity related to user risk level change";
             // Create options for all the parameters
-            var riskyUserIdOption = new Option<string>("--risky-user-id", description: "key: id of riskyUser") {
+            var riskyUserIdOption = new Option<string>("--risky-user-id", description: "The unique identifier of riskyUser") {
             };
             riskyUserIdOption.IsRequired = true;
             command.AddOption(riskyUserIdOption);
-            var riskyUserHistoryItemIdOption = new Option<string>("--risky-user-history-item-id", description: "key: id of riskyUserHistoryItem") {
+            var riskyUserHistoryItemIdOption = new Option<string>("--risky-user-history-item-id", description: "The unique identifier of riskyUserHistoryItem") {
             };
             riskyUserHistoryItemIdOption.IsRequired = true;
             command.AddOption(riskyUserHistoryItemIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property history in identityProtection";
             // Create options for all the parameters
-            var riskyUserIdOption = new Option<string>("--risky-user-id", description: "key: id of riskyUser") {
+            var riskyUserIdOption = new Option<string>("--risky-user-id", description: "The unique identifier of riskyUser") {
             };
             riskyUserIdOption.IsRequired = true;
             command.AddOption(riskyUserIdOption);
-            var riskyUserHistoryItemIdOption = new Option<string>("--risky-user-history-item-id", description: "key: id of riskyUserHistoryItem") {
+            var riskyUserHistoryItemIdOption = new Option<string>("--risky-user-history-item-id", description: "The unique identifier of riskyUserHistoryItem") {
             };
             riskyUserHistoryItemIdOption.IsRequired = true;
             command.AddOption(riskyUserHistoryItemIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History.Item {
                 });
                 if (riskyUserId is not null) requestInfo.PathParameters.Add("riskyUser%2Did", riskyUserId);
                 if (riskyUserHistoryItemId is not null) requestInfo.PathParameters.Add("riskyUserHistoryItem%2Did", riskyUserHistoryItemId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

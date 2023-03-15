@@ -51,7 +51,7 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item.ManagedDevices {
             var command = new Command("list");
             command.Description = "The devices that have the discovered application installed";
             // Create options for all the parameters
-            var detectedAppIdOption = new Option<string>("--detected-app-id", description: "key: id of detectedApp") {
+            var detectedAppIdOption = new Option<string>("--detected-app-id", description: "The unique identifier of detectedApp") {
             };
             detectedAppIdOption.IsRequired = true;
             command.AddOption(detectedAppIdOption);

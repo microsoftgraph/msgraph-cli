@@ -29,15 +29,15 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DriveItem.Content {
             var command = new Command("get");
             command.Description = "The content stream, if the item represents a file.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            var listIdOption = new Option<string>("--list-id", description: "The unique identifier of list") {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
-            var listItemIdOption = new Option<string>("--list-item-id", description: "key: id of listItem") {
+            var listItemIdOption = new Option<string>("--list-item-id", description: "The unique identifier of listItem") {
             };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
@@ -80,15 +80,15 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DriveItem.Content {
             var command = new Command("put");
             command.Description = "The content stream, if the item represents a file.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            var listIdOption = new Option<string>("--list-id", description: "The unique identifier of list") {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
-            var listItemIdOption = new Option<string>("--list-item-id", description: "key: id of listItem") {
+            var listItemIdOption = new Option<string>("--list-item-id", description: "The unique identifier of listItem") {
             };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);

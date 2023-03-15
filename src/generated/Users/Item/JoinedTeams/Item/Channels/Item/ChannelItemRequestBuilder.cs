@@ -1,12 +1,12 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.CompleteMigration;
+using ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalName;
 using ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.FilesFolder;
 using ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Members;
 using ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages;
-using ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.MicrosoftGraphCompleteMigration;
-using ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.MicrosoftGraphDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalName;
-using ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.MicrosoftGraphProvisionEmail;
-using ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.MicrosoftGraphRemoveEmail;
+using ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.ProvisionEmail;
+using ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.RemoveEmail;
 using ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.SharedWithTeams;
 using ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Tabs;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,21 +33,31 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the completeMigration method.
+        /// </summary>
+        public Command BuildCompleteMigrationCommand() {
+            var command = new Command("complete-migration");
+            command.Description = "Provides operations to call the completeMigration method.";
+            var builder = new CompleteMigrationRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete navigation property channels for users
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property channels for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var channelIdOption = new Option<string>("--channel-id", description: "key: id of channel") {
+            var channelIdOption = new Option<string>("--channel-id", description: "The unique identifier of channel") {
             };
             channelIdOption.IsRequired = true;
             command.AddOption(channelIdOption);
@@ -79,6 +89,16 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the doesUserHaveAccess method.
+        /// </summary>
+        public Command BuildDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameCommand() {
+            var command = new Command("does-user-have-accessuser-id-user-id-tenant-id-tenant-id-user-principal-name-user-principal-name");
+            command.Description = "Provides operations to call the doesUserHaveAccess method.";
+            var builder = new DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the filesFolder property of the microsoft.graph.channel entity.
         /// </summary>
         public Command BuildFilesFolderCommand() {
@@ -96,15 +116,15 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item {
             var command = new Command("get");
             command.Description = "The collection of channels and messages associated with the team.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var channelIdOption = new Option<string>("--channel-id", description: "key: id of channel") {
+            var channelIdOption = new Option<string>("--channel-id", description: "The unique identifier of channel") {
             };
             channelIdOption.IsRequired = true;
             command.AddOption(channelIdOption);
@@ -170,11 +190,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item {
             var command = new Command("members");
             command.Description = "Provides operations to manage the members property of the microsoft.graph.channel entity.";
             var builder = new MembersRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAddCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAddCommand());
             return command;
         }
         /// <summary>
@@ -187,48 +207,8 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the completeMigration method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCompleteMigrationCommand() {
-            var command = new Command("microsoft-graph-complete-migration");
-            command.Description = "Provides operations to call the completeMigration method.";
-            var builder = new MicrosoftGraphCompleteMigrationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the doesUserHaveAccess method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameCommand() {
-            var command = new Command("microsoft-graph-does-user-have-accessuser-id-user-id-tenant-id-tenant-id-user-principal-name-user-principal-name");
-            command.Description = "Provides operations to call the doesUserHaveAccess method.";
-            var builder = new MicrosoftGraphDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the provisionEmail method.
-        /// </summary>
-        public Command BuildMicrosoftGraphProvisionEmailCommand() {
-            var command = new Command("microsoft-graph-provision-email");
-            command.Description = "Provides operations to call the provisionEmail method.";
-            var builder = new MicrosoftGraphProvisionEmailRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the removeEmail method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRemoveEmailCommand() {
-            var command = new Command("microsoft-graph-remove-email");
-            command.Description = "Provides operations to call the removeEmail method.";
-            var builder = new MicrosoftGraphRemoveEmailRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -238,15 +218,15 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property channels in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var channelIdOption = new Option<string>("--channel-id", description: "key: id of channel") {
+            var channelIdOption = new Option<string>("--channel-id", description: "The unique identifier of channel") {
             };
             channelIdOption.IsRequired = true;
             command.AddOption(channelIdOption);
@@ -288,6 +268,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item {
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
                 if (channelId is not null) requestInfo.PathParameters.Add("channel%2Did", channelId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -298,6 +279,26 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the provisionEmail method.
+        /// </summary>
+        public Command BuildProvisionEmailCommand() {
+            var command = new Command("provision-email");
+            command.Description = "Provides operations to call the provisionEmail method.";
+            var builder = new ProvisionEmailRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the removeEmail method.
+        /// </summary>
+        public Command BuildRemoveEmailCommand() {
+            var command = new Command("remove-email");
+            command.Description = "Provides operations to call the removeEmail method.";
+            var builder = new RemoveEmailRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

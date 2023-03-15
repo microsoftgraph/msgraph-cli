@@ -30,11 +30,11 @@ namespace ApiSdk.Applications.Item.FederatedIdentityCredentials.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property federatedIdentityCredentials for applications";
             // Create options for all the parameters
-            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
             command.AddOption(applicationIdOption);
-            var federatedIdentityCredentialIdOption = new Option<string>("--federated-identity-credential-id", description: "key: id of federatedIdentityCredential") {
+            var federatedIdentityCredentialIdOption = new Option<string>("--federated-identity-credential-id", description: "The unique identifier of federatedIdentityCredential") {
             };
             federatedIdentityCredentialIdOption.IsRequired = true;
             command.AddOption(federatedIdentityCredentialIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Applications.Item.FederatedIdentityCredentials.Item {
             var command = new Command("get");
             command.Description = "Federated identities for applications. Supports $expand and $filter (startsWith, /$count eq 0, /$count ne 0).";
             // Create options for all the parameters
-            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
             command.AddOption(applicationIdOption);
-            var federatedIdentityCredentialIdOption = new Option<string>("--federated-identity-credential-id", description: "key: id of federatedIdentityCredential") {
+            var federatedIdentityCredentialIdOption = new Option<string>("--federated-identity-credential-id", description: "The unique identifier of federatedIdentityCredential") {
             };
             federatedIdentityCredentialIdOption.IsRequired = true;
             command.AddOption(federatedIdentityCredentialIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Applications.Item.FederatedIdentityCredentials.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property federatedIdentityCredentials in applications";
             // Create options for all the parameters
-            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
             command.AddOption(applicationIdOption);
-            var federatedIdentityCredentialIdOption = new Option<string>("--federated-identity-credential-id", description: "key: id of federatedIdentityCredential") {
+            var federatedIdentityCredentialIdOption = new Option<string>("--federated-identity-credential-id", description: "The unique identifier of federatedIdentityCredential") {
             };
             federatedIdentityCredentialIdOption.IsRequired = true;
             command.AddOption(federatedIdentityCredentialIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Applications.Item.FederatedIdentityCredentials.Item {
                 });
                 if (applicationId is not null) requestInfo.PathParameters.Add("application%2Did", applicationId);
                 if (federatedIdentityCredentialId is not null) requestInfo.PathParameters.Add("federatedIdentityCredential%2Did", federatedIdentityCredentialId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

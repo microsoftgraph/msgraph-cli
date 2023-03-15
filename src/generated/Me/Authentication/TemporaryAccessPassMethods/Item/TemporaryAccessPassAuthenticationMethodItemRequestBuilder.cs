@@ -30,7 +30,7 @@ namespace ApiSdk.Me.Authentication.TemporaryAccessPassMethods.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property temporaryAccessPassMethods for me";
             // Create options for all the parameters
-            var temporaryAccessPassAuthenticationMethodIdOption = new Option<string>("--temporary-access-pass-authentication-method-id", description: "key: id of temporaryAccessPassAuthenticationMethod") {
+            var temporaryAccessPassAuthenticationMethodIdOption = new Option<string>("--temporary-access-pass-authentication-method-id", description: "The unique identifier of temporaryAccessPassAuthenticationMethod") {
             };
             temporaryAccessPassAuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(temporaryAccessPassAuthenticationMethodIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Me.Authentication.TemporaryAccessPassMethods.Item {
             var command = new Command("get");
             command.Description = "Represents a Temporary Access Pass registered to a user for authentication through time-limited passcodes.";
             // Create options for all the parameters
-            var temporaryAccessPassAuthenticationMethodIdOption = new Option<string>("--temporary-access-pass-authentication-method-id", description: "key: id of temporaryAccessPassAuthenticationMethod") {
+            var temporaryAccessPassAuthenticationMethodIdOption = new Option<string>("--temporary-access-pass-authentication-method-id", description: "The unique identifier of temporaryAccessPassAuthenticationMethod") {
             };
             temporaryAccessPassAuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(temporaryAccessPassAuthenticationMethodIdOption);

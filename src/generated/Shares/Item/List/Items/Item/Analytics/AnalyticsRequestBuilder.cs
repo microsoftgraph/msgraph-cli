@@ -30,11 +30,11 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Analytics {
             var command = new Command("get");
             command.Description = "Analytics about the view activities that took place on this item.";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
-            var listItemIdOption = new Option<string>("--list-item-id", description: "key: id of listItem") {
+            var listItemIdOption = new Option<string>("--list-item-id", description: "The unique identifier of listItem") {
             };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);

@@ -54,7 +54,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
             var command = new Command("create");
             command.Description = "Create a new authoredNote object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/subjectrightsrequest-post-notes?view=graph-rest-1.0";
             // Create options for all the parameters
-            var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "key: id of subjectRightsRequest") {
+            var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "The unique identifier of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
             command.AddOption(subjectRightsRequestIdOption);
@@ -92,6 +92,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (subjectRightsRequestId is not null) requestInfo.PathParameters.Add("subjectRightsRequest%2Did", subjectRightsRequestId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,7 +113,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
             var command = new Command("list");
             command.Description = "Get the list of authored notes assoicated with a subject rights request. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/subjectrightsrequest-list-notes?view=graph-rest-1.0";
             // Create options for all the parameters
-            var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "key: id of subjectRightsRequest") {
+            var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "The unique identifier of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
             command.AddOption(subjectRightsRequestIdOption);

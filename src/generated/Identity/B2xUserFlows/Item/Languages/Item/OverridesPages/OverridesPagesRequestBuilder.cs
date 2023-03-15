@@ -54,11 +54,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages {
             var command = new Command("create");
             command.Description = "Create new navigation property to overridesPages for identity";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
-            var userFlowLanguageConfigurationIdOption = new Option<string>("--user-flow-language-configuration-id", description: "key: id of userFlowLanguageConfiguration") {
+            var userFlowLanguageConfigurationIdOption = new Option<string>("--user-flow-language-configuration-id", description: "The unique identifier of userFlowLanguageConfiguration") {
             };
             userFlowLanguageConfigurationIdOption.IsRequired = true;
             command.AddOption(userFlowLanguageConfigurationIdOption);
@@ -98,6 +98,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages {
                 });
                 if (b2xIdentityUserFlowId is not null) requestInfo.PathParameters.Add("b2xIdentityUserFlow%2Did", b2xIdentityUserFlowId);
                 if (userFlowLanguageConfigurationId is not null) requestInfo.PathParameters.Add("userFlowLanguageConfiguration%2Did", userFlowLanguageConfigurationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -118,11 +119,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages {
             var command = new Command("list");
             command.Description = "Get the userFlowLanguagePage resources from the overridesPages navigation property. These pages are used to customize the values shown to the user during a user journey in a user flow.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/userflowlanguageconfiguration-list-overridespages?view=graph-rest-1.0";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
-            var userFlowLanguageConfigurationIdOption = new Option<string>("--user-flow-language-configuration-id", description: "key: id of userFlowLanguageConfiguration") {
+            var userFlowLanguageConfigurationIdOption = new Option<string>("--user-flow-language-configuration-id", description: "The unique identifier of userFlowLanguageConfiguration") {
             };
             userFlowLanguageConfigurationIdOption.IsRequired = true;
             command.AddOption(userFlowLanguageConfigurationIdOption);

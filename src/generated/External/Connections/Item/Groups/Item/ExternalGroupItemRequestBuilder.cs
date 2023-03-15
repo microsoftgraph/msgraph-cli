@@ -31,11 +31,11 @@ namespace ApiSdk.External.Connections.Item.Groups.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property groups for external";
             // Create options for all the parameters
-            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
+            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
             command.AddOption(externalConnectionIdOption);
-            var externalGroupIdOption = new Option<string>("--external-group-id", description: "key: id of externalGroup") {
+            var externalGroupIdOption = new Option<string>("--external-group-id", description: "The unique identifier of externalGroup") {
             };
             externalGroupIdOption.IsRequired = true;
             command.AddOption(externalGroupIdOption);
@@ -71,11 +71,11 @@ namespace ApiSdk.External.Connections.Item.Groups.Item {
             var command = new Command("get");
             command.Description = "Get groups from external";
             // Create options for all the parameters
-            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
+            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
             command.AddOption(externalConnectionIdOption);
-            var externalGroupIdOption = new Option<string>("--external-group-id", description: "key: id of externalGroup") {
+            var externalGroupIdOption = new Option<string>("--external-group-id", description: "The unique identifier of externalGroup") {
             };
             externalGroupIdOption.IsRequired = true;
             command.AddOption(externalGroupIdOption);
@@ -152,11 +152,11 @@ namespace ApiSdk.External.Connections.Item.Groups.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property groups in external";
             // Create options for all the parameters
-            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
+            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
             command.AddOption(externalConnectionIdOption);
-            var externalGroupIdOption = new Option<string>("--external-group-id", description: "key: id of externalGroup") {
+            var externalGroupIdOption = new Option<string>("--external-group-id", description: "The unique identifier of externalGroup") {
             };
             externalGroupIdOption.IsRequired = true;
             command.AddOption(externalGroupIdOption);
@@ -196,6 +196,7 @@ namespace ApiSdk.External.Connections.Item.Groups.Item {
                 });
                 if (externalConnectionId is not null) requestInfo.PathParameters.Add("externalConnection%2Did", externalConnectionId);
                 if (externalGroupId is not null) requestInfo.PathParameters.Add("externalGroup%2Did", externalGroupId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

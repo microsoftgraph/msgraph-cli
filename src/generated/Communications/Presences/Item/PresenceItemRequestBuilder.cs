@@ -1,7 +1,7 @@
-using ApiSdk.Communications.Presences.Item.MicrosoftGraphClearPresence;
-using ApiSdk.Communications.Presences.Item.MicrosoftGraphClearUserPreferredPresence;
-using ApiSdk.Communications.Presences.Item.MicrosoftGraphSetPresence;
-using ApiSdk.Communications.Presences.Item.MicrosoftGraphSetUserPreferredPresence;
+using ApiSdk.Communications.Presences.Item.ClearPresence;
+using ApiSdk.Communications.Presences.Item.ClearUserPreferredPresence;
+using ApiSdk.Communications.Presences.Item.SetPresence;
+using ApiSdk.Communications.Presences.Item.SetUserPreferredPresence;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,13 +28,33 @@ namespace ApiSdk.Communications.Presences.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the clearPresence method.
+        /// </summary>
+        public Command BuildClearPresenceCommand() {
+            var command = new Command("clear-presence");
+            command.Description = "Provides operations to call the clearPresence method.";
+            var builder = new ClearPresenceRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the clearUserPreferredPresence method.
+        /// </summary>
+        public Command BuildClearUserPreferredPresenceCommand() {
+            var command = new Command("clear-user-preferred-presence");
+            command.Description = "Provides operations to call the clearUserPreferredPresence method.";
+            var builder = new ClearUserPreferredPresenceRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete navigation property presences for communications
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property presences for communications";
             // Create options for all the parameters
-            var presenceIdOption = new Option<string>("--presence-id", description: "key: id of presence") {
+            var presenceIdOption = new Option<string>("--presence-id", description: "The unique identifier of presence") {
             };
             presenceIdOption.IsRequired = true;
             command.AddOption(presenceIdOption);
@@ -68,7 +88,7 @@ namespace ApiSdk.Communications.Presences.Item {
             var command = new Command("get");
             command.Description = "Get presences from communications";
             // Create options for all the parameters
-            var presenceIdOption = new Option<string>("--presence-id", description: "key: id of presence") {
+            var presenceIdOption = new Option<string>("--presence-id", description: "The unique identifier of presence") {
             };
             presenceIdOption.IsRequired = true;
             command.AddOption(presenceIdOption);
@@ -124,53 +144,13 @@ namespace ApiSdk.Communications.Presences.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the clearPresence method.
-        /// </summary>
-        public Command BuildMicrosoftGraphClearPresenceCommand() {
-            var command = new Command("microsoft-graph-clear-presence");
-            command.Description = "Provides operations to call the clearPresence method.";
-            var builder = new MicrosoftGraphClearPresenceRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the clearUserPreferredPresence method.
-        /// </summary>
-        public Command BuildMicrosoftGraphClearUserPreferredPresenceCommand() {
-            var command = new Command("microsoft-graph-clear-user-preferred-presence");
-            command.Description = "Provides operations to call the clearUserPreferredPresence method.";
-            var builder = new MicrosoftGraphClearUserPreferredPresenceRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the setPresence method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSetPresenceCommand() {
-            var command = new Command("microsoft-graph-set-presence");
-            command.Description = "Provides operations to call the setPresence method.";
-            var builder = new MicrosoftGraphSetPresenceRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the setUserPreferredPresence method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSetUserPreferredPresenceCommand() {
-            var command = new Command("microsoft-graph-set-user-preferred-presence");
-            command.Description = "Provides operations to call the setUserPreferredPresence method.";
-            var builder = new MicrosoftGraphSetUserPreferredPresenceRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property presences in communications
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property presences in communications";
             // Create options for all the parameters
-            var presenceIdOption = new Option<string>("--presence-id", description: "key: id of presence") {
+            var presenceIdOption = new Option<string>("--presence-id", description: "The unique identifier of presence") {
             };
             presenceIdOption.IsRequired = true;
             command.AddOption(presenceIdOption);
@@ -208,6 +188,7 @@ namespace ApiSdk.Communications.Presences.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (presenceId is not null) requestInfo.PathParameters.Add("presence%2Did", presenceId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -218,6 +199,26 @@ namespace ApiSdk.Communications.Presences.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the setPresence method.
+        /// </summary>
+        public Command BuildSetPresenceCommand() {
+            var command = new Command("set-presence");
+            command.Description = "Provides operations to call the setPresence method.";
+            var builder = new SetPresenceRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the setUserPreferredPresence method.
+        /// </summary>
+        public Command BuildSetUserPreferredPresenceCommand() {
+            var command = new Command("set-user-preferred-presence");
+            command.Description = "Provides operations to call the setUserPreferredPresence method.";
+            var builder = new SetUserPreferredPresenceRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

@@ -1,8 +1,8 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.ContactFolders.Item.Contacts.Count;
+using ApiSdk.Users.Item.ContactFolders.Item.Contacts.Delta;
 using ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item;
-using ApiSdk.Users.Item.ContactFolders.Item.Contacts.MicrosoftGraphDelta;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -59,11 +59,11 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
             var command = new Command("create");
             command.Description = "Add a contact to the root Contacts folder or to the `contacts` endpoint of another contact folder.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contactfolder-post-contacts?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
+            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "The unique identifier of contactFolder") {
             };
             contactFolderIdOption.IsRequired = true;
             command.AddOption(contactFolderIdOption);
@@ -103,6 +103,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (contactFolderId is not null) requestInfo.PathParameters.Add("contactFolder%2Did", contactFolderId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -116,6 +117,16 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildDeltaCommand() {
+            var command = new Command("delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Get a contact collection from the default Contacts folder of the signed-in user (`.../me/contacts`), or from the specified contact folder.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/contactfolder-list-contacts?view=graph-rest-1.0" />
         /// </summary>
@@ -123,11 +134,11 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
             var command = new Command("list");
             command.Description = "Get a contact collection from the default Contacts folder of the signed-in user (`.../me/contacts`), or from the specified contact folder.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contactfolder-list-contacts?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
+            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "The unique identifier of contactFolder") {
             };
             contactFolderIdOption.IsRequired = true;
             command.AddOption(contactFolderIdOption);
@@ -225,16 +236,6 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the delta method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDeltaCommand() {
-            var command = new Command("microsoft-graph-delta");
-            command.Description = "Provides operations to call the delta method.";
-            var builder = new MicrosoftGraphDeltaRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

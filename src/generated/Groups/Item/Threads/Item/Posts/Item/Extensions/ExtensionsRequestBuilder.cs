@@ -53,15 +53,15 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Extensions {
             var command = new Command("create");
             command.Description = "Create new navigation property to extensions for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "key: id of conversationThread") {
+            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "The unique identifier of conversationThread") {
             };
             conversationThreadIdOption.IsRequired = true;
             command.AddOption(conversationThreadIdOption);
-            var postIdOption = new Option<string>("--post-id", description: "key: id of post") {
+            var postIdOption = new Option<string>("--post-id", description: "The unique identifier of post") {
             };
             postIdOption.IsRequired = true;
             command.AddOption(postIdOption);
@@ -103,6 +103,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Extensions {
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (conversationThreadId is not null) requestInfo.PathParameters.Add("conversationThread%2Did", conversationThreadId);
                 if (postId is not null) requestInfo.PathParameters.Add("post%2Did", postId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -122,15 +123,15 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.Extensions {
             var command = new Command("list");
             command.Description = "The collection of open extensions defined for the post. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "key: id of conversationThread") {
+            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "The unique identifier of conversationThread") {
             };
             conversationThreadIdOption.IsRequired = true;
             command.AddOption(conversationThreadIdOption);
-            var postIdOption = new Option<string>("--post-id", description: "key: id of post") {
+            var postIdOption = new Option<string>("--post-id", description: "The unique identifier of post") {
             };
             postIdOption.IsRequired = true;
             command.AddOption(postIdOption);

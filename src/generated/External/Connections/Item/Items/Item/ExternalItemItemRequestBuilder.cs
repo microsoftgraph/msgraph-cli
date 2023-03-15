@@ -30,11 +30,11 @@ namespace ApiSdk.External.Connections.Item.Items.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property items for external";
             // Create options for all the parameters
-            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
+            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
             command.AddOption(externalConnectionIdOption);
-            var externalItemIdOption = new Option<string>("--external-item-id", description: "key: id of externalItem") {
+            var externalItemIdOption = new Option<string>("--external-item-id", description: "The unique identifier of externalItem") {
             };
             externalItemIdOption.IsRequired = true;
             command.AddOption(externalItemIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.External.Connections.Item.Items.Item {
             var command = new Command("get");
             command.Description = "Get items from external";
             // Create options for all the parameters
-            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
+            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
             command.AddOption(externalConnectionIdOption);
-            var externalItemIdOption = new Option<string>("--external-item-id", description: "key: id of externalItem") {
+            var externalItemIdOption = new Option<string>("--external-item-id", description: "The unique identifier of externalItem") {
             };
             externalItemIdOption.IsRequired = true;
             command.AddOption(externalItemIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.External.Connections.Item.Items.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property items in external";
             // Create options for all the parameters
-            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
+            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
             command.AddOption(externalConnectionIdOption);
-            var externalItemIdOption = new Option<string>("--external-item-id", description: "key: id of externalItem") {
+            var externalItemIdOption = new Option<string>("--external-item-id", description: "The unique identifier of externalItem") {
             };
             externalItemIdOption.IsRequired = true;
             command.AddOption(externalItemIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.External.Connections.Item.Items.Item {
                 });
                 if (externalConnectionId is not null) requestInfo.PathParameters.Add("externalConnection%2Did", externalConnectionId);
                 if (externalItemId is not null) requestInfo.PathParameters.Add("externalItem%2Did", externalItemId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

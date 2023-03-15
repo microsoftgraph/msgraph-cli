@@ -52,15 +52,15 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.SectionGroups.Item.SectionGr
             var command = new Command("list");
             command.Description = "Retrieve a list of section groups from the specified section group.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/sectiongroup-list-sectiongroups?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var notebookIdOption = new Option<string>("--notebook-id", description: "key: id of notebook") {
+            var notebookIdOption = new Option<string>("--notebook-id", description: "The unique identifier of notebook") {
             };
             notebookIdOption.IsRequired = true;
             command.AddOption(notebookIdOption);
-            var sectionGroupIdOption = new Option<string>("--section-group-id", description: "key: id of sectionGroup") {
+            var sectionGroupIdOption = new Option<string>("--section-group-id", description: "The unique identifier of sectionGroup") {
             };
             sectionGroupIdOption.IsRequired = true;
             command.AddOption(sectionGroupIdOption);

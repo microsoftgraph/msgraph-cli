@@ -1,11 +1,11 @@
 using ApiSdk.Groups.Item.MembersWithLicenseErrors.Count;
+using ApiSdk.Groups.Item.MembersWithLicenseErrors.GraphApplication;
+using ApiSdk.Groups.Item.MembersWithLicenseErrors.GraphDevice;
+using ApiSdk.Groups.Item.MembersWithLicenseErrors.GraphGroup;
+using ApiSdk.Groups.Item.MembersWithLicenseErrors.GraphOrgContact;
+using ApiSdk.Groups.Item.MembersWithLicenseErrors.GraphServicePrincipal;
+using ApiSdk.Groups.Item.MembersWithLicenseErrors.GraphUser;
 using ApiSdk.Groups.Item.MembersWithLicenseErrors.Item;
-using ApiSdk.Groups.Item.MembersWithLicenseErrors.MicrosoftGraphApplication;
-using ApiSdk.Groups.Item.MembersWithLicenseErrors.MicrosoftGraphDevice;
-using ApiSdk.Groups.Item.MembersWithLicenseErrors.MicrosoftGraphGroup;
-using ApiSdk.Groups.Item.MembersWithLicenseErrors.MicrosoftGraphOrgContact;
-using ApiSdk.Groups.Item.MembersWithLicenseErrors.MicrosoftGraphServicePrincipal;
-using ApiSdk.Groups.Item.MembersWithLicenseErrors.MicrosoftGraphUser;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,12 +38,12 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors {
             var command = new Command("item");
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphApplicationCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeviceCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGroupCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphOrgContactCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphServicePrincipalCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUserCommand());
+            command.AddCommand(builder.BuildGraphApplicationCommand());
+            command.AddCommand(builder.BuildGraphDeviceCommand());
+            command.AddCommand(builder.BuildGraphGroupCommand());
+            command.AddCommand(builder.BuildGraphOrgContactCommand());
+            command.AddCommand(builder.BuildGraphServicePrincipalCommand());
+            command.AddCommand(builder.BuildGraphUserCommand());
             return command;
         }
         /// <summary>
@@ -57,13 +57,79 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors {
             return command;
         }
         /// <summary>
+        /// Casts the previous resource to application.
+        /// </summary>
+        public Command BuildGraphApplicationCommand() {
+            var command = new Command("graph-application");
+            command.Description = "Casts the previous resource to application.";
+            var builder = new GraphApplicationRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to device.
+        /// </summary>
+        public Command BuildGraphDeviceCommand() {
+            var command = new Command("graph-device");
+            command.Description = "Casts the previous resource to device.";
+            var builder = new GraphDeviceRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to group.
+        /// </summary>
+        public Command BuildGraphGroupCommand() {
+            var command = new Command("graph-group");
+            command.Description = "Casts the previous resource to group.";
+            var builder = new GraphGroupRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to orgContact.
+        /// </summary>
+        public Command BuildGraphOrgContactCommand() {
+            var command = new Command("graph-org-contact");
+            command.Description = "Casts the previous resource to orgContact.";
+            var builder = new GraphOrgContactRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to servicePrincipal.
+        /// </summary>
+        public Command BuildGraphServicePrincipalCommand() {
+            var command = new Command("graph-service-principal");
+            command.Description = "Casts the previous resource to servicePrincipal.";
+            var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to user.
+        /// </summary>
+        public Command BuildGraphUserCommand() {
+            var command = new Command("graph-user");
+            command.Description = "Casts the previous resource to user.";
+            var builder = new GraphUserRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// A list of group members with license errors from this group-based license assignment. Read-only.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "A list of group members with license errors from this group-based license assignment. Read-only.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
@@ -172,72 +238,6 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to application.
-        /// </summary>
-        public Command BuildMicrosoftGraphApplicationCommand() {
-            var command = new Command("microsoft-graph-application");
-            command.Description = "Casts the previous resource to application.";
-            var builder = new MicrosoftGraphApplicationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to device.
-        /// </summary>
-        public Command BuildMicrosoftGraphDeviceCommand() {
-            var command = new Command("microsoft-graph-device");
-            command.Description = "Casts the previous resource to device.";
-            var builder = new MicrosoftGraphDeviceRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to group.
-        /// </summary>
-        public Command BuildMicrosoftGraphGroupCommand() {
-            var command = new Command("microsoft-graph-group");
-            command.Description = "Casts the previous resource to group.";
-            var builder = new MicrosoftGraphGroupRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to orgContact.
-        /// </summary>
-        public Command BuildMicrosoftGraphOrgContactCommand() {
-            var command = new Command("microsoft-graph-org-contact");
-            command.Description = "Casts the previous resource to orgContact.";
-            var builder = new MicrosoftGraphOrgContactRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to servicePrincipal.
-        /// </summary>
-        public Command BuildMicrosoftGraphServicePrincipalCommand() {
-            var command = new Command("microsoft-graph-service-principal");
-            command.Description = "Casts the previous resource to servicePrincipal.";
-            var builder = new MicrosoftGraphServicePrincipalRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to user.
-        /// </summary>
-        public Command BuildMicrosoftGraphUserCommand() {
-            var command = new Command("microsoft-graph-user");
-            command.Description = "Casts the previous resource to user.";
-            var builder = new MicrosoftGraphUserRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

@@ -12,12 +12,11 @@ using ApiSdk.DeviceManagement.DeviceConfigurations;
 using ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations;
 using ApiSdk.DeviceManagement.DeviceManagementPartners;
 using ApiSdk.DeviceManagement.ExchangeConnectors;
+using ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope;
 using ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities;
 using ApiSdk.DeviceManagement.IosUpdateStatuses;
 using ApiSdk.DeviceManagement.ManagedDeviceOverview;
 using ApiSdk.DeviceManagement.ManagedDevices;
-using ApiSdk.DeviceManagement.MicrosoftGraphGetEffectivePermissionsWithScope;
-using ApiSdk.DeviceManagement.MicrosoftGraphVerifyWindowsEnrollmentAutoDiscoveryWithDomainName;
 using ApiSdk.DeviceManagement.MobileThreatDefenseConnectors;
 using ApiSdk.DeviceManagement.NotificationMessageTemplates;
 using ApiSdk.DeviceManagement.RemoteAssistancePartners;
@@ -29,6 +28,7 @@ using ApiSdk.DeviceManagement.SoftwareUpdateStatusSummary;
 using ApiSdk.DeviceManagement.TelecomExpenseManagementPartners;
 using ApiSdk.DeviceManagement.TermsAndConditions;
 using ApiSdk.DeviceManagement.TroubleshootingEvents;
+using ApiSdk.DeviceManagement.VerifyWindowsEnrollmentAutoDiscoveryWithDomainName;
 using ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities;
 using ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummaries;
 using ApiSdk.DeviceManagement.WindowsInformationProtectionNetworkLearningSummaries;
@@ -65,8 +65,8 @@ namespace ApiSdk.DeviceManagement {
             command.Description = "Provides operations to manage the applePushNotificationCertificate property of the microsoft.graph.deviceManagement entity.";
             var builder = new ApplePushNotificationCertificateRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildDownloadApplePushNotificationCertificateSigningRequestCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDownloadApplePushNotificationCertificateSigningRequestCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
@@ -80,8 +80,8 @@ namespace ApiSdk.DeviceManagement {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildGetAuditCategoriesCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetAuditCategoriesCommand());
             return command;
         }
         /// <summary>
@@ -303,8 +303,8 @@ namespace ApiSdk.DeviceManagement {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildImportCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphImportCommand());
             return command;
         }
         /// <summary>
@@ -408,6 +408,7 @@ namespace ApiSdk.DeviceManagement {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -442,25 +443,25 @@ namespace ApiSdk.DeviceManagement {
             var builder = new ReportsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildExportJobsCommand());
+            command.AddCommand(builder.BuildGetCachedReportCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetCachedReportCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetCompliancePolicyNonComplianceReportCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetCompliancePolicyNonComplianceSummaryReportCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetComplianceSettingNonComplianceReportCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetConfigurationPolicyNonComplianceReportCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetConfigurationPolicyNonComplianceSummaryReportCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetConfigurationSettingNonComplianceReportCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetDeviceManagementIntentPerSettingContributingProfilesCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetDeviceManagementIntentSettingsReportCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetDeviceNonComplianceReportCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetDevicesWithoutCompliancePolicyReportCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetHistoricalReportCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetNoncompliantDevicesAndSettingsReportCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetPolicyNonComplianceMetadataCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetPolicyNonComplianceReportCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetPolicyNonComplianceSummaryReportCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetReportFiltersCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetSettingNonComplianceReportCommand());
+            command.AddCommand(builder.BuildGetCompliancePolicyNonComplianceReportCommand());
+            command.AddCommand(builder.BuildGetCompliancePolicyNonComplianceSummaryReportCommand());
+            command.AddCommand(builder.BuildGetComplianceSettingNonComplianceReportCommand());
+            command.AddCommand(builder.BuildGetConfigurationPolicyNonComplianceReportCommand());
+            command.AddCommand(builder.BuildGetConfigurationPolicyNonComplianceSummaryReportCommand());
+            command.AddCommand(builder.BuildGetConfigurationSettingNonComplianceReportCommand());
+            command.AddCommand(builder.BuildGetDeviceManagementIntentPerSettingContributingProfilesCommand());
+            command.AddCommand(builder.BuildGetDeviceManagementIntentSettingsReportCommand());
+            command.AddCommand(builder.BuildGetDeviceNonComplianceReportCommand());
+            command.AddCommand(builder.BuildGetDevicesWithoutCompliancePolicyReportCommand());
+            command.AddCommand(builder.BuildGetHistoricalReportCommand());
+            command.AddCommand(builder.BuildGetNoncompliantDevicesAndSettingsReportCommand());
+            command.AddCommand(builder.BuildGetPolicyNonComplianceMetadataCommand());
+            command.AddCommand(builder.BuildGetPolicyNonComplianceReportCommand());
+            command.AddCommand(builder.BuildGetPolicyNonComplianceSummaryReportCommand());
+            command.AddCommand(builder.BuildGetReportFiltersCommand());
+            command.AddCommand(builder.BuildGetSettingNonComplianceReportCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }

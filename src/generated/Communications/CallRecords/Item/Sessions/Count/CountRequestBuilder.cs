@@ -29,7 +29,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var callRecordIdOption = new Option<string>("--call-record-id", description: "key: id of callRecord") {
+            var callRecordIdOption = new Option<string>("--call-record-id", description: "The unique identifier of callRecord") {
             };
             callRecordIdOption.IsRequired = true;
             command.AddOption(callRecordIdOption);

@@ -29,11 +29,11 @@ namespace ApiSdk.Users.Item.Messages.Item.MultiValueExtendedProperties.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            var messageIdOption = new Option<string>("--message-id", description: "The unique identifier of message") {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);

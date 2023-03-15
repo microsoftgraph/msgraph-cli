@@ -54,7 +54,7 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods {
             var command = new Command("create");
             command.Description = "Set a user's emailAuthenticationMethod object. Email authentication is a self-service password reset method. A user may only have one email authentication method.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/authentication-post-emailmethods?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -92,6 +92,7 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,7 +113,7 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods {
             var command = new Command("list");
             command.Description = "Retrieve a list of a user's emailAuthenticationMethod objects and their properties. This API will return only a single object in the collection as only one email method can be set for a user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/authentication-list-emailmethods?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

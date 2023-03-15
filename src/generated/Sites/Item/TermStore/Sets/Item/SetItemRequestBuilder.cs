@@ -47,11 +47,11 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property sets for sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            var setIdOption = new Option<string>("--set-id", description: "The unique identifier of set") {
             };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
@@ -87,11 +87,11 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item {
             var command = new Command("get");
             command.Description = "Collection of all sets available in the term store. This relationship can only be used to load a specific term set.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            var setIdOption = new Option<string>("--set-id", description: "The unique identifier of set") {
             };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
@@ -168,11 +168,11 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property sets in sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            var setIdOption = new Option<string>("--set-id", description: "The unique identifier of set") {
             };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
@@ -212,6 +212,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item {
                 });
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
                 if (setId is not null) requestInfo.PathParameters.Add("set%2Did", setId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

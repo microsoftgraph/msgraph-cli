@@ -33,19 +33,19 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Terms.Item.Relations.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property relations for sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            var setIdOption = new Option<string>("--set-id", description: "The unique identifier of set") {
             };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
-            var termIdOption = new Option<string>("--term-id", description: "key: id of term") {
+            var termIdOption = new Option<string>("--term-id", description: "The unique identifier of term") {
             };
             termIdOption.IsRequired = true;
             command.AddOption(termIdOption);
-            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation") {
+            var relationIdOption = new Option<string>("--relation-id", description: "The unique identifier of relation") {
             };
             relationIdOption.IsRequired = true;
             command.AddOption(relationIdOption);
@@ -95,19 +95,19 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Terms.Item.Relations.Item {
             var command = new Command("get");
             command.Description = "To indicate which terms are related to the current term as either pinned or reused.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            var setIdOption = new Option<string>("--set-id", description: "The unique identifier of set") {
             };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
-            var termIdOption = new Option<string>("--term-id", description: "key: id of term") {
+            var termIdOption = new Option<string>("--term-id", description: "The unique identifier of term") {
             };
             termIdOption.IsRequired = true;
             command.AddOption(termIdOption);
-            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation") {
+            var relationIdOption = new Option<string>("--relation-id", description: "The unique identifier of relation") {
             };
             relationIdOption.IsRequired = true;
             command.AddOption(relationIdOption);
@@ -175,19 +175,19 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Terms.Item.Relations.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property relations in sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            var setIdOption = new Option<string>("--set-id", description: "The unique identifier of set") {
             };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
-            var termIdOption = new Option<string>("--term-id", description: "key: id of term") {
+            var termIdOption = new Option<string>("--term-id", description: "The unique identifier of term") {
             };
             termIdOption.IsRequired = true;
             command.AddOption(termIdOption);
-            var relationIdOption = new Option<string>("--relation-id", description: "key: id of relation") {
+            var relationIdOption = new Option<string>("--relation-id", description: "The unique identifier of relation") {
             };
             relationIdOption.IsRequired = true;
             command.AddOption(relationIdOption);
@@ -231,6 +231,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Terms.Item.Relations.Item {
                 if (setId is not null) requestInfo.PathParameters.Add("set%2Did", setId);
                 if (termId is not null) requestInfo.PathParameters.Add("term%2Did", termId);
                 if (relationId is not null) requestInfo.PathParameters.Add("relation%2Did", relationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

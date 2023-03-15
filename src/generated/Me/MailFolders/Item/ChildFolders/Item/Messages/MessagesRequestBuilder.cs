@@ -1,6 +1,6 @@
 using ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Messages.Count;
+using ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Messages.Delta;
 using ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Messages.Item;
-using ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Messages.MicrosoftGraphDelta;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,20 +34,20 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Messages {
             var builder = new MessageItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildAttachmentsCommand());
             command.AddCommand(builder.BuildContentCommand());
+            command.AddCommand(builder.BuildCopyCommand());
+            command.AddCommand(builder.BuildCreateForwardCommand());
+            command.AddCommand(builder.BuildCreateReplyAllCommand());
+            command.AddCommand(builder.BuildCreateReplyCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildExtensionsCommand());
+            command.AddCommand(builder.BuildForwardCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCopyCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCreateForwardCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCreateReplyAllCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCreateReplyCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphForwardCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphMoveCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphReplyAllCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphReplyCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSendCommand());
+            command.AddCommand(builder.BuildMoveCommand());
             command.AddCommand(builder.BuildMultiValueExtendedPropertiesCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildReplyAllCommand());
+            command.AddCommand(builder.BuildReplyCommand());
+            command.AddCommand(builder.BuildSendCommand());
             command.AddCommand(builder.BuildSingleValueExtendedPropertiesCommand());
             return command;
         }
@@ -69,11 +69,11 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Messages {
             var command = new Command("create");
             command.Description = "Use this API to create a new Message in a mailfolder.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/mailfolder-post-messages?view=graph-rest-1.0";
             // Create options for all the parameters
-            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
+            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "The unique identifier of mailFolder") {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
-            var mailFolderId1Option = new Option<string>("--mail-folder-id1", description: "key: id of mailFolder") {
+            var mailFolderId1Option = new Option<string>("--mail-folder-id1", description: "The unique identifier of mailFolder") {
             };
             mailFolderId1Option.IsRequired = true;
             command.AddOption(mailFolderId1Option);
@@ -113,6 +113,7 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Messages {
                 });
                 if (mailFolderId is not null) requestInfo.PathParameters.Add("mailFolder%2Did", mailFolderId);
                 if (mailFolderId1 is not null) requestInfo.PathParameters.Add("mailFolder%2Did1", mailFolderId1);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -126,6 +127,16 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Messages {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildDeltaCommand() {
+            var command = new Command("delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Get all the messages in the specified user&apos;s mailbox, or those messages in a specified folder in the mailbox.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/mailfolder-list-messages?view=graph-rest-1.0" />
         /// </summary>
@@ -133,11 +144,11 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Messages {
             var command = new Command("list");
             command.Description = "Get all the messages in the specified user's mailbox, or those messages in a specified folder in the mailbox.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/mailfolder-list-messages?view=graph-rest-1.0";
             // Create options for all the parameters
-            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
+            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "The unique identifier of mailFolder") {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
-            var mailFolderId1Option = new Option<string>("--mail-folder-id1", description: "key: id of mailFolder") {
+            var mailFolderId1Option = new Option<string>("--mail-folder-id1", description: "The unique identifier of mailFolder") {
             };
             mailFolderId1Option.IsRequired = true;
             command.AddOption(mailFolderId1Option);
@@ -241,16 +252,6 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Messages {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the delta method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDeltaCommand() {
-            var command = new Command("microsoft-graph-delta");
-            command.Description = "Provides operations to call the delta method.";
-            var builder = new MicrosoftGraphDeltaRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

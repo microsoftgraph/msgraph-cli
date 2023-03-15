@@ -42,7 +42,7 @@ namespace ApiSdk.Teams.Item.Photo {
             var command = new Command("delete");
             command.Description = "Delete navigation property photo for teams";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
@@ -76,7 +76,7 @@ namespace ApiSdk.Teams.Item.Photo {
             var command = new Command("get");
             command.Description = "The profile photo for the team.";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
@@ -138,7 +138,7 @@ namespace ApiSdk.Teams.Item.Photo {
             var command = new Command("patch");
             command.Description = "Update the navigation property photo in teams";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
@@ -176,6 +176,7 @@ namespace ApiSdk.Teams.Item.Photo {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

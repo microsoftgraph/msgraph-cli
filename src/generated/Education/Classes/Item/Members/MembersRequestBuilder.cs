@@ -53,7 +53,7 @@ namespace ApiSdk.Education.Classes.Item.Members {
             var command = new Command("list");
             command.Description = "Retrieves the educationUser members of an educationClass.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationclass-list-members?view=graph-rest-1.0";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);

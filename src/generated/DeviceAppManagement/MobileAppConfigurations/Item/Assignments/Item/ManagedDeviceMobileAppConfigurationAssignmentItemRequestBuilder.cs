@@ -30,11 +30,11 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assignments.It
             var command = new Command("delete");
             command.Description = "Delete navigation property assignments for deviceAppManagement";
             // Create options for all the parameters
-            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--managed-device-mobile-app-configuration-id", description: "key: id of managedDeviceMobileAppConfiguration") {
+            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--managed-device-mobile-app-configuration-id", description: "The unique identifier of managedDeviceMobileAppConfiguration") {
             };
             managedDeviceMobileAppConfigurationIdOption.IsRequired = true;
             command.AddOption(managedDeviceMobileAppConfigurationIdOption);
-            var managedDeviceMobileAppConfigurationAssignmentIdOption = new Option<string>("--managed-device-mobile-app-configuration-assignment-id", description: "key: id of managedDeviceMobileAppConfigurationAssignment") {
+            var managedDeviceMobileAppConfigurationAssignmentIdOption = new Option<string>("--managed-device-mobile-app-configuration-assignment-id", description: "The unique identifier of managedDeviceMobileAppConfigurationAssignment") {
             };
             managedDeviceMobileAppConfigurationAssignmentIdOption.IsRequired = true;
             command.AddOption(managedDeviceMobileAppConfigurationAssignmentIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assignments.It
             var command = new Command("get");
             command.Description = "The list of group assignemenets for app configration.";
             // Create options for all the parameters
-            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--managed-device-mobile-app-configuration-id", description: "key: id of managedDeviceMobileAppConfiguration") {
+            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--managed-device-mobile-app-configuration-id", description: "The unique identifier of managedDeviceMobileAppConfiguration") {
             };
             managedDeviceMobileAppConfigurationIdOption.IsRequired = true;
             command.AddOption(managedDeviceMobileAppConfigurationIdOption);
-            var managedDeviceMobileAppConfigurationAssignmentIdOption = new Option<string>("--managed-device-mobile-app-configuration-assignment-id", description: "key: id of managedDeviceMobileAppConfigurationAssignment") {
+            var managedDeviceMobileAppConfigurationAssignmentIdOption = new Option<string>("--managed-device-mobile-app-configuration-assignment-id", description: "The unique identifier of managedDeviceMobileAppConfigurationAssignment") {
             };
             managedDeviceMobileAppConfigurationAssignmentIdOption.IsRequired = true;
             command.AddOption(managedDeviceMobileAppConfigurationAssignmentIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assignments.It
             var command = new Command("patch");
             command.Description = "Update the navigation property assignments in deviceAppManagement";
             // Create options for all the parameters
-            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--managed-device-mobile-app-configuration-id", description: "key: id of managedDeviceMobileAppConfiguration") {
+            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--managed-device-mobile-app-configuration-id", description: "The unique identifier of managedDeviceMobileAppConfiguration") {
             };
             managedDeviceMobileAppConfigurationIdOption.IsRequired = true;
             command.AddOption(managedDeviceMobileAppConfigurationIdOption);
-            var managedDeviceMobileAppConfigurationAssignmentIdOption = new Option<string>("--managed-device-mobile-app-configuration-assignment-id", description: "key: id of managedDeviceMobileAppConfigurationAssignment") {
+            var managedDeviceMobileAppConfigurationAssignmentIdOption = new Option<string>("--managed-device-mobile-app-configuration-assignment-id", description: "The unique identifier of managedDeviceMobileAppConfigurationAssignment") {
             };
             managedDeviceMobileAppConfigurationAssignmentIdOption.IsRequired = true;
             command.AddOption(managedDeviceMobileAppConfigurationAssignmentIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assignments.It
                 });
                 if (managedDeviceMobileAppConfigurationId is not null) requestInfo.PathParameters.Add("managedDeviceMobileAppConfiguration%2Did", managedDeviceMobileAppConfigurationId);
                 if (managedDeviceMobileAppConfigurationAssignmentId is not null) requestInfo.PathParameters.Add("managedDeviceMobileAppConfigurationAssignment%2Did", managedDeviceMobileAppConfigurationAssignmentId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

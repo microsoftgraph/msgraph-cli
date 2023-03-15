@@ -43,7 +43,7 @@ namespace ApiSdk.Drives.Item.Root {
             var command = new Command("get");
             command.Description = "Retrieve the metadata for a driveItem in a drive by file system path or ID.`item-id` is the ID of a driveItem. It may also be the unique ID of a SharePoint list item.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitem-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);

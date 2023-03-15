@@ -30,11 +30,11 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Extensions.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property extensions for directory";
             // Create options for all the parameters
-            var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "key: id of administrativeUnit") {
+            var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
             command.AddOption(administrativeUnitIdOption);
-            var extensionIdOption = new Option<string>("--extension-id", description: "key: id of extension") {
+            var extensionIdOption = new Option<string>("--extension-id", description: "The unique identifier of extension") {
             };
             extensionIdOption.IsRequired = true;
             command.AddOption(extensionIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Extensions.Item {
             var command = new Command("get");
             command.Description = "The collection of open extensions defined for this administrative unit. Nullable.";
             // Create options for all the parameters
-            var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "key: id of administrativeUnit") {
+            var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
             command.AddOption(administrativeUnitIdOption);
-            var extensionIdOption = new Option<string>("--extension-id", description: "key: id of extension") {
+            var extensionIdOption = new Option<string>("--extension-id", description: "The unique identifier of extension") {
             };
             extensionIdOption.IsRequired = true;
             command.AddOption(extensionIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Extensions.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property extensions in directory";
             // Create options for all the parameters
-            var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "key: id of administrativeUnit") {
+            var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
             command.AddOption(administrativeUnitIdOption);
-            var extensionIdOption = new Option<string>("--extension-id", description: "key: id of extension") {
+            var extensionIdOption = new Option<string>("--extension-id", description: "The unique identifier of extension") {
             };
             extensionIdOption.IsRequired = true;
             command.AddOption(extensionIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Extensions.Item {
                 });
                 if (administrativeUnitId is not null) requestInfo.PathParameters.Add("administrativeUnit%2Did", administrativeUnitId);
                 if (extensionId is not null) requestInfo.PathParameters.Add("extension%2Did", extensionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

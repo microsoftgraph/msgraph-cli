@@ -29,23 +29,23 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Ite
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var notebookIdOption = new Option<string>("--notebook-id", description: "key: id of notebook") {
+            var notebookIdOption = new Option<string>("--notebook-id", description: "The unique identifier of notebook") {
             };
             notebookIdOption.IsRequired = true;
             command.AddOption(notebookIdOption);
-            var sectionGroupIdOption = new Option<string>("--section-group-id", description: "key: id of sectionGroup") {
+            var sectionGroupIdOption = new Option<string>("--section-group-id", description: "The unique identifier of sectionGroup") {
             };
             sectionGroupIdOption.IsRequired = true;
             command.AddOption(sectionGroupIdOption);
-            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "key: id of onenoteSection") {
+            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "The unique identifier of onenoteSection") {
             };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);

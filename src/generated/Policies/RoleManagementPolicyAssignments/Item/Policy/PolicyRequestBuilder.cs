@@ -30,7 +30,7 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments.Item.Policy {
             var command = new Command("get");
             command.Description = "The policy that's associated with a policy assignment. Supports $expand and a nested $expand of the rules and effectiveRules relationships for the policy.";
             // Create options for all the parameters
-            var unifiedRoleManagementPolicyAssignmentIdOption = new Option<string>("--unified-role-management-policy-assignment-id", description: "key: id of unifiedRoleManagementPolicyAssignment") {
+            var unifiedRoleManagementPolicyAssignmentIdOption = new Option<string>("--unified-role-management-policy-assignment-id", description: "The unique identifier of unifiedRoleManagementPolicyAssignment") {
             };
             unifiedRoleManagementPolicyAssignmentIdOption.IsRequired = true;
             command.AddOption(unifiedRoleManagementPolicyAssignmentIdOption);

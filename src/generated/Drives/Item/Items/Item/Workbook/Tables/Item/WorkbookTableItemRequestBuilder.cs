@@ -1,13 +1,13 @@
+using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.ClearFilters;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.MicrosoftGraphClearFilters;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.MicrosoftGraphConvertToRange;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.MicrosoftGraphDataBodyRange;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.MicrosoftGraphHeaderRowRange;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.MicrosoftGraphRange;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.MicrosoftGraphReapplyFilters;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.MicrosoftGraphTotalRowRange;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.ConvertToRange;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.DataBodyRange;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.HeaderRowRange;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.RangeNamespace;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.ReapplyFilters;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Rows;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.TotalRowRange;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Worksheet;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
@@ -35,18 +35,47 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the clearFilters method.
+        /// </summary>
+        public Command BuildClearFiltersCommand() {
+            var command = new Command("clear-filters");
+            command.Description = "Provides operations to call the clearFilters method.";
+            var builder = new ClearFiltersRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the columns property of the microsoft.graph.workbookTable entity.
         /// </summary>
         public Command BuildColumnsCommand() {
             var command = new Command("columns");
             command.Description = "Provides operations to manage the columns property of the microsoft.graph.workbookTable entity.";
             var builder = new ColumnsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAddCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAddCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCountCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the convertToRange method.
+        /// </summary>
+        public Command BuildConvertToRangeCommand() {
+            var command = new Command("convert-to-range");
+            command.Description = "Provides operations to call the convertToRange method.";
+            var builder = new ConvertToRangeRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the dataBodyRange method.
+        /// </summary>
+        public Command BuildDataBodyRangeCommand() {
+            var command = new Command("data-body-range");
+            command.Description = "Provides operations to call the dataBodyRange method.";
+            var builder = new DataBodyRangeRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -56,15 +85,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property tables for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookTableIdOption = new Option<string>("--workbook-table-id", description: "key: id of workbookTable") {
+            var workbookTableIdOption = new Option<string>("--workbook-table-id", description: "The unique identifier of workbookTable") {
             };
             workbookTableIdOption.IsRequired = true;
             command.AddOption(workbookTableIdOption);
@@ -102,15 +131,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
             var command = new Command("get");
             command.Description = "Represents a collection of tables associated with the workbook. Read-only.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookTableIdOption = new Option<string>("--workbook-table-id", description: "key: id of workbookTable") {
+            var workbookTableIdOption = new Option<string>("--workbook-table-id", description: "The unique identifier of workbookTable") {
             };
             workbookTableIdOption.IsRequired = true;
             command.AddOption(workbookTableIdOption);
@@ -170,72 +199,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the clearFilters method.
-        /// </summary>
-        public Command BuildMicrosoftGraphClearFiltersCommand() {
-            var command = new Command("microsoft-graph-clear-filters");
-            command.Description = "Provides operations to call the clearFilters method.";
-            var builder = new MicrosoftGraphClearFiltersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the convertToRange method.
-        /// </summary>
-        public Command BuildMicrosoftGraphConvertToRangeCommand() {
-            var command = new Command("microsoft-graph-convert-to-range");
-            command.Description = "Provides operations to call the convertToRange method.";
-            var builder = new MicrosoftGraphConvertToRangeRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the dataBodyRange method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDataBodyRangeCommand() {
-            var command = new Command("microsoft-graph-data-body-range");
-            command.Description = "Provides operations to call the dataBodyRange method.";
-            var builder = new MicrosoftGraphDataBodyRangeRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to call the headerRowRange method.
         /// </summary>
-        public Command BuildMicrosoftGraphHeaderRowRangeCommand() {
-            var command = new Command("microsoft-graph-header-row-range");
+        public Command BuildHeaderRowRangeCommand() {
+            var command = new Command("header-row-range");
             command.Description = "Provides operations to call the headerRowRange method.";
-            var builder = new MicrosoftGraphHeaderRowRangeRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the range method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRangeCommand() {
-            var command = new Command("microsoft-graph-range");
-            command.Description = "Provides operations to call the range method.";
-            var builder = new MicrosoftGraphRangeRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the reapplyFilters method.
-        /// </summary>
-        public Command BuildMicrosoftGraphReapplyFiltersCommand() {
-            var command = new Command("microsoft-graph-reapply-filters");
-            command.Description = "Provides operations to call the reapplyFilters method.";
-            var builder = new MicrosoftGraphReapplyFiltersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the totalRowRange method.
-        /// </summary>
-        public Command BuildMicrosoftGraphTotalRowRangeCommand() {
-            var command = new Command("microsoft-graph-total-row-range");
-            command.Description = "Provides operations to call the totalRowRange method.";
-            var builder = new MicrosoftGraphTotalRowRangeRequestBuilder(PathParameters);
+            var builder = new HeaderRowRangeRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -246,15 +215,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property tables in drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookTableIdOption = new Option<string>("--workbook-table-id", description: "key: id of workbookTable") {
+            var workbookTableIdOption = new Option<string>("--workbook-table-id", description: "The unique identifier of workbookTable") {
             };
             workbookTableIdOption.IsRequired = true;
             command.AddOption(workbookTableIdOption);
@@ -296,6 +265,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
                 if (workbookTableId is not null) requestInfo.PathParameters.Add("workbookTable%2Did", workbookTableId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -309,18 +279,37 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the range method.
+        /// </summary>
+        public Command BuildRangeCommand() {
+            var command = new Command("range");
+            command.Description = "Provides operations to call the range method.";
+            var builder = new RangeRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the reapplyFilters method.
+        /// </summary>
+        public Command BuildReapplyFiltersCommand() {
+            var command = new Command("reapply-filters");
+            command.Description = "Provides operations to call the reapplyFilters method.";
+            var builder = new ReapplyFiltersRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the rows property of the microsoft.graph.workbookTable entity.
         /// </summary>
         public Command BuildRowsCommand() {
             var command = new Command("rows");
             command.Description = "Provides operations to manage the rows property of the microsoft.graph.workbookTable entity.";
             var builder = new RowsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAddCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAddCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCountCommand());
             return command;
         }
         /// <summary>
@@ -330,12 +319,22 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
             var command = new Command("sort");
             command.Description = "Provides operations to manage the sort property of the microsoft.graph.workbookTable entity.";
             var builder = new SortRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildApplyCommand());
+            command.AddCommand(builder.BuildClearCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphApplyCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphClearCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphReapplyCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildReapplyCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the totalRowRange method.
+        /// </summary>
+        public Command BuildTotalRowRangeCommand() {
+            var command = new Command("total-row-range");
+            command.Description = "Provides operations to call the totalRowRange method.";
+            var builder = new TotalRowRangeRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

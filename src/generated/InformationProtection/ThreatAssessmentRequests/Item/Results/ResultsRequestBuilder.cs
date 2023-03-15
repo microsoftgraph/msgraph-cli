@@ -53,7 +53,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item.Results {
             var command = new Command("create");
             command.Description = "Create new navigation property to results for informationProtection";
             // Create options for all the parameters
-            var threatAssessmentRequestIdOption = new Option<string>("--threat-assessment-request-id", description: "key: id of threatAssessmentRequest") {
+            var threatAssessmentRequestIdOption = new Option<string>("--threat-assessment-request-id", description: "The unique identifier of threatAssessmentRequest") {
             };
             threatAssessmentRequestIdOption.IsRequired = true;
             command.AddOption(threatAssessmentRequestIdOption);
@@ -91,6 +91,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item.Results {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (threatAssessmentRequestId is not null) requestInfo.PathParameters.Add("threatAssessmentRequest%2Did", threatAssessmentRequestId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -110,7 +111,7 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item.Results {
             var command = new Command("list");
             command.Description = "A collection of threat assessment results. Read-only. By default, a GET /threatAssessmentRequests/{id} does not return this property unless you apply $expand on it.";
             // Create options for all the parameters
-            var threatAssessmentRequestIdOption = new Option<string>("--threat-assessment-request-id", description: "key: id of threatAssessmentRequest") {
+            var threatAssessmentRequestIdOption = new Option<string>("--threat-assessment-request-id", description: "The unique identifier of threatAssessmentRequest") {
             };
             threatAssessmentRequestIdOption.IsRequired = true;
             command.AddOption(threatAssessmentRequestIdOption);

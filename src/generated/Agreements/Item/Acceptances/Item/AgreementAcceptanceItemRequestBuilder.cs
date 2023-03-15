@@ -30,11 +30,11 @@ namespace ApiSdk.Agreements.Item.Acceptances.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property acceptances for agreements";
             // Create options for all the parameters
-            var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement") {
+            var agreementIdOption = new Option<string>("--agreement-id", description: "The unique identifier of agreement") {
             };
             agreementIdOption.IsRequired = true;
             command.AddOption(agreementIdOption);
-            var agreementAcceptanceIdOption = new Option<string>("--agreement-acceptance-id", description: "key: id of agreementAcceptance") {
+            var agreementAcceptanceIdOption = new Option<string>("--agreement-acceptance-id", description: "The unique identifier of agreementAcceptance") {
             };
             agreementAcceptanceIdOption.IsRequired = true;
             command.AddOption(agreementAcceptanceIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Agreements.Item.Acceptances.Item {
             var command = new Command("get");
             command.Description = "Read-only. Information about acceptances of this agreement.";
             // Create options for all the parameters
-            var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement") {
+            var agreementIdOption = new Option<string>("--agreement-id", description: "The unique identifier of agreement") {
             };
             agreementIdOption.IsRequired = true;
             command.AddOption(agreementIdOption);
-            var agreementAcceptanceIdOption = new Option<string>("--agreement-acceptance-id", description: "key: id of agreementAcceptance") {
+            var agreementAcceptanceIdOption = new Option<string>("--agreement-acceptance-id", description: "The unique identifier of agreementAcceptance") {
             };
             agreementAcceptanceIdOption.IsRequired = true;
             command.AddOption(agreementAcceptanceIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Agreements.Item.Acceptances.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property acceptances in agreements";
             // Create options for all the parameters
-            var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement") {
+            var agreementIdOption = new Option<string>("--agreement-id", description: "The unique identifier of agreement") {
             };
             agreementIdOption.IsRequired = true;
             command.AddOption(agreementIdOption);
-            var agreementAcceptanceIdOption = new Option<string>("--agreement-acceptance-id", description: "key: id of agreementAcceptance") {
+            var agreementAcceptanceIdOption = new Option<string>("--agreement-acceptance-id", description: "The unique identifier of agreementAcceptance") {
             };
             agreementAcceptanceIdOption.IsRequired = true;
             command.AddOption(agreementAcceptanceIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Agreements.Item.Acceptances.Item {
                 });
                 if (agreementId is not null) requestInfo.PathParameters.Add("agreement%2Did", agreementId);
                 if (agreementAcceptanceId is not null) requestInfo.PathParameters.Add("agreementAcceptance%2Did", agreementAcceptanceId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

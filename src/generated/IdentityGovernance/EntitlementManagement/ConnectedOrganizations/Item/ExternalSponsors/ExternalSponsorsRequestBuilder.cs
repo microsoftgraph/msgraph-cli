@@ -1,9 +1,10 @@
 using ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations.Item.ExternalSponsors.Count;
+using ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations.Item.ExternalSponsors.Delta;
+using ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations.Item.ExternalSponsors.GetAvailableExtensionProperties;
+using ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations.Item.ExternalSponsors.GetByIds;
 using ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations.Item.ExternalSponsors.Item;
-using ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations.Item.ExternalSponsors.MicrosoftGraphGetAvailableExtensionProperties;
-using ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations.Item.ExternalSponsors.MicrosoftGraphGetByIds;
-using ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations.Item.ExternalSponsors.MicrosoftGraphValidateProperties;
 using ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations.Item.ExternalSponsors.Ref;
+using ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations.Item.ExternalSponsors.ValidateProperties;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -55,7 +56,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             var command = new Command("create");
             command.Description = "Create new navigation property to externalSponsors for identityGovernance";
             // Create options for all the parameters
-            var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "key: id of connectedOrganization") {
+            var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "The unique identifier of connectedOrganization") {
             };
             connectedOrganizationIdOption.IsRequired = true;
             command.AddOption(connectedOrganizationIdOption);
@@ -93,6 +94,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (connectedOrganizationId is not null) requestInfo.PathParameters.Add("connectedOrganization%2Did", connectedOrganizationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -106,6 +108,36 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return command;
         }
         /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildDeltaCommand() {
+            var command = new Command("delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getAvailableExtensionProperties method.
+        /// </summary>
+        public Command BuildGetAvailableExtensionPropertiesCommand() {
+            var command = new Command("get-available-extension-properties");
+            command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
+            var builder = new GetAvailableExtensionPropertiesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getByIds method.
+        /// </summary>
+        public Command BuildGetByIdsCommand() {
+            var command = new Command("get-by-ids");
+            command.Description = "Provides operations to call the getByIds method.";
+            var builder = new GetByIdsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Retrieve a list of a connectedOrganization&apos;s external sponsors.  The external sponsors are a set of users who can approve requests on behalf of other users from that connected organization.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/connectedorganization-list-externalsponsors?view=graph-rest-1.0" />
         /// </summary>
@@ -113,7 +145,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             var command = new Command("list");
             command.Description = "Retrieve a list of a connectedOrganization's external sponsors.  The external sponsors are a set of users who can approve requests on behalf of other users from that connected organization.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/connectedorganization-list-externalsponsors?view=graph-rest-1.0";
             // Create options for all the parameters
-            var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "key: id of connectedOrganization") {
+            var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "The unique identifier of connectedOrganization") {
             };
             connectedOrganizationIdOption.IsRequired = true;
             command.AddOption(connectedOrganizationIdOption);
@@ -218,36 +250,6 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return command;
         }
         /// <summary>
-        /// Provides operations to call the getAvailableExtensionProperties method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetAvailableExtensionPropertiesCommand() {
-            var command = new Command("microsoft-graph-get-available-extension-properties");
-            command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
-            var builder = new MicrosoftGraphGetAvailableExtensionPropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getByIds method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetByIdsCommand() {
-            var command = new Command("microsoft-graph-get-by-ids");
-            command.Description = "Provides operations to call the getByIds method.";
-            var builder = new MicrosoftGraphGetByIdsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the validateProperties method.
-        /// </summary>
-        public Command BuildMicrosoftGraphValidatePropertiesCommand() {
-            var command = new Command("microsoft-graph-validate-properties");
-            command.Description = "Provides operations to call the validateProperties method.";
-            var builder = new MicrosoftGraphValidatePropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the collection of identityGovernance entities.
         /// </summary>
         public Command BuildRefCommand() {
@@ -255,6 +257,16 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             command.Description = "Provides operations to manage the collection of identityGovernance entities.";
             var builder = new RefRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the validateProperties method.
+        /// </summary>
+        public Command BuildValidatePropertiesCommand() {
+            var command = new Command("validate-properties");
+            command.Description = "Provides operations to call the validateProperties method.";
+            var builder = new ValidatePropertiesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }

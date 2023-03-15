@@ -30,15 +30,15 @@ namespace ApiSdk.Groups.Item.Sites.Item.Items.Item {
             var command = new Command("get");
             command.Description = "Used to address any item contained in this site. This collection can't be enumerated.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var baseItemIdOption = new Option<string>("--base-item-id", description: "key: id of baseItem") {
+            var baseItemIdOption = new Option<string>("--base-item-id", description: "The unique identifier of baseItem") {
             };
             baseItemIdOption.IsRequired = true;
             command.AddOption(baseItemIdOption);

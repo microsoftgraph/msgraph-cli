@@ -30,11 +30,11 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.Categories.Item {
             var command = new Command("get");
             command.Description = "The list of categories for this app.";
             // Create options for all the parameters
-            var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "key: id of mobileApp") {
+            var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "The unique identifier of mobileApp") {
             };
             mobileAppIdOption.IsRequired = true;
             command.AddOption(mobileAppIdOption);
-            var mobileAppCategoryIdOption = new Option<string>("--mobile-app-category-id", description: "key: id of mobileAppCategory") {
+            var mobileAppCategoryIdOption = new Option<string>("--mobile-app-category-id", description: "The unique identifier of mobileAppCategory") {
             };
             mobileAppCategoryIdOption.IsRequired = true;
             command.AddOption(mobileAppCategoryIdOption);

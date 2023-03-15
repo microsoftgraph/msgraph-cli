@@ -54,7 +54,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.ScopedRoleMembers {
             var command = new Command("create");
             command.Description = "Assign an Azure Active Directory (Azure AD) role with administrative unit scope. For a list of roles that can be assigned with administrative unit scope, see Assign Azure AD roles with administrative unit scope.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/administrativeunit-post-scopedrolemembers?view=graph-rest-1.0";
             // Create options for all the parameters
-            var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "key: id of administrativeUnit") {
+            var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
             command.AddOption(administrativeUnitIdOption);
@@ -92,6 +92,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.ScopedRoleMembers {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (administrativeUnitId is not null) requestInfo.PathParameters.Add("administrativeUnit%2Did", administrativeUnitId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,7 +113,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.ScopedRoleMembers {
             var command = new Command("list");
             command.Description = "List Azure Active Directory (Azure AD) role assignments with administrative unit scope.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/administrativeunit-list-scopedrolemembers?view=graph-rest-1.0";
             // Create options for all the parameters
-            var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "key: id of administrativeUnit") {
+            var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
             command.AddOption(administrativeUnitIdOption);

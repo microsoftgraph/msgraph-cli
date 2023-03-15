@@ -53,7 +53,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.DeviceConfigurationStates 
             var command = new Command("create");
             command.Description = "Create new navigation property to deviceConfigurationStates for deviceManagement";
             // Create options for all the parameters
-            var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "key: id of managedDevice") {
+            var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "The unique identifier of managedDevice") {
             };
             managedDeviceIdOption.IsRequired = true;
             command.AddOption(managedDeviceIdOption);
@@ -91,6 +91,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.DeviceConfigurationStates 
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (managedDeviceId is not null) requestInfo.PathParameters.Add("managedDevice%2Did", managedDeviceId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -110,7 +111,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.DeviceConfigurationStates 
             var command = new Command("list");
             command.Description = "Device configuration states for this device.";
             // Create options for all the parameters
-            var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "key: id of managedDevice") {
+            var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "The unique identifier of managedDevice") {
             };
             managedDeviceIdOption.IsRequired = true;
             command.AddOption(managedDeviceIdOption);

@@ -44,11 +44,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property tags for security";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoveryReviewTagIdOption = new Option<string>("--ediscovery-review-tag-id", description: "key: id of ediscoveryReviewTag") {
+            var ediscoveryReviewTagIdOption = new Option<string>("--ediscovery-review-tag-id", description: "The unique identifier of ediscoveryReviewTag") {
             };
             ediscoveryReviewTagIdOption.IsRequired = true;
             command.AddOption(ediscoveryReviewTagIdOption);
@@ -84,11 +84,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
             var command = new Command("get");
             command.Description = "Returns a list of ediscoveryReviewTag objects associated to this case.";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoveryReviewTagIdOption = new Option<string>("--ediscovery-review-tag-id", description: "key: id of ediscoveryReviewTag") {
+            var ediscoveryReviewTagIdOption = new Option<string>("--ediscovery-review-tag-id", description: "The unique identifier of ediscoveryReviewTag") {
             };
             ediscoveryReviewTagIdOption.IsRequired = true;
             command.AddOption(ediscoveryReviewTagIdOption);
@@ -162,11 +162,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property tags in security";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoveryReviewTagIdOption = new Option<string>("--ediscovery-review-tag-id", description: "key: id of ediscoveryReviewTag") {
+            var ediscoveryReviewTagIdOption = new Option<string>("--ediscovery-review-tag-id", description: "The unique identifier of ediscoveryReviewTag") {
             };
             ediscoveryReviewTagIdOption.IsRequired = true;
             command.AddOption(ediscoveryReviewTagIdOption);
@@ -206,6 +206,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
                 });
                 if (ediscoveryCaseId is not null) requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
                 if (ediscoveryReviewTagId is not null) requestInfo.PathParameters.Add("ediscoveryReviewTag%2Did", ediscoveryReviewTagId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

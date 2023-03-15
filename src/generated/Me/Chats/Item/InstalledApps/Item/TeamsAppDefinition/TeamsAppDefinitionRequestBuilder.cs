@@ -30,11 +30,11 @@ namespace ApiSdk.Me.Chats.Item.InstalledApps.Item.TeamsAppDefinition {
             var command = new Command("get");
             command.Description = "The details of this version of the app.";
             // Create options for all the parameters
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
-            var teamsAppInstallationIdOption = new Option<string>("--teams-app-installation-id", description: "key: id of teamsAppInstallation") {
+            var teamsAppInstallationIdOption = new Option<string>("--teams-app-installation-id", description: "The unique identifier of teamsAppInstallation") {
             };
             teamsAppInstallationIdOption.IsRequired = true;
             command.AddOption(teamsAppInstallationIdOption);

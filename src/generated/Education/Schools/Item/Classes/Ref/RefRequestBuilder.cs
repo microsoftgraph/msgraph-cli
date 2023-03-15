@@ -31,7 +31,7 @@ namespace ApiSdk.Education.Schools.Item.Classes.Ref {
             var command = new Command("get");
             command.Description = "Get the educationClass resources owned by an educationSchool.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationschool-list-classes?view=graph-rest-1.0";
             // Create options for all the parameters
-            var educationSchoolIdOption = new Option<string>("--education-school-id", description: "key: id of educationSchool") {
+            var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
             command.AddOption(educationSchoolIdOption);
@@ -128,7 +128,7 @@ namespace ApiSdk.Education.Schools.Item.Classes.Ref {
             var command = new Command("post");
             command.Description = "Create new navigation property ref to classes for education";
             // Create options for all the parameters
-            var educationSchoolIdOption = new Option<string>("--education-school-id", description: "key: id of educationSchool") {
+            var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
             command.AddOption(educationSchoolIdOption);
@@ -148,6 +148,7 @@ namespace ApiSdk.Education.Schools.Item.Classes.Ref {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (educationSchoolId is not null) requestInfo.PathParameters.Add("educationSchool%2Did", educationSchoolId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

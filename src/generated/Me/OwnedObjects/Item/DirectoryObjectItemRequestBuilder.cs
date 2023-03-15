@@ -1,6 +1,6 @@
-using ApiSdk.Me.OwnedObjects.Item.MicrosoftGraphApplication;
-using ApiSdk.Me.OwnedObjects.Item.MicrosoftGraphGroup;
-using ApiSdk.Me.OwnedObjects.Item.MicrosoftGraphServicePrincipal;
+using ApiSdk.Me.OwnedObjects.Item.GraphApplication;
+using ApiSdk.Me.OwnedObjects.Item.GraphGroup;
+using ApiSdk.Me.OwnedObjects.Item.GraphServicePrincipal;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,7 +33,7 @@ namespace ApiSdk.Me.OwnedObjects.Item {
             var command = new Command("get");
             command.Description = "Directory objects that are owned by the user. Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
-            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "key: id of directoryObject") {
+            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "The unique identifier of directoryObject") {
             };
             directoryObjectIdOption.IsRequired = true;
             command.AddOption(directoryObjectIdOption);
@@ -98,30 +98,30 @@ namespace ApiSdk.Me.OwnedObjects.Item {
         /// <summary>
         /// Casts the previous resource to application.
         /// </summary>
-        public Command BuildMicrosoftGraphApplicationCommand() {
-            var command = new Command("microsoft-graph-application");
+        public Command BuildGraphApplicationCommand() {
+            var command = new Command("graph-application");
             command.Description = "Casts the previous resource to application.";
-            var builder = new MicrosoftGraphApplicationRequestBuilder(PathParameters);
+            var builder = new GraphApplicationRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
-        public Command BuildMicrosoftGraphGroupCommand() {
-            var command = new Command("microsoft-graph-group");
+        public Command BuildGraphGroupCommand() {
+            var command = new Command("graph-group");
             command.Description = "Casts the previous resource to group.";
-            var builder = new MicrosoftGraphGroupRequestBuilder(PathParameters);
+            var builder = new GraphGroupRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        public Command BuildMicrosoftGraphServicePrincipalCommand() {
-            var command = new Command("microsoft-graph-service-principal");
+        public Command BuildGraphServicePrincipalCommand() {
+            var command = new Command("graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
-            var builder = new MicrosoftGraphServicePrincipalRequestBuilder(PathParameters);
+            var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }

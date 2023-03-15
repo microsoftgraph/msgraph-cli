@@ -1,6 +1,6 @@
 using ApiSdk.Communications.Calls.Item.Participants.Count;
+using ApiSdk.Communications.Calls.Item.Participants.Invite;
 using ApiSdk.Communications.Calls.Item.Participants.Item;
-using ApiSdk.Communications.Calls.Item.Participants.MicrosoftGraphInvite;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,10 +34,10 @@ namespace ApiSdk.Communications.Calls.Item.Participants {
             var builder = new ParticipantItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphMuteCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphStartHoldMusicCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphStopHoldMusicCommand());
+            command.AddCommand(builder.BuildMuteCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildStartHoldMusicCommand());
+            command.AddCommand(builder.BuildStopHoldMusicCommand());
             return command;
         }
         /// <summary>
@@ -57,7 +57,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants {
             var command = new Command("create");
             command.Description = "Create new navigation property to participants for communications";
             // Create options for all the parameters
-            var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
+            var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
             command.AddOption(callIdOption);
@@ -95,6 +95,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (callId is not null) requestInfo.PathParameters.Add("call%2Did", callId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -108,6 +109,16 @@ namespace ApiSdk.Communications.Calls.Item.Participants {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the invite method.
+        /// </summary>
+        public Command BuildInviteCommand() {
+            var command = new Command("invite");
+            command.Description = "Provides operations to call the invite method.";
+            var builder = new InviteRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Retrieve a list of participant objects in the call.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/call-list-participants?view=graph-rest-1.0" />
         /// </summary>
@@ -115,7 +126,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants {
             var command = new Command("list");
             command.Description = "Retrieve a list of participant objects in the call.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/call-list-participants?view=graph-rest-1.0";
             // Create options for all the parameters
-            var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
+            var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
             command.AddOption(callIdOption);
@@ -217,16 +228,6 @@ namespace ApiSdk.Communications.Calls.Item.Participants {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the invite method.
-        /// </summary>
-        public Command BuildMicrosoftGraphInviteCommand() {
-            var command = new Command("microsoft-graph-invite");
-            command.Description = "Provides operations to call the invite method.";
-            var builder = new MicrosoftGraphInviteRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

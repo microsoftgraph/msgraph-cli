@@ -1,6 +1,6 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.Places.Item.MicrosoftGraphRoom;
+using ApiSdk.Places.Item.GraphRoom;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -31,7 +31,7 @@ namespace ApiSdk.Places.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from places";
             // Create options for all the parameters
-            var placeIdOption = new Option<string>("--place-id", description: "key: id of place") {
+            var placeIdOption = new Option<string>("--place-id", description: "The unique identifier of place") {
             };
             placeIdOption.IsRequired = true;
             command.AddOption(placeIdOption);
@@ -59,75 +59,12 @@ namespace ApiSdk.Places.Item {
             return command;
         }
         /// <summary>
-        /// Get the properties and relationships of a place object specified by either its ID or email address. The **place** object can be one of the following types: Both **room** and **roomList** are derived from the place object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/place-get?view=graph-rest-1.0" />
-        /// </summary>
-        public Command BuildGetCommand() {
-            var command = new Command("get");
-            command.Description = "Get the properties and relationships of a place object specified by either its ID or email address. The **place** object can be one of the following types: Both **room** and **roomList** are derived from the place object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/place-get?view=graph-rest-1.0";
-            // Create options for all the parameters
-            var placeIdOption = new Option<string>("--place-id", description: "key: id of place") {
-            };
-            placeIdOption.IsRequired = true;
-            command.AddOption(placeIdOption);
-            var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
-                Arity = ArgumentArity.ZeroOrMore
-            };
-            selectOption.IsRequired = false;
-            command.AddOption(selectOption);
-            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
-                Arity = ArgumentArity.ZeroOrMore
-            };
-            expandOption.IsRequired = false;
-            command.AddOption(expandOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
-            command.AddOption(outputOption);
-            var queryOption = new Option<string>("--query");
-            command.AddOption(queryOption);
-            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
-                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
-                    return value;
-                }
-                return true;
-            }, description: "Disable indentation for the JSON output formatter.");
-            command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (invocationContext) => {
-                var placeId = invocationContext.ParseResult.GetValueForOption(placeIdOption);
-                var select = invocationContext.ParseResult.GetValueForOption(selectOption);
-                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
-                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
-                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
-                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                var cancellationToken = invocationContext.GetCancellationToken();
-                var reqAdapter = invocationContext.GetRequestAdapter();
-                var requestInfo = ToGetRequestInformation(q => {
-                    q.QueryParameters.Select = select;
-                    q.QueryParameters.Expand = expand;
-                });
-                if (placeId is not null) requestInfo.PathParameters.Add("place%2Did", placeId);
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
-                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
-                var formatter = outputFormatterFactory.GetFormatter(output);
-                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            });
-            return command;
-        }
-        /// <summary>
         /// Casts the previous resource to room.
         /// </summary>
-        public Command BuildMicrosoftGraphRoomCommand() {
-            var command = new Command("microsoft-graph-room");
+        public Command BuildGraphRoomCommand() {
+            var command = new Command("graph-room");
             command.Description = "Casts the previous resource to room.";
-            var builder = new MicrosoftGraphRoomRequestBuilder(PathParameters);
+            var builder = new GraphRoomRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -139,7 +76,7 @@ namespace ApiSdk.Places.Item {
             var command = new Command("patch");
             command.Description = "Update the properties of place object, which can be a room or roomList. You can identify the **room** or **roomList** by specifying the **id** or **emailAddress** property.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/place-update?view=graph-rest-1.0";
             // Create options for all the parameters
-            var placeIdOption = new Option<string>("--place-id", description: "key: id of place") {
+            var placeIdOption = new Option<string>("--place-id", description: "The unique identifier of place") {
             };
             placeIdOption.IsRequired = true;
             command.AddOption(placeIdOption);
@@ -177,6 +114,7 @@ namespace ApiSdk.Places.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (placeId is not null) requestInfo.PathParameters.Add("place%2Did", placeId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -195,7 +133,7 @@ namespace ApiSdk.Places.Item {
         /// <param name="pathParameters">Path parameters for the request</param>
         public PlaceItemRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/places/{place%2Did}{?%24select,%24expand}";
+            UrlTemplate = "{+baseurl}/places/{place%2Did}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
         }
@@ -218,32 +156,6 @@ namespace ApiSdk.Places.Item {
             if (requestConfiguration != null) {
                 var requestConfig = new PlaceItemRequestBuilderDeleteRequestConfiguration();
                 requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            return requestInfo;
-        }
-        /// <summary>
-        /// Get the properties and relationships of a place object specified by either its ID or email address. The **place** object can be one of the following types: Both **room** and **roomList** are derived from the place object.
-        /// </summary>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public RequestInformation ToGetRequestInformation(Action<PlaceItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
-#nullable restore
-#else
-        public RequestInformation ToGetRequestInformation(Action<PlaceItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
-#endif
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.GET,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            requestInfo.Headers.Add("Accept", "application/json");
-            if (requestConfiguration != null) {
-                var requestConfig = new PlaceItemRequestBuilderGetRequestConfiguration();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
@@ -288,49 +200,6 @@ namespace ApiSdk.Places.Item {
             /// Instantiates a new PlaceItemRequestBuilderDeleteRequestConfiguration and sets the default values.
             /// </summary>
             public PlaceItemRequestBuilderDeleteRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
-        }
-        /// <summary>
-        /// Get the properties and relationships of a place object specified by either its ID or email address. The **place** object can be one of the following types: Both **room** and **roomList** are derived from the place object.
-        /// </summary>
-        public class PlaceItemRequestBuilderGetQueryParameters {
-            /// <summary>Expand related entities</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            [QueryParameter("%24expand")]
-            public string[]? Expand { get; set; }
-#nullable restore
-#else
-            [QueryParameter("%24expand")]
-            public string[] Expand { get; set; }
-#endif
-            /// <summary>Select properties to be returned</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            [QueryParameter("%24select")]
-            public string[]? Select { get; set; }
-#nullable restore
-#else
-            [QueryParameter("%24select")]
-            public string[] Select { get; set; }
-#endif
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class PlaceItemRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public PlaceItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new PlaceItemRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new PlaceItemRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public PlaceItemRequestBuilderGetRequestConfiguration() {
                 Options = new List<IRequestOption>();
                 Headers = new RequestHeaders();
             }

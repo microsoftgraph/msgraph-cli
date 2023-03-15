@@ -1,6 +1,6 @@
 using ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages.Count;
+using ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages.Delta;
 using ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages.Item;
-using ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages.MicrosoftGraphDelta;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,10 +35,10 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages {
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildHostedContentsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSoftDeleteCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUndoSoftDeleteCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildRepliesCommand());
+            command.AddCommand(builder.BuildSoftDeleteCommand());
+            command.AddCommand(builder.BuildUndoSoftDeleteCommand());
             return command;
         }
         /// <summary>
@@ -52,14 +52,14 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages {
             return command;
         }
         /// <summary>
-        /// Send a new chatMessage in the specified channel.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/channel-post-messages?view=graph-rest-1.0" />
+        /// Send a new chatMessage in the specified channel or a chat.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chatmessage-post?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Send a new chatMessage in the specified channel.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-post-messages?view=graph-rest-1.0";
+            command.Description = "Send a new chatMessage in the specified channel or a chat.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chatmessage-post?view=graph-rest-1.0";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
@@ -97,6 +97,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -110,6 +111,16 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildDeltaCommand() {
+            var command = new Command("delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Retrieve the list of messages (without the replies) in a channel of a team.  To get the replies for a message, call the list message replies or the get message reply API.  This method supports federation. To list channel messages in application context, the request must be made from the tenant that the channel owner belongs to (represented by the **tenantId** property on the channel).
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/channel-list-messages?view=graph-rest-1.0" />
         /// </summary>
@@ -117,7 +128,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages {
             var command = new Command("list");
             command.Description = "Retrieve the list of messages (without the replies) in a channel of a team.  To get the replies for a message, call the list message replies or the get message reply API.  This method supports federation. To list channel messages in application context, the request must be made from the tenant that the channel owner belongs to (represented by the **tenantId** property on the channel).\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-list-messages?view=graph-rest-1.0";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
@@ -222,16 +233,6 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the delta method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDeltaCommand() {
-            var command = new Command("microsoft-graph-delta");
-            command.Description = "Provides operations to call the delta method.";
-            var builder = new MicrosoftGraphDeltaRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
         /// Instantiates a new MessagesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
@@ -268,7 +269,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Messages {
             return requestInfo;
         }
         /// <summary>
-        /// Send a new chatMessage in the specified channel.
+        /// Send a new chatMessage in the specified channel or a chat.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

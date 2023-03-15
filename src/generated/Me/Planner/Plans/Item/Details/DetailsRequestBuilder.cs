@@ -30,7 +30,7 @@ namespace ApiSdk.Me.Planner.Plans.Item.Details {
             var command = new Command("delete");
             command.Description = "Delete navigation property details for me";
             // Create options for all the parameters
-            var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "key: id of plannerPlan") {
+            var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
             };
             plannerPlanIdOption.IsRequired = true;
             command.AddOption(plannerPlanIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.Me.Planner.Plans.Item.Details {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a **plannerPlanDetails** object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerplandetails-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "key: id of plannerPlan") {
+            var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
             };
             plannerPlanIdOption.IsRequired = true;
             command.AddOption(plannerPlanIdOption);
@@ -128,7 +128,7 @@ namespace ApiSdk.Me.Planner.Plans.Item.Details {
             var command = new Command("patch");
             command.Description = "Update the navigation property details in me\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerplandetails-update?view=graph-rest-1.0";
             // Create options for all the parameters
-            var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "key: id of plannerPlan") {
+            var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
             };
             plannerPlanIdOption.IsRequired = true;
             command.AddOption(plannerPlanIdOption);
@@ -173,6 +173,7 @@ namespace ApiSdk.Me.Planner.Plans.Item.Details {
                 });
                 if (plannerPlanId is not null) requestInfo.PathParameters.Add("plannerPlan%2Did", plannerPlanId);
                 if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

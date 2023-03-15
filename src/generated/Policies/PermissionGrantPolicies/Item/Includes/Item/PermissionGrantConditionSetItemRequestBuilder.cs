@@ -30,11 +30,11 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property includes for policies";
             // Create options for all the parameters
-            var permissionGrantPolicyIdOption = new Option<string>("--permission-grant-policy-id", description: "key: id of permissionGrantPolicy") {
+            var permissionGrantPolicyIdOption = new Option<string>("--permission-grant-policy-id", description: "The unique identifier of permissionGrantPolicy") {
             };
             permissionGrantPolicyIdOption.IsRequired = true;
             command.AddOption(permissionGrantPolicyIdOption);
-            var permissionGrantConditionSetIdOption = new Option<string>("--permission-grant-condition-set-id", description: "key: id of permissionGrantConditionSet") {
+            var permissionGrantConditionSetIdOption = new Option<string>("--permission-grant-condition-set-id", description: "The unique identifier of permissionGrantConditionSet") {
             };
             permissionGrantConditionSetIdOption.IsRequired = true;
             command.AddOption(permissionGrantConditionSetIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes.Item {
             var command = new Command("get");
             command.Description = "Condition sets which are included in this permission grant policy. Automatically expanded on GET.";
             // Create options for all the parameters
-            var permissionGrantPolicyIdOption = new Option<string>("--permission-grant-policy-id", description: "key: id of permissionGrantPolicy") {
+            var permissionGrantPolicyIdOption = new Option<string>("--permission-grant-policy-id", description: "The unique identifier of permissionGrantPolicy") {
             };
             permissionGrantPolicyIdOption.IsRequired = true;
             command.AddOption(permissionGrantPolicyIdOption);
-            var permissionGrantConditionSetIdOption = new Option<string>("--permission-grant-condition-set-id", description: "key: id of permissionGrantConditionSet") {
+            var permissionGrantConditionSetIdOption = new Option<string>("--permission-grant-condition-set-id", description: "The unique identifier of permissionGrantConditionSet") {
             };
             permissionGrantConditionSetIdOption.IsRequired = true;
             command.AddOption(permissionGrantConditionSetIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property includes in policies";
             // Create options for all the parameters
-            var permissionGrantPolicyIdOption = new Option<string>("--permission-grant-policy-id", description: "key: id of permissionGrantPolicy") {
+            var permissionGrantPolicyIdOption = new Option<string>("--permission-grant-policy-id", description: "The unique identifier of permissionGrantPolicy") {
             };
             permissionGrantPolicyIdOption.IsRequired = true;
             command.AddOption(permissionGrantPolicyIdOption);
-            var permissionGrantConditionSetIdOption = new Option<string>("--permission-grant-condition-set-id", description: "key: id of permissionGrantConditionSet") {
+            var permissionGrantConditionSetIdOption = new Option<string>("--permission-grant-condition-set-id", description: "The unique identifier of permissionGrantConditionSet") {
             };
             permissionGrantConditionSetIdOption.IsRequired = true;
             command.AddOption(permissionGrantConditionSetIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes.Item {
                 });
                 if (permissionGrantPolicyId is not null) requestInfo.PathParameters.Add("permissionGrantPolicy%2Did", permissionGrantPolicyId);
                 if (permissionGrantConditionSetId is not null) requestInfo.PathParameters.Add("permissionGrantConditionSet%2Did", permissionGrantConditionSetId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

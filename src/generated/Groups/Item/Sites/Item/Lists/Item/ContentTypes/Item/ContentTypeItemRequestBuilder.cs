@@ -1,13 +1,13 @@
+using ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.AssociateWithHubSites;
 using ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.Base;
 using ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.BaseTypes;
 using ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.ColumnLinks;
 using ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.ColumnPositions;
 using ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.Columns;
-using ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.MicrosoftGraphAssociateWithHubSites;
-using ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.MicrosoftGraphCopyToDefaultContentLocation;
-using ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.MicrosoftGraphIsPublished;
-using ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.MicrosoftGraphPublish;
-using ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.MicrosoftGraphUnpublish;
+using ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.CopyToDefaultContentLocation;
+using ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.IsPublished;
+using ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.Publish;
+using ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.Unpublish;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,6 +33,16 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item {
         private Dictionary<string, object> PathParameters { get; set; }
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
+        /// <summary>
+        /// Provides operations to call the associateWithHubSites method.
+        /// </summary>
+        public Command BuildAssociateWithHubSitesCommand() {
+            var command = new Command("associate-with-hub-sites");
+            command.Description = "Provides operations to call the associateWithHubSites method.";
+            var builder = new AssociateWithHubSitesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
         /// <summary>
         /// Provides operations to manage the base property of the microsoft.graph.contentType entity.
         /// </summary>
@@ -94,25 +104,35 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the copyToDefaultContentLocation method.
+        /// </summary>
+        public Command BuildCopyToDefaultContentLocationCommand() {
+            var command = new Command("copy-to-default-content-location");
+            command.Description = "Provides operations to call the copyToDefaultContentLocation method.";
+            var builder = new CopyToDefaultContentLocationRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete navigation property contentTypes for groups
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property contentTypes for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            var listIdOption = new Option<string>("--list-id", description: "The unique identifier of list") {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
-            var contentTypeIdOption = new Option<string>("--content-type-id", description: "key: id of contentType") {
+            var contentTypeIdOption = new Option<string>("--content-type-id", description: "The unique identifier of contentType") {
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
@@ -152,19 +172,19 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item {
             var command = new Command("get");
             command.Description = "The collection of content types present in this list.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            var listIdOption = new Option<string>("--list-id", description: "The unique identifier of list") {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
-            var contentTypeIdOption = new Option<string>("--content-type-id", description: "key: id of contentType") {
+            var contentTypeIdOption = new Option<string>("--content-type-id", description: "The unique identifier of contentType") {
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
@@ -226,53 +246,13 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the associateWithHubSites method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAssociateWithHubSitesCommand() {
-            var command = new Command("microsoft-graph-associate-with-hub-sites");
-            command.Description = "Provides operations to call the associateWithHubSites method.";
-            var builder = new MicrosoftGraphAssociateWithHubSitesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the copyToDefaultContentLocation method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCopyToDefaultContentLocationCommand() {
-            var command = new Command("microsoft-graph-copy-to-default-content-location");
-            command.Description = "Provides operations to call the copyToDefaultContentLocation method.";
-            var builder = new MicrosoftGraphCopyToDefaultContentLocationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to call the isPublished method.
         /// </summary>
-        public Command BuildMicrosoftGraphIsPublishedCommand() {
-            var command = new Command("microsoft-graph-is-published");
+        public Command BuildIsPublishedCommand() {
+            var command = new Command("is-published");
             command.Description = "Provides operations to call the isPublished method.";
-            var builder = new MicrosoftGraphIsPublishedRequestBuilder(PathParameters);
+            var builder = new IsPublishedRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the publish method.
-        /// </summary>
-        public Command BuildMicrosoftGraphPublishCommand() {
-            var command = new Command("microsoft-graph-publish");
-            command.Description = "Provides operations to call the publish method.";
-            var builder = new MicrosoftGraphPublishRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the unpublish method.
-        /// </summary>
-        public Command BuildMicrosoftGraphUnpublishCommand() {
-            var command = new Command("microsoft-graph-unpublish");
-            command.Description = "Provides operations to call the unpublish method.";
-            var builder = new MicrosoftGraphUnpublishRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -282,19 +262,19 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property contentTypes in groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            var listIdOption = new Option<string>("--list-id", description: "The unique identifier of list") {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
-            var contentTypeIdOption = new Option<string>("--content-type-id", description: "key: id of contentType") {
+            var contentTypeIdOption = new Option<string>("--content-type-id", description: "The unique identifier of contentType") {
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
@@ -338,6 +318,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item {
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
                 if (listId is not null) requestInfo.PathParameters.Add("list%2Did", listId);
                 if (contentTypeId is not null) requestInfo.PathParameters.Add("contentType%2Did", contentTypeId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -348,6 +329,26 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the publish method.
+        /// </summary>
+        public Command BuildPublishCommand() {
+            var command = new Command("publish");
+            command.Description = "Provides operations to call the publish method.";
+            var builder = new PublishRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the unpublish method.
+        /// </summary>
+        public Command BuildUnpublishCommand() {
+            var command = new Command("unpublish");
+            command.Description = "Provides operations to call the unpublish method.";
+            var builder = new UnpublishRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

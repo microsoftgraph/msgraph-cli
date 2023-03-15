@@ -1,8 +1,9 @@
 using ApiSdk.Contracts.Count;
+using ApiSdk.Contracts.Delta;
+using ApiSdk.Contracts.GetAvailableExtensionProperties;
+using ApiSdk.Contracts.GetByIds;
 using ApiSdk.Contracts.Item;
-using ApiSdk.Contracts.MicrosoftGraphGetAvailableExtensionProperties;
-using ApiSdk.Contracts.MicrosoftGraphGetByIds;
-using ApiSdk.Contracts.MicrosoftGraphValidateProperties;
+using ApiSdk.Contracts.ValidateProperties;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,14 +35,14 @@ namespace ApiSdk.Contracts {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new ContractItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCheckMemberGroupsCommand());
+            command.AddCommand(builder.BuildCheckMemberObjectsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCheckMemberGroupsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCheckMemberObjectsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetMemberGroupsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetMemberObjectsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRestoreCommand());
+            command.AddCommand(builder.BuildGetMemberGroupsCommand());
+            command.AddCommand(builder.BuildGetMemberObjectsCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildRestoreCommand());
             return command;
         }
         /// <summary>
@@ -93,6 +94,7 @@ namespace ApiSdk.Contracts {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -103,6 +105,36 @@ namespace ApiSdk.Contracts {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildDeltaCommand() {
+            var command = new Command("delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getAvailableExtensionProperties method.
+        /// </summary>
+        public Command BuildGetAvailableExtensionPropertiesCommand() {
+            var command = new Command("get-available-extension-properties");
+            command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
+            var builder = new GetAvailableExtensionPropertiesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getByIds method.
+        /// </summary>
+        public Command BuildGetByIdsCommand() {
+            var command = new Command("get-by-ids");
+            command.Description = "Provides operations to call the getByIds method.";
+            var builder = new GetByIdsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -212,32 +244,12 @@ namespace ApiSdk.Contracts {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the getAvailableExtensionProperties method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetAvailableExtensionPropertiesCommand() {
-            var command = new Command("microsoft-graph-get-available-extension-properties");
-            command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
-            var builder = new MicrosoftGraphGetAvailableExtensionPropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getByIds method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetByIdsCommand() {
-            var command = new Command("microsoft-graph-get-by-ids");
-            command.Description = "Provides operations to call the getByIds method.";
-            var builder = new MicrosoftGraphGetByIdsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to call the validateProperties method.
         /// </summary>
-        public Command BuildMicrosoftGraphValidatePropertiesCommand() {
-            var command = new Command("microsoft-graph-validate-properties");
+        public Command BuildValidatePropertiesCommand() {
+            var command = new Command("validate-properties");
             command.Description = "Provides operations to call the validateProperties method.";
-            var builder = new MicrosoftGraphValidatePropertiesRequestBuilder(PathParameters);
+            var builder = new ValidatePropertiesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }

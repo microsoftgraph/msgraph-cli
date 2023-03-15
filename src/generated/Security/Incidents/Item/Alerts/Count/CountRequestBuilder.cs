@@ -29,7 +29,7 @@ namespace ApiSdk.Security.Incidents.Item.Alerts.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var incidentIdOption = new Option<string>("--incident-id", description: "key: id of incident") {
+            var incidentIdOption = new Option<string>("--incident-id", description: "The unique identifier of incident") {
             };
             incidentIdOption.IsRequired = true;
             command.AddOption(incidentIdOption);

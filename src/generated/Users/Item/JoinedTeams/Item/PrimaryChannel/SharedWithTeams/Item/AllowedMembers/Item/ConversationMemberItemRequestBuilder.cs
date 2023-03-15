@@ -30,19 +30,19 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.SharedWithTeams.Item
             var command = new Command("get");
             command.Description = "A collection of team members who have access to the shared channel.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var sharedWithChannelTeamInfoIdOption = new Option<string>("--shared-with-channel-team-info-id", description: "key: id of sharedWithChannelTeamInfo") {
+            var sharedWithChannelTeamInfoIdOption = new Option<string>("--shared-with-channel-team-info-id", description: "The unique identifier of sharedWithChannelTeamInfo") {
             };
             sharedWithChannelTeamInfoIdOption.IsRequired = true;
             command.AddOption(sharedWithChannelTeamInfoIdOption);
-            var conversationMemberIdOption = new Option<string>("--conversation-member-id", description: "key: id of conversationMember") {
+            var conversationMemberIdOption = new Option<string>("--conversation-member-id", description: "The unique identifier of conversationMember") {
             };
             conversationMemberIdOption.IsRequired = true;
             command.AddOption(conversationMemberIdOption);

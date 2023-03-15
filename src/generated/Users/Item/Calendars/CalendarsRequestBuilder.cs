@@ -36,7 +36,7 @@ namespace ApiSdk.Users.Item.Calendars {
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildEventsCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetScheduleCommand());
+            command.AddCommand(builder.BuildGetScheduleCommand());
             command.AddCommand(builder.BuildMultiValueExtendedPropertiesCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildSingleValueExtendedPropertiesCommand());
@@ -60,7 +60,7 @@ namespace ApiSdk.Users.Item.Calendars {
             var command = new Command("create");
             command.Description = "Create a new calendar for a user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-post-calendars?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -98,6 +98,7 @@ namespace ApiSdk.Users.Item.Calendars {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -118,7 +119,7 @@ namespace ApiSdk.Users.Item.Calendars {
             var command = new Command("list");
             command.Description = "Get all the user's calendars (`/calendars` navigation property), get the calendars from the default calendar group or from a specific calendar group. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-calendars?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

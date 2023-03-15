@@ -4,9 +4,9 @@ using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AdditionalSources
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AddToReviewSetOperation;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.CustodianSources;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.LastEstimateStatisticsOperation;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.MicrosoftGraphSecurityEstimateStatistics;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.MicrosoftGraphSecurityPurgeData;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.NoncustodialSources;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.SecurityEstimateStatistics;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.SecurityPurgeData;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -72,11 +72,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property searches for security";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoverySearchIdOption = new Option<string>("--ediscovery-search-id", description: "key: id of ediscoverySearch") {
+            var ediscoverySearchIdOption = new Option<string>("--ediscovery-search-id", description: "The unique identifier of ediscoverySearch") {
             };
             ediscoverySearchIdOption.IsRequired = true;
             command.AddOption(ediscoverySearchIdOption);
@@ -112,11 +112,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
             var command = new Command("get");
             command.Description = "Returns a list of eDiscoverySearch objects associated with this case.";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoverySearchIdOption = new Option<string>("--ediscovery-search-id", description: "key: id of ediscoverySearch") {
+            var ediscoverySearchIdOption = new Option<string>("--ediscovery-search-id", description: "The unique identifier of ediscoverySearch") {
             };
             ediscoverySearchIdOption.IsRequired = true;
             command.AddOption(ediscoverySearchIdOption);
@@ -184,26 +184,6 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the estimateStatistics method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSecurityEstimateStatisticsCommand() {
-            var command = new Command("microsoft-graph-security-estimate-statistics");
-            command.Description = "Provides operations to call the estimateStatistics method.";
-            var builder = new MicrosoftGraphSecurityEstimateStatisticsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the purgeData method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSecurityPurgeDataCommand() {
-            var command = new Command("microsoft-graph-security-purge-data");
-            command.Description = "Provides operations to call the purgeData method.";
-            var builder = new MicrosoftGraphSecurityPurgeDataRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the noncustodialSources property of the microsoft.graph.security.ediscoverySearch entity.
         /// </summary>
         public Command BuildNoncustodialSourcesCommand() {
@@ -222,11 +202,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property searches in security";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoverySearchIdOption = new Option<string>("--ediscovery-search-id", description: "key: id of ediscoverySearch") {
+            var ediscoverySearchIdOption = new Option<string>("--ediscovery-search-id", description: "The unique identifier of ediscoverySearch") {
             };
             ediscoverySearchIdOption.IsRequired = true;
             command.AddOption(ediscoverySearchIdOption);
@@ -266,6 +246,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
                 });
                 if (ediscoveryCaseId is not null) requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
                 if (ediscoverySearchId is not null) requestInfo.PathParameters.Add("ediscoverySearch%2Did", ediscoverySearchId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -276,6 +257,26 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the estimateStatistics method.
+        /// </summary>
+        public Command BuildSecurityEstimateStatisticsCommand() {
+            var command = new Command("security-estimate-statistics");
+            command.Description = "Provides operations to call the estimateStatistics method.";
+            var builder = new SecurityEstimateStatisticsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the purgeData method.
+        /// </summary>
+        public Command BuildSecurityPurgeDataCommand() {
+            var command = new Command("security-purge-data");
+            command.Description = "Provides operations to call the purgeData method.";
+            var builder = new SecurityPurgeDataRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

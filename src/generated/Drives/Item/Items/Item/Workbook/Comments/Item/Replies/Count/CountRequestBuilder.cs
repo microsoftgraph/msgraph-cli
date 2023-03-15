@@ -29,15 +29,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item.Replies.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookCommentIdOption = new Option<string>("--workbook-comment-id", description: "key: id of workbookComment") {
+            var workbookCommentIdOption = new Option<string>("--workbook-comment-id", description: "The unique identifier of workbookComment") {
             };
             workbookCommentIdOption.IsRequired = true;
             command.AddOption(workbookCommentIdOption);

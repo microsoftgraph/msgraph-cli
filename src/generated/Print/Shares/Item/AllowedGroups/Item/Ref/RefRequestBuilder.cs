@@ -29,11 +29,11 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups.Item.Ref {
             var command = new Command("delete");
             command.Description = "Delete ref of navigation property allowedGroups for print";
             // Create options for all the parameters
-            var printerShareIdOption = new Option<string>("--printer-share-id", description: "key: id of printerShare") {
+            var printerShareIdOption = new Option<string>("--printer-share-id", description: "The unique identifier of printerShare") {
             };
             printerShareIdOption.IsRequired = true;
             command.AddOption(printerShareIdOption);
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);

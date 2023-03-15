@@ -31,11 +31,11 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new GroupLifecyclePolicyItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAddGroupCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAddGroupCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRemoveGroupCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildRemoveGroupCommand());
             return command;
         }
         /// <summary>
@@ -55,7 +55,7 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies {
             var command = new Command("create");
             command.Description = "Create new navigation property to groupLifecyclePolicies for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
@@ -93,6 +93,7 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -113,7 +114,7 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies {
             var command = new Command("list");
             command.Description = "Retrieves a list of groupLifecyclePolicy objects to which a group belongs.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-list-grouplifecyclepolicies?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);

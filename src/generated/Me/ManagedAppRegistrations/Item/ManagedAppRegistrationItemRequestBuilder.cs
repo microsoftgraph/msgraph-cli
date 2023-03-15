@@ -30,7 +30,7 @@ namespace ApiSdk.Me.ManagedAppRegistrations.Item {
             var command = new Command("get");
             command.Description = "Zero or more managed app registrations that belong to the user.";
             // Create options for all the parameters
-            var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "key: id of managedAppRegistration") {
+            var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "The unique identifier of managedAppRegistration") {
             };
             managedAppRegistrationIdOption.IsRequired = true;
             command.AddOption(managedAppRegistrationIdOption);

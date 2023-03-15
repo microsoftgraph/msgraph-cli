@@ -54,7 +54,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets {
             var command = new Command("create");
             command.Description = "Create new navigation property to buckets for planner";
             // Create options for all the parameters
-            var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "key: id of plannerPlan") {
+            var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
             };
             plannerPlanIdOption.IsRequired = true;
             command.AddOption(plannerPlanIdOption);
@@ -92,6 +92,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (plannerPlanId is not null) requestInfo.PathParameters.Add("plannerPlan%2Did", plannerPlanId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,7 +113,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets {
             var command = new Command("list");
             command.Description = "Retrieve a list of plannerBucket objects contained by a plannerPlan object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerplan-list-buckets?view=graph-rest-1.0";
             // Create options for all the parameters
-            var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "key: id of plannerPlan") {
+            var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
             };
             plannerPlanIdOption.IsRequired = true;
             command.AddOption(plannerPlanIdOption);

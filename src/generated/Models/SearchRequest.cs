@@ -75,6 +75,14 @@ namespace ApiSdk.Models {
 #else
         public SearchAlterationOptions QueryAlterationOptions { get; set; }
 #endif
+        /// <summary>The region property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Region { get; set; }
+#nullable restore
+#else
+        public string Region { get; set; }
+#endif
         /// <summary>The resultTemplateOptions property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -82,6 +90,14 @@ namespace ApiSdk.Models {
 #nullable restore
 #else
         public ResultTemplateOption ResultTemplateOptions { get; set; }
+#endif
+        /// <summary>The sharePointOneDriveOptions property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.SharePointOneDriveOptions? SharePointOneDriveOptions { get; set; }
+#nullable restore
+#else
+        public ApiSdk.Models.SharePointOneDriveOptions SharePointOneDriveOptions { get; set; }
 #endif
         /// <summary>The size property</summary>
         public int? Size { get; set; }
@@ -122,7 +138,9 @@ namespace ApiSdk.Models {
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"query", n => { Query = n.GetObjectValue<SearchQuery>(SearchQuery.CreateFromDiscriminatorValue); } },
                 {"queryAlterationOptions", n => { QueryAlterationOptions = n.GetObjectValue<SearchAlterationOptions>(SearchAlterationOptions.CreateFromDiscriminatorValue); } },
+                {"region", n => { Region = n.GetStringValue(); } },
                 {"resultTemplateOptions", n => { ResultTemplateOptions = n.GetObjectValue<ResultTemplateOption>(ResultTemplateOption.CreateFromDiscriminatorValue); } },
+                {"sharePointOneDriveOptions", n => { SharePointOneDriveOptions = n.GetObjectValue<ApiSdk.Models.SharePointOneDriveOptions>(ApiSdk.Models.SharePointOneDriveOptions.CreateFromDiscriminatorValue); } },
                 {"size", n => { Size = n.GetIntValue(); } },
                 {"sortProperties", n => { SortProperties = n.GetCollectionOfObjectValues<SortProperty>(SortProperty.CreateFromDiscriminatorValue)?.ToList(); } },
             };
@@ -143,7 +161,9 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteObjectValue<SearchQuery>("query", Query);
             writer.WriteObjectValue<SearchAlterationOptions>("queryAlterationOptions", QueryAlterationOptions);
+            writer.WriteStringValue("region", Region);
             writer.WriteObjectValue<ResultTemplateOption>("resultTemplateOptions", ResultTemplateOptions);
+            writer.WriteObjectValue<ApiSdk.Models.SharePointOneDriveOptions>("sharePointOneDriveOptions", SharePointOneDriveOptions);
             writer.WriteIntValue("size", Size);
             writer.WriteCollectionOfObjectValues<SortProperty>("sortProperties", SortProperties);
             writer.WriteAdditionalData(AdditionalData);

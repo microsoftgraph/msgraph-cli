@@ -1,10 +1,10 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.OwnedObjects.Count;
+using ApiSdk.Users.Item.OwnedObjects.GraphApplication;
+using ApiSdk.Users.Item.OwnedObjects.GraphGroup;
+using ApiSdk.Users.Item.OwnedObjects.GraphServicePrincipal;
 using ApiSdk.Users.Item.OwnedObjects.Item;
-using ApiSdk.Users.Item.OwnedObjects.MicrosoftGraphApplication;
-using ApiSdk.Users.Item.OwnedObjects.MicrosoftGraphGroup;
-using ApiSdk.Users.Item.OwnedObjects.MicrosoftGraphServicePrincipal;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -35,9 +35,9 @@ namespace ApiSdk.Users.Item.OwnedObjects {
             var command = new Command("item");
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphApplicationCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGroupCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphServicePrincipalCommand());
+            command.AddCommand(builder.BuildGraphApplicationCommand());
+            command.AddCommand(builder.BuildGraphGroupCommand());
+            command.AddCommand(builder.BuildGraphServicePrincipalCommand());
             return command;
         }
         /// <summary>
@@ -51,6 +51,39 @@ namespace ApiSdk.Users.Item.OwnedObjects {
             return command;
         }
         /// <summary>
+        /// Casts the previous resource to application.
+        /// </summary>
+        public Command BuildGraphApplicationCommand() {
+            var command = new Command("graph-application");
+            command.Description = "Casts the previous resource to application.";
+            var builder = new GraphApplicationRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to group.
+        /// </summary>
+        public Command BuildGraphGroupCommand() {
+            var command = new Command("graph-group");
+            command.Description = "Casts the previous resource to group.";
+            var builder = new GraphGroupRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to servicePrincipal.
+        /// </summary>
+        public Command BuildGraphServicePrincipalCommand() {
+            var command = new Command("graph-service-principal");
+            command.Description = "Casts the previous resource to servicePrincipal.";
+            var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Directory objects that are owned by the user. Read-only. Nullable. Supports $expand.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-list-ownedobjects?view=graph-rest-1.0" />
         /// </summary>
@@ -58,7 +91,7 @@ namespace ApiSdk.Users.Item.OwnedObjects {
             var command = new Command("list");
             command.Description = "Directory objects that are owned by the user. Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-ownedobjects?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -167,39 +200,6 @@ namespace ApiSdk.Users.Item.OwnedObjects {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to application.
-        /// </summary>
-        public Command BuildMicrosoftGraphApplicationCommand() {
-            var command = new Command("microsoft-graph-application");
-            command.Description = "Casts the previous resource to application.";
-            var builder = new MicrosoftGraphApplicationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to group.
-        /// </summary>
-        public Command BuildMicrosoftGraphGroupCommand() {
-            var command = new Command("microsoft-graph-group");
-            command.Description = "Casts the previous resource to group.";
-            var builder = new MicrosoftGraphGroupRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to servicePrincipal.
-        /// </summary>
-        public Command BuildMicrosoftGraphServicePrincipalCommand() {
-            var command = new Command("microsoft-graph-service-principal");
-            command.Description = "Casts the previous resource to servicePrincipal.";
-            var builder = new MicrosoftGraphServicePrincipalRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

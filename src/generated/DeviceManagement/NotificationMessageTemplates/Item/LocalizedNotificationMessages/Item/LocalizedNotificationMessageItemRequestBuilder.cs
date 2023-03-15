@@ -30,11 +30,11 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNot
             var command = new Command("delete");
             command.Description = "Delete navigation property localizedNotificationMessages for deviceManagement";
             // Create options for all the parameters
-            var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "key: id of notificationMessageTemplate") {
+            var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "The unique identifier of notificationMessageTemplate") {
             };
             notificationMessageTemplateIdOption.IsRequired = true;
             command.AddOption(notificationMessageTemplateIdOption);
-            var localizedNotificationMessageIdOption = new Option<string>("--localized-notification-message-id", description: "key: id of localizedNotificationMessage") {
+            var localizedNotificationMessageIdOption = new Option<string>("--localized-notification-message-id", description: "The unique identifier of localizedNotificationMessage") {
             };
             localizedNotificationMessageIdOption.IsRequired = true;
             command.AddOption(localizedNotificationMessageIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNot
             var command = new Command("get");
             command.Description = "The list of localized messages for this Notification Message Template.";
             // Create options for all the parameters
-            var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "key: id of notificationMessageTemplate") {
+            var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "The unique identifier of notificationMessageTemplate") {
             };
             notificationMessageTemplateIdOption.IsRequired = true;
             command.AddOption(notificationMessageTemplateIdOption);
-            var localizedNotificationMessageIdOption = new Option<string>("--localized-notification-message-id", description: "key: id of localizedNotificationMessage") {
+            var localizedNotificationMessageIdOption = new Option<string>("--localized-notification-message-id", description: "The unique identifier of localizedNotificationMessage") {
             };
             localizedNotificationMessageIdOption.IsRequired = true;
             command.AddOption(localizedNotificationMessageIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNot
             var command = new Command("patch");
             command.Description = "Update the navigation property localizedNotificationMessages in deviceManagement";
             // Create options for all the parameters
-            var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "key: id of notificationMessageTemplate") {
+            var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "The unique identifier of notificationMessageTemplate") {
             };
             notificationMessageTemplateIdOption.IsRequired = true;
             command.AddOption(notificationMessageTemplateIdOption);
-            var localizedNotificationMessageIdOption = new Option<string>("--localized-notification-message-id", description: "key: id of localizedNotificationMessage") {
+            var localizedNotificationMessageIdOption = new Option<string>("--localized-notification-message-id", description: "The unique identifier of localizedNotificationMessage") {
             };
             localizedNotificationMessageIdOption.IsRequired = true;
             command.AddOption(localizedNotificationMessageIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.LocalizedNot
                 });
                 if (notificationMessageTemplateId is not null) requestInfo.PathParameters.Add("notificationMessageTemplate%2Did", notificationMessageTemplateId);
                 if (localizedNotificationMessageId is not null) requestInfo.PathParameters.Add("localizedNotificationMessage%2Did", localizedNotificationMessageId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

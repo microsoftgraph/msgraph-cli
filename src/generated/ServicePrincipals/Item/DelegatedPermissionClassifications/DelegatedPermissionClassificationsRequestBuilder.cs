@@ -54,7 +54,7 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications {
             var command = new Command("create");
             command.Description = "Classify a delegated permission by adding a delegatedPermissionClassification to the servicePrincipal representing the API.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-post-delegatedpermissionclassifications?view=graph-rest-1.0";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
+            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
@@ -92,6 +92,7 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (servicePrincipalId is not null) requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,7 +113,7 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications {
             var command = new Command("list");
             command.Description = "Retrieve the list of delegatedPermissionClassification currently configured for the delegated permissions exposed by an API.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-list-delegatedpermissionclassifications?view=graph-rest-1.0";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
+            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);

@@ -30,19 +30,19 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.SectionGroups.Item.SectionGr
             var command = new Command("get");
             command.Description = "The section groups in the section. Read-only. Nullable.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var notebookIdOption = new Option<string>("--notebook-id", description: "key: id of notebook") {
+            var notebookIdOption = new Option<string>("--notebook-id", description: "The unique identifier of notebook") {
             };
             notebookIdOption.IsRequired = true;
             command.AddOption(notebookIdOption);
-            var sectionGroupIdOption = new Option<string>("--section-group-id", description: "key: id of sectionGroup") {
+            var sectionGroupIdOption = new Option<string>("--section-group-id", description: "The unique identifier of sectionGroup") {
             };
             sectionGroupIdOption.IsRequired = true;
             command.AddOption(sectionGroupIdOption);
-            var sectionGroupId1Option = new Option<string>("--section-group-id1", description: "key: id of sectionGroup") {
+            var sectionGroupId1Option = new Option<string>("--section-group-id1", description: "The unique identifier of sectionGroup") {
             };
             sectionGroupId1Option.IsRequired = true;
             command.AddOption(sectionGroupId1Option);

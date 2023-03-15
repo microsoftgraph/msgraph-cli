@@ -30,11 +30,11 @@ namespace ApiSdk.Me.Calendar.CalendarView.Item.MultiValueExtendedProperties.Item
             var command = new Command("delete");
             command.Description = "Delete navigation property multiValueExtendedProperties for me";
             // Create options for all the parameters
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multi-value-legacy-extended-property-id", description: "key: id of multiValueLegacyExtendedProperty") {
+            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multi-value-legacy-extended-property-id", description: "The unique identifier of multiValueLegacyExtendedProperty") {
             };
             multiValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(multiValueLegacyExtendedPropertyIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Me.Calendar.CalendarView.Item.MultiValueExtendedProperties.Item
             var command = new Command("get");
             command.Description = "The collection of multi-value extended properties defined for the event. Read-only. Nullable.";
             // Create options for all the parameters
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multi-value-legacy-extended-property-id", description: "key: id of multiValueLegacyExtendedProperty") {
+            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multi-value-legacy-extended-property-id", description: "The unique identifier of multiValueLegacyExtendedProperty") {
             };
             multiValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(multiValueLegacyExtendedPropertyIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Me.Calendar.CalendarView.Item.MultiValueExtendedProperties.Item
             var command = new Command("patch");
             command.Description = "Update the navigation property multiValueExtendedProperties in me";
             // Create options for all the parameters
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multi-value-legacy-extended-property-id", description: "key: id of multiValueLegacyExtendedProperty") {
+            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multi-value-legacy-extended-property-id", description: "The unique identifier of multiValueLegacyExtendedProperty") {
             };
             multiValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(multiValueLegacyExtendedPropertyIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Me.Calendar.CalendarView.Item.MultiValueExtendedProperties.Item
                 });
                 if (eventId is not null) requestInfo.PathParameters.Add("event%2Did", eventId);
                 if (multiValueLegacyExtendedPropertyId is not null) requestInfo.PathParameters.Add("multiValueLegacyExtendedProperty%2Did", multiValueLegacyExtendedPropertyId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

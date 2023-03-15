@@ -2,7 +2,7 @@ using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.Security;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Count;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.MicrosoftGraphSecurityAsHierarchy;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.SecurityAsHierarchy;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -57,7 +57,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags {
             var command = new Command("create");
             command.Description = "Create a new ediscoveryReviewTag object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-post-tags?view=graph-rest-1.0";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
@@ -95,6 +95,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (ediscoveryCaseId is not null) requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -115,7 +116,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags {
             var command = new Command("list");
             command.Description = "Get a list of eDiscoveryReviewTag objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-list-tags?view=graph-rest-1.0";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
@@ -222,10 +223,10 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags {
         /// <summary>
         /// Provides operations to call the asHierarchy method.
         /// </summary>
-        public Command BuildMicrosoftGraphSecurityAsHierarchyCommand() {
-            var command = new Command("microsoft-graph-security-as-hierarchy");
+        public Command BuildSecurityAsHierarchyCommand() {
+            var command = new Command("security-as-hierarchy");
             command.Description = "Provides operations to call the asHierarchy method.";
-            var builder = new MicrosoftGraphSecurityAsHierarchyRequestBuilder(PathParameters);
+            var builder = new SecurityAsHierarchyRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }

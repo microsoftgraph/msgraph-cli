@@ -54,7 +54,7 @@ namespace ApiSdk.Me.CalendarView.Item.Extensions {
             var command = new Command("create");
             command.Description = "Create an open extension (openTypeExtension object) and add custom properties in a new or existing instance of a resource. You can create an open extension in a resource instance and store custom data to it all in the same operation, except for specific resources. See known limitations of open extensions for more information. The table in the Permissions section lists the resources that support open extensions.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/opentypeextension-post-opentypeextension?view=graph-rest-1.0";
             // Create options for all the parameters
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
@@ -92,6 +92,7 @@ namespace ApiSdk.Me.CalendarView.Item.Extensions {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (eventId is not null) requestInfo.PathParameters.Add("event%2Did", eventId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -111,7 +112,7 @@ namespace ApiSdk.Me.CalendarView.Item.Extensions {
             var command = new Command("list");
             command.Description = "The collection of open extensions defined for the event. Nullable.";
             // Create options for all the parameters
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);

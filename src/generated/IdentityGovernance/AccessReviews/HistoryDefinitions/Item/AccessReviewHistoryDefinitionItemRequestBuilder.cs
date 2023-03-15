@@ -31,7 +31,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property historyDefinitions for identityGovernance";
             // Create options for all the parameters
-            var accessReviewHistoryDefinitionIdOption = new Option<string>("--access-review-history-definition-id", description: "key: id of accessReviewHistoryDefinition") {
+            var accessReviewHistoryDefinitionIdOption = new Option<string>("--access-review-history-definition-id", description: "The unique identifier of accessReviewHistoryDefinition") {
             };
             accessReviewHistoryDefinitionIdOption.IsRequired = true;
             command.AddOption(accessReviewHistoryDefinitionIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item {
             var command = new Command("get");
             command.Description = "Represents a collection of access review history data and the scopes used to collect that data.";
             // Create options for all the parameters
-            var accessReviewHistoryDefinitionIdOption = new Option<string>("--access-review-history-definition-id", description: "key: id of accessReviewHistoryDefinition") {
+            var accessReviewHistoryDefinitionIdOption = new Option<string>("--access-review-history-definition-id", description: "The unique identifier of accessReviewHistoryDefinition") {
             };
             accessReviewHistoryDefinitionIdOption.IsRequired = true;
             command.AddOption(accessReviewHistoryDefinitionIdOption);
@@ -140,7 +140,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property historyDefinitions in identityGovernance";
             // Create options for all the parameters
-            var accessReviewHistoryDefinitionIdOption = new Option<string>("--access-review-history-definition-id", description: "key: id of accessReviewHistoryDefinition") {
+            var accessReviewHistoryDefinitionIdOption = new Option<string>("--access-review-history-definition-id", description: "The unique identifier of accessReviewHistoryDefinition") {
             };
             accessReviewHistoryDefinitionIdOption.IsRequired = true;
             command.AddOption(accessReviewHistoryDefinitionIdOption);
@@ -178,6 +178,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (accessReviewHistoryDefinitionId is not null) requestInfo.PathParameters.Add("accessReviewHistoryDefinition%2Did", accessReviewHistoryDefinitionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

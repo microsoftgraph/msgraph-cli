@@ -31,15 +31,15 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property groups for sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var storeIdOption = new Option<string>("--store-id", description: "key: id of store") {
+            var storeIdOption = new Option<string>("--store-id", description: "The unique identifier of store") {
             };
             storeIdOption.IsRequired = true;
             command.AddOption(storeIdOption);
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
@@ -77,15 +77,15 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item {
             var command = new Command("get");
             command.Description = "Collection of all groups available in the term store.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var storeIdOption = new Option<string>("--store-id", description: "key: id of store") {
+            var storeIdOption = new Option<string>("--store-id", description: "The unique identifier of store") {
             };
             storeIdOption.IsRequired = true;
             command.AddOption(storeIdOption);
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
@@ -151,15 +151,15 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property groups in sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var storeIdOption = new Option<string>("--store-id", description: "key: id of store") {
+            var storeIdOption = new Option<string>("--store-id", description: "The unique identifier of store") {
             };
             storeIdOption.IsRequired = true;
             command.AddOption(storeIdOption);
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
@@ -201,6 +201,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Groups.Item {
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
                 if (storeId is not null) requestInfo.PathParameters.Add("store%2Did", storeId);
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

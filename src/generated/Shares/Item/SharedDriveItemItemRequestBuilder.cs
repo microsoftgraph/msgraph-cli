@@ -37,7 +37,7 @@ namespace ApiSdk.Shares.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from shares";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
@@ -83,7 +83,7 @@ namespace ApiSdk.Shares.Item {
             var command = new Command("get");
             command.Description = "Access a shared DriveItem or a collection of shared items by using a **shareId** or sharing URL. To use a sharing URL with this API, your app needs to transform the URL into a sharing token.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/shares-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
@@ -185,7 +185,7 @@ namespace ApiSdk.Shares.Item {
             var command = new Command("patch");
             command.Description = "Update entity in shares";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
@@ -223,6 +223,7 @@ namespace ApiSdk.Shares.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (sharedDriveItemId is not null) requestInfo.PathParameters.Add("sharedDriveItem%2Did", sharedDriveItemId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -244,7 +245,7 @@ namespace ApiSdk.Shares.Item {
             var builder = new PermissionRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGrantCommand());
+            command.AddCommand(builder.BuildGrantCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }

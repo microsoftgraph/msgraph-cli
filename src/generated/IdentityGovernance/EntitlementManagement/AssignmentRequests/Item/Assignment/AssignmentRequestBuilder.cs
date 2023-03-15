@@ -30,7 +30,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
             var command = new Command("get");
             command.Description = "For a requestType of userAdd or adminAdd, this is an access package assignment requested to be created.  For a requestType of userRemove, adminRemove or systemRemove, this has the id property of an existing assignment to be removed.   Supports $expand.";
             // Create options for all the parameters
-            var accessPackageAssignmentRequestIdOption = new Option<string>("--access-package-assignment-request-id", description: "key: id of accessPackageAssignmentRequest") {
+            var accessPackageAssignmentRequestIdOption = new Option<string>("--access-package-assignment-request-id", description: "The unique identifier of accessPackageAssignmentRequest") {
             };
             accessPackageAssignmentRequestIdOption.IsRequired = true;
             command.AddOption(accessPackageAssignmentRequestIdOption);

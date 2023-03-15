@@ -1,8 +1,7 @@
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Add;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Count;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.Item;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.MicrosoftGraphAdd;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.MicrosoftGraphCount;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.MicrosoftGraphItemAtWithIndex;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.ItemAtWithIndex;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,27 +28,37 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the add method.
+        /// </summary>
+        public Command BuildAddCommand() {
+            var command = new Command("add");
+            command.Description = "Provides operations to call the add method.";
+            var builder = new AddRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the columns property of the microsoft.graph.workbookTable entity.
         /// </summary>
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new WorkbookTableColumnItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildDataBodyRangeCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildFilterCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDataBodyRangeCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphHeaderRowRangeCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRangeCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphTotalRowRangeCommand());
+            command.AddCommand(builder.BuildHeaderRowRangeCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildRangeCommand());
+            command.AddCommand(builder.BuildTotalRowRangeCommand());
             return command;
         }
         /// <summary>
-        /// Provides operations to count the resources in the collection.
+        /// Provides operations to call the count method.
         /// </summary>
         public Command BuildCountCommand() {
             var command = new Command("count");
-            command.Description = "Provides operations to count the resources in the collection.";
+            command.Description = "Provides operations to call the count method.";
             var builder = new CountRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
@@ -62,19 +71,19 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
             var command = new Command("create");
             command.Description = "Use this API to create a new TableColumn.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/table-post-columns?view=graph-rest-1.0";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
-            var workbookTableIdOption = new Option<string>("--workbook-table-id", description: "key: id of workbookTable") {
+            var workbookTableIdOption = new Option<string>("--workbook-table-id", description: "The unique identifier of workbookTable") {
             };
             workbookTableIdOption.IsRequired = true;
             command.AddOption(workbookTableIdOption);
@@ -118,6 +127,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
                 if (workbookWorksheetId is not null) requestInfo.PathParameters.Add("workbookWorksheet%2Did", workbookWorksheetId);
                 if (workbookTableId is not null) requestInfo.PathParameters.Add("workbookTable%2Did", workbookTableId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -138,19 +148,19 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
             var command = new Command("list");
             command.Description = "Retrieve a list of tablecolumn objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/tablecolumn-list?view=graph-rest-1.0";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
-            var workbookTableIdOption = new Option<string>("--workbook-table-id", description: "key: id of workbookTable") {
+            var workbookTableIdOption = new Option<string>("--workbook-table-id", description: "The unique identifier of workbookTable") {
             };
             workbookTableIdOption.IsRequired = true;
             command.AddOption(workbookTableIdOption);
@@ -258,26 +268,6 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the add method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAddCommand() {
-            var command = new Command("microsoft-graph-add");
-            command.Description = "Provides operations to call the add method.";
-            var builder = new MicrosoftGraphAddRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the count method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCountCommand() {
-            var command = new Command("microsoft-graph-count");
-            command.Description = "Provides operations to call the count method.";
-            var builder = new MicrosoftGraphCountRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

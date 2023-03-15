@@ -31,10 +31,10 @@ namespace ApiSdk.Me.Onenote.Sections {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new OnenoteSectionItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCopyToNotebookCommand());
+            command.AddCommand(builder.BuildCopyToSectionGroupCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCopyToNotebookCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCopyToSectionGroupCommand());
             command.AddCommand(builder.BuildPagesCommand());
             command.AddCommand(builder.BuildParentNotebookCommand());
             command.AddCommand(builder.BuildParentSectionGroupCommand());
@@ -90,6 +90,7 @@ namespace ApiSdk.Me.Onenote.Sections {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

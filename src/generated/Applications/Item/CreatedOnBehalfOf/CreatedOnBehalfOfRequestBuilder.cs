@@ -30,7 +30,7 @@ namespace ApiSdk.Applications.Item.CreatedOnBehalfOf {
             var command = new Command("get");
             command.Description = "Supports $filter (/$count eq 0, /$count ne 0). Read-only.";
             // Create options for all the parameters
-            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
             command.AddOption(applicationIdOption);

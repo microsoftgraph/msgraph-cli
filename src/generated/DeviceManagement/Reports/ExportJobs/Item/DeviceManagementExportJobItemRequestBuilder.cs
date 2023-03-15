@@ -30,7 +30,7 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property exportJobs for deviceManagement";
             // Create options for all the parameters
-            var deviceManagementExportJobIdOption = new Option<string>("--device-management-export-job-id", description: "key: id of deviceManagementExportJob") {
+            var deviceManagementExportJobIdOption = new Option<string>("--device-management-export-job-id", description: "The unique identifier of deviceManagementExportJob") {
             };
             deviceManagementExportJobIdOption.IsRequired = true;
             command.AddOption(deviceManagementExportJobIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
             var command = new Command("get");
             command.Description = "Entity representing a job to export a report";
             // Create options for all the parameters
-            var deviceManagementExportJobIdOption = new Option<string>("--device-management-export-job-id", description: "key: id of deviceManagementExportJob") {
+            var deviceManagementExportJobIdOption = new Option<string>("--device-management-export-job-id", description: "The unique identifier of deviceManagementExportJob") {
             };
             deviceManagementExportJobIdOption.IsRequired = true;
             command.AddOption(deviceManagementExportJobIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property exportJobs in deviceManagement";
             // Create options for all the parameters
-            var deviceManagementExportJobIdOption = new Option<string>("--device-management-export-job-id", description: "key: id of deviceManagementExportJob") {
+            var deviceManagementExportJobIdOption = new Option<string>("--device-management-export-job-id", description: "The unique identifier of deviceManagementExportJob") {
             };
             deviceManagementExportJobIdOption.IsRequired = true;
             command.AddOption(deviceManagementExportJobIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.DeviceManagement.Reports.ExportJobs.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (deviceManagementExportJobId is not null) requestInfo.PathParameters.Add("deviceManagementExportJob%2Did", deviceManagementExportJobId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

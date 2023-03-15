@@ -29,11 +29,11 @@ namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies.Item.Ref {
             var command = new Command("delete");
             command.Description = "Delete ref of navigation property homeRealmDiscoveryPolicies for servicePrincipals";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
+            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
-            var homeRealmDiscoveryPolicyIdOption = new Option<string>("--home-realm-discovery-policy-id", description: "key: id of homeRealmDiscoveryPolicy") {
+            var homeRealmDiscoveryPolicyIdOption = new Option<string>("--home-realm-discovery-policy-id", description: "The unique identifier of homeRealmDiscoveryPolicy") {
             };
             homeRealmDiscoveryPolicyIdOption.IsRequired = true;
             command.AddOption(homeRealmDiscoveryPolicyIdOption);

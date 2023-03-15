@@ -30,7 +30,7 @@ namespace ApiSdk.Organization.Item.Branding.BackgroundImage {
             var command = new Command("get");
             command.Description = "Image that appears as the background of the sign-in page. The allowed types are PNG or JPEG not smaller than 300 KB and not larger than 1920 × 1080 pixels. A smaller image will reduce bandwidth requirements and make the page load faster.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/organizationalbranding-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization") {
+            var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
             };
             organizationIdOption.IsRequired = true;
             command.AddOption(organizationIdOption);
@@ -69,7 +69,7 @@ namespace ApiSdk.Organization.Item.Branding.BackgroundImage {
             var command = new Command("put");
             command.Description = "Image that appears as the background of the sign-in page. The allowed types are PNG or JPEG not smaller than 300 KB and not larger than 1920 × 1080 pixels. A smaller image will reduce bandwidth requirements and make the page load faster.";
             // Create options for all the parameters
-            var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization") {
+            var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
             };
             organizationIdOption.IsRequired = true;
             command.AddOption(organizationIdOption);

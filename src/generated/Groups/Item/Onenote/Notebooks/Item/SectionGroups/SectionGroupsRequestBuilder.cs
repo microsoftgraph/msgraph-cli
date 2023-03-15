@@ -58,11 +58,11 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.SectionGroups {
             var command = new Command("create");
             command.Description = "Create a new section group in the specified notebook.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/notebook-post-sectiongroups?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var notebookIdOption = new Option<string>("--notebook-id", description: "key: id of notebook") {
+            var notebookIdOption = new Option<string>("--notebook-id", description: "The unique identifier of notebook") {
             };
             notebookIdOption.IsRequired = true;
             command.AddOption(notebookIdOption);
@@ -102,6 +102,7 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.SectionGroups {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (notebookId is not null) requestInfo.PathParameters.Add("notebook%2Did", notebookId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -122,11 +123,11 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.SectionGroups {
             var command = new Command("list");
             command.Description = "Retrieve a list of section groups from the specified notebook.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/notebook-list-sectiongroups?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var notebookIdOption = new Option<string>("--notebook-id", description: "key: id of notebook") {
+            var notebookIdOption = new Option<string>("--notebook-id", description: "The unique identifier of notebook") {
             };
             notebookIdOption.IsRequired = true;
             command.AddOption(notebookIdOption);

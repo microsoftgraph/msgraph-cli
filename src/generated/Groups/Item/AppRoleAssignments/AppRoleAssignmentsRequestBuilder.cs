@@ -54,7 +54,7 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments {
             var command = new Command("create");
             command.Description = "Use this API to assign an app role to a security group. All direct members of the group will be considered assigned. Security groups with dynamic memberships are supported. To grant an app role assignment to a group, you need three identifiers: Additional licenses might be required to use a group to manage access to applications.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-post-approleassignments?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
@@ -92,6 +92,7 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,7 +113,7 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments {
             var command = new Command("list");
             command.Description = "Represents the app roles a group has been granted for an application. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-list-approleassignments?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);

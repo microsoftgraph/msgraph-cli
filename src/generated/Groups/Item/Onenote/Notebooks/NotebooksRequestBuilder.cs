@@ -1,7 +1,7 @@
 using ApiSdk.Groups.Item.Onenote.Notebooks.Count;
+using ApiSdk.Groups.Item.Onenote.Notebooks.GetNotebookFromWebUrl;
+using ApiSdk.Groups.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePersonalNotebooks;
 using ApiSdk.Groups.Item.Onenote.Notebooks.Item;
-using ApiSdk.Groups.Item.Onenote.Notebooks.MicrosoftGraphGetNotebookFromWebUrl;
-using ApiSdk.Groups.Item.Onenote.Notebooks.MicrosoftGraphGetRecentNotebooksWithIncludePersonalNotebooks;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,9 +33,9 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new NotebookItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCopyNotebookCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCopyNotebookCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildSectionGroupsCommand());
             command.AddCommand(builder.BuildSectionsCommand());
@@ -59,7 +59,7 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks {
             var command = new Command("create");
             command.Description = "Create a new OneNote notebook.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/onenote-post-notebooks?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
@@ -97,6 +97,7 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -110,6 +111,16 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the getNotebookFromWebUrl method.
+        /// </summary>
+        public Command BuildGetNotebookFromWebUrlCommand() {
+            var command = new Command("get-notebook-from-web-url");
+            command.Description = "Provides operations to call the getNotebookFromWebUrl method.";
+            var builder = new GetNotebookFromWebUrlRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Retrieve a list of notebook objects.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/onenote-list-notebooks?view=graph-rest-1.0" />
         /// </summary>
@@ -117,7 +128,7 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks {
             var command = new Command("list");
             command.Description = "Retrieve a list of notebook objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/onenote-list-notebooks?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
@@ -219,16 +230,6 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getNotebookFromWebUrl method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetNotebookFromWebUrlCommand() {
-            var command = new Command("microsoft-graph-get-notebook-from-web-url");
-            command.Description = "Provides operations to call the getNotebookFromWebUrl method.";
-            var builder = new MicrosoftGraphGetNotebookFromWebUrlRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

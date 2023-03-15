@@ -30,15 +30,15 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.ColumnLinks.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property columnLinks for shares";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
-            var contentTypeIdOption = new Option<string>("--content-type-id", description: "key: id of contentType") {
+            var contentTypeIdOption = new Option<string>("--content-type-id", description: "The unique identifier of contentType") {
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
-            var columnLinkIdOption = new Option<string>("--column-link-id", description: "key: id of columnLink") {
+            var columnLinkIdOption = new Option<string>("--column-link-id", description: "The unique identifier of columnLink") {
             };
             columnLinkIdOption.IsRequired = true;
             command.AddOption(columnLinkIdOption);
@@ -76,15 +76,15 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.ColumnLinks.Item {
             var command = new Command("get");
             command.Description = "The collection of columns that are required by this content type.";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
-            var contentTypeIdOption = new Option<string>("--content-type-id", description: "key: id of contentType") {
+            var contentTypeIdOption = new Option<string>("--content-type-id", description: "The unique identifier of contentType") {
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
-            var columnLinkIdOption = new Option<string>("--column-link-id", description: "key: id of columnLink") {
+            var columnLinkIdOption = new Option<string>("--column-link-id", description: "The unique identifier of columnLink") {
             };
             columnLinkIdOption.IsRequired = true;
             command.AddOption(columnLinkIdOption);
@@ -150,15 +150,15 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.ColumnLinks.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property columnLinks in shares";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
-            var contentTypeIdOption = new Option<string>("--content-type-id", description: "key: id of contentType") {
+            var contentTypeIdOption = new Option<string>("--content-type-id", description: "The unique identifier of contentType") {
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
-            var columnLinkIdOption = new Option<string>("--column-link-id", description: "key: id of columnLink") {
+            var columnLinkIdOption = new Option<string>("--column-link-id", description: "The unique identifier of columnLink") {
             };
             columnLinkIdOption.IsRequired = true;
             command.AddOption(columnLinkIdOption);
@@ -200,6 +200,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.ColumnLinks.Item {
                 if (sharedDriveItemId is not null) requestInfo.PathParameters.Add("sharedDriveItem%2Did", sharedDriveItemId);
                 if (contentTypeId is not null) requestInfo.PathParameters.Add("contentType%2Did", contentTypeId);
                 if (columnLinkId is not null) requestInfo.PathParameters.Add("columnLink%2Did", columnLinkId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -1,7 +1,7 @@
-using ApiSdk.ServicePrincipals.Item.Owners.Item.MicrosoftGraphAppRoleAssignment;
-using ApiSdk.ServicePrincipals.Item.Owners.Item.MicrosoftGraphEndpoint;
-using ApiSdk.ServicePrincipals.Item.Owners.Item.MicrosoftGraphServicePrincipal;
-using ApiSdk.ServicePrincipals.Item.Owners.Item.MicrosoftGraphUser;
+using ApiSdk.ServicePrincipals.Item.Owners.Item.GraphAppRoleAssignment;
+using ApiSdk.ServicePrincipals.Item.Owners.Item.GraphEndpoint;
+using ApiSdk.ServicePrincipals.Item.Owners.Item.GraphServicePrincipal;
+using ApiSdk.ServicePrincipals.Item.Owners.Item.GraphUser;
 using ApiSdk.ServicePrincipals.Item.Owners.Item.Ref;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,40 +26,40 @@ namespace ApiSdk.ServicePrincipals.Item.Owners.Item {
         /// <summary>
         /// Casts the previous resource to appRoleAssignment.
         /// </summary>
-        public Command BuildMicrosoftGraphAppRoleAssignmentCommand() {
-            var command = new Command("microsoft-graph-app-role-assignment");
+        public Command BuildGraphAppRoleAssignmentCommand() {
+            var command = new Command("graph-app-role-assignment");
             command.Description = "Casts the previous resource to appRoleAssignment.";
-            var builder = new MicrosoftGraphAppRoleAssignmentRequestBuilder(PathParameters);
+            var builder = new GraphAppRoleAssignmentRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Casts the previous resource to endpoint.
         /// </summary>
-        public Command BuildMicrosoftGraphEndpointCommand() {
-            var command = new Command("microsoft-graph-endpoint");
+        public Command BuildGraphEndpointCommand() {
+            var command = new Command("graph-endpoint");
             command.Description = "Casts the previous resource to endpoint.";
-            var builder = new MicrosoftGraphEndpointRequestBuilder(PathParameters);
+            var builder = new GraphEndpointRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        public Command BuildMicrosoftGraphServicePrincipalCommand() {
-            var command = new Command("microsoft-graph-service-principal");
+        public Command BuildGraphServicePrincipalCommand() {
+            var command = new Command("graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
-            var builder = new MicrosoftGraphServicePrincipalRequestBuilder(PathParameters);
+            var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
-        public Command BuildMicrosoftGraphUserCommand() {
-            var command = new Command("microsoft-graph-user");
+        public Command BuildGraphUserCommand() {
+            var command = new Command("graph-user");
             command.Description = "Casts the previous resource to user.";
-            var builder = new MicrosoftGraphUserRequestBuilder(PathParameters);
+            var builder = new GraphUserRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }

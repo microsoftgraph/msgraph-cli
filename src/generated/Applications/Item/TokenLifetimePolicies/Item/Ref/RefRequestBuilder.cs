@@ -29,11 +29,11 @@ namespace ApiSdk.Applications.Item.TokenLifetimePolicies.Item.Ref {
             var command = new Command("delete");
             command.Description = "Delete ref of navigation property tokenLifetimePolicies for applications";
             // Create options for all the parameters
-            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
             command.AddOption(applicationIdOption);
-            var tokenLifetimePolicyIdOption = new Option<string>("--token-lifetime-policy-id", description: "key: id of tokenLifetimePolicy") {
+            var tokenLifetimePolicyIdOption = new Option<string>("--token-lifetime-policy-id", description: "The unique identifier of tokenLifetimePolicy") {
             };
             tokenLifetimePolicyIdOption.IsRequired = true;
             command.AddOption(tokenLifetimePolicyIdOption);

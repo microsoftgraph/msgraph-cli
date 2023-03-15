@@ -1,4 +1,4 @@
-using ApiSdk.Drives.Item.List.Items.Item.DocumentSetVersions.Item.MicrosoftGraphRestore;
+using ApiSdk.Drives.Item.List.Items.Item.DocumentSetVersions.Item.Restore;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,15 +31,15 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DocumentSetVersions.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property documentSetVersions for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var listItemIdOption = new Option<string>("--list-item-id", description: "key: id of listItem") {
+            var listItemIdOption = new Option<string>("--list-item-id", description: "The unique identifier of listItem") {
             };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
-            var documentSetVersionIdOption = new Option<string>("--document-set-version-id", description: "key: id of documentSetVersion") {
+            var documentSetVersionIdOption = new Option<string>("--document-set-version-id", description: "The unique identifier of documentSetVersion") {
             };
             documentSetVersionIdOption.IsRequired = true;
             command.AddOption(documentSetVersionIdOption);
@@ -77,15 +77,15 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DocumentSetVersions.Item {
             var command = new Command("get");
             command.Description = "Version information for a document set version created by a user.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var listItemIdOption = new Option<string>("--list-item-id", description: "key: id of listItem") {
+            var listItemIdOption = new Option<string>("--list-item-id", description: "The unique identifier of listItem") {
             };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
-            var documentSetVersionIdOption = new Option<string>("--document-set-version-id", description: "key: id of documentSetVersion") {
+            var documentSetVersionIdOption = new Option<string>("--document-set-version-id", description: "The unique identifier of documentSetVersion") {
             };
             documentSetVersionIdOption.IsRequired = true;
             command.AddOption(documentSetVersionIdOption);
@@ -145,31 +145,21 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DocumentSetVersions.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the restore method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRestoreCommand() {
-            var command = new Command("microsoft-graph-restore");
-            command.Description = "Provides operations to call the restore method.";
-            var builder = new MicrosoftGraphRestoreRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property documentSetVersions in drives
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property documentSetVersions in drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var listItemIdOption = new Option<string>("--list-item-id", description: "key: id of listItem") {
+            var listItemIdOption = new Option<string>("--list-item-id", description: "The unique identifier of listItem") {
             };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
-            var documentSetVersionIdOption = new Option<string>("--document-set-version-id", description: "key: id of documentSetVersion") {
+            var documentSetVersionIdOption = new Option<string>("--document-set-version-id", description: "The unique identifier of documentSetVersion") {
             };
             documentSetVersionIdOption.IsRequired = true;
             command.AddOption(documentSetVersionIdOption);
@@ -211,6 +201,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DocumentSetVersions.Item {
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (listItemId is not null) requestInfo.PathParameters.Add("listItem%2Did", listItemId);
                 if (documentSetVersionId is not null) requestInfo.PathParameters.Add("documentSetVersion%2Did", documentSetVersionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -221,6 +212,16 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DocumentSetVersions.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the restore method.
+        /// </summary>
+        public Command BuildRestoreCommand() {
+            var command = new Command("restore");
+            command.Description = "Provides operations to call the restore method.";
+            var builder = new RestoreRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

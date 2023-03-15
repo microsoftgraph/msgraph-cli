@@ -30,11 +30,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.Schedule.OpenShiftChangeRequests.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property openShiftChangeRequests for me";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var openShiftChangeRequestIdOption = new Option<string>("--open-shift-change-request-id", description: "key: id of openShiftChangeRequest") {
+            var openShiftChangeRequestIdOption = new Option<string>("--open-shift-change-request-id", description: "The unique identifier of openShiftChangeRequest") {
             };
             openShiftChangeRequestIdOption.IsRequired = true;
             command.AddOption(openShiftChangeRequestIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.Schedule.OpenShiftChangeRequests.Item {
             var command = new Command("get");
             command.Description = "Get openShiftChangeRequests from me";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var openShiftChangeRequestIdOption = new Option<string>("--open-shift-change-request-id", description: "key: id of openShiftChangeRequest") {
+            var openShiftChangeRequestIdOption = new Option<string>("--open-shift-change-request-id", description: "The unique identifier of openShiftChangeRequest") {
             };
             openShiftChangeRequestIdOption.IsRequired = true;
             command.AddOption(openShiftChangeRequestIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.Schedule.OpenShiftChangeRequests.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property openShiftChangeRequests in me";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var openShiftChangeRequestIdOption = new Option<string>("--open-shift-change-request-id", description: "key: id of openShiftChangeRequest") {
+            var openShiftChangeRequestIdOption = new Option<string>("--open-shift-change-request-id", description: "The unique identifier of openShiftChangeRequest") {
             };
             openShiftChangeRequestIdOption.IsRequired = true;
             command.AddOption(openShiftChangeRequestIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Schedule.OpenShiftChangeRequests.Item {
                 });
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
                 if (openShiftChangeRequestId is not null) requestInfo.PathParameters.Add("openShiftChangeRequest%2Did", openShiftChangeRequestId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

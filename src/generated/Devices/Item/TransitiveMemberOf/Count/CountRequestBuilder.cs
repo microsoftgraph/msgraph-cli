@@ -29,7 +29,7 @@ namespace ApiSdk.Devices.Item.TransitiveMemberOf.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var deviceIdOption = new Option<string>("--device-id", description: "key: id of device") {
+            var deviceIdOption = new Option<string>("--device-id", description: "The unique identifier of device") {
             };
             deviceIdOption.IsRequired = true;
             command.AddOption(deviceIdOption);

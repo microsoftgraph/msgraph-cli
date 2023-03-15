@@ -37,10 +37,10 @@ namespace ApiSdk.Drives {
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildItemsCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRecentCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSharedWithMeCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildRecentCommand());
             command.AddCommand(builder.BuildRootCommand());
+            command.AddCommand(builder.BuildSharedWithMeCommand());
             command.AddCommand(builder.BuildSpecialCommand());
             return command;
         }
@@ -93,6 +93,7 @@ namespace ApiSdk.Drives {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -30,11 +30,11 @@ namespace ApiSdk.Me.MailFolders.Item.MessageRules.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property messageRules for me";
             // Create options for all the parameters
-            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
+            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "The unique identifier of mailFolder") {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
-            var messageRuleIdOption = new Option<string>("--message-rule-id", description: "key: id of messageRule") {
+            var messageRuleIdOption = new Option<string>("--message-rule-id", description: "The unique identifier of messageRule") {
             };
             messageRuleIdOption.IsRequired = true;
             command.AddOption(messageRuleIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Me.MailFolders.Item.MessageRules.Item {
             var command = new Command("get");
             command.Description = "The collection of rules that apply to the user's Inbox folder.";
             // Create options for all the parameters
-            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
+            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "The unique identifier of mailFolder") {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
-            var messageRuleIdOption = new Option<string>("--message-rule-id", description: "key: id of messageRule") {
+            var messageRuleIdOption = new Option<string>("--message-rule-id", description: "The unique identifier of messageRule") {
             };
             messageRuleIdOption.IsRequired = true;
             command.AddOption(messageRuleIdOption);
@@ -131,11 +131,11 @@ namespace ApiSdk.Me.MailFolders.Item.MessageRules.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property messageRules in me";
             // Create options for all the parameters
-            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
+            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "The unique identifier of mailFolder") {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
-            var messageRuleIdOption = new Option<string>("--message-rule-id", description: "key: id of messageRule") {
+            var messageRuleIdOption = new Option<string>("--message-rule-id", description: "The unique identifier of messageRule") {
             };
             messageRuleIdOption.IsRequired = true;
             command.AddOption(messageRuleIdOption);
@@ -175,6 +175,7 @@ namespace ApiSdk.Me.MailFolders.Item.MessageRules.Item {
                 });
                 if (mailFolderId is not null) requestInfo.PathParameters.Add("mailFolder%2Did", mailFolderId);
                 if (messageRuleId is not null) requestInfo.PathParameters.Add("messageRule%2Did", messageRuleId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

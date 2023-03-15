@@ -1,8 +1,8 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies.Count;
+using ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies.Delta;
 using ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies.Item;
-using ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies.MicrosoftGraphDelta;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -35,9 +35,9 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies {
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildHostedContentsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSoftDeleteCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUndoSoftDeleteCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildSoftDeleteCommand());
+            command.AddCommand(builder.BuildUndoSoftDeleteCommand());
             return command;
         }
         /// <summary>
@@ -51,22 +51,22 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies {
             return command;
         }
         /// <summary>
-        /// Send a new reply to a chatMessage in a specified channel.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chatmessage-post-replies?view=graph-rest-1.0" />
+        /// Create a new reply to a chatMessage in a specified channel.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/channel-post-messagereply?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Send a new reply to a chatMessage in a specified channel.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chatmessage-post-replies?view=graph-rest-1.0";
+            command.Description = "Create a new reply to a chatMessage in a specified channel.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-post-messagereply?view=graph-rest-1.0";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var channelIdOption = new Option<string>("--channel-id", description: "key: id of channel") {
+            var channelIdOption = new Option<string>("--channel-id", description: "The unique identifier of channel") {
             };
             channelIdOption.IsRequired = true;
             command.AddOption(channelIdOption);
-            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "key: id of chatMessage") {
+            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "The unique identifier of chatMessage") {
             };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);
@@ -108,6 +108,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies {
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
                 if (channelId is not null) requestInfo.PathParameters.Add("channel%2Did", channelId);
                 if (chatMessageId is not null) requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -121,6 +122,16 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildDeltaCommand() {
+            var command = new Command("delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// List all the replies to a message in a channel of a team. This method lists only the replies of the specified message, if any. To get the message itself, simply call get channel message.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/chatmessage-list-replies?view=graph-rest-1.0" />
         /// </summary>
@@ -128,15 +139,15 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies {
             var command = new Command("list");
             command.Description = "List all the replies to a message in a channel of a team. This method lists only the replies of the specified message, if any. To get the message itself, simply call get channel message.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chatmessage-list-replies?view=graph-rest-1.0";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var channelIdOption = new Option<string>("--channel-id", description: "key: id of channel") {
+            var channelIdOption = new Option<string>("--channel-id", description: "The unique identifier of channel") {
             };
             channelIdOption.IsRequired = true;
             command.AddOption(channelIdOption);
-            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "key: id of chatMessage") {
+            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "The unique identifier of chatMessage") {
             };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);
@@ -245,16 +256,6 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the delta method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDeltaCommand() {
-            var command = new Command("microsoft-graph-delta");
-            command.Description = "Provides operations to call the delta method.";
-            var builder = new MicrosoftGraphDeltaRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
         /// Instantiates a new RepliesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
@@ -291,7 +292,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies {
             return requestInfo;
         }
         /// <summary>
-        /// Send a new reply to a chatMessage in a specified channel.
+        /// Create a new reply to a chatMessage in a specified channel.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

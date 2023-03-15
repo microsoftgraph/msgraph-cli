@@ -1,6 +1,6 @@
 using ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo.Attachments.Count;
+using ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo.Attachments.CreateUploadSession;
 using ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo.Attachments.Item;
-using ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo.Attachments.MicrosoftGraphCreateUploadSession;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -53,15 +53,15 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo.Attachments {
             var command = new Command("create");
             command.Description = "Create new navigation property to attachments for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "key: id of conversationThread") {
+            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "The unique identifier of conversationThread") {
             };
             conversationThreadIdOption.IsRequired = true;
             command.AddOption(conversationThreadIdOption);
-            var postIdOption = new Option<string>("--post-id", description: "key: id of post") {
+            var postIdOption = new Option<string>("--post-id", description: "The unique identifier of post") {
             };
             postIdOption.IsRequired = true;
             command.AddOption(postIdOption);
@@ -103,6 +103,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo.Attachments {
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (conversationThreadId is not null) requestInfo.PathParameters.Add("conversationThread%2Did", conversationThreadId);
                 if (postId is not null) requestInfo.PathParameters.Add("post%2Did", postId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -116,6 +117,16 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo.Attachments {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the createUploadSession method.
+        /// </summary>
+        public Command BuildCreateUploadSessionCommand() {
+            var command = new Command("create-upload-session");
+            command.Description = "Provides operations to call the createUploadSession method.";
+            var builder = new CreateUploadSessionRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Retrieve a list of attachment objects attached to a post.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/post-list-attachments?view=graph-rest-1.0" />
         /// </summary>
@@ -123,15 +134,15 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo.Attachments {
             var command = new Command("list");
             command.Description = "Retrieve a list of attachment objects attached to a post.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/post-list-attachments?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "key: id of conversationThread") {
+            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "The unique identifier of conversationThread") {
             };
             conversationThreadIdOption.IsRequired = true;
             command.AddOption(conversationThreadIdOption);
-            var postIdOption = new Option<string>("--post-id", description: "key: id of post") {
+            var postIdOption = new Option<string>("--post-id", description: "The unique identifier of post") {
             };
             postIdOption.IsRequired = true;
             command.AddOption(postIdOption);
@@ -231,16 +242,6 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo.Attachments {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the createUploadSession method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCreateUploadSessionCommand() {
-            var command = new Command("microsoft-graph-create-upload-session");
-            command.Description = "Provides operations to call the createUploadSession method.";
-            var builder = new MicrosoftGraphCreateUploadSessionRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

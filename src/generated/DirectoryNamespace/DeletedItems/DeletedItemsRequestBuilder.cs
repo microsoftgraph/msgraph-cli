@@ -1,11 +1,12 @@
 using ApiSdk.DirectoryNamespace.DeletedItems.Count;
+using ApiSdk.DirectoryNamespace.DeletedItems.Delta;
+using ApiSdk.DirectoryNamespace.DeletedItems.GetAvailableExtensionProperties;
+using ApiSdk.DirectoryNamespace.DeletedItems.GetByIds;
+using ApiSdk.DirectoryNamespace.DeletedItems.GraphApplication;
+using ApiSdk.DirectoryNamespace.DeletedItems.GraphGroup;
+using ApiSdk.DirectoryNamespace.DeletedItems.GraphUser;
 using ApiSdk.DirectoryNamespace.DeletedItems.Item;
-using ApiSdk.DirectoryNamespace.DeletedItems.MicrosoftGraphApplication;
-using ApiSdk.DirectoryNamespace.DeletedItems.MicrosoftGraphGetAvailableExtensionProperties;
-using ApiSdk.DirectoryNamespace.DeletedItems.MicrosoftGraphGetByIds;
-using ApiSdk.DirectoryNamespace.DeletedItems.MicrosoftGraphGroup;
-using ApiSdk.DirectoryNamespace.DeletedItems.MicrosoftGraphUser;
-using ApiSdk.DirectoryNamespace.DeletedItems.MicrosoftGraphValidateProperties;
+using ApiSdk.DirectoryNamespace.DeletedItems.ValidateProperties;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,17 +38,17 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCheckMemberGroupsCommand());
+            command.AddCommand(builder.BuildCheckMemberObjectsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphApplicationCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCheckMemberGroupsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCheckMemberObjectsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetMemberGroupsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetMemberObjectsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGroupCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRestoreCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUserCommand());
+            command.AddCommand(builder.BuildGetMemberGroupsCommand());
+            command.AddCommand(builder.BuildGetMemberObjectsCommand());
+            command.AddCommand(builder.BuildGraphApplicationCommand());
+            command.AddCommand(builder.BuildGraphGroupCommand());
+            command.AddCommand(builder.BuildGraphUserCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildRestoreCommand());
             return command;
         }
         /// <summary>
@@ -99,6 +100,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -109,6 +111,69 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildDeltaCommand() {
+            var command = new Command("delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getAvailableExtensionProperties method.
+        /// </summary>
+        public Command BuildGetAvailableExtensionPropertiesCommand() {
+            var command = new Command("get-available-extension-properties");
+            command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
+            var builder = new GetAvailableExtensionPropertiesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getByIds method.
+        /// </summary>
+        public Command BuildGetByIdsCommand() {
+            var command = new Command("get-by-ids");
+            command.Description = "Provides operations to call the getByIds method.";
+            var builder = new GetByIdsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to application.
+        /// </summary>
+        public Command BuildGraphApplicationCommand() {
+            var command = new Command("graph-application");
+            command.Description = "Casts the previous resource to application.";
+            var builder = new GraphApplicationRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to group.
+        /// </summary>
+        public Command BuildGraphGroupCommand() {
+            var command = new Command("graph-group");
+            command.Description = "Casts the previous resource to group.";
+            var builder = new GraphGroupRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to user.
+        /// </summary>
+        public Command BuildGraphUserCommand() {
+            var command = new Command("graph-user");
+            command.Description = "Casts the previous resource to user.";
+            var builder = new GraphUserRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -217,65 +282,12 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
             return command;
         }
         /// <summary>
-        /// Casts the previous resource to application.
-        /// </summary>
-        public Command BuildMicrosoftGraphApplicationCommand() {
-            var command = new Command("microsoft-graph-application");
-            command.Description = "Casts the previous resource to application.";
-            var builder = new MicrosoftGraphApplicationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getAvailableExtensionProperties method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetAvailableExtensionPropertiesCommand() {
-            var command = new Command("microsoft-graph-get-available-extension-properties");
-            command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
-            var builder = new MicrosoftGraphGetAvailableExtensionPropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getByIds method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetByIdsCommand() {
-            var command = new Command("microsoft-graph-get-by-ids");
-            command.Description = "Provides operations to call the getByIds method.";
-            var builder = new MicrosoftGraphGetByIdsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to group.
-        /// </summary>
-        public Command BuildMicrosoftGraphGroupCommand() {
-            var command = new Command("microsoft-graph-group");
-            command.Description = "Casts the previous resource to group.";
-            var builder = new MicrosoftGraphGroupRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to user.
-        /// </summary>
-        public Command BuildMicrosoftGraphUserCommand() {
-            var command = new Command("microsoft-graph-user");
-            command.Description = "Casts the previous resource to user.";
-            var builder = new MicrosoftGraphUserRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to call the validateProperties method.
         /// </summary>
-        public Command BuildMicrosoftGraphValidatePropertiesCommand() {
-            var command = new Command("microsoft-graph-validate-properties");
+        public Command BuildValidatePropertiesCommand() {
+            var command = new Command("validate-properties");
             command.Description = "Provides operations to call the validateProperties method.";
-            var builder = new MicrosoftGraphValidatePropertiesRequestBuilder(PathParameters);
+            var builder = new ValidatePropertiesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }

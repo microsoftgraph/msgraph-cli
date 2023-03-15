@@ -41,8 +41,8 @@ namespace ApiSdk.Education.Classes.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             return command;
         }
         /// <summary>
@@ -67,8 +67,8 @@ namespace ApiSdk.Education.Classes.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             return command;
         }
         /// <summary>
@@ -90,7 +90,7 @@ namespace ApiSdk.Education.Classes.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property classes for education";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
@@ -124,7 +124,7 @@ namespace ApiSdk.Education.Classes.Item {
             var command = new Command("get");
             command.Description = "Get classes from education";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
@@ -209,7 +209,7 @@ namespace ApiSdk.Education.Classes.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property classes in education";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
@@ -247,6 +247,7 @@ namespace ApiSdk.Education.Classes.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (educationClassId is not null) requestInfo.PathParameters.Add("educationClass%2Did", educationClassId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

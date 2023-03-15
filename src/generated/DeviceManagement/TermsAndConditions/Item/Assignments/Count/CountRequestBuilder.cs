@@ -29,7 +29,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "key: id of termsAndConditions") {
+            var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "The unique identifier of termsAndConditions") {
             };
             termsAndConditionsIdOption.IsRequired = true;
             command.AddOption(termsAndConditionsIdOption);

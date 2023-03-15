@@ -54,19 +54,19 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.Ext
             var command = new Command("create");
             command.Description = "Create an open extension (openTypeExtension object) and add custom properties in a new or existing instance of a resource. You can create an open extension in a resource instance and store custom data to it all in the same operation, except for specific resources. See known limitations of open extensions for more information. The table in the Permissions section lists the resources that support open extensions.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/opentypeextension-post-opentypeextension?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
+            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "The unique identifier of mailFolder") {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
-            var mailFolderId1Option = new Option<string>("--mail-folder-id1", description: "key: id of mailFolder") {
+            var mailFolderId1Option = new Option<string>("--mail-folder-id1", description: "The unique identifier of mailFolder") {
             };
             mailFolderId1Option.IsRequired = true;
             command.AddOption(mailFolderId1Option);
-            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            var messageIdOption = new Option<string>("--message-id", description: "The unique identifier of message") {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
@@ -110,6 +110,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.Ext
                 if (mailFolderId is not null) requestInfo.PathParameters.Add("mailFolder%2Did", mailFolderId);
                 if (mailFolderId1 is not null) requestInfo.PathParameters.Add("mailFolder%2Did1", mailFolderId1);
                 if (messageId is not null) requestInfo.PathParameters.Add("message%2Did", messageId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -129,19 +130,19 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.Ext
             var command = new Command("list");
             command.Description = "The collection of open extensions defined for the message. Nullable.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
+            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "The unique identifier of mailFolder") {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
-            var mailFolderId1Option = new Option<string>("--mail-folder-id1", description: "key: id of mailFolder") {
+            var mailFolderId1Option = new Option<string>("--mail-folder-id1", description: "The unique identifier of mailFolder") {
             };
             mailFolderId1Option.IsRequired = true;
             command.AddOption(mailFolderId1Option);
-            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            var messageIdOption = new Option<string>("--message-id", description: "The unique identifier of message") {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);

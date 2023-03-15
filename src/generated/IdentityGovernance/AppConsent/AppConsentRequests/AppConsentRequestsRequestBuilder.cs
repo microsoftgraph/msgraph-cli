@@ -1,6 +1,6 @@
 using ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Count;
+using ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.FilterByCurrentUserWithOn;
 using ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item;
-using ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.MicrosoftGraphFilterByCurrentUserWithOn;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -87,6 +87,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

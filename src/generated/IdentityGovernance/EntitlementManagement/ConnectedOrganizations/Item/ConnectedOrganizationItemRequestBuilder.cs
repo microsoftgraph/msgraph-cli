@@ -32,7 +32,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             var command = new Command("delete");
             command.Description = "Delete navigation property connectedOrganizations for identityGovernance";
             // Create options for all the parameters
-            var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "key: id of connectedOrganization") {
+            var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "The unique identifier of connectedOrganization") {
             };
             connectedOrganizationIdOption.IsRequired = true;
             command.AddOption(connectedOrganizationIdOption);
@@ -69,11 +69,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
+            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
+            command.AddCommand(builder.BuildGetByIdsCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetAvailableExtensionPropertiesCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetByIdsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphValidatePropertiesCommand());
             command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildValidatePropertiesCommand());
             return command;
         }
         /// <summary>
@@ -83,7 +84,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             var command = new Command("get");
             command.Description = "References to a directory or domain of another organization whose users can request access.";
             // Create options for all the parameters
-            var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "key: id of connectedOrganization") {
+            var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "The unique identifier of connectedOrganization") {
             };
             connectedOrganizationIdOption.IsRequired = true;
             command.AddOption(connectedOrganizationIdOption);
@@ -148,11 +149,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
+            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
+            command.AddCommand(builder.BuildGetByIdsCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetAvailableExtensionPropertiesCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetByIdsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphValidatePropertiesCommand());
             command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildValidatePropertiesCommand());
             return command;
         }
         /// <summary>
@@ -162,7 +164,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             var command = new Command("patch");
             command.Description = "Update the navigation property connectedOrganizations in identityGovernance";
             // Create options for all the parameters
-            var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "key: id of connectedOrganization") {
+            var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "The unique identifier of connectedOrganization") {
             };
             connectedOrganizationIdOption.IsRequired = true;
             command.AddOption(connectedOrganizationIdOption);
@@ -200,6 +202,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (connectedOrganizationId is not null) requestInfo.PathParameters.Add("connectedOrganization%2Did", connectedOrganizationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

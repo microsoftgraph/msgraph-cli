@@ -30,7 +30,7 @@ namespace ApiSdk.Connections.Item.Schema {
             var command = new Command("delete");
             command.Description = "Delete navigation property schema for connections";
             // Create options for all the parameters
-            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
+            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
             command.AddOption(externalConnectionIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.Connections.Item.Schema {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of a schema object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/externalconnectors-schema-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
+            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
             command.AddOption(externalConnectionIdOption);
@@ -127,7 +127,7 @@ namespace ApiSdk.Connections.Item.Schema {
             var command = new Command("patch");
             command.Description = "Update the navigation property schema in connections";
             // Create options for all the parameters
-            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
+            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
             command.AddOption(externalConnectionIdOption);
@@ -165,6 +165,7 @@ namespace ApiSdk.Connections.Item.Schema {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (externalConnectionId is not null) requestInfo.PathParameters.Add("externalConnection%2Did", externalConnectionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

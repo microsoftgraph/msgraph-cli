@@ -30,11 +30,11 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Details {
             var command = new Command("delete");
             command.Description = "Delete navigation property details for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "key: id of plannerPlan") {
+            var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
             };
             plannerPlanIdOption.IsRequired = true;
             command.AddOption(plannerPlanIdOption);
@@ -71,11 +71,11 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Details {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a **plannerPlanDetails** object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerplandetails-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "key: id of plannerPlan") {
+            var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
             };
             plannerPlanIdOption.IsRequired = true;
             command.AddOption(plannerPlanIdOption);
@@ -140,11 +140,11 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Details {
             var command = new Command("patch");
             command.Description = "Update the navigation property details in groups\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerplandetails-update?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "key: id of plannerPlan") {
+            var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
             };
             plannerPlanIdOption.IsRequired = true;
             command.AddOption(plannerPlanIdOption);
@@ -191,6 +191,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Details {
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (plannerPlanId is not null) requestInfo.PathParameters.Add("plannerPlan%2Did", plannerPlanId);
                 if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

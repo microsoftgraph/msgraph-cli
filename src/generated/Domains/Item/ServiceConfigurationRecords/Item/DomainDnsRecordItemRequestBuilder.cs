@@ -30,11 +30,11 @@ namespace ApiSdk.Domains.Item.ServiceConfigurationRecords.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property serviceConfigurationRecords for domains";
             // Create options for all the parameters
-            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
+            var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
             command.AddOption(domainIdOption);
-            var domainDnsRecordIdOption = new Option<string>("--domain-dns-record-id", description: "key: id of domainDnsRecord") {
+            var domainDnsRecordIdOption = new Option<string>("--domain-dns-record-id", description: "The unique identifier of domainDnsRecord") {
             };
             domainDnsRecordIdOption.IsRequired = true;
             command.AddOption(domainDnsRecordIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Domains.Item.ServiceConfigurationRecords.Item {
             var command = new Command("get");
             command.Description = "DNS records the customer adds to the DNS zone file of the domain before the domain can be used by Microsoft Online services. Read-only, Nullable. Supports $expand.";
             // Create options for all the parameters
-            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
+            var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
             command.AddOption(domainIdOption);
-            var domainDnsRecordIdOption = new Option<string>("--domain-dns-record-id", description: "key: id of domainDnsRecord") {
+            var domainDnsRecordIdOption = new Option<string>("--domain-dns-record-id", description: "The unique identifier of domainDnsRecord") {
             };
             domainDnsRecordIdOption.IsRequired = true;
             command.AddOption(domainDnsRecordIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Domains.Item.ServiceConfigurationRecords.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property serviceConfigurationRecords in domains";
             // Create options for all the parameters
-            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
+            var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
             command.AddOption(domainIdOption);
-            var domainDnsRecordIdOption = new Option<string>("--domain-dns-record-id", description: "key: id of domainDnsRecord") {
+            var domainDnsRecordIdOption = new Option<string>("--domain-dns-record-id", description: "The unique identifier of domainDnsRecord") {
             };
             domainDnsRecordIdOption.IsRequired = true;
             command.AddOption(domainDnsRecordIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Domains.Item.ServiceConfigurationRecords.Item {
                 });
                 if (domainId is not null) requestInfo.PathParameters.Add("domain%2Did", domainId);
                 if (domainDnsRecordId is not null) requestInfo.PathParameters.Add("domainDnsRecord%2Did", domainDnsRecordId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

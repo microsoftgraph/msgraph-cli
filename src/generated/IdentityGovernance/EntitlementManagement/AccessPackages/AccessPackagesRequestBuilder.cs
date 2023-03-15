@@ -1,6 +1,6 @@
 using ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Count;
+using ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.FilterByCurrentUserWithOn;
 using ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item;
-using ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.MicrosoftGraphFilterByCurrentUserWithOn;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,10 +36,10 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages {
             command.AddCommand(builder.BuildAssignmentPoliciesCommand());
             command.AddCommand(builder.BuildCatalogCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetApplicablePolicyRequirementsCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildIncompatibleAccessPackagesCommand());
             command.AddCommand(builder.BuildIncompatibleGroupsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetApplicablePolicyRequirementsCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
@@ -93,6 +93,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

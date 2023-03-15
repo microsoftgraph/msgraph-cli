@@ -31,7 +31,7 @@ namespace ApiSdk.Me.Insights.Trending.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property trending for me";
             // Create options for all the parameters
-            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending") {
+            var trendingIdOption = new Option<string>("--trending-id", description: "The unique identifier of trending") {
             };
             trendingIdOption.IsRequired = true;
             command.AddOption(trendingIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.Me.Insights.Trending.Item {
             var command = new Command("get");
             command.Description = "Calculated relationship identifying documents trending around a user. Trending documents are calculated based on activity of the user's closest network of people and include files stored in OneDrive for Business and SharePoint. Trending insights help the user to discover potentially useful content that the user has access to, but has never viewed before.";
             // Create options for all the parameters
-            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending") {
+            var trendingIdOption = new Option<string>("--trending-id", description: "The unique identifier of trending") {
             };
             trendingIdOption.IsRequired = true;
             command.AddOption(trendingIdOption);
@@ -127,7 +127,7 @@ namespace ApiSdk.Me.Insights.Trending.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property trending in me";
             // Create options for all the parameters
-            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending") {
+            var trendingIdOption = new Option<string>("--trending-id", description: "The unique identifier of trending") {
             };
             trendingIdOption.IsRequired = true;
             command.AddOption(trendingIdOption);
@@ -165,6 +165,7 @@ namespace ApiSdk.Me.Insights.Trending.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (trendingId is not null) requestInfo.PathParameters.Add("trending%2Did", trendingId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

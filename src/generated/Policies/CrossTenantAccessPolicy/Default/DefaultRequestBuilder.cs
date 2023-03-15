@@ -1,6 +1,6 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.Policies.CrossTenantAccessPolicy.Default.MicrosoftGraphResetToSystemDefault;
+using ApiSdk.Policies.CrossTenantAccessPolicy.Default.ResetToSystemDefault;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -110,16 +110,6 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the resetToSystemDefault method.
-        /// </summary>
-        public Command BuildMicrosoftGraphResetToSystemDefaultCommand() {
-            var command = new Command("microsoft-graph-reset-to-system-default");
-            command.Description = "Provides operations to call the resetToSystemDefault method.";
-            var builder = new MicrosoftGraphResetToSystemDefaultRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the default configuration of a cross-tenant access policy.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationdefault-update?view=graph-rest-1.0" />
         /// </summary>
@@ -159,6 +149,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -169,6 +160,16 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the resetToSystemDefault method.
+        /// </summary>
+        public Command BuildResetToSystemDefaultCommand() {
+            var command = new Command("reset-to-system-default");
+            command.Description = "Provides operations to call the resetToSystemDefault method.";
+            var builder = new ResetToSystemDefaultRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

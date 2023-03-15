@@ -30,11 +30,11 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
             var command = new Command("delete");
             command.Description = "Delete navigation property bot for appCatalogs";
             // Create options for all the parameters
-            var teamsAppIdOption = new Option<string>("--teams-app-id", description: "key: id of teamsApp") {
+            var teamsAppIdOption = new Option<string>("--teams-app-id", description: "The unique identifier of teamsApp") {
             };
             teamsAppIdOption.IsRequired = true;
             command.AddOption(teamsAppIdOption);
-            var teamsAppDefinitionIdOption = new Option<string>("--teams-app-definition-id", description: "key: id of teamsAppDefinition") {
+            var teamsAppDefinitionIdOption = new Option<string>("--teams-app-definition-id", description: "The unique identifier of teamsAppDefinition") {
             };
             teamsAppDefinitionIdOption.IsRequired = true;
             command.AddOption(teamsAppDefinitionIdOption);
@@ -71,11 +71,11 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
             var command = new Command("get");
             command.Description = "Get the bot associated with a specific definition of the  TeamsApp.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/teamworkbot-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var teamsAppIdOption = new Option<string>("--teams-app-id", description: "key: id of teamsApp") {
+            var teamsAppIdOption = new Option<string>("--teams-app-id", description: "The unique identifier of teamsApp") {
             };
             teamsAppIdOption.IsRequired = true;
             command.AddOption(teamsAppIdOption);
-            var teamsAppDefinitionIdOption = new Option<string>("--teams-app-definition-id", description: "key: id of teamsAppDefinition") {
+            var teamsAppDefinitionIdOption = new Option<string>("--teams-app-definition-id", description: "The unique identifier of teamsAppDefinition") {
             };
             teamsAppDefinitionIdOption.IsRequired = true;
             command.AddOption(teamsAppDefinitionIdOption);
@@ -139,11 +139,11 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
             var command = new Command("patch");
             command.Description = "Update the navigation property bot in appCatalogs";
             // Create options for all the parameters
-            var teamsAppIdOption = new Option<string>("--teams-app-id", description: "key: id of teamsApp") {
+            var teamsAppIdOption = new Option<string>("--teams-app-id", description: "The unique identifier of teamsApp") {
             };
             teamsAppIdOption.IsRequired = true;
             command.AddOption(teamsAppIdOption);
-            var teamsAppDefinitionIdOption = new Option<string>("--teams-app-definition-id", description: "key: id of teamsAppDefinition") {
+            var teamsAppDefinitionIdOption = new Option<string>("--teams-app-definition-id", description: "The unique identifier of teamsAppDefinition") {
             };
             teamsAppDefinitionIdOption.IsRequired = true;
             command.AddOption(teamsAppDefinitionIdOption);
@@ -183,6 +183,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
                 });
                 if (teamsAppId is not null) requestInfo.PathParameters.Add("teamsApp%2Did", teamsAppId);
                 if (teamsAppDefinitionId is not null) requestInfo.PathParameters.Add("teamsAppDefinition%2Did", teamsAppDefinitionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

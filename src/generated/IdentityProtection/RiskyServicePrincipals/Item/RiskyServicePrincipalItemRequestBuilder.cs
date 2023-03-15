@@ -31,7 +31,7 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property riskyServicePrincipals for identityProtection";
             // Create options for all the parameters
-            var riskyServicePrincipalIdOption = new Option<string>("--risky-service-principal-id", description: "key: id of riskyServicePrincipal") {
+            var riskyServicePrincipalIdOption = new Option<string>("--risky-service-principal-id", description: "The unique identifier of riskyServicePrincipal") {
             };
             riskyServicePrincipalIdOption.IsRequired = true;
             command.AddOption(riskyServicePrincipalIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Item {
             var command = new Command("get");
             command.Description = "Azure AD service principals that are at risk.";
             // Create options for all the parameters
-            var riskyServicePrincipalIdOption = new Option<string>("--risky-service-principal-id", description: "key: id of riskyServicePrincipal") {
+            var riskyServicePrincipalIdOption = new Option<string>("--risky-service-principal-id", description: "The unique identifier of riskyServicePrincipal") {
             };
             riskyServicePrincipalIdOption.IsRequired = true;
             command.AddOption(riskyServicePrincipalIdOption);
@@ -140,7 +140,7 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property riskyServicePrincipals in identityProtection";
             // Create options for all the parameters
-            var riskyServicePrincipalIdOption = new Option<string>("--risky-service-principal-id", description: "key: id of riskyServicePrincipal") {
+            var riskyServicePrincipalIdOption = new Option<string>("--risky-service-principal-id", description: "The unique identifier of riskyServicePrincipal") {
             };
             riskyServicePrincipalIdOption.IsRequired = true;
             command.AddOption(riskyServicePrincipalIdOption);
@@ -178,6 +178,7 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (riskyServicePrincipalId is not null) requestInfo.PathParameters.Add("riskyServicePrincipal%2Did", riskyServicePrincipalId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

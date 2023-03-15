@@ -57,11 +57,11 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets {
             var command = new Command("create");
             command.Description = "Create new navigation property to sets for sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var storeIdOption = new Option<string>("--store-id", description: "key: id of store") {
+            var storeIdOption = new Option<string>("--store-id", description: "The unique identifier of store") {
             };
             storeIdOption.IsRequired = true;
             command.AddOption(storeIdOption);
@@ -101,6 +101,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets {
                 });
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
                 if (storeId is not null) requestInfo.PathParameters.Add("store%2Did", storeId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -120,11 +121,11 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets {
             var command = new Command("list");
             command.Description = "Collection of all sets available in the term store. This relationship can only be used to load a specific term set.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var storeIdOption = new Option<string>("--store-id", description: "key: id of store") {
+            var storeIdOption = new Option<string>("--store-id", description: "The unique identifier of store") {
             };
             storeIdOption.IsRequired = true;
             command.AddOption(storeIdOption);

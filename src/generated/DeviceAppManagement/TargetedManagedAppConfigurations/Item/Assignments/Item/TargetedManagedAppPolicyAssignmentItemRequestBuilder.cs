@@ -30,11 +30,11 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assig
             var command = new Command("delete");
             command.Description = "Delete navigation property assignments for deviceAppManagement";
             // Create options for all the parameters
-            var targetedManagedAppConfigurationIdOption = new Option<string>("--targeted-managed-app-configuration-id", description: "key: id of targetedManagedAppConfiguration") {
+            var targetedManagedAppConfigurationIdOption = new Option<string>("--targeted-managed-app-configuration-id", description: "The unique identifier of targetedManagedAppConfiguration") {
             };
             targetedManagedAppConfigurationIdOption.IsRequired = true;
             command.AddOption(targetedManagedAppConfigurationIdOption);
-            var targetedManagedAppPolicyAssignmentIdOption = new Option<string>("--targeted-managed-app-policy-assignment-id", description: "key: id of targetedManagedAppPolicyAssignment") {
+            var targetedManagedAppPolicyAssignmentIdOption = new Option<string>("--targeted-managed-app-policy-assignment-id", description: "The unique identifier of targetedManagedAppPolicyAssignment") {
             };
             targetedManagedAppPolicyAssignmentIdOption.IsRequired = true;
             command.AddOption(targetedManagedAppPolicyAssignmentIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assig
             var command = new Command("get");
             command.Description = "Navigation property to list of inclusion and exclusion groups to which the policy is deployed.";
             // Create options for all the parameters
-            var targetedManagedAppConfigurationIdOption = new Option<string>("--targeted-managed-app-configuration-id", description: "key: id of targetedManagedAppConfiguration") {
+            var targetedManagedAppConfigurationIdOption = new Option<string>("--targeted-managed-app-configuration-id", description: "The unique identifier of targetedManagedAppConfiguration") {
             };
             targetedManagedAppConfigurationIdOption.IsRequired = true;
             command.AddOption(targetedManagedAppConfigurationIdOption);
-            var targetedManagedAppPolicyAssignmentIdOption = new Option<string>("--targeted-managed-app-policy-assignment-id", description: "key: id of targetedManagedAppPolicyAssignment") {
+            var targetedManagedAppPolicyAssignmentIdOption = new Option<string>("--targeted-managed-app-policy-assignment-id", description: "The unique identifier of targetedManagedAppPolicyAssignment") {
             };
             targetedManagedAppPolicyAssignmentIdOption.IsRequired = true;
             command.AddOption(targetedManagedAppPolicyAssignmentIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assig
             var command = new Command("patch");
             command.Description = "Update the navigation property assignments in deviceAppManagement";
             // Create options for all the parameters
-            var targetedManagedAppConfigurationIdOption = new Option<string>("--targeted-managed-app-configuration-id", description: "key: id of targetedManagedAppConfiguration") {
+            var targetedManagedAppConfigurationIdOption = new Option<string>("--targeted-managed-app-configuration-id", description: "The unique identifier of targetedManagedAppConfiguration") {
             };
             targetedManagedAppConfigurationIdOption.IsRequired = true;
             command.AddOption(targetedManagedAppConfigurationIdOption);
-            var targetedManagedAppPolicyAssignmentIdOption = new Option<string>("--targeted-managed-app-policy-assignment-id", description: "key: id of targetedManagedAppPolicyAssignment") {
+            var targetedManagedAppPolicyAssignmentIdOption = new Option<string>("--targeted-managed-app-policy-assignment-id", description: "The unique identifier of targetedManagedAppPolicyAssignment") {
             };
             targetedManagedAppPolicyAssignmentIdOption.IsRequired = true;
             command.AddOption(targetedManagedAppPolicyAssignmentIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item.Assig
                 });
                 if (targetedManagedAppConfigurationId is not null) requestInfo.PathParameters.Add("targetedManagedAppConfiguration%2Did", targetedManagedAppConfigurationId);
                 if (targetedManagedAppPolicyAssignmentId is not null) requestInfo.PathParameters.Add("targetedManagedAppPolicyAssignment%2Did", targetedManagedAppPolicyAssignmentId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

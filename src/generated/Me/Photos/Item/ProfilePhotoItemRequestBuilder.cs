@@ -42,7 +42,7 @@ namespace ApiSdk.Me.Photos.Item {
             var command = new Command("get");
             command.Description = "Get photos from me";
             // Create options for all the parameters
-            var profilePhotoIdOption = new Option<string>("--profile-photo-id", description: "key: id of profilePhoto") {
+            var profilePhotoIdOption = new Option<string>("--profile-photo-id", description: "The unique identifier of profilePhoto") {
             };
             profilePhotoIdOption.IsRequired = true;
             command.AddOption(profilePhotoIdOption);

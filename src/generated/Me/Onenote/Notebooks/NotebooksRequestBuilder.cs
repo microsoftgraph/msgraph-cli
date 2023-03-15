@@ -1,7 +1,7 @@
 using ApiSdk.Me.Onenote.Notebooks.Count;
+using ApiSdk.Me.Onenote.Notebooks.GetNotebookFromWebUrl;
+using ApiSdk.Me.Onenote.Notebooks.GetRecentNotebooksWithIncludePersonalNotebooks;
 using ApiSdk.Me.Onenote.Notebooks.Item;
-using ApiSdk.Me.Onenote.Notebooks.MicrosoftGraphGetNotebookFromWebUrl;
-using ApiSdk.Me.Onenote.Notebooks.MicrosoftGraphGetRecentNotebooksWithIncludePersonalNotebooks;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,9 +33,9 @@ namespace ApiSdk.Me.Onenote.Notebooks {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new NotebookItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCopyNotebookCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCopyNotebookCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildSectionGroupsCommand());
             command.AddCommand(builder.BuildSectionsCommand());
@@ -91,6 +91,7 @@ namespace ApiSdk.Me.Onenote.Notebooks {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -101,6 +102,16 @@ namespace ApiSdk.Me.Onenote.Notebooks {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getNotebookFromWebUrl method.
+        /// </summary>
+        public Command BuildGetNotebookFromWebUrlCommand() {
+            var command = new Command("get-notebook-from-web-url");
+            command.Description = "Provides operations to call the getNotebookFromWebUrl method.";
+            var builder = new GetNotebookFromWebUrlRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -207,16 +218,6 @@ namespace ApiSdk.Me.Onenote.Notebooks {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getNotebookFromWebUrl method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetNotebookFromWebUrlCommand() {
-            var command = new Command("microsoft-graph-get-notebook-from-web-url");
-            command.Description = "Provides operations to call the getNotebookFromWebUrl method.";
-            var builder = new MicrosoftGraphGetNotebookFromWebUrlRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

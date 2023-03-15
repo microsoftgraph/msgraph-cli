@@ -1,6 +1,6 @@
 using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Count;
+using ApiSdk.IdentityGovernance.AccessReviews.Definitions.FilterByCurrentUserWithOn;
 using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item;
-using ApiSdk.IdentityGovernance.AccessReviews.Definitions.MicrosoftGraphFilterByCurrentUserWithOn;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,8 +35,8 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions {
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildInstancesCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphStopCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildStopCommand());
             return command;
         }
         /// <summary>
@@ -89,6 +89,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

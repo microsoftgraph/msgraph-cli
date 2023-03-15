@@ -1,10 +1,10 @@
 using ApiSdk.Domains.Item.DomainNameReferences;
 using ApiSdk.Domains.Item.FederationConfiguration;
-using ApiSdk.Domains.Item.MicrosoftGraphForceDelete;
-using ApiSdk.Domains.Item.MicrosoftGraphPromote;
-using ApiSdk.Domains.Item.MicrosoftGraphVerify;
+using ApiSdk.Domains.Item.ForceDelete;
+using ApiSdk.Domains.Item.Promote;
 using ApiSdk.Domains.Item.ServiceConfigurationRecords;
 using ApiSdk.Domains.Item.VerificationDnsRecords;
+using ApiSdk.Domains.Item.Verify;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,7 +38,7 @@ namespace ApiSdk.Domains.Item {
             var command = new Command("delete");
             command.Description = "Deletes a domain from a tenant.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/domain-delete?view=graph-rest-1.0";
             // Create options for all the parameters
-            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
+            var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
             command.AddOption(domainIdOption);
@@ -91,6 +91,16 @@ namespace ApiSdk.Domains.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the forceDelete method.
+        /// </summary>
+        public Command BuildForceDeleteCommand() {
+            var command = new Command("force-delete");
+            command.Description = "Provides operations to call the forceDelete method.";
+            var builder = new ForceDeleteRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Retrieve the properties and relationships of domain object.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/domain-get?view=graph-rest-1.0" />
         /// </summary>
@@ -98,7 +108,7 @@ namespace ApiSdk.Domains.Item {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of domain object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/domain-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
+            var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
             command.AddOption(domainIdOption);
@@ -154,36 +164,6 @@ namespace ApiSdk.Domains.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the forceDelete method.
-        /// </summary>
-        public Command BuildMicrosoftGraphForceDeleteCommand() {
-            var command = new Command("microsoft-graph-force-delete");
-            command.Description = "Provides operations to call the forceDelete method.";
-            var builder = new MicrosoftGraphForceDeleteRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the promote method.
-        /// </summary>
-        public Command BuildMicrosoftGraphPromoteCommand() {
-            var command = new Command("microsoft-graph-promote");
-            command.Description = "Provides operations to call the promote method.";
-            var builder = new MicrosoftGraphPromoteRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the verify method.
-        /// </summary>
-        public Command BuildMicrosoftGraphVerifyCommand() {
-            var command = new Command("microsoft-graph-verify");
-            command.Description = "Provides operations to call the verify method.";
-            var builder = new MicrosoftGraphVerifyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the properties of domain object.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/domain-update?view=graph-rest-1.0" />
         /// </summary>
@@ -191,7 +171,7 @@ namespace ApiSdk.Domains.Item {
             var command = new Command("patch");
             command.Description = "Update the properties of domain object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/domain-update?view=graph-rest-1.0";
             // Create options for all the parameters
-            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
+            var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
             command.AddOption(domainIdOption);
@@ -229,6 +209,7 @@ namespace ApiSdk.Domains.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (domainId is not null) requestInfo.PathParameters.Add("domain%2Did", domainId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -239,6 +220,16 @@ namespace ApiSdk.Domains.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the promote method.
+        /// </summary>
+        public Command BuildPromoteCommand() {
+            var command = new Command("promote");
+            command.Description = "Provides operations to call the promote method.";
+            var builder = new PromoteRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -265,6 +256,16 @@ namespace ApiSdk.Domains.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the verify method.
+        /// </summary>
+        public Command BuildVerifyCommand() {
+            var command = new Command("verify");
+            command.Description = "Provides operations to call the verify method.";
+            var builder = new VerifyRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
