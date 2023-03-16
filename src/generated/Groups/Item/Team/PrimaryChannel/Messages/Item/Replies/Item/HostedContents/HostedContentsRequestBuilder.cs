@@ -53,15 +53,15 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.Messages.Item.Replies.Item.Host
             var command = new Command("create");
             command.Description = "Create new navigation property to hostedContents for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "key: id of chatMessage") {
+            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "The unique identifier of chatMessage") {
             };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);
-            var chatMessageId1Option = new Option<string>("--chat-message-id1", description: "key: id of chatMessage") {
+            var chatMessageId1Option = new Option<string>("--chat-message-id1", description: "The unique identifier of chatMessage") {
             };
             chatMessageId1Option.IsRequired = true;
             command.AddOption(chatMessageId1Option);
@@ -103,6 +103,7 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.Messages.Item.Replies.Item.Host
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (chatMessageId is not null) requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
                 if (chatMessageId1 is not null) requestInfo.PathParameters.Add("chatMessage%2Did1", chatMessageId1);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -123,15 +124,15 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.Messages.Item.Replies.Item.Host
             var command = new Command("list");
             command.Description = "Retrieve the list of chatMessageHostedContent objects from a message. This API only lists the hosted content objects. To get the content bytes, see get chatmessage hosted content\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chatmessage-list-hostedcontents?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "key: id of chatMessage") {
+            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "The unique identifier of chatMessage") {
             };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);
-            var chatMessageId1Option = new Option<string>("--chat-message-id1", description: "key: id of chatMessage") {
+            var chatMessageId1Option = new Option<string>("--chat-message-id1", description: "The unique identifier of chatMessage") {
             };
             chatMessageId1Option.IsRequired = true;
             command.AddOption(chatMessageId1Option);

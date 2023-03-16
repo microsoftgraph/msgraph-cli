@@ -31,11 +31,11 @@ namespace ApiSdk.Chats.Item.Tabs.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property tabs for chats";
             // Create options for all the parameters
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
-            var teamsTabIdOption = new Option<string>("--teams-tab-id", description: "key: id of teamsTab") {
+            var teamsTabIdOption = new Option<string>("--teams-tab-id", description: "The unique identifier of teamsTab") {
             };
             teamsTabIdOption.IsRequired = true;
             command.AddOption(teamsTabIdOption);
@@ -71,11 +71,11 @@ namespace ApiSdk.Chats.Item.Tabs.Item {
             var command = new Command("get");
             command.Description = "A collection of all the tabs in the chat. Nullable.";
             // Create options for all the parameters
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
-            var teamsTabIdOption = new Option<string>("--teams-tab-id", description: "key: id of teamsTab") {
+            var teamsTabIdOption = new Option<string>("--teams-tab-id", description: "The unique identifier of teamsTab") {
             };
             teamsTabIdOption.IsRequired = true;
             command.AddOption(teamsTabIdOption);
@@ -139,11 +139,11 @@ namespace ApiSdk.Chats.Item.Tabs.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property tabs in chats";
             // Create options for all the parameters
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
-            var teamsTabIdOption = new Option<string>("--teams-tab-id", description: "key: id of teamsTab") {
+            var teamsTabIdOption = new Option<string>("--teams-tab-id", description: "The unique identifier of teamsTab") {
             };
             teamsTabIdOption.IsRequired = true;
             command.AddOption(teamsTabIdOption);
@@ -183,6 +183,7 @@ namespace ApiSdk.Chats.Item.Tabs.Item {
                 });
                 if (chatId is not null) requestInfo.PathParameters.Add("chat%2Did", chatId);
                 if (teamsTabId is not null) requestInfo.PathParameters.Add("teamsTab%2Did", teamsTabId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

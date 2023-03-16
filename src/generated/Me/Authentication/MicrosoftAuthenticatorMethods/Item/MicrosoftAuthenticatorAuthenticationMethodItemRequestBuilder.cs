@@ -31,7 +31,7 @@ namespace ApiSdk.Me.Authentication.MicrosoftAuthenticatorMethods.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property microsoftAuthenticatorMethods for me";
             // Create options for all the parameters
-            var microsoftAuthenticatorAuthenticationMethodIdOption = new Option<string>("--microsoft-authenticator-authentication-method-id", description: "key: id of microsoftAuthenticatorAuthenticationMethod") {
+            var microsoftAuthenticatorAuthenticationMethodIdOption = new Option<string>("--microsoft-authenticator-authentication-method-id", description: "The unique identifier of microsoftAuthenticatorAuthenticationMethod") {
             };
             microsoftAuthenticatorAuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(microsoftAuthenticatorAuthenticationMethodIdOption);
@@ -75,7 +75,7 @@ namespace ApiSdk.Me.Authentication.MicrosoftAuthenticatorMethods.Item {
             var command = new Command("get");
             command.Description = "The details of the Microsoft Authenticator app registered to a user for authentication.";
             // Create options for all the parameters
-            var microsoftAuthenticatorAuthenticationMethodIdOption = new Option<string>("--microsoft-authenticator-authentication-method-id", description: "key: id of microsoftAuthenticatorAuthenticationMethod") {
+            var microsoftAuthenticatorAuthenticationMethodIdOption = new Option<string>("--microsoft-authenticator-authentication-method-id", description: "The unique identifier of microsoftAuthenticatorAuthenticationMethod") {
             };
             microsoftAuthenticatorAuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(microsoftAuthenticatorAuthenticationMethodIdOption);

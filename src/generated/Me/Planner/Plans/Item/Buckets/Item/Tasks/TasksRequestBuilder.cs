@@ -57,11 +57,11 @@ namespace ApiSdk.Me.Planner.Plans.Item.Buckets.Item.Tasks {
             var command = new Command("create");
             command.Description = "Create new navigation property to tasks for me";
             // Create options for all the parameters
-            var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "key: id of plannerPlan") {
+            var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
             };
             plannerPlanIdOption.IsRequired = true;
             command.AddOption(plannerPlanIdOption);
-            var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "key: id of plannerBucket") {
+            var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "The unique identifier of plannerBucket") {
             };
             plannerBucketIdOption.IsRequired = true;
             command.AddOption(plannerBucketIdOption);
@@ -101,6 +101,7 @@ namespace ApiSdk.Me.Planner.Plans.Item.Buckets.Item.Tasks {
                 });
                 if (plannerPlanId is not null) requestInfo.PathParameters.Add("plannerPlan%2Did", plannerPlanId);
                 if (plannerBucketId is not null) requestInfo.PathParameters.Add("plannerBucket%2Did", plannerBucketId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -121,11 +122,11 @@ namespace ApiSdk.Me.Planner.Plans.Item.Buckets.Item.Tasks {
             var command = new Command("list");
             command.Description = "Retrieve a list of plannerTask objects associated to a plannerBucket object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerbucket-list-tasks?view=graph-rest-1.0";
             // Create options for all the parameters
-            var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "key: id of plannerPlan") {
+            var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
             };
             plannerPlanIdOption.IsRequired = true;
             command.AddOption(plannerPlanIdOption);
-            var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "key: id of plannerBucket") {
+            var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "The unique identifier of plannerBucket") {
             };
             plannerBucketIdOption.IsRequired = true;
             command.AddOption(plannerBucketIdOption);

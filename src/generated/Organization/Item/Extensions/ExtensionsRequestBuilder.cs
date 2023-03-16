@@ -53,7 +53,7 @@ namespace ApiSdk.Organization.Item.Extensions {
             var command = new Command("create");
             command.Description = "Create new navigation property to extensions for organization";
             // Create options for all the parameters
-            var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization") {
+            var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
             };
             organizationIdOption.IsRequired = true;
             command.AddOption(organizationIdOption);
@@ -91,6 +91,7 @@ namespace ApiSdk.Organization.Item.Extensions {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (organizationId is not null) requestInfo.PathParameters.Add("organization%2Did", organizationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -110,7 +111,7 @@ namespace ApiSdk.Organization.Item.Extensions {
             var command = new Command("list");
             command.Description = "The collection of open extensions defined for the organization. Read-only. Nullable.";
             // Create options for all the parameters
-            var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization") {
+            var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
             };
             organizationIdOption.IsRequired = true;
             command.AddOption(organizationIdOption);

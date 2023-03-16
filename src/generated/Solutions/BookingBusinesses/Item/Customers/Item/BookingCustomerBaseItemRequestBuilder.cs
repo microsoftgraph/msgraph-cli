@@ -30,11 +30,11 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Customers.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property customers for solutions";
             // Create options for all the parameters
-            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
+            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
             command.AddOption(bookingBusinessIdOption);
-            var bookingCustomerBaseIdOption = new Option<string>("--booking-customer-base-id", description: "key: id of bookingCustomerBase") {
+            var bookingCustomerBaseIdOption = new Option<string>("--booking-customer-base-id", description: "The unique identifier of bookingCustomerBase") {
             };
             bookingCustomerBaseIdOption.IsRequired = true;
             command.AddOption(bookingCustomerBaseIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Customers.Item {
             var command = new Command("get");
             command.Description = "All the customers of this business. Read-only. Nullable.";
             // Create options for all the parameters
-            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
+            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
             command.AddOption(bookingBusinessIdOption);
-            var bookingCustomerBaseIdOption = new Option<string>("--booking-customer-base-id", description: "key: id of bookingCustomerBase") {
+            var bookingCustomerBaseIdOption = new Option<string>("--booking-customer-base-id", description: "The unique identifier of bookingCustomerBase") {
             };
             bookingCustomerBaseIdOption.IsRequired = true;
             command.AddOption(bookingCustomerBaseIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Customers.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property customers in solutions";
             // Create options for all the parameters
-            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "key: id of bookingBusiness") {
+            var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
             command.AddOption(bookingBusinessIdOption);
-            var bookingCustomerBaseIdOption = new Option<string>("--booking-customer-base-id", description: "key: id of bookingCustomerBase") {
+            var bookingCustomerBaseIdOption = new Option<string>("--booking-customer-base-id", description: "The unique identifier of bookingCustomerBase") {
             };
             bookingCustomerBaseIdOption.IsRequired = true;
             command.AddOption(bookingCustomerBaseIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Customers.Item {
                 });
                 if (bookingBusinessId is not null) requestInfo.PathParameters.Add("bookingBusiness%2Did", bookingBusinessId);
                 if (bookingCustomerBaseId is not null) requestInfo.PathParameters.Add("bookingCustomerBase%2Did", bookingCustomerBaseId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -34,11 +34,11 @@ namespace ApiSdk.Me.ContactFolders.Item.Contacts.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property contacts for me";
             // Create options for all the parameters
-            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
+            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "The unique identifier of contactFolder") {
             };
             contactFolderIdOption.IsRequired = true;
             command.AddOption(contactFolderIdOption);
-            var contactIdOption = new Option<string>("--contact-id", description: "key: id of contact") {
+            var contactIdOption = new Option<string>("--contact-id", description: "The unique identifier of contact") {
             };
             contactIdOption.IsRequired = true;
             command.AddOption(contactIdOption);
@@ -87,11 +87,11 @@ namespace ApiSdk.Me.ContactFolders.Item.Contacts.Item {
             var command = new Command("get");
             command.Description = "The contacts in the folder. Navigation property. Read-only. Nullable.";
             // Create options for all the parameters
-            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
+            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "The unique identifier of contactFolder") {
             };
             contactFolderIdOption.IsRequired = true;
             command.AddOption(contactFolderIdOption);
-            var contactIdOption = new Option<string>("--contact-id", description: "key: id of contact") {
+            var contactIdOption = new Option<string>("--contact-id", description: "The unique identifier of contact") {
             };
             contactIdOption.IsRequired = true;
             command.AddOption(contactIdOption);
@@ -168,11 +168,11 @@ namespace ApiSdk.Me.ContactFolders.Item.Contacts.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property contacts in me";
             // Create options for all the parameters
-            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
+            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "The unique identifier of contactFolder") {
             };
             contactFolderIdOption.IsRequired = true;
             command.AddOption(contactFolderIdOption);
-            var contactIdOption = new Option<string>("--contact-id", description: "key: id of contact") {
+            var contactIdOption = new Option<string>("--contact-id", description: "The unique identifier of contact") {
             };
             contactIdOption.IsRequired = true;
             command.AddOption(contactIdOption);
@@ -212,6 +212,7 @@ namespace ApiSdk.Me.ContactFolders.Item.Contacts.Item {
                 });
                 if (contactFolderId is not null) requestInfo.PathParameters.Add("contactFolder%2Did", contactFolderId);
                 if (contactId is not null) requestInfo.PathParameters.Add("contact%2Did", contactId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

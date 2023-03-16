@@ -32,8 +32,8 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item.Instan
             var command = new Command("item");
             var builder = new AccessReviewHistoryInstanceItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGenerateDownloadUriCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGenerateDownloadUriCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
@@ -54,7 +54,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item.Instan
             var command = new Command("create");
             command.Description = "Create new navigation property to instances for identityGovernance";
             // Create options for all the parameters
-            var accessReviewHistoryDefinitionIdOption = new Option<string>("--access-review-history-definition-id", description: "key: id of accessReviewHistoryDefinition") {
+            var accessReviewHistoryDefinitionIdOption = new Option<string>("--access-review-history-definition-id", description: "The unique identifier of accessReviewHistoryDefinition") {
             };
             accessReviewHistoryDefinitionIdOption.IsRequired = true;
             command.AddOption(accessReviewHistoryDefinitionIdOption);
@@ -92,6 +92,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item.Instan
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (accessReviewHistoryDefinitionId is not null) requestInfo.PathParameters.Add("accessReviewHistoryDefinition%2Did", accessReviewHistoryDefinitionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,7 +113,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item.Instan
             var command = new Command("list");
             command.Description = "Retrieve the instances of an access review history definition created in the last 30 days.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/accessreviewhistorydefinition-list-instances?view=graph-rest-1.0";
             // Create options for all the parameters
-            var accessReviewHistoryDefinitionIdOption = new Option<string>("--access-review-history-definition-id", description: "key: id of accessReviewHistoryDefinition") {
+            var accessReviewHistoryDefinitionIdOption = new Option<string>("--access-review-history-definition-id", description: "The unique identifier of accessReviewHistoryDefinition") {
             };
             accessReviewHistoryDefinitionIdOption.IsRequired = true;
             command.AddOption(accessReviewHistoryDefinitionIdOption);

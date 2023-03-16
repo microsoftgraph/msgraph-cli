@@ -30,7 +30,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.AttachmentsArchive {
             var command = new Command("get");
             command.Description = "The zip file that contains all attachments for a message.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceannouncement-list-messages?view=graph-rest-1.0";
             // Create options for all the parameters
-            var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "key: id of serviceUpdateMessage") {
+            var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "The unique identifier of serviceUpdateMessage") {
             };
             serviceUpdateMessageIdOption.IsRequired = true;
             command.AddOption(serviceUpdateMessageIdOption);
@@ -69,7 +69,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.AttachmentsArchive {
             var command = new Command("put");
             command.Description = "The zip file that contains all attachments for a message.";
             // Create options for all the parameters
-            var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "key: id of serviceUpdateMessage") {
+            var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "The unique identifier of serviceUpdateMessage") {
             };
             serviceUpdateMessageIdOption.IsRequired = true;
             command.AddOption(serviceUpdateMessageIdOption);

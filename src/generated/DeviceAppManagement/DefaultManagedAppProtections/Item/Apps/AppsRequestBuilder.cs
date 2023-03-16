@@ -53,7 +53,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Apps {
             var command = new Command("create");
             command.Description = "Create new navigation property to apps for deviceAppManagement";
             // Create options for all the parameters
-            var defaultManagedAppProtectionIdOption = new Option<string>("--default-managed-app-protection-id", description: "key: id of defaultManagedAppProtection") {
+            var defaultManagedAppProtectionIdOption = new Option<string>("--default-managed-app-protection-id", description: "The unique identifier of defaultManagedAppProtection") {
             };
             defaultManagedAppProtectionIdOption.IsRequired = true;
             command.AddOption(defaultManagedAppProtectionIdOption);
@@ -91,6 +91,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Apps {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (defaultManagedAppProtectionId is not null) requestInfo.PathParameters.Add("defaultManagedAppProtection%2Did", defaultManagedAppProtectionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -110,7 +111,7 @@ namespace ApiSdk.DeviceAppManagement.DefaultManagedAppProtections.Item.Apps {
             var command = new Command("list");
             command.Description = "List of apps to which the policy is deployed.";
             // Create options for all the parameters
-            var defaultManagedAppProtectionIdOption = new Option<string>("--default-managed-app-protection-id", description: "key: id of defaultManagedAppProtection") {
+            var defaultManagedAppProtectionIdOption = new Option<string>("--default-managed-app-protection-id", description: "The unique identifier of defaultManagedAppProtection") {
             };
             defaultManagedAppProtectionIdOption.IsRequired = true;
             command.AddOption(defaultManagedAppProtectionIdOption);

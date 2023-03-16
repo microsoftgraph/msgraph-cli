@@ -30,7 +30,7 @@ namespace ApiSdk.Me.AgreementAcceptances.Item {
             var command = new Command("get");
             command.Description = "The user's terms of use acceptance statuses. Read-only. Nullable.";
             // Create options for all the parameters
-            var agreementAcceptanceIdOption = new Option<string>("--agreement-acceptance-id", description: "key: id of agreementAcceptance") {
+            var agreementAcceptanceIdOption = new Option<string>("--agreement-acceptance-id", description: "The unique identifier of agreementAcceptance") {
             };
             agreementAcceptanceIdOption.IsRequired = true;
             command.AddOption(agreementAcceptanceIdOption);

@@ -49,13 +49,13 @@ namespace ApiSdk.Shares.Item.List {
             var command = new Command("content-types");
             command.Description = "Provides operations to manage the contentTypes property of the microsoft.graph.list entity.";
             var builder = new ContentTypesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAddCopyCommand());
+            command.AddCommand(builder.BuildAddCopyFromContentTypeHubCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildGetCompatibleHubContentTypesCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAddCopyCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAddCopyFromContentTypeHubCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetCompatibleHubContentTypesCommand());
             return command;
         }
         /// <summary>
@@ -65,7 +65,7 @@ namespace ApiSdk.Shares.Item.List {
             var command = new Command("delete");
             command.Description = "Delete navigation property list for shares";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
@@ -109,7 +109,7 @@ namespace ApiSdk.Shares.Item.List {
             var command = new Command("get");
             command.Description = "Used to access the underlying list";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
@@ -197,7 +197,7 @@ namespace ApiSdk.Shares.Item.List {
             var command = new Command("patch");
             command.Description = "Update the navigation property list in shares";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
@@ -235,6 +235,7 @@ namespace ApiSdk.Shares.Item.List {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (sharedDriveItemId is not null) requestInfo.PathParameters.Add("sharedDriveItem%2Did", sharedDriveItemId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

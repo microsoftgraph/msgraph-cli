@@ -57,7 +57,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations {
             var command = new Command("create");
             command.Description = "Create a new organizationalBrandingLocalization object. This creates a localized branding and at the same time, the default branding if it doesn't exist. The default branding is created only once. It's loaded when a localized branding isn't configured for the user's browser language. To retrieve the default branding, see Get branding.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/organizationalbranding-post-localizations?view=graph-rest-1.0";
             // Create options for all the parameters
-            var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization") {
+            var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
             };
             organizationIdOption.IsRequired = true;
             command.AddOption(organizationIdOption);
@@ -95,6 +95,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (organizationId is not null) requestInfo.PathParameters.Add("organization%2Did", organizationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -115,7 +116,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations {
             var command = new Command("list");
             command.Description = "Retrieve all localization branding objects, including the default branding.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/organizationalbranding-list-localizations?view=graph-rest-1.0";
             // Create options for all the parameters
-            var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization") {
+            var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
             };
             organizationIdOption.IsRequired = true;
             command.AddOption(organizationIdOption);

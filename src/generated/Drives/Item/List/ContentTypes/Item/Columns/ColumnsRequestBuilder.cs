@@ -55,11 +55,11 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns {
             var command = new Command("create");
             command.Description = "Add a column to a [content type][contentType] in a site, or a list with a request that specifies a [columnDefinition][columnDefinition].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contenttype-post-columns?view=graph-rest-1.0";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var contentTypeIdOption = new Option<string>("--content-type-id", description: "key: id of contentType") {
+            var contentTypeIdOption = new Option<string>("--content-type-id", description: "The unique identifier of contentType") {
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);
@@ -99,6 +99,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns {
                 });
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (contentTypeId is not null) requestInfo.PathParameters.Add("contentType%2Did", contentTypeId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -119,11 +120,11 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns {
             var command = new Command("list");
             command.Description = "Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [content type][contentType].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contenttype-list-columns?view=graph-rest-1.0";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var contentTypeIdOption = new Option<string>("--content-type-id", description: "key: id of contentType") {
+            var contentTypeIdOption = new Option<string>("--content-type-id", description: "The unique identifier of contentType") {
             };
             contentTypeIdOption.IsRequired = true;
             command.AddOption(contentTypeIdOption);

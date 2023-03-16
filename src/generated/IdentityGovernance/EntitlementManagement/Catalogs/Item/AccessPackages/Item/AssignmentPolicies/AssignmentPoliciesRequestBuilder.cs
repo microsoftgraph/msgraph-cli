@@ -36,6 +36,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildQuestionsCommand());
             return command;
         }
         /// <summary>
@@ -55,11 +56,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             var command = new Command("create");
             command.Description = "Create new navigation property to assignmentPolicies for identityGovernance";
             // Create options for all the parameters
-            var accessPackageCatalogIdOption = new Option<string>("--access-package-catalog-id", description: "key: id of accessPackageCatalog") {
+            var accessPackageCatalogIdOption = new Option<string>("--access-package-catalog-id", description: "The unique identifier of accessPackageCatalog") {
             };
             accessPackageCatalogIdOption.IsRequired = true;
             command.AddOption(accessPackageCatalogIdOption);
-            var accessPackageIdOption = new Option<string>("--access-package-id", description: "key: id of accessPackage") {
+            var accessPackageIdOption = new Option<string>("--access-package-id", description: "The unique identifier of accessPackage") {
             };
             accessPackageIdOption.IsRequired = true;
             command.AddOption(accessPackageIdOption);
@@ -99,6 +100,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
                 });
                 if (accessPackageCatalogId is not null) requestInfo.PathParameters.Add("accessPackageCatalog%2Did", accessPackageCatalogId);
                 if (accessPackageId is not null) requestInfo.PathParameters.Add("accessPackage%2Did", accessPackageId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -118,11 +120,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             var command = new Command("list");
             command.Description = "Get assignmentPolicies from identityGovernance";
             // Create options for all the parameters
-            var accessPackageCatalogIdOption = new Option<string>("--access-package-catalog-id", description: "key: id of accessPackageCatalog") {
+            var accessPackageCatalogIdOption = new Option<string>("--access-package-catalog-id", description: "The unique identifier of accessPackageCatalog") {
             };
             accessPackageCatalogIdOption.IsRequired = true;
             command.AddOption(accessPackageCatalogIdOption);
-            var accessPackageIdOption = new Option<string>("--access-package-id", description: "key: id of accessPackage") {
+            var accessPackageIdOption = new Option<string>("--access-package-id", description: "The unique identifier of accessPackage") {
             };
             accessPackageIdOption.IsRequired = true;
             command.AddOption(accessPackageIdOption);

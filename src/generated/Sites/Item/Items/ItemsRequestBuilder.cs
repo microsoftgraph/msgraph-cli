@@ -51,7 +51,7 @@ namespace ApiSdk.Sites.Item.Items {
             var command = new Command("list");
             command.Description = "Used to address any item contained in this site. This collection can't be enumerated.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);

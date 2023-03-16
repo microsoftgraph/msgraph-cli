@@ -53,7 +53,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers {
             var command = new Command("list");
             command.Description = "Retrieve a list of users who have been granted access to submit print jobs to the associated printerShare.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printershare-list-allowedusers?view=graph-rest-1.0";
             // Create options for all the parameters
-            var printerShareIdOption = new Option<string>("--printer-share-id", description: "key: id of printerShare") {
+            var printerShareIdOption = new Option<string>("--printer-share-id", description: "The unique identifier of printerShare") {
             };
             printerShareIdOption.IsRequired = true;
             command.AddOption(printerShareIdOption);

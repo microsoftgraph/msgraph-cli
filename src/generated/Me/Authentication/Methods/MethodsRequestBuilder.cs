@@ -32,8 +32,8 @@ namespace ApiSdk.Me.Authentication.Methods {
             var command = new Command("item");
             var builder = new AuthenticationMethodItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphResetPasswordCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildResetPasswordCommand());
             return command;
         }
         /// <summary>
@@ -85,6 +85,7 @@ namespace ApiSdk.Me.Authentication.Methods {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

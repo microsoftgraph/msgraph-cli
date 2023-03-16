@@ -30,7 +30,7 @@ namespace ApiSdk.Security.Alerts_v2.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property alerts_v2 for security";
             // Create options for all the parameters
-            var alertIdOption = new Option<string>("--alert-id", description: "key: id of alert") {
+            var alertIdOption = new Option<string>("--alert-id", description: "The unique identifier of alert") {
             };
             alertIdOption.IsRequired = true;
             command.AddOption(alertIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Security.Alerts_v2.Item {
             var command = new Command("get");
             command.Description = "A collection of alerts in Microsoft 365 Defender.";
             // Create options for all the parameters
-            var alertIdOption = new Option<string>("--alert-id", description: "key: id of alert") {
+            var alertIdOption = new Option<string>("--alert-id", description: "The unique identifier of alert") {
             };
             alertIdOption.IsRequired = true;
             command.AddOption(alertIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.Security.Alerts_v2.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property alerts_v2 in security";
             // Create options for all the parameters
-            var alertIdOption = new Option<string>("--alert-id", description: "key: id of alert") {
+            var alertIdOption = new Option<string>("--alert-id", description: "The unique identifier of alert") {
             };
             alertIdOption.IsRequired = true;
             command.AddOption(alertIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.Security.Alerts_v2.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (alertId is not null) requestInfo.PathParameters.Add("alert%2Did", alertId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -1,4 +1,4 @@
-using ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolicies.Item.MicrosoftGraphTargetApps;
+using ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolicies.Item.TargetApps;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,11 +31,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
             var command = new Command("delete");
             command.Description = "Delete navigation property intendedPolicies for deviceAppManagement";
             // Create options for all the parameters
-            var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "key: id of managedAppRegistration") {
+            var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "The unique identifier of managedAppRegistration") {
             };
             managedAppRegistrationIdOption.IsRequired = true;
             command.AddOption(managedAppRegistrationIdOption);
-            var managedAppPolicyIdOption = new Option<string>("--managed-app-policy-id", description: "key: id of managedAppPolicy") {
+            var managedAppPolicyIdOption = new Option<string>("--managed-app-policy-id", description: "The unique identifier of managedAppPolicy") {
             };
             managedAppPolicyIdOption.IsRequired = true;
             command.AddOption(managedAppPolicyIdOption);
@@ -71,11 +71,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
             var command = new Command("get");
             command.Description = "Zero or more policies admin intended for the app as of now.";
             // Create options for all the parameters
-            var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "key: id of managedAppRegistration") {
+            var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "The unique identifier of managedAppRegistration") {
             };
             managedAppRegistrationIdOption.IsRequired = true;
             command.AddOption(managedAppRegistrationIdOption);
-            var managedAppPolicyIdOption = new Option<string>("--managed-app-policy-id", description: "key: id of managedAppPolicy") {
+            var managedAppPolicyIdOption = new Option<string>("--managed-app-policy-id", description: "The unique identifier of managedAppPolicy") {
             };
             managedAppPolicyIdOption.IsRequired = true;
             command.AddOption(managedAppPolicyIdOption);
@@ -133,27 +133,17 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
             return command;
         }
         /// <summary>
-        /// Provides operations to call the targetApps method.
-        /// </summary>
-        public Command BuildMicrosoftGraphTargetAppsCommand() {
-            var command = new Command("microsoft-graph-target-apps");
-            command.Description = "Provides operations to call the targetApps method.";
-            var builder = new MicrosoftGraphTargetAppsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property intendedPolicies in deviceAppManagement
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property intendedPolicies in deviceAppManagement";
             // Create options for all the parameters
-            var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "key: id of managedAppRegistration") {
+            var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "The unique identifier of managedAppRegistration") {
             };
             managedAppRegistrationIdOption.IsRequired = true;
             command.AddOption(managedAppRegistrationIdOption);
-            var managedAppPolicyIdOption = new Option<string>("--managed-app-policy-id", description: "key: id of managedAppPolicy") {
+            var managedAppPolicyIdOption = new Option<string>("--managed-app-policy-id", description: "The unique identifier of managedAppPolicy") {
             };
             managedAppPolicyIdOption.IsRequired = true;
             command.AddOption(managedAppPolicyIdOption);
@@ -193,6 +183,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
                 });
                 if (managedAppRegistrationId is not null) requestInfo.PathParameters.Add("managedAppRegistration%2Did", managedAppRegistrationId);
                 if (managedAppPolicyId is not null) requestInfo.PathParameters.Add("managedAppPolicy%2Did", managedAppPolicyId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -203,6 +194,16 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the targetApps method.
+        /// </summary>
+        public Command BuildTargetAppsCommand() {
+            var command = new Command("target-apps");
+            command.Description = "Provides operations to call the targetApps method.";
+            var builder = new TargetAppsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

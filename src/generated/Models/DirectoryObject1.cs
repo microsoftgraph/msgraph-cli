@@ -29,6 +29,14 @@ namespace ApiSdk.Models {
 #else
         public List<IdentityProviderBase> FederationConfigurations { get; set; }
 #endif
+        /// <summary>A container for on-premises directory synchronization functionalities that are available for the organization.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<OnPremisesDirectorySynchronization>? OnPremisesSynchronization { get; set; }
+#nullable restore
+#else
+        public List<OnPremisesDirectorySynchronization> OnPremisesSynchronization { get; set; }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -45,6 +53,7 @@ namespace ApiSdk.Models {
                 {"administrativeUnits", n => { AdministrativeUnits = n.GetCollectionOfObjectValues<AdministrativeUnit>(AdministrativeUnit.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"deletedItems", n => { DeletedItems = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"federationConfigurations", n => { FederationConfigurations = n.GetCollectionOfObjectValues<IdentityProviderBase>(IdentityProviderBase.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"onPremisesSynchronization", n => { OnPremisesSynchronization = n.GetCollectionOfObjectValues<OnPremisesDirectorySynchronization>(OnPremisesDirectorySynchronization.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -57,6 +66,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<AdministrativeUnit>("administrativeUnits", AdministrativeUnits);
             writer.WriteCollectionOfObjectValues<DirectoryObject>("deletedItems", DeletedItems);
             writer.WriteCollectionOfObjectValues<IdentityProviderBase>("federationConfigurations", FederationConfigurations);
+            writer.WriteCollectionOfObjectValues<OnPremisesDirectorySynchronization>("onPremisesSynchronization", OnPremisesSynchronization);
         }
     }
 }

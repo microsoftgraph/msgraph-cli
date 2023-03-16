@@ -1,9 +1,9 @@
 using ApiSdk.Education.Users.Item.Assignments.Item.Categories;
-using ApiSdk.Education.Users.Item.Assignments.Item.MicrosoftGraphPublish;
-using ApiSdk.Education.Users.Item.Assignments.Item.MicrosoftGraphSetUpFeedbackResourcesFolder;
-using ApiSdk.Education.Users.Item.Assignments.Item.MicrosoftGraphSetUpResourcesFolder;
+using ApiSdk.Education.Users.Item.Assignments.Item.Publish;
 using ApiSdk.Education.Users.Item.Assignments.Item.Resources;
 using ApiSdk.Education.Users.Item.Assignments.Item.Rubric;
+using ApiSdk.Education.Users.Item.Assignments.Item.SetUpFeedbackResourcesFolder;
+using ApiSdk.Education.Users.Item.Assignments.Item.SetUpResourcesFolder;
 using ApiSdk.Education.Users.Item.Assignments.Item.Submissions;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
@@ -40,8 +40,8 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             command.AddCommand(builder.BuildRefCommand());
             return command;
         }
@@ -52,11 +52,11 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property assignments for education";
             // Create options for all the parameters
-            var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
+            var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
             command.AddOption(educationUserIdOption);
-            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
+            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
@@ -92,11 +92,11 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item {
             var command = new Command("get");
             command.Description = "Assignments belonging to the user.";
             // Create options for all the parameters
-            var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
+            var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
             command.AddOption(educationUserIdOption);
-            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
+            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
@@ -154,47 +154,17 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the publish method.
-        /// </summary>
-        public Command BuildMicrosoftGraphPublishCommand() {
-            var command = new Command("microsoft-graph-publish");
-            command.Description = "Provides operations to call the publish method.";
-            var builder = new MicrosoftGraphPublishRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the setUpFeedbackResourcesFolder method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSetUpFeedbackResourcesFolderCommand() {
-            var command = new Command("microsoft-graph-set-up-feedback-resources-folder");
-            command.Description = "Provides operations to call the setUpFeedbackResourcesFolder method.";
-            var builder = new MicrosoftGraphSetUpFeedbackResourcesFolderRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the setUpResourcesFolder method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSetUpResourcesFolderCommand() {
-            var command = new Command("microsoft-graph-set-up-resources-folder");
-            command.Description = "Provides operations to call the setUpResourcesFolder method.";
-            var builder = new MicrosoftGraphSetUpResourcesFolderRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property assignments in education
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property assignments in education";
             // Create options for all the parameters
-            var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
+            var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
             command.AddOption(educationUserIdOption);
-            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
+            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
@@ -234,6 +204,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item {
                 });
                 if (educationUserId is not null) requestInfo.PathParameters.Add("educationUser%2Did", educationUserId);
                 if (educationAssignmentId is not null) requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -244,6 +215,16 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the publish method.
+        /// </summary>
+        public Command BuildPublishCommand() {
+            var command = new Command("publish");
+            command.Description = "Provides operations to call the publish method.";
+            var builder = new PublishRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -270,6 +251,26 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item {
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildRefCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the setUpFeedbackResourcesFolder method.
+        /// </summary>
+        public Command BuildSetUpFeedbackResourcesFolderCommand() {
+            var command = new Command("set-up-feedback-resources-folder");
+            command.Description = "Provides operations to call the setUpFeedbackResourcesFolder method.";
+            var builder = new SetUpFeedbackResourcesFolderRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the setUpResourcesFolder method.
+        /// </summary>
+        public Command BuildSetUpResourcesFolderCommand() {
+            var command = new Command("set-up-resources-folder");
+            command.Description = "Provides operations to call the setUpResourcesFolder method.";
+            var builder = new SetUpResourcesFolderRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

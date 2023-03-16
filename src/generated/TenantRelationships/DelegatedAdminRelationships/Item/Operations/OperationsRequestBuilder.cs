@@ -53,7 +53,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Operations
             var command = new Command("create");
             command.Description = "Create new navigation property to operations for tenantRelationships";
             // Create options for all the parameters
-            var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "key: id of delegatedAdminRelationship") {
+            var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "The unique identifier of delegatedAdminRelationship") {
             };
             delegatedAdminRelationshipIdOption.IsRequired = true;
             command.AddOption(delegatedAdminRelationshipIdOption);
@@ -91,6 +91,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Operations
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (delegatedAdminRelationshipId is not null) requestInfo.PathParameters.Add("delegatedAdminRelationship%2Did", delegatedAdminRelationshipId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -111,7 +112,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Operations
             var command = new Command("list");
             command.Description = "Get a list of the delegatedAdminRelationshipOperation objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/delegatedadminrelationship-list-operations?view=graph-rest-1.0";
             // Create options for all the parameters
-            var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "key: id of delegatedAdminRelationship") {
+            var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "The unique identifier of delegatedAdminRelationship") {
             };
             delegatedAdminRelationshipIdOption.IsRequired = true;
             command.AddOption(delegatedAdminRelationshipIdOption);

@@ -29,7 +29,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Apps.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var iosManagedAppProtectionIdOption = new Option<string>("--ios-managed-app-protection-id", description: "key: id of iosManagedAppProtection") {
+            var iosManagedAppProtectionIdOption = new Option<string>("--ios-managed-app-protection-id", description: "The unique identifier of iosManagedAppProtection") {
             };
             iosManagedAppProtectionIdOption.IsRequired = true;
             command.AddOption(iosManagedAppProtectionIdOption);

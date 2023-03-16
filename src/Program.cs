@@ -41,12 +41,7 @@ namespace Microsoft.Graph.Cli
     {
         static async Task<int> Main(string[] args)
         {
-            var customCommands = new List<Command>();
-            customCommands.Add(new LoginCommand().Build());
-            customCommands.Add(new LogoutCommand().Build());
-
-
-            var builder = BuildCommandLine(customCommands)
+            var builder = BuildCommandLine()
                 .UseDefaults()
                 .UseHost(a =>
                 {
@@ -75,7 +70,7 @@ namespace Microsoft.Graph.Cli
             {
                 var host = ic.GetHost();
 
-                ic.BindingContext.AddService(_ => host.Services.GetRequiredService<IAuthenticationCacheUtility>());
+                ic.BindingContext.AddService(_ => host.Services.GetRequiredService<IAuthenticationCacheManager>());
                 ic.BindingContext.AddService(_ => host.Services.GetRequiredService<AuthenticationServiceFactory>());
                 // Needed by LogoutCommand
                 ic.BindingContext.AddService(_ => host.Services.GetRequiredService<LogoutService>());
@@ -115,7 +110,7 @@ namespace Microsoft.Graph.Cli
             return await parser.InvokeAsync(args);
         }
 
-        static CommandLineBuilder BuildCommandLine(IEnumerable<Command> commands)
+        static CommandLineBuilder BuildCommandLine()
         {
             var rootCommand = new GraphClient().BuildRootCommand();
             rootCommand.Description = "Microsoft Graph CLI";
@@ -125,12 +120,11 @@ namespace Microsoft.Graph.Cli
             // --debug for configs.
             rootCommand.TreatUnmatchedTokensAsErrors = false;
 
-            foreach (var command in commands)
-            {
-                rootCommand.AddCommand(command);
-            }
+            var builder = new CommandLineBuilder(rootCommand);
+            rootCommand.AddCommand(new LoginCommand(builder));
+            rootCommand.AddCommand(new LogoutCommand());
 
-            return new CommandLineBuilder(rootCommand);
+            return builder;
         }
 
         static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -188,13 +182,13 @@ namespace Microsoft.Graph.Cli
                     return new HttpClientRequestAdapter(authProvider, httpClient: client);
                 });
                 services.AddSingleton<IPathUtility, PathUtility>();
-                services.AddSingleton<IAuthenticationCacheUtility, AuthenticationCacheUtility>();
+                services.AddSingleton<IAuthenticationCacheManager, AuthenticationCacheManager>();
                 services.AddSingleton<LogoutService>();
                 services.AddSingleton<AuthenticationServiceFactory>(p =>
                 {
                     var authSettings = p.GetRequiredService<IOptions<AuthenticationOptions>>()?.Value;
                     var pathUtil = p.GetRequiredService<IPathUtility>();
-                    var cacheUtil = p.GetRequiredService<IAuthenticationCacheUtility>();
+                    var cacheUtil = p.GetRequiredService<IAuthenticationCacheManager>();
                     return new AuthenticationServiceFactory(pathUtil, cacheUtil, authSettings);
                 });
             }).ConfigureLogging((ctx, logBuilder) =>
@@ -214,7 +208,7 @@ namespace Microsoft.Graph.Cli
             builder.Sources.Clear();
             builder.AddJsonFile(Path.Combine(System.AppContext.BaseDirectory, "app-settings.json"), optional: true);
             var pathUtil = new PathUtility();
-            var authCache = new AuthenticationCacheUtility(pathUtil);
+            var authCache = new AuthenticationCacheManager(pathUtil);
             var dataDir = pathUtil.GetApplicationDataDirectory();
             var userConfigPath = Path.Combine(dataDir, "settings.json");
             builder.AddJsonFile(userConfigPath, optional: true);

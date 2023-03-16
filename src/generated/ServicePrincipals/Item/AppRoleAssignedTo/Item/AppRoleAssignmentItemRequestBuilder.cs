@@ -30,11 +30,11 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property appRoleAssignedTo for servicePrincipals";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
+            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
-            var appRoleAssignmentIdOption = new Option<string>("--app-role-assignment-id", description: "key: id of appRoleAssignment") {
+            var appRoleAssignmentIdOption = new Option<string>("--app-role-assignment-id", description: "The unique identifier of appRoleAssignment") {
             };
             appRoleAssignmentIdOption.IsRequired = true;
             command.AddOption(appRoleAssignmentIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo.Item {
             var command = new Command("get");
             command.Description = "App role assignments for this app or service, granted to users, groups, and other service principals. Supports $expand.";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
+            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
-            var appRoleAssignmentIdOption = new Option<string>("--app-role-assignment-id", description: "key: id of appRoleAssignment") {
+            var appRoleAssignmentIdOption = new Option<string>("--app-role-assignment-id", description: "The unique identifier of appRoleAssignment") {
             };
             appRoleAssignmentIdOption.IsRequired = true;
             command.AddOption(appRoleAssignmentIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property appRoleAssignedTo in servicePrincipals";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
+            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
-            var appRoleAssignmentIdOption = new Option<string>("--app-role-assignment-id", description: "key: id of appRoleAssignment") {
+            var appRoleAssignmentIdOption = new Option<string>("--app-role-assignment-id", description: "The unique identifier of appRoleAssignment") {
             };
             appRoleAssignmentIdOption.IsRequired = true;
             command.AddOption(appRoleAssignmentIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignedTo.Item {
                 });
                 if (servicePrincipalId is not null) requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
                 if (appRoleAssignmentId is not null) requestInfo.PathParameters.Add("appRoleAssignment%2Did", appRoleAssignmentId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

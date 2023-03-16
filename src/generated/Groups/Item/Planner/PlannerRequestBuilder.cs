@@ -31,7 +31,7 @@ namespace ApiSdk.Groups.Item.Planner {
             var command = new Command("delete");
             command.Description = "Delete navigation property planner for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.Groups.Item.Planner {
             var command = new Command("get");
             command.Description = "Entry-point to Planner resource that might exist for a Unified Group.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
@@ -127,7 +127,7 @@ namespace ApiSdk.Groups.Item.Planner {
             var command = new Command("patch");
             command.Description = "Update the navigation property planner in groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
@@ -172,6 +172,7 @@ namespace ApiSdk.Groups.Item.Planner {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

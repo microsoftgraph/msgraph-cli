@@ -2,7 +2,7 @@ using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.Activities.Count;
 using ApiSdk.Users.Item.Activities.Item;
-using ApiSdk.Users.Item.Activities.MicrosoftGraphRecent;
+using ApiSdk.Users.Item.Activities.Recent;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -55,7 +55,7 @@ namespace ApiSdk.Users.Item.Activities {
             var command = new Command("create");
             command.Description = "Create new navigation property to activities for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -93,6 +93,7 @@ namespace ApiSdk.Users.Item.Activities {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,7 +113,7 @@ namespace ApiSdk.Users.Item.Activities {
             var command = new Command("list");
             command.Description = "The user's activities across devices. Read-only. Nullable.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -219,10 +220,10 @@ namespace ApiSdk.Users.Item.Activities {
         /// <summary>
         /// Provides operations to call the recent method.
         /// </summary>
-        public Command BuildMicrosoftGraphRecentCommand() {
-            var command = new Command("microsoft-graph-recent");
+        public Command BuildRecentCommand() {
+            var command = new Command("recent");
             command.Description = "Provides operations to call the recent method.";
-            var builder = new MicrosoftGraphRecentRequestBuilder(PathParameters);
+            var builder = new RecentRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }

@@ -29,11 +29,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Cou
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoveryReviewSetIdOption = new Option<string>("--ediscovery-review-set-id", description: "key: id of ediscoveryReviewSet") {
+            var ediscoveryReviewSetIdOption = new Option<string>("--ediscovery-review-set-id", description: "The unique identifier of ediscoveryReviewSet") {
             };
             ediscoveryReviewSetIdOption.IsRequired = true;
             command.AddOption(ediscoveryReviewSetIdOption);

@@ -30,11 +30,11 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceStatuses.I
             var command = new Command("delete");
             command.Description = "Delete navigation property deviceStatuses for deviceManagement";
             // Create options for all the parameters
-            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "key: id of deviceCompliancePolicy") {
+            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicyIdOption);
-            var deviceComplianceDeviceStatusIdOption = new Option<string>("--device-compliance-device-status-id", description: "key: id of deviceComplianceDeviceStatus") {
+            var deviceComplianceDeviceStatusIdOption = new Option<string>("--device-compliance-device-status-id", description: "The unique identifier of deviceComplianceDeviceStatus") {
             };
             deviceComplianceDeviceStatusIdOption.IsRequired = true;
             command.AddOption(deviceComplianceDeviceStatusIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceStatuses.I
             var command = new Command("get");
             command.Description = "List of DeviceComplianceDeviceStatus.";
             // Create options for all the parameters
-            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "key: id of deviceCompliancePolicy") {
+            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicyIdOption);
-            var deviceComplianceDeviceStatusIdOption = new Option<string>("--device-compliance-device-status-id", description: "key: id of deviceComplianceDeviceStatus") {
+            var deviceComplianceDeviceStatusIdOption = new Option<string>("--device-compliance-device-status-id", description: "The unique identifier of deviceComplianceDeviceStatus") {
             };
             deviceComplianceDeviceStatusIdOption.IsRequired = true;
             command.AddOption(deviceComplianceDeviceStatusIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceStatuses.I
             var command = new Command("patch");
             command.Description = "Update the navigation property deviceStatuses in deviceManagement";
             // Create options for all the parameters
-            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "key: id of deviceCompliancePolicy") {
+            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicyIdOption);
-            var deviceComplianceDeviceStatusIdOption = new Option<string>("--device-compliance-device-status-id", description: "key: id of deviceComplianceDeviceStatus") {
+            var deviceComplianceDeviceStatusIdOption = new Option<string>("--device-compliance-device-status-id", description: "The unique identifier of deviceComplianceDeviceStatus") {
             };
             deviceComplianceDeviceStatusIdOption.IsRequired = true;
             command.AddOption(deviceComplianceDeviceStatusIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceStatuses.I
                 });
                 if (deviceCompliancePolicyId is not null) requestInfo.PathParameters.Add("deviceCompliancePolicy%2Did", deviceCompliancePolicyId);
                 if (deviceComplianceDeviceStatusId is not null) requestInfo.PathParameters.Add("deviceComplianceDeviceStatus%2Did", deviceComplianceDeviceStatusId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

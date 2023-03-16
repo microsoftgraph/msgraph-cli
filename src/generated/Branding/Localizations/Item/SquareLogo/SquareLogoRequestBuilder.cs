@@ -30,7 +30,7 @@ namespace ApiSdk.Branding.Localizations.Item.SquareLogo {
             var command = new Command("get");
             command.Description = "A square version of your company logo that appears in Windows 10 out-of-box experiences (OOBE) and when Windows Autopilot is enabled for deployment. Allowed types are PNG or JPEG no larger than 240 x 240 pixels and no more than 10 KB in size. We recommend using a transparent image with no padding around the logo.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/organizationalbranding-list-localizations?view=graph-rest-1.0";
             // Create options for all the parameters
-            var organizationalBrandingLocalizationIdOption = new Option<string>("--organizational-branding-localization-id", description: "key: id of organizationalBrandingLocalization") {
+            var organizationalBrandingLocalizationIdOption = new Option<string>("--organizational-branding-localization-id", description: "The unique identifier of organizationalBrandingLocalization") {
             };
             organizationalBrandingLocalizationIdOption.IsRequired = true;
             command.AddOption(organizationalBrandingLocalizationIdOption);
@@ -69,7 +69,7 @@ namespace ApiSdk.Branding.Localizations.Item.SquareLogo {
             var command = new Command("put");
             command.Description = "A square version of your company logo that appears in Windows 10 out-of-box experiences (OOBE) and when Windows Autopilot is enabled for deployment. Allowed types are PNG or JPEG no larger than 240 x 240 pixels and no more than 10 KB in size. We recommend using a transparent image with no padding around the logo.";
             // Create options for all the parameters
-            var organizationalBrandingLocalizationIdOption = new Option<string>("--organizational-branding-localization-id", description: "key: id of organizationalBrandingLocalization") {
+            var organizationalBrandingLocalizationIdOption = new Option<string>("--organizational-branding-localization-id", description: "The unique identifier of organizationalBrandingLocalization") {
             };
             organizationalBrandingLocalizationIdOption.IsRequired = true;
             command.AddOption(organizationalBrandingLocalizationIdOption);

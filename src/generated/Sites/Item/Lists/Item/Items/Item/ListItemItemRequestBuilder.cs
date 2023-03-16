@@ -4,8 +4,8 @@ using ApiSdk.Sites.Item.Lists.Item.Items.Item.Analytics;
 using ApiSdk.Sites.Item.Lists.Item.Items.Item.DocumentSetVersions;
 using ApiSdk.Sites.Item.Lists.Item.Items.Item.DriveItem;
 using ApiSdk.Sites.Item.Lists.Item.Items.Item.Fields;
-using ApiSdk.Sites.Item.Lists.Item.Items.Item.MicrosoftGraphGetActivitiesByInterval;
-using ApiSdk.Sites.Item.Lists.Item.Items.Item.MicrosoftGraphGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval;
+using ApiSdk.Sites.Item.Lists.Item.Items.Item.GetActivitiesByInterval;
+using ApiSdk.Sites.Item.Lists.Item.Items.Item.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval;
 using ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -47,15 +47,15 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property items for sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            var listIdOption = new Option<string>("--list-id", description: "The unique identifier of list") {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
-            var listItemIdOption = new Option<string>("--list-item-id", description: "key: id of listItem") {
+            var listItemIdOption = new Option<string>("--list-item-id", description: "The unique identifier of listItem") {
             };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
@@ -123,21 +123,31 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the getActivitiesByInterval method.
+        /// </summary>
+        public Command BuildGetActivitiesByIntervalCommand() {
+            var command = new Command("get-activities-by-interval");
+            command.Description = "Provides operations to call the getActivitiesByInterval method.";
+            var builder = new GetActivitiesByIntervalRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// All items contained in the list.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "All items contained in the list.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            var listIdOption = new Option<string>("--list-id", description: "The unique identifier of list") {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
-            var listItemIdOption = new Option<string>("--list-item-id", description: "key: id of listItem") {
+            var listItemIdOption = new Option<string>("--list-item-id", description: "The unique identifier of listItem") {
             };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
@@ -197,31 +207,21 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the getActivitiesByInterval method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetActivitiesByIntervalCommand() {
-            var command = new Command("microsoft-graph-get-activities-by-interval");
-            command.Description = "Provides operations to call the getActivitiesByInterval method.";
-            var builder = new MicrosoftGraphGetActivitiesByIntervalRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property items in sites
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property items in sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            var listIdOption = new Option<string>("--list-id", description: "The unique identifier of list") {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
-            var listItemIdOption = new Option<string>("--list-item-id", description: "key: id of listItem") {
+            var listItemIdOption = new Option<string>("--list-item-id", description: "The unique identifier of listItem") {
             };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
@@ -263,6 +263,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item {
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
                 if (listId is not null) requestInfo.PathParameters.Add("list%2Did", listId);
                 if (listItemId is not null) requestInfo.PathParameters.Add("listItem%2Did", listItemId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

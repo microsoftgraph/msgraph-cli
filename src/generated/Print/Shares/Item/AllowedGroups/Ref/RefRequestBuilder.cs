@@ -31,7 +31,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups.Ref {
             var command = new Command("get");
             command.Description = "Retrieve a list of groups that have been granted access to submit print jobs to the associated printerShare.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printershare-list-allowedgroups?view=graph-rest-1.0";
             // Create options for all the parameters
-            var printerShareIdOption = new Option<string>("--printer-share-id", description: "key: id of printerShare") {
+            var printerShareIdOption = new Option<string>("--printer-share-id", description: "The unique identifier of printerShare") {
             };
             printerShareIdOption.IsRequired = true;
             command.AddOption(printerShareIdOption);
@@ -128,7 +128,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups.Ref {
             var command = new Command("post");
             command.Description = "Create new navigation property ref to allowedGroups for print";
             // Create options for all the parameters
-            var printerShareIdOption = new Option<string>("--printer-share-id", description: "key: id of printerShare") {
+            var printerShareIdOption = new Option<string>("--printer-share-id", description: "The unique identifier of printerShare") {
             };
             printerShareIdOption.IsRequired = true;
             command.AddOption(printerShareIdOption);
@@ -148,6 +148,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups.Ref {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (printerShareId is not null) requestInfo.PathParameters.Add("printerShare%2Did", printerShareId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

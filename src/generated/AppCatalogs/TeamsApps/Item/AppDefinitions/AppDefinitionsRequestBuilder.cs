@@ -55,7 +55,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions {
             var command = new Command("create");
             command.Description = "Update an app previously published to the Microsoft Teams app catalog. To update an app, the **distributionMethod** property for the app must be set to `organization`. This API specifically updates an app published to your organization's app catalog (the tenant app catalog).\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/teamsapp-update?view=graph-rest-1.0";
             // Create options for all the parameters
-            var teamsAppIdOption = new Option<string>("--teams-app-id", description: "key: id of teamsApp") {
+            var teamsAppIdOption = new Option<string>("--teams-app-id", description: "The unique identifier of teamsApp") {
             };
             teamsAppIdOption.IsRequired = true;
             command.AddOption(teamsAppIdOption);
@@ -93,6 +93,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (teamsAppId is not null) requestInfo.PathParameters.Add("teamsApp%2Did", teamsAppId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,7 +113,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions {
             var command = new Command("list");
             command.Description = "The details for each version of the app.";
             // Create options for all the parameters
-            var teamsAppIdOption = new Option<string>("--teams-app-id", description: "key: id of teamsApp") {
+            var teamsAppIdOption = new Option<string>("--teams-app-id", description: "The unique identifier of teamsApp") {
             };
             teamsAppIdOption.IsRequired = true;
             command.AddOption(teamsAppIdOption);

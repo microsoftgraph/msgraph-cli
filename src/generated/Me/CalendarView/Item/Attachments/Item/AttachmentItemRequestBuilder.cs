@@ -30,11 +30,11 @@ namespace ApiSdk.Me.CalendarView.Item.Attachments.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property attachments for me";
             // Create options for all the parameters
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var attachmentIdOption = new Option<string>("--attachment-id", description: "key: id of attachment") {
+            var attachmentIdOption = new Option<string>("--attachment-id", description: "The unique identifier of attachment") {
             };
             attachmentIdOption.IsRequired = true;
             command.AddOption(attachmentIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Me.CalendarView.Item.Attachments.Item {
             var command = new Command("get");
             command.Description = "The collection of FileAttachment, ItemAttachment, and referenceAttachment attachments for the event. Navigation property. Read-only. Nullable.";
             // Create options for all the parameters
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var attachmentIdOption = new Option<string>("--attachment-id", description: "key: id of attachment") {
+            var attachmentIdOption = new Option<string>("--attachment-id", description: "The unique identifier of attachment") {
             };
             attachmentIdOption.IsRequired = true;
             command.AddOption(attachmentIdOption);

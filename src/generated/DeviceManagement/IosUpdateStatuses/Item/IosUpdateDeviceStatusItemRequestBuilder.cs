@@ -30,7 +30,7 @@ namespace ApiSdk.DeviceManagement.IosUpdateStatuses.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property iosUpdateStatuses for deviceManagement";
             // Create options for all the parameters
-            var iosUpdateDeviceStatusIdOption = new Option<string>("--ios-update-device-status-id", description: "key: id of iosUpdateDeviceStatus") {
+            var iosUpdateDeviceStatusIdOption = new Option<string>("--ios-update-device-status-id", description: "The unique identifier of iosUpdateDeviceStatus") {
             };
             iosUpdateDeviceStatusIdOption.IsRequired = true;
             command.AddOption(iosUpdateDeviceStatusIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.DeviceManagement.IosUpdateStatuses.Item {
             var command = new Command("get");
             command.Description = "The IOS software update installation statuses for this account.";
             // Create options for all the parameters
-            var iosUpdateDeviceStatusIdOption = new Option<string>("--ios-update-device-status-id", description: "key: id of iosUpdateDeviceStatus") {
+            var iosUpdateDeviceStatusIdOption = new Option<string>("--ios-update-device-status-id", description: "The unique identifier of iosUpdateDeviceStatus") {
             };
             iosUpdateDeviceStatusIdOption.IsRequired = true;
             command.AddOption(iosUpdateDeviceStatusIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.DeviceManagement.IosUpdateStatuses.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property iosUpdateStatuses in deviceManagement";
             // Create options for all the parameters
-            var iosUpdateDeviceStatusIdOption = new Option<string>("--ios-update-device-status-id", description: "key: id of iosUpdateDeviceStatus") {
+            var iosUpdateDeviceStatusIdOption = new Option<string>("--ios-update-device-status-id", description: "The unique identifier of iosUpdateDeviceStatus") {
             };
             iosUpdateDeviceStatusIdOption.IsRequired = true;
             command.AddOption(iosUpdateDeviceStatusIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.DeviceManagement.IosUpdateStatuses.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (iosUpdateDeviceStatusId is not null) requestInfo.PathParameters.Add("iosUpdateDeviceStatus%2Did", iosUpdateDeviceStatusId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

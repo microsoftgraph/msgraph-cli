@@ -52,7 +52,7 @@ namespace ApiSdk.Users.Item.FollowedSites {
             var command = new Command("list");
             command.Description = "List the sites that have been followed by the signed in user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/sites-list-followed?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

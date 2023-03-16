@@ -54,11 +54,11 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Resources {
             var command = new Command("create");
             command.Description = "Create an assignment resource. Only teachers can perform this operation. You can create the following types of assignment resources: Every resource has an **@odata.type** property to indicate which type of resource is being created.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationassignment-post-resource?view=graph-rest-1.0";
             // Create options for all the parameters
-            var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
+            var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
             command.AddOption(educationUserIdOption);
-            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
+            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
@@ -98,6 +98,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Resources {
                 });
                 if (educationUserId is not null) requestInfo.PathParameters.Add("educationUser%2Did", educationUserId);
                 if (educationAssignmentId is not null) requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -118,11 +119,11 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Resources {
             var command = new Command("list");
             command.Description = "Get all the educationAssignmentResource objects associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationassignment-list-resources?view=graph-rest-1.0";
             // Create options for all the parameters
-            var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
+            var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
             command.AddOption(educationUserIdOption);
-            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
+            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);

@@ -30,7 +30,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property mobileAppCategories for deviceAppManagement";
             // Create options for all the parameters
-            var mobileAppCategoryIdOption = new Option<string>("--mobile-app-category-id", description: "key: id of mobileAppCategory") {
+            var mobileAppCategoryIdOption = new Option<string>("--mobile-app-category-id", description: "The unique identifier of mobileAppCategory") {
             };
             mobileAppCategoryIdOption.IsRequired = true;
             command.AddOption(mobileAppCategoryIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
             var command = new Command("get");
             command.Description = "The mobile app categories.";
             // Create options for all the parameters
-            var mobileAppCategoryIdOption = new Option<string>("--mobile-app-category-id", description: "key: id of mobileAppCategory") {
+            var mobileAppCategoryIdOption = new Option<string>("--mobile-app-category-id", description: "The unique identifier of mobileAppCategory") {
             };
             mobileAppCategoryIdOption.IsRequired = true;
             command.AddOption(mobileAppCategoryIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property mobileAppCategories in deviceAppManagement";
             // Create options for all the parameters
-            var mobileAppCategoryIdOption = new Option<string>("--mobile-app-category-id", description: "key: id of mobileAppCategory") {
+            var mobileAppCategoryIdOption = new Option<string>("--mobile-app-category-id", description: "The unique identifier of mobileAppCategory") {
             };
             mobileAppCategoryIdOption.IsRequired = true;
             command.AddOption(mobileAppCategoryIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (mobileAppCategoryId is not null) requestInfo.PathParameters.Add("mobileAppCategory%2Did", mobileAppCategoryId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

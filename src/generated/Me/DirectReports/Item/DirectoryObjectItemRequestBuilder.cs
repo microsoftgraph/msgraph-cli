@@ -1,5 +1,5 @@
-using ApiSdk.Me.DirectReports.Item.MicrosoftGraphOrgContact;
-using ApiSdk.Me.DirectReports.Item.MicrosoftGraphUser;
+using ApiSdk.Me.DirectReports.Item.GraphOrgContact;
+using ApiSdk.Me.DirectReports.Item.GraphUser;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,7 +32,7 @@ namespace ApiSdk.Me.DirectReports.Item {
             var command = new Command("get");
             command.Description = "The users and contacts that report to the user. (The users and contacts that have their manager property set to this user.) Read-only. Nullable. Supports $expand.";
             // Create options for all the parameters
-            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "key: id of directoryObject") {
+            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "The unique identifier of directoryObject") {
             };
             directoryObjectIdOption.IsRequired = true;
             command.AddOption(directoryObjectIdOption);
@@ -97,20 +97,20 @@ namespace ApiSdk.Me.DirectReports.Item {
         /// <summary>
         /// Casts the previous resource to orgContact.
         /// </summary>
-        public Command BuildMicrosoftGraphOrgContactCommand() {
-            var command = new Command("microsoft-graph-org-contact");
+        public Command BuildGraphOrgContactCommand() {
+            var command = new Command("graph-org-contact");
             command.Description = "Casts the previous resource to orgContact.";
-            var builder = new MicrosoftGraphOrgContactRequestBuilder(PathParameters);
+            var builder = new GraphOrgContactRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
-        public Command BuildMicrosoftGraphUserCommand() {
-            var command = new Command("microsoft-graph-user");
+        public Command BuildGraphUserCommand() {
+            var command = new Command("graph-user");
             command.Description = "Casts the previous resource to user.";
-            var builder = new MicrosoftGraphUserRequestBuilder(PathParameters);
+            var builder = new GraphUserRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }

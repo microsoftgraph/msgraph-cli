@@ -1,4 +1,4 @@
-using ApiSdk.DeviceManagement.ExchangeConnectors.Item.MicrosoftGraphSync;
+using ApiSdk.DeviceManagement.ExchangeConnectors.Item.Sync;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,7 +31,7 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property exchangeConnectors for deviceManagement";
             // Create options for all the parameters
-            var deviceManagementExchangeConnectorIdOption = new Option<string>("--device-management-exchange-connector-id", description: "key: id of deviceManagementExchangeConnector") {
+            var deviceManagementExchangeConnectorIdOption = new Option<string>("--device-management-exchange-connector-id", description: "The unique identifier of deviceManagementExchangeConnector") {
             };
             deviceManagementExchangeConnectorIdOption.IsRequired = true;
             command.AddOption(deviceManagementExchangeConnectorIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item {
             var command = new Command("get");
             command.Description = "The list of Exchange Connectors configured by the tenant.";
             // Create options for all the parameters
-            var deviceManagementExchangeConnectorIdOption = new Option<string>("--device-management-exchange-connector-id", description: "key: id of deviceManagementExchangeConnector") {
+            var deviceManagementExchangeConnectorIdOption = new Option<string>("--device-management-exchange-connector-id", description: "The unique identifier of deviceManagementExchangeConnector") {
             };
             deviceManagementExchangeConnectorIdOption.IsRequired = true;
             command.AddOption(deviceManagementExchangeConnectorIdOption);
@@ -121,23 +121,13 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the sync method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSyncCommand() {
-            var command = new Command("microsoft-graph-sync");
-            command.Description = "Provides operations to call the sync method.";
-            var builder = new MicrosoftGraphSyncRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property exchangeConnectors in deviceManagement
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property exchangeConnectors in deviceManagement";
             // Create options for all the parameters
-            var deviceManagementExchangeConnectorIdOption = new Option<string>("--device-management-exchange-connector-id", description: "key: id of deviceManagementExchangeConnector") {
+            var deviceManagementExchangeConnectorIdOption = new Option<string>("--device-management-exchange-connector-id", description: "The unique identifier of deviceManagementExchangeConnector") {
             };
             deviceManagementExchangeConnectorIdOption.IsRequired = true;
             command.AddOption(deviceManagementExchangeConnectorIdOption);
@@ -175,6 +165,7 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (deviceManagementExchangeConnectorId is not null) requestInfo.PathParameters.Add("deviceManagementExchangeConnector%2Did", deviceManagementExchangeConnectorId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -185,6 +176,16 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sync method.
+        /// </summary>
+        public Command BuildSyncCommand() {
+            var command = new Command("sync");
+            command.Description = "Provides operations to call the sync method.";
+            var builder = new SyncRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

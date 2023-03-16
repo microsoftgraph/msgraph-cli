@@ -29,11 +29,11 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.SharedWithTeams.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var channelIdOption = new Option<string>("--channel-id", description: "key: id of channel") {
+            var channelIdOption = new Option<string>("--channel-id", description: "The unique identifier of channel") {
             };
             channelIdOption.IsRequired = true;
             command.AddOption(channelIdOption);

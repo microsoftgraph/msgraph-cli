@@ -30,19 +30,19 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.Ite
             var command = new Command("get");
             command.Description = "The worksheet containing the current PivotTable. Read-only.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
-            var workbookPivotTableIdOption = new Option<string>("--workbook-pivot-table-id", description: "key: id of workbookPivotTable") {
+            var workbookPivotTableIdOption = new Option<string>("--workbook-pivot-table-id", description: "The unique identifier of workbookPivotTable") {
             };
             workbookPivotTableIdOption.IsRequired = true;
             command.AddOption(workbookPivotTableIdOption);

@@ -52,7 +52,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ac
             var command = new Command("list");
             command.Description = "Retrieve a list of the accessPackage objects that have marked a specified accessPackage as incompatible.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/accesspackage-list-accesspackagesincompatiblewith?view=graph-rest-1.0";
             // Create options for all the parameters
-            var accessPackageIdOption = new Option<string>("--access-package-id", description: "key: id of accessPackage") {
+            var accessPackageIdOption = new Option<string>("--access-package-id", description: "The unique identifier of accessPackage") {
             };
             accessPackageIdOption.IsRequired = true;
             command.AddOption(accessPackageIdOption);

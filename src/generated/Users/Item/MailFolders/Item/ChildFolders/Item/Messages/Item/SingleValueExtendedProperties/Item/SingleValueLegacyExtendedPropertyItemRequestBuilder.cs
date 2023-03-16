@@ -30,23 +30,23 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.Sin
             var command = new Command("delete");
             command.Description = "Delete navigation property singleValueExtendedProperties for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
+            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "The unique identifier of mailFolder") {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
-            var mailFolderId1Option = new Option<string>("--mail-folder-id1", description: "key: id of mailFolder") {
+            var mailFolderId1Option = new Option<string>("--mail-folder-id1", description: "The unique identifier of mailFolder") {
             };
             mailFolderId1Option.IsRequired = true;
             command.AddOption(mailFolderId1Option);
-            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            var messageIdOption = new Option<string>("--message-id", description: "The unique identifier of message") {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
-            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--single-value-legacy-extended-property-id", description: "key: id of singleValueLegacyExtendedProperty") {
+            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--single-value-legacy-extended-property-id", description: "The unique identifier of singleValueLegacyExtendedProperty") {
             };
             singleValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(singleValueLegacyExtendedPropertyIdOption);
@@ -88,23 +88,23 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.Sin
             var command = new Command("get");
             command.Description = "The collection of single-value extended properties defined for the message. Nullable.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
+            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "The unique identifier of mailFolder") {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
-            var mailFolderId1Option = new Option<string>("--mail-folder-id1", description: "key: id of mailFolder") {
+            var mailFolderId1Option = new Option<string>("--mail-folder-id1", description: "The unique identifier of mailFolder") {
             };
             mailFolderId1Option.IsRequired = true;
             command.AddOption(mailFolderId1Option);
-            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            var messageIdOption = new Option<string>("--message-id", description: "The unique identifier of message") {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
-            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--single-value-legacy-extended-property-id", description: "key: id of singleValueLegacyExtendedProperty") {
+            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--single-value-legacy-extended-property-id", description: "The unique identifier of singleValueLegacyExtendedProperty") {
             };
             singleValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(singleValueLegacyExtendedPropertyIdOption);
@@ -174,23 +174,23 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.Sin
             var command = new Command("patch");
             command.Description = "Update the navigation property singleValueExtendedProperties in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
+            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "The unique identifier of mailFolder") {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
-            var mailFolderId1Option = new Option<string>("--mail-folder-id1", description: "key: id of mailFolder") {
+            var mailFolderId1Option = new Option<string>("--mail-folder-id1", description: "The unique identifier of mailFolder") {
             };
             mailFolderId1Option.IsRequired = true;
             command.AddOption(mailFolderId1Option);
-            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            var messageIdOption = new Option<string>("--message-id", description: "The unique identifier of message") {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
-            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--single-value-legacy-extended-property-id", description: "key: id of singleValueLegacyExtendedProperty") {
+            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--single-value-legacy-extended-property-id", description: "The unique identifier of singleValueLegacyExtendedProperty") {
             };
             singleValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(singleValueLegacyExtendedPropertyIdOption);
@@ -236,6 +236,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.Sin
                 if (mailFolderId1 is not null) requestInfo.PathParameters.Add("mailFolder%2Did1", mailFolderId1);
                 if (messageId is not null) requestInfo.PathParameters.Add("message%2Did", messageId);
                 if (singleValueLegacyExtendedPropertyId is not null) requestInfo.PathParameters.Add("singleValueLegacyExtendedProperty%2Did", singleValueLegacyExtendedPropertyId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

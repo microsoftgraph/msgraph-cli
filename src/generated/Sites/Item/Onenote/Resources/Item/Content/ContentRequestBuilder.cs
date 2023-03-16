@@ -29,11 +29,11 @@ namespace ApiSdk.Sites.Item.Onenote.Resources.Item.Content {
             var command = new Command("get");
             command.Description = "The content stream";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var onenoteResourceIdOption = new Option<string>("--onenote-resource-id", description: "key: id of onenoteResource") {
+            var onenoteResourceIdOption = new Option<string>("--onenote-resource-id", description: "The unique identifier of onenoteResource") {
             };
             onenoteResourceIdOption.IsRequired = true;
             command.AddOption(onenoteResourceIdOption);
@@ -74,11 +74,11 @@ namespace ApiSdk.Sites.Item.Onenote.Resources.Item.Content {
             var command = new Command("put");
             command.Description = "The content stream";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var onenoteResourceIdOption = new Option<string>("--onenote-resource-id", description: "key: id of onenoteResource") {
+            var onenoteResourceIdOption = new Option<string>("--onenote-resource-id", description: "The unique identifier of onenoteResource") {
             };
             onenoteResourceIdOption.IsRequired = true;
             command.AddOption(onenoteResourceIdOption);

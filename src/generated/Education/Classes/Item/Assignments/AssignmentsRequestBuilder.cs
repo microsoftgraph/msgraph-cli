@@ -1,6 +1,6 @@
 using ApiSdk.Education.Classes.Item.Assignments.Count;
+using ApiSdk.Education.Classes.Item.Assignments.Delta;
 using ApiSdk.Education.Classes.Item.Assignments.Item;
-using ApiSdk.Education.Classes.Item.Assignments.MicrosoftGraphDelta;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,12 +35,12 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
             command.AddCommand(builder.BuildCategoriesCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphPublishCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSetUpFeedbackResourcesFolderCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSetUpResourcesFolderCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildPublishCommand());
             command.AddCommand(builder.BuildResourcesCommand());
             command.AddCommand(builder.BuildRubricCommand());
+            command.AddCommand(builder.BuildSetUpFeedbackResourcesFolderCommand());
+            command.AddCommand(builder.BuildSetUpResourcesFolderCommand());
             command.AddCommand(builder.BuildSubmissionsCommand());
             return command;
         }
@@ -62,7 +62,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
             var command = new Command("create");
             command.Description = "Create a new assignment. Only teachers in a class can create an assignment. Assignments start in the Draft state, which means that students will not see the assignment until publication.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationclass-post-assignment?view=graph-rest-1.0";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
@@ -100,6 +100,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (educationClassId is not null) requestInfo.PathParameters.Add("educationClass%2Did", educationClassId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -113,6 +114,16 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildDeltaCommand() {
+            var command = new Command("delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Retrieve a list of assignment objects. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application executing with application permissions can see all assignment objects for the class. Students can only see assignments that are assigned to them.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationclass-list-assignments?view=graph-rest-1.0" />
         /// </summary>
@@ -120,7 +131,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
             var command = new Command("list");
             command.Description = "Retrieve a list of assignment objects. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application executing with application permissions can see all assignment objects for the class. Students can only see assignments that are assigned to them.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationclass-list-assignments?view=graph-rest-1.0";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
@@ -222,16 +233,6 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the delta method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDeltaCommand() {
-            var command = new Command("microsoft-graph-delta");
-            command.Description = "Provides operations to call the delta method.";
-            var builder = new MicrosoftGraphDeltaRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

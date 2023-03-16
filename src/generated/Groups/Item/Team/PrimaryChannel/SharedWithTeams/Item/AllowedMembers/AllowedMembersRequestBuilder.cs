@@ -52,11 +52,11 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.SharedWithTeams.Item.AllowedMem
             var command = new Command("list");
             command.Description = "Get the list of conversationMembers who can access a shared channel. This method does not return the following conversationMembers from the team:- Users with `Guest` role- Users who are externally authenticated in the tenant\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/sharedwithchannelteaminfo-list-allowedmembers?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var sharedWithChannelTeamInfoIdOption = new Option<string>("--shared-with-channel-team-info-id", description: "key: id of sharedWithChannelTeamInfo") {
+            var sharedWithChannelTeamInfoIdOption = new Option<string>("--shared-with-channel-team-info-id", description: "The unique identifier of sharedWithChannelTeamInfo") {
             };
             sharedWithChannelTeamInfoIdOption.IsRequired = true;
             command.AddOption(sharedWithChannelTeamInfoIdOption);

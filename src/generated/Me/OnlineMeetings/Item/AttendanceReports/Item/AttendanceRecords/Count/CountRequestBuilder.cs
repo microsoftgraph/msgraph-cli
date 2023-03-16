@@ -29,11 +29,11 @@ namespace ApiSdk.Me.OnlineMeetings.Item.AttendanceReports.Item.AttendanceRecords
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "key: id of onlineMeeting") {
+            var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "The unique identifier of onlineMeeting") {
             };
             onlineMeetingIdOption.IsRequired = true;
             command.AddOption(onlineMeetingIdOption);
-            var meetingAttendanceReportIdOption = new Option<string>("--meeting-attendance-report-id", description: "key: id of meetingAttendanceReport") {
+            var meetingAttendanceReportIdOption = new Option<string>("--meeting-attendance-report-id", description: "The unique identifier of meetingAttendanceReport") {
             };
             meetingAttendanceReportIdOption.IsRequired = true;
             command.AddOption(meetingAttendanceReportIdOption);

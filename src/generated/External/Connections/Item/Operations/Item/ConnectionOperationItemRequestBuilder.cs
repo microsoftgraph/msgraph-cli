@@ -30,11 +30,11 @@ namespace ApiSdk.External.Connections.Item.Operations.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property operations for external";
             // Create options for all the parameters
-            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
+            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
             command.AddOption(externalConnectionIdOption);
-            var connectionOperationIdOption = new Option<string>("--connection-operation-id", description: "key: id of connectionOperation") {
+            var connectionOperationIdOption = new Option<string>("--connection-operation-id", description: "The unique identifier of connectionOperation") {
             };
             connectionOperationIdOption.IsRequired = true;
             command.AddOption(connectionOperationIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.External.Connections.Item.Operations.Item {
             var command = new Command("get");
             command.Description = "Get operations from external";
             // Create options for all the parameters
-            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
+            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
             command.AddOption(externalConnectionIdOption);
-            var connectionOperationIdOption = new Option<string>("--connection-operation-id", description: "key: id of connectionOperation") {
+            var connectionOperationIdOption = new Option<string>("--connection-operation-id", description: "The unique identifier of connectionOperation") {
             };
             connectionOperationIdOption.IsRequired = true;
             command.AddOption(connectionOperationIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.External.Connections.Item.Operations.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property operations in external";
             // Create options for all the parameters
-            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "key: id of externalConnection") {
+            var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
             command.AddOption(externalConnectionIdOption);
-            var connectionOperationIdOption = new Option<string>("--connection-operation-id", description: "key: id of connectionOperation") {
+            var connectionOperationIdOption = new Option<string>("--connection-operation-id", description: "The unique identifier of connectionOperation") {
             };
             connectionOperationIdOption.IsRequired = true;
             command.AddOption(connectionOperationIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.External.Connections.Item.Operations.Item {
                 });
                 if (externalConnectionId is not null) requestInfo.PathParameters.Add("externalConnection%2Did", externalConnectionId);
                 if (connectionOperationId is not null) requestInfo.PathParameters.Add("connectionOperation%2Did", connectionOperationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

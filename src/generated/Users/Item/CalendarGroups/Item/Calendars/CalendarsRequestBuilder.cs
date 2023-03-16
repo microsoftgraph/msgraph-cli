@@ -36,7 +36,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars {
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildEventsCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetScheduleCommand());
+            command.AddCommand(builder.BuildGetScheduleCommand());
             command.AddCommand(builder.BuildMultiValueExtendedPropertiesCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildSingleValueExtendedPropertiesCommand());
@@ -60,11 +60,11 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars {
             var command = new Command("create");
             command.Description = "Use this API to create a new calendar in a calendar group for a user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/calendargroup-post-calendars?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "key: id of calendarGroup") {
+            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "The unique identifier of calendarGroup") {
             };
             calendarGroupIdOption.IsRequired = true;
             command.AddOption(calendarGroupIdOption);
@@ -104,6 +104,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (calendarGroupId is not null) requestInfo.PathParameters.Add("calendarGroup%2Did", calendarGroupId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -124,11 +125,11 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars {
             var command = new Command("list");
             command.Description = "Retrieve a list of calendars belonging to a calendar group.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/calendargroup-list-calendars?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "key: id of calendarGroup") {
+            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "The unique identifier of calendarGroup") {
             };
             calendarGroupIdOption.IsRequired = true;
             command.AddOption(calendarGroupIdOption);

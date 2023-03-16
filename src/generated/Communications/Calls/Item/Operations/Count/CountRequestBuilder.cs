@@ -29,7 +29,7 @@ namespace ApiSdk.Communications.Calls.Item.Operations.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
+            var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
             command.AddOption(callIdOption);

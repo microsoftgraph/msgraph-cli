@@ -31,7 +31,7 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property simulationAutomations for security";
             // Create options for all the parameters
-            var simulationAutomationIdOption = new Option<string>("--simulation-automation-id", description: "key: id of simulationAutomation") {
+            var simulationAutomationIdOption = new Option<string>("--simulation-automation-id", description: "The unique identifier of simulationAutomation") {
             };
             simulationAutomationIdOption.IsRequired = true;
             command.AddOption(simulationAutomationIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item {
             var command = new Command("get");
             command.Description = "Represents simulation automation created to run on a tenant.";
             // Create options for all the parameters
-            var simulationAutomationIdOption = new Option<string>("--simulation-automation-id", description: "key: id of simulationAutomation") {
+            var simulationAutomationIdOption = new Option<string>("--simulation-automation-id", description: "The unique identifier of simulationAutomation") {
             };
             simulationAutomationIdOption.IsRequired = true;
             command.AddOption(simulationAutomationIdOption);
@@ -127,7 +127,7 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property simulationAutomations in security";
             // Create options for all the parameters
-            var simulationAutomationIdOption = new Option<string>("--simulation-automation-id", description: "key: id of simulationAutomation") {
+            var simulationAutomationIdOption = new Option<string>("--simulation-automation-id", description: "The unique identifier of simulationAutomation") {
             };
             simulationAutomationIdOption.IsRequired = true;
             command.AddOption(simulationAutomationIdOption);
@@ -165,6 +165,7 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (simulationAutomationId is not null) requestInfo.PathParameters.Add("simulationAutomation%2Did", simulationAutomationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

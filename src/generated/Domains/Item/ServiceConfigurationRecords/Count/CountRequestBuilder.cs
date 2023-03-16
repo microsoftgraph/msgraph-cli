@@ -29,7 +29,7 @@ namespace ApiSdk.Domains.Item.ServiceConfigurationRecords.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
+            var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
             command.AddOption(domainIdOption);

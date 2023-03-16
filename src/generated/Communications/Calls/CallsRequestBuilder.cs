@@ -1,6 +1,6 @@
 using ApiSdk.Communications.Calls.Count;
 using ApiSdk.Communications.Calls.Item;
-using ApiSdk.Communications.Calls.MicrosoftGraphLogTeleconferenceDeviceQuality;
+using ApiSdk.Communications.Calls.LogTeleconferenceDeviceQuality;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,27 +32,27 @@ namespace ApiSdk.Communications.Calls {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new CallItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAddLargeGalleryViewCommand());
+            command.AddCommand(builder.BuildAnswerCommand());
             command.AddCommand(builder.BuildAudioRoutingGroupsCommand());
+            command.AddCommand(builder.BuildCancelMediaProcessingCommand());
+            command.AddCommand(builder.BuildChangeScreenSharingRoleCommand());
             command.AddCommand(builder.BuildContentSharingSessionsCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAddLargeGalleryViewCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAnswerCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCancelMediaProcessingCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphChangeScreenSharingRoleCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphKeepAliveCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphMuteCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphPlayPromptCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRecordResponseCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRedirectCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRejectCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSubscribeToToneCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphTransferCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUnmuteCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUpdateRecordingStatusCommand());
+            command.AddCommand(builder.BuildKeepAliveCommand());
+            command.AddCommand(builder.BuildMuteCommand());
             command.AddCommand(builder.BuildOperationsCommand());
             command.AddCommand(builder.BuildParticipantsCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildPlayPromptCommand());
+            command.AddCommand(builder.BuildRecordResponseCommand());
+            command.AddCommand(builder.BuildRedirectCommand());
+            command.AddCommand(builder.BuildRejectCommand());
+            command.AddCommand(builder.BuildSubscribeToToneCommand());
+            command.AddCommand(builder.BuildTransferCommand());
+            command.AddCommand(builder.BuildUnmuteCommand());
+            command.AddCommand(builder.BuildUpdateRecordingStatusCommand());
             return command;
         }
         /// <summary>
@@ -105,6 +105,7 @@ namespace ApiSdk.Communications.Calls {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -225,10 +226,10 @@ namespace ApiSdk.Communications.Calls {
         /// <summary>
         /// Provides operations to call the logTeleconferenceDeviceQuality method.
         /// </summary>
-        public Command BuildMicrosoftGraphLogTeleconferenceDeviceQualityCommand() {
-            var command = new Command("microsoft-graph-log-teleconference-device-quality");
+        public Command BuildLogTeleconferenceDeviceQualityCommand() {
+            var command = new Command("log-teleconference-device-quality");
             command.Description = "Provides operations to call the logTeleconferenceDeviceQuality method.";
-            var builder = new MicrosoftGraphLogTeleconferenceDeviceQualityRequestBuilder(PathParameters);
+            var builder = new LogTeleconferenceDeviceQualityRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }

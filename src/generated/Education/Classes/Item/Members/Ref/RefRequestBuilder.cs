@@ -31,7 +31,7 @@ namespace ApiSdk.Education.Classes.Item.Members.Ref {
             var command = new Command("get");
             command.Description = "Retrieves the educationUser members of an educationClass.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationclass-list-members?view=graph-rest-1.0";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
@@ -128,7 +128,7 @@ namespace ApiSdk.Education.Classes.Item.Members.Ref {
             var command = new Command("post");
             command.Description = "Create new navigation property ref to members for education";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
@@ -148,6 +148,7 @@ namespace ApiSdk.Education.Classes.Item.Members.Ref {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (educationClassId is not null) requestInfo.PathParameters.Add("educationClass%2Did", educationClassId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

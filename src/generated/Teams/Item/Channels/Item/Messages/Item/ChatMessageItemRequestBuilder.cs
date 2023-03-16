@@ -1,9 +1,9 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Teams.Item.Channels.Item.Messages.Item.HostedContents;
-using ApiSdk.Teams.Item.Channels.Item.Messages.Item.MicrosoftGraphSoftDelete;
-using ApiSdk.Teams.Item.Channels.Item.Messages.Item.MicrosoftGraphUndoSoftDelete;
 using ApiSdk.Teams.Item.Channels.Item.Messages.Item.Replies;
+using ApiSdk.Teams.Item.Channels.Item.Messages.Item.SoftDelete;
+using ApiSdk.Teams.Item.Channels.Item.Messages.Item.UndoSoftDelete;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -34,15 +34,15 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property messages for teams";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var channelIdOption = new Option<string>("--channel-id", description: "key: id of channel") {
+            var channelIdOption = new Option<string>("--channel-id", description: "The unique identifier of channel") {
             };
             channelIdOption.IsRequired = true;
             command.AddOption(channelIdOption);
-            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "key: id of chatMessage") {
+            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "The unique identifier of chatMessage") {
             };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);
@@ -80,15 +80,15 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item {
             var command = new Command("get");
             command.Description = "A collection of all the messages in the channel. A navigation property. Nullable.";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var channelIdOption = new Option<string>("--channel-id", description: "key: id of channel") {
+            var channelIdOption = new Option<string>("--channel-id", description: "The unique identifier of channel") {
             };
             channelIdOption.IsRequired = true;
             command.AddOption(channelIdOption);
-            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "key: id of chatMessage") {
+            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "The unique identifier of chatMessage") {
             };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);
@@ -161,41 +161,21 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the softDelete method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSoftDeleteCommand() {
-            var command = new Command("microsoft-graph-soft-delete");
-            command.Description = "Provides operations to call the softDelete method.";
-            var builder = new MicrosoftGraphSoftDeleteRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the undoSoftDelete method.
-        /// </summary>
-        public Command BuildMicrosoftGraphUndoSoftDeleteCommand() {
-            var command = new Command("microsoft-graph-undo-soft-delete");
-            command.Description = "Provides operations to call the undoSoftDelete method.";
-            var builder = new MicrosoftGraphUndoSoftDeleteRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property messages in teams
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property messages in teams";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var channelIdOption = new Option<string>("--channel-id", description: "key: id of channel") {
+            var channelIdOption = new Option<string>("--channel-id", description: "The unique identifier of channel") {
             };
             channelIdOption.IsRequired = true;
             command.AddOption(channelIdOption);
-            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "key: id of chatMessage") {
+            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "The unique identifier of chatMessage") {
             };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);
@@ -237,6 +217,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item {
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
                 if (channelId is not null) requestInfo.PathParameters.Add("channel%2Did", channelId);
                 if (chatMessageId is not null) requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -259,8 +240,28 @@ namespace ApiSdk.Teams.Item.Channels.Item.Messages.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the softDelete method.
+        /// </summary>
+        public Command BuildSoftDeleteCommand() {
+            var command = new Command("soft-delete");
+            command.Description = "Provides operations to call the softDelete method.";
+            var builder = new SoftDeleteRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the undoSoftDelete method.
+        /// </summary>
+        public Command BuildUndoSoftDeleteCommand() {
+            var command = new Command("undo-soft-delete");
+            command.Description = "Provides operations to call the undoSoftDelete method.";
+            var builder = new UndoSoftDeleteRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

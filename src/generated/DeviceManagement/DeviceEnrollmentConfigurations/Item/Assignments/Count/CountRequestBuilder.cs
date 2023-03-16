@@ -29,7 +29,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assignment
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var deviceEnrollmentConfigurationIdOption = new Option<string>("--device-enrollment-configuration-id", description: "key: id of deviceEnrollmentConfiguration") {
+            var deviceEnrollmentConfigurationIdOption = new Option<string>("--device-enrollment-configuration-id", description: "The unique identifier of deviceEnrollmentConfiguration") {
             };
             deviceEnrollmentConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceEnrollmentConfigurationIdOption);

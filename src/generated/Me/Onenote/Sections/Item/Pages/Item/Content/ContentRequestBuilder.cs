@@ -29,11 +29,11 @@ namespace ApiSdk.Me.Onenote.Sections.Item.Pages.Item.Content {
             var command = new Command("get");
             command.Description = "The page's HTML content.";
             // Create options for all the parameters
-            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "key: id of onenoteSection") {
+            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "The unique identifier of onenoteSection") {
             };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
-            var onenotePageIdOption = new Option<string>("--onenote-page-id", description: "key: id of onenotePage") {
+            var onenotePageIdOption = new Option<string>("--onenote-page-id", description: "The unique identifier of onenotePage") {
             };
             onenotePageIdOption.IsRequired = true;
             command.AddOption(onenotePageIdOption);
@@ -74,11 +74,11 @@ namespace ApiSdk.Me.Onenote.Sections.Item.Pages.Item.Content {
             var command = new Command("put");
             command.Description = "The page's HTML content.";
             // Create options for all the parameters
-            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "key: id of onenoteSection") {
+            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "The unique identifier of onenoteSection") {
             };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
-            var onenotePageIdOption = new Option<string>("--onenote-page-id", description: "key: id of onenotePage") {
+            var onenotePageIdOption = new Option<string>("--onenote-page-id", description: "The unique identifier of onenotePage") {
             };
             onenotePageIdOption.IsRequired = true;
             command.AddOption(onenotePageIdOption);

@@ -52,7 +52,7 @@ namespace ApiSdk.Sites.Item.Drives {
             var command = new Command("list");
             command.Description = "Retrieve the list of Drive resources available for a target User, Group, or Site.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/drive-list?view=graph-rest-1.0";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);

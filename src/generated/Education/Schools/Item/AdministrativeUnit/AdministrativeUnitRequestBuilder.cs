@@ -31,7 +31,7 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit {
             var command = new Command("get");
             command.Description = "Get a list of **administrativeUnits** associated with an educationSchool object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationschool-list-administrativeunit?view=graph-rest-1.0";
             // Create options for all the parameters
-            var educationSchoolIdOption = new Option<string>("--education-school-id", description: "key: id of educationSchool") {
+            var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
             command.AddOption(educationSchoolIdOption);
@@ -93,7 +93,7 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit {
             var command = new Command("patch");
             command.Description = "Update the navigation property administrativeUnit in education";
             // Create options for all the parameters
-            var educationSchoolIdOption = new Option<string>("--education-school-id", description: "key: id of educationSchool") {
+            var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
             command.AddOption(educationSchoolIdOption);
@@ -131,6 +131,7 @@ namespace ApiSdk.Education.Schools.Item.AdministrativeUnit {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (educationSchoolId is not null) requestInfo.PathParameters.Add("educationSchool%2Did", educationSchoolId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

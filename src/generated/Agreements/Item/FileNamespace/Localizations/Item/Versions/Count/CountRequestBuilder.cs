@@ -29,11 +29,11 @@ namespace ApiSdk.Agreements.Item.FileNamespace.Localizations.Item.Versions.Count
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var agreementIdOption = new Option<string>("--agreement-id", description: "key: id of agreement") {
+            var agreementIdOption = new Option<string>("--agreement-id", description: "The unique identifier of agreement") {
             };
             agreementIdOption.IsRequired = true;
             command.AddOption(agreementIdOption);
-            var agreementFileLocalizationIdOption = new Option<string>("--agreement-file-localization-id", description: "key: id of agreementFileLocalization") {
+            var agreementFileLocalizationIdOption = new Option<string>("--agreement-file-localization-id", description: "The unique identifier of agreementFileLocalization") {
             };
             agreementFileLocalizationIdOption.IsRequired = true;
             command.AddOption(agreementFileLocalizationIdOption);

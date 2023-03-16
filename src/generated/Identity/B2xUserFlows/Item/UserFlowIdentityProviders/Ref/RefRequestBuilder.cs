@@ -30,7 +30,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders.Ref {
             var command = new Command("get");
             command.Description = "Get ref of userFlowIdentityProviders from identity";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
@@ -127,7 +127,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders.Ref {
             var command = new Command("post");
             command.Description = "Create new navigation property ref to userFlowIdentityProviders for identity";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
@@ -147,6 +147,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders.Ref {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (b2xIdentityUserFlowId is not null) requestInfo.PathParameters.Add("b2xIdentityUserFlow%2Did", b2xIdentityUserFlowId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

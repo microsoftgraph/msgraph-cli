@@ -1,6 +1,6 @@
 using ApiSdk.Chats.Item.Messages.Count;
+using ApiSdk.Chats.Item.Messages.Delta;
 using ApiSdk.Chats.Item.Messages.Item;
-using ApiSdk.Chats.Item.Messages.MicrosoftGraphDelta;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -35,10 +35,10 @@ namespace ApiSdk.Chats.Item.Messages {
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildHostedContentsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSoftDeleteCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUndoSoftDeleteCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildRepliesCommand());
+            command.AddCommand(builder.BuildSoftDeleteCommand());
+            command.AddCommand(builder.BuildUndoSoftDeleteCommand());
             return command;
         }
         /// <summary>
@@ -52,14 +52,14 @@ namespace ApiSdk.Chats.Item.Messages {
             return command;
         }
         /// <summary>
-        /// Send a new chatMessage in the specified chat. This API can&apos;t create a new chat; you must use the list chats method to retrieve the ID of an existing chat before you can create a chat message.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chat-post-messages?view=graph-rest-1.0" />
+        /// Send a new chatMessage in the specified channel or a chat.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chatmessage-post?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Send a new chatMessage in the specified chat. This API can't create a new chat; you must use the list chats method to retrieve the ID of an existing chat before you can create a chat message.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-post-messages?view=graph-rest-1.0";
+            command.Description = "Send a new chatMessage in the specified channel or a chat.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chatmessage-post?view=graph-rest-1.0";
             // Create options for all the parameters
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
@@ -97,6 +97,7 @@ namespace ApiSdk.Chats.Item.Messages {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (chatId is not null) requestInfo.PathParameters.Add("chat%2Did", chatId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -110,6 +111,16 @@ namespace ApiSdk.Chats.Item.Messages {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildDeltaCommand() {
+            var command = new Command("delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Retrieve the list of messages in a chat. This method supports federation. To list chat messages in application context, the request must be made from the tenant that the channel owner belongs to (represented by the **tenantId** property on the channel).
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/chat-list-messages?view=graph-rest-1.0" />
         /// </summary>
@@ -117,7 +128,7 @@ namespace ApiSdk.Chats.Item.Messages {
             var command = new Command("list");
             command.Description = "Retrieve the list of messages in a chat. This method supports federation. To list chat messages in application context, the request must be made from the tenant that the channel owner belongs to (represented by the **tenantId** property on the channel).\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-list-messages?view=graph-rest-1.0";
             // Create options for all the parameters
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
@@ -222,16 +233,6 @@ namespace ApiSdk.Chats.Item.Messages {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the delta method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDeltaCommand() {
-            var command = new Command("microsoft-graph-delta");
-            command.Description = "Provides operations to call the delta method.";
-            var builder = new MicrosoftGraphDeltaRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
         /// Instantiates a new MessagesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
@@ -268,7 +269,7 @@ namespace ApiSdk.Chats.Item.Messages {
             return requestInfo;
         }
         /// <summary>
-        /// Send a new chatMessage in the specified chat. This API can&apos;t create a new chat; you must use the list chats method to retrieve the ID of an existing chat before you can create a chat message.
+        /// Send a new chatMessage in the specified channel or a chat.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

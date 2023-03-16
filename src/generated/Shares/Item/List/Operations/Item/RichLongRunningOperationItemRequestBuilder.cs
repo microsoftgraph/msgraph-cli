@@ -30,11 +30,11 @@ namespace ApiSdk.Shares.Item.List.Operations.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property operations for shares";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
-            var richLongRunningOperationIdOption = new Option<string>("--rich-long-running-operation-id", description: "key: id of richLongRunningOperation") {
+            var richLongRunningOperationIdOption = new Option<string>("--rich-long-running-operation-id", description: "The unique identifier of richLongRunningOperation") {
             };
             richLongRunningOperationIdOption.IsRequired = true;
             command.AddOption(richLongRunningOperationIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Shares.Item.List.Operations.Item {
             var command = new Command("get");
             command.Description = "The collection of long-running operations on the list.";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
-            var richLongRunningOperationIdOption = new Option<string>("--rich-long-running-operation-id", description: "key: id of richLongRunningOperation") {
+            var richLongRunningOperationIdOption = new Option<string>("--rich-long-running-operation-id", description: "The unique identifier of richLongRunningOperation") {
             };
             richLongRunningOperationIdOption.IsRequired = true;
             command.AddOption(richLongRunningOperationIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Shares.Item.List.Operations.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property operations in shares";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
-            var richLongRunningOperationIdOption = new Option<string>("--rich-long-running-operation-id", description: "key: id of richLongRunningOperation") {
+            var richLongRunningOperationIdOption = new Option<string>("--rich-long-running-operation-id", description: "The unique identifier of richLongRunningOperation") {
             };
             richLongRunningOperationIdOption.IsRequired = true;
             command.AddOption(richLongRunningOperationIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Shares.Item.List.Operations.Item {
                 });
                 if (sharedDriveItemId is not null) requestInfo.PathParameters.Add("sharedDriveItem%2Did", sharedDriveItemId);
                 if (richLongRunningOperationId is not null) requestInfo.PathParameters.Add("richLongRunningOperation%2Did", richLongRunningOperationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

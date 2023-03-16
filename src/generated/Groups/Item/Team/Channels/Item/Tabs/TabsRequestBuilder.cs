@@ -54,11 +54,11 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Tabs {
             var command = new Command("create");
             command.Description = "Create new navigation property to tabs for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var channelIdOption = new Option<string>("--channel-id", description: "key: id of channel") {
+            var channelIdOption = new Option<string>("--channel-id", description: "The unique identifier of channel") {
             };
             channelIdOption.IsRequired = true;
             command.AddOption(channelIdOption);
@@ -98,6 +98,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Tabs {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (channelId is not null) requestInfo.PathParameters.Add("channel%2Did", channelId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -118,11 +119,11 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Tabs {
             var command = new Command("list");
             command.Description = "Retrieve the list of tabs in the specified channel within a team. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-list-tabs?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var channelIdOption = new Option<string>("--channel-id", description: "key: id of channel") {
+            var channelIdOption = new Option<string>("--channel-id", description: "The unique identifier of channel") {
             };
             channelIdOption.IsRequired = true;
             command.AddOption(channelIdOption);

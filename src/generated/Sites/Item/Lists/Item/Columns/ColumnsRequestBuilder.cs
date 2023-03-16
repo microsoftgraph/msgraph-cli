@@ -55,11 +55,11 @@ namespace ApiSdk.Sites.Item.Lists.Item.Columns {
             var command = new Command("create");
             command.Description = "Create a column for a [list][list] with a request that specifies a [columnDefinition][columnDefinition].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/list-post-columns?view=graph-rest-1.0";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            var listIdOption = new Option<string>("--list-id", description: "The unique identifier of list") {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
@@ -99,6 +99,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Columns {
                 });
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
                 if (listId is not null) requestInfo.PathParameters.Add("list%2Did", listId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -119,11 +120,11 @@ namespace ApiSdk.Sites.Item.Lists.Item.Columns {
             var command = new Command("list");
             command.Description = "Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [list][list].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/list-list-columns?view=graph-rest-1.0";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            var listIdOption = new Option<string>("--list-id", description: "The unique identifier of list") {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);

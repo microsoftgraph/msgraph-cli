@@ -30,7 +30,7 @@ namespace ApiSdk.AgreementAcceptances.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from agreementAcceptances";
             // Create options for all the parameters
-            var agreementAcceptanceIdOption = new Option<string>("--agreement-acceptance-id", description: "key: id of agreementAcceptance") {
+            var agreementAcceptanceIdOption = new Option<string>("--agreement-acceptance-id", description: "The unique identifier of agreementAcceptance") {
             };
             agreementAcceptanceIdOption.IsRequired = true;
             command.AddOption(agreementAcceptanceIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.AgreementAcceptances.Item {
             var command = new Command("get");
             command.Description = "Get entity from agreementAcceptances by key";
             // Create options for all the parameters
-            var agreementAcceptanceIdOption = new Option<string>("--agreement-acceptance-id", description: "key: id of agreementAcceptance") {
+            var agreementAcceptanceIdOption = new Option<string>("--agreement-acceptance-id", description: "The unique identifier of agreementAcceptance") {
             };
             agreementAcceptanceIdOption.IsRequired = true;
             command.AddOption(agreementAcceptanceIdOption);
@@ -119,7 +119,7 @@ namespace ApiSdk.AgreementAcceptances.Item {
             var command = new Command("patch");
             command.Description = "Update entity in agreementAcceptances";
             // Create options for all the parameters
-            var agreementAcceptanceIdOption = new Option<string>("--agreement-acceptance-id", description: "key: id of agreementAcceptance") {
+            var agreementAcceptanceIdOption = new Option<string>("--agreement-acceptance-id", description: "The unique identifier of agreementAcceptance") {
             };
             agreementAcceptanceIdOption.IsRequired = true;
             command.AddOption(agreementAcceptanceIdOption);
@@ -157,6 +157,7 @@ namespace ApiSdk.AgreementAcceptances.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (agreementAcceptanceId is not null) requestInfo.PathParameters.Add("agreementAcceptance%2Did", agreementAcceptanceId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

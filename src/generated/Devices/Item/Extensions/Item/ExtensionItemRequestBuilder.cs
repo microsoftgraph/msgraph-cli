@@ -30,11 +30,11 @@ namespace ApiSdk.Devices.Item.Extensions.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property extensions for devices";
             // Create options for all the parameters
-            var deviceIdOption = new Option<string>("--device-id", description: "key: id of device") {
+            var deviceIdOption = new Option<string>("--device-id", description: "The unique identifier of device") {
             };
             deviceIdOption.IsRequired = true;
             command.AddOption(deviceIdOption);
-            var extensionIdOption = new Option<string>("--extension-id", description: "key: id of extension") {
+            var extensionIdOption = new Option<string>("--extension-id", description: "The unique identifier of extension") {
             };
             extensionIdOption.IsRequired = true;
             command.AddOption(extensionIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Devices.Item.Extensions.Item {
             var command = new Command("get");
             command.Description = "The collection of open extensions defined for the device. Read-only. Nullable.";
             // Create options for all the parameters
-            var deviceIdOption = new Option<string>("--device-id", description: "key: id of device") {
+            var deviceIdOption = new Option<string>("--device-id", description: "The unique identifier of device") {
             };
             deviceIdOption.IsRequired = true;
             command.AddOption(deviceIdOption);
-            var extensionIdOption = new Option<string>("--extension-id", description: "key: id of extension") {
+            var extensionIdOption = new Option<string>("--extension-id", description: "The unique identifier of extension") {
             };
             extensionIdOption.IsRequired = true;
             command.AddOption(extensionIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Devices.Item.Extensions.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property extensions in devices";
             // Create options for all the parameters
-            var deviceIdOption = new Option<string>("--device-id", description: "key: id of device") {
+            var deviceIdOption = new Option<string>("--device-id", description: "The unique identifier of device") {
             };
             deviceIdOption.IsRequired = true;
             command.AddOption(deviceIdOption);
-            var extensionIdOption = new Option<string>("--extension-id", description: "key: id of extension") {
+            var extensionIdOption = new Option<string>("--extension-id", description: "The unique identifier of extension") {
             };
             extensionIdOption.IsRequired = true;
             command.AddOption(extensionIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Devices.Item.Extensions.Item {
                 });
                 if (deviceId is not null) requestInfo.PathParameters.Add("device%2Did", deviceId);
                 if (extensionId is not null) requestInfo.PathParameters.Add("extension%2Did", extensionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

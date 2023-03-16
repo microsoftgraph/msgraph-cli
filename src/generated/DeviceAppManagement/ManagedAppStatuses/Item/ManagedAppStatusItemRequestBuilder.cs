@@ -30,7 +30,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property managedAppStatuses for deviceAppManagement";
             // Create options for all the parameters
-            var managedAppStatusIdOption = new Option<string>("--managed-app-status-id", description: "key: id of managedAppStatus") {
+            var managedAppStatusIdOption = new Option<string>("--managed-app-status-id", description: "The unique identifier of managedAppStatus") {
             };
             managedAppStatusIdOption.IsRequired = true;
             command.AddOption(managedAppStatusIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses.Item {
             var command = new Command("get");
             command.Description = "The managed app statuses.";
             // Create options for all the parameters
-            var managedAppStatusIdOption = new Option<string>("--managed-app-status-id", description: "key: id of managedAppStatus") {
+            var managedAppStatusIdOption = new Option<string>("--managed-app-status-id", description: "The unique identifier of managedAppStatus") {
             };
             managedAppStatusIdOption.IsRequired = true;
             command.AddOption(managedAppStatusIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property managedAppStatuses in deviceAppManagement";
             // Create options for all the parameters
-            var managedAppStatusIdOption = new Option<string>("--managed-app-status-id", description: "key: id of managedAppStatus") {
+            var managedAppStatusIdOption = new Option<string>("--managed-app-status-id", description: "The unique identifier of managedAppStatus") {
             };
             managedAppStatusIdOption.IsRequired = true;
             command.AddOption(managedAppStatusIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (managedAppStatusId is not null) requestInfo.PathParameters.Add("managedAppStatus%2Did", managedAppStatusId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

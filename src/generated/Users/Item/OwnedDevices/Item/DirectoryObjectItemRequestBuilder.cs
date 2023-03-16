@@ -1,8 +1,8 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.Users.Item.OwnedDevices.Item.MicrosoftGraphAppRoleAssignment;
-using ApiSdk.Users.Item.OwnedDevices.Item.MicrosoftGraphDevice;
-using ApiSdk.Users.Item.OwnedDevices.Item.MicrosoftGraphEndpoint;
+using ApiSdk.Users.Item.OwnedDevices.Item.GraphAppRoleAssignment;
+using ApiSdk.Users.Item.OwnedDevices.Item.GraphDevice;
+using ApiSdk.Users.Item.OwnedDevices.Item.GraphEndpoint;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -33,11 +33,11 @@ namespace ApiSdk.Users.Item.OwnedDevices.Item {
             var command = new Command("get");
             command.Description = "Devices that are owned by the user. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "key: id of directoryObject") {
+            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "The unique identifier of directoryObject") {
             };
             directoryObjectIdOption.IsRequired = true;
             command.AddOption(directoryObjectIdOption);
@@ -104,30 +104,30 @@ namespace ApiSdk.Users.Item.OwnedDevices.Item {
         /// <summary>
         /// Casts the previous resource to appRoleAssignment.
         /// </summary>
-        public Command BuildMicrosoftGraphAppRoleAssignmentCommand() {
-            var command = new Command("microsoft-graph-app-role-assignment");
+        public Command BuildGraphAppRoleAssignmentCommand() {
+            var command = new Command("graph-app-role-assignment");
             command.Description = "Casts the previous resource to appRoleAssignment.";
-            var builder = new MicrosoftGraphAppRoleAssignmentRequestBuilder(PathParameters);
+            var builder = new GraphAppRoleAssignmentRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Casts the previous resource to device.
         /// </summary>
-        public Command BuildMicrosoftGraphDeviceCommand() {
-            var command = new Command("microsoft-graph-device");
+        public Command BuildGraphDeviceCommand() {
+            var command = new Command("graph-device");
             command.Description = "Casts the previous resource to device.";
-            var builder = new MicrosoftGraphDeviceRequestBuilder(PathParameters);
+            var builder = new GraphDeviceRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Casts the previous resource to endpoint.
         /// </summary>
-        public Command BuildMicrosoftGraphEndpointCommand() {
-            var command = new Command("microsoft-graph-endpoint");
+        public Command BuildGraphEndpointCommand() {
+            var command = new Command("graph-endpoint");
             command.Description = "Casts the previous resource to endpoint.";
-            var builder = new MicrosoftGraphEndpointRequestBuilder(PathParameters);
+            var builder = new GraphEndpointRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }

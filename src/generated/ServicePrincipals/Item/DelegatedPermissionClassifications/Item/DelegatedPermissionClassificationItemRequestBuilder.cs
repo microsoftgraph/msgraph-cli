@@ -30,11 +30,11 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.Item 
             var command = new Command("delete");
             command.Description = "Delete navigation property delegatedPermissionClassifications for servicePrincipals";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
+            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
-            var delegatedPermissionClassificationIdOption = new Option<string>("--delegated-permission-classification-id", description: "key: id of delegatedPermissionClassification") {
+            var delegatedPermissionClassificationIdOption = new Option<string>("--delegated-permission-classification-id", description: "The unique identifier of delegatedPermissionClassification") {
             };
             delegatedPermissionClassificationIdOption.IsRequired = true;
             command.AddOption(delegatedPermissionClassificationIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.Item 
             var command = new Command("get");
             command.Description = "Get delegatedPermissionClassifications from servicePrincipals";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
+            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
-            var delegatedPermissionClassificationIdOption = new Option<string>("--delegated-permission-classification-id", description: "key: id of delegatedPermissionClassification") {
+            var delegatedPermissionClassificationIdOption = new Option<string>("--delegated-permission-classification-id", description: "The unique identifier of delegatedPermissionClassification") {
             };
             delegatedPermissionClassificationIdOption.IsRequired = true;
             command.AddOption(delegatedPermissionClassificationIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.Item 
             var command = new Command("patch");
             command.Description = "Update the navigation property delegatedPermissionClassifications in servicePrincipals";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
+            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
-            var delegatedPermissionClassificationIdOption = new Option<string>("--delegated-permission-classification-id", description: "key: id of delegatedPermissionClassification") {
+            var delegatedPermissionClassificationIdOption = new Option<string>("--delegated-permission-classification-id", description: "The unique identifier of delegatedPermissionClassification") {
             };
             delegatedPermissionClassificationIdOption.IsRequired = true;
             command.AddOption(delegatedPermissionClassificationIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.Item 
                 });
                 if (servicePrincipalId is not null) requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
                 if (delegatedPermissionClassificationId is not null) requestInfo.PathParameters.Add("delegatedPermissionClassification%2Did", delegatedPermissionClassificationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

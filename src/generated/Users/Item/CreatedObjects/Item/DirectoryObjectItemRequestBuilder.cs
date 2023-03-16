@@ -1,6 +1,6 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.Users.Item.CreatedObjects.Item.MicrosoftGraphServicePrincipal;
+using ApiSdk.Users.Item.CreatedObjects.Item.GraphServicePrincipal;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -31,11 +31,11 @@ namespace ApiSdk.Users.Item.CreatedObjects.Item {
             var command = new Command("get");
             command.Description = "Directory objects that were created by the user. Read-only. Nullable.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "key: id of directoryObject") {
+            var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "The unique identifier of directoryObject") {
             };
             directoryObjectIdOption.IsRequired = true;
             command.AddOption(directoryObjectIdOption);
@@ -95,10 +95,10 @@ namespace ApiSdk.Users.Item.CreatedObjects.Item {
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        public Command BuildMicrosoftGraphServicePrincipalCommand() {
-            var command = new Command("microsoft-graph-service-principal");
+        public Command BuildGraphServicePrincipalCommand() {
+            var command = new Command("graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
-            var builder = new MicrosoftGraphServicePrincipalRequestBuilder(PathParameters);
+            var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }

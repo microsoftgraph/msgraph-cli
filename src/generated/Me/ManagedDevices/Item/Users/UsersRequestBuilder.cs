@@ -30,7 +30,7 @@ namespace ApiSdk.Me.ManagedDevices.Item.Users {
             var command = new Command("get");
             command.Description = "The primary users associated with the managed device.";
             // Create options for all the parameters
-            var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "key: id of managedDevice") {
+            var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "The unique identifier of managedDevice") {
             };
             managedDeviceIdOption.IsRequired = true;
             command.AddOption(managedDeviceIdOption);

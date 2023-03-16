@@ -53,11 +53,11 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             var command = new Command("create");
             command.Description = "Create new navigation property to stages for identityGovernance";
             // Create options for all the parameters
-            var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "key: id of appConsentRequest") {
+            var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "The unique identifier of appConsentRequest") {
             };
             appConsentRequestIdOption.IsRequired = true;
             command.AddOption(appConsentRequestIdOption);
-            var userConsentRequestIdOption = new Option<string>("--user-consent-request-id", description: "key: id of userConsentRequest") {
+            var userConsentRequestIdOption = new Option<string>("--user-consent-request-id", description: "The unique identifier of userConsentRequest") {
             };
             userConsentRequestIdOption.IsRequired = true;
             command.AddOption(userConsentRequestIdOption);
@@ -97,6 +97,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
                 });
                 if (appConsentRequestId is not null) requestInfo.PathParameters.Add("appConsentRequest%2Did", appConsentRequestId);
                 if (userConsentRequestId is not null) requestInfo.PathParameters.Add("userConsentRequest%2Did", userConsentRequestId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -117,11 +118,11 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             var command = new Command("list");
             command.Description = "In Azure AD entitlement management, list the approvalStage objects associated with an approval object. This call can be made by an approver, providing the identifier of the access package assignment request.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/approval-list-stages?view=graph-rest-1.0";
             // Create options for all the parameters
-            var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "key: id of appConsentRequest") {
+            var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "The unique identifier of appConsentRequest") {
             };
             appConsentRequestIdOption.IsRequired = true;
             command.AddOption(appConsentRequestIdOption);
-            var userConsentRequestIdOption = new Option<string>("--user-consent-request-id", description: "key: id of userConsentRequest") {
+            var userConsentRequestIdOption = new Option<string>("--user-consent-request-id", description: "The unique identifier of userConsentRequest") {
             };
             userConsentRequestIdOption.IsRequired = true;
             command.AddOption(userConsentRequestIdOption);

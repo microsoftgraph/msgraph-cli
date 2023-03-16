@@ -30,7 +30,7 @@ namespace ApiSdk.Me.People.Item {
             var command = new Command("get");
             command.Description = "People that are relevant to the user. Read-only. Nullable.";
             // Create options for all the parameters
-            var personIdOption = new Option<string>("--person-id", description: "key: id of person") {
+            var personIdOption = new Option<string>("--person-id", description: "The unique identifier of person") {
             };
             personIdOption.IsRequired = true;
             command.AddOption(personIdOption);

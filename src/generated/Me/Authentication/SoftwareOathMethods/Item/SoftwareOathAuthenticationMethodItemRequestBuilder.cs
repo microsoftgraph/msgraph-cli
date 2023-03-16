@@ -30,7 +30,7 @@ namespace ApiSdk.Me.Authentication.SoftwareOathMethods.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property softwareOathMethods for me";
             // Create options for all the parameters
-            var softwareOathAuthenticationMethodIdOption = new Option<string>("--software-oath-authentication-method-id", description: "key: id of softwareOathAuthenticationMethod") {
+            var softwareOathAuthenticationMethodIdOption = new Option<string>("--software-oath-authentication-method-id", description: "The unique identifier of softwareOathAuthenticationMethod") {
             };
             softwareOathAuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(softwareOathAuthenticationMethodIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Me.Authentication.SoftwareOathMethods.Item {
             var command = new Command("get");
             command.Description = "The software OATH TOTP applications registered to a user for authentication.";
             // Create options for all the parameters
-            var softwareOathAuthenticationMethodIdOption = new Option<string>("--software-oath-authentication-method-id", description: "key: id of softwareOathAuthenticationMethod") {
+            var softwareOathAuthenticationMethodIdOption = new Option<string>("--software-oath-authentication-method-id", description: "The unique identifier of softwareOathAuthenticationMethod") {
             };
             softwareOathAuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(softwareOathAuthenticationMethodIdOption);

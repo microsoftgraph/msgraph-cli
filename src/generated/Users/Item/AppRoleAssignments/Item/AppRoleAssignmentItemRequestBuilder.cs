@@ -30,11 +30,11 @@ namespace ApiSdk.Users.Item.AppRoleAssignments.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property appRoleAssignments for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var appRoleAssignmentIdOption = new Option<string>("--app-role-assignment-id", description: "key: id of appRoleAssignment") {
+            var appRoleAssignmentIdOption = new Option<string>("--app-role-assignment-id", description: "The unique identifier of appRoleAssignment") {
             };
             appRoleAssignmentIdOption.IsRequired = true;
             command.AddOption(appRoleAssignmentIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Users.Item.AppRoleAssignments.Item {
             var command = new Command("get");
             command.Description = "Represents the app roles a user has been granted for an application. Supports $expand.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var appRoleAssignmentIdOption = new Option<string>("--app-role-assignment-id", description: "key: id of appRoleAssignment") {
+            var appRoleAssignmentIdOption = new Option<string>("--app-role-assignment-id", description: "The unique identifier of appRoleAssignment") {
             };
             appRoleAssignmentIdOption.IsRequired = true;
             command.AddOption(appRoleAssignmentIdOption);
@@ -145,11 +145,11 @@ namespace ApiSdk.Users.Item.AppRoleAssignments.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property appRoleAssignments in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var appRoleAssignmentIdOption = new Option<string>("--app-role-assignment-id", description: "key: id of appRoleAssignment") {
+            var appRoleAssignmentIdOption = new Option<string>("--app-role-assignment-id", description: "The unique identifier of appRoleAssignment") {
             };
             appRoleAssignmentIdOption.IsRequired = true;
             command.AddOption(appRoleAssignmentIdOption);
@@ -189,6 +189,7 @@ namespace ApiSdk.Users.Item.AppRoleAssignments.Item {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (appRoleAssignmentId is not null) requestInfo.PathParameters.Add("appRoleAssignment%2Did", appRoleAssignmentId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

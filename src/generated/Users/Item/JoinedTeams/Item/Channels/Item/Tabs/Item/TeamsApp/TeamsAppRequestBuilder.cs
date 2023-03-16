@@ -30,19 +30,19 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Tabs.Item.TeamsApp {
             var command = new Command("get");
             command.Description = "The application that is linked to the tab. This cannot be changed after tab creation.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var channelIdOption = new Option<string>("--channel-id", description: "key: id of channel") {
+            var channelIdOption = new Option<string>("--channel-id", description: "The unique identifier of channel") {
             };
             channelIdOption.IsRequired = true;
             command.AddOption(channelIdOption);
-            var teamsTabIdOption = new Option<string>("--teams-tab-id", description: "key: id of teamsTab") {
+            var teamsTabIdOption = new Option<string>("--teams-tab-id", description: "The unique identifier of teamsTab") {
             };
             teamsTabIdOption.IsRequired = true;
             command.AddOption(teamsTabIdOption);

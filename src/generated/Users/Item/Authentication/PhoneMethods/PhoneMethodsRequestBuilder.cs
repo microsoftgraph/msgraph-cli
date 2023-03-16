@@ -32,9 +32,9 @@ namespace ApiSdk.Users.Item.Authentication.PhoneMethods {
             var command = new Command("item");
             var builder = new PhoneAuthenticationMethodItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildDisableSmsSignInCommand());
+            command.AddCommand(builder.BuildEnableSmsSignInCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDisableSmsSignInCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphEnableSmsSignInCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
@@ -56,7 +56,7 @@ namespace ApiSdk.Users.Item.Authentication.PhoneMethods {
             var command = new Command("create");
             command.Description = "Add a new phone authentication method for a user. A user may only have one phone of each type, captured in the **phoneType** property. This means, for example, adding a `mobile` phone to a user with a preexisting `mobile` phone will fail. Additionally, a user must always have a `mobile` phone before adding an `alternateMobile` phone. Adding a phone number makes it available for use in both Azure multi-factor authentication (MFA) and self-service password reset (SSPR), if enabled. Additionally, if a user is enabled by policy to use SMS sign-in and a `mobile` number is added, the system will attempt to register the number for use in that system.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/authentication-post-phonemethods?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -94,6 +94,7 @@ namespace ApiSdk.Users.Item.Authentication.PhoneMethods {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -114,7 +115,7 @@ namespace ApiSdk.Users.Item.Authentication.PhoneMethods {
             var command = new Command("list");
             command.Description = "Retrieve a list of phone authentication method objects for a user. This will return up to three objects, as a user can have up to three phones usable for authentication. This method is available only for standard Azure AD and B2B users, but not B2C users.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/authentication-list-phonemethods?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

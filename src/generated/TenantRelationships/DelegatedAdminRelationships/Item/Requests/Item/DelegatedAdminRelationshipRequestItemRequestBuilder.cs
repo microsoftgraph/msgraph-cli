@@ -30,11 +30,11 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests.I
             var command = new Command("delete");
             command.Description = "Delete navigation property requests for tenantRelationships";
             // Create options for all the parameters
-            var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "key: id of delegatedAdminRelationship") {
+            var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "The unique identifier of delegatedAdminRelationship") {
             };
             delegatedAdminRelationshipIdOption.IsRequired = true;
             command.AddOption(delegatedAdminRelationshipIdOption);
-            var delegatedAdminRelationshipRequestIdOption = new Option<string>("--delegated-admin-relationship-request-id", description: "key: id of delegatedAdminRelationshipRequest") {
+            var delegatedAdminRelationshipRequestIdOption = new Option<string>("--delegated-admin-relationship-request-id", description: "The unique identifier of delegatedAdminRelationshipRequest") {
             };
             delegatedAdminRelationshipRequestIdOption.IsRequired = true;
             command.AddOption(delegatedAdminRelationshipRequestIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests.I
             var command = new Command("get");
             command.Description = "The requests associated with the delegated admin relationship.";
             // Create options for all the parameters
-            var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "key: id of delegatedAdminRelationship") {
+            var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "The unique identifier of delegatedAdminRelationship") {
             };
             delegatedAdminRelationshipIdOption.IsRequired = true;
             command.AddOption(delegatedAdminRelationshipIdOption);
-            var delegatedAdminRelationshipRequestIdOption = new Option<string>("--delegated-admin-relationship-request-id", description: "key: id of delegatedAdminRelationshipRequest") {
+            var delegatedAdminRelationshipRequestIdOption = new Option<string>("--delegated-admin-relationship-request-id", description: "The unique identifier of delegatedAdminRelationshipRequest") {
             };
             delegatedAdminRelationshipRequestIdOption.IsRequired = true;
             command.AddOption(delegatedAdminRelationshipRequestIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests.I
             var command = new Command("patch");
             command.Description = "Update the navigation property requests in tenantRelationships";
             // Create options for all the parameters
-            var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "key: id of delegatedAdminRelationship") {
+            var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "The unique identifier of delegatedAdminRelationship") {
             };
             delegatedAdminRelationshipIdOption.IsRequired = true;
             command.AddOption(delegatedAdminRelationshipIdOption);
-            var delegatedAdminRelationshipRequestIdOption = new Option<string>("--delegated-admin-relationship-request-id", description: "key: id of delegatedAdminRelationshipRequest") {
+            var delegatedAdminRelationshipRequestIdOption = new Option<string>("--delegated-admin-relationship-request-id", description: "The unique identifier of delegatedAdminRelationshipRequest") {
             };
             delegatedAdminRelationshipRequestIdOption.IsRequired = true;
             command.AddOption(delegatedAdminRelationshipRequestIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests.I
                 });
                 if (delegatedAdminRelationshipId is not null) requestInfo.PathParameters.Add("delegatedAdminRelationship%2Did", delegatedAdminRelationshipId);
                 if (delegatedAdminRelationshipRequestId is not null) requestInfo.PathParameters.Add("delegatedAdminRelationshipRequest%2Did", delegatedAdminRelationshipRequestId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

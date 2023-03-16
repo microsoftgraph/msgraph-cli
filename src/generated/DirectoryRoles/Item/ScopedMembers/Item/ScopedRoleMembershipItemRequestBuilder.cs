@@ -30,11 +30,11 @@ namespace ApiSdk.DirectoryRoles.Item.ScopedMembers.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property scopedMembers for directoryRoles";
             // Create options for all the parameters
-            var directoryRoleIdOption = new Option<string>("--directory-role-id", description: "key: id of directoryRole") {
+            var directoryRoleIdOption = new Option<string>("--directory-role-id", description: "The unique identifier of directoryRole") {
             };
             directoryRoleIdOption.IsRequired = true;
             command.AddOption(directoryRoleIdOption);
-            var scopedRoleMembershipIdOption = new Option<string>("--scoped-role-membership-id", description: "key: id of scopedRoleMembership") {
+            var scopedRoleMembershipIdOption = new Option<string>("--scoped-role-membership-id", description: "The unique identifier of scopedRoleMembership") {
             };
             scopedRoleMembershipIdOption.IsRequired = true;
             command.AddOption(scopedRoleMembershipIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.DirectoryRoles.Item.ScopedMembers.Item {
             var command = new Command("get");
             command.Description = "Members of this directory role that are scoped to administrative units. Read-only. Nullable.";
             // Create options for all the parameters
-            var directoryRoleIdOption = new Option<string>("--directory-role-id", description: "key: id of directoryRole") {
+            var directoryRoleIdOption = new Option<string>("--directory-role-id", description: "The unique identifier of directoryRole") {
             };
             directoryRoleIdOption.IsRequired = true;
             command.AddOption(directoryRoleIdOption);
-            var scopedRoleMembershipIdOption = new Option<string>("--scoped-role-membership-id", description: "key: id of scopedRoleMembership") {
+            var scopedRoleMembershipIdOption = new Option<string>("--scoped-role-membership-id", description: "The unique identifier of scopedRoleMembership") {
             };
             scopedRoleMembershipIdOption.IsRequired = true;
             command.AddOption(scopedRoleMembershipIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.DirectoryRoles.Item.ScopedMembers.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property scopedMembers in directoryRoles";
             // Create options for all the parameters
-            var directoryRoleIdOption = new Option<string>("--directory-role-id", description: "key: id of directoryRole") {
+            var directoryRoleIdOption = new Option<string>("--directory-role-id", description: "The unique identifier of directoryRole") {
             };
             directoryRoleIdOption.IsRequired = true;
             command.AddOption(directoryRoleIdOption);
-            var scopedRoleMembershipIdOption = new Option<string>("--scoped-role-membership-id", description: "key: id of scopedRoleMembership") {
+            var scopedRoleMembershipIdOption = new Option<string>("--scoped-role-membership-id", description: "The unique identifier of scopedRoleMembership") {
             };
             scopedRoleMembershipIdOption.IsRequired = true;
             command.AddOption(scopedRoleMembershipIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.DirectoryRoles.Item.ScopedMembers.Item {
                 });
                 if (directoryRoleId is not null) requestInfo.PathParameters.Add("directoryRole%2Did", directoryRoleId);
                 if (scopedRoleMembershipId is not null) requestInfo.PathParameters.Add("scopedRoleMembership%2Did", scopedRoleMembershipId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

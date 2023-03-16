@@ -29,11 +29,11 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers.Item.Ref {
             var command = new Command("delete");
             command.Description = "Delete ref of navigation property allowedUsers for print";
             // Create options for all the parameters
-            var printerShareIdOption = new Option<string>("--printer-share-id", description: "key: id of printerShare") {
+            var printerShareIdOption = new Option<string>("--printer-share-id", description: "The unique identifier of printerShare") {
             };
             printerShareIdOption.IsRequired = true;
             command.AddOption(printerShareIdOption);
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

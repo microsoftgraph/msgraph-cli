@@ -1,6 +1,6 @@
 using ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Count;
+using ApiSdk.DeviceAppManagement.ManagedAppRegistrations.GetUserIdsWithFlaggedAppRegistration;
 using ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item;
-using ApiSdk.DeviceAppManagement.ManagedAppRegistrations.MicrosoftGraphGetUserIdsWithFlaggedAppRegistration;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -89,6 +89,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -99,6 +100,16 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getUserIdsWithFlaggedAppRegistration method.
+        /// </summary>
+        public Command BuildGetUserIdsWithFlaggedAppRegistrationCommand() {
+            var command = new Command("get-user-ids-with-flagged-app-registration");
+            command.Description = "Provides operations to call the getUserIdsWithFlaggedAppRegistration method.";
+            var builder = new GetUserIdsWithFlaggedAppRegistrationRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -204,16 +215,6 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getUserIdsWithFlaggedAppRegistration method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetUserIdsWithFlaggedAppRegistrationCommand() {
-            var command = new Command("microsoft-graph-get-user-ids-with-flagged-app-registration");
-            command.Description = "Provides operations to call the getUserIdsWithFlaggedAppRegistration method.";
-            var builder = new MicrosoftGraphGetUserIdsWithFlaggedAppRegistrationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

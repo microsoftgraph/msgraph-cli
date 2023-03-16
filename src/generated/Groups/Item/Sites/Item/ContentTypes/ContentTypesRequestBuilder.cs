@@ -1,8 +1,8 @@
+using ApiSdk.Groups.Item.Sites.Item.ContentTypes.AddCopy;
+using ApiSdk.Groups.Item.Sites.Item.ContentTypes.AddCopyFromContentTypeHub;
 using ApiSdk.Groups.Item.Sites.Item.ContentTypes.Count;
+using ApiSdk.Groups.Item.Sites.Item.ContentTypes.GetCompatibleHubContentTypes;
 using ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item;
-using ApiSdk.Groups.Item.Sites.Item.ContentTypes.MicrosoftGraphAddCopy;
-using ApiSdk.Groups.Item.Sites.Item.ContentTypes.MicrosoftGraphAddCopyFromContentTypeHub;
-using ApiSdk.Groups.Item.Sites.Item.ContentTypes.MicrosoftGraphGetCompatibleHubContentTypes;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,24 +29,44 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the addCopy method.
+        /// </summary>
+        public Command BuildAddCopyCommand() {
+            var command = new Command("add-copy");
+            command.Description = "Provides operations to call the addCopy method.";
+            var builder = new AddCopyRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the addCopyFromContentTypeHub method.
+        /// </summary>
+        public Command BuildAddCopyFromContentTypeHubCommand() {
+            var command = new Command("add-copy-from-content-type-hub");
+            command.Description = "Provides operations to call the addCopyFromContentTypeHub method.";
+            var builder = new AddCopyFromContentTypeHubRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the contentTypes property of the microsoft.graph.site entity.
         /// </summary>
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new ContentTypeItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAssociateWithHubSitesCommand());
             command.AddCommand(builder.BuildBaseCommand());
             command.AddCommand(builder.BuildBaseTypesCommand());
             command.AddCommand(builder.BuildColumnLinksCommand());
             command.AddCommand(builder.BuildColumnPositionsCommand());
             command.AddCommand(builder.BuildColumnsCommand());
+            command.AddCommand(builder.BuildCopyToDefaultContentLocationCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAssociateWithHubSitesCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCopyToDefaultContentLocationCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphIsPublishedCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphPublishCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUnpublishCommand());
+            command.AddCommand(builder.BuildIsPublishedCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildPublishCommand());
+            command.AddCommand(builder.BuildUnpublishCommand());
             return command;
         }
         /// <summary>
@@ -67,11 +87,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes {
             var command = new Command("create");
             command.Description = "Create a new [contentType][] in a [site][].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/site-post-contenttypes?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
@@ -111,6 +131,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -124,6 +145,16 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the getCompatibleHubContentTypes method.
+        /// </summary>
+        public Command BuildGetCompatibleHubContentTypesCommand() {
+            var command = new Command("get-compatible-hub-content-types");
+            command.Description = "Provides operations to call the getCompatibleHubContentTypes method.";
+            var builder = new GetCompatibleHubContentTypesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Get the collection of [contentType][contentType] resources in a [site][].
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/site-list-contenttypes?view=graph-rest-1.0" />
         /// </summary>
@@ -131,11 +162,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes {
             var command = new Command("list");
             command.Description = "Get the collection of [contentType][contentType] resources in a [site][].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/site-list-contenttypes?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
@@ -239,36 +270,6 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the addCopy method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAddCopyCommand() {
-            var command = new Command("microsoft-graph-add-copy");
-            command.Description = "Provides operations to call the addCopy method.";
-            var builder = new MicrosoftGraphAddCopyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the addCopyFromContentTypeHub method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAddCopyFromContentTypeHubCommand() {
-            var command = new Command("microsoft-graph-add-copy-from-content-type-hub");
-            command.Description = "Provides operations to call the addCopyFromContentTypeHub method.";
-            var builder = new MicrosoftGraphAddCopyFromContentTypeHubRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getCompatibleHubContentTypes method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetCompatibleHubContentTypesCommand() {
-            var command = new Command("microsoft-graph-get-compatible-hub-content-types");
-            command.Description = "Provides operations to call the getCompatibleHubContentTypes method.";
-            var builder = new MicrosoftGraphGetCompatibleHubContentTypesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

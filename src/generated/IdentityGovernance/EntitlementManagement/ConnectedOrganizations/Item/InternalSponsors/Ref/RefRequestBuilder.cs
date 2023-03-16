@@ -31,7 +31,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             var command = new Command("get");
             command.Description = "Retrieve a list of a connectedOrganization's internal sponsors.  The internal sponsors are a set of users who can approve requests on behalf of other users from that connected organization.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/connectedorganization-list-internalsponsors?view=graph-rest-1.0";
             // Create options for all the parameters
-            var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "key: id of connectedOrganization") {
+            var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "The unique identifier of connectedOrganization") {
             };
             connectedOrganizationIdOption.IsRequired = true;
             command.AddOption(connectedOrganizationIdOption);
@@ -128,7 +128,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             var command = new Command("post");
             command.Description = "Create new navigation property ref to internalSponsors for identityGovernance";
             // Create options for all the parameters
-            var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "key: id of connectedOrganization") {
+            var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "The unique identifier of connectedOrganization") {
             };
             connectedOrganizationIdOption.IsRequired = true;
             command.AddOption(connectedOrganizationIdOption);
@@ -148,6 +148,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (connectedOrganizationId is not null) requestInfo.PathParameters.Add("connectedOrganization%2Did", connectedOrganizationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

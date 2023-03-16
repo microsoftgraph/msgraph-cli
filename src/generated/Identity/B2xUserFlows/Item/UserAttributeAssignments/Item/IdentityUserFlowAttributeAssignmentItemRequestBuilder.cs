@@ -31,11 +31,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property userAttributeAssignments for identity";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
-            var identityUserFlowAttributeAssignmentIdOption = new Option<string>("--identity-user-flow-attribute-assignment-id", description: "key: id of identityUserFlowAttributeAssignment") {
+            var identityUserFlowAttributeAssignmentIdOption = new Option<string>("--identity-user-flow-attribute-assignment-id", description: "The unique identifier of identityUserFlowAttributeAssignment") {
             };
             identityUserFlowAttributeAssignmentIdOption.IsRequired = true;
             command.AddOption(identityUserFlowAttributeAssignmentIdOption);
@@ -71,11 +71,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
             var command = new Command("get");
             command.Description = "The user attribute assignments included in the user flow.";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
-            var identityUserFlowAttributeAssignmentIdOption = new Option<string>("--identity-user-flow-attribute-assignment-id", description: "key: id of identityUserFlowAttributeAssignment") {
+            var identityUserFlowAttributeAssignmentIdOption = new Option<string>("--identity-user-flow-attribute-assignment-id", description: "The unique identifier of identityUserFlowAttributeAssignment") {
             };
             identityUserFlowAttributeAssignmentIdOption.IsRequired = true;
             command.AddOption(identityUserFlowAttributeAssignmentIdOption);
@@ -139,11 +139,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property userAttributeAssignments in identity";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
-            var identityUserFlowAttributeAssignmentIdOption = new Option<string>("--identity-user-flow-attribute-assignment-id", description: "key: id of identityUserFlowAttributeAssignment") {
+            var identityUserFlowAttributeAssignmentIdOption = new Option<string>("--identity-user-flow-attribute-assignment-id", description: "The unique identifier of identityUserFlowAttributeAssignment") {
             };
             identityUserFlowAttributeAssignmentIdOption.IsRequired = true;
             command.AddOption(identityUserFlowAttributeAssignmentIdOption);
@@ -183,6 +183,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
                 });
                 if (b2xIdentityUserFlowId is not null) requestInfo.PathParameters.Add("b2xIdentityUserFlow%2Did", b2xIdentityUserFlowId);
                 if (identityUserFlowAttributeAssignmentId is not null) requestInfo.PathParameters.Add("identityUserFlowAttributeAssignment%2Did", identityUserFlowAttributeAssignmentId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

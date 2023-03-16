@@ -29,7 +29,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "key: id of subjectRightsRequest") {
+            var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "The unique identifier of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
             command.AddOption(subjectRightsRequestIdOption);

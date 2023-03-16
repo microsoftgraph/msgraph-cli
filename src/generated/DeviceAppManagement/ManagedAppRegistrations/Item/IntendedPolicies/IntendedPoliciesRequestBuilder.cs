@@ -33,8 +33,8 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
             var builder = new ManagedAppPolicyItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphTargetAppsCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildTargetAppsCommand());
             return command;
         }
         /// <summary>
@@ -54,7 +54,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
             var command = new Command("create");
             command.Description = "Create new navigation property to intendedPolicies for deviceAppManagement";
             // Create options for all the parameters
-            var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "key: id of managedAppRegistration") {
+            var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "The unique identifier of managedAppRegistration") {
             };
             managedAppRegistrationIdOption.IsRequired = true;
             command.AddOption(managedAppRegistrationIdOption);
@@ -92,6 +92,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (managedAppRegistrationId is not null) requestInfo.PathParameters.Add("managedAppRegistration%2Did", managedAppRegistrationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -111,7 +112,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.IntendedPolici
             var command = new Command("list");
             command.Description = "Zero or more policies admin intended for the app as of now.";
             // Create options for all the parameters
-            var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "key: id of managedAppRegistration") {
+            var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "The unique identifier of managedAppRegistration") {
             };
             managedAppRegistrationIdOption.IsRequired = true;
             command.AddOption(managedAppRegistrationIdOption);

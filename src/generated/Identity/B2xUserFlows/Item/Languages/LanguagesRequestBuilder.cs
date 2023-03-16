@@ -55,7 +55,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages {
             var command = new Command("create");
             command.Description = "Create new navigation property to languages for identity";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
@@ -93,6 +93,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (b2xIdentityUserFlowId is not null) requestInfo.PathParameters.Add("b2xIdentityUserFlow%2Did", b2xIdentityUserFlowId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -113,7 +114,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages {
             var command = new Command("list");
             command.Description = "Retrieve a list of languages supported for customization in a B2X user flow.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/b2xidentityuserflow-list-languages?view=graph-rest-1.0";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);

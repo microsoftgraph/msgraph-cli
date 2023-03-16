@@ -37,6 +37,14 @@ namespace ApiSdk.Models {
 #else
         public string ApplicationTemplateId { get; set; }
 #endif
+        /// <summary>The appManagementPolicies property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AppManagementPolicy>? AppManagementPolicies { get; set; }
+#nullable restore
+#else
+        public List<AppManagementPolicy> AppManagementPolicies { get; set; }
+#endif
         /// <summary>The collection of roles defined for the application. With app role assignments, these roles can be assigned to users, groups, or service principals associated with other applications. Not nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -334,6 +342,7 @@ namespace ApiSdk.Models {
                 {"api", n => { Api = n.GetObjectValue<ApiApplication>(ApiApplication.CreateFromDiscriminatorValue); } },
                 {"appId", n => { AppId = n.GetStringValue(); } },
                 {"applicationTemplateId", n => { ApplicationTemplateId = n.GetStringValue(); } },
+                {"appManagementPolicies", n => { AppManagementPolicies = n.GetCollectionOfObjectValues<AppManagementPolicy>(AppManagementPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"appRoles", n => { AppRoles = n.GetCollectionOfObjectValues<AppRole>(AppRole.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"certification", n => { Certification = n.GetObjectValue<ApiSdk.Models.Certification>(ApiSdk.Models.Certification.CreateFromDiscriminatorValue); } },
                 {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
@@ -385,6 +394,7 @@ namespace ApiSdk.Models {
             writer.WriteObjectValue<ApiApplication>("api", Api);
             writer.WriteStringValue("appId", AppId);
             writer.WriteStringValue("applicationTemplateId", ApplicationTemplateId);
+            writer.WriteCollectionOfObjectValues<AppManagementPolicy>("appManagementPolicies", AppManagementPolicies);
             writer.WriteCollectionOfObjectValues<AppRole>("appRoles", AppRoles);
             writer.WriteObjectValue<ApiSdk.Models.Certification>("certification", Certification);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);

@@ -30,11 +30,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.Schedule.OfferShiftRequests.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property offerShiftRequests for me";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var offerShiftRequestIdOption = new Option<string>("--offer-shift-request-id", description: "key: id of offerShiftRequest") {
+            var offerShiftRequestIdOption = new Option<string>("--offer-shift-request-id", description: "The unique identifier of offerShiftRequest") {
             };
             offerShiftRequestIdOption.IsRequired = true;
             command.AddOption(offerShiftRequestIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.Schedule.OfferShiftRequests.Item {
             var command = new Command("get");
             command.Description = "Get offerShiftRequests from me";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var offerShiftRequestIdOption = new Option<string>("--offer-shift-request-id", description: "key: id of offerShiftRequest") {
+            var offerShiftRequestIdOption = new Option<string>("--offer-shift-request-id", description: "The unique identifier of offerShiftRequest") {
             };
             offerShiftRequestIdOption.IsRequired = true;
             command.AddOption(offerShiftRequestIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.Schedule.OfferShiftRequests.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property offerShiftRequests in me";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var offerShiftRequestIdOption = new Option<string>("--offer-shift-request-id", description: "key: id of offerShiftRequest") {
+            var offerShiftRequestIdOption = new Option<string>("--offer-shift-request-id", description: "The unique identifier of offerShiftRequest") {
             };
             offerShiftRequestIdOption.IsRequired = true;
             command.AddOption(offerShiftRequestIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Schedule.OfferShiftRequests.Item {
                 });
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
                 if (offerShiftRequestId is not null) requestInfo.PathParameters.Add("offerShiftRequest%2Did", offerShiftRequestId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

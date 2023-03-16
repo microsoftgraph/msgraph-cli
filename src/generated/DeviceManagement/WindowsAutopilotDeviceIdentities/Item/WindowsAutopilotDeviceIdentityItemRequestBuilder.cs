@@ -1,6 +1,6 @@
-using ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.MicrosoftGraphAssignUserToDevice;
-using ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.MicrosoftGraphUnassignUserFromDevice;
-using ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.MicrosoftGraphUpdateDeviceProperties;
+using ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.AssignUserToDevice;
+using ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.UnassignUserFromDevice;
+using ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.UpdateDeviceProperties;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,13 +27,23 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the assignUserToDevice method.
+        /// </summary>
+        public Command BuildAssignUserToDeviceCommand() {
+            var command = new Command("assign-user-to-device");
+            command.Description = "Provides operations to call the assignUserToDevice method.";
+            var builder = new AssignUserToDeviceRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete navigation property windowsAutopilotDeviceIdentities for deviceManagement
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property windowsAutopilotDeviceIdentities for deviceManagement";
             // Create options for all the parameters
-            var windowsAutopilotDeviceIdentityIdOption = new Option<string>("--windows-autopilot-device-identity-id", description: "key: id of windowsAutopilotDeviceIdentity") {
+            var windowsAutopilotDeviceIdentityIdOption = new Option<string>("--windows-autopilot-device-identity-id", description: "The unique identifier of windowsAutopilotDeviceIdentity") {
             };
             windowsAutopilotDeviceIdentityIdOption.IsRequired = true;
             command.AddOption(windowsAutopilotDeviceIdentityIdOption);
@@ -67,7 +77,7 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
             var command = new Command("get");
             command.Description = "The Windows autopilot device identities contained collection.";
             // Create options for all the parameters
-            var windowsAutopilotDeviceIdentityIdOption = new Option<string>("--windows-autopilot-device-identity-id", description: "key: id of windowsAutopilotDeviceIdentity") {
+            var windowsAutopilotDeviceIdentityIdOption = new Option<string>("--windows-autopilot-device-identity-id", description: "The unique identifier of windowsAutopilotDeviceIdentity") {
             };
             windowsAutopilotDeviceIdentityIdOption.IsRequired = true;
             command.AddOption(windowsAutopilotDeviceIdentityIdOption);
@@ -123,43 +133,13 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the assignUserToDevice method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAssignUserToDeviceCommand() {
-            var command = new Command("microsoft-graph-assign-user-to-device");
-            command.Description = "Provides operations to call the assignUserToDevice method.";
-            var builder = new MicrosoftGraphAssignUserToDeviceRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the unassignUserFromDevice method.
-        /// </summary>
-        public Command BuildMicrosoftGraphUnassignUserFromDeviceCommand() {
-            var command = new Command("microsoft-graph-unassign-user-from-device");
-            command.Description = "Provides operations to call the unassignUserFromDevice method.";
-            var builder = new MicrosoftGraphUnassignUserFromDeviceRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the updateDeviceProperties method.
-        /// </summary>
-        public Command BuildMicrosoftGraphUpdateDevicePropertiesCommand() {
-            var command = new Command("microsoft-graph-update-device-properties");
-            command.Description = "Provides operations to call the updateDeviceProperties method.";
-            var builder = new MicrosoftGraphUpdateDevicePropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property windowsAutopilotDeviceIdentities in deviceManagement
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property windowsAutopilotDeviceIdentities in deviceManagement";
             // Create options for all the parameters
-            var windowsAutopilotDeviceIdentityIdOption = new Option<string>("--windows-autopilot-device-identity-id", description: "key: id of windowsAutopilotDeviceIdentity") {
+            var windowsAutopilotDeviceIdentityIdOption = new Option<string>("--windows-autopilot-device-identity-id", description: "The unique identifier of windowsAutopilotDeviceIdentity") {
             };
             windowsAutopilotDeviceIdentityIdOption.IsRequired = true;
             command.AddOption(windowsAutopilotDeviceIdentityIdOption);
@@ -197,6 +177,7 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (windowsAutopilotDeviceIdentityId is not null) requestInfo.PathParameters.Add("windowsAutopilotDeviceIdentity%2Did", windowsAutopilotDeviceIdentityId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -207,6 +188,26 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the unassignUserFromDevice method.
+        /// </summary>
+        public Command BuildUnassignUserFromDeviceCommand() {
+            var command = new Command("unassign-user-from-device");
+            command.Description = "Provides operations to call the unassignUserFromDevice method.";
+            var builder = new UnassignUserFromDeviceRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the updateDeviceProperties method.
+        /// </summary>
+        public Command BuildUpdateDevicePropertiesCommand() {
+            var command = new Command("update-device-properties");
+            command.Description = "Provides operations to call the updateDeviceProperties method.";
+            var builder = new UpdateDevicePropertiesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

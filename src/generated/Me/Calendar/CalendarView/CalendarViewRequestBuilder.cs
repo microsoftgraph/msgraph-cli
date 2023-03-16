@@ -1,6 +1,6 @@
 using ApiSdk.Me.Calendar.CalendarView.Count;
+using ApiSdk.Me.Calendar.CalendarView.Delta;
 using ApiSdk.Me.Calendar.CalendarView.Item;
-using ApiSdk.Me.Calendar.CalendarView.MicrosoftGraphDelta;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,20 +32,20 @@ namespace ApiSdk.Me.Calendar.CalendarView {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new EventItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAcceptCommand());
             command.AddCommand(builder.BuildAttachmentsCommand());
             command.AddCommand(builder.BuildCalendarCommand());
+            command.AddCommand(builder.BuildCancelCommand());
+            command.AddCommand(builder.BuildDeclineCommand());
+            command.AddCommand(builder.BuildDismissReminderCommand());
             command.AddCommand(builder.BuildExtensionsCommand());
+            command.AddCommand(builder.BuildForwardCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildInstancesCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAcceptCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCancelCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeclineCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDismissReminderCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphForwardCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSnoozeReminderCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphTentativelyAcceptCommand());
             command.AddCommand(builder.BuildMultiValueExtendedPropertiesCommand());
             command.AddCommand(builder.BuildSingleValueExtendedPropertiesCommand());
+            command.AddCommand(builder.BuildSnoozeReminderCommand());
+            command.AddCommand(builder.BuildTentativelyAcceptCommand());
             return command;
         }
         /// <summary>
@@ -55,6 +55,16 @@ namespace ApiSdk.Me.Calendar.CalendarView {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildDeltaCommand() {
+            var command = new Command("delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -161,16 +171,6 @@ namespace ApiSdk.Me.Calendar.CalendarView {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the delta method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDeltaCommand() {
-            var command = new Command("microsoft-graph-delta");
-            command.Description = "Provides operations to call the delta method.";
-            var builder = new MicrosoftGraphDeltaRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

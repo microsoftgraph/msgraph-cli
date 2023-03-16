@@ -36,8 +36,8 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             return command;
         }
         /// <summary>
@@ -47,11 +47,11 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property childFolders for me";
             // Create options for all the parameters
-            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
+            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "The unique identifier of contactFolder") {
             };
             contactFolderIdOption.IsRequired = true;
             command.AddOption(contactFolderIdOption);
-            var contactFolderId1Option = new Option<string>("--contact-folder-id1", description: "key: id of contactFolder") {
+            var contactFolderId1Option = new Option<string>("--contact-folder-id1", description: "The unique identifier of contactFolder") {
             };
             contactFolderId1Option.IsRequired = true;
             command.AddOption(contactFolderId1Option);
@@ -87,11 +87,11 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Item {
             var command = new Command("get");
             command.Description = "The collection of child folders in the folder. Navigation property. Read-only. Nullable.";
             // Create options for all the parameters
-            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
+            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "The unique identifier of contactFolder") {
             };
             contactFolderIdOption.IsRequired = true;
             command.AddOption(contactFolderIdOption);
-            var contactFolderId1Option = new Option<string>("--contact-folder-id1", description: "key: id of contactFolder") {
+            var contactFolderId1Option = new Option<string>("--contact-folder-id1", description: "The unique identifier of contactFolder") {
             };
             contactFolderId1Option.IsRequired = true;
             command.AddOption(contactFolderId1Option);
@@ -168,11 +168,11 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property childFolders in me";
             // Create options for all the parameters
-            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
+            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "The unique identifier of contactFolder") {
             };
             contactFolderIdOption.IsRequired = true;
             command.AddOption(contactFolderIdOption);
-            var contactFolderId1Option = new Option<string>("--contact-folder-id1", description: "key: id of contactFolder") {
+            var contactFolderId1Option = new Option<string>("--contact-folder-id1", description: "The unique identifier of contactFolder") {
             };
             contactFolderId1Option.IsRequired = true;
             command.AddOption(contactFolderId1Option);
@@ -212,6 +212,7 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Item {
                 });
                 if (contactFolderId is not null) requestInfo.PathParameters.Add("contactFolder%2Did", contactFolderId);
                 if (contactFolderId1 is not null) requestInfo.PathParameters.Add("contactFolder%2Did1", contactFolderId1);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

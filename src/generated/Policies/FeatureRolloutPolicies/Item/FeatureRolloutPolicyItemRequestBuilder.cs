@@ -34,11 +34,12 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
+            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
+            command.AddCommand(builder.BuildGetByIdsCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetAvailableExtensionPropertiesCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetByIdsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphValidatePropertiesCommand());
             command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildValidatePropertiesCommand());
             return command;
         }
         /// <summary>
@@ -48,7 +49,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property featureRolloutPolicies for policies";
             // Create options for all the parameters
-            var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "key: id of featureRolloutPolicy") {
+            var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "The unique identifier of featureRolloutPolicy") {
             };
             featureRolloutPolicyIdOption.IsRequired = true;
             command.AddOption(featureRolloutPolicyIdOption);
@@ -82,7 +83,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
             var command = new Command("get");
             command.Description = "The feature rollout policy associated with a directory object.";
             // Create options for all the parameters
-            var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "key: id of featureRolloutPolicy") {
+            var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "The unique identifier of featureRolloutPolicy") {
             };
             featureRolloutPolicyIdOption.IsRequired = true;
             command.AddOption(featureRolloutPolicyIdOption);
@@ -144,7 +145,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property featureRolloutPolicies in policies";
             // Create options for all the parameters
-            var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "key: id of featureRolloutPolicy") {
+            var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "The unique identifier of featureRolloutPolicy") {
             };
             featureRolloutPolicyIdOption.IsRequired = true;
             command.AddOption(featureRolloutPolicyIdOption);
@@ -182,6 +183,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (featureRolloutPolicyId is not null) requestInfo.PathParameters.Add("featureRolloutPolicy%2Did", featureRolloutPolicyId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

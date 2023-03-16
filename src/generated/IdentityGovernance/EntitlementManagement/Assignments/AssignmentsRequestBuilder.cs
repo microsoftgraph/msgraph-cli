@@ -1,8 +1,8 @@
+using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.AdditionalAccess;
+using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.AdditionalAccessWithAccessPackageIdWithIncompatibleAccessPackageId;
 using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Count;
+using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.FilterByCurrentUserWithOn;
 using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item;
-using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.MicrosoftGraphAdditionalAccess;
-using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.MicrosoftGraphAdditionalAccessWithAccessPackageIdWithIncompatibleAccessPackageId;
-using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.MicrosoftGraphFilterByCurrentUserWithOn;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,6 +29,16 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the additionalAccess method.
+        /// </summary>
+        public Command BuildAdditionalAccessCommand() {
+            var command = new Command("additional-access");
+            command.Description = "Provides operations to call the additionalAccess method.";
+            var builder = new AdditionalAccessRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
         public Command BuildCommand() {
@@ -38,8 +48,8 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
             command.AddCommand(builder.BuildAssignmentPolicyCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphReprocessCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildReprocessCommand());
             command.AddCommand(builder.BuildTargetCommand());
             return command;
         }
@@ -92,6 +102,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -208,16 +219,6 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the additionalAccess method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAdditionalAccessCommand() {
-            var command = new Command("microsoft-graph-additional-access");
-            command.Description = "Provides operations to call the additionalAccess method.";
-            var builder = new MicrosoftGraphAdditionalAccessRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

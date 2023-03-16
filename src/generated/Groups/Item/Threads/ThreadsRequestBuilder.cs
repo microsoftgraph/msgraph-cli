@@ -33,9 +33,9 @@ namespace ApiSdk.Groups.Item.Threads {
             var builder = new ConversationThreadItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphReplyCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildPostsCommand());
+            command.AddCommand(builder.BuildReplyCommand());
             return command;
         }
         /// <summary>
@@ -56,7 +56,7 @@ namespace ApiSdk.Groups.Item.Threads {
             var command = new Command("create");
             command.Description = "Start a new group conversation by first creating a thread. A new conversation, conversation thread, and post are created in the group.Use reply thread or reply post to further post to that thread. Note: You can also start a new thread in an existing conversation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-post-threads?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
@@ -94,6 +94,7 @@ namespace ApiSdk.Groups.Item.Threads {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -114,7 +115,7 @@ namespace ApiSdk.Groups.Item.Threads {
             var command = new Command("list");
             command.Description = "Get all the threads of a group.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-list-threads?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);

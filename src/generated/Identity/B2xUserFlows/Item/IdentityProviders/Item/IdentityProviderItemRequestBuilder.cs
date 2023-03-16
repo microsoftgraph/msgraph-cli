@@ -30,11 +30,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders.Item {
             var command = new Command("get");
             command.Description = "The identity providers included in the user flow.";
             // Create options for all the parameters
-            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "key: id of b2xIdentityUserFlow") {
+            var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
             command.AddOption(b2xIdentityUserFlowIdOption);
-            var identityProviderIdOption = new Option<string>("--identity-provider-id", description: "key: id of identityProvider") {
+            var identityProviderIdOption = new Option<string>("--identity-provider-id", description: "The unique identifier of identityProvider") {
             };
             identityProviderIdOption.IsRequired = true;
             command.AddOption(identityProviderIdOption);

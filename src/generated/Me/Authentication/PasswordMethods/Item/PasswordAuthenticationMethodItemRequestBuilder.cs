@@ -30,7 +30,7 @@ namespace ApiSdk.Me.Authentication.PasswordMethods.Item {
             var command = new Command("get");
             command.Description = "Represents the password that's registered to a user for authentication. For security, the password itself will never be returned in the object, but action can be taken to reset a password.";
             // Create options for all the parameters
-            var passwordAuthenticationMethodIdOption = new Option<string>("--password-authentication-method-id", description: "key: id of passwordAuthenticationMethod") {
+            var passwordAuthenticationMethodIdOption = new Option<string>("--password-authentication-method-id", description: "The unique identifier of passwordAuthenticationMethod") {
             };
             passwordAuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(passwordAuthenticationMethodIdOption);

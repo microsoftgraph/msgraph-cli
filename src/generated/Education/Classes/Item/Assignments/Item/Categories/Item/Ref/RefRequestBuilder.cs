@@ -29,15 +29,15 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Categories.Item.Ref {
             var command = new Command("delete");
             command.Description = "Delete ref of navigation property categories for education";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
-            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
+            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
-            var educationCategoryIdOption = new Option<string>("--education-category-id", description: "key: id of educationCategory") {
+            var educationCategoryIdOption = new Option<string>("--education-category-id", description: "The unique identifier of educationCategory") {
             };
             educationCategoryIdOption.IsRequired = true;
             command.AddOption(educationCategoryIdOption);

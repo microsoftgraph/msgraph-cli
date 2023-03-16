@@ -1,5 +1,5 @@
-using ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.Item.MicrosoftGraphCopyToNotebook;
-using ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.Item.MicrosoftGraphCopyToSectionGroup;
+using ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.Item.CopyToNotebook;
+using ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.Item.CopyToSectionGroup;
 using ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.Item.Pages;
 using ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.Item.ParentNotebook;
 using ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.Item.ParentSectionGroup;
@@ -29,29 +29,49 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Ite
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the copyToNotebook method.
+        /// </summary>
+        public Command BuildCopyToNotebookCommand() {
+            var command = new Command("copy-to-notebook");
+            command.Description = "Provides operations to call the copyToNotebook method.";
+            var builder = new CopyToNotebookRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the copyToSectionGroup method.
+        /// </summary>
+        public Command BuildCopyToSectionGroupCommand() {
+            var command = new Command("copy-to-section-group");
+            command.Description = "Provides operations to call the copyToSectionGroup method.";
+            var builder = new CopyToSectionGroupRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete navigation property sections for groups
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property sections for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var notebookIdOption = new Option<string>("--notebook-id", description: "key: id of notebook") {
+            var notebookIdOption = new Option<string>("--notebook-id", description: "The unique identifier of notebook") {
             };
             notebookIdOption.IsRequired = true;
             command.AddOption(notebookIdOption);
-            var sectionGroupIdOption = new Option<string>("--section-group-id", description: "key: id of sectionGroup") {
+            var sectionGroupIdOption = new Option<string>("--section-group-id", description: "The unique identifier of sectionGroup") {
             };
             sectionGroupIdOption.IsRequired = true;
             command.AddOption(sectionGroupIdOption);
-            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "key: id of onenoteSection") {
+            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "The unique identifier of onenoteSection") {
             };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
@@ -93,23 +113,23 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Ite
             var command = new Command("get");
             command.Description = "The sections in the section group. Read-only. Nullable.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var notebookIdOption = new Option<string>("--notebook-id", description: "key: id of notebook") {
+            var notebookIdOption = new Option<string>("--notebook-id", description: "The unique identifier of notebook") {
             };
             notebookIdOption.IsRequired = true;
             command.AddOption(notebookIdOption);
-            var sectionGroupIdOption = new Option<string>("--section-group-id", description: "key: id of sectionGroup") {
+            var sectionGroupIdOption = new Option<string>("--section-group-id", description: "The unique identifier of sectionGroup") {
             };
             sectionGroupIdOption.IsRequired = true;
             command.AddOption(sectionGroupIdOption);
-            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "key: id of onenoteSection") {
+            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "The unique identifier of onenoteSection") {
             };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
@@ -173,26 +193,6 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Ite
             return command;
         }
         /// <summary>
-        /// Provides operations to call the copyToNotebook method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCopyToNotebookCommand() {
-            var command = new Command("microsoft-graph-copy-to-notebook");
-            command.Description = "Provides operations to call the copyToNotebook method.";
-            var builder = new MicrosoftGraphCopyToNotebookRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the copyToSectionGroup method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCopyToSectionGroupCommand() {
-            var command = new Command("microsoft-graph-copy-to-section-group");
-            command.Description = "Provides operations to call the copyToSectionGroup method.";
-            var builder = new MicrosoftGraphCopyToSectionGroupRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the pages property of the microsoft.graph.onenoteSection entity.
         /// </summary>
         public Command BuildPagesCommand() {
@@ -232,23 +232,23 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Ite
             var command = new Command("patch");
             command.Description = "Update the navigation property sections in groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var notebookIdOption = new Option<string>("--notebook-id", description: "key: id of notebook") {
+            var notebookIdOption = new Option<string>("--notebook-id", description: "The unique identifier of notebook") {
             };
             notebookIdOption.IsRequired = true;
             command.AddOption(notebookIdOption);
-            var sectionGroupIdOption = new Option<string>("--section-group-id", description: "key: id of sectionGroup") {
+            var sectionGroupIdOption = new Option<string>("--section-group-id", description: "The unique identifier of sectionGroup") {
             };
             sectionGroupIdOption.IsRequired = true;
             command.AddOption(sectionGroupIdOption);
-            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "key: id of onenoteSection") {
+            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "The unique identifier of onenoteSection") {
             };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
@@ -294,6 +294,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Ite
                 if (notebookId is not null) requestInfo.PathParameters.Add("notebook%2Did", notebookId);
                 if (sectionGroupId is not null) requestInfo.PathParameters.Add("sectionGroup%2Did", sectionGroupId);
                 if (onenoteSectionId is not null) requestInfo.PathParameters.Add("onenoteSection%2Did", onenoteSectionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

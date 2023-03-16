@@ -30,7 +30,7 @@ namespace ApiSdk.AuditLogs.SignIns.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property signIns for auditLogs";
             // Create options for all the parameters
-            var signInIdOption = new Option<string>("--sign-in-id", description: "key: id of signIn") {
+            var signInIdOption = new Option<string>("--sign-in-id", description: "The unique identifier of signIn") {
             };
             signInIdOption.IsRequired = true;
             command.AddOption(signInIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.AuditLogs.SignIns.Item {
             var command = new Command("get");
             command.Description = "Get signIns from auditLogs";
             // Create options for all the parameters
-            var signInIdOption = new Option<string>("--sign-in-id", description: "key: id of signIn") {
+            var signInIdOption = new Option<string>("--sign-in-id", description: "The unique identifier of signIn") {
             };
             signInIdOption.IsRequired = true;
             command.AddOption(signInIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.AuditLogs.SignIns.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property signIns in auditLogs";
             // Create options for all the parameters
-            var signInIdOption = new Option<string>("--sign-in-id", description: "key: id of signIn") {
+            var signInIdOption = new Option<string>("--sign-in-id", description: "The unique identifier of signIn") {
             };
             signInIdOption.IsRequired = true;
             command.AddOption(signInIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.AuditLogs.SignIns.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (signInId is not null) requestInfo.PathParameters.Add("signIn%2Did", signInId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

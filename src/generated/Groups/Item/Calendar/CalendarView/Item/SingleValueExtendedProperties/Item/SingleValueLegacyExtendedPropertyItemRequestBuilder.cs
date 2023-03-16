@@ -30,15 +30,15 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarView.Item.SingleValueExtendedPrope
             var command = new Command("delete");
             command.Description = "Delete navigation property singleValueExtendedProperties for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--single-value-legacy-extended-property-id", description: "key: id of singleValueLegacyExtendedProperty") {
+            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--single-value-legacy-extended-property-id", description: "The unique identifier of singleValueLegacyExtendedProperty") {
             };
             singleValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(singleValueLegacyExtendedPropertyIdOption);
@@ -76,15 +76,15 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarView.Item.SingleValueExtendedPrope
             var command = new Command("get");
             command.Description = "The collection of single-value extended properties defined for the event. Read-only. Nullable.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--single-value-legacy-extended-property-id", description: "key: id of singleValueLegacyExtendedProperty") {
+            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--single-value-legacy-extended-property-id", description: "The unique identifier of singleValueLegacyExtendedProperty") {
             };
             singleValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(singleValueLegacyExtendedPropertyIdOption);
@@ -150,15 +150,15 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarView.Item.SingleValueExtendedPrope
             var command = new Command("patch");
             command.Description = "Update the navigation property singleValueExtendedProperties in groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
-            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--single-value-legacy-extended-property-id", description: "key: id of singleValueLegacyExtendedProperty") {
+            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--single-value-legacy-extended-property-id", description: "The unique identifier of singleValueLegacyExtendedProperty") {
             };
             singleValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(singleValueLegacyExtendedPropertyIdOption);
@@ -200,6 +200,7 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarView.Item.SingleValueExtendedPrope
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (eventId is not null) requestInfo.PathParameters.Add("event%2Did", eventId);
                 if (singleValueLegacyExtendedPropertyId is not null) requestInfo.PathParameters.Add("singleValueLegacyExtendedProperty%2Did", singleValueLegacyExtendedPropertyId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

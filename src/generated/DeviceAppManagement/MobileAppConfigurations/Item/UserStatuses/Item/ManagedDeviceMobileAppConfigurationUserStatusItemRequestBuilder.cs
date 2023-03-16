@@ -30,11 +30,11 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatuses.I
             var command = new Command("delete");
             command.Description = "Delete navigation property userStatuses for deviceAppManagement";
             // Create options for all the parameters
-            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--managed-device-mobile-app-configuration-id", description: "key: id of managedDeviceMobileAppConfiguration") {
+            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--managed-device-mobile-app-configuration-id", description: "The unique identifier of managedDeviceMobileAppConfiguration") {
             };
             managedDeviceMobileAppConfigurationIdOption.IsRequired = true;
             command.AddOption(managedDeviceMobileAppConfigurationIdOption);
-            var managedDeviceMobileAppConfigurationUserStatusIdOption = new Option<string>("--managed-device-mobile-app-configuration-user-status-id", description: "key: id of managedDeviceMobileAppConfigurationUserStatus") {
+            var managedDeviceMobileAppConfigurationUserStatusIdOption = new Option<string>("--managed-device-mobile-app-configuration-user-status-id", description: "The unique identifier of managedDeviceMobileAppConfigurationUserStatus") {
             };
             managedDeviceMobileAppConfigurationUserStatusIdOption.IsRequired = true;
             command.AddOption(managedDeviceMobileAppConfigurationUserStatusIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatuses.I
             var command = new Command("get");
             command.Description = "List of ManagedDeviceMobileAppConfigurationUserStatus.";
             // Create options for all the parameters
-            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--managed-device-mobile-app-configuration-id", description: "key: id of managedDeviceMobileAppConfiguration") {
+            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--managed-device-mobile-app-configuration-id", description: "The unique identifier of managedDeviceMobileAppConfiguration") {
             };
             managedDeviceMobileAppConfigurationIdOption.IsRequired = true;
             command.AddOption(managedDeviceMobileAppConfigurationIdOption);
-            var managedDeviceMobileAppConfigurationUserStatusIdOption = new Option<string>("--managed-device-mobile-app-configuration-user-status-id", description: "key: id of managedDeviceMobileAppConfigurationUserStatus") {
+            var managedDeviceMobileAppConfigurationUserStatusIdOption = new Option<string>("--managed-device-mobile-app-configuration-user-status-id", description: "The unique identifier of managedDeviceMobileAppConfigurationUserStatus") {
             };
             managedDeviceMobileAppConfigurationUserStatusIdOption.IsRequired = true;
             command.AddOption(managedDeviceMobileAppConfigurationUserStatusIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatuses.I
             var command = new Command("patch");
             command.Description = "Update the navigation property userStatuses in deviceAppManagement";
             // Create options for all the parameters
-            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--managed-device-mobile-app-configuration-id", description: "key: id of managedDeviceMobileAppConfiguration") {
+            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--managed-device-mobile-app-configuration-id", description: "The unique identifier of managedDeviceMobileAppConfiguration") {
             };
             managedDeviceMobileAppConfigurationIdOption.IsRequired = true;
             command.AddOption(managedDeviceMobileAppConfigurationIdOption);
-            var managedDeviceMobileAppConfigurationUserStatusIdOption = new Option<string>("--managed-device-mobile-app-configuration-user-status-id", description: "key: id of managedDeviceMobileAppConfigurationUserStatus") {
+            var managedDeviceMobileAppConfigurationUserStatusIdOption = new Option<string>("--managed-device-mobile-app-configuration-user-status-id", description: "The unique identifier of managedDeviceMobileAppConfigurationUserStatus") {
             };
             managedDeviceMobileAppConfigurationUserStatusIdOption.IsRequired = true;
             command.AddOption(managedDeviceMobileAppConfigurationUserStatusIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatuses.I
                 });
                 if (managedDeviceMobileAppConfigurationId is not null) requestInfo.PathParameters.Add("managedDeviceMobileAppConfiguration%2Did", managedDeviceMobileAppConfigurationId);
                 if (managedDeviceMobileAppConfigurationUserStatusId is not null) requestInfo.PathParameters.Add("managedDeviceMobileAppConfigurationUserStatus%2Did", managedDeviceMobileAppConfigurationUserStatusId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

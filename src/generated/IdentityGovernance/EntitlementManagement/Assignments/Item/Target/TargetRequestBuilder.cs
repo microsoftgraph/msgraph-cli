@@ -30,7 +30,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Targe
             var command = new Command("get");
             command.Description = "The subject of the access package assignment. Read-only. Nullable. Supports $expand. Supports $filter (eq) on objectId.";
             // Create options for all the parameters
-            var accessPackageAssignmentIdOption = new Option<string>("--access-package-assignment-id", description: "key: id of accessPackageAssignment") {
+            var accessPackageAssignmentIdOption = new Option<string>("--access-package-assignment-id", description: "The unique identifier of accessPackageAssignment") {
             };
             accessPackageAssignmentIdOption.IsRequired = true;
             command.AddOption(accessPackageAssignmentIdOption);

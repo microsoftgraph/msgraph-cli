@@ -30,7 +30,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
             var command = new Command("delete");
             command.Description = "Delete navigation property windowsInformationProtectionAppLearningSummaries for deviceManagement";
             // Create options for all the parameters
-            var windowsInformationProtectionAppLearningSummaryIdOption = new Option<string>("--windows-information-protection-app-learning-summary-id", description: "key: id of windowsInformationProtectionAppLearningSummary") {
+            var windowsInformationProtectionAppLearningSummaryIdOption = new Option<string>("--windows-information-protection-app-learning-summary-id", description: "The unique identifier of windowsInformationProtectionAppLearningSummary") {
             };
             windowsInformationProtectionAppLearningSummaryIdOption.IsRequired = true;
             command.AddOption(windowsInformationProtectionAppLearningSummaryIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
             var command = new Command("get");
             command.Description = "The windows information protection app learning summaries.";
             // Create options for all the parameters
-            var windowsInformationProtectionAppLearningSummaryIdOption = new Option<string>("--windows-information-protection-app-learning-summary-id", description: "key: id of windowsInformationProtectionAppLearningSummary") {
+            var windowsInformationProtectionAppLearningSummaryIdOption = new Option<string>("--windows-information-protection-app-learning-summary-id", description: "The unique identifier of windowsInformationProtectionAppLearningSummary") {
             };
             windowsInformationProtectionAppLearningSummaryIdOption.IsRequired = true;
             command.AddOption(windowsInformationProtectionAppLearningSummaryIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
             var command = new Command("patch");
             command.Description = "Update the navigation property windowsInformationProtectionAppLearningSummaries in deviceManagement";
             // Create options for all the parameters
-            var windowsInformationProtectionAppLearningSummaryIdOption = new Option<string>("--windows-information-protection-app-learning-summary-id", description: "key: id of windowsInformationProtectionAppLearningSummary") {
+            var windowsInformationProtectionAppLearningSummaryIdOption = new Option<string>("--windows-information-protection-app-learning-summary-id", description: "The unique identifier of windowsInformationProtectionAppLearningSummary") {
             };
             windowsInformationProtectionAppLearningSummaryIdOption.IsRequired = true;
             command.AddOption(windowsInformationProtectionAppLearningSummaryIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (windowsInformationProtectionAppLearningSummaryId is not null) requestInfo.PathParameters.Add("windowsInformationProtectionAppLearningSummary%2Did", windowsInformationProtectionAppLearningSummaryId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

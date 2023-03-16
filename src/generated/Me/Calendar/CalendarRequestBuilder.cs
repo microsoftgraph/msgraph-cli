@@ -1,8 +1,8 @@
+using ApiSdk.Me.Calendar.AllowedCalendarSharingRolesWithUser;
 using ApiSdk.Me.Calendar.CalendarPermissions;
 using ApiSdk.Me.Calendar.CalendarView;
 using ApiSdk.Me.Calendar.Events;
-using ApiSdk.Me.Calendar.MicrosoftGraphAllowedCalendarSharingRolesWithUser;
-using ApiSdk.Me.Calendar.MicrosoftGraphGetSchedule;
+using ApiSdk.Me.Calendar.GetSchedule;
 using ApiSdk.Me.Calendar.MultiValueExtendedProperties;
 using ApiSdk.Me.Calendar.SingleValueExtendedProperties;
 using ApiSdk.Models;
@@ -52,8 +52,8 @@ namespace ApiSdk.Me.Calendar {
             var builder = new CalendarViewRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             return command;
         }
         /// <summary>
@@ -66,8 +66,8 @@ namespace ApiSdk.Me.Calendar {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             return command;
         }
         /// <summary>
@@ -123,10 +123,10 @@ namespace ApiSdk.Me.Calendar {
         /// <summary>
         /// Provides operations to call the getSchedule method.
         /// </summary>
-        public Command BuildMicrosoftGraphGetScheduleCommand() {
-            var command = new Command("microsoft-graph-get-schedule");
+        public Command BuildGetScheduleCommand() {
+            var command = new Command("get-schedule");
             command.Description = "Provides operations to call the getSchedule method.";
-            var builder = new MicrosoftGraphGetScheduleRequestBuilder(PathParameters);
+            var builder = new GetScheduleRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -183,6 +183,7 @@ namespace ApiSdk.Me.Calendar {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

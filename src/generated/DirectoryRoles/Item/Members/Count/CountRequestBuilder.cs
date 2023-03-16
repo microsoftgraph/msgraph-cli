@@ -29,7 +29,7 @@ namespace ApiSdk.DirectoryRoles.Item.Members.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var directoryRoleIdOption = new Option<string>("--directory-role-id", description: "key: id of directoryRole") {
+            var directoryRoleIdOption = new Option<string>("--directory-role-id", description: "The unique identifier of directoryRole") {
             };
             directoryRoleIdOption.IsRequired = true;
             command.AddOption(directoryRoleIdOption);

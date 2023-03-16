@@ -29,7 +29,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item.Instan
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var accessReviewHistoryDefinitionIdOption = new Option<string>("--access-review-history-definition-id", description: "key: id of accessReviewHistoryDefinition") {
+            var accessReviewHistoryDefinitionIdOption = new Option<string>("--access-review-history-definition-id", description: "The unique identifier of accessReviewHistoryDefinition") {
             };
             accessReviewHistoryDefinitionIdOption.IsRequired = true;
             command.AddOption(accessReviewHistoryDefinitionIdOption);

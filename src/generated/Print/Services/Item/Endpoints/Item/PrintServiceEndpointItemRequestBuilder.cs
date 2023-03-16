@@ -30,11 +30,11 @@ namespace ApiSdk.Print.Services.Item.Endpoints.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property endpoints for print";
             // Create options for all the parameters
-            var printServiceIdOption = new Option<string>("--print-service-id", description: "key: id of printService") {
+            var printServiceIdOption = new Option<string>("--print-service-id", description: "The unique identifier of printService") {
             };
             printServiceIdOption.IsRequired = true;
             command.AddOption(printServiceIdOption);
-            var printServiceEndpointIdOption = new Option<string>("--print-service-endpoint-id", description: "key: id of printServiceEndpoint") {
+            var printServiceEndpointIdOption = new Option<string>("--print-service-endpoint-id", description: "The unique identifier of printServiceEndpoint") {
             };
             printServiceEndpointIdOption.IsRequired = true;
             command.AddOption(printServiceEndpointIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Print.Services.Item.Endpoints.Item {
             var command = new Command("get");
             command.Description = "Endpoints that can be used to access the service. Read-only. Nullable.";
             // Create options for all the parameters
-            var printServiceIdOption = new Option<string>("--print-service-id", description: "key: id of printService") {
+            var printServiceIdOption = new Option<string>("--print-service-id", description: "The unique identifier of printService") {
             };
             printServiceIdOption.IsRequired = true;
             command.AddOption(printServiceIdOption);
-            var printServiceEndpointIdOption = new Option<string>("--print-service-endpoint-id", description: "key: id of printServiceEndpoint") {
+            var printServiceEndpointIdOption = new Option<string>("--print-service-endpoint-id", description: "The unique identifier of printServiceEndpoint") {
             };
             printServiceEndpointIdOption.IsRequired = true;
             command.AddOption(printServiceEndpointIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Print.Services.Item.Endpoints.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property endpoints in print";
             // Create options for all the parameters
-            var printServiceIdOption = new Option<string>("--print-service-id", description: "key: id of printService") {
+            var printServiceIdOption = new Option<string>("--print-service-id", description: "The unique identifier of printService") {
             };
             printServiceIdOption.IsRequired = true;
             command.AddOption(printServiceIdOption);
-            var printServiceEndpointIdOption = new Option<string>("--print-service-endpoint-id", description: "key: id of printServiceEndpoint") {
+            var printServiceEndpointIdOption = new Option<string>("--print-service-endpoint-id", description: "The unique identifier of printServiceEndpoint") {
             };
             printServiceEndpointIdOption.IsRequired = true;
             command.AddOption(printServiceEndpointIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Print.Services.Item.Endpoints.Item {
                 });
                 if (printServiceId is not null) requestInfo.PathParameters.Add("printService%2Did", printServiceId);
                 if (printServiceEndpointId is not null) requestInfo.PathParameters.Add("printServiceEndpoint%2Did", printServiceEndpointId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

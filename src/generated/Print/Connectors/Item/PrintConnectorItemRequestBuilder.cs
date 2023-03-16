@@ -30,7 +30,7 @@ namespace ApiSdk.Print.Connectors.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property connectors for print";
             // Create options for all the parameters
-            var printConnectorIdOption = new Option<string>("--print-connector-id", description: "key: id of printConnector") {
+            var printConnectorIdOption = new Option<string>("--print-connector-id", description: "The unique identifier of printConnector") {
             };
             printConnectorIdOption.IsRequired = true;
             command.AddOption(printConnectorIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Print.Connectors.Item {
             var command = new Command("get");
             command.Description = "The list of available print connectors.";
             // Create options for all the parameters
-            var printConnectorIdOption = new Option<string>("--print-connector-id", description: "key: id of printConnector") {
+            var printConnectorIdOption = new Option<string>("--print-connector-id", description: "The unique identifier of printConnector") {
             };
             printConnectorIdOption.IsRequired = true;
             command.AddOption(printConnectorIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.Print.Connectors.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property connectors in print";
             // Create options for all the parameters
-            var printConnectorIdOption = new Option<string>("--print-connector-id", description: "key: id of printConnector") {
+            var printConnectorIdOption = new Option<string>("--print-connector-id", description: "The unique identifier of printConnector") {
             };
             printConnectorIdOption.IsRequired = true;
             command.AddOption(printConnectorIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.Print.Connectors.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (printConnectorId is not null) requestInfo.PathParameters.Add("printConnector%2Did", printConnectorId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

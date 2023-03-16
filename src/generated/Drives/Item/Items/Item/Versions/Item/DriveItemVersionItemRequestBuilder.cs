@@ -1,5 +1,5 @@
 using ApiSdk.Drives.Item.Items.Item.Versions.Item.Content;
-using ApiSdk.Drives.Item.Items.Item.Versions.Item.MicrosoftGraphRestoreVersion;
+using ApiSdk.Drives.Item.Items.Item.Versions.Item.RestoreVersion;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,15 +43,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property versions for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var driveItemVersionIdOption = new Option<string>("--drive-item-version-id", description: "key: id of driveItemVersion") {
+            var driveItemVersionIdOption = new Option<string>("--drive-item-version-id", description: "The unique identifier of driveItemVersion") {
             };
             driveItemVersionIdOption.IsRequired = true;
             command.AddOption(driveItemVersionIdOption);
@@ -89,15 +89,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item {
             var command = new Command("get");
             command.Description = "The list of previous versions of the item. For more info, see [getting previous versions][]. Read-only. Nullable.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var driveItemVersionIdOption = new Option<string>("--drive-item-version-id", description: "key: id of driveItemVersion") {
+            var driveItemVersionIdOption = new Option<string>("--drive-item-version-id", description: "The unique identifier of driveItemVersion") {
             };
             driveItemVersionIdOption.IsRequired = true;
             command.AddOption(driveItemVersionIdOption);
@@ -157,31 +157,21 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the restoreVersion method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRestoreVersionCommand() {
-            var command = new Command("microsoft-graph-restore-version");
-            command.Description = "Provides operations to call the restoreVersion method.";
-            var builder = new MicrosoftGraphRestoreVersionRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property versions in drives
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property versions in drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var driveItemVersionIdOption = new Option<string>("--drive-item-version-id", description: "key: id of driveItemVersion") {
+            var driveItemVersionIdOption = new Option<string>("--drive-item-version-id", description: "The unique identifier of driveItemVersion") {
             };
             driveItemVersionIdOption.IsRequired = true;
             command.AddOption(driveItemVersionIdOption);
@@ -223,6 +213,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item {
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
                 if (driveItemVersionId is not null) requestInfo.PathParameters.Add("driveItemVersion%2Did", driveItemVersionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -233,6 +224,16 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the restoreVersion method.
+        /// </summary>
+        public Command BuildRestoreVersionCommand() {
+            var command = new Command("restore-version");
+            command.Description = "Provides operations to call the restoreVersion method.";
+            var builder = new RestoreVersionRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

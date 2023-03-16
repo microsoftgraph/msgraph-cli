@@ -58,11 +58,11 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property tasks for planner";
             // Create options for all the parameters
-            var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "key: id of plannerBucket") {
+            var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "The unique identifier of plannerBucket") {
             };
             plannerBucketIdOption.IsRequired = true;
             command.AddOption(plannerBucketIdOption);
-            var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "key: id of plannerTask") {
+            var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "The unique identifier of plannerTask") {
             };
             plannerTaskIdOption.IsRequired = true;
             command.AddOption(plannerTaskIdOption);
@@ -110,11 +110,11 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks.Item {
             var command = new Command("get");
             command.Description = "Read-only. Nullable. The collection of tasks in the bucket.";
             // Create options for all the parameters
-            var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "key: id of plannerBucket") {
+            var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "The unique identifier of plannerBucket") {
             };
             plannerBucketIdOption.IsRequired = true;
             command.AddOption(plannerBucketIdOption);
-            var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "key: id of plannerTask") {
+            var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "The unique identifier of plannerTask") {
             };
             plannerTaskIdOption.IsRequired = true;
             command.AddOption(plannerTaskIdOption);
@@ -178,11 +178,11 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property tasks in planner";
             // Create options for all the parameters
-            var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "key: id of plannerBucket") {
+            var plannerBucketIdOption = new Option<string>("--planner-bucket-id", description: "The unique identifier of plannerBucket") {
             };
             plannerBucketIdOption.IsRequired = true;
             command.AddOption(plannerBucketIdOption);
-            var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "key: id of plannerTask") {
+            var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "The unique identifier of plannerTask") {
             };
             plannerTaskIdOption.IsRequired = true;
             command.AddOption(plannerTaskIdOption);
@@ -222,6 +222,7 @@ namespace ApiSdk.Planner.Buckets.Item.Tasks.Item {
                 });
                 if (plannerBucketId is not null) requestInfo.PathParameters.Add("plannerBucket%2Did", plannerBucketId);
                 if (plannerTaskId is not null) requestInfo.PathParameters.Add("plannerTask%2Did", plannerTaskId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

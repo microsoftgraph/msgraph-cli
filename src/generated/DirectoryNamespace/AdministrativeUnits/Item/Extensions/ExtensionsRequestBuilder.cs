@@ -53,7 +53,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Extensions {
             var command = new Command("create");
             command.Description = "Create new navigation property to extensions for directory";
             // Create options for all the parameters
-            var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "key: id of administrativeUnit") {
+            var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
             command.AddOption(administrativeUnitIdOption);
@@ -91,6 +91,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Extensions {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (administrativeUnitId is not null) requestInfo.PathParameters.Add("administrativeUnit%2Did", administrativeUnitId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -110,7 +111,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Extensions {
             var command = new Command("list");
             command.Description = "The collection of open extensions defined for this administrative unit. Nullable.";
             // Create options for all the parameters
-            var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "key: id of administrativeUnit") {
+            var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
             command.AddOption(administrativeUnitIdOption);

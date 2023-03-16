@@ -44,7 +44,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property catalogs for identityGovernance";
             // Create options for all the parameters
-            var accessPackageCatalogIdOption = new Option<string>("--access-package-catalog-id", description: "key: id of accessPackageCatalog") {
+            var accessPackageCatalogIdOption = new Option<string>("--access-package-catalog-id", description: "The unique identifier of accessPackageCatalog") {
             };
             accessPackageCatalogIdOption.IsRequired = true;
             command.AddOption(accessPackageCatalogIdOption);
@@ -78,7 +78,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
             var command = new Command("get");
             command.Description = "A container for access packages.";
             // Create options for all the parameters
-            var accessPackageCatalogIdOption = new Option<string>("--access-package-catalog-id", description: "key: id of accessPackageCatalog") {
+            var accessPackageCatalogIdOption = new Option<string>("--access-package-catalog-id", description: "The unique identifier of accessPackageCatalog") {
             };
             accessPackageCatalogIdOption.IsRequired = true;
             command.AddOption(accessPackageCatalogIdOption);
@@ -140,7 +140,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property catalogs in identityGovernance";
             // Create options for all the parameters
-            var accessPackageCatalogIdOption = new Option<string>("--access-package-catalog-id", description: "key: id of accessPackageCatalog") {
+            var accessPackageCatalogIdOption = new Option<string>("--access-package-catalog-id", description: "The unique identifier of accessPackageCatalog") {
             };
             accessPackageCatalogIdOption.IsRequired = true;
             command.AddOption(accessPackageCatalogIdOption);
@@ -178,6 +178,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (accessPackageCatalogId is not null) requestInfo.PathParameters.Add("accessPackageCatalog%2Did", accessPackageCatalogId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

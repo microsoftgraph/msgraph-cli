@@ -29,11 +29,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.CustodianSour
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoverySearchIdOption = new Option<string>("--ediscovery-search-id", description: "key: id of ediscoverySearch") {
+            var ediscoverySearchIdOption = new Option<string>("--ediscovery-search-id", description: "The unique identifier of ediscoverySearch") {
             };
             ediscoverySearchIdOption.IsRequired = true;
             command.AddOption(ediscoverySearchIdOption);

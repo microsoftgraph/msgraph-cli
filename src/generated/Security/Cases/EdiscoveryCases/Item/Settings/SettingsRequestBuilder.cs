@@ -1,6 +1,6 @@
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.Security;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings.MicrosoftGraphSecurityResetToDefault;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings.SecurityResetToDefault;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -31,7 +31,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings {
             var command = new Command("delete");
             command.Description = "Delete navigation property settings for security";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
@@ -66,7 +66,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of an ediscoveryCaseSettings object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycasesettings-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
@@ -122,16 +122,6 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the resetToDefault method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSecurityResetToDefaultCommand() {
-            var command = new Command("microsoft-graph-security-reset-to-default");
-            command.Description = "Provides operations to call the resetToDefault method.";
-            var builder = new MicrosoftGraphSecurityResetToDefaultRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the properties of an ediscoveryCaseSettings object.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoverycasesettings-update?view=graph-rest-1.0" />
         /// </summary>
@@ -139,7 +129,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings {
             var command = new Command("patch");
             command.Description = "Update the properties of an ediscoveryCaseSettings object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycasesettings-update?view=graph-rest-1.0";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
@@ -177,6 +167,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (ediscoveryCaseId is not null) requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -187,6 +178,16 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the resetToDefault method.
+        /// </summary>
+        public Command BuildSecurityResetToDefaultCommand() {
+            var command = new Command("security-reset-to-default");
+            command.Description = "Provides operations to call the resetToDefault method.";
+            var builder = new SecurityResetToDefaultRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

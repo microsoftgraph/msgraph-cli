@@ -1,8 +1,8 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.Todo.Lists.Count;
+using ApiSdk.Users.Item.Todo.Lists.Delta;
 using ApiSdk.Users.Item.Todo.Lists.Item;
-using ApiSdk.Users.Item.Todo.Lists.MicrosoftGraphDelta;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -57,7 +57,7 @@ namespace ApiSdk.Users.Item.Todo.Lists {
             var command = new Command("create");
             command.Description = "Create a new lists object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/todo-post-lists?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -95,6 +95,7 @@ namespace ApiSdk.Users.Item.Todo.Lists {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -108,6 +109,16 @@ namespace ApiSdk.Users.Item.Todo.Lists {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildDeltaCommand() {
+            var command = new Command("delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Get a list of the todoTaskList objects and their properties.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/todo-list-lists?view=graph-rest-1.0" />
         /// </summary>
@@ -115,7 +126,7 @@ namespace ApiSdk.Users.Item.Todo.Lists {
             var command = new Command("list");
             command.Description = "Get a list of the todoTaskList objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/todo-list-lists?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -217,16 +228,6 @@ namespace ApiSdk.Users.Item.Todo.Lists {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the delta method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDeltaCommand() {
-            var command = new Command("microsoft-graph-delta");
-            command.Description = "Provides operations to call the delta method.";
-            var builder = new MicrosoftGraphDeltaRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

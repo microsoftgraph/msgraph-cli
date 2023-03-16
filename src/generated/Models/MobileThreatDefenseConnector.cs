@@ -5,26 +5,26 @@ using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
     /// <summary>
-    /// Entity which represents a connection to Mobile threat defense partner.
+    /// Entity which represents a connection to Mobile Threat Defense partner.
     /// </summary>
     public class MobileThreatDefenseConnector : Entity, IParsable {
-        /// <summary>When TRUE, indicates the data sync partner may collect metadata about installed applications from Intune for IOS devices. When FALSE, indicates the data sync partner may not collect metadata about installed applications from Intune for IOS devices. Default value is FALSE.</summary>
+        /// <summary>When TRUE, indicates the Mobile Threat Defense partner may collect metadata about installed applications from Intune for IOS devices. When FALSE, indicates the Mobile Threat Defense partner may not collect metadata about installed applications from Intune for IOS devices. Default value is FALSE.</summary>
         public bool? AllowPartnerToCollectIOSApplicationMetadata { get; set; }
-        /// <summary>When TRUE, indicates the data sync partner may collect metadata about personally installed applications from Intune for IOS devices. When FALSE, indicates the data sync partner may not collect metadata about personally installed applications from Intune for IOS devices. Default value is FALSE.</summary>
+        /// <summary>When TRUE, indicates the Mobile Threat Defense partner may collect metadata about personally installed applications from Intune for IOS devices. When FALSE, indicates the Mobile Threat Defense partner may not collect metadata about personally installed applications from Intune for IOS devices. Default value is FALSE.</summary>
         public bool? AllowPartnerToCollectIOSPersonalApplicationMetadata { get; set; }
-        /// <summary>For Android, set whether Intune must receive data from the data sync partner prior to marking a device compliant</summary>
+        /// <summary>For Android, set whether Intune must receive data from the Mobile Threat Defense partner prior to marking a device compliant</summary>
         public bool? AndroidDeviceBlockedOnMissingPartnerData { get; set; }
-        /// <summary>For Android, set whether data from the data sync partner should be used during compliance evaluations</summary>
+        /// <summary>For Android, set whether data from the Mobile Threat Defense partner should be used during compliance evaluations</summary>
         public bool? AndroidEnabled { get; set; }
-        /// <summary>When TRUE, inidicates that data from the data sync partner can be used during Mobile Application Management (MAM) evaluations for Android devices. When FALSE, inidicates that data from the data sync partner should not be used during Mobile Application Management (MAM) evaluations for Android devices. Only one partner per platform may be enabled for Mobile Application Management (MAM) evaluation. Default value is FALSE.</summary>
+        /// <summary>When TRUE, inidicates that data from the Mobile Threat Defense partner can be used during Mobile Application Management (MAM) evaluations for Android devices. When FALSE, inidicates that data from the Mobile Threat Defense partner should not be used during Mobile Application Management (MAM) evaluations for Android devices. Only one partner per platform may be enabled for Mobile Application Management (MAM) evaluation. Default value is FALSE.</summary>
         public bool? AndroidMobileApplicationManagementEnabled { get; set; }
-        /// <summary>For IOS, set whether Intune must receive data from the data sync partner prior to marking a device compliant</summary>
+        /// <summary>For IOS, set whether Intune must receive data from the Mobile Threat Defense partner prior to marking a device compliant</summary>
         public bool? IosDeviceBlockedOnMissingPartnerData { get; set; }
-        /// <summary>For IOS, get or set whether data from the data sync partner should be used during compliance evaluations</summary>
+        /// <summary>For IOS, get or set whether data from the Mobile Threat Defense partner should be used during compliance evaluations</summary>
         public bool? IosEnabled { get; set; }
-        /// <summary>When TRUE, inidicates that data from the data sync partner can be used during Mobile Application Management (MAM) evaluations for IOS devices. When FALSE, inidicates that data from the data sync partner should not be used during Mobile Application Management (MAM) evaluations for IOS devices. Only one partner per platform may be enabled for Mobile Application Management (MAM) evaluation. Default value is FALSE.</summary>
+        /// <summary>When TRUE, inidicates that data from the Mobile Threat Defense partner can be used during Mobile Application Management (MAM) evaluations for IOS devices. When FALSE, inidicates that data from the Mobile Threat Defense partner should not be used during Mobile Application Management (MAM) evaluations for IOS devices. Only one partner per platform may be enabled for Mobile Application Management (MAM) evaluation. Default value is FALSE.</summary>
         public bool? IosMobileApplicationManagementEnabled { get; set; }
-        /// <summary>DateTime of last Heartbeat recieved from the Data Sync Partner</summary>
+        /// <summary>DateTime of last Heartbeat recieved from the Mobile Threat Defense partner</summary>
         public DateTimeOffset? LastHeartbeatDateTime { get; set; }
         /// <summary>When TRUE, inidicates that configuration profile management via Microsoft Defender for Endpoint is enabled. When FALSE, inidicates that configuration profile management via Microsoft Defender for Endpoint is disabled. Default value is FALSE.</summary>
         public bool? MicrosoftDefenderForEndpointAttachEnabled { get; set; }
@@ -32,11 +32,11 @@ namespace ApiSdk.Models {
         public MobileThreatPartnerTenantState? PartnerState { get; set; }
         /// <summary>Get or Set days the per tenant tolerance to unresponsiveness for this partner integration</summary>
         public int? PartnerUnresponsivenessThresholdInDays { get; set; }
-        /// <summary>Get or set whether to block devices on the enabled platforms that do not meet the minimum version requirements of the Data Sync Partner</summary>
+        /// <summary>Get or set whether to block devices on the enabled platforms that do not meet the minimum version requirements of the Mobile Threat Defense partner</summary>
         public bool? PartnerUnsupportedOsVersionBlocked { get; set; }
-        /// <summary>When TRUE, inidicates that Intune must receive data from the data sync partner prior to marking a device compliant for Windows. When FALSE, inidicates that Intune may make a device compliant without receiving data from the data sync partner for Windows. Default value is FALSE.</summary>
+        /// <summary>When TRUE, inidicates that Intune must receive data from the Mobile Threat Defense partner prior to marking a device compliant for Windows. When FALSE, inidicates that Intune may make a device compliant without receiving data from the Mobile Threat Defense partner for Windows. Default value is FALSE.</summary>
         public bool? WindowsDeviceBlockedOnMissingPartnerData { get; set; }
-        /// <summary>When TRUE, inidicates that data from the data sync partner can be used during compliance evaluations for Windows. When FALSE, inidicates that data from the data sync partner should not be used during compliance evaluations for Windows. Default value is FALSE.</summary>
+        /// <summary>When TRUE, inidicates that data from the Mobile Threat Defense partner can be used during compliance evaluations for Windows. When FALSE, inidicates that data from the Mobile Threat Defense partner should not be used during compliance evaluations for Windows. Default value is FALSE.</summary>
         public bool? WindowsEnabled { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

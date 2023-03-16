@@ -1,9 +1,9 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.Outlook.MasterCategories;
-using ApiSdk.Users.Item.Outlook.MicrosoftGraphSupportedLanguages;
-using ApiSdk.Users.Item.Outlook.MicrosoftGraphSupportedTimeZones;
-using ApiSdk.Users.Item.Outlook.MicrosoftGraphSupportedTimeZonesWithTimeZoneStandard;
+using ApiSdk.Users.Item.Outlook.SupportedLanguages;
+using ApiSdk.Users.Item.Outlook.SupportedTimeZones;
+using ApiSdk.Users.Item.Outlook.SupportedTimeZonesWithTimeZoneStandard;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -34,7 +34,7 @@ namespace ApiSdk.Users.Item.Outlook {
             var command = new Command("get");
             command.Description = "Get outlook from users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -98,20 +98,20 @@ namespace ApiSdk.Users.Item.Outlook {
         /// <summary>
         /// Provides operations to call the supportedLanguages method.
         /// </summary>
-        public Command BuildMicrosoftGraphSupportedLanguagesCommand() {
-            var command = new Command("microsoft-graph-supported-languages");
+        public Command BuildSupportedLanguagesCommand() {
+            var command = new Command("supported-languages");
             command.Description = "Provides operations to call the supportedLanguages method.";
-            var builder = new MicrosoftGraphSupportedLanguagesRequestBuilder(PathParameters);
+            var builder = new SupportedLanguagesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the supportedTimeZones method.
         /// </summary>
-        public Command BuildMicrosoftGraphSupportedTimeZonesCommand() {
-            var command = new Command("microsoft-graph-supported-time-zones");
+        public Command BuildSupportedTimeZonesCommand() {
+            var command = new Command("supported-time-zones");
             command.Description = "Provides operations to call the supportedTimeZones method.";
-            var builder = new MicrosoftGraphSupportedTimeZonesRequestBuilder(PathParameters);
+            var builder = new SupportedTimeZonesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }

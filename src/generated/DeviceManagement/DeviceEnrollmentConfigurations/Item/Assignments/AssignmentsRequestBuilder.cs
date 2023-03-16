@@ -53,7 +53,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assignment
             var command = new Command("create");
             command.Description = "Create new navigation property to assignments for deviceManagement";
             // Create options for all the parameters
-            var deviceEnrollmentConfigurationIdOption = new Option<string>("--device-enrollment-configuration-id", description: "key: id of deviceEnrollmentConfiguration") {
+            var deviceEnrollmentConfigurationIdOption = new Option<string>("--device-enrollment-configuration-id", description: "The unique identifier of deviceEnrollmentConfiguration") {
             };
             deviceEnrollmentConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceEnrollmentConfigurationIdOption);
@@ -91,6 +91,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assignment
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (deviceEnrollmentConfigurationId is not null) requestInfo.PathParameters.Add("deviceEnrollmentConfiguration%2Did", deviceEnrollmentConfigurationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -110,7 +111,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item.Assignment
             var command = new Command("list");
             command.Description = "The list of group assignments for the device configuration profile";
             // Create options for all the parameters
-            var deviceEnrollmentConfigurationIdOption = new Option<string>("--device-enrollment-configuration-id", description: "key: id of deviceEnrollmentConfiguration") {
+            var deviceEnrollmentConfigurationIdOption = new Option<string>("--device-enrollment-configuration-id", description: "The unique identifier of deviceEnrollmentConfiguration") {
             };
             deviceEnrollmentConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceEnrollmentConfigurationIdOption);

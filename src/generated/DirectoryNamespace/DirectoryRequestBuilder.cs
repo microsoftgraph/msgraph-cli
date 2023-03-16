@@ -1,6 +1,7 @@
 using ApiSdk.DirectoryNamespace.AdministrativeUnits;
 using ApiSdk.DirectoryNamespace.DeletedItems;
 using ApiSdk.DirectoryNamespace.FederationConfigurations;
+using ApiSdk.DirectoryNamespace.OnPremisesSynchronization;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,8 +37,8 @@ namespace ApiSdk.DirectoryNamespace {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             return command;
         }
         /// <summary>
@@ -50,13 +51,14 @@ namespace ApiSdk.DirectoryNamespace {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
+            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
+            command.AddCommand(builder.BuildGetByIdsCommand());
+            command.AddCommand(builder.BuildGraphApplicationCommand());
+            command.AddCommand(builder.BuildGraphGroupCommand());
+            command.AddCommand(builder.BuildGraphUserCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphApplicationCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetAvailableExtensionPropertiesCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetByIdsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGroupCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUserCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphValidatePropertiesCommand());
+            command.AddCommand(builder.BuildValidatePropertiesCommand());
             return command;
         }
         /// <summary>
@@ -66,11 +68,11 @@ namespace ApiSdk.DirectoryNamespace {
             var command = new Command("federation-configurations");
             command.Description = "Provides operations to manage the federationConfigurations property of the microsoft.graph.directory entity.";
             var builder = new FederationConfigurationsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAvailableProviderTypesCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAvailableProviderTypesCommand());
             return command;
         }
         /// <summary>
@@ -130,6 +132,19 @@ namespace ApiSdk.DirectoryNamespace {
             return command;
         }
         /// <summary>
+        /// Provides operations to manage the onPremisesSynchronization property of the microsoft.graph.directory entity.
+        /// </summary>
+        public Command BuildOnPremisesSynchronizationCommand() {
+            var command = new Command("on-premises-synchronization");
+            command.Description = "Provides operations to manage the onPremisesSynchronization property of the microsoft.graph.directory entity.";
+            var builder = new OnPremisesSynchronizationRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCommand());
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        /// <summary>
         /// Update directory
         /// </summary>
         public Command BuildPatchCommand() {
@@ -168,6 +183,7 @@ namespace ApiSdk.DirectoryNamespace {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

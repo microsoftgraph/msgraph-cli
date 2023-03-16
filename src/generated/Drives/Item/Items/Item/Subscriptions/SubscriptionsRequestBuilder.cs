@@ -33,8 +33,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Subscriptions {
             var builder = new SubscriptionItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphReauthorizeCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildReauthorizeCommand());
             return command;
         }
         /// <summary>
@@ -54,11 +54,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Subscriptions {
             var command = new Command("create");
             command.Description = "Create new navigation property to subscriptions for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
@@ -98,6 +98,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Subscriptions {
                 });
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -117,11 +118,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Subscriptions {
             var command = new Command("list");
             command.Description = "The set of subscriptions on the item. Only supported on the root of a drive.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);

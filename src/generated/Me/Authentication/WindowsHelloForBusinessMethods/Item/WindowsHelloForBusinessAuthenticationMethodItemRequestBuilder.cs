@@ -31,7 +31,7 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property windowsHelloForBusinessMethods for me";
             // Create options for all the parameters
-            var windowsHelloForBusinessAuthenticationMethodIdOption = new Option<string>("--windows-hello-for-business-authentication-method-id", description: "key: id of windowsHelloForBusinessAuthenticationMethod") {
+            var windowsHelloForBusinessAuthenticationMethodIdOption = new Option<string>("--windows-hello-for-business-authentication-method-id", description: "The unique identifier of windowsHelloForBusinessAuthenticationMethod") {
             };
             windowsHelloForBusinessAuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(windowsHelloForBusinessAuthenticationMethodIdOption);
@@ -75,7 +75,7 @@ namespace ApiSdk.Me.Authentication.WindowsHelloForBusinessMethods.Item {
             var command = new Command("get");
             command.Description = "Represents the Windows Hello for Business authentication method registered to a user for authentication.";
             // Create options for all the parameters
-            var windowsHelloForBusinessAuthenticationMethodIdOption = new Option<string>("--windows-hello-for-business-authentication-method-id", description: "key: id of windowsHelloForBusinessAuthenticationMethod") {
+            var windowsHelloForBusinessAuthenticationMethodIdOption = new Option<string>("--windows-hello-for-business-authentication-method-id", description: "The unique identifier of windowsHelloForBusinessAuthenticationMethod") {
             };
             windowsHelloForBusinessAuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(windowsHelloForBusinessAuthenticationMethodIdOption);

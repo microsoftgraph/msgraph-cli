@@ -30,19 +30,19 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.HostedContents.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property hostedContents for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
-            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "key: id of chatMessage") {
+            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "The unique identifier of chatMessage") {
             };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);
-            var chatMessageHostedContentIdOption = new Option<string>("--chat-message-hosted-content-id", description: "key: id of chatMessageHostedContent") {
+            var chatMessageHostedContentIdOption = new Option<string>("--chat-message-hosted-content-id", description: "The unique identifier of chatMessageHostedContent") {
             };
             chatMessageHostedContentIdOption.IsRequired = true;
             command.AddOption(chatMessageHostedContentIdOption);
@@ -82,19 +82,19 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.HostedContents.Item {
             var command = new Command("get");
             command.Description = "Content in a message hosted by Microsoft Teams - for example, images or code snippets.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
-            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "key: id of chatMessage") {
+            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "The unique identifier of chatMessage") {
             };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);
-            var chatMessageHostedContentIdOption = new Option<string>("--chat-message-hosted-content-id", description: "key: id of chatMessageHostedContent") {
+            var chatMessageHostedContentIdOption = new Option<string>("--chat-message-hosted-content-id", description: "The unique identifier of chatMessageHostedContent") {
             };
             chatMessageHostedContentIdOption.IsRequired = true;
             command.AddOption(chatMessageHostedContentIdOption);
@@ -162,19 +162,19 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.HostedContents.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property hostedContents in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
-            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "key: id of chatMessage") {
+            var chatMessageIdOption = new Option<string>("--chat-message-id", description: "The unique identifier of chatMessage") {
             };
             chatMessageIdOption.IsRequired = true;
             command.AddOption(chatMessageIdOption);
-            var chatMessageHostedContentIdOption = new Option<string>("--chat-message-hosted-content-id", description: "key: id of chatMessageHostedContent") {
+            var chatMessageHostedContentIdOption = new Option<string>("--chat-message-hosted-content-id", description: "The unique identifier of chatMessageHostedContent") {
             };
             chatMessageHostedContentIdOption.IsRequired = true;
             command.AddOption(chatMessageHostedContentIdOption);
@@ -218,6 +218,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.HostedContents.Item {
                 if (chatId is not null) requestInfo.PathParameters.Add("chat%2Did", chatId);
                 if (chatMessageId is not null) requestInfo.PathParameters.Add("chatMessage%2Did", chatMessageId);
                 if (chatMessageHostedContentId is not null) requestInfo.PathParameters.Add("chatMessageHostedContent%2Did", chatMessageHostedContentId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

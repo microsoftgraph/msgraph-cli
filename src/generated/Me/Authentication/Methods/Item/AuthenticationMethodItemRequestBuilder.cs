@@ -1,4 +1,4 @@
-using ApiSdk.Me.Authentication.Methods.Item.MicrosoftGraphResetPassword;
+using ApiSdk.Me.Authentication.Methods.Item.ResetPassword;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,7 +31,7 @@ namespace ApiSdk.Me.Authentication.Methods.Item {
             var command = new Command("get");
             command.Description = "Represents all authentication methods registered to a user.";
             // Create options for all the parameters
-            var authenticationMethodIdOption = new Option<string>("--authentication-method-id", description: "key: id of authenticationMethod") {
+            var authenticationMethodIdOption = new Option<string>("--authentication-method-id", description: "The unique identifier of authenticationMethod") {
             };
             authenticationMethodIdOption.IsRequired = true;
             command.AddOption(authenticationMethodIdOption);
@@ -87,23 +87,13 @@ namespace ApiSdk.Me.Authentication.Methods.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the resetPassword method.
-        /// </summary>
-        public Command BuildMicrosoftGraphResetPasswordCommand() {
-            var command = new Command("microsoft-graph-reset-password");
-            command.Description = "Provides operations to call the resetPassword method.";
-            var builder = new MicrosoftGraphResetPasswordRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property methods in me
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property methods in me";
             // Create options for all the parameters
-            var authenticationMethodIdOption = new Option<string>("--authentication-method-id", description: "key: id of authenticationMethod") {
+            var authenticationMethodIdOption = new Option<string>("--authentication-method-id", description: "The unique identifier of authenticationMethod") {
             };
             authenticationMethodIdOption.IsRequired = true;
             command.AddOption(authenticationMethodIdOption);
@@ -141,6 +131,7 @@ namespace ApiSdk.Me.Authentication.Methods.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (authenticationMethodId is not null) requestInfo.PathParameters.Add("authenticationMethod%2Did", authenticationMethodId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -151,6 +142,16 @@ namespace ApiSdk.Me.Authentication.Methods.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the resetPassword method.
+        /// </summary>
+        public Command BuildResetPasswordCommand() {
+            var command = new Command("reset-password");
+            command.Description = "Provides operations to call the resetPassword method.";
+            var builder = new ResetPasswordRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

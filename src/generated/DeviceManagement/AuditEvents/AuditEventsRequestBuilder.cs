@@ -1,7 +1,7 @@
 using ApiSdk.DeviceManagement.AuditEvents.Count;
+using ApiSdk.DeviceManagement.AuditEvents.GetAuditActivityTypesWithCategory;
+using ApiSdk.DeviceManagement.AuditEvents.GetAuditCategories;
 using ApiSdk.DeviceManagement.AuditEvents.Item;
-using ApiSdk.DeviceManagement.AuditEvents.MicrosoftGraphGetAuditActivityTypesWithCategory;
-using ApiSdk.DeviceManagement.AuditEvents.MicrosoftGraphGetAuditCategories;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -87,6 +87,7 @@ namespace ApiSdk.DeviceManagement.AuditEvents {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -97,6 +98,16 @@ namespace ApiSdk.DeviceManagement.AuditEvents {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getAuditCategories method.
+        /// </summary>
+        public Command BuildGetAuditCategoriesCommand() {
+            var command = new Command("get-audit-categories");
+            command.Description = "Provides operations to call the getAuditCategories method.";
+            var builder = new GetAuditCategoriesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -202,16 +213,6 @@ namespace ApiSdk.DeviceManagement.AuditEvents {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getAuditCategories method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetAuditCategoriesCommand() {
-            var command = new Command("microsoft-graph-get-audit-categories");
-            command.Description = "Provides operations to call the getAuditCategories method.";
-            var builder = new MicrosoftGraphGetAuditCategoriesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

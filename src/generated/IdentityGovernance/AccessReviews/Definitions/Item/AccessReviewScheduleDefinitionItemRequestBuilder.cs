@@ -1,5 +1,5 @@
 using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances;
-using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.MicrosoftGraphStop;
+using ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Stop;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,7 +32,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property definitions for identityGovernance";
             // Create options for all the parameters
-            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "key: id of accessReviewScheduleDefinition") {
+            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "The unique identifier of accessReviewScheduleDefinition") {
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
             command.AddOption(accessReviewScheduleDefinitionIdOption);
@@ -66,7 +66,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             var command = new Command("get");
             command.Description = "Represents the template and scheduling for an access review.";
             // Create options for all the parameters
-            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "key: id of accessReviewScheduleDefinition") {
+            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "The unique identifier of accessReviewScheduleDefinition") {
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
             command.AddOption(accessReviewScheduleDefinitionIdOption);
@@ -135,23 +135,13 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the stop method.
-        /// </summary>
-        public Command BuildMicrosoftGraphStopCommand() {
-            var command = new Command("microsoft-graph-stop");
-            command.Description = "Provides operations to call the stop method.";
-            var builder = new MicrosoftGraphStopRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property definitions in identityGovernance
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property definitions in identityGovernance";
             // Create options for all the parameters
-            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "key: id of accessReviewScheduleDefinition") {
+            var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "The unique identifier of accessReviewScheduleDefinition") {
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
             command.AddOption(accessReviewScheduleDefinitionIdOption);
@@ -189,6 +179,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (accessReviewScheduleDefinitionId is not null) requestInfo.PathParameters.Add("accessReviewScheduleDefinition%2Did", accessReviewScheduleDefinitionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -199,6 +190,16 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the stop method.
+        /// </summary>
+        public Command BuildStopCommand() {
+            var command = new Command("stop");
+            command.Description = "Provides operations to call the stop method.";
+            var builder = new StopRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

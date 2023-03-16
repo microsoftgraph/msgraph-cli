@@ -30,15 +30,15 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             var command = new Command("get");
             command.Description = "The access packages that are incompatible with this package. Read-only.";
             // Create options for all the parameters
-            var accessPackageCatalogIdOption = new Option<string>("--access-package-catalog-id", description: "key: id of accessPackageCatalog") {
+            var accessPackageCatalogIdOption = new Option<string>("--access-package-catalog-id", description: "The unique identifier of accessPackageCatalog") {
             };
             accessPackageCatalogIdOption.IsRequired = true;
             command.AddOption(accessPackageCatalogIdOption);
-            var accessPackageIdOption = new Option<string>("--access-package-id", description: "key: id of accessPackage") {
+            var accessPackageIdOption = new Option<string>("--access-package-id", description: "The unique identifier of accessPackage") {
             };
             accessPackageIdOption.IsRequired = true;
             command.AddOption(accessPackageIdOption);
-            var accessPackageId1Option = new Option<string>("--access-package-id1", description: "key: id of accessPackage") {
+            var accessPackageId1Option = new Option<string>("--access-package-id1", description: "The unique identifier of accessPackage") {
             };
             accessPackageId1Option.IsRequired = true;
             command.AddOption(accessPackageId1Option);

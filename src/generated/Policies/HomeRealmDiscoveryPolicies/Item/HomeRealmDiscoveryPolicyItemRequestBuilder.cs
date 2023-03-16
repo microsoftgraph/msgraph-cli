@@ -30,7 +30,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property homeRealmDiscoveryPolicies for policies";
             // Create options for all the parameters
-            var homeRealmDiscoveryPolicyIdOption = new Option<string>("--home-realm-discovery-policy-id", description: "key: id of homeRealmDiscoveryPolicy") {
+            var homeRealmDiscoveryPolicyIdOption = new Option<string>("--home-realm-discovery-policy-id", description: "The unique identifier of homeRealmDiscoveryPolicy") {
             };
             homeRealmDiscoveryPolicyIdOption.IsRequired = true;
             command.AddOption(homeRealmDiscoveryPolicyIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
             var command = new Command("get");
             command.Description = "The policy to control Azure AD authentication behavior for federated users.";
             // Create options for all the parameters
-            var homeRealmDiscoveryPolicyIdOption = new Option<string>("--home-realm-discovery-policy-id", description: "key: id of homeRealmDiscoveryPolicy") {
+            var homeRealmDiscoveryPolicyIdOption = new Option<string>("--home-realm-discovery-policy-id", description: "The unique identifier of homeRealmDiscoveryPolicy") {
             };
             homeRealmDiscoveryPolicyIdOption.IsRequired = true;
             command.AddOption(homeRealmDiscoveryPolicyIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property homeRealmDiscoveryPolicies in policies";
             // Create options for all the parameters
-            var homeRealmDiscoveryPolicyIdOption = new Option<string>("--home-realm-discovery-policy-id", description: "key: id of homeRealmDiscoveryPolicy") {
+            var homeRealmDiscoveryPolicyIdOption = new Option<string>("--home-realm-discovery-policy-id", description: "The unique identifier of homeRealmDiscoveryPolicy") {
             };
             homeRealmDiscoveryPolicyIdOption.IsRequired = true;
             command.AddOption(homeRealmDiscoveryPolicyIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (homeRealmDiscoveryPolicyId is not null) requestInfo.PathParameters.Add("homeRealmDiscoveryPolicy%2Did", homeRealmDiscoveryPolicyId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -1,5 +1,5 @@
-using ApiSdk.Groups.Item.Conversations.Item.Threads.Item.MicrosoftGraphReply;
 using ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts;
+using ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Reply;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,15 +32,15 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property threads for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var conversationIdOption = new Option<string>("--conversation-id", description: "key: id of conversation") {
+            var conversationIdOption = new Option<string>("--conversation-id", description: "The unique identifier of conversation") {
             };
             conversationIdOption.IsRequired = true;
             command.AddOption(conversationIdOption);
-            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "key: id of conversationThread") {
+            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "The unique identifier of conversationThread") {
             };
             conversationThreadIdOption.IsRequired = true;
             command.AddOption(conversationThreadIdOption);
@@ -78,15 +78,15 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item {
             var command = new Command("get");
             command.Description = "A collection of all the conversation threads in the conversation. A navigation property. Read-only. Nullable.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var conversationIdOption = new Option<string>("--conversation-id", description: "key: id of conversation") {
+            var conversationIdOption = new Option<string>("--conversation-id", description: "The unique identifier of conversation") {
             };
             conversationIdOption.IsRequired = true;
             command.AddOption(conversationIdOption);
-            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "key: id of conversationThread") {
+            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "The unique identifier of conversationThread") {
             };
             conversationThreadIdOption.IsRequired = true;
             command.AddOption(conversationThreadIdOption);
@@ -146,31 +146,21 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the reply method.
-        /// </summary>
-        public Command BuildMicrosoftGraphReplyCommand() {
-            var command = new Command("microsoft-graph-reply");
-            command.Description = "Provides operations to call the reply method.";
-            var builder = new MicrosoftGraphReplyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property threads in groups
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property threads in groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var conversationIdOption = new Option<string>("--conversation-id", description: "key: id of conversation") {
+            var conversationIdOption = new Option<string>("--conversation-id", description: "The unique identifier of conversation") {
             };
             conversationIdOption.IsRequired = true;
             command.AddOption(conversationIdOption);
-            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "key: id of conversationThread") {
+            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "The unique identifier of conversationThread") {
             };
             conversationThreadIdOption.IsRequired = true;
             command.AddOption(conversationThreadIdOption);
@@ -212,6 +202,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item {
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (conversationId is not null) requestInfo.PathParameters.Add("conversation%2Did", conversationId);
                 if (conversationThreadId is not null) requestInfo.PathParameters.Add("conversationThread%2Did", conversationThreadId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -234,6 +225,16 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the reply method.
+        /// </summary>
+        public Command BuildReplyCommand() {
+            var command = new Command("reply");
+            command.Description = "Provides operations to call the reply method.";
+            var builder = new ReplyRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

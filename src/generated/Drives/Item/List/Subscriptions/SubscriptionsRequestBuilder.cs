@@ -33,8 +33,8 @@ namespace ApiSdk.Drives.Item.List.Subscriptions {
             var builder = new SubscriptionItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphReauthorizeCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildReauthorizeCommand());
             return command;
         }
         /// <summary>
@@ -54,7 +54,7 @@ namespace ApiSdk.Drives.Item.List.Subscriptions {
             var command = new Command("create");
             command.Description = "Create new navigation property to subscriptions for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
@@ -92,6 +92,7 @@ namespace ApiSdk.Drives.Item.List.Subscriptions {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -111,7 +112,7 @@ namespace ApiSdk.Drives.Item.List.Subscriptions {
             var command = new Command("list");
             command.Description = "The set of subscriptions on the list.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);

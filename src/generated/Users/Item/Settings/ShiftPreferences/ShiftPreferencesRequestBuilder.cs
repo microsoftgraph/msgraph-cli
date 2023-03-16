@@ -30,7 +30,7 @@ namespace ApiSdk.Users.Item.Settings.ShiftPreferences {
             var command = new Command("delete");
             command.Description = "Delete navigation property shiftPreferences for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.Users.Item.Settings.ShiftPreferences {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a shiftPreferences object by ID.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/shiftpreferences-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -128,7 +128,7 @@ namespace ApiSdk.Users.Item.Settings.ShiftPreferences {
             var command = new Command("patch");
             command.Description = "Update the properties and relationships of a shiftPreferences object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/shiftpreferences-put?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -166,6 +166,7 @@ namespace ApiSdk.Users.Item.Settings.ShiftPreferences {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

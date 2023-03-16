@@ -31,19 +31,19 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Groups.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property groups for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var storeIdOption = new Option<string>("--store-id", description: "key: id of store") {
+            var storeIdOption = new Option<string>("--store-id", description: "The unique identifier of store") {
             };
             storeIdOption.IsRequired = true;
             command.AddOption(storeIdOption);
-            var groupId1Option = new Option<string>("--group-id1", description: "key: id of group") {
+            var groupId1Option = new Option<string>("--group-id1", description: "The unique identifier of group") {
             };
             groupId1Option.IsRequired = true;
             command.AddOption(groupId1Option);
@@ -83,19 +83,19 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Groups.Item {
             var command = new Command("get");
             command.Description = "Collection of all groups available in the term store.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var storeIdOption = new Option<string>("--store-id", description: "key: id of store") {
+            var storeIdOption = new Option<string>("--store-id", description: "The unique identifier of store") {
             };
             storeIdOption.IsRequired = true;
             command.AddOption(storeIdOption);
-            var groupId1Option = new Option<string>("--group-id1", description: "key: id of group") {
+            var groupId1Option = new Option<string>("--group-id1", description: "The unique identifier of group") {
             };
             groupId1Option.IsRequired = true;
             command.AddOption(groupId1Option);
@@ -163,19 +163,19 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Groups.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property groups in groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var storeIdOption = new Option<string>("--store-id", description: "key: id of store") {
+            var storeIdOption = new Option<string>("--store-id", description: "The unique identifier of store") {
             };
             storeIdOption.IsRequired = true;
             command.AddOption(storeIdOption);
-            var groupId1Option = new Option<string>("--group-id1", description: "key: id of group") {
+            var groupId1Option = new Option<string>("--group-id1", description: "The unique identifier of group") {
             };
             groupId1Option.IsRequired = true;
             command.AddOption(groupId1Option);
@@ -219,6 +219,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Groups.Item {
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
                 if (storeId is not null) requestInfo.PathParameters.Add("store%2Did", storeId);
                 if (groupId1 is not null) requestInfo.PathParameters.Add("group%2Did1", groupId1);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

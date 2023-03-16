@@ -29,11 +29,11 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "key: id of deviceCompliancePolicy") {
+            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicyIdOption);
-            var deviceComplianceScheduledActionForRuleIdOption = new Option<string>("--device-compliance-scheduled-action-for-rule-id", description: "key: id of deviceComplianceScheduledActionForRule") {
+            var deviceComplianceScheduledActionForRuleIdOption = new Option<string>("--device-compliance-scheduled-action-for-rule-id", description: "The unique identifier of deviceComplianceScheduledActionForRule") {
             };
             deviceComplianceScheduledActionForRuleIdOption.IsRequired = true;
             command.AddOption(deviceComplianceScheduledActionForRuleIdOption);

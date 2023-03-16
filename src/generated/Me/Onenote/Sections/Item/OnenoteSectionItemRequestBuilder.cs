@@ -1,5 +1,5 @@
-using ApiSdk.Me.Onenote.Sections.Item.MicrosoftGraphCopyToNotebook;
-using ApiSdk.Me.Onenote.Sections.Item.MicrosoftGraphCopyToSectionGroup;
+using ApiSdk.Me.Onenote.Sections.Item.CopyToNotebook;
+using ApiSdk.Me.Onenote.Sections.Item.CopyToSectionGroup;
 using ApiSdk.Me.Onenote.Sections.Item.Pages;
 using ApiSdk.Me.Onenote.Sections.Item.ParentNotebook;
 using ApiSdk.Me.Onenote.Sections.Item.ParentSectionGroup;
@@ -29,13 +29,33 @@ namespace ApiSdk.Me.Onenote.Sections.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the copyToNotebook method.
+        /// </summary>
+        public Command BuildCopyToNotebookCommand() {
+            var command = new Command("copy-to-notebook");
+            command.Description = "Provides operations to call the copyToNotebook method.";
+            var builder = new CopyToNotebookRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the copyToSectionGroup method.
+        /// </summary>
+        public Command BuildCopyToSectionGroupCommand() {
+            var command = new Command("copy-to-section-group");
+            command.Description = "Provides operations to call the copyToSectionGroup method.";
+            var builder = new CopyToSectionGroupRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete navigation property sections for me
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property sections for me";
             // Create options for all the parameters
-            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "key: id of onenoteSection") {
+            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "The unique identifier of onenoteSection") {
             };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
@@ -69,7 +89,7 @@ namespace ApiSdk.Me.Onenote.Sections.Item {
             var command = new Command("get");
             command.Description = "The sections in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.";
             // Create options for all the parameters
-            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "key: id of onenoteSection") {
+            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "The unique identifier of onenoteSection") {
             };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
@@ -125,26 +145,6 @@ namespace ApiSdk.Me.Onenote.Sections.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the copyToNotebook method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCopyToNotebookCommand() {
-            var command = new Command("microsoft-graph-copy-to-notebook");
-            command.Description = "Provides operations to call the copyToNotebook method.";
-            var builder = new MicrosoftGraphCopyToNotebookRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the copyToSectionGroup method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCopyToSectionGroupCommand() {
-            var command = new Command("microsoft-graph-copy-to-section-group");
-            command.Description = "Provides operations to call the copyToSectionGroup method.";
-            var builder = new MicrosoftGraphCopyToSectionGroupRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the pages property of the microsoft.graph.onenoteSection entity.
         /// </summary>
         public Command BuildPagesCommand() {
@@ -184,7 +184,7 @@ namespace ApiSdk.Me.Onenote.Sections.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property sections in me";
             // Create options for all the parameters
-            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "key: id of onenoteSection") {
+            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "The unique identifier of onenoteSection") {
             };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
@@ -222,6 +222,7 @@ namespace ApiSdk.Me.Onenote.Sections.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (onenoteSectionId is not null) requestInfo.PathParameters.Add("onenoteSection%2Did", onenoteSectionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

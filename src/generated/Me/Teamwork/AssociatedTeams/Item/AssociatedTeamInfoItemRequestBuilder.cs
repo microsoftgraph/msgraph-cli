@@ -30,7 +30,7 @@ namespace ApiSdk.Me.Teamwork.AssociatedTeams.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property associatedTeams for me";
             // Create options for all the parameters
-            var associatedTeamInfoIdOption = new Option<string>("--associated-team-info-id", description: "key: id of associatedTeamInfo") {
+            var associatedTeamInfoIdOption = new Option<string>("--associated-team-info-id", description: "The unique identifier of associatedTeamInfo") {
             };
             associatedTeamInfoIdOption.IsRequired = true;
             command.AddOption(associatedTeamInfoIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Me.Teamwork.AssociatedTeams.Item {
             var command = new Command("get");
             command.Description = "The list of associatedTeamInfo objects that a user is associated with.";
             // Create options for all the parameters
-            var associatedTeamInfoIdOption = new Option<string>("--associated-team-info-id", description: "key: id of associatedTeamInfo") {
+            var associatedTeamInfoIdOption = new Option<string>("--associated-team-info-id", description: "The unique identifier of associatedTeamInfo") {
             };
             associatedTeamInfoIdOption.IsRequired = true;
             command.AddOption(associatedTeamInfoIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.Me.Teamwork.AssociatedTeams.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property associatedTeams in me";
             // Create options for all the parameters
-            var associatedTeamInfoIdOption = new Option<string>("--associated-team-info-id", description: "key: id of associatedTeamInfo") {
+            var associatedTeamInfoIdOption = new Option<string>("--associated-team-info-id", description: "The unique identifier of associatedTeamInfo") {
             };
             associatedTeamInfoIdOption.IsRequired = true;
             command.AddOption(associatedTeamInfoIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.Me.Teamwork.AssociatedTeams.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (associatedTeamInfoId is not null) requestInfo.PathParameters.Add("associatedTeamInfo%2Did", associatedTeamInfoId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

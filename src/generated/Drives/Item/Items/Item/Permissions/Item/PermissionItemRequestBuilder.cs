@@ -1,4 +1,4 @@
-using ApiSdk.Drives.Item.Items.Item.Permissions.Item.MicrosoftGraphGrant;
+using ApiSdk.Drives.Item.Items.Item.Permissions.Item.Grant;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,15 +31,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Permissions.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property permissions for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var permissionIdOption = new Option<string>("--permission-id", description: "key: id of permission") {
+            var permissionIdOption = new Option<string>("--permission-id", description: "The unique identifier of permission") {
             };
             permissionIdOption.IsRequired = true;
             command.AddOption(permissionIdOption);
@@ -77,15 +77,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Permissions.Item {
             var command = new Command("get");
             command.Description = "The set of permissions for the item. Read-only. Nullable.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var permissionIdOption = new Option<string>("--permission-id", description: "key: id of permission") {
+            var permissionIdOption = new Option<string>("--permission-id", description: "The unique identifier of permission") {
             };
             permissionIdOption.IsRequired = true;
             command.AddOption(permissionIdOption);
@@ -147,10 +147,10 @@ namespace ApiSdk.Drives.Item.Items.Item.Permissions.Item {
         /// <summary>
         /// Provides operations to call the grant method.
         /// </summary>
-        public Command BuildMicrosoftGraphGrantCommand() {
-            var command = new Command("microsoft-graph-grant");
+        public Command BuildGrantCommand() {
+            var command = new Command("grant");
             command.Description = "Provides operations to call the grant method.";
-            var builder = new MicrosoftGraphGrantRequestBuilder(PathParameters);
+            var builder = new GrantRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -161,15 +161,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Permissions.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property permissions in drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var permissionIdOption = new Option<string>("--permission-id", description: "key: id of permission") {
+            var permissionIdOption = new Option<string>("--permission-id", description: "The unique identifier of permission") {
             };
             permissionIdOption.IsRequired = true;
             command.AddOption(permissionIdOption);
@@ -211,6 +211,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Permissions.Item {
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
                 if (permissionId is not null) requestInfo.PathParameters.Add("permission%2Did", permissionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

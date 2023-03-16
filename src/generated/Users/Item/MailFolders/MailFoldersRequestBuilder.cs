@@ -1,8 +1,8 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.MailFolders.Count;
+using ApiSdk.Users.Item.MailFolders.Delta;
 using ApiSdk.Users.Item.MailFolders.Item;
-using ApiSdk.Users.Item.MailFolders.MicrosoftGraphDelta;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -33,12 +33,12 @@ namespace ApiSdk.Users.Item.MailFolders {
             var command = new Command("item");
             var builder = new MailFolderItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildChildFoldersCommand());
+            command.AddCommand(builder.BuildCopyCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildMessageRulesCommand());
             command.AddCommand(builder.BuildMessagesCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCopyCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphMoveCommand());
+            command.AddCommand(builder.BuildMoveCommand());
             command.AddCommand(builder.BuildMultiValueExtendedPropertiesCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildSingleValueExtendedPropertiesCommand());
@@ -62,7 +62,7 @@ namespace ApiSdk.Users.Item.MailFolders {
             var command = new Command("create");
             command.Description = "Use this API to create a new mail folder in the root folder of the user's mailbox. If you intend a new folder to be hidden, you must set the **isHidden** property to `true` on creation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-post-mailfolders?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -100,6 +100,7 @@ namespace ApiSdk.Users.Item.MailFolders {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -113,6 +114,16 @@ namespace ApiSdk.Users.Item.MailFolders {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildDeltaCommand() {
+            var command = new Command("delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Get the mail folder collection directly under the root folder of the signed-in user. The returned collection includes any mail search folders directly under the root. By default, this operation does not return hidden folders. Use a query parameter _includeHiddenFolders_ to include them in the response.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-list-mailfolders?view=graph-rest-1.0" />
         /// </summary>
@@ -120,7 +131,7 @@ namespace ApiSdk.Users.Item.MailFolders {
             var command = new Command("list");
             command.Description = "Get the mail folder collection directly under the root folder of the signed-in user. The returned collection includes any mail search folders directly under the root. By default, this operation does not return hidden folders. Use a query parameter _includeHiddenFolders_ to include them in the response.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-mailfolders?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -209,16 +220,6 @@ namespace ApiSdk.Users.Item.MailFolders {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the delta method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDeltaCommand() {
-            var command = new Command("microsoft-graph-delta");
-            command.Description = "Provides operations to call the delta method.";
-            var builder = new MicrosoftGraphDeltaRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

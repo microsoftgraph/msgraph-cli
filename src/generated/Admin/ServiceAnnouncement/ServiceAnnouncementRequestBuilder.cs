@@ -143,16 +143,16 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
             var command = new Command("messages");
             command.Description = "Provides operations to manage the messages property of the microsoft.graph.serviceAnnouncement entity.";
             var builder = new MessagesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildArchiveCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildFavoriteCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphArchiveCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphFavoriteCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphMarkReadCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphMarkUnreadCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUnarchiveCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUnfavoriteCommand());
+            command.AddCommand(builder.BuildMarkReadCommand());
+            command.AddCommand(builder.BuildMarkUnreadCommand());
+            command.AddCommand(builder.BuildUnarchiveCommand());
+            command.AddCommand(builder.BuildUnfavoriteCommand());
             return command;
         }
         /// <summary>
@@ -194,6 +194,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

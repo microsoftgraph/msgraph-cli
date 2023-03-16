@@ -2,102 +2,102 @@ using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Reports.DailyPrintUsageByPrinter;
 using ApiSdk.Reports.DailyPrintUsageByUser;
-using ApiSdk.Reports.MicrosoftGraphDeviceConfigurationDeviceActivity;
-using ApiSdk.Reports.MicrosoftGraphDeviceConfigurationUserActivity;
-using ApiSdk.Reports.MicrosoftGraphGetEmailActivityCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetEmailActivityUserCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetEmailActivityUserDetailWithDate;
-using ApiSdk.Reports.MicrosoftGraphGetEmailActivityUserDetailWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetEmailAppUsageAppsUserCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetEmailAppUsageUserCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetEmailAppUsageUserDetailWithDate;
-using ApiSdk.Reports.MicrosoftGraphGetEmailAppUsageUserDetailWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetEmailAppUsageVersionsUserCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWithEndDateTime;
-using ApiSdk.Reports.MicrosoftGraphGetM365AppPlatformUserCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetM365AppUserCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetM365AppUserDetailWithDate;
-using ApiSdk.Reports.MicrosoftGraphGetM365AppUserDetailWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetMailboxUsageDetailWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetMailboxUsageMailboxCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetMailboxUsageQuotaStatusMailboxCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetMailboxUsageStorageWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetOffice365ActivationCounts;
-using ApiSdk.Reports.MicrosoftGraphGetOffice365ActivationsUserCounts;
-using ApiSdk.Reports.MicrosoftGraphGetOffice365ActivationsUserDetail;
-using ApiSdk.Reports.MicrosoftGraphGetOffice365ActiveUserCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetOffice365ActiveUserDetailWithDate;
-using ApiSdk.Reports.MicrosoftGraphGetOffice365ActiveUserDetailWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetOffice365GroupsActivityCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetOffice365GroupsActivityDetailWithDate;
-using ApiSdk.Reports.MicrosoftGraphGetOffice365GroupsActivityDetailWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetOffice365GroupsActivityFileCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetOffice365GroupsActivityGroupCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetOffice365GroupsActivityStorageWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetOffice365ServicesUserCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetOneDriveActivityFileCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetOneDriveActivityUserCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetOneDriveActivityUserDetailWithDate;
-using ApiSdk.Reports.MicrosoftGraphGetOneDriveActivityUserDetailWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetOneDriveUsageAccountCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetOneDriveUsageAccountDetailWithDate;
-using ApiSdk.Reports.MicrosoftGraphGetOneDriveUsageAccountDetailWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetOneDriveUsageFileCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetOneDriveUsageStorageWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTime;
-using ApiSdk.Reports.MicrosoftGraphGetSharePointActivityFileCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetSharePointActivityPagesWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetSharePointActivityUserCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetSharePointActivityUserDetailWithDate;
-using ApiSdk.Reports.MicrosoftGraphGetSharePointActivityUserDetailWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetSharePointSiteUsageDetailWithDate;
-using ApiSdk.Reports.MicrosoftGraphGetSharePointSiteUsageDetailWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetSharePointSiteUsageFileCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetSharePointSiteUsagePagesWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetSharePointSiteUsageSiteCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetSharePointSiteUsageStorageWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetSkypeForBusinessActivityCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetSkypeForBusinessActivityUserCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetSkypeForBusinessActivityUserDetailWithDate;
-using ApiSdk.Reports.MicrosoftGraphGetSkypeForBusinessActivityUserDetailWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetSkypeForBusinessDeviceUsageUserCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetSkypeForBusinessDeviceUsageUserDetailWithDate;
-using ApiSdk.Reports.MicrosoftGraphGetSkypeForBusinessDeviceUsageUserDetailWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetSkypeForBusinessOrganizerActivityCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetSkypeForBusinessOrganizerActivityMinuteCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetSkypeForBusinessOrganizerActivityUserCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetSkypeForBusinessParticipantActivityCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetSkypeForBusinessParticipantActivityMinuteCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetSkypeForBusinessParticipantActivityUserCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetSkypeForBusinessPeerToPeerActivityCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetSkypeForBusinessPeerToPeerActivityMinuteCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetSkypeForBusinessPeerToPeerActivityUserCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetTeamsDeviceUsageDistributionUserCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetTeamsDeviceUsageUserCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetTeamsDeviceUsageUserDetailWithDate;
-using ApiSdk.Reports.MicrosoftGraphGetTeamsDeviceUsageUserDetailWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetTeamsUserActivityCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetTeamsUserActivityUserCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetTeamsUserActivityUserDetailWithDate;
-using ApiSdk.Reports.MicrosoftGraphGetTeamsUserActivityUserDetailWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetUserArchivedPrintJobsWithUserIdWithStartDateTimeWithEndDateTime;
-using ApiSdk.Reports.MicrosoftGraphGetYammerActivityCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetYammerActivityUserCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetYammerActivityUserDetailWithDate;
-using ApiSdk.Reports.MicrosoftGraphGetYammerActivityUserDetailWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetYammerDeviceUsageDistributionUserCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetYammerDeviceUsageUserCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetYammerDeviceUsageUserDetailWithDate;
-using ApiSdk.Reports.MicrosoftGraphGetYammerDeviceUsageUserDetailWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetYammerGroupsActivityCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetYammerGroupsActivityDetailWithDate;
-using ApiSdk.Reports.MicrosoftGraphGetYammerGroupsActivityDetailWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphGetYammerGroupsActivityGroupCountsWithPeriod;
-using ApiSdk.Reports.MicrosoftGraphManagedDeviceEnrollmentFailureDetails;
-using ApiSdk.Reports.MicrosoftGraphManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWithFilterWithSkipToken;
-using ApiSdk.Reports.MicrosoftGraphManagedDeviceEnrollmentTopFailures;
-using ApiSdk.Reports.MicrosoftGraphManagedDeviceEnrollmentTopFailuresWithPeriod;
+using ApiSdk.Reports.DeviceConfigurationDeviceActivity;
+using ApiSdk.Reports.DeviceConfigurationUserActivity;
+using ApiSdk.Reports.GetEmailActivityCountsWithPeriod;
+using ApiSdk.Reports.GetEmailActivityUserCountsWithPeriod;
+using ApiSdk.Reports.GetEmailActivityUserDetailWithDate;
+using ApiSdk.Reports.GetEmailActivityUserDetailWithPeriod;
+using ApiSdk.Reports.GetEmailAppUsageAppsUserCountsWithPeriod;
+using ApiSdk.Reports.GetEmailAppUsageUserCountsWithPeriod;
+using ApiSdk.Reports.GetEmailAppUsageUserDetailWithDate;
+using ApiSdk.Reports.GetEmailAppUsageUserDetailWithPeriod;
+using ApiSdk.Reports.GetEmailAppUsageVersionsUserCountsWithPeriod;
+using ApiSdk.Reports.GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWithEndDateTime;
+using ApiSdk.Reports.GetM365AppPlatformUserCountsWithPeriod;
+using ApiSdk.Reports.GetM365AppUserCountsWithPeriod;
+using ApiSdk.Reports.GetM365AppUserDetailWithDate;
+using ApiSdk.Reports.GetM365AppUserDetailWithPeriod;
+using ApiSdk.Reports.GetMailboxUsageDetailWithPeriod;
+using ApiSdk.Reports.GetMailboxUsageMailboxCountsWithPeriod;
+using ApiSdk.Reports.GetMailboxUsageQuotaStatusMailboxCountsWithPeriod;
+using ApiSdk.Reports.GetMailboxUsageStorageWithPeriod;
+using ApiSdk.Reports.GetOffice365ActivationCounts;
+using ApiSdk.Reports.GetOffice365ActivationsUserCounts;
+using ApiSdk.Reports.GetOffice365ActivationsUserDetail;
+using ApiSdk.Reports.GetOffice365ActiveUserCountsWithPeriod;
+using ApiSdk.Reports.GetOffice365ActiveUserDetailWithDate;
+using ApiSdk.Reports.GetOffice365ActiveUserDetailWithPeriod;
+using ApiSdk.Reports.GetOffice365GroupsActivityCountsWithPeriod;
+using ApiSdk.Reports.GetOffice365GroupsActivityDetailWithDate;
+using ApiSdk.Reports.GetOffice365GroupsActivityDetailWithPeriod;
+using ApiSdk.Reports.GetOffice365GroupsActivityFileCountsWithPeriod;
+using ApiSdk.Reports.GetOffice365GroupsActivityGroupCountsWithPeriod;
+using ApiSdk.Reports.GetOffice365GroupsActivityStorageWithPeriod;
+using ApiSdk.Reports.GetOffice365ServicesUserCountsWithPeriod;
+using ApiSdk.Reports.GetOneDriveActivityFileCountsWithPeriod;
+using ApiSdk.Reports.GetOneDriveActivityUserCountsWithPeriod;
+using ApiSdk.Reports.GetOneDriveActivityUserDetailWithDate;
+using ApiSdk.Reports.GetOneDriveActivityUserDetailWithPeriod;
+using ApiSdk.Reports.GetOneDriveUsageAccountCountsWithPeriod;
+using ApiSdk.Reports.GetOneDriveUsageAccountDetailWithDate;
+using ApiSdk.Reports.GetOneDriveUsageAccountDetailWithPeriod;
+using ApiSdk.Reports.GetOneDriveUsageFileCountsWithPeriod;
+using ApiSdk.Reports.GetOneDriveUsageStorageWithPeriod;
+using ApiSdk.Reports.GetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTime;
+using ApiSdk.Reports.GetSharePointActivityFileCountsWithPeriod;
+using ApiSdk.Reports.GetSharePointActivityPagesWithPeriod;
+using ApiSdk.Reports.GetSharePointActivityUserCountsWithPeriod;
+using ApiSdk.Reports.GetSharePointActivityUserDetailWithDate;
+using ApiSdk.Reports.GetSharePointActivityUserDetailWithPeriod;
+using ApiSdk.Reports.GetSharePointSiteUsageDetailWithDate;
+using ApiSdk.Reports.GetSharePointSiteUsageDetailWithPeriod;
+using ApiSdk.Reports.GetSharePointSiteUsageFileCountsWithPeriod;
+using ApiSdk.Reports.GetSharePointSiteUsagePagesWithPeriod;
+using ApiSdk.Reports.GetSharePointSiteUsageSiteCountsWithPeriod;
+using ApiSdk.Reports.GetSharePointSiteUsageStorageWithPeriod;
+using ApiSdk.Reports.GetSkypeForBusinessActivityCountsWithPeriod;
+using ApiSdk.Reports.GetSkypeForBusinessActivityUserCountsWithPeriod;
+using ApiSdk.Reports.GetSkypeForBusinessActivityUserDetailWithDate;
+using ApiSdk.Reports.GetSkypeForBusinessActivityUserDetailWithPeriod;
+using ApiSdk.Reports.GetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriod;
+using ApiSdk.Reports.GetSkypeForBusinessDeviceUsageUserCountsWithPeriod;
+using ApiSdk.Reports.GetSkypeForBusinessDeviceUsageUserDetailWithDate;
+using ApiSdk.Reports.GetSkypeForBusinessDeviceUsageUserDetailWithPeriod;
+using ApiSdk.Reports.GetSkypeForBusinessOrganizerActivityCountsWithPeriod;
+using ApiSdk.Reports.GetSkypeForBusinessOrganizerActivityMinuteCountsWithPeriod;
+using ApiSdk.Reports.GetSkypeForBusinessOrganizerActivityUserCountsWithPeriod;
+using ApiSdk.Reports.GetSkypeForBusinessParticipantActivityCountsWithPeriod;
+using ApiSdk.Reports.GetSkypeForBusinessParticipantActivityMinuteCountsWithPeriod;
+using ApiSdk.Reports.GetSkypeForBusinessParticipantActivityUserCountsWithPeriod;
+using ApiSdk.Reports.GetSkypeForBusinessPeerToPeerActivityCountsWithPeriod;
+using ApiSdk.Reports.GetSkypeForBusinessPeerToPeerActivityMinuteCountsWithPeriod;
+using ApiSdk.Reports.GetSkypeForBusinessPeerToPeerActivityUserCountsWithPeriod;
+using ApiSdk.Reports.GetTeamsDeviceUsageDistributionUserCountsWithPeriod;
+using ApiSdk.Reports.GetTeamsDeviceUsageUserCountsWithPeriod;
+using ApiSdk.Reports.GetTeamsDeviceUsageUserDetailWithDate;
+using ApiSdk.Reports.GetTeamsDeviceUsageUserDetailWithPeriod;
+using ApiSdk.Reports.GetTeamsUserActivityCountsWithPeriod;
+using ApiSdk.Reports.GetTeamsUserActivityUserCountsWithPeriod;
+using ApiSdk.Reports.GetTeamsUserActivityUserDetailWithDate;
+using ApiSdk.Reports.GetTeamsUserActivityUserDetailWithPeriod;
+using ApiSdk.Reports.GetUserArchivedPrintJobsWithUserIdWithStartDateTimeWithEndDateTime;
+using ApiSdk.Reports.GetYammerActivityCountsWithPeriod;
+using ApiSdk.Reports.GetYammerActivityUserCountsWithPeriod;
+using ApiSdk.Reports.GetYammerActivityUserDetailWithDate;
+using ApiSdk.Reports.GetYammerActivityUserDetailWithPeriod;
+using ApiSdk.Reports.GetYammerDeviceUsageDistributionUserCountsWithPeriod;
+using ApiSdk.Reports.GetYammerDeviceUsageUserCountsWithPeriod;
+using ApiSdk.Reports.GetYammerDeviceUsageUserDetailWithDate;
+using ApiSdk.Reports.GetYammerDeviceUsageUserDetailWithPeriod;
+using ApiSdk.Reports.GetYammerGroupsActivityCountsWithPeriod;
+using ApiSdk.Reports.GetYammerGroupsActivityDetailWithDate;
+using ApiSdk.Reports.GetYammerGroupsActivityDetailWithPeriod;
+using ApiSdk.Reports.GetYammerGroupsActivityGroupCountsWithPeriod;
+using ApiSdk.Reports.ManagedDeviceEnrollmentFailureDetails;
+using ApiSdk.Reports.ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWithFilterWithSkipToken;
+using ApiSdk.Reports.ManagedDeviceEnrollmentTopFailures;
+using ApiSdk.Reports.ManagedDeviceEnrollmentTopFailuresWithPeriod;
 using ApiSdk.Reports.MonthlyPrintUsageByPrinter;
 using ApiSdk.Reports.MonthlyPrintUsageByUser;
 using ApiSdk.Reports.Security;
@@ -148,6 +148,26 @@ namespace ApiSdk.Reports {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the deviceConfigurationDeviceActivity method.
+        /// </summary>
+        public Command BuildDeviceConfigurationDeviceActivityCommand() {
+            var command = new Command("device-configuration-device-activity");
+            command.Description = "Provides operations to call the deviceConfigurationDeviceActivity method.";
+            var builder = new DeviceConfigurationDeviceActivityRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the deviceConfigurationUserActivity method.
+        /// </summary>
+        public Command BuildDeviceConfigurationUserActivityCommand() {
+            var command = new Command("device-configuration-user-activity");
+            command.Description = "Provides operations to call the deviceConfigurationUserActivity method.";
+            var builder = new DeviceConfigurationUserActivityRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -207,72 +227,52 @@ namespace ApiSdk.Reports {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the deviceConfigurationDeviceActivity method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDeviceConfigurationDeviceActivityCommand() {
-            var command = new Command("microsoft-graph-device-configuration-device-activity");
-            command.Description = "Provides operations to call the deviceConfigurationDeviceActivity method.";
-            var builder = new MicrosoftGraphDeviceConfigurationDeviceActivityRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the deviceConfigurationUserActivity method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDeviceConfigurationUserActivityCommand() {
-            var command = new Command("microsoft-graph-device-configuration-user-activity");
-            command.Description = "Provides operations to call the deviceConfigurationUserActivity method.";
-            var builder = new MicrosoftGraphDeviceConfigurationUserActivityRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to call the getOffice365ActivationCounts method.
         /// </summary>
-        public Command BuildMicrosoftGraphGetOffice365ActivationCountsCommand() {
-            var command = new Command("microsoft-graph-get-office365-activation-counts");
+        public Command BuildGetOffice365ActivationCountsCommand() {
+            var command = new Command("get-office365-activation-counts");
             command.Description = "Provides operations to call the getOffice365ActivationCounts method.";
-            var builder = new MicrosoftGraphGetOffice365ActivationCountsRequestBuilder(PathParameters);
+            var builder = new GetOffice365ActivationCountsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the getOffice365ActivationsUserCounts method.
         /// </summary>
-        public Command BuildMicrosoftGraphGetOffice365ActivationsUserCountsCommand() {
-            var command = new Command("microsoft-graph-get-office365-activations-user-counts");
+        public Command BuildGetOffice365ActivationsUserCountsCommand() {
+            var command = new Command("get-office365-activations-user-counts");
             command.Description = "Provides operations to call the getOffice365ActivationsUserCounts method.";
-            var builder = new MicrosoftGraphGetOffice365ActivationsUserCountsRequestBuilder(PathParameters);
+            var builder = new GetOffice365ActivationsUserCountsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the getOffice365ActivationsUserDetail method.
         /// </summary>
-        public Command BuildMicrosoftGraphGetOffice365ActivationsUserDetailCommand() {
-            var command = new Command("microsoft-graph-get-office365-activations-user-detail");
+        public Command BuildGetOffice365ActivationsUserDetailCommand() {
+            var command = new Command("get-office365-activations-user-detail");
             command.Description = "Provides operations to call the getOffice365ActivationsUserDetail method.";
-            var builder = new MicrosoftGraphGetOffice365ActivationsUserDetailRequestBuilder(PathParameters);
+            var builder = new GetOffice365ActivationsUserDetailRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the managedDeviceEnrollmentFailureDetails method.
         /// </summary>
-        public Command BuildMicrosoftGraphManagedDeviceEnrollmentFailureDetailsCommand() {
-            var command = new Command("microsoft-graph-managed-device-enrollment-failure-details");
+        public Command BuildManagedDeviceEnrollmentFailureDetailsCommand() {
+            var command = new Command("managed-device-enrollment-failure-details");
             command.Description = "Provides operations to call the managedDeviceEnrollmentFailureDetails method.";
-            var builder = new MicrosoftGraphManagedDeviceEnrollmentFailureDetailsRequestBuilder(PathParameters);
+            var builder = new ManagedDeviceEnrollmentFailureDetailsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the managedDeviceEnrollmentTopFailures method.
         /// </summary>
-        public Command BuildMicrosoftGraphManagedDeviceEnrollmentTopFailuresCommand() {
-            var command = new Command("microsoft-graph-managed-device-enrollment-top-failures");
+        public Command BuildManagedDeviceEnrollmentTopFailuresCommand() {
+            var command = new Command("managed-device-enrollment-top-failures");
             command.Description = "Provides operations to call the managedDeviceEnrollmentTopFailures method.";
-            var builder = new MicrosoftGraphManagedDeviceEnrollmentTopFailuresRequestBuilder(PathParameters);
+            var builder = new ManagedDeviceEnrollmentTopFailuresRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -341,6 +341,7 @@ namespace ApiSdk.Reports {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -361,10 +362,10 @@ namespace ApiSdk.Reports {
             command.Description = "Provides operations to manage the security property of the microsoft.graph.reportRoot entity.";
             var builder = new SecurityRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildGetAttackSimulationRepeatOffendersCommand());
+            command.AddCommand(builder.BuildGetAttackSimulationSimulationUserCoverageCommand());
+            command.AddCommand(builder.BuildGetAttackSimulationTrainingUserCoverageCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetAttackSimulationRepeatOffendersCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetAttackSimulationSimulationUserCoverageCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetAttackSimulationTrainingUserCoverageCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }

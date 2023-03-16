@@ -53,7 +53,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
             var command = new Command("create");
             command.Description = "Create new navigation property to history for identityProtection";
             // Create options for all the parameters
-            var riskyUserIdOption = new Option<string>("--risky-user-id", description: "key: id of riskyUser") {
+            var riskyUserIdOption = new Option<string>("--risky-user-id", description: "The unique identifier of riskyUser") {
             };
             riskyUserIdOption.IsRequired = true;
             command.AddOption(riskyUserIdOption);
@@ -91,6 +91,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (riskyUserId is not null) requestInfo.PathParameters.Add("riskyUser%2Did", riskyUserId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -111,7 +112,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
             var command = new Command("list");
             command.Description = "Get the riskyUserHistoryItems from the history navigation property.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/riskyuser-list-history?view=graph-rest-1.0";
             // Create options for all the parameters
-            var riskyUserIdOption = new Option<string>("--risky-user-id", description: "key: id of riskyUser") {
+            var riskyUserIdOption = new Option<string>("--risky-user-id", description: "The unique identifier of riskyUser") {
             };
             riskyUserIdOption.IsRequired = true;
             command.AddOption(riskyUserIdOption);

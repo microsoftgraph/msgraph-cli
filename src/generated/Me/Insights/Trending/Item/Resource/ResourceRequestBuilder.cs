@@ -30,7 +30,7 @@ namespace ApiSdk.Me.Insights.Trending.Item.Resource {
             var command = new Command("get");
             command.Description = "Used for navigating to the trending document.";
             // Create options for all the parameters
-            var trendingIdOption = new Option<string>("--trending-id", description: "key: id of trending") {
+            var trendingIdOption = new Option<string>("--trending-id", description: "The unique identifier of trending") {
             };
             trendingIdOption.IsRequired = true;
             command.AddOption(trendingIdOption);

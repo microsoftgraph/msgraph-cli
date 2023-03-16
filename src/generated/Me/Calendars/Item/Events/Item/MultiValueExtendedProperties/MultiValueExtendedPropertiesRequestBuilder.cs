@@ -53,11 +53,11 @@ namespace ApiSdk.Me.Calendars.Item.Events.Item.MultiValueExtendedProperties {
             var command = new Command("create");
             command.Description = "Create new navigation property to multiValueExtendedProperties for me";
             // Create options for all the parameters
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            var calendarIdOption = new Option<string>("--calendar-id", description: "The unique identifier of calendar") {
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
@@ -97,6 +97,7 @@ namespace ApiSdk.Me.Calendars.Item.Events.Item.MultiValueExtendedProperties {
                 });
                 if (calendarId is not null) requestInfo.PathParameters.Add("calendar%2Did", calendarId);
                 if (eventId is not null) requestInfo.PathParameters.Add("event%2Did", eventId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -116,11 +117,11 @@ namespace ApiSdk.Me.Calendars.Item.Events.Item.MultiValueExtendedProperties {
             var command = new Command("list");
             command.Description = "The collection of multi-value extended properties defined for the event. Read-only. Nullable.";
             // Create options for all the parameters
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            var calendarIdOption = new Option<string>("--calendar-id", description: "The unique identifier of calendar") {
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);

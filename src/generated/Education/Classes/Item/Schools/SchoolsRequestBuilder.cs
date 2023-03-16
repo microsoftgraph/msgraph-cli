@@ -52,7 +52,7 @@ namespace ApiSdk.Education.Classes.Item.Schools {
             var command = new Command("list");
             command.Description = "Retrieve a list of schools in which the class is taught.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationclass-list-schools?view=graph-rest-1.0";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);

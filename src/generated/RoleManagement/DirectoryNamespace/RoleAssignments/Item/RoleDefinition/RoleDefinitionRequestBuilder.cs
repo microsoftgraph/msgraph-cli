@@ -30,7 +30,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item.RoleDefi
             var command = new Command("get");
             command.Description = "The roleDefinition the assignment is for.  Supports $expand. roleDefinition.Id will be auto expanded.";
             // Create options for all the parameters
-            var unifiedRoleAssignmentIdOption = new Option<string>("--unified-role-assignment-id", description: "key: id of unifiedRoleAssignment") {
+            var unifiedRoleAssignmentIdOption = new Option<string>("--unified-role-assignment-id", description: "The unique identifier of unifiedRoleAssignment") {
             };
             unifiedRoleAssignmentIdOption.IsRequired = true;
             command.AddOption(unifiedRoleAssignmentIdOption);

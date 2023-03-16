@@ -56,19 +56,19 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.ParentGroup.Sets.Item.Children.I
             var command = new Command("create");
             command.Description = "Create new navigation property to relations for sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            var setIdOption = new Option<string>("--set-id", description: "The unique identifier of set") {
             };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
-            var setId1Option = new Option<string>("--set-id1", description: "key: id of set") {
+            var setId1Option = new Option<string>("--set-id1", description: "The unique identifier of set") {
             };
             setId1Option.IsRequired = true;
             command.AddOption(setId1Option);
-            var termIdOption = new Option<string>("--term-id", description: "key: id of term") {
+            var termIdOption = new Option<string>("--term-id", description: "The unique identifier of term") {
             };
             termIdOption.IsRequired = true;
             command.AddOption(termIdOption);
@@ -112,6 +112,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.ParentGroup.Sets.Item.Children.I
                 if (setId is not null) requestInfo.PathParameters.Add("set%2Did", setId);
                 if (setId1 is not null) requestInfo.PathParameters.Add("set%2Did1", setId1);
                 if (termId is not null) requestInfo.PathParameters.Add("term%2Did", termId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -131,19 +132,19 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.ParentGroup.Sets.Item.Children.I
             var command = new Command("list");
             command.Description = "To indicate which terms are related to the current term as either pinned or reused.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            var setIdOption = new Option<string>("--set-id", description: "The unique identifier of set") {
             };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
-            var setId1Option = new Option<string>("--set-id1", description: "key: id of set") {
+            var setId1Option = new Option<string>("--set-id1", description: "The unique identifier of set") {
             };
             setId1Option.IsRequired = true;
             command.AddOption(setId1Option);
-            var termIdOption = new Option<string>("--term-id", description: "key: id of term") {
+            var termIdOption = new Option<string>("--term-id", description: "The unique identifier of term") {
             };
             termIdOption.IsRequired = true;
             command.AddOption(termIdOption);

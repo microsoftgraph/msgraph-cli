@@ -29,7 +29,7 @@ namespace ApiSdk.Applications.Item.Logo {
             var command = new Command("get");
             command.Description = "The main logo for the application. Not nullable.";
             // Create options for all the parameters
-            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
             command.AddOption(applicationIdOption);
@@ -68,7 +68,7 @@ namespace ApiSdk.Applications.Item.Logo {
             var command = new Command("put");
             command.Description = "The main logo for the application. Not nullable.";
             // Create options for all the parameters
-            var applicationIdOption = new Option<string>("--application-id", description: "key: id of application") {
+            var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
             command.AddOption(applicationIdOption);

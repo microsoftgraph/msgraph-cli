@@ -30,11 +30,11 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property assignments for deviceManagement";
             // Create options for all the parameters
-            var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "key: id of termsAndConditions") {
+            var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "The unique identifier of termsAndConditions") {
             };
             termsAndConditionsIdOption.IsRequired = true;
             command.AddOption(termsAndConditionsIdOption);
-            var termsAndConditionsAssignmentIdOption = new Option<string>("--terms-and-conditions-assignment-id", description: "key: id of termsAndConditionsAssignment") {
+            var termsAndConditionsAssignmentIdOption = new Option<string>("--terms-and-conditions-assignment-id", description: "The unique identifier of termsAndConditionsAssignment") {
             };
             termsAndConditionsAssignmentIdOption.IsRequired = true;
             command.AddOption(termsAndConditionsAssignmentIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Item {
             var command = new Command("get");
             command.Description = "The list of assignments for this T&C policy.";
             // Create options for all the parameters
-            var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "key: id of termsAndConditions") {
+            var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "The unique identifier of termsAndConditions") {
             };
             termsAndConditionsIdOption.IsRequired = true;
             command.AddOption(termsAndConditionsIdOption);
-            var termsAndConditionsAssignmentIdOption = new Option<string>("--terms-and-conditions-assignment-id", description: "key: id of termsAndConditionsAssignment") {
+            var termsAndConditionsAssignmentIdOption = new Option<string>("--terms-and-conditions-assignment-id", description: "The unique identifier of termsAndConditionsAssignment") {
             };
             termsAndConditionsAssignmentIdOption.IsRequired = true;
             command.AddOption(termsAndConditionsAssignmentIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property assignments in deviceManagement";
             // Create options for all the parameters
-            var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "key: id of termsAndConditions") {
+            var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "The unique identifier of termsAndConditions") {
             };
             termsAndConditionsIdOption.IsRequired = true;
             command.AddOption(termsAndConditionsIdOption);
-            var termsAndConditionsAssignmentIdOption = new Option<string>("--terms-and-conditions-assignment-id", description: "key: id of termsAndConditionsAssignment") {
+            var termsAndConditionsAssignmentIdOption = new Option<string>("--terms-and-conditions-assignment-id", description: "The unique identifier of termsAndConditionsAssignment") {
             };
             termsAndConditionsAssignmentIdOption.IsRequired = true;
             command.AddOption(termsAndConditionsAssignmentIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments.Item {
                 });
                 if (termsAndConditionsId is not null) requestInfo.PathParameters.Add("termsAndConditions%2Did", termsAndConditionsId);
                 if (termsAndConditionsAssignmentId is not null) requestInfo.PathParameters.Add("termsAndConditionsAssignment%2Did", termsAndConditionsAssignmentId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

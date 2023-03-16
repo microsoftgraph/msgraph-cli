@@ -30,11 +30,11 @@ namespace ApiSdk.Teams.Item.Schedule.Shifts.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property shifts for teams";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var shiftIdOption = new Option<string>("--shift-id", description: "key: id of shift") {
+            var shiftIdOption = new Option<string>("--shift-id", description: "The unique identifier of shift") {
             };
             shiftIdOption.IsRequired = true;
             command.AddOption(shiftIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Teams.Item.Schedule.Shifts.Item {
             var command = new Command("get");
             command.Description = "The shifts in the schedule.";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var shiftIdOption = new Option<string>("--shift-id", description: "key: id of shift") {
+            var shiftIdOption = new Option<string>("--shift-id", description: "The unique identifier of shift") {
             };
             shiftIdOption.IsRequired = true;
             command.AddOption(shiftIdOption);
@@ -131,11 +131,11 @@ namespace ApiSdk.Teams.Item.Schedule.Shifts.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property shifts in teams";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var shiftIdOption = new Option<string>("--shift-id", description: "key: id of shift") {
+            var shiftIdOption = new Option<string>("--shift-id", description: "The unique identifier of shift") {
             };
             shiftIdOption.IsRequired = true;
             command.AddOption(shiftIdOption);
@@ -175,6 +175,7 @@ namespace ApiSdk.Teams.Item.Schedule.Shifts.Item {
                 });
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
                 if (shiftId is not null) requestInfo.PathParameters.Add("shift%2Did", shiftId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

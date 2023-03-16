@@ -2,8 +2,8 @@ using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.Security;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Count;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.MicrosoftGraphSecurityApplyHold;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.MicrosoftGraphSecurityRemoveHold;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.SecurityApplyHold;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.SecurityRemoveHold;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -37,11 +37,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources {
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildLastIndexOperationCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSecurityApplyHoldCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSecurityReleaseCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSecurityRemoveHoldCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSecurityUpdateIndexCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildSecurityApplyHoldCommand());
+            command.AddCommand(builder.BuildSecurityReleaseCommand());
+            command.AddCommand(builder.BuildSecurityRemoveHoldCommand());
+            command.AddCommand(builder.BuildSecurityUpdateIndexCommand());
             return command;
         }
         /// <summary>
@@ -62,7 +62,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources {
             var command = new Command("create");
             command.Description = "Create a new ediscoveryNoncustodialDataSource object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-post-noncustodialdatasources?view=graph-rest-1.0";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
@@ -100,6 +100,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (ediscoveryCaseId is not null) requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -119,7 +120,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources {
             var command = new Command("list");
             command.Description = "Returns a list of case ediscoveryNoncustodialDataSource objects for this case.";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
@@ -226,20 +227,20 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources {
         /// <summary>
         /// Provides operations to call the applyHold method.
         /// </summary>
-        public Command BuildMicrosoftGraphSecurityApplyHoldCommand() {
-            var command = new Command("microsoft-graph-security-apply-hold");
+        public Command BuildSecurityApplyHoldCommand() {
+            var command = new Command("security-apply-hold");
             command.Description = "Provides operations to call the applyHold method.";
-            var builder = new MicrosoftGraphSecurityApplyHoldRequestBuilder(PathParameters);
+            var builder = new SecurityApplyHoldRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the removeHold method.
         /// </summary>
-        public Command BuildMicrosoftGraphSecurityRemoveHoldCommand() {
-            var command = new Command("microsoft-graph-security-remove-hold");
+        public Command BuildSecurityRemoveHoldCommand() {
+            var command = new Command("security-remove-hold");
             command.Description = "Provides operations to call the removeHold method.";
-            var builder = new MicrosoftGraphSecurityRemoveHoldRequestBuilder(PathParameters);
+            var builder = new SecurityRemoveHoldRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }

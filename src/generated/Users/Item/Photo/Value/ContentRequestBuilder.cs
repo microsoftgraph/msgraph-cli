@@ -29,7 +29,7 @@ namespace ApiSdk.Users.Item.Photo.Value {
             var command = new Command("get");
             command.Description = "Get media content for the navigation property photo from users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -68,7 +68,7 @@ namespace ApiSdk.Users.Item.Photo.Value {
             var command = new Command("put");
             command.Description = "Update media content for the navigation property photo in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

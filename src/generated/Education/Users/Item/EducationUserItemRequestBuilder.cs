@@ -39,8 +39,8 @@ namespace ApiSdk.Education.Users.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             return command;
         }
         /// <summary>
@@ -62,7 +62,7 @@ namespace ApiSdk.Education.Users.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property users for education";
             // Create options for all the parameters
-            var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
+            var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
             command.AddOption(educationUserIdOption);
@@ -96,7 +96,7 @@ namespace ApiSdk.Education.Users.Item {
             var command = new Command("get");
             command.Description = "Get users from education";
             // Create options for all the parameters
-            var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
+            var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
             command.AddOption(educationUserIdOption);
@@ -158,7 +158,7 @@ namespace ApiSdk.Education.Users.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property users in education";
             // Create options for all the parameters
-            var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
+            var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
             command.AddOption(educationUserIdOption);
@@ -196,6 +196,7 @@ namespace ApiSdk.Education.Users.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (educationUserId is not null) requestInfo.PathParameters.Add("educationUser%2Did", educationUserId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

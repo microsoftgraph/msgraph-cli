@@ -1,9 +1,9 @@
 using ApiSdk.Me.Onenote.Sections.Item.Pages.Item.Content;
-using ApiSdk.Me.Onenote.Sections.Item.Pages.Item.MicrosoftGraphCopyToSection;
-using ApiSdk.Me.Onenote.Sections.Item.Pages.Item.MicrosoftGraphOnenotePatchContent;
-using ApiSdk.Me.Onenote.Sections.Item.Pages.Item.MicrosoftGraphPreview;
+using ApiSdk.Me.Onenote.Sections.Item.Pages.Item.CopyToSection;
+using ApiSdk.Me.Onenote.Sections.Item.Pages.Item.OnenotePatchContent;
 using ApiSdk.Me.Onenote.Sections.Item.Pages.Item.ParentNotebook;
 using ApiSdk.Me.Onenote.Sections.Item.Pages.Item.ParentSection;
+using ApiSdk.Me.Onenote.Sections.Item.Pages.Item.Preview;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -41,17 +41,27 @@ namespace ApiSdk.Me.Onenote.Sections.Item.Pages.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the copyToSection method.
+        /// </summary>
+        public Command BuildCopyToSectionCommand() {
+            var command = new Command("copy-to-section");
+            command.Description = "Provides operations to call the copyToSection method.";
+            var builder = new CopyToSectionRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete navigation property pages for me
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property pages for me";
             // Create options for all the parameters
-            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "key: id of onenoteSection") {
+            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "The unique identifier of onenoteSection") {
             };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
-            var onenotePageIdOption = new Option<string>("--onenote-page-id", description: "key: id of onenotePage") {
+            var onenotePageIdOption = new Option<string>("--onenote-page-id", description: "The unique identifier of onenotePage") {
             };
             onenotePageIdOption.IsRequired = true;
             command.AddOption(onenotePageIdOption);
@@ -87,11 +97,11 @@ namespace ApiSdk.Me.Onenote.Sections.Item.Pages.Item {
             var command = new Command("get");
             command.Description = "The collection of pages in the section.  Read-only. Nullable.";
             // Create options for all the parameters
-            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "key: id of onenoteSection") {
+            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "The unique identifier of onenoteSection") {
             };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
-            var onenotePageIdOption = new Option<string>("--onenote-page-id", description: "key: id of onenotePage") {
+            var onenotePageIdOption = new Option<string>("--onenote-page-id", description: "The unique identifier of onenotePage") {
             };
             onenotePageIdOption.IsRequired = true;
             command.AddOption(onenotePageIdOption);
@@ -149,33 +159,13 @@ namespace ApiSdk.Me.Onenote.Sections.Item.Pages.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the copyToSection method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCopyToSectionCommand() {
-            var command = new Command("microsoft-graph-copy-to-section");
-            command.Description = "Provides operations to call the copyToSection method.";
-            var builder = new MicrosoftGraphCopyToSectionRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to call the onenotePatchContent method.
         /// </summary>
-        public Command BuildMicrosoftGraphOnenotePatchContentCommand() {
-            var command = new Command("microsoft-graph-onenote-patch-content");
+        public Command BuildOnenotePatchContentCommand() {
+            var command = new Command("onenote-patch-content");
             command.Description = "Provides operations to call the onenotePatchContent method.";
-            var builder = new MicrosoftGraphOnenotePatchContentRequestBuilder(PathParameters);
+            var builder = new OnenotePatchContentRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the preview method.
-        /// </summary>
-        public Command BuildMicrosoftGraphPreviewCommand() {
-            var command = new Command("microsoft-graph-preview");
-            command.Description = "Provides operations to call the preview method.";
-            var builder = new MicrosoftGraphPreviewRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
@@ -205,11 +195,11 @@ namespace ApiSdk.Me.Onenote.Sections.Item.Pages.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property pages in me";
             // Create options for all the parameters
-            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "key: id of onenoteSection") {
+            var onenoteSectionIdOption = new Option<string>("--onenote-section-id", description: "The unique identifier of onenoteSection") {
             };
             onenoteSectionIdOption.IsRequired = true;
             command.AddOption(onenoteSectionIdOption);
-            var onenotePageIdOption = new Option<string>("--onenote-page-id", description: "key: id of onenotePage") {
+            var onenotePageIdOption = new Option<string>("--onenote-page-id", description: "The unique identifier of onenotePage") {
             };
             onenotePageIdOption.IsRequired = true;
             command.AddOption(onenotePageIdOption);
@@ -249,6 +239,7 @@ namespace ApiSdk.Me.Onenote.Sections.Item.Pages.Item {
                 });
                 if (onenoteSectionId is not null) requestInfo.PathParameters.Add("onenoteSection%2Did", onenoteSectionId);
                 if (onenotePageId is not null) requestInfo.PathParameters.Add("onenotePage%2Did", onenotePageId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -259,6 +250,16 @@ namespace ApiSdk.Me.Onenote.Sections.Item.Pages.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the preview method.
+        /// </summary>
+        public Command BuildPreviewCommand() {
+            var command = new Command("preview");
+            command.Description = "Provides operations to call the preview method.";
+            var builder = new PreviewRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

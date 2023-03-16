@@ -30,11 +30,11 @@ namespace ApiSdk.Communications.Calls.Item.Operations.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property operations for communications";
             // Create options for all the parameters
-            var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
+            var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
             command.AddOption(callIdOption);
-            var commsOperationIdOption = new Option<string>("--comms-operation-id", description: "key: id of commsOperation") {
+            var commsOperationIdOption = new Option<string>("--comms-operation-id", description: "The unique identifier of commsOperation") {
             };
             commsOperationIdOption.IsRequired = true;
             command.AddOption(commsOperationIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Communications.Calls.Item.Operations.Item {
             var command = new Command("get");
             command.Description = "Get operations from communications";
             // Create options for all the parameters
-            var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
+            var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
             command.AddOption(callIdOption);
-            var commsOperationIdOption = new Option<string>("--comms-operation-id", description: "key: id of commsOperation") {
+            var commsOperationIdOption = new Option<string>("--comms-operation-id", description: "The unique identifier of commsOperation") {
             };
             commsOperationIdOption.IsRequired = true;
             command.AddOption(commsOperationIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Communications.Calls.Item.Operations.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property operations in communications";
             // Create options for all the parameters
-            var callIdOption = new Option<string>("--call-id", description: "key: id of call") {
+            var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
             command.AddOption(callIdOption);
-            var commsOperationIdOption = new Option<string>("--comms-operation-id", description: "key: id of commsOperation") {
+            var commsOperationIdOption = new Option<string>("--comms-operation-id", description: "The unique identifier of commsOperation") {
             };
             commsOperationIdOption.IsRequired = true;
             command.AddOption(commsOperationIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Communications.Calls.Item.Operations.Item {
                 });
                 if (callId is not null) requestInfo.PathParameters.Add("call%2Did", callId);
                 if (commsOperationId is not null) requestInfo.PathParameters.Add("commsOperation%2Did", commsOperationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

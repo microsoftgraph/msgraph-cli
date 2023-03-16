@@ -29,7 +29,7 @@ namespace ApiSdk.Contacts.Item.DirectReports.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var orgContactIdOption = new Option<string>("--org-contact-id", description: "key: id of orgContact") {
+            var orgContactIdOption = new Option<string>("--org-contact-id", description: "The unique identifier of orgContact") {
             };
             orgContactIdOption.IsRequired = true;
             command.AddOption(orgContactIdOption);

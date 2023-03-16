@@ -30,7 +30,7 @@ namespace ApiSdk.DeviceManagement.DeviceCategories.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property deviceCategories for deviceManagement";
             // Create options for all the parameters
-            var deviceCategoryIdOption = new Option<string>("--device-category-id", description: "key: id of deviceCategory") {
+            var deviceCategoryIdOption = new Option<string>("--device-category-id", description: "The unique identifier of deviceCategory") {
             };
             deviceCategoryIdOption.IsRequired = true;
             command.AddOption(deviceCategoryIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.DeviceManagement.DeviceCategories.Item {
             var command = new Command("get");
             command.Description = "The list of device categories with the tenant.";
             // Create options for all the parameters
-            var deviceCategoryIdOption = new Option<string>("--device-category-id", description: "key: id of deviceCategory") {
+            var deviceCategoryIdOption = new Option<string>("--device-category-id", description: "The unique identifier of deviceCategory") {
             };
             deviceCategoryIdOption.IsRequired = true;
             command.AddOption(deviceCategoryIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.DeviceManagement.DeviceCategories.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property deviceCategories in deviceManagement";
             // Create options for all the parameters
-            var deviceCategoryIdOption = new Option<string>("--device-category-id", description: "key: id of deviceCategory") {
+            var deviceCategoryIdOption = new Option<string>("--device-category-id", description: "The unique identifier of deviceCategory") {
             };
             deviceCategoryIdOption.IsRequired = true;
             command.AddOption(deviceCategoryIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.DeviceManagement.DeviceCategories.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (deviceCategoryId is not null) requestInfo.PathParameters.Add("deviceCategory%2Did", deviceCategoryId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

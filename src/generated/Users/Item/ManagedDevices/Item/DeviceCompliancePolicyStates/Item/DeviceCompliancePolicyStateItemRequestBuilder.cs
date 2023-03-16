@@ -30,15 +30,15 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.DeviceCompliancePolicyStates.Ite
             var command = new Command("delete");
             command.Description = "Delete navigation property deviceCompliancePolicyStates for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "key: id of managedDevice") {
+            var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "The unique identifier of managedDevice") {
             };
             managedDeviceIdOption.IsRequired = true;
             command.AddOption(managedDeviceIdOption);
-            var deviceCompliancePolicyStateIdOption = new Option<string>("--device-compliance-policy-state-id", description: "key: id of deviceCompliancePolicyState") {
+            var deviceCompliancePolicyStateIdOption = new Option<string>("--device-compliance-policy-state-id", description: "The unique identifier of deviceCompliancePolicyState") {
             };
             deviceCompliancePolicyStateIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicyStateIdOption);
@@ -76,15 +76,15 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.DeviceCompliancePolicyStates.Ite
             var command = new Command("get");
             command.Description = "Device compliance policy states for this device.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "key: id of managedDevice") {
+            var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "The unique identifier of managedDevice") {
             };
             managedDeviceIdOption.IsRequired = true;
             command.AddOption(managedDeviceIdOption);
-            var deviceCompliancePolicyStateIdOption = new Option<string>("--device-compliance-policy-state-id", description: "key: id of deviceCompliancePolicyState") {
+            var deviceCompliancePolicyStateIdOption = new Option<string>("--device-compliance-policy-state-id", description: "The unique identifier of deviceCompliancePolicyState") {
             };
             deviceCompliancePolicyStateIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicyStateIdOption);
@@ -150,15 +150,15 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.DeviceCompliancePolicyStates.Ite
             var command = new Command("patch");
             command.Description = "Update the navigation property deviceCompliancePolicyStates in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "key: id of managedDevice") {
+            var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "The unique identifier of managedDevice") {
             };
             managedDeviceIdOption.IsRequired = true;
             command.AddOption(managedDeviceIdOption);
-            var deviceCompliancePolicyStateIdOption = new Option<string>("--device-compliance-policy-state-id", description: "key: id of deviceCompliancePolicyState") {
+            var deviceCompliancePolicyStateIdOption = new Option<string>("--device-compliance-policy-state-id", description: "The unique identifier of deviceCompliancePolicyState") {
             };
             deviceCompliancePolicyStateIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicyStateIdOption);
@@ -200,6 +200,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.DeviceCompliancePolicyStates.Ite
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (managedDeviceId is not null) requestInfo.PathParameters.Add("managedDevice%2Did", managedDeviceId);
                 if (deviceCompliancePolicyStateId is not null) requestInfo.PathParameters.Add("deviceCompliancePolicyState%2Did", deviceCompliancePolicyStateId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

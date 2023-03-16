@@ -31,7 +31,7 @@ namespace ApiSdk.Communications.CallRecords.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property callRecords for communications";
             // Create options for all the parameters
-            var callRecordIdOption = new Option<string>("--call-record-id", description: "key: id of callRecord") {
+            var callRecordIdOption = new Option<string>("--call-record-id", description: "The unique identifier of callRecord") {
             };
             callRecordIdOption.IsRequired = true;
             command.AddOption(callRecordIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.Communications.CallRecords.Item {
             var command = new Command("get");
             command.Description = "Get callRecords from communications";
             // Create options for all the parameters
-            var callRecordIdOption = new Option<string>("--call-record-id", description: "key: id of callRecord") {
+            var callRecordIdOption = new Option<string>("--call-record-id", description: "The unique identifier of callRecord") {
             };
             callRecordIdOption.IsRequired = true;
             command.AddOption(callRecordIdOption);
@@ -127,7 +127,7 @@ namespace ApiSdk.Communications.CallRecords.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property callRecords in communications";
             // Create options for all the parameters
-            var callRecordIdOption = new Option<string>("--call-record-id", description: "key: id of callRecord") {
+            var callRecordIdOption = new Option<string>("--call-record-id", description: "The unique identifier of callRecord") {
             };
             callRecordIdOption.IsRequired = true;
             command.AddOption(callRecordIdOption);
@@ -165,6 +165,7 @@ namespace ApiSdk.Communications.CallRecords.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (callRecordId is not null) requestInfo.PathParameters.Add("callRecord%2Did", callRecordId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

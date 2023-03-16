@@ -1,9 +1,9 @@
+using ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assign;
 using ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assignments;
 using ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceSettingStateSummaries;
 using ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceStatuses;
 using ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.DeviceStatusOverview;
-using ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.MicrosoftGraphAssign;
-using ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.MicrosoftGraphScheduleActionsForRules;
+using ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduleActionsForRules;
 using ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActionsForRule;
 using ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses;
 using ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatusOverview;
@@ -33,6 +33,16 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the assign method.
+        /// </summary>
+        public Command BuildAssignCommand() {
+            var command = new Command("assign");
+            command.Description = "Provides operations to call the assign method.";
+            var builder = new AssignRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.deviceCompliancePolicy entity.
         /// </summary>
         public Command BuildAssignmentsCommand() {
@@ -52,7 +62,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property deviceCompliancePolicies for deviceManagement";
             // Create options for all the parameters
-            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "key: id of deviceCompliancePolicy") {
+            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicyIdOption);
@@ -124,7 +134,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             var command = new Command("get");
             command.Description = "The device compliance policies.";
             // Create options for all the parameters
-            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "key: id of deviceCompliancePolicy") {
+            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicyIdOption);
@@ -180,33 +190,13 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the assign method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAssignCommand() {
-            var command = new Command("microsoft-graph-assign");
-            command.Description = "Provides operations to call the assign method.";
-            var builder = new MicrosoftGraphAssignRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the scheduleActionsForRules method.
-        /// </summary>
-        public Command BuildMicrosoftGraphScheduleActionsForRulesCommand() {
-            var command = new Command("microsoft-graph-schedule-actions-for-rules");
-            command.Description = "Provides operations to call the scheduleActionsForRules method.";
-            var builder = new MicrosoftGraphScheduleActionsForRulesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property deviceCompliancePolicies in deviceManagement
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property deviceCompliancePolicies in deviceManagement";
             // Create options for all the parameters
-            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "key: id of deviceCompliancePolicy") {
+            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicyIdOption);
@@ -244,6 +234,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (deviceCompliancePolicyId is not null) requestInfo.PathParameters.Add("deviceCompliancePolicy%2Did", deviceCompliancePolicyId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -254,6 +245,16 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the scheduleActionsForRules method.
+        /// </summary>
+        public Command BuildScheduleActionsForRulesCommand() {
+            var command = new Command("schedule-actions-for-rules");
+            command.Description = "Provides operations to call the scheduleActionsForRules method.";
+            var builder = new ScheduleActionsForRulesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

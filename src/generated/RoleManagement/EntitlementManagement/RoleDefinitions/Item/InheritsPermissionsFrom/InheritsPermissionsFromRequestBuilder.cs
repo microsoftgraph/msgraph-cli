@@ -53,7 +53,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions.Item.Inher
             var command = new Command("create");
             command.Description = "Create new navigation property to inheritsPermissionsFrom for roleManagement";
             // Create options for all the parameters
-            var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "key: id of unifiedRoleDefinition") {
+            var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "The unique identifier of unifiedRoleDefinition") {
             };
             unifiedRoleDefinitionIdOption.IsRequired = true;
             command.AddOption(unifiedRoleDefinitionIdOption);
@@ -91,6 +91,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions.Item.Inher
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (unifiedRoleDefinitionId is not null) requestInfo.PathParameters.Add("unifiedRoleDefinition%2Did", unifiedRoleDefinitionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -110,7 +111,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions.Item.Inher
             var command = new Command("list");
             command.Description = "Read-only collection of role definitions that the given role definition inherits from. Only Azure AD built-in roles (isBuiltIn is true) support this attribute. Supports $expand.";
             // Create options for all the parameters
-            var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "key: id of unifiedRoleDefinition") {
+            var unifiedRoleDefinitionIdOption = new Option<string>("--unified-role-definition-id", description: "The unique identifier of unifiedRoleDefinition") {
             };
             unifiedRoleDefinitionIdOption.IsRequired = true;
             command.AddOption(unifiedRoleDefinitionIdOption);

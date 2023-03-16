@@ -32,23 +32,23 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Children.Item.Childr
             var command = new Command("delete");
             command.Description = "Delete navigation property children for sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            var setIdOption = new Option<string>("--set-id", description: "The unique identifier of set") {
             };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
-            var termIdOption = new Option<string>("--term-id", description: "key: id of term") {
+            var termIdOption = new Option<string>("--term-id", description: "The unique identifier of term") {
             };
             termIdOption.IsRequired = true;
             command.AddOption(termIdOption);
-            var termId1Option = new Option<string>("--term-id1", description: "key: id of term") {
+            var termId1Option = new Option<string>("--term-id1", description: "The unique identifier of term") {
             };
             termId1Option.IsRequired = true;
             command.AddOption(termId1Option);
@@ -90,23 +90,23 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Children.Item.Childr
             var command = new Command("get");
             command.Description = "Children of current term.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            var setIdOption = new Option<string>("--set-id", description: "The unique identifier of set") {
             };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
-            var termIdOption = new Option<string>("--term-id", description: "key: id of term") {
+            var termIdOption = new Option<string>("--term-id", description: "The unique identifier of term") {
             };
             termIdOption.IsRequired = true;
             command.AddOption(termIdOption);
-            var termId1Option = new Option<string>("--term-id1", description: "key: id of term") {
+            var termId1Option = new Option<string>("--term-id1", description: "The unique identifier of term") {
             };
             termId1Option.IsRequired = true;
             command.AddOption(termId1Option);
@@ -176,23 +176,23 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Children.Item.Childr
             var command = new Command("patch");
             command.Description = "Update the navigation property children in sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var setIdOption = new Option<string>("--set-id", description: "key: id of set") {
+            var setIdOption = new Option<string>("--set-id", description: "The unique identifier of set") {
             };
             setIdOption.IsRequired = true;
             command.AddOption(setIdOption);
-            var termIdOption = new Option<string>("--term-id", description: "key: id of term") {
+            var termIdOption = new Option<string>("--term-id", description: "The unique identifier of term") {
             };
             termIdOption.IsRequired = true;
             command.AddOption(termIdOption);
-            var termId1Option = new Option<string>("--term-id1", description: "key: id of term") {
+            var termId1Option = new Option<string>("--term-id1", description: "The unique identifier of term") {
             };
             termId1Option.IsRequired = true;
             command.AddOption(termId1Option);
@@ -238,6 +238,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets.Item.Children.Item.Childr
                 if (setId is not null) requestInfo.PathParameters.Add("set%2Did", setId);
                 if (termId is not null) requestInfo.PathParameters.Add("term%2Did", termId);
                 if (termId1 is not null) requestInfo.PathParameters.Add("term%2Did1", termId1);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -1,6 +1,6 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.Search.MicrosoftGraphQuery;
+using ApiSdk.Search.Query;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -81,16 +81,6 @@ namespace ApiSdk.Search {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the query method.
-        /// </summary>
-        public Command BuildMicrosoftGraphQueryCommand() {
-            var command = new Command("microsoft-graph-query");
-            command.Description = "Provides operations to call the query method.";
-            var builder = new MicrosoftGraphQueryRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update search
         /// </summary>
         public Command BuildPatchCommand() {
@@ -129,6 +119,7 @@ namespace ApiSdk.Search {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -139,6 +130,16 @@ namespace ApiSdk.Search {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the query method.
+        /// </summary>
+        public Command BuildQueryCommand() {
+            var command = new Command("query");
+            command.Description = "Provides operations to call the query method.";
+            var builder = new QueryRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

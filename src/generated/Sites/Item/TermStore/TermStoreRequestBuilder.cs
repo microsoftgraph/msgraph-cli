@@ -32,7 +32,7 @@ namespace ApiSdk.Sites.Item.TermStore {
             var command = new Command("delete");
             command.Description = "Delete navigation property termStore for sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
@@ -67,7 +67,7 @@ namespace ApiSdk.Sites.Item.TermStore {
             var command = new Command("get");
             command.Description = "Read the properties and relationships of a store object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/termstore-store-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
@@ -143,7 +143,7 @@ namespace ApiSdk.Sites.Item.TermStore {
             var command = new Command("patch");
             command.Description = "Update the properties of a store object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/termstore-store-update?view=graph-rest-1.0";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
@@ -181,6 +181,7 @@ namespace ApiSdk.Sites.Item.TermStore {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

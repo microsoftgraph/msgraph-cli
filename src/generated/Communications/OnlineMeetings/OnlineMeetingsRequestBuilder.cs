@@ -1,6 +1,6 @@
 using ApiSdk.Communications.OnlineMeetings.Count;
+using ApiSdk.Communications.OnlineMeetings.CreateOrGet;
 using ApiSdk.Communications.OnlineMeetings.Item;
-using ApiSdk.Communications.OnlineMeetings.MicrosoftGraphCreateOrGet;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -88,6 +88,7 @@ namespace ApiSdk.Communications.OnlineMeetings {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -98,6 +99,16 @@ namespace ApiSdk.Communications.OnlineMeetings {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the createOrGet method.
+        /// </summary>
+        public Command BuildCreateOrGetCommand() {
+            var command = new Command("create-or-get");
+            command.Description = "Provides operations to call the createOrGet method.";
+            var builder = new CreateOrGetRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -204,16 +215,6 @@ namespace ApiSdk.Communications.OnlineMeetings {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the createOrGet method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCreateOrGetCommand() {
-            var command = new Command("microsoft-graph-create-or-get");
-            command.Description = "Provides operations to call the createOrGet method.";
-            var builder = new MicrosoftGraphCreateOrGetRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

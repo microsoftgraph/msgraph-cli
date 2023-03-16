@@ -30,19 +30,19 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Outcomes
             var command = new Command("delete");
             command.Description = "Delete navigation property outcomes for education";
             // Create options for all the parameters
-            var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
+            var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
             command.AddOption(educationUserIdOption);
-            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
+            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
-            var educationSubmissionIdOption = new Option<string>("--education-submission-id", description: "key: id of educationSubmission") {
+            var educationSubmissionIdOption = new Option<string>("--education-submission-id", description: "The unique identifier of educationSubmission") {
             };
             educationSubmissionIdOption.IsRequired = true;
             command.AddOption(educationSubmissionIdOption);
-            var educationOutcomeIdOption = new Option<string>("--education-outcome-id", description: "key: id of educationOutcome") {
+            var educationOutcomeIdOption = new Option<string>("--education-outcome-id", description: "The unique identifier of educationOutcome") {
             };
             educationOutcomeIdOption.IsRequired = true;
             command.AddOption(educationOutcomeIdOption);
@@ -82,19 +82,19 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Outcomes
             var command = new Command("get");
             command.Description = "Get outcomes from education";
             // Create options for all the parameters
-            var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
+            var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
             command.AddOption(educationUserIdOption);
-            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
+            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
-            var educationSubmissionIdOption = new Option<string>("--education-submission-id", description: "key: id of educationSubmission") {
+            var educationSubmissionIdOption = new Option<string>("--education-submission-id", description: "The unique identifier of educationSubmission") {
             };
             educationSubmissionIdOption.IsRequired = true;
             command.AddOption(educationSubmissionIdOption);
-            var educationOutcomeIdOption = new Option<string>("--education-outcome-id", description: "key: id of educationOutcome") {
+            var educationOutcomeIdOption = new Option<string>("--education-outcome-id", description: "The unique identifier of educationOutcome") {
             };
             educationOutcomeIdOption.IsRequired = true;
             command.AddOption(educationOutcomeIdOption);
@@ -162,19 +162,19 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Outcomes
             var command = new Command("patch");
             command.Description = "Update the navigation property outcomes in education";
             // Create options for all the parameters
-            var educationUserIdOption = new Option<string>("--education-user-id", description: "key: id of educationUser") {
+            var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
             command.AddOption(educationUserIdOption);
-            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "key: id of educationAssignment") {
+            var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
             command.AddOption(educationAssignmentIdOption);
-            var educationSubmissionIdOption = new Option<string>("--education-submission-id", description: "key: id of educationSubmission") {
+            var educationSubmissionIdOption = new Option<string>("--education-submission-id", description: "The unique identifier of educationSubmission") {
             };
             educationSubmissionIdOption.IsRequired = true;
             command.AddOption(educationSubmissionIdOption);
-            var educationOutcomeIdOption = new Option<string>("--education-outcome-id", description: "key: id of educationOutcome") {
+            var educationOutcomeIdOption = new Option<string>("--education-outcome-id", description: "The unique identifier of educationOutcome") {
             };
             educationOutcomeIdOption.IsRequired = true;
             command.AddOption(educationOutcomeIdOption);
@@ -218,6 +218,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Outcomes
                 if (educationAssignmentId is not null) requestInfo.PathParameters.Add("educationAssignment%2Did", educationAssignmentId);
                 if (educationSubmissionId is not null) requestInfo.PathParameters.Add("educationSubmission%2Did", educationSubmissionId);
                 if (educationOutcomeId is not null) requestInfo.PathParameters.Add("educationOutcome%2Did", educationOutcomeId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

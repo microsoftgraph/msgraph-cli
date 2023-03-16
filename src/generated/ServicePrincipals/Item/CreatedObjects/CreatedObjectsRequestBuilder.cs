@@ -1,8 +1,8 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.ServicePrincipals.Item.CreatedObjects.Count;
+using ApiSdk.ServicePrincipals.Item.CreatedObjects.GraphServicePrincipal;
 using ApiSdk.ServicePrincipals.Item.CreatedObjects.Item;
-using ApiSdk.ServicePrincipals.Item.CreatedObjects.MicrosoftGraphServicePrincipal;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -33,7 +33,7 @@ namespace ApiSdk.ServicePrincipals.Item.CreatedObjects {
             var command = new Command("item");
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphServicePrincipalCommand());
+            command.AddCommand(builder.BuildGraphServicePrincipalCommand());
             return command;
         }
         /// <summary>
@@ -47,13 +47,24 @@ namespace ApiSdk.ServicePrincipals.Item.CreatedObjects {
             return command;
         }
         /// <summary>
+        /// Casts the previous resource to servicePrincipal.
+        /// </summary>
+        public Command BuildGraphServicePrincipalCommand() {
+            var command = new Command("graph-service-principal");
+            command.Description = "Casts the previous resource to servicePrincipal.";
+            var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Directory objects created by this service principal. Read-only. Nullable.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Directory objects created by this service principal. Read-only. Nullable.";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
+            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
@@ -155,17 +166,6 @@ namespace ApiSdk.ServicePrincipals.Item.CreatedObjects {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Casts the previous resource to servicePrincipal.
-        /// </summary>
-        public Command BuildMicrosoftGraphServicePrincipalCommand() {
-            var command = new Command("microsoft-graph-service-principal");
-            command.Description = "Casts the previous resource to servicePrincipal.";
-            var builder = new MicrosoftGraphServicePrincipalRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

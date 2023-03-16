@@ -31,7 +31,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property riskyUsers for identityProtection";
             // Create options for all the parameters
-            var riskyUserIdOption = new Option<string>("--risky-user-id", description: "key: id of riskyUser") {
+            var riskyUserIdOption = new Option<string>("--risky-user-id", description: "The unique identifier of riskyUser") {
             };
             riskyUserIdOption.IsRequired = true;
             command.AddOption(riskyUserIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item {
             var command = new Command("get");
             command.Description = "Users that are flagged as at-risk by Azure AD Identity Protection.";
             // Create options for all the parameters
-            var riskyUserIdOption = new Option<string>("--risky-user-id", description: "key: id of riskyUser") {
+            var riskyUserIdOption = new Option<string>("--risky-user-id", description: "The unique identifier of riskyUser") {
             };
             riskyUserIdOption.IsRequired = true;
             command.AddOption(riskyUserIdOption);
@@ -140,7 +140,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property riskyUsers in identityProtection";
             // Create options for all the parameters
-            var riskyUserIdOption = new Option<string>("--risky-user-id", description: "key: id of riskyUser") {
+            var riskyUserIdOption = new Option<string>("--risky-user-id", description: "The unique identifier of riskyUser") {
             };
             riskyUserIdOption.IsRequired = true;
             command.AddOption(riskyUserIdOption);
@@ -178,6 +178,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (riskyUserId is not null) requestInfo.PathParameters.Add("riskyUser%2Did", riskyUserId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

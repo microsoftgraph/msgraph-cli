@@ -30,7 +30,7 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property simulations for security";
             // Create options for all the parameters
-            var simulationIdOption = new Option<string>("--simulation-id", description: "key: id of simulation") {
+            var simulationIdOption = new Option<string>("--simulation-id", description: "The unique identifier of simulation") {
             };
             simulationIdOption.IsRequired = true;
             command.AddOption(simulationIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item {
             var command = new Command("get");
             command.Description = "Represents an attack simulation training campaign in a tenant.";
             // Create options for all the parameters
-            var simulationIdOption = new Option<string>("--simulation-id", description: "key: id of simulation") {
+            var simulationIdOption = new Option<string>("--simulation-id", description: "The unique identifier of simulation") {
             };
             simulationIdOption.IsRequired = true;
             command.AddOption(simulationIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property simulations in security";
             // Create options for all the parameters
-            var simulationIdOption = new Option<string>("--simulation-id", description: "key: id of simulation") {
+            var simulationIdOption = new Option<string>("--simulation-id", description: "The unique identifier of simulation") {
             };
             simulationIdOption.IsRequired = true;
             command.AddOption(simulationIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (simulationId is not null) requestInfo.PathParameters.Add("simulation%2Did", simulationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

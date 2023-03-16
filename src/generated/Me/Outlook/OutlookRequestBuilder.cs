@@ -1,7 +1,7 @@
 using ApiSdk.Me.Outlook.MasterCategories;
-using ApiSdk.Me.Outlook.MicrosoftGraphSupportedLanguages;
-using ApiSdk.Me.Outlook.MicrosoftGraphSupportedTimeZones;
-using ApiSdk.Me.Outlook.MicrosoftGraphSupportedTimeZonesWithTimeZoneStandard;
+using ApiSdk.Me.Outlook.SupportedLanguages;
+using ApiSdk.Me.Outlook.SupportedTimeZones;
+using ApiSdk.Me.Outlook.SupportedTimeZonesWithTimeZoneStandard;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -92,20 +92,20 @@ namespace ApiSdk.Me.Outlook {
         /// <summary>
         /// Provides operations to call the supportedLanguages method.
         /// </summary>
-        public Command BuildMicrosoftGraphSupportedLanguagesCommand() {
-            var command = new Command("microsoft-graph-supported-languages");
+        public Command BuildSupportedLanguagesCommand() {
+            var command = new Command("supported-languages");
             command.Description = "Provides operations to call the supportedLanguages method.";
-            var builder = new MicrosoftGraphSupportedLanguagesRequestBuilder(PathParameters);
+            var builder = new SupportedLanguagesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the supportedTimeZones method.
         /// </summary>
-        public Command BuildMicrosoftGraphSupportedTimeZonesCommand() {
-            var command = new Command("microsoft-graph-supported-time-zones");
+        public Command BuildSupportedTimeZonesCommand() {
+            var command = new Command("supported-time-zones");
             command.Description = "Provides operations to call the supportedTimeZones method.";
-            var builder = new MicrosoftGraphSupportedTimeZonesRequestBuilder(PathParameters);
+            var builder = new SupportedTimeZonesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }

@@ -53,15 +53,15 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Item.Contacts.Item.Extensio
             var command = new Command("create");
             command.Description = "Create new navigation property to extensions for me";
             // Create options for all the parameters
-            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
+            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "The unique identifier of contactFolder") {
             };
             contactFolderIdOption.IsRequired = true;
             command.AddOption(contactFolderIdOption);
-            var contactFolderId1Option = new Option<string>("--contact-folder-id1", description: "key: id of contactFolder") {
+            var contactFolderId1Option = new Option<string>("--contact-folder-id1", description: "The unique identifier of contactFolder") {
             };
             contactFolderId1Option.IsRequired = true;
             command.AddOption(contactFolderId1Option);
-            var contactIdOption = new Option<string>("--contact-id", description: "key: id of contact") {
+            var contactIdOption = new Option<string>("--contact-id", description: "The unique identifier of contact") {
             };
             contactIdOption.IsRequired = true;
             command.AddOption(contactIdOption);
@@ -103,6 +103,7 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Item.Contacts.Item.Extensio
                 if (contactFolderId is not null) requestInfo.PathParameters.Add("contactFolder%2Did", contactFolderId);
                 if (contactFolderId1 is not null) requestInfo.PathParameters.Add("contactFolder%2Did1", contactFolderId1);
                 if (contactId is not null) requestInfo.PathParameters.Add("contact%2Did", contactId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -122,15 +123,15 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Item.Contacts.Item.Extensio
             var command = new Command("list");
             command.Description = "The collection of open extensions defined for the contact. Read-only. Nullable.";
             // Create options for all the parameters
-            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
+            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "The unique identifier of contactFolder") {
             };
             contactFolderIdOption.IsRequired = true;
             command.AddOption(contactFolderIdOption);
-            var contactFolderId1Option = new Option<string>("--contact-folder-id1", description: "key: id of contactFolder") {
+            var contactFolderId1Option = new Option<string>("--contact-folder-id1", description: "The unique identifier of contactFolder") {
             };
             contactFolderId1Option.IsRequired = true;
             command.AddOption(contactFolderId1Option);
-            var contactIdOption = new Option<string>("--contact-id", description: "key: id of contact") {
+            var contactIdOption = new Option<string>("--contact-id", description: "The unique identifier of contact") {
             };
             contactIdOption.IsRequired = true;
             command.AddOption(contactIdOption);

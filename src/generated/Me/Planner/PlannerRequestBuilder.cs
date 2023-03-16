@@ -155,6 +155,7 @@ namespace ApiSdk.Me.Planner {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

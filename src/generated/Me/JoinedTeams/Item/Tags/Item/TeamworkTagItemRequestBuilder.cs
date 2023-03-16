@@ -31,11 +31,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.Tags.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property tags for me";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var teamworkTagIdOption = new Option<string>("--teamwork-tag-id", description: "key: id of teamworkTag") {
+            var teamworkTagIdOption = new Option<string>("--teamwork-tag-id", description: "The unique identifier of teamworkTag") {
             };
             teamworkTagIdOption.IsRequired = true;
             command.AddOption(teamworkTagIdOption);
@@ -71,11 +71,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.Tags.Item {
             var command = new Command("get");
             command.Description = "The tags associated with the team.";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var teamworkTagIdOption = new Option<string>("--teamwork-tag-id", description: "key: id of teamworkTag") {
+            var teamworkTagIdOption = new Option<string>("--teamwork-tag-id", description: "The unique identifier of teamworkTag") {
             };
             teamworkTagIdOption.IsRequired = true;
             command.AddOption(teamworkTagIdOption);
@@ -152,11 +152,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.Tags.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property tags in me";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var teamworkTagIdOption = new Option<string>("--teamwork-tag-id", description: "key: id of teamworkTag") {
+            var teamworkTagIdOption = new Option<string>("--teamwork-tag-id", description: "The unique identifier of teamworkTag") {
             };
             teamworkTagIdOption.IsRequired = true;
             command.AddOption(teamworkTagIdOption);
@@ -196,6 +196,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Tags.Item {
                 });
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
                 if (teamworkTagId is not null) requestInfo.PathParameters.Add("teamworkTag%2Did", teamworkTagId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

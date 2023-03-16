@@ -51,7 +51,7 @@ namespace ApiSdk.Sites.Item.ExternalColumns {
             var command = new Command("list");
             command.Description = "Get externalColumns from sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);

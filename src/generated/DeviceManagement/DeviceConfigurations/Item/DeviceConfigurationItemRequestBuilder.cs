@@ -1,9 +1,9 @@
+using ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assign;
 using ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assignments;
 using ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceSettingStateSummaries;
 using ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses;
 using ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatusOverview;
-using ApiSdk.DeviceManagement.DeviceConfigurations.Item.MicrosoftGraphAssign;
-using ApiSdk.DeviceManagement.DeviceConfigurations.Item.MicrosoftGraphGetOmaSettingPlainTextValueWithSecretReferenceValueId;
+using ApiSdk.DeviceManagement.DeviceConfigurations.Item.GetOmaSettingPlainTextValueWithSecretReferenceValueId;
 using ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatuses;
 using ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatusOverview;
 using ApiSdk.Models;
@@ -32,6 +32,16 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the assign method.
+        /// </summary>
+        public Command BuildAssignCommand() {
+            var command = new Command("assign");
+            command.Description = "Provides operations to call the assign method.";
+            var builder = new AssignRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.deviceConfiguration entity.
         /// </summary>
         public Command BuildAssignmentsCommand() {
@@ -51,7 +61,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property deviceConfigurations for deviceManagement";
             // Create options for all the parameters
-            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "key: id of deviceConfiguration") {
+            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationIdOption);
@@ -123,7 +133,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
             var command = new Command("get");
             command.Description = "The device configurations.";
             // Create options for all the parameters
-            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "key: id of deviceConfiguration") {
+            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationIdOption);
@@ -179,23 +189,13 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the assign method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAssignCommand() {
-            var command = new Command("microsoft-graph-assign");
-            command.Description = "Provides operations to call the assign method.";
-            var builder = new MicrosoftGraphAssignRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property deviceConfigurations in deviceManagement
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property deviceConfigurations in deviceManagement";
             // Create options for all the parameters
-            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "key: id of deviceConfiguration") {
+            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationIdOption);
@@ -233,6 +233,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (deviceConfigurationId is not null) requestInfo.PathParameters.Add("deviceConfiguration%2Did", deviceConfigurationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

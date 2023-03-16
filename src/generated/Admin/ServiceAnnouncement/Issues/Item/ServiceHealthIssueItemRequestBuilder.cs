@@ -1,4 +1,4 @@
-using ApiSdk.Admin.ServiceAnnouncement.Issues.Item.MicrosoftGraphIncidentReport;
+using ApiSdk.Admin.ServiceAnnouncement.Issues.Item.IncidentReport;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,7 +31,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Issues.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property issues for admin";
             // Create options for all the parameters
-            var serviceHealthIssueIdOption = new Option<string>("--service-health-issue-id", description: "key: id of serviceHealthIssue") {
+            var serviceHealthIssueIdOption = new Option<string>("--service-health-issue-id", description: "The unique identifier of serviceHealthIssue") {
             };
             serviceHealthIssueIdOption.IsRequired = true;
             command.AddOption(serviceHealthIssueIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Issues.Item {
             var command = new Command("get");
             command.Description = "A collection of service issues for tenant. This property is a contained navigation property, it is nullable and readonly.";
             // Create options for all the parameters
-            var serviceHealthIssueIdOption = new Option<string>("--service-health-issue-id", description: "key: id of serviceHealthIssue") {
+            var serviceHealthIssueIdOption = new Option<string>("--service-health-issue-id", description: "The unique identifier of serviceHealthIssue") {
             };
             serviceHealthIssueIdOption.IsRequired = true;
             command.AddOption(serviceHealthIssueIdOption);
@@ -123,10 +123,10 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Issues.Item {
         /// <summary>
         /// Provides operations to call the incidentReport method.
         /// </summary>
-        public Command BuildMicrosoftGraphIncidentReportCommand() {
-            var command = new Command("microsoft-graph-incident-report");
+        public Command BuildIncidentReportCommand() {
+            var command = new Command("incident-report");
             command.Description = "Provides operations to call the incidentReport method.";
-            var builder = new MicrosoftGraphIncidentReportRequestBuilder(PathParameters);
+            var builder = new IncidentReportRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -137,7 +137,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Issues.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property issues in admin";
             // Create options for all the parameters
-            var serviceHealthIssueIdOption = new Option<string>("--service-health-issue-id", description: "key: id of serviceHealthIssue") {
+            var serviceHealthIssueIdOption = new Option<string>("--service-health-issue-id", description: "The unique identifier of serviceHealthIssue") {
             };
             serviceHealthIssueIdOption.IsRequired = true;
             command.AddOption(serviceHealthIssueIdOption);
@@ -175,6 +175,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Issues.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (serviceHealthIssueId is not null) requestInfo.PathParameters.Add("serviceHealthIssue%2Did", serviceHealthIssueId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

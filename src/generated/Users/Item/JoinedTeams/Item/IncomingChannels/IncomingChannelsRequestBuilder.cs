@@ -52,11 +52,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.IncomingChannels {
             var command = new Command("list");
             command.Description = "Get the list of incoming channels (channels shared with a team).\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-list-incomingchannels?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);

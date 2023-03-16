@@ -1,11 +1,11 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Count;
+using ApiSdk.Users.Delta;
+using ApiSdk.Users.GetAvailableExtensionProperties;
+using ApiSdk.Users.GetByIds;
 using ApiSdk.Users.Item;
-using ApiSdk.Users.MicrosoftGraphDelta;
-using ApiSdk.Users.MicrosoftGraphGetAvailableExtensionProperties;
-using ApiSdk.Users.MicrosoftGraphGetByIds;
-using ApiSdk.Users.MicrosoftGraphValidateProperties;
+using ApiSdk.Users.ValidateProperties;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -38,12 +38,16 @@ namespace ApiSdk.Users {
             command.AddCommand(builder.BuildActivitiesCommand());
             command.AddCommand(builder.BuildAgreementAcceptancesCommand());
             command.AddCommand(builder.BuildAppRoleAssignmentsCommand());
+            command.AddCommand(builder.BuildAssignLicenseCommand());
             command.AddCommand(builder.BuildAuthenticationCommand());
             command.AddCommand(builder.BuildCalendarCommand());
             command.AddCommand(builder.BuildCalendarGroupsCommand());
             command.AddCommand(builder.BuildCalendarsCommand());
             command.AddCommand(builder.BuildCalendarViewCommand());
+            command.AddCommand(builder.BuildChangePasswordCommand());
             command.AddCommand(builder.BuildChatsCommand());
+            command.AddCommand(builder.BuildCheckMemberGroupsCommand());
+            command.AddCommand(builder.BuildCheckMemberObjectsCommand());
             command.AddCommand(builder.BuildContactFoldersCommand());
             command.AddCommand(builder.BuildContactsCommand());
             command.AddCommand(builder.BuildCreatedObjectsCommand());
@@ -53,9 +57,18 @@ namespace ApiSdk.Users {
             command.AddCommand(builder.BuildDriveCommand());
             command.AddCommand(builder.BuildDrivesCommand());
             command.AddCommand(builder.BuildEventsCommand());
+            command.AddCommand(builder.BuildExportDeviceAndAppManagementDataCommand());
+            command.AddCommand(builder.BuildExportPersonalDataCommand());
             command.AddCommand(builder.BuildExtensionsCommand());
+            command.AddCommand(builder.BuildFindMeetingTimesCommand());
             command.AddCommand(builder.BuildFollowedSitesCommand());
             command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildGetMailTipsCommand());
+            command.AddCommand(builder.BuildGetManagedAppDiagnosticStatusesCommand());
+            command.AddCommand(builder.BuildGetManagedAppPoliciesCommand());
+            command.AddCommand(builder.BuildGetManagedDevicesWithAppFailuresCommand());
+            command.AddCommand(builder.BuildGetMemberGroupsCommand());
+            command.AddCommand(builder.BuildGetMemberObjectsCommand());
             command.AddCommand(builder.BuildInferenceClassificationCommand());
             command.AddCommand(builder.BuildInsightsCommand());
             command.AddCommand(builder.BuildJoinedTeamsCommand());
@@ -66,26 +79,6 @@ namespace ApiSdk.Users {
             command.AddCommand(builder.BuildManagerCommand());
             command.AddCommand(builder.BuildMemberOfCommand());
             command.AddCommand(builder.BuildMessagesCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAssignLicenseCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphChangePasswordCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCheckMemberGroupsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCheckMemberObjectsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphExportDeviceAndAppManagementDataCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphExportPersonalDataCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphFindMeetingTimesCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetMailTipsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetManagedAppDiagnosticStatusesCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetManagedAppPoliciesCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetManagedDevicesWithAppFailuresCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetMemberGroupsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetMemberObjectsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRemoveAllDevicesFromManagementCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphReprocessLicenseAssignmentCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRestoreCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRevokeSignInSessionsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSendMailCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphTranslateExchangeIdsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphWipeManagedAppRegistrationsByDeviceTagCommand());
             command.AddCommand(builder.BuildOauth2PermissionGrantsCommand());
             command.AddCommand(builder.BuildOnenoteCommand());
             command.AddCommand(builder.BuildOnlineMeetingsCommand());
@@ -99,11 +92,18 @@ namespace ApiSdk.Users {
             command.AddCommand(builder.BuildPlannerCommand());
             command.AddCommand(builder.BuildPresenceCommand());
             command.AddCommand(builder.BuildRegisteredDevicesCommand());
+            command.AddCommand(builder.BuildRemoveAllDevicesFromManagementCommand());
+            command.AddCommand(builder.BuildReprocessLicenseAssignmentCommand());
+            command.AddCommand(builder.BuildRestoreCommand());
+            command.AddCommand(builder.BuildRevokeSignInSessionsCommand());
             command.AddCommand(builder.BuildScopedRoleMemberOfCommand());
+            command.AddCommand(builder.BuildSendMailCommand());
             command.AddCommand(builder.BuildSettingsCommand());
             command.AddCommand(builder.BuildTeamworkCommand());
             command.AddCommand(builder.BuildTodoCommand());
             command.AddCommand(builder.BuildTransitiveMemberOfCommand());
+            command.AddCommand(builder.BuildTranslateExchangeIdsCommand());
+            command.AddCommand(builder.BuildWipeManagedAppRegistrationsByDeviceTagCommand());
             return command;
         }
         /// <summary>
@@ -156,6 +156,7 @@ namespace ApiSdk.Users {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -169,12 +170,42 @@ namespace ApiSdk.Users {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of user object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-get?view=graph-rest-1.0" />
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildDeltaCommand() {
+            var command = new Command("delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getAvailableExtensionProperties method.
+        /// </summary>
+        public Command BuildGetAvailableExtensionPropertiesCommand() {
+            var command = new Command("get-available-extension-properties");
+            command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
+            var builder = new GetAvailableExtensionPropertiesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getByIds method.
+        /// </summary>
+        public Command BuildGetByIdsCommand() {
+            var command = new Command("get-by-ids");
+            command.Description = "Provides operations to call the getByIds method.";
+            var builder = new GetByIdsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Retrieve a list of user objects.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the properties and relationships of user object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-get?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of user objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list?view=graph-rest-1.0";
             // Create options for all the parameters
             var consistencyLevelOption = new Option<string[]>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
                 Arity = ArgumentArity.ZeroOrMore
@@ -185,10 +216,6 @@ namespace ApiSdk.Users {
             };
             topOption.IsRequired = false;
             command.AddOption(topOption);
-            var skipOption = new Option<int?>("--skip", description: "Skip the first n items") {
-            };
-            skipOption.IsRequired = false;
-            command.AddOption(skipOption);
             var searchOption = new Option<string>("--search", description: "Search items by search phrases") {
             };
             searchOption.IsRequired = false;
@@ -234,7 +261,6 @@ namespace ApiSdk.Users {
             command.SetHandler(async (invocationContext) => {
                 var consistencyLevel = invocationContext.ParseResult.GetValueForOption(consistencyLevelOption);
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
-                var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
                 var search = invocationContext.ParseResult.GetValueForOption(searchOption);
                 var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
                 var count = invocationContext.ParseResult.GetValueForOption(countOption);
@@ -252,7 +278,6 @@ namespace ApiSdk.Users {
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Top = top;
-                    q.QueryParameters.Skip = skip;
                     if (!string.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
                     if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
                     q.QueryParameters.Count = count;
@@ -282,42 +307,12 @@ namespace ApiSdk.Users {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the delta method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDeltaCommand() {
-            var command = new Command("microsoft-graph-delta");
-            command.Description = "Provides operations to call the delta method.";
-            var builder = new MicrosoftGraphDeltaRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getAvailableExtensionProperties method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetAvailableExtensionPropertiesCommand() {
-            var command = new Command("microsoft-graph-get-available-extension-properties");
-            command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
-            var builder = new MicrosoftGraphGetAvailableExtensionPropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getByIds method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetByIdsCommand() {
-            var command = new Command("microsoft-graph-get-by-ids");
-            command.Description = "Provides operations to call the getByIds method.";
-            var builder = new MicrosoftGraphGetByIdsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to call the validateProperties method.
         /// </summary>
-        public Command BuildMicrosoftGraphValidatePropertiesCommand() {
-            var command = new Command("microsoft-graph-validate-properties");
+        public Command BuildValidatePropertiesCommand() {
+            var command = new Command("validate-properties");
             command.Description = "Provides operations to call the validateProperties method.";
-            var builder = new MicrosoftGraphValidatePropertiesRequestBuilder(PathParameters);
+            var builder = new ValidatePropertiesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -327,12 +322,12 @@ namespace ApiSdk.Users {
         /// <param name="pathParameters">Path parameters for the request</param>
         public UsersRequestBuilder(Dictionary<string, object> pathParameters) {
             _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/users{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}";
+            UrlTemplate = "{+baseurl}/users{?%24top,%24search,%24filter,%24count,%24orderby,%24select,%24expand}";
             var urlTplParams = new Dictionary<string, object>(pathParameters);
             PathParameters = urlTplParams;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of user object.
+        /// Retrieve a list of user objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -385,7 +380,7 @@ namespace ApiSdk.Users {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of user object.
+        /// Retrieve a list of user objects.
         /// </summary>
         public class UsersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
@@ -441,9 +436,6 @@ namespace ApiSdk.Users {
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
 #endif
-            /// <summary>Skip the first n items</summary>
-            [QueryParameter("%24skip")]
-            public int? Skip { get; set; }
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }

@@ -30,7 +30,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property tokenLifetimePolicies for policies";
             // Create options for all the parameters
-            var tokenLifetimePolicyIdOption = new Option<string>("--token-lifetime-policy-id", description: "key: id of tokenLifetimePolicy") {
+            var tokenLifetimePolicyIdOption = new Option<string>("--token-lifetime-policy-id", description: "The unique identifier of tokenLifetimePolicy") {
             };
             tokenLifetimePolicyIdOption.IsRequired = true;
             command.AddOption(tokenLifetimePolicyIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
             var command = new Command("get");
             command.Description = "The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Azure AD.";
             // Create options for all the parameters
-            var tokenLifetimePolicyIdOption = new Option<string>("--token-lifetime-policy-id", description: "key: id of tokenLifetimePolicy") {
+            var tokenLifetimePolicyIdOption = new Option<string>("--token-lifetime-policy-id", description: "The unique identifier of tokenLifetimePolicy") {
             };
             tokenLifetimePolicyIdOption.IsRequired = true;
             command.AddOption(tokenLifetimePolicyIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property tokenLifetimePolicies in policies";
             // Create options for all the parameters
-            var tokenLifetimePolicyIdOption = new Option<string>("--token-lifetime-policy-id", description: "key: id of tokenLifetimePolicy") {
+            var tokenLifetimePolicyIdOption = new Option<string>("--token-lifetime-policy-id", description: "The unique identifier of tokenLifetimePolicy") {
             };
             tokenLifetimePolicyIdOption.IsRequired = true;
             command.AddOption(tokenLifetimePolicyIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.Policies.TokenLifetimePolicies.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (tokenLifetimePolicyId is not null) requestInfo.PathParameters.Add("tokenLifetimePolicy%2Did", tokenLifetimePolicyId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

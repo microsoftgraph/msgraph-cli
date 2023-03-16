@@ -30,19 +30,19 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.MultiValueExte
             var command = new Command("delete");
             command.Description = "Delete navigation property multiValueExtendedProperties for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
+            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "The unique identifier of contactFolder") {
             };
             contactFolderIdOption.IsRequired = true;
             command.AddOption(contactFolderIdOption);
-            var contactFolderId1Option = new Option<string>("--contact-folder-id1", description: "key: id of contactFolder") {
+            var contactFolderId1Option = new Option<string>("--contact-folder-id1", description: "The unique identifier of contactFolder") {
             };
             contactFolderId1Option.IsRequired = true;
             command.AddOption(contactFolderId1Option);
-            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multi-value-legacy-extended-property-id", description: "key: id of multiValueLegacyExtendedProperty") {
+            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multi-value-legacy-extended-property-id", description: "The unique identifier of multiValueLegacyExtendedProperty") {
             };
             multiValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(multiValueLegacyExtendedPropertyIdOption);
@@ -82,19 +82,19 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.MultiValueExte
             var command = new Command("get");
             command.Description = "The collection of multi-value extended properties defined for the contactFolder. Read-only. Nullable.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
+            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "The unique identifier of contactFolder") {
             };
             contactFolderIdOption.IsRequired = true;
             command.AddOption(contactFolderIdOption);
-            var contactFolderId1Option = new Option<string>("--contact-folder-id1", description: "key: id of contactFolder") {
+            var contactFolderId1Option = new Option<string>("--contact-folder-id1", description: "The unique identifier of contactFolder") {
             };
             contactFolderId1Option.IsRequired = true;
             command.AddOption(contactFolderId1Option);
-            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multi-value-legacy-extended-property-id", description: "key: id of multiValueLegacyExtendedProperty") {
+            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multi-value-legacy-extended-property-id", description: "The unique identifier of multiValueLegacyExtendedProperty") {
             };
             multiValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(multiValueLegacyExtendedPropertyIdOption);
@@ -162,19 +162,19 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.MultiValueExte
             var command = new Command("patch");
             command.Description = "Update the navigation property multiValueExtendedProperties in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
+            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "The unique identifier of contactFolder") {
             };
             contactFolderIdOption.IsRequired = true;
             command.AddOption(contactFolderIdOption);
-            var contactFolderId1Option = new Option<string>("--contact-folder-id1", description: "key: id of contactFolder") {
+            var contactFolderId1Option = new Option<string>("--contact-folder-id1", description: "The unique identifier of contactFolder") {
             };
             contactFolderId1Option.IsRequired = true;
             command.AddOption(contactFolderId1Option);
-            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multi-value-legacy-extended-property-id", description: "key: id of multiValueLegacyExtendedProperty") {
+            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multi-value-legacy-extended-property-id", description: "The unique identifier of multiValueLegacyExtendedProperty") {
             };
             multiValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(multiValueLegacyExtendedPropertyIdOption);
@@ -218,6 +218,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.MultiValueExte
                 if (contactFolderId is not null) requestInfo.PathParameters.Add("contactFolder%2Did", contactFolderId);
                 if (contactFolderId1 is not null) requestInfo.PathParameters.Add("contactFolder%2Did1", contactFolderId1);
                 if (multiValueLegacyExtendedPropertyId is not null) requestInfo.PathParameters.Add("multiValueLegacyExtendedProperty%2Did", multiValueLegacyExtendedPropertyId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

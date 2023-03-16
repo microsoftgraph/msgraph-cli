@@ -54,7 +54,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions {
             var command = new Command("create");
             command.Description = "Create new navigation property to sessions for communications";
             // Create options for all the parameters
-            var callRecordIdOption = new Option<string>("--call-record-id", description: "key: id of callRecord") {
+            var callRecordIdOption = new Option<string>("--call-record-id", description: "The unique identifier of callRecord") {
             };
             callRecordIdOption.IsRequired = true;
             command.AddOption(callRecordIdOption);
@@ -92,6 +92,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (callRecordId is not null) requestInfo.PathParameters.Add("callRecord%2Did", callRecordId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,7 +113,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions {
             var command = new Command("list");
             command.Description = "Retrieve the list of sessions associated with a callRecord object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/callrecords-session-list?view=graph-rest-1.0";
             // Create options for all the parameters
-            var callRecordIdOption = new Option<string>("--call-record-id", description: "key: id of callRecord") {
+            var callRecordIdOption = new Option<string>("--call-record-id", description: "The unique identifier of callRecord") {
             };
             callRecordIdOption.IsRequired = true;
             command.AddOption(callRecordIdOption);

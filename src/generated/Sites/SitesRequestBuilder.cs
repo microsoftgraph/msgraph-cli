@@ -1,9 +1,9 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Sites.Add;
 using ApiSdk.Sites.Count;
 using ApiSdk.Sites.Item;
-using ApiSdk.Sites.MicrosoftGraphAdd;
-using ApiSdk.Sites.MicrosoftGraphRemove;
+using ApiSdk.Sites.Remove;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -28,6 +28,16 @@ namespace ApiSdk.Sites {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the add method.
+        /// </summary>
+        public Command BuildAddCommand() {
+            var command = new Command("add");
+            command.Description = "Provides operations to call the add method.";
+            var builder = new AddRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the collection of site entities.
         /// </summary>
         public Command BuildCommand() {
@@ -39,10 +49,10 @@ namespace ApiSdk.Sites {
             command.AddCommand(builder.BuildDriveCommand());
             command.AddCommand(builder.BuildDrivesCommand());
             command.AddCommand(builder.BuildExternalColumnsCommand());
+            command.AddCommand(builder.BuildGetActivitiesByIntervalCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildItemsCommand());
             command.AddCommand(builder.BuildListsCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetActivitiesByIntervalCommand());
             command.AddCommand(builder.BuildOnenoteCommand());
             command.AddCommand(builder.BuildOperationsCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -169,22 +179,12 @@ namespace ApiSdk.Sites {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the add method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAddCommand() {
-            var command = new Command("microsoft-graph-add");
-            command.Description = "Provides operations to call the add method.";
-            var builder = new MicrosoftGraphAddRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to call the remove method.
         /// </summary>
-        public Command BuildMicrosoftGraphRemoveCommand() {
-            var command = new Command("microsoft-graph-remove");
+        public Command BuildRemoveCommand() {
+            var command = new Command("remove");
             command.Description = "Provides operations to call the remove method.";
-            var builder = new MicrosoftGraphRemoveRequestBuilder(PathParameters);
+            var builder = new RemoveRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }

@@ -30,11 +30,11 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item.EffectiveRules.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property effectiveRules for policies";
             // Create options for all the parameters
-            var unifiedRoleManagementPolicyIdOption = new Option<string>("--unified-role-management-policy-id", description: "key: id of unifiedRoleManagementPolicy") {
+            var unifiedRoleManagementPolicyIdOption = new Option<string>("--unified-role-management-policy-id", description: "The unique identifier of unifiedRoleManagementPolicy") {
             };
             unifiedRoleManagementPolicyIdOption.IsRequired = true;
             command.AddOption(unifiedRoleManagementPolicyIdOption);
-            var unifiedRoleManagementPolicyRuleIdOption = new Option<string>("--unified-role-management-policy-rule-id", description: "key: id of unifiedRoleManagementPolicyRule") {
+            var unifiedRoleManagementPolicyRuleIdOption = new Option<string>("--unified-role-management-policy-rule-id", description: "The unique identifier of unifiedRoleManagementPolicyRule") {
             };
             unifiedRoleManagementPolicyRuleIdOption.IsRequired = true;
             command.AddOption(unifiedRoleManagementPolicyRuleIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item.EffectiveRules.Item {
             var command = new Command("get");
             command.Description = "The list of effective rules like approval rules and expiration rules evaluated based on inherited referenced rules. For example, if there is a tenant-wide policy to enforce enabling an approval rule, the effective rule will be to enable approval even if the policy has a rule to disable approval. Supports $expand.";
             // Create options for all the parameters
-            var unifiedRoleManagementPolicyIdOption = new Option<string>("--unified-role-management-policy-id", description: "key: id of unifiedRoleManagementPolicy") {
+            var unifiedRoleManagementPolicyIdOption = new Option<string>("--unified-role-management-policy-id", description: "The unique identifier of unifiedRoleManagementPolicy") {
             };
             unifiedRoleManagementPolicyIdOption.IsRequired = true;
             command.AddOption(unifiedRoleManagementPolicyIdOption);
-            var unifiedRoleManagementPolicyRuleIdOption = new Option<string>("--unified-role-management-policy-rule-id", description: "key: id of unifiedRoleManagementPolicyRule") {
+            var unifiedRoleManagementPolicyRuleIdOption = new Option<string>("--unified-role-management-policy-rule-id", description: "The unique identifier of unifiedRoleManagementPolicyRule") {
             };
             unifiedRoleManagementPolicyRuleIdOption.IsRequired = true;
             command.AddOption(unifiedRoleManagementPolicyRuleIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item.EffectiveRules.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property effectiveRules in policies";
             // Create options for all the parameters
-            var unifiedRoleManagementPolicyIdOption = new Option<string>("--unified-role-management-policy-id", description: "key: id of unifiedRoleManagementPolicy") {
+            var unifiedRoleManagementPolicyIdOption = new Option<string>("--unified-role-management-policy-id", description: "The unique identifier of unifiedRoleManagementPolicy") {
             };
             unifiedRoleManagementPolicyIdOption.IsRequired = true;
             command.AddOption(unifiedRoleManagementPolicyIdOption);
-            var unifiedRoleManagementPolicyRuleIdOption = new Option<string>("--unified-role-management-policy-rule-id", description: "key: id of unifiedRoleManagementPolicyRule") {
+            var unifiedRoleManagementPolicyRuleIdOption = new Option<string>("--unified-role-management-policy-rule-id", description: "The unique identifier of unifiedRoleManagementPolicyRule") {
             };
             unifiedRoleManagementPolicyRuleIdOption.IsRequired = true;
             command.AddOption(unifiedRoleManagementPolicyRuleIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item.EffectiveRules.Item {
                 });
                 if (unifiedRoleManagementPolicyId is not null) requestInfo.PathParameters.Add("unifiedRoleManagementPolicy%2Did", unifiedRoleManagementPolicyId);
                 if (unifiedRoleManagementPolicyRuleId is not null) requestInfo.PathParameters.Add("unifiedRoleManagementPolicyRule%2Did", unifiedRoleManagementPolicyRuleId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

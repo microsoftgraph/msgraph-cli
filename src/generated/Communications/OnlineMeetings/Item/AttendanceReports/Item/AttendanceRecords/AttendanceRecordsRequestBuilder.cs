@@ -53,11 +53,11 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.AttendanceReports.Item.Atten
             var command = new Command("create");
             command.Description = "Create new navigation property to attendanceRecords for communications";
             // Create options for all the parameters
-            var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "key: id of onlineMeeting") {
+            var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "The unique identifier of onlineMeeting") {
             };
             onlineMeetingIdOption.IsRequired = true;
             command.AddOption(onlineMeetingIdOption);
-            var meetingAttendanceReportIdOption = new Option<string>("--meeting-attendance-report-id", description: "key: id of meetingAttendanceReport") {
+            var meetingAttendanceReportIdOption = new Option<string>("--meeting-attendance-report-id", description: "The unique identifier of meetingAttendanceReport") {
             };
             meetingAttendanceReportIdOption.IsRequired = true;
             command.AddOption(meetingAttendanceReportIdOption);
@@ -97,6 +97,7 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.AttendanceReports.Item.Atten
                 });
                 if (onlineMeetingId is not null) requestInfo.PathParameters.Add("onlineMeeting%2Did", onlineMeetingId);
                 if (meetingAttendanceReportId is not null) requestInfo.PathParameters.Add("meetingAttendanceReport%2Did", meetingAttendanceReportId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -117,11 +118,11 @@ namespace ApiSdk.Communications.OnlineMeetings.Item.AttendanceReports.Item.Atten
             var command = new Command("list");
             command.Description = "Get a list of attendanceRecord objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/attendancerecord-list?view=graph-rest-1.0";
             // Create options for all the parameters
-            var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "key: id of onlineMeeting") {
+            var onlineMeetingIdOption = new Option<string>("--online-meeting-id", description: "The unique identifier of onlineMeeting") {
             };
             onlineMeetingIdOption.IsRequired = true;
             command.AddOption(onlineMeetingIdOption);
-            var meetingAttendanceReportIdOption = new Option<string>("--meeting-attendance-report-id", description: "key: id of meetingAttendanceReport") {
+            var meetingAttendanceReportIdOption = new Option<string>("--meeting-attendance-report-id", description: "The unique identifier of meetingAttendanceReport") {
             };
             meetingAttendanceReportIdOption.IsRequired = true;
             command.AddOption(meetingAttendanceReportIdOption);

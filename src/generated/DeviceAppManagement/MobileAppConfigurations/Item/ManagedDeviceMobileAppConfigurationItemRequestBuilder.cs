@@ -1,7 +1,7 @@
+using ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assign;
 using ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assignments;
 using ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses;
 using ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatusSummary;
-using ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.MicrosoftGraphAssign;
 using ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatuses;
 using ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatusSummary;
 using ApiSdk.Models;
@@ -30,6 +30,16 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the assign method.
+        /// </summary>
+        public Command BuildAssignCommand() {
+            var command = new Command("assign");
+            command.Description = "Provides operations to call the assign method.";
+            var builder = new AssignRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.managedDeviceMobileAppConfiguration entity.
         /// </summary>
         public Command BuildAssignmentsCommand() {
@@ -49,7 +59,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property mobileAppConfigurations for deviceAppManagement";
             // Create options for all the parameters
-            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--managed-device-mobile-app-configuration-id", description: "key: id of managedDeviceMobileAppConfiguration") {
+            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--managed-device-mobile-app-configuration-id", description: "The unique identifier of managedDeviceMobileAppConfiguration") {
             };
             managedDeviceMobileAppConfigurationIdOption.IsRequired = true;
             command.AddOption(managedDeviceMobileAppConfigurationIdOption);
@@ -108,7 +118,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item {
             var command = new Command("get");
             command.Description = "The Managed Device Mobile Application Configurations.";
             // Create options for all the parameters
-            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--managed-device-mobile-app-configuration-id", description: "key: id of managedDeviceMobileAppConfiguration") {
+            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--managed-device-mobile-app-configuration-id", description: "The unique identifier of managedDeviceMobileAppConfiguration") {
             };
             managedDeviceMobileAppConfigurationIdOption.IsRequired = true;
             command.AddOption(managedDeviceMobileAppConfigurationIdOption);
@@ -164,23 +174,13 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the assign method.
-        /// </summary>
-        public Command BuildMicrosoftGraphAssignCommand() {
-            var command = new Command("microsoft-graph-assign");
-            command.Description = "Provides operations to call the assign method.";
-            var builder = new MicrosoftGraphAssignRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property mobileAppConfigurations in deviceAppManagement
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property mobileAppConfigurations in deviceAppManagement";
             // Create options for all the parameters
-            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--managed-device-mobile-app-configuration-id", description: "key: id of managedDeviceMobileAppConfiguration") {
+            var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--managed-device-mobile-app-configuration-id", description: "The unique identifier of managedDeviceMobileAppConfiguration") {
             };
             managedDeviceMobileAppConfigurationIdOption.IsRequired = true;
             command.AddOption(managedDeviceMobileAppConfigurationIdOption);
@@ -218,6 +218,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (managedDeviceMobileAppConfigurationId is not null) requestInfo.PathParameters.Add("managedDeviceMobileAppConfiguration%2Did", managedDeviceMobileAppConfigurationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -55,7 +55,7 @@ namespace ApiSdk.Users.Item.CalendarGroups {
             var command = new Command("create");
             command.Description = "Use this API to create a new CalendarGroup.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-post-calendargroups?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -93,6 +93,7 @@ namespace ApiSdk.Users.Item.CalendarGroups {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -113,7 +114,7 @@ namespace ApiSdk.Users.Item.CalendarGroups {
             var command = new Command("list");
             command.Description = "Get the user's calendar groups.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-calendargroups?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

@@ -2,10 +2,10 @@ using ApiSdk.Drives.Item.Bundles;
 using ApiSdk.Drives.Item.Following;
 using ApiSdk.Drives.Item.Items;
 using ApiSdk.Drives.Item.List;
-using ApiSdk.Drives.Item.MicrosoftGraphRecent;
-using ApiSdk.Drives.Item.MicrosoftGraphSearchWithQ;
-using ApiSdk.Drives.Item.MicrosoftGraphSharedWithMe;
+using ApiSdk.Drives.Item.Recent;
 using ApiSdk.Drives.Item.Root;
+using ApiSdk.Drives.Item.SearchWithQ;
+using ApiSdk.Drives.Item.SharedWithMe;
 using ApiSdk.Drives.Item.Special;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
@@ -41,6 +41,7 @@ namespace ApiSdk.Drives.Item {
             var builder = new BundlesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -51,7 +52,7 @@ namespace ApiSdk.Drives.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
@@ -98,7 +99,7 @@ namespace ApiSdk.Drives.Item {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/drive-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
@@ -185,33 +186,13 @@ namespace ApiSdk.Drives.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the recent method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRecentCommand() {
-            var command = new Command("microsoft-graph-recent");
-            command.Description = "Provides operations to call the recent method.";
-            var builder = new MicrosoftGraphRecentRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the sharedWithMe method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSharedWithMeCommand() {
-            var command = new Command("microsoft-graph-shared-with-me");
-            command.Description = "Provides operations to call the sharedWithMe method.";
-            var builder = new MicrosoftGraphSharedWithMeRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
         /// Update entity in drives
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update entity in drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
@@ -249,6 +230,7 @@ namespace ApiSdk.Drives.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -262,6 +244,16 @@ namespace ApiSdk.Drives.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the recent method.
+        /// </summary>
+        public Command BuildRecentCommand() {
+            var command = new Command("recent");
+            command.Description = "Provides operations to call the recent method.";
+            var builder = new RecentRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the root property of the microsoft.graph.drive entity.
         /// </summary>
         public Command BuildRootCommand() {
@@ -269,6 +261,16 @@ namespace ApiSdk.Drives.Item {
             command.Description = "Provides operations to manage the root property of the microsoft.graph.drive entity.";
             var builder = new RootRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildContentCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the sharedWithMe method.
+        /// </summary>
+        public Command BuildSharedWithMeCommand() {
+            var command = new Command("shared-with-me");
+            command.Description = "Provides operations to call the sharedWithMe method.";
+            var builder = new SharedWithMeRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }

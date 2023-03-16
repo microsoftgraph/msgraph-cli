@@ -54,7 +54,7 @@ namespace ApiSdk.Domains.Item.FederationConfiguration {
             var command = new Command("create");
             command.Description = "Create a new internalDomainFederation object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/domain-post-federationconfiguration?view=graph-rest-1.0";
             // Create options for all the parameters
-            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
+            var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
             command.AddOption(domainIdOption);
@@ -92,6 +92,7 @@ namespace ApiSdk.Domains.Item.FederationConfiguration {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (domainId is not null) requestInfo.PathParameters.Add("domain%2Did", domainId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -111,7 +112,7 @@ namespace ApiSdk.Domains.Item.FederationConfiguration {
             var command = new Command("list");
             command.Description = "Domain settings configured by a customer when federated with Azure AD. Supports $expand.";
             // Create options for all the parameters
-            var domainIdOption = new Option<string>("--domain-id", description: "key: id of domain") {
+            var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
             command.AddOption(domainIdOption);

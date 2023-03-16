@@ -53,7 +53,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.Assignments {
             var command = new Command("create");
             command.Description = "Create new navigation property to assignments for deviceAppManagement";
             // Create options for all the parameters
-            var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "key: id of mobileApp") {
+            var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "The unique identifier of mobileApp") {
             };
             mobileAppIdOption.IsRequired = true;
             command.AddOption(mobileAppIdOption);
@@ -91,6 +91,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.Assignments {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (mobileAppId is not null) requestInfo.PathParameters.Add("mobileApp%2Did", mobileAppId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -110,7 +111,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.Assignments {
             var command = new Command("list");
             command.Description = "The list of group assignments for this mobile app.";
             // Create options for all the parameters
-            var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "key: id of mobileApp") {
+            var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "The unique identifier of mobileApp") {
             };
             mobileAppIdOption.IsRequired = true;
             command.AddOption(mobileAppIdOption);

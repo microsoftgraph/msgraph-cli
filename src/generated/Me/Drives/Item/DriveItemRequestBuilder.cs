@@ -30,7 +30,7 @@ namespace ApiSdk.Me.Drives.Item {
             var command = new Command("get");
             command.Description = "A collection of drives available for this user. Read-only.";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);

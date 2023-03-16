@@ -30,11 +30,11 @@ namespace ApiSdk.Users.Item.Authentication.Fido2Methods.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property fido2Methods for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var fido2AuthenticationMethodIdOption = new Option<string>("--fido2authentication-method-id", description: "key: id of fido2AuthenticationMethod") {
+            var fido2AuthenticationMethodIdOption = new Option<string>("--fido2authentication-method-id", description: "The unique identifier of fido2AuthenticationMethod") {
             };
             fido2AuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(fido2AuthenticationMethodIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Users.Item.Authentication.Fido2Methods.Item {
             var command = new Command("get");
             command.Description = "Represents the FIDO2 security keys registered to a user for authentication.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var fido2AuthenticationMethodIdOption = new Option<string>("--fido2authentication-method-id", description: "key: id of fido2AuthenticationMethod") {
+            var fido2AuthenticationMethodIdOption = new Option<string>("--fido2authentication-method-id", description: "The unique identifier of fido2AuthenticationMethod") {
             };
             fido2AuthenticationMethodIdOption.IsRequired = true;
             command.AddOption(fido2AuthenticationMethodIdOption);

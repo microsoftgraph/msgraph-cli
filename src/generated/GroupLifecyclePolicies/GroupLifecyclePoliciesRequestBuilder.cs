@@ -31,11 +31,11 @@ namespace ApiSdk.GroupLifecyclePolicies {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new GroupLifecyclePolicyItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAddGroupCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAddGroupCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRemoveGroupCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildRemoveGroupCommand());
             return command;
         }
         /// <summary>
@@ -88,6 +88,7 @@ namespace ApiSdk.GroupLifecyclePolicies {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -1,8 +1,8 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.JoinedTeams.Count;
+using ApiSdk.Users.Item.JoinedTeams.GetAllMessages;
 using ApiSdk.Users.Item.JoinedTeams.Item;
-using ApiSdk.Users.Item.JoinedTeams.MicrosoftGraphGetAllMessages;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -33,25 +33,25 @@ namespace ApiSdk.Users.Item.JoinedTeams {
             var command = new Command("item");
             var builder = new TeamItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildAllChannelsCommand());
+            command.AddCommand(builder.BuildArchiveCommand());
             command.AddCommand(builder.BuildChannelsCommand());
+            command.AddCommand(builder.BuildCloneCommand());
+            command.AddCommand(builder.BuildCompleteMigrationCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildGroupCommand());
             command.AddCommand(builder.BuildIncomingChannelsCommand());
             command.AddCommand(builder.BuildInstalledAppsCommand());
             command.AddCommand(builder.BuildMembersCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphArchiveCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCloneCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCompleteMigrationCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSendActivityNotificationCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUnarchiveCommand());
             command.AddCommand(builder.BuildOperationsCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildPhotoCommand());
             command.AddCommand(builder.BuildPrimaryChannelCommand());
             command.AddCommand(builder.BuildScheduleCommand());
+            command.AddCommand(builder.BuildSendActivityNotificationCommand());
             command.AddCommand(builder.BuildTagsCommand());
             command.AddCommand(builder.BuildTemplateCommand());
+            command.AddCommand(builder.BuildUnarchiveCommand());
             return command;
         }
         /// <summary>
@@ -71,7 +71,7 @@ namespace ApiSdk.Users.Item.JoinedTeams {
             var command = new Command("create");
             command.Description = "Create new navigation property to joinedTeams for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -109,6 +109,7 @@ namespace ApiSdk.Users.Item.JoinedTeams {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -122,6 +123,16 @@ namespace ApiSdk.Users.Item.JoinedTeams {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the getAllMessages method.
+        /// </summary>
+        public Command BuildGetAllMessagesCommand() {
+            var command = new Command("get-all-messages");
+            command.Description = "Provides operations to call the getAllMessages method.";
+            var builder = new GetAllMessagesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Get the teams in Microsoft Teams that the user is a direct member of.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-list-joinedteams?view=graph-rest-1.0" />
         /// </summary>
@@ -129,7 +140,7 @@ namespace ApiSdk.Users.Item.JoinedTeams {
             var command = new Command("list");
             command.Description = "Get the teams in Microsoft Teams that the user is a direct member of.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-joinedteams?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -231,16 +242,6 @@ namespace ApiSdk.Users.Item.JoinedTeams {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getAllMessages method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetAllMessagesCommand() {
-            var command = new Command("microsoft-graph-get-all-messages");
-            command.Description = "Provides operations to call the getAllMessages method.";
-            var builder = new MicrosoftGraphGetAllMessagesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

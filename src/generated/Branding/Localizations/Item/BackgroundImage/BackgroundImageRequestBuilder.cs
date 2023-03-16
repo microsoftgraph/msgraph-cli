@@ -30,7 +30,7 @@ namespace ApiSdk.Branding.Localizations.Item.BackgroundImage {
             var command = new Command("get");
             command.Description = "Image that appears as the background of the sign-in page. The allowed types are PNG or JPEG not smaller than 300 KB and not larger than 1920 × 1080 pixels. A smaller image will reduce bandwidth requirements and make the page load faster.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/organizationalbranding-list-localizations?view=graph-rest-1.0";
             // Create options for all the parameters
-            var organizationalBrandingLocalizationIdOption = new Option<string>("--organizational-branding-localization-id", description: "key: id of organizationalBrandingLocalization") {
+            var organizationalBrandingLocalizationIdOption = new Option<string>("--organizational-branding-localization-id", description: "The unique identifier of organizationalBrandingLocalization") {
             };
             organizationalBrandingLocalizationIdOption.IsRequired = true;
             command.AddOption(organizationalBrandingLocalizationIdOption);
@@ -69,7 +69,7 @@ namespace ApiSdk.Branding.Localizations.Item.BackgroundImage {
             var command = new Command("put");
             command.Description = "Image that appears as the background of the sign-in page. The allowed types are PNG or JPEG not smaller than 300 KB and not larger than 1920 × 1080 pixels. A smaller image will reduce bandwidth requirements and make the page load faster.";
             // Create options for all the parameters
-            var organizationalBrandingLocalizationIdOption = new Option<string>("--organizational-branding-localization-id", description: "key: id of organizationalBrandingLocalization") {
+            var organizationalBrandingLocalizationIdOption = new Option<string>("--organizational-branding-localization-id", description: "The unique identifier of organizationalBrandingLocalization") {
             };
             organizationalBrandingLocalizationIdOption.IsRequired = true;
             command.AddOption(organizationalBrandingLocalizationIdOption);

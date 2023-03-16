@@ -29,7 +29,7 @@ namespace ApiSdk.Teams.Item.Photo.Value {
             var command = new Command("get");
             command.Description = "Get media content for the navigation property photo from teams";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
@@ -68,7 +68,7 @@ namespace ApiSdk.Teams.Item.Photo.Value {
             var command = new Command("put");
             command.Description = "Update media content for the navigation property photo in teams";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);

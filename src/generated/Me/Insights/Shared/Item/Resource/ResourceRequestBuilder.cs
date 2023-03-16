@@ -30,7 +30,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.Resource {
             var command = new Command("get");
             command.Description = "Used for navigating to the item that was shared. For file attachments, the type is fileAttachment. For linked attachments, the type is driveItem.";
             // Create options for all the parameters
-            var sharedInsightIdOption = new Option<string>("--shared-insight-id", description: "key: id of sharedInsight") {
+            var sharedInsightIdOption = new Option<string>("--shared-insight-id", description: "The unique identifier of sharedInsight") {
             };
             sharedInsightIdOption.IsRequired = true;
             command.AddOption(sharedInsightIdOption);

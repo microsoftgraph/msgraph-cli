@@ -30,7 +30,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatusOverview {
             var command = new Command("delete");
             command.Description = "Delete navigation property userStatusOverview for deviceManagement";
             // Create options for all the parameters
-            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "key: id of deviceConfiguration") {
+            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatusOverview {
             var command = new Command("get");
             command.Description = "Device Configuration users status overview";
             // Create options for all the parameters
-            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "key: id of deviceConfiguration") {
+            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatusOverview {
             var command = new Command("patch");
             command.Description = "Update the navigation property userStatusOverview in deviceManagement";
             // Create options for all the parameters
-            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "key: id of deviceConfiguration") {
+            var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
             command.AddOption(deviceConfigurationIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatusOverview {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (deviceConfigurationId is not null) requestInfo.PathParameters.Add("deviceConfiguration%2Did", deviceConfigurationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -30,23 +30,23 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.MultiVal
             var command = new Command("delete");
             command.Description = "Delete navigation property multiValueExtendedProperties for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var conversationIdOption = new Option<string>("--conversation-id", description: "key: id of conversation") {
+            var conversationIdOption = new Option<string>("--conversation-id", description: "The unique identifier of conversation") {
             };
             conversationIdOption.IsRequired = true;
             command.AddOption(conversationIdOption);
-            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "key: id of conversationThread") {
+            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "The unique identifier of conversationThread") {
             };
             conversationThreadIdOption.IsRequired = true;
             command.AddOption(conversationThreadIdOption);
-            var postIdOption = new Option<string>("--post-id", description: "key: id of post") {
+            var postIdOption = new Option<string>("--post-id", description: "The unique identifier of post") {
             };
             postIdOption.IsRequired = true;
             command.AddOption(postIdOption);
-            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multi-value-legacy-extended-property-id", description: "key: id of multiValueLegacyExtendedProperty") {
+            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multi-value-legacy-extended-property-id", description: "The unique identifier of multiValueLegacyExtendedProperty") {
             };
             multiValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(multiValueLegacyExtendedPropertyIdOption);
@@ -88,23 +88,23 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.MultiVal
             var command = new Command("get");
             command.Description = "The collection of multi-value extended properties defined for the post. Read-only. Nullable.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var conversationIdOption = new Option<string>("--conversation-id", description: "key: id of conversation") {
+            var conversationIdOption = new Option<string>("--conversation-id", description: "The unique identifier of conversation") {
             };
             conversationIdOption.IsRequired = true;
             command.AddOption(conversationIdOption);
-            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "key: id of conversationThread") {
+            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "The unique identifier of conversationThread") {
             };
             conversationThreadIdOption.IsRequired = true;
             command.AddOption(conversationThreadIdOption);
-            var postIdOption = new Option<string>("--post-id", description: "key: id of post") {
+            var postIdOption = new Option<string>("--post-id", description: "The unique identifier of post") {
             };
             postIdOption.IsRequired = true;
             command.AddOption(postIdOption);
-            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multi-value-legacy-extended-property-id", description: "key: id of multiValueLegacyExtendedProperty") {
+            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multi-value-legacy-extended-property-id", description: "The unique identifier of multiValueLegacyExtendedProperty") {
             };
             multiValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(multiValueLegacyExtendedPropertyIdOption);
@@ -174,23 +174,23 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.MultiVal
             var command = new Command("patch");
             command.Description = "Update the navigation property multiValueExtendedProperties in groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var conversationIdOption = new Option<string>("--conversation-id", description: "key: id of conversation") {
+            var conversationIdOption = new Option<string>("--conversation-id", description: "The unique identifier of conversation") {
             };
             conversationIdOption.IsRequired = true;
             command.AddOption(conversationIdOption);
-            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "key: id of conversationThread") {
+            var conversationThreadIdOption = new Option<string>("--conversation-thread-id", description: "The unique identifier of conversationThread") {
             };
             conversationThreadIdOption.IsRequired = true;
             command.AddOption(conversationThreadIdOption);
-            var postIdOption = new Option<string>("--post-id", description: "key: id of post") {
+            var postIdOption = new Option<string>("--post-id", description: "The unique identifier of post") {
             };
             postIdOption.IsRequired = true;
             command.AddOption(postIdOption);
-            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multi-value-legacy-extended-property-id", description: "key: id of multiValueLegacyExtendedProperty") {
+            var multiValueLegacyExtendedPropertyIdOption = new Option<string>("--multi-value-legacy-extended-property-id", description: "The unique identifier of multiValueLegacyExtendedProperty") {
             };
             multiValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(multiValueLegacyExtendedPropertyIdOption);
@@ -236,6 +236,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item.MultiVal
                 if (conversationThreadId is not null) requestInfo.PathParameters.Add("conversationThread%2Did", conversationThreadId);
                 if (postId is not null) requestInfo.PathParameters.Add("post%2Did", postId);
                 if (multiValueLegacyExtendedPropertyId is not null) requestInfo.PathParameters.Add("multiValueLegacyExtendedProperty%2Did", multiValueLegacyExtendedPropertyId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

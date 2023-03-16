@@ -90,11 +90,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.entitlementManagement entity.";
             var builder = new AssignmentsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAdditionalAccessCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAdditionalAccessCommand());
             return command;
         }
         /// <summary>
@@ -246,6 +246,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

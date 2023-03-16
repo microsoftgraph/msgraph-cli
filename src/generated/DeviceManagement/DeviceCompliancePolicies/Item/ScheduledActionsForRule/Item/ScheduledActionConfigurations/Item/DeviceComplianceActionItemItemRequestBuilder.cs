@@ -30,15 +30,15 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             var command = new Command("delete");
             command.Description = "Delete navigation property scheduledActionConfigurations for deviceManagement";
             // Create options for all the parameters
-            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "key: id of deviceCompliancePolicy") {
+            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicyIdOption);
-            var deviceComplianceScheduledActionForRuleIdOption = new Option<string>("--device-compliance-scheduled-action-for-rule-id", description: "key: id of deviceComplianceScheduledActionForRule") {
+            var deviceComplianceScheduledActionForRuleIdOption = new Option<string>("--device-compliance-scheduled-action-for-rule-id", description: "The unique identifier of deviceComplianceScheduledActionForRule") {
             };
             deviceComplianceScheduledActionForRuleIdOption.IsRequired = true;
             command.AddOption(deviceComplianceScheduledActionForRuleIdOption);
-            var deviceComplianceActionItemIdOption = new Option<string>("--device-compliance-action-item-id", description: "key: id of deviceComplianceActionItem") {
+            var deviceComplianceActionItemIdOption = new Option<string>("--device-compliance-action-item-id", description: "The unique identifier of deviceComplianceActionItem") {
             };
             deviceComplianceActionItemIdOption.IsRequired = true;
             command.AddOption(deviceComplianceActionItemIdOption);
@@ -76,15 +76,15 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             var command = new Command("get");
             command.Description = "The list of scheduled action configurations for this compliance policy. Compliance policy must have one and only one block scheduled action.";
             // Create options for all the parameters
-            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "key: id of deviceCompliancePolicy") {
+            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicyIdOption);
-            var deviceComplianceScheduledActionForRuleIdOption = new Option<string>("--device-compliance-scheduled-action-for-rule-id", description: "key: id of deviceComplianceScheduledActionForRule") {
+            var deviceComplianceScheduledActionForRuleIdOption = new Option<string>("--device-compliance-scheduled-action-for-rule-id", description: "The unique identifier of deviceComplianceScheduledActionForRule") {
             };
             deviceComplianceScheduledActionForRuleIdOption.IsRequired = true;
             command.AddOption(deviceComplianceScheduledActionForRuleIdOption);
-            var deviceComplianceActionItemIdOption = new Option<string>("--device-compliance-action-item-id", description: "key: id of deviceComplianceActionItem") {
+            var deviceComplianceActionItemIdOption = new Option<string>("--device-compliance-action-item-id", description: "The unique identifier of deviceComplianceActionItem") {
             };
             deviceComplianceActionItemIdOption.IsRequired = true;
             command.AddOption(deviceComplianceActionItemIdOption);
@@ -150,15 +150,15 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             var command = new Command("patch");
             command.Description = "Update the navigation property scheduledActionConfigurations in deviceManagement";
             // Create options for all the parameters
-            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "key: id of deviceCompliancePolicy") {
+            var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
             command.AddOption(deviceCompliancePolicyIdOption);
-            var deviceComplianceScheduledActionForRuleIdOption = new Option<string>("--device-compliance-scheduled-action-for-rule-id", description: "key: id of deviceComplianceScheduledActionForRule") {
+            var deviceComplianceScheduledActionForRuleIdOption = new Option<string>("--device-compliance-scheduled-action-for-rule-id", description: "The unique identifier of deviceComplianceScheduledActionForRule") {
             };
             deviceComplianceScheduledActionForRuleIdOption.IsRequired = true;
             command.AddOption(deviceComplianceScheduledActionForRuleIdOption);
-            var deviceComplianceActionItemIdOption = new Option<string>("--device-compliance-action-item-id", description: "key: id of deviceComplianceActionItem") {
+            var deviceComplianceActionItemIdOption = new Option<string>("--device-compliance-action-item-id", description: "The unique identifier of deviceComplianceActionItem") {
             };
             deviceComplianceActionItemIdOption.IsRequired = true;
             command.AddOption(deviceComplianceActionItemIdOption);
@@ -200,6 +200,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
                 if (deviceCompliancePolicyId is not null) requestInfo.PathParameters.Add("deviceCompliancePolicy%2Did", deviceCompliancePolicyId);
                 if (deviceComplianceScheduledActionForRuleId is not null) requestInfo.PathParameters.Add("deviceComplianceScheduledActionForRule%2Did", deviceComplianceScheduledActionForRuleId);
                 if (deviceComplianceActionItemId is not null) requestInfo.PathParameters.Add("deviceComplianceActionItem%2Did", deviceComplianceActionItemId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

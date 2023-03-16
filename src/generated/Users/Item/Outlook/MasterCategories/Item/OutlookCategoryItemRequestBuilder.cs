@@ -30,11 +30,11 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property masterCategories for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var outlookCategoryIdOption = new Option<string>("--outlook-category-id", description: "key: id of outlookCategory") {
+            var outlookCategoryIdOption = new Option<string>("--outlook-category-id", description: "The unique identifier of outlookCategory") {
             };
             outlookCategoryIdOption.IsRequired = true;
             command.AddOption(outlookCategoryIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
             var command = new Command("get");
             command.Description = "A list of categories defined for the user.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var outlookCategoryIdOption = new Option<string>("--outlook-category-id", description: "key: id of outlookCategory") {
+            var outlookCategoryIdOption = new Option<string>("--outlook-category-id", description: "The unique identifier of outlookCategory") {
             };
             outlookCategoryIdOption.IsRequired = true;
             command.AddOption(outlookCategoryIdOption);
@@ -131,11 +131,11 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property masterCategories in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var outlookCategoryIdOption = new Option<string>("--outlook-category-id", description: "key: id of outlookCategory") {
+            var outlookCategoryIdOption = new Option<string>("--outlook-category-id", description: "The unique identifier of outlookCategory") {
             };
             outlookCategoryIdOption.IsRequired = true;
             command.AddOption(outlookCategoryIdOption);
@@ -175,6 +175,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories.Item {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (outlookCategoryId is not null) requestInfo.PathParameters.Add("outlookCategory%2Did", outlookCategoryId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

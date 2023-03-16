@@ -30,19 +30,19 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Members.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property members for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var channelIdOption = new Option<string>("--channel-id", description: "key: id of channel") {
+            var channelIdOption = new Option<string>("--channel-id", description: "The unique identifier of channel") {
             };
             channelIdOption.IsRequired = true;
             command.AddOption(channelIdOption);
-            var conversationMemberIdOption = new Option<string>("--conversation-member-id", description: "key: id of conversationMember") {
+            var conversationMemberIdOption = new Option<string>("--conversation-member-id", description: "The unique identifier of conversationMember") {
             };
             conversationMemberIdOption.IsRequired = true;
             command.AddOption(conversationMemberIdOption);
@@ -82,19 +82,19 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Members.Item {
             var command = new Command("get");
             command.Description = "A collection of membership records associated with the channel.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var channelIdOption = new Option<string>("--channel-id", description: "key: id of channel") {
+            var channelIdOption = new Option<string>("--channel-id", description: "The unique identifier of channel") {
             };
             channelIdOption.IsRequired = true;
             command.AddOption(channelIdOption);
-            var conversationMemberIdOption = new Option<string>("--conversation-member-id", description: "key: id of conversationMember") {
+            var conversationMemberIdOption = new Option<string>("--conversation-member-id", description: "The unique identifier of conversationMember") {
             };
             conversationMemberIdOption.IsRequired = true;
             command.AddOption(conversationMemberIdOption);
@@ -162,19 +162,19 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Members.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property members in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var channelIdOption = new Option<string>("--channel-id", description: "key: id of channel") {
+            var channelIdOption = new Option<string>("--channel-id", description: "The unique identifier of channel") {
             };
             channelIdOption.IsRequired = true;
             command.AddOption(channelIdOption);
-            var conversationMemberIdOption = new Option<string>("--conversation-member-id", description: "key: id of conversationMember") {
+            var conversationMemberIdOption = new Option<string>("--conversation-member-id", description: "The unique identifier of conversationMember") {
             };
             conversationMemberIdOption.IsRequired = true;
             command.AddOption(conversationMemberIdOption);
@@ -218,6 +218,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Members.Item {
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
                 if (channelId is not null) requestInfo.PathParameters.Add("channel%2Did", channelId);
                 if (conversationMemberId is not null) requestInfo.PathParameters.Add("conversationMember%2Did", conversationMemberId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

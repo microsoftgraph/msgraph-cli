@@ -29,7 +29,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "key: id of serviceUpdateMessage") {
+            var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "The unique identifier of serviceUpdateMessage") {
             };
             serviceUpdateMessageIdOption.IsRequired = true;
             command.AddOption(serviceUpdateMessageIdOption);

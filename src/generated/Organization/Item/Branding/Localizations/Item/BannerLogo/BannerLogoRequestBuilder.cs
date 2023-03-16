@@ -30,11 +30,11 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.BannerLogo {
             var command = new Command("get");
             command.Description = "A banner version of your company logo that appears on the sign-in page. The allowed types are PNG or JPEG no larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/organizationalbranding-list-localizations?view=graph-rest-1.0";
             // Create options for all the parameters
-            var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization") {
+            var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
             };
             organizationIdOption.IsRequired = true;
             command.AddOption(organizationIdOption);
-            var organizationalBrandingLocalizationIdOption = new Option<string>("--organizational-branding-localization-id", description: "key: id of organizationalBrandingLocalization") {
+            var organizationalBrandingLocalizationIdOption = new Option<string>("--organizational-branding-localization-id", description: "The unique identifier of organizationalBrandingLocalization") {
             };
             organizationalBrandingLocalizationIdOption.IsRequired = true;
             command.AddOption(organizationalBrandingLocalizationIdOption);
@@ -75,11 +75,11 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.BannerLogo {
             var command = new Command("put");
             command.Description = "A banner version of your company logo that appears on the sign-in page. The allowed types are PNG or JPEG no larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.";
             // Create options for all the parameters
-            var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization") {
+            var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
             };
             organizationIdOption.IsRequired = true;
             command.AddOption(organizationIdOption);
-            var organizationalBrandingLocalizationIdOption = new Option<string>("--organizational-branding-localization-id", description: "key: id of organizationalBrandingLocalization") {
+            var organizationalBrandingLocalizationIdOption = new Option<string>("--organizational-branding-localization-id", description: "The unique identifier of organizationalBrandingLocalization") {
             };
             organizationalBrandingLocalizationIdOption.IsRequired = true;
             command.AddOption(organizationalBrandingLocalizationIdOption);

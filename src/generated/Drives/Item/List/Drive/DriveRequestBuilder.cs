@@ -30,7 +30,7 @@ namespace ApiSdk.Drives.Item.List.Drive {
             var command = new Command("get");
             command.Description = "Only present on document libraries. Allows access to the list as a [drive][] resource with [driveItems][driveItem].";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);

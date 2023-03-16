@@ -53,11 +53,11 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.SingleValueExtendedProper
             var command = new Command("create");
             command.Description = "Create new navigation property to singleValueExtendedProperties for me";
             // Create options for all the parameters
-            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "key: id of calendarGroup") {
+            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "The unique identifier of calendarGroup") {
             };
             calendarGroupIdOption.IsRequired = true;
             command.AddOption(calendarGroupIdOption);
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            var calendarIdOption = new Option<string>("--calendar-id", description: "The unique identifier of calendar") {
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
@@ -97,6 +97,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.SingleValueExtendedProper
                 });
                 if (calendarGroupId is not null) requestInfo.PathParameters.Add("calendarGroup%2Did", calendarGroupId);
                 if (calendarId is not null) requestInfo.PathParameters.Add("calendar%2Did", calendarId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -116,11 +117,11 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.SingleValueExtendedProper
             var command = new Command("list");
             command.Description = "The collection of single-value extended properties defined for the calendar. Read-only. Nullable.";
             // Create options for all the parameters
-            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "key: id of calendarGroup") {
+            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "The unique identifier of calendarGroup") {
             };
             calendarGroupIdOption.IsRequired = true;
             command.AddOption(calendarGroupIdOption);
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            var calendarIdOption = new Option<string>("--calendar-id", description: "The unique identifier of calendar") {
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);

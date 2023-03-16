@@ -1,6 +1,6 @@
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.Count;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.Item;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.MicrosoftGraphRefreshAll;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.RefreshAll;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,8 +34,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables {
             var builder = new WorkbookPivotTableItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphRefreshCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildRefreshCommand());
             command.AddCommand(builder.BuildWorksheetCommand());
             return command;
         }
@@ -56,15 +56,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables {
             var command = new Command("create");
             command.Description = "Create new navigation property to pivotTables for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
@@ -106,6 +106,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables {
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
                 if (workbookWorksheetId is not null) requestInfo.PathParameters.Add("workbookWorksheet%2Did", workbookWorksheetId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -126,15 +127,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables {
             var command = new Command("list");
             command.Description = "Retrieve a list of workbookpivottable objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/workbookworksheet-list-pivottables?view=graph-rest-1.0";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
-            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "key: id of workbookWorksheet") {
+            var workbookWorksheetIdOption = new Option<string>("--workbook-worksheet-id", description: "The unique identifier of workbookWorksheet") {
             };
             workbookWorksheetIdOption.IsRequired = true;
             command.AddOption(workbookWorksheetIdOption);
@@ -245,10 +246,10 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables {
         /// <summary>
         /// Provides operations to call the refreshAll method.
         /// </summary>
-        public Command BuildMicrosoftGraphRefreshAllCommand() {
-            var command = new Command("microsoft-graph-refresh-all");
+        public Command BuildRefreshAllCommand() {
+            var command = new Command("refresh-all");
             command.Description = "Provides operations to call the refreshAll method.";
-            var builder = new MicrosoftGraphRefreshAllRequestBuilder(PathParameters);
+            var builder = new RefreshAllRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }

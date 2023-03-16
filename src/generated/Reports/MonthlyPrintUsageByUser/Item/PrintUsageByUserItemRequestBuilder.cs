@@ -30,7 +30,7 @@ namespace ApiSdk.Reports.MonthlyPrintUsageByUser.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property monthlyPrintUsageByUser for reports";
             // Create options for all the parameters
-            var printUsageByUserIdOption = new Option<string>("--print-usage-by-user-id", description: "key: id of printUsageByUser") {
+            var printUsageByUserIdOption = new Option<string>("--print-usage-by-user-id", description: "The unique identifier of printUsageByUser") {
             };
             printUsageByUserIdOption.IsRequired = true;
             command.AddOption(printUsageByUserIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Reports.MonthlyPrintUsageByUser.Item {
             var command = new Command("get");
             command.Description = "Get monthlyPrintUsageByUser from reports";
             // Create options for all the parameters
-            var printUsageByUserIdOption = new Option<string>("--print-usage-by-user-id", description: "key: id of printUsageByUser") {
+            var printUsageByUserIdOption = new Option<string>("--print-usage-by-user-id", description: "The unique identifier of printUsageByUser") {
             };
             printUsageByUserIdOption.IsRequired = true;
             command.AddOption(printUsageByUserIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.Reports.MonthlyPrintUsageByUser.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property monthlyPrintUsageByUser in reports";
             // Create options for all the parameters
-            var printUsageByUserIdOption = new Option<string>("--print-usage-by-user-id", description: "key: id of printUsageByUser") {
+            var printUsageByUserIdOption = new Option<string>("--print-usage-by-user-id", description: "The unique identifier of printUsageByUser") {
             };
             printUsageByUserIdOption.IsRequired = true;
             command.AddOption(printUsageByUserIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.Reports.MonthlyPrintUsageByUser.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (printUsageByUserId is not null) requestInfo.PathParameters.Add("printUsageByUser%2Did", printUsageByUserId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

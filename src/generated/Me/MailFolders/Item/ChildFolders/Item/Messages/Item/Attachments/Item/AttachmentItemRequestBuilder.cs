@@ -30,19 +30,19 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Messages.Item.Attachments
             var command = new Command("delete");
             command.Description = "Delete navigation property attachments for me";
             // Create options for all the parameters
-            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
+            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "The unique identifier of mailFolder") {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
-            var mailFolderId1Option = new Option<string>("--mail-folder-id1", description: "key: id of mailFolder") {
+            var mailFolderId1Option = new Option<string>("--mail-folder-id1", description: "The unique identifier of mailFolder") {
             };
             mailFolderId1Option.IsRequired = true;
             command.AddOption(mailFolderId1Option);
-            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            var messageIdOption = new Option<string>("--message-id", description: "The unique identifier of message") {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
-            var attachmentIdOption = new Option<string>("--attachment-id", description: "key: id of attachment") {
+            var attachmentIdOption = new Option<string>("--attachment-id", description: "The unique identifier of attachment") {
             };
             attachmentIdOption.IsRequired = true;
             command.AddOption(attachmentIdOption);
@@ -82,19 +82,19 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item.Messages.Item.Attachments
             var command = new Command("get");
             command.Description = "The fileAttachment and itemAttachment attachments for the message.";
             // Create options for all the parameters
-            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
+            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "The unique identifier of mailFolder") {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
-            var mailFolderId1Option = new Option<string>("--mail-folder-id1", description: "key: id of mailFolder") {
+            var mailFolderId1Option = new Option<string>("--mail-folder-id1", description: "The unique identifier of mailFolder") {
             };
             mailFolderId1Option.IsRequired = true;
             command.AddOption(mailFolderId1Option);
-            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            var messageIdOption = new Option<string>("--message-id", description: "The unique identifier of message") {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
-            var attachmentIdOption = new Option<string>("--attachment-id", description: "key: id of attachment") {
+            var attachmentIdOption = new Option<string>("--attachment-id", description: "The unique identifier of attachment") {
             };
             attachmentIdOption.IsRequired = true;
             command.AddOption(attachmentIdOption);

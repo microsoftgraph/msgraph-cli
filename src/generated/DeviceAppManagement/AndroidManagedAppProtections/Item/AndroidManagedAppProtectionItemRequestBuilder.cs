@@ -45,7 +45,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property androidManagedAppProtections for deviceAppManagement";
             // Create options for all the parameters
-            var androidManagedAppProtectionIdOption = new Option<string>("--android-managed-app-protection-id", description: "key: id of androidManagedAppProtection") {
+            var androidManagedAppProtectionIdOption = new Option<string>("--android-managed-app-protection-id", description: "The unique identifier of androidManagedAppProtection") {
             };
             androidManagedAppProtectionIdOption.IsRequired = true;
             command.AddOption(androidManagedAppProtectionIdOption);
@@ -91,7 +91,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
             var command = new Command("get");
             command.Description = "Android managed app policies.";
             // Create options for all the parameters
-            var androidManagedAppProtectionIdOption = new Option<string>("--android-managed-app-protection-id", description: "key: id of androidManagedAppProtection") {
+            var androidManagedAppProtectionIdOption = new Option<string>("--android-managed-app-protection-id", description: "The unique identifier of androidManagedAppProtection") {
             };
             androidManagedAppProtectionIdOption.IsRequired = true;
             command.AddOption(androidManagedAppProtectionIdOption);
@@ -153,7 +153,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property androidManagedAppProtections in deviceAppManagement";
             // Create options for all the parameters
-            var androidManagedAppProtectionIdOption = new Option<string>("--android-managed-app-protection-id", description: "key: id of androidManagedAppProtection") {
+            var androidManagedAppProtectionIdOption = new Option<string>("--android-managed-app-protection-id", description: "The unique identifier of androidManagedAppProtection") {
             };
             androidManagedAppProtectionIdOption.IsRequired = true;
             command.AddOption(androidManagedAppProtectionIdOption);
@@ -191,6 +191,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (androidManagedAppProtectionId is not null) requestInfo.PathParameters.Add("androidManagedAppProtection%2Did", androidManagedAppProtectionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

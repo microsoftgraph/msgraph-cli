@@ -1,6 +1,6 @@
 using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.AccessPackage;
 using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.AssignmentPolicy;
-using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.MicrosoftGraphReprocess;
+using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Reprocess;
 using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item.Target;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
@@ -54,7 +54,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property assignments for identityGovernance";
             // Create options for all the parameters
-            var accessPackageAssignmentIdOption = new Option<string>("--access-package-assignment-id", description: "key: id of accessPackageAssignment") {
+            var accessPackageAssignmentIdOption = new Option<string>("--access-package-assignment-id", description: "The unique identifier of accessPackageAssignment") {
             };
             accessPackageAssignmentIdOption.IsRequired = true;
             command.AddOption(accessPackageAssignmentIdOption);
@@ -88,7 +88,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
             var command = new Command("get");
             command.Description = "The assignment of an access package to a subject for a period of time.";
             // Create options for all the parameters
-            var accessPackageAssignmentIdOption = new Option<string>("--access-package-assignment-id", description: "key: id of accessPackageAssignment") {
+            var accessPackageAssignmentIdOption = new Option<string>("--access-package-assignment-id", description: "The unique identifier of accessPackageAssignment") {
             };
             accessPackageAssignmentIdOption.IsRequired = true;
             command.AddOption(accessPackageAssignmentIdOption);
@@ -144,23 +144,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the reprocess method.
-        /// </summary>
-        public Command BuildMicrosoftGraphReprocessCommand() {
-            var command = new Command("microsoft-graph-reprocess");
-            command.Description = "Provides operations to call the reprocess method.";
-            var builder = new MicrosoftGraphReprocessRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property assignments in identityGovernance
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property assignments in identityGovernance";
             // Create options for all the parameters
-            var accessPackageAssignmentIdOption = new Option<string>("--access-package-assignment-id", description: "key: id of accessPackageAssignment") {
+            var accessPackageAssignmentIdOption = new Option<string>("--access-package-assignment-id", description: "The unique identifier of accessPackageAssignment") {
             };
             accessPackageAssignmentIdOption.IsRequired = true;
             command.AddOption(accessPackageAssignmentIdOption);
@@ -198,6 +188,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (accessPackageAssignmentId is not null) requestInfo.PathParameters.Add("accessPackageAssignment%2Did", accessPackageAssignmentId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -208,6 +199,16 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the reprocess method.
+        /// </summary>
+        public Command BuildReprocessCommand() {
+            var command = new Command("reprocess");
+            command.Description = "Provides operations to call the reprocess method.";
+            var builder = new ReprocessRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

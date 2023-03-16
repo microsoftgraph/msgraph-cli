@@ -52,7 +52,7 @@ namespace ApiSdk.Teams.Item.AllChannels {
             var command = new Command("list");
             command.Description = "Get the list of channels either in this team or shared with this team (incoming channels).\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-list-allchannels?view=graph-rest-1.0";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);

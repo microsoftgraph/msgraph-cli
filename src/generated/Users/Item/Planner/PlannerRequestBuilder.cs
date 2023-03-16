@@ -32,7 +32,7 @@ namespace ApiSdk.Users.Item.Planner {
             var command = new Command("delete");
             command.Description = "Delete navigation property planner for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -66,7 +66,7 @@ namespace ApiSdk.Users.Item.Planner {
             var command = new Command("get");
             command.Description = "Entry-point to the Planner resource that might exist for a user. Read-only.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -128,7 +128,7 @@ namespace ApiSdk.Users.Item.Planner {
             var command = new Command("patch");
             command.Description = "Update the navigation property planner in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -173,6 +173,7 @@ namespace ApiSdk.Users.Item.Planner {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

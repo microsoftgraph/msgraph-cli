@@ -1,7 +1,7 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Shares.Item.List.Items.Item.Versions.Item.Fields;
-using ApiSdk.Shares.Item.List.Items.Item.Versions.Item.MicrosoftGraphRestoreVersion;
+using ApiSdk.Shares.Item.List.Items.Item.Versions.Item.RestoreVersion;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -32,15 +32,15 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Versions.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property versions for shares";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
-            var listItemIdOption = new Option<string>("--list-item-id", description: "key: id of listItem") {
+            var listItemIdOption = new Option<string>("--list-item-id", description: "The unique identifier of listItem") {
             };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
-            var listItemVersionIdOption = new Option<string>("--list-item-version-id", description: "key: id of listItemVersion") {
+            var listItemVersionIdOption = new Option<string>("--list-item-version-id", description: "The unique identifier of listItemVersion") {
             };
             listItemVersionIdOption.IsRequired = true;
             command.AddOption(listItemVersionIdOption);
@@ -90,15 +90,15 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Versions.Item {
             var command = new Command("get");
             command.Description = "The list of previous versions of the list item.";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
-            var listItemIdOption = new Option<string>("--list-item-id", description: "key: id of listItem") {
+            var listItemIdOption = new Option<string>("--list-item-id", description: "The unique identifier of listItem") {
             };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
-            var listItemVersionIdOption = new Option<string>("--list-item-version-id", description: "key: id of listItemVersion") {
+            var listItemVersionIdOption = new Option<string>("--list-item-version-id", description: "The unique identifier of listItemVersion") {
             };
             listItemVersionIdOption.IsRequired = true;
             command.AddOption(listItemVersionIdOption);
@@ -158,31 +158,21 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Versions.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the restoreVersion method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRestoreVersionCommand() {
-            var command = new Command("microsoft-graph-restore-version");
-            command.Description = "Provides operations to call the restoreVersion method.";
-            var builder = new MicrosoftGraphRestoreVersionRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property versions in shares
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property versions in shares";
             // Create options for all the parameters
-            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "key: id of sharedDriveItem") {
+            var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
             command.AddOption(sharedDriveItemIdOption);
-            var listItemIdOption = new Option<string>("--list-item-id", description: "key: id of listItem") {
+            var listItemIdOption = new Option<string>("--list-item-id", description: "The unique identifier of listItem") {
             };
             listItemIdOption.IsRequired = true;
             command.AddOption(listItemIdOption);
-            var listItemVersionIdOption = new Option<string>("--list-item-version-id", description: "key: id of listItemVersion") {
+            var listItemVersionIdOption = new Option<string>("--list-item-version-id", description: "The unique identifier of listItemVersion") {
             };
             listItemVersionIdOption.IsRequired = true;
             command.AddOption(listItemVersionIdOption);
@@ -224,6 +214,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Versions.Item {
                 if (sharedDriveItemId is not null) requestInfo.PathParameters.Add("sharedDriveItem%2Did", sharedDriveItemId);
                 if (listItemId is not null) requestInfo.PathParameters.Add("listItem%2Did", listItemId);
                 if (listItemVersionId is not null) requestInfo.PathParameters.Add("listItemVersion%2Did", listItemVersionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -234,6 +225,16 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Versions.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the restoreVersion method.
+        /// </summary>
+        public Command BuildRestoreVersionCommand() {
+            var command = new Command("restore-version");
+            command.Description = "Provides operations to call the restoreVersion method.";
+            var builder = new RestoreVersionRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

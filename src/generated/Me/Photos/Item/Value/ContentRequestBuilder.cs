@@ -29,7 +29,7 @@ namespace ApiSdk.Me.Photos.Item.Value {
             var command = new Command("get");
             command.Description = "Get media content for the navigation property photos from me";
             // Create options for all the parameters
-            var profilePhotoIdOption = new Option<string>("--profile-photo-id", description: "key: id of profilePhoto") {
+            var profilePhotoIdOption = new Option<string>("--profile-photo-id", description: "The unique identifier of profilePhoto") {
             };
             profilePhotoIdOption.IsRequired = true;
             command.AddOption(profilePhotoIdOption);
@@ -68,7 +68,7 @@ namespace ApiSdk.Me.Photos.Item.Value {
             var command = new Command("put");
             command.Description = "Update media content for the navigation property photos in me";
             // Create options for all the parameters
-            var profilePhotoIdOption = new Option<string>("--profile-photo-id", description: "key: id of profilePhoto") {
+            var profilePhotoIdOption = new Option<string>("--profile-photo-id", description: "The unique identifier of profilePhoto") {
             };
             profilePhotoIdOption.IsRequired = true;
             command.AddOption(profilePhotoIdOption);

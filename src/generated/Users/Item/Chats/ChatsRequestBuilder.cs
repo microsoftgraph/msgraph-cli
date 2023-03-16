@@ -1,8 +1,8 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.Chats.Count;
+using ApiSdk.Users.Item.Chats.GetAllMessages;
 using ApiSdk.Users.Item.Chats.Item;
-using ApiSdk.Users.Item.Chats.MicrosoftGraphGetAllMessages;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -34,18 +34,18 @@ namespace ApiSdk.Users.Item.Chats {
             var builder = new ChatItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildHideForUserCommand());
             command.AddCommand(builder.BuildInstalledAppsCommand());
             command.AddCommand(builder.BuildLastMessagePreviewCommand());
+            command.AddCommand(builder.BuildMarkChatReadForUserCommand());
+            command.AddCommand(builder.BuildMarkChatUnreadForUserCommand());
             command.AddCommand(builder.BuildMembersCommand());
             command.AddCommand(builder.BuildMessagesCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphHideForUserCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphMarkChatReadForUserCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphMarkChatUnreadForUserCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSendActivityNotificationCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUnhideForUserCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildPinnedMessagesCommand());
+            command.AddCommand(builder.BuildSendActivityNotificationCommand());
             command.AddCommand(builder.BuildTabsCommand());
+            command.AddCommand(builder.BuildUnhideForUserCommand());
             return command;
         }
         /// <summary>
@@ -65,7 +65,7 @@ namespace ApiSdk.Users.Item.Chats {
             var command = new Command("create");
             command.Description = "Create new navigation property to chats for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -103,6 +103,7 @@ namespace ApiSdk.Users.Item.Chats {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -116,6 +117,16 @@ namespace ApiSdk.Users.Item.Chats {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the getAllMessages method.
+        /// </summary>
+        public Command BuildGetAllMessagesCommand() {
+            var command = new Command("get-all-messages");
+            command.Description = "Provides operations to call the getAllMessages method.";
+            var builder = new GetAllMessagesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Retrieve the list of chats that the user is part of. This method supports federation. When a user ID is provided, the calling application must belong to the same tenant that the user belongs to.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/chat-list?view=graph-rest-1.0" />
         /// </summary>
@@ -123,7 +134,7 @@ namespace ApiSdk.Users.Item.Chats {
             var command = new Command("list");
             command.Description = "Retrieve the list of chats that the user is part of. This method supports federation. When a user ID is provided, the calling application must belong to the same tenant that the user belongs to.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-list?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -225,16 +236,6 @@ namespace ApiSdk.Users.Item.Chats {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getAllMessages method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetAllMessagesCommand() {
-            var command = new Command("microsoft-graph-get-all-messages");
-            command.Description = "Provides operations to call the getAllMessages method.";
-            var builder = new MicrosoftGraphGetAllMessagesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

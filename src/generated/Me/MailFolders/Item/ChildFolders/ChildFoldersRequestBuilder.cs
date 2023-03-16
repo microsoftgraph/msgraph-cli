@@ -1,6 +1,6 @@
 using ApiSdk.Me.MailFolders.Item.ChildFolders.Count;
+using ApiSdk.Me.MailFolders.Item.ChildFolders.Delta;
 using ApiSdk.Me.MailFolders.Item.ChildFolders.Item;
-using ApiSdk.Me.MailFolders.Item.ChildFolders.MicrosoftGraphDelta;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,12 +32,12 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new ApiSdk.Me.MailFolders.Item.ChildFolders.Item.MailFolderItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCopyCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildMessageRulesCommand());
             command.AddCommand(builder.BuildMessagesCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCopyCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphMoveCommand());
+            command.AddCommand(builder.BuildMoveCommand());
             command.AddCommand(builder.BuildMultiValueExtendedPropertiesCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildSingleValueExtendedPropertiesCommand());
@@ -61,7 +61,7 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders {
             var command = new Command("create");
             command.Description = "Use this API to create a new child mailFolder. If you intend a new folder to be hidden, you must set the **isHidden** property to `true` on creation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/mailfolder-post-childfolders?view=graph-rest-1.0";
             // Create options for all the parameters
-            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
+            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "The unique identifier of mailFolder") {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
@@ -99,6 +99,7 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (mailFolderId is not null) requestInfo.PathParameters.Add("mailFolder%2Did", mailFolderId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -112,6 +113,16 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildDeltaCommand() {
+            var command = new Command("delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Get the folder collection under the specified folder. You can use the `.../me/mailFolders` shortcut to get the top-level folder collection and navigate to another folder. By default, this operation does not return hidden folders. Use a query parameter _includeHiddenFolders_ to include them in the response.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/mailfolder-list-childfolders?view=graph-rest-1.0" />
         /// </summary>
@@ -119,7 +130,7 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders {
             var command = new Command("list");
             command.Description = "Get the folder collection under the specified folder. You can use the `.../me/mailFolders` shortcut to get the top-level folder collection and navigate to another folder. By default, this operation does not return hidden folders. Use a query parameter _includeHiddenFolders_ to include them in the response.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/mailfolder-list-childfolders?view=graph-rest-1.0";
             // Create options for all the parameters
-            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "key: id of mailFolder") {
+            var mailFolderIdOption = new Option<string>("--mail-folder-id", description: "The unique identifier of mailFolder") {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
@@ -215,16 +226,6 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the delta method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDeltaCommand() {
-            var command = new Command("microsoft-graph-delta");
-            command.Description = "Provides operations to call the delta method.";
-            var builder = new MicrosoftGraphDeltaRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

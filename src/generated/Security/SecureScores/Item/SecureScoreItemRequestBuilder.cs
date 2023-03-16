@@ -30,7 +30,7 @@ namespace ApiSdk.Security.SecureScores.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property secureScores for security";
             // Create options for all the parameters
-            var secureScoreIdOption = new Option<string>("--secure-score-id", description: "key: id of secureScore") {
+            var secureScoreIdOption = new Option<string>("--secure-score-id", description: "The unique identifier of secureScore") {
             };
             secureScoreIdOption.IsRequired = true;
             command.AddOption(secureScoreIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.Security.SecureScores.Item {
             var command = new Command("get");
             command.Description = "Get secureScores from security";
             // Create options for all the parameters
-            var secureScoreIdOption = new Option<string>("--secure-score-id", description: "key: id of secureScore") {
+            var secureScoreIdOption = new Option<string>("--secure-score-id", description: "The unique identifier of secureScore") {
             };
             secureScoreIdOption.IsRequired = true;
             command.AddOption(secureScoreIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.Security.SecureScores.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property secureScores in security";
             // Create options for all the parameters
-            var secureScoreIdOption = new Option<string>("--secure-score-id", description: "key: id of secureScore") {
+            var secureScoreIdOption = new Option<string>("--secure-score-id", description: "The unique identifier of secureScore") {
             };
             secureScoreIdOption.IsRequired = true;
             command.AddOption(secureScoreIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.Security.SecureScores.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (secureScoreId is not null) requestInfo.PathParameters.Add("secureScore%2Did", secureScoreId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -30,11 +30,11 @@ namespace ApiSdk.Users.Item.Authentication.Operations.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property operations for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var longRunningOperationIdOption = new Option<string>("--long-running-operation-id", description: "key: id of longRunningOperation") {
+            var longRunningOperationIdOption = new Option<string>("--long-running-operation-id", description: "The unique identifier of longRunningOperation") {
             };
             longRunningOperationIdOption.IsRequired = true;
             command.AddOption(longRunningOperationIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Users.Item.Authentication.Operations.Item {
             var command = new Command("get");
             command.Description = "Represents the status of a long-running operation.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var longRunningOperationIdOption = new Option<string>("--long-running-operation-id", description: "key: id of longRunningOperation") {
+            var longRunningOperationIdOption = new Option<string>("--long-running-operation-id", description: "The unique identifier of longRunningOperation") {
             };
             longRunningOperationIdOption.IsRequired = true;
             command.AddOption(longRunningOperationIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Users.Item.Authentication.Operations.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property operations in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var longRunningOperationIdOption = new Option<string>("--long-running-operation-id", description: "key: id of longRunningOperation") {
+            var longRunningOperationIdOption = new Option<string>("--long-running-operation-id", description: "The unique identifier of longRunningOperation") {
             };
             longRunningOperationIdOption.IsRequired = true;
             command.AddOption(longRunningOperationIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Users.Item.Authentication.Operations.Item {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (longRunningOperationId is not null) requestInfo.PathParameters.Add("longRunningOperation%2Did", longRunningOperationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

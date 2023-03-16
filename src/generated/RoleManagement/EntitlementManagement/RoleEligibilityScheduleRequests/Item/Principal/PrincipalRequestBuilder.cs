@@ -30,7 +30,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleReq
             var command = new Command("get");
             command.Description = "The principal that's getting a role eligibility through the request. Supports $expand.";
             // Create options for all the parameters
-            var unifiedRoleEligibilityScheduleRequestIdOption = new Option<string>("--unified-role-eligibility-schedule-request-id", description: "key: id of unifiedRoleEligibilityScheduleRequest") {
+            var unifiedRoleEligibilityScheduleRequestIdOption = new Option<string>("--unified-role-eligibility-schedule-request-id", description: "The unique identifier of unifiedRoleEligibilityScheduleRequest") {
             };
             unifiedRoleEligibilityScheduleRequestIdOption.IsRequired = true;
             command.AddOption(unifiedRoleEligibilityScheduleRequestIdOption);

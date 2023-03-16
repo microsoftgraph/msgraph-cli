@@ -30,7 +30,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Ref {
             var command = new Command("get");
             command.Description = "Nullable. Specifies a list of directoryObjects that feature is enabled for.";
             // Create options for all the parameters
-            var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "key: id of featureRolloutPolicy") {
+            var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "The unique identifier of featureRolloutPolicy") {
             };
             featureRolloutPolicyIdOption.IsRequired = true;
             command.AddOption(featureRolloutPolicyIdOption);
@@ -127,7 +127,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Ref {
             var command = new Command("post");
             command.Description = "Create new navigation property ref to appliesTo for policies";
             // Create options for all the parameters
-            var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "key: id of featureRolloutPolicy") {
+            var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "The unique identifier of featureRolloutPolicy") {
             };
             featureRolloutPolicyIdOption.IsRequired = true;
             command.AddOption(featureRolloutPolicyIdOption);
@@ -147,6 +147,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Ref {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (featureRolloutPolicyId is not null) requestInfo.PathParameters.Add("featureRolloutPolicy%2Did", featureRolloutPolicyId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

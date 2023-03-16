@@ -1,17 +1,17 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.Messages.Item.Attachments;
+using ApiSdk.Users.Item.Messages.Item.Copy;
+using ApiSdk.Users.Item.Messages.Item.CreateForward;
+using ApiSdk.Users.Item.Messages.Item.CreateReply;
+using ApiSdk.Users.Item.Messages.Item.CreateReplyAll;
 using ApiSdk.Users.Item.Messages.Item.Extensions;
-using ApiSdk.Users.Item.Messages.Item.MicrosoftGraphCopy;
-using ApiSdk.Users.Item.Messages.Item.MicrosoftGraphCreateForward;
-using ApiSdk.Users.Item.Messages.Item.MicrosoftGraphCreateReply;
-using ApiSdk.Users.Item.Messages.Item.MicrosoftGraphCreateReplyAll;
-using ApiSdk.Users.Item.Messages.Item.MicrosoftGraphForward;
-using ApiSdk.Users.Item.Messages.Item.MicrosoftGraphMove;
-using ApiSdk.Users.Item.Messages.Item.MicrosoftGraphReply;
-using ApiSdk.Users.Item.Messages.Item.MicrosoftGraphReplyAll;
-using ApiSdk.Users.Item.Messages.Item.MicrosoftGraphSend;
+using ApiSdk.Users.Item.Messages.Item.Forward;
+using ApiSdk.Users.Item.Messages.Item.Move;
 using ApiSdk.Users.Item.Messages.Item.MultiValueExtendedProperties;
+using ApiSdk.Users.Item.Messages.Item.Reply;
+using ApiSdk.Users.Item.Messages.Item.ReplyAll;
+using ApiSdk.Users.Item.Messages.Item.Send;
 using ApiSdk.Users.Item.Messages.Item.SingleValueExtendedProperties;
 using ApiSdk.Users.Item.Messages.Item.Value;
 using Microsoft.Extensions.DependencyInjection;
@@ -47,8 +47,8 @@ namespace ApiSdk.Users.Item.Messages.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildCreateUploadSessionCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCreateUploadSessionCommand());
             return command;
         }
         /// <summary>
@@ -63,17 +63,57 @@ namespace ApiSdk.Users.Item.Messages.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the copy method.
+        /// </summary>
+        public Command BuildCopyCommand() {
+            var command = new Command("copy");
+            command.Description = "Provides operations to call the copy method.";
+            var builder = new CopyRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the createForward method.
+        /// </summary>
+        public Command BuildCreateForwardCommand() {
+            var command = new Command("create-forward");
+            command.Description = "Provides operations to call the createForward method.";
+            var builder = new CreateForwardRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the createReplyAll method.
+        /// </summary>
+        public Command BuildCreateReplyAllCommand() {
+            var command = new Command("create-reply-all");
+            command.Description = "Provides operations to call the createReplyAll method.";
+            var builder = new CreateReplyAllRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the createReply method.
+        /// </summary>
+        public Command BuildCreateReplyCommand() {
+            var command = new Command("create-reply");
+            command.Description = "Provides operations to call the createReply method.";
+            var builder = new CreateReplyRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete navigation property messages for users
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property messages for users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            var messageIdOption = new Option<string>("--message-id", description: "The unique identifier of message") {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
@@ -116,17 +156,27 @@ namespace ApiSdk.Users.Item.Messages.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the forward method.
+        /// </summary>
+        public Command BuildForwardCommand() {
+            var command = new Command("forward");
+            command.Description = "Provides operations to call the forward method.";
+            var builder = new ForwardRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// The messages in a mailbox or folder. Read-only. Nullable.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The messages in a mailbox or folder. Read-only. Nullable.";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            var messageIdOption = new Option<string>("--message-id", description: "The unique identifier of message") {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
@@ -177,92 +227,12 @@ namespace ApiSdk.Users.Item.Messages.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the copy method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCopyCommand() {
-            var command = new Command("microsoft-graph-copy");
-            command.Description = "Provides operations to call the copy method.";
-            var builder = new MicrosoftGraphCopyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the createForward method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCreateForwardCommand() {
-            var command = new Command("microsoft-graph-create-forward");
-            command.Description = "Provides operations to call the createForward method.";
-            var builder = new MicrosoftGraphCreateForwardRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the createReplyAll method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCreateReplyAllCommand() {
-            var command = new Command("microsoft-graph-create-reply-all");
-            command.Description = "Provides operations to call the createReplyAll method.";
-            var builder = new MicrosoftGraphCreateReplyAllRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the createReply method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCreateReplyCommand() {
-            var command = new Command("microsoft-graph-create-reply");
-            command.Description = "Provides operations to call the createReply method.";
-            var builder = new MicrosoftGraphCreateReplyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the forward method.
-        /// </summary>
-        public Command BuildMicrosoftGraphForwardCommand() {
-            var command = new Command("microsoft-graph-forward");
-            command.Description = "Provides operations to call the forward method.";
-            var builder = new MicrosoftGraphForwardRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to call the move method.
         /// </summary>
-        public Command BuildMicrosoftGraphMoveCommand() {
-            var command = new Command("microsoft-graph-move");
+        public Command BuildMoveCommand() {
+            var command = new Command("move");
             command.Description = "Provides operations to call the move method.";
-            var builder = new MicrosoftGraphMoveRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the replyAll method.
-        /// </summary>
-        public Command BuildMicrosoftGraphReplyAllCommand() {
-            var command = new Command("microsoft-graph-reply-all");
-            command.Description = "Provides operations to call the replyAll method.";
-            var builder = new MicrosoftGraphReplyAllRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the reply method.
-        /// </summary>
-        public Command BuildMicrosoftGraphReplyCommand() {
-            var command = new Command("microsoft-graph-reply");
-            command.Description = "Provides operations to call the reply method.";
-            var builder = new MicrosoftGraphReplyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the send method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSendCommand() {
-            var command = new Command("microsoft-graph-send");
-            command.Description = "Provides operations to call the send method.";
-            var builder = new MicrosoftGraphSendRequestBuilder(PathParameters);
+            var builder = new MoveRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -286,11 +256,11 @@ namespace ApiSdk.Users.Item.Messages.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property messages in users";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var messageIdOption = new Option<string>("--message-id", description: "key: id of message") {
+            var messageIdOption = new Option<string>("--message-id", description: "The unique identifier of message") {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
@@ -330,6 +300,7 @@ namespace ApiSdk.Users.Item.Messages.Item {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (messageId is not null) requestInfo.PathParameters.Add("message%2Did", messageId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -340,6 +311,36 @@ namespace ApiSdk.Users.Item.Messages.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the replyAll method.
+        /// </summary>
+        public Command BuildReplyAllCommand() {
+            var command = new Command("reply-all");
+            command.Description = "Provides operations to call the replyAll method.";
+            var builder = new ReplyAllRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the reply method.
+        /// </summary>
+        public Command BuildReplyCommand() {
+            var command = new Command("reply");
+            command.Description = "Provides operations to call the reply method.";
+            var builder = new ReplyRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the send method.
+        /// </summary>
+        public Command BuildSendCommand() {
+            var command = new Command("send");
+            command.Description = "Provides operations to call the send method.";
+            var builder = new SendRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

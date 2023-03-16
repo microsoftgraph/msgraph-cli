@@ -30,7 +30,7 @@ namespace ApiSdk.Invitations.Item.InvitedUser {
             var command = new Command("get");
             command.Description = "The user created as part of the invitation creation. Read-Only";
             // Create options for all the parameters
-            var invitationIdOption = new Option<string>("--invitation-id", description: "key: id of invitation") {
+            var invitationIdOption = new Option<string>("--invitation-id", description: "The unique identifier of invitation") {
             };
             invitationIdOption.IsRequired = true;
             command.AddOption(invitationIdOption);

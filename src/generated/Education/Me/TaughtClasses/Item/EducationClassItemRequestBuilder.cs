@@ -30,7 +30,7 @@ namespace ApiSdk.Education.Me.TaughtClasses.Item {
             var command = new Command("get");
             command.Description = "Classes for which the user is a teacher.";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);

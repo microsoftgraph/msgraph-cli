@@ -54,11 +54,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.Tags.Item.Members {
             var command = new Command("create");
             command.Description = "Create a new teamworkTagMember object in a team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/teamworktagmember-post?view=graph-rest-1.0";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var teamworkTagIdOption = new Option<string>("--teamwork-tag-id", description: "key: id of teamworkTag") {
+            var teamworkTagIdOption = new Option<string>("--teamwork-tag-id", description: "The unique identifier of teamworkTag") {
             };
             teamworkTagIdOption.IsRequired = true;
             command.AddOption(teamworkTagIdOption);
@@ -98,6 +98,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Tags.Item.Members {
                 });
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
                 if (teamworkTagId is not null) requestInfo.PathParameters.Add("teamworkTag%2Did", teamworkTagId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -118,11 +119,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.Tags.Item.Members {
             var command = new Command("list");
             command.Description = "Get a list of the members of a standard tag in a team and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/teamworktagmember-list?view=graph-rest-1.0";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var teamworkTagIdOption = new Option<string>("--teamwork-tag-id", description: "key: id of teamworkTag") {
+            var teamworkTagIdOption = new Option<string>("--teamwork-tag-id", description: "The unique identifier of teamworkTag") {
             };
             teamworkTagIdOption.IsRequired = true;
             command.AddOption(teamworkTagIdOption);

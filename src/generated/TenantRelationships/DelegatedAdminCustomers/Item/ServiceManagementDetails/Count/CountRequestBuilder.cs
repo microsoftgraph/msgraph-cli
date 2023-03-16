@@ -29,7 +29,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item.ServiceManagem
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var delegatedAdminCustomerIdOption = new Option<string>("--delegated-admin-customer-id", description: "key: id of delegatedAdminCustomer") {
+            var delegatedAdminCustomerIdOption = new Option<string>("--delegated-admin-customer-id", description: "The unique identifier of delegatedAdminCustomer") {
             };
             delegatedAdminCustomerIdOption.IsRequired = true;
             command.AddOption(delegatedAdminCustomerIdOption);

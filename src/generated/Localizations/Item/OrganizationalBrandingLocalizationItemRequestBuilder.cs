@@ -55,7 +55,7 @@ namespace ApiSdk.Localizations.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from localizations";
             // Create options for all the parameters
-            var organizationalBrandingLocalizationIdOption = new Option<string>("--organizational-branding-localization-id", description: "key: id of organizationalBrandingLocalization") {
+            var organizationalBrandingLocalizationIdOption = new Option<string>("--organizational-branding-localization-id", description: "The unique identifier of organizationalBrandingLocalization") {
             };
             organizationalBrandingLocalizationIdOption.IsRequired = true;
             command.AddOption(organizationalBrandingLocalizationIdOption);
@@ -89,7 +89,7 @@ namespace ApiSdk.Localizations.Item {
             var command = new Command("get");
             command.Description = "Get entity from localizations by key";
             // Create options for all the parameters
-            var organizationalBrandingLocalizationIdOption = new Option<string>("--organizational-branding-localization-id", description: "key: id of organizationalBrandingLocalization") {
+            var organizationalBrandingLocalizationIdOption = new Option<string>("--organizational-branding-localization-id", description: "The unique identifier of organizationalBrandingLocalization") {
             };
             organizationalBrandingLocalizationIdOption.IsRequired = true;
             command.AddOption(organizationalBrandingLocalizationIdOption);
@@ -151,7 +151,7 @@ namespace ApiSdk.Localizations.Item {
             var command = new Command("patch");
             command.Description = "Update entity in localizations";
             // Create options for all the parameters
-            var organizationalBrandingLocalizationIdOption = new Option<string>("--organizational-branding-localization-id", description: "key: id of organizationalBrandingLocalization") {
+            var organizationalBrandingLocalizationIdOption = new Option<string>("--organizational-branding-localization-id", description: "The unique identifier of organizationalBrandingLocalization") {
             };
             organizationalBrandingLocalizationIdOption.IsRequired = true;
             command.AddOption(organizationalBrandingLocalizationIdOption);
@@ -189,6 +189,7 @@ namespace ApiSdk.Localizations.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (organizationalBrandingLocalizationId is not null) requestInfo.PathParameters.Add("organizationalBrandingLocalization%2Did", organizationalBrandingLocalizationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

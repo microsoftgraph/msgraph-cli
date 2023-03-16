@@ -31,7 +31,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property healthOverviews for admin";
             // Create options for all the parameters
-            var serviceHealthIdOption = new Option<string>("--service-health-id", description: "key: id of serviceHealth") {
+            var serviceHealthIdOption = new Option<string>("--service-health-id", description: "The unique identifier of serviceHealth") {
             };
             serviceHealthIdOption.IsRequired = true;
             command.AddOption(serviceHealthIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
             var command = new Command("get");
             command.Description = "A collection of service health information for tenant. This property is a contained navigation property, it is nullable and readonly.";
             // Create options for all the parameters
-            var serviceHealthIdOption = new Option<string>("--service-health-id", description: "key: id of serviceHealth") {
+            var serviceHealthIdOption = new Option<string>("--service-health-id", description: "The unique identifier of serviceHealth") {
             };
             serviceHealthIdOption.IsRequired = true;
             command.AddOption(serviceHealthIdOption);
@@ -140,7 +140,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property healthOverviews in admin";
             // Create options for all the parameters
-            var serviceHealthIdOption = new Option<string>("--service-health-id", description: "key: id of serviceHealth") {
+            var serviceHealthIdOption = new Option<string>("--service-health-id", description: "The unique identifier of serviceHealth") {
             };
             serviceHealthIdOption.IsRequired = true;
             command.AddOption(serviceHealthIdOption);
@@ -178,6 +178,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (serviceHealthId is not null) requestInfo.PathParameters.Add("serviceHealth%2Did", serviceHealthId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

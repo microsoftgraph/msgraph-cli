@@ -30,11 +30,11 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.Assignments.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property assignments for deviceAppManagement";
             // Create options for all the parameters
-            var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "key: id of mobileApp") {
+            var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "The unique identifier of mobileApp") {
             };
             mobileAppIdOption.IsRequired = true;
             command.AddOption(mobileAppIdOption);
-            var mobileAppAssignmentIdOption = new Option<string>("--mobile-app-assignment-id", description: "key: id of mobileAppAssignment") {
+            var mobileAppAssignmentIdOption = new Option<string>("--mobile-app-assignment-id", description: "The unique identifier of mobileAppAssignment") {
             };
             mobileAppAssignmentIdOption.IsRequired = true;
             command.AddOption(mobileAppAssignmentIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.Assignments.Item {
             var command = new Command("get");
             command.Description = "The list of group assignments for this mobile app.";
             // Create options for all the parameters
-            var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "key: id of mobileApp") {
+            var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "The unique identifier of mobileApp") {
             };
             mobileAppIdOption.IsRequired = true;
             command.AddOption(mobileAppIdOption);
-            var mobileAppAssignmentIdOption = new Option<string>("--mobile-app-assignment-id", description: "key: id of mobileAppAssignment") {
+            var mobileAppAssignmentIdOption = new Option<string>("--mobile-app-assignment-id", description: "The unique identifier of mobileAppAssignment") {
             };
             mobileAppAssignmentIdOption.IsRequired = true;
             command.AddOption(mobileAppAssignmentIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.Assignments.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property assignments in deviceAppManagement";
             // Create options for all the parameters
-            var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "key: id of mobileApp") {
+            var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "The unique identifier of mobileApp") {
             };
             mobileAppIdOption.IsRequired = true;
             command.AddOption(mobileAppIdOption);
-            var mobileAppAssignmentIdOption = new Option<string>("--mobile-app-assignment-id", description: "key: id of mobileAppAssignment") {
+            var mobileAppAssignmentIdOption = new Option<string>("--mobile-app-assignment-id", description: "The unique identifier of mobileAppAssignment") {
             };
             mobileAppAssignmentIdOption.IsRequired = true;
             command.AddOption(mobileAppAssignmentIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.Assignments.Item {
                 });
                 if (mobileAppId is not null) requestInfo.PathParameters.Add("mobileApp%2Did", mobileAppId);
                 if (mobileAppAssignmentId is not null) requestInfo.PathParameters.Add("mobileAppAssignment%2Did", mobileAppAssignmentId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

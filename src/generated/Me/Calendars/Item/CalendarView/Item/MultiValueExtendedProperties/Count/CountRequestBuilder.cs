@@ -29,11 +29,11 @@ namespace ApiSdk.Me.Calendars.Item.CalendarView.Item.MultiValueExtendedPropertie
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            var calendarIdOption = new Option<string>("--calendar-id", description: "The unique identifier of calendar") {
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);

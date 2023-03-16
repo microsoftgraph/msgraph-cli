@@ -30,7 +30,7 @@ namespace ApiSdk.Me.Insights.Shared.Item.LastSharedMethod {
             var command = new Command("get");
             command.Description = "Get lastSharedMethod from me";
             // Create options for all the parameters
-            var sharedInsightIdOption = new Option<string>("--shared-insight-id", description: "key: id of sharedInsight") {
+            var sharedInsightIdOption = new Option<string>("--shared-insight-id", description: "The unique identifier of sharedInsight") {
             };
             sharedInsightIdOption.IsRequired = true;
             command.AddOption(sharedInsightIdOption);

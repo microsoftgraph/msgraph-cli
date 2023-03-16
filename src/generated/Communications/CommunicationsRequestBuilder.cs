@@ -1,6 +1,6 @@
 using ApiSdk.Communications.CallRecords;
 using ApiSdk.Communications.Calls;
-using ApiSdk.Communications.MicrosoftGraphGetPresencesByUserId;
+using ApiSdk.Communications.GetPresencesByUserId;
 using ApiSdk.Communications.OnlineMeetings;
 using ApiSdk.Communications.Presences;
 using ApiSdk.Models;
@@ -52,7 +52,7 @@ namespace ApiSdk.Communications {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphLogTeleconferenceDeviceQualityCommand());
+            command.AddCommand(builder.BuildLogTeleconferenceDeviceQualityCommand());
             return command;
         }
         /// <summary>
@@ -114,10 +114,10 @@ namespace ApiSdk.Communications {
         /// <summary>
         /// Provides operations to call the getPresencesByUserId method.
         /// </summary>
-        public Command BuildMicrosoftGraphGetPresencesByUserIdCommand() {
-            var command = new Command("microsoft-graph-get-presences-by-user-id");
+        public Command BuildGetPresencesByUserIdCommand() {
+            var command = new Command("get-presences-by-user-id");
             command.Description = "Provides operations to call the getPresencesByUserId method.";
-            var builder = new MicrosoftGraphGetPresencesByUserIdRequestBuilder(PathParameters);
+            var builder = new GetPresencesByUserIdRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -131,8 +131,8 @@ namespace ApiSdk.Communications {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildCreateOrGetCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCreateOrGetCommand());
             return command;
         }
         /// <summary>
@@ -174,6 +174,7 @@ namespace ApiSdk.Communications {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

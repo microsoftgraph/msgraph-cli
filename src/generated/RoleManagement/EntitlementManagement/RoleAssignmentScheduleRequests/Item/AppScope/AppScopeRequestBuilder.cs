@@ -30,7 +30,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
             var command = new Command("get");
             command.Description = "Read-only property with details of the app-specific scope when the assignment is scoped to an app. Nullable. Supports $expand.";
             // Create options for all the parameters
-            var unifiedRoleAssignmentScheduleRequestIdOption = new Option<string>("--unified-role-assignment-schedule-request-id", description: "key: id of unifiedRoleAssignmentScheduleRequest") {
+            var unifiedRoleAssignmentScheduleRequestIdOption = new Option<string>("--unified-role-assignment-schedule-request-id", description: "The unique identifier of unifiedRoleAssignmentScheduleRequest") {
             };
             unifiedRoleAssignmentScheduleRequestIdOption.IsRequired = true;
             command.AddOption(unifiedRoleAssignmentScheduleRequestIdOption);

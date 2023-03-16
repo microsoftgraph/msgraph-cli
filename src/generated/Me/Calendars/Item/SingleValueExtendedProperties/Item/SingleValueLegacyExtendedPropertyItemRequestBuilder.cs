@@ -30,11 +30,11 @@ namespace ApiSdk.Me.Calendars.Item.SingleValueExtendedProperties.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property singleValueExtendedProperties for me";
             // Create options for all the parameters
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            var calendarIdOption = new Option<string>("--calendar-id", description: "The unique identifier of calendar") {
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
-            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--single-value-legacy-extended-property-id", description: "key: id of singleValueLegacyExtendedProperty") {
+            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--single-value-legacy-extended-property-id", description: "The unique identifier of singleValueLegacyExtendedProperty") {
             };
             singleValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(singleValueLegacyExtendedPropertyIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Me.Calendars.Item.SingleValueExtendedProperties.Item {
             var command = new Command("get");
             command.Description = "The collection of single-value extended properties defined for the calendar. Read-only. Nullable.";
             // Create options for all the parameters
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            var calendarIdOption = new Option<string>("--calendar-id", description: "The unique identifier of calendar") {
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
-            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--single-value-legacy-extended-property-id", description: "key: id of singleValueLegacyExtendedProperty") {
+            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--single-value-legacy-extended-property-id", description: "The unique identifier of singleValueLegacyExtendedProperty") {
             };
             singleValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(singleValueLegacyExtendedPropertyIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Me.Calendars.Item.SingleValueExtendedProperties.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property singleValueExtendedProperties in me";
             // Create options for all the parameters
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            var calendarIdOption = new Option<string>("--calendar-id", description: "The unique identifier of calendar") {
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
-            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--single-value-legacy-extended-property-id", description: "key: id of singleValueLegacyExtendedProperty") {
+            var singleValueLegacyExtendedPropertyIdOption = new Option<string>("--single-value-legacy-extended-property-id", description: "The unique identifier of singleValueLegacyExtendedProperty") {
             };
             singleValueLegacyExtendedPropertyIdOption.IsRequired = true;
             command.AddOption(singleValueLegacyExtendedPropertyIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Me.Calendars.Item.SingleValueExtendedProperties.Item {
                 });
                 if (calendarId is not null) requestInfo.PathParameters.Add("calendar%2Did", calendarId);
                 if (singleValueLegacyExtendedPropertyId is not null) requestInfo.PathParameters.Add("singleValueLegacyExtendedProperty%2Did", singleValueLegacyExtendedPropertyId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

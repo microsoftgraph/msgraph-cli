@@ -49,13 +49,13 @@ namespace ApiSdk.Sites.Item.Lists.Item {
             var command = new Command("content-types");
             command.Description = "Provides operations to manage the contentTypes property of the microsoft.graph.list entity.";
             var builder = new ContentTypesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAddCopyCommand());
+            command.AddCommand(builder.BuildAddCopyFromContentTypeHubCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildGetCompatibleHubContentTypesCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAddCopyCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAddCopyFromContentTypeHubCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetCompatibleHubContentTypesCommand());
             return command;
         }
         /// <summary>
@@ -65,11 +65,11 @@ namespace ApiSdk.Sites.Item.Lists.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property lists for sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            var listIdOption = new Option<string>("--list-id", description: "The unique identifier of list") {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
@@ -115,11 +115,11 @@ namespace ApiSdk.Sites.Item.Lists.Item {
             var command = new Command("get");
             command.Description = "The collection of lists under this site.";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            var listIdOption = new Option<string>("--list-id", description: "The unique identifier of list") {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
@@ -209,11 +209,11 @@ namespace ApiSdk.Sites.Item.Lists.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property lists in sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var listIdOption = new Option<string>("--list-id", description: "key: id of list") {
+            var listIdOption = new Option<string>("--list-id", description: "The unique identifier of list") {
             };
             listIdOption.IsRequired = true;
             command.AddOption(listIdOption);
@@ -253,6 +253,7 @@ namespace ApiSdk.Sites.Item.Lists.Item {
                 });
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
                 if (listId is not null) requestInfo.PathParameters.Add("list%2Did", listId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

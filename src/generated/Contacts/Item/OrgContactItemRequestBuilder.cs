@@ -1,11 +1,11 @@
+using ApiSdk.Contacts.Item.CheckMemberGroups;
+using ApiSdk.Contacts.Item.CheckMemberObjects;
 using ApiSdk.Contacts.Item.DirectReports;
+using ApiSdk.Contacts.Item.GetMemberGroups;
+using ApiSdk.Contacts.Item.GetMemberObjects;
 using ApiSdk.Contacts.Item.Manager;
 using ApiSdk.Contacts.Item.MemberOf;
-using ApiSdk.Contacts.Item.MicrosoftGraphCheckMemberGroups;
-using ApiSdk.Contacts.Item.MicrosoftGraphCheckMemberObjects;
-using ApiSdk.Contacts.Item.MicrosoftGraphGetMemberGroups;
-using ApiSdk.Contacts.Item.MicrosoftGraphGetMemberObjects;
-using ApiSdk.Contacts.Item.MicrosoftGraphRestore;
+using ApiSdk.Contacts.Item.Restore;
 using ApiSdk.Contacts.Item.TransitiveMemberOf;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
@@ -33,13 +33,33 @@ namespace ApiSdk.Contacts.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the checkMemberGroups method.
+        /// </summary>
+        public Command BuildCheckMemberGroupsCommand() {
+            var command = new Command("check-member-groups");
+            command.Description = "Provides operations to call the checkMemberGroups method.";
+            var builder = new CheckMemberGroupsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the checkMemberObjects method.
+        /// </summary>
+        public Command BuildCheckMemberObjectsCommand() {
+            var command = new Command("check-member-objects");
+            command.Description = "Provides operations to call the checkMemberObjects method.";
+            var builder = new CheckMemberObjectsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete entity from contacts
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete entity from contacts";
             // Create options for all the parameters
-            var orgContactIdOption = new Option<string>("--org-contact-id", description: "key: id of orgContact") {
+            var orgContactIdOption = new Option<string>("--org-contact-id", description: "The unique identifier of orgContact") {
             };
             orgContactIdOption.IsRequired = true;
             command.AddOption(orgContactIdOption);
@@ -75,9 +95,9 @@ namespace ApiSdk.Contacts.Item {
             var builder = new DirectReportsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGraphOrgContactCommand());
+            command.AddCommand(builder.BuildGraphUserCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphOrgContactCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUserCommand());
             return command;
         }
         /// <summary>
@@ -88,7 +108,7 @@ namespace ApiSdk.Contacts.Item {
             var command = new Command("get");
             command.Description = "Get the properties and relationships of an organizational contact.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/orgcontact-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var orgContactIdOption = new Option<string>("--org-contact-id", description: "key: id of orgContact") {
+            var orgContactIdOption = new Option<string>("--org-contact-id", description: "The unique identifier of orgContact") {
             };
             orgContactIdOption.IsRequired = true;
             command.AddOption(orgContactIdOption);
@@ -144,6 +164,26 @@ namespace ApiSdk.Contacts.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the getMemberGroups method.
+        /// </summary>
+        public Command BuildGetMemberGroupsCommand() {
+            var command = new Command("get-member-groups");
+            command.Description = "Provides operations to call the getMemberGroups method.";
+            var builder = new GetMemberGroupsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getMemberObjects method.
+        /// </summary>
+        public Command BuildGetMemberObjectsCommand() {
+            var command = new Command("get-member-objects");
+            command.Description = "Provides operations to call the getMemberObjects method.";
+            var builder = new GetMemberObjectsRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the manager property of the microsoft.graph.orgContact entity.
         /// </summary>
         public Command BuildManagerCommand() {
@@ -162,63 +202,8 @@ namespace ApiSdk.Contacts.Item {
             var builder = new MemberOfRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGraphGroupCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphApplicationCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeviceCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGroupCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphOrgContactCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphServicePrincipalCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUserCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the checkMemberGroups method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCheckMemberGroupsCommand() {
-            var command = new Command("microsoft-graph-check-member-groups");
-            command.Description = "Provides operations to call the checkMemberGroups method.";
-            var builder = new MicrosoftGraphCheckMemberGroupsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the checkMemberObjects method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCheckMemberObjectsCommand() {
-            var command = new Command("microsoft-graph-check-member-objects");
-            command.Description = "Provides operations to call the checkMemberObjects method.";
-            var builder = new MicrosoftGraphCheckMemberObjectsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getMemberGroups method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetMemberGroupsCommand() {
-            var command = new Command("microsoft-graph-get-member-groups");
-            command.Description = "Provides operations to call the getMemberGroups method.";
-            var builder = new MicrosoftGraphGetMemberGroupsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the getMemberObjects method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetMemberObjectsCommand() {
-            var command = new Command("microsoft-graph-get-member-objects");
-            command.Description = "Provides operations to call the getMemberObjects method.";
-            var builder = new MicrosoftGraphGetMemberObjectsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the restore method.
-        /// </summary>
-        public Command BuildMicrosoftGraphRestoreCommand() {
-            var command = new Command("microsoft-graph-restore");
-            command.Description = "Provides operations to call the restore method.";
-            var builder = new MicrosoftGraphRestoreRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -228,7 +213,7 @@ namespace ApiSdk.Contacts.Item {
             var command = new Command("patch");
             command.Description = "Update entity in contacts";
             // Create options for all the parameters
-            var orgContactIdOption = new Option<string>("--org-contact-id", description: "key: id of orgContact") {
+            var orgContactIdOption = new Option<string>("--org-contact-id", description: "The unique identifier of orgContact") {
             };
             orgContactIdOption.IsRequired = true;
             command.AddOption(orgContactIdOption);
@@ -266,6 +251,7 @@ namespace ApiSdk.Contacts.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (orgContactId is not null) requestInfo.PathParameters.Add("orgContact%2Did", orgContactId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -279,6 +265,16 @@ namespace ApiSdk.Contacts.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the restore method.
+        /// </summary>
+        public Command BuildRestoreCommand() {
+            var command = new Command("restore");
+            command.Description = "Provides operations to call the restore method.";
+            var builder = new RestoreRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the transitiveMemberOf property of the microsoft.graph.orgContact entity.
         /// </summary>
         public Command BuildTransitiveMemberOfCommand() {
@@ -287,13 +283,8 @@ namespace ApiSdk.Contacts.Item {
             var builder = new TransitiveMemberOfRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildGraphGroupCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphApplicationCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeviceCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGroupCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphOrgContactCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphServicePrincipalCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphUserCommand());
             return command;
         }
         /// <summary>

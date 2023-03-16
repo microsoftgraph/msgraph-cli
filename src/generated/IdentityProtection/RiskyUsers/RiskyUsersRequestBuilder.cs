@@ -1,7 +1,7 @@
+using ApiSdk.IdentityProtection.RiskyUsers.ConfirmCompromised;
 using ApiSdk.IdentityProtection.RiskyUsers.Count;
+using ApiSdk.IdentityProtection.RiskyUsers.Dismiss;
 using ApiSdk.IdentityProtection.RiskyUsers.Item;
-using ApiSdk.IdentityProtection.RiskyUsers.MicrosoftGraphConfirmCompromised;
-using ApiSdk.IdentityProtection.RiskyUsers.MicrosoftGraphDismiss;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,6 +37,16 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildHistoryCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the confirmCompromised method.
+        /// </summary>
+        public Command BuildConfirmCompromisedCommand() {
+            var command = new Command("confirm-compromised");
+            command.Description = "Provides operations to call the confirmCompromised method.";
+            var builder = new ConfirmCompromisedRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -88,6 +98,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -98,6 +109,16 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the dismiss method.
+        /// </summary>
+        public Command BuildDismissCommand() {
+            var command = new Command("dismiss");
+            command.Description = "Provides operations to call the dismiss method.";
+            var builder = new DismissRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>
@@ -204,26 +225,6 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the confirmCompromised method.
-        /// </summary>
-        public Command BuildMicrosoftGraphConfirmCompromisedCommand() {
-            var command = new Command("microsoft-graph-confirm-compromised");
-            command.Description = "Provides operations to call the confirmCompromised method.";
-            var builder = new MicrosoftGraphConfirmCompromisedRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the dismiss method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDismissCommand() {
-            var command = new Command("microsoft-graph-dismiss");
-            command.Description = "Provides operations to call the dismiss method.";
-            var builder = new MicrosoftGraphDismissRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

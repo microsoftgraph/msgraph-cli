@@ -55,11 +55,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.Columns {
             var command = new Command("create");
             command.Description = "Create a column for a [site][site] with a request that specifies a [columnDefinition][columnDefinition].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/site-post-columns?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
@@ -99,6 +99,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Columns {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -119,11 +120,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.Columns {
             var command = new Command("list");
             command.Description = "Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [site][site].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/site-list-columns?view=graph-rest-1.0";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);

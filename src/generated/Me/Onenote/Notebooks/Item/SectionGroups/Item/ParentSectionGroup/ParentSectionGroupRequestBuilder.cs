@@ -30,11 +30,11 @@ namespace ApiSdk.Me.Onenote.Notebooks.Item.SectionGroups.Item.ParentSectionGroup
             var command = new Command("get");
             command.Description = "The section group that contains the section group. Read-only.";
             // Create options for all the parameters
-            var notebookIdOption = new Option<string>("--notebook-id", description: "key: id of notebook") {
+            var notebookIdOption = new Option<string>("--notebook-id", description: "The unique identifier of notebook") {
             };
             notebookIdOption.IsRequired = true;
             command.AddOption(notebookIdOption);
-            var sectionGroupIdOption = new Option<string>("--section-group-id", description: "key: id of sectionGroup") {
+            var sectionGroupIdOption = new Option<string>("--section-group-id", description: "The unique identifier of sectionGroup") {
             };
             sectionGroupIdOption.IsRequired = true;
             command.AddOption(sectionGroupIdOption);

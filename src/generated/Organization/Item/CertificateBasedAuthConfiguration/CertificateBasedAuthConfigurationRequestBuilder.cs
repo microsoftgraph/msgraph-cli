@@ -52,7 +52,7 @@ namespace ApiSdk.Organization.Item.CertificateBasedAuthConfiguration {
             var command = new Command("list");
             command.Description = "Get a list of certificateBasedAuthConfiguration objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/certificatebasedauthconfiguration-list?view=graph-rest-1.0";
             // Create options for all the parameters
-            var organizationIdOption = new Option<string>("--organization-id", description: "key: id of organization") {
+            var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
             };
             organizationIdOption.IsRequired = true;
             command.AddOption(organizationIdOption);

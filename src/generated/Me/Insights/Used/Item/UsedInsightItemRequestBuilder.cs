@@ -31,7 +31,7 @@ namespace ApiSdk.Me.Insights.Used.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property used for me";
             // Create options for all the parameters
-            var usedInsightIdOption = new Option<string>("--used-insight-id", description: "key: id of usedInsight") {
+            var usedInsightIdOption = new Option<string>("--used-insight-id", description: "The unique identifier of usedInsight") {
             };
             usedInsightIdOption.IsRequired = true;
             command.AddOption(usedInsightIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.Me.Insights.Used.Item {
             var command = new Command("get");
             command.Description = "Calculated relationship identifying the latest documents viewed or modified by a user, including OneDrive for Business and SharePoint documents, ranked by recency of use.";
             // Create options for all the parameters
-            var usedInsightIdOption = new Option<string>("--used-insight-id", description: "key: id of usedInsight") {
+            var usedInsightIdOption = new Option<string>("--used-insight-id", description: "The unique identifier of usedInsight") {
             };
             usedInsightIdOption.IsRequired = true;
             command.AddOption(usedInsightIdOption);
@@ -127,7 +127,7 @@ namespace ApiSdk.Me.Insights.Used.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property used in me";
             // Create options for all the parameters
-            var usedInsightIdOption = new Option<string>("--used-insight-id", description: "key: id of usedInsight") {
+            var usedInsightIdOption = new Option<string>("--used-insight-id", description: "The unique identifier of usedInsight") {
             };
             usedInsightIdOption.IsRequired = true;
             command.AddOption(usedInsightIdOption);
@@ -165,6 +165,7 @@ namespace ApiSdk.Me.Insights.Used.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (usedInsightId is not null) requestInfo.PathParameters.Add("usedInsight%2Did", usedInsightId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

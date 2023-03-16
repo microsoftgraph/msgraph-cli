@@ -41,7 +41,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentScheduleInstanc
             var command = new Command("delete");
             command.Description = "Delete navigation property roleAssignmentScheduleInstances for roleManagement";
             // Create options for all the parameters
-            var unifiedRoleAssignmentScheduleInstanceIdOption = new Option<string>("--unified-role-assignment-schedule-instance-id", description: "key: id of unifiedRoleAssignmentScheduleInstance") {
+            var unifiedRoleAssignmentScheduleInstanceIdOption = new Option<string>("--unified-role-assignment-schedule-instance-id", description: "The unique identifier of unifiedRoleAssignmentScheduleInstance") {
             };
             unifiedRoleAssignmentScheduleInstanceIdOption.IsRequired = true;
             command.AddOption(unifiedRoleAssignmentScheduleInstanceIdOption);
@@ -75,7 +75,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentScheduleInstanc
             var command = new Command("get");
             command.Description = "Instances for active role assignments.";
             // Create options for all the parameters
-            var unifiedRoleAssignmentScheduleInstanceIdOption = new Option<string>("--unified-role-assignment-schedule-instance-id", description: "key: id of unifiedRoleAssignmentScheduleInstance") {
+            var unifiedRoleAssignmentScheduleInstanceIdOption = new Option<string>("--unified-role-assignment-schedule-instance-id", description: "The unique identifier of unifiedRoleAssignmentScheduleInstance") {
             };
             unifiedRoleAssignmentScheduleInstanceIdOption.IsRequired = true;
             command.AddOption(unifiedRoleAssignmentScheduleInstanceIdOption);
@@ -137,7 +137,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentScheduleInstanc
             var command = new Command("patch");
             command.Description = "Update the navigation property roleAssignmentScheduleInstances in roleManagement";
             // Create options for all the parameters
-            var unifiedRoleAssignmentScheduleInstanceIdOption = new Option<string>("--unified-role-assignment-schedule-instance-id", description: "key: id of unifiedRoleAssignmentScheduleInstance") {
+            var unifiedRoleAssignmentScheduleInstanceIdOption = new Option<string>("--unified-role-assignment-schedule-instance-id", description: "The unique identifier of unifiedRoleAssignmentScheduleInstance") {
             };
             unifiedRoleAssignmentScheduleInstanceIdOption.IsRequired = true;
             command.AddOption(unifiedRoleAssignmentScheduleInstanceIdOption);
@@ -175,6 +175,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentScheduleInstanc
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (unifiedRoleAssignmentScheduleInstanceId is not null) requestInfo.PathParameters.Add("unifiedRoleAssignmentScheduleInstance%2Did", unifiedRoleAssignmentScheduleInstanceId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -31,11 +31,11 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
             var command = new Command("delete");
             command.Description = "Delete navigation property acceptanceStatuses for deviceManagement";
             // Create options for all the parameters
-            var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "key: id of termsAndConditions") {
+            var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "The unique identifier of termsAndConditions") {
             };
             termsAndConditionsIdOption.IsRequired = true;
             command.AddOption(termsAndConditionsIdOption);
-            var termsAndConditionsAcceptanceStatusIdOption = new Option<string>("--terms-and-conditions-acceptance-status-id", description: "key: id of termsAndConditionsAcceptanceStatus") {
+            var termsAndConditionsAcceptanceStatusIdOption = new Option<string>("--terms-and-conditions-acceptance-status-id", description: "The unique identifier of termsAndConditionsAcceptanceStatus") {
             };
             termsAndConditionsAcceptanceStatusIdOption.IsRequired = true;
             command.AddOption(termsAndConditionsAcceptanceStatusIdOption);
@@ -71,11 +71,11 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
             var command = new Command("get");
             command.Description = "The list of acceptance statuses for this T&C policy.";
             // Create options for all the parameters
-            var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "key: id of termsAndConditions") {
+            var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "The unique identifier of termsAndConditions") {
             };
             termsAndConditionsIdOption.IsRequired = true;
             command.AddOption(termsAndConditionsIdOption);
-            var termsAndConditionsAcceptanceStatusIdOption = new Option<string>("--terms-and-conditions-acceptance-status-id", description: "key: id of termsAndConditionsAcceptanceStatus") {
+            var termsAndConditionsAcceptanceStatusIdOption = new Option<string>("--terms-and-conditions-acceptance-status-id", description: "The unique identifier of termsAndConditionsAcceptanceStatus") {
             };
             termsAndConditionsAcceptanceStatusIdOption.IsRequired = true;
             command.AddOption(termsAndConditionsAcceptanceStatusIdOption);
@@ -139,11 +139,11 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
             var command = new Command("patch");
             command.Description = "Update the navigation property acceptanceStatuses in deviceManagement";
             // Create options for all the parameters
-            var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "key: id of termsAndConditions") {
+            var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "The unique identifier of termsAndConditions") {
             };
             termsAndConditionsIdOption.IsRequired = true;
             command.AddOption(termsAndConditionsIdOption);
-            var termsAndConditionsAcceptanceStatusIdOption = new Option<string>("--terms-and-conditions-acceptance-status-id", description: "key: id of termsAndConditionsAcceptanceStatus") {
+            var termsAndConditionsAcceptanceStatusIdOption = new Option<string>("--terms-and-conditions-acceptance-status-id", description: "The unique identifier of termsAndConditionsAcceptanceStatus") {
             };
             termsAndConditionsAcceptanceStatusIdOption.IsRequired = true;
             command.AddOption(termsAndConditionsAcceptanceStatusIdOption);
@@ -183,6 +183,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
                 });
                 if (termsAndConditionsId is not null) requestInfo.PathParameters.Add("termsAndConditions%2Did", termsAndConditionsId);
                 if (termsAndConditionsAcceptanceStatusId is not null) requestInfo.PathParameters.Add("termsAndConditionsAcceptanceStatus%2Did", termsAndConditionsAcceptanceStatusId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

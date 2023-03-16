@@ -29,7 +29,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var printTaskDefinitionIdOption = new Option<string>("--print-task-definition-id", description: "key: id of printTaskDefinition") {
+            var printTaskDefinitionIdOption = new Option<string>("--print-task-definition-id", description: "The unique identifier of printTaskDefinition") {
             };
             printTaskDefinitionIdOption.IsRequired = true;
             command.AddOption(printTaskDefinitionIdOption);

@@ -30,11 +30,11 @@ namespace ApiSdk.ServicePrincipals.Item.Oauth2PermissionGrants.Item {
             var command = new Command("get");
             command.Description = "Delegated permission grants authorizing this service principal to access an API on behalf of a signed-in user. Read-only. Nullable.";
             // Create options for all the parameters
-            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "key: id of servicePrincipal") {
+            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
             command.AddOption(servicePrincipalIdOption);
-            var oAuth2PermissionGrantIdOption = new Option<string>("--o-auth2permission-grant-id", description: "key: id of oAuth2PermissionGrant") {
+            var oAuth2PermissionGrantIdOption = new Option<string>("--o-auth2permission-grant-id", description: "The unique identifier of oAuth2PermissionGrant") {
             };
             oAuth2PermissionGrantIdOption.IsRequired = true;
             command.AddOption(oAuth2PermissionGrantIdOption);

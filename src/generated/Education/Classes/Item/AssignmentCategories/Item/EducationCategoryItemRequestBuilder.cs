@@ -30,11 +30,11 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property assignmentCategories for education";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
-            var educationCategoryIdOption = new Option<string>("--education-category-id", description: "key: id of educationCategory") {
+            var educationCategoryIdOption = new Option<string>("--education-category-id", description: "The unique identifier of educationCategory") {
             };
             educationCategoryIdOption.IsRequired = true;
             command.AddOption(educationCategoryIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Item {
             var command = new Command("get");
             command.Description = "All categories associated with this class. Nullable.";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
-            var educationCategoryIdOption = new Option<string>("--education-category-id", description: "key: id of educationCategory") {
+            var educationCategoryIdOption = new Option<string>("--education-category-id", description: "The unique identifier of educationCategory") {
             };
             educationCategoryIdOption.IsRequired = true;
             command.AddOption(educationCategoryIdOption);
@@ -138,11 +138,11 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property assignmentCategories in education";
             // Create options for all the parameters
-            var educationClassIdOption = new Option<string>("--education-class-id", description: "key: id of educationClass") {
+            var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
             command.AddOption(educationClassIdOption);
-            var educationCategoryIdOption = new Option<string>("--education-category-id", description: "key: id of educationCategory") {
+            var educationCategoryIdOption = new Option<string>("--education-category-id", description: "The unique identifier of educationCategory") {
             };
             educationCategoryIdOption.IsRequired = true;
             command.AddOption(educationCategoryIdOption);
@@ -182,6 +182,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories.Item {
                 });
                 if (educationClassId is not null) requestInfo.PathParameters.Add("educationClass%2Did", educationClassId);
                 if (educationCategoryId is not null) requestInfo.PathParameters.Add("educationCategory%2Did", educationCategoryId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

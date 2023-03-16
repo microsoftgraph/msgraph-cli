@@ -33,8 +33,8 @@ namespace ApiSdk.DeviceManagement.DeviceManagementPartners {
             var builder = new DeviceManagementPartnerItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphTerminateCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildTerminateCommand());
             return command;
         }
         /// <summary>
@@ -86,6 +86,7 @@ namespace ApiSdk.DeviceManagement.DeviceManagementPartners {
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

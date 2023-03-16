@@ -53,7 +53,7 @@ namespace ApiSdk.Me.ContactFolders.Item.MultiValueExtendedProperties {
             var command = new Command("create");
             command.Description = "Create new navigation property to multiValueExtendedProperties for me";
             // Create options for all the parameters
-            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
+            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "The unique identifier of contactFolder") {
             };
             contactFolderIdOption.IsRequired = true;
             command.AddOption(contactFolderIdOption);
@@ -91,6 +91,7 @@ namespace ApiSdk.Me.ContactFolders.Item.MultiValueExtendedProperties {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (contactFolderId is not null) requestInfo.PathParameters.Add("contactFolder%2Did", contactFolderId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -110,7 +111,7 @@ namespace ApiSdk.Me.ContactFolders.Item.MultiValueExtendedProperties {
             var command = new Command("list");
             command.Description = "The collection of multi-value extended properties defined for the contactFolder. Read-only. Nullable.";
             // Create options for all the parameters
-            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "key: id of contactFolder") {
+            var contactFolderIdOption = new Option<string>("--contact-folder-id", description: "The unique identifier of contactFolder") {
             };
             contactFolderIdOption.IsRequired = true;
             command.AddOption(contactFolderIdOption);

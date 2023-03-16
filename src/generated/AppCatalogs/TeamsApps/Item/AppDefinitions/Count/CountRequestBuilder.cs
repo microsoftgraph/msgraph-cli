@@ -29,7 +29,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Count {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var teamsAppIdOption = new Option<string>("--teams-app-id", description: "key: id of teamsApp") {
+            var teamsAppIdOption = new Option<string>("--teams-app-id", description: "The unique identifier of teamsApp") {
             };
             teamsAppIdOption.IsRequired = true;
             command.AddOption(teamsAppIdOption);

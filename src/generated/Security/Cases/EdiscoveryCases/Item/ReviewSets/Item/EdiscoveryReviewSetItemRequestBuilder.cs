@@ -1,7 +1,7 @@
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.Security;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.MicrosoftGraphSecurityAddToReviewSet;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.SecurityAddToReviewSet;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -32,11 +32,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property reviewSets for security";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoveryReviewSetIdOption = new Option<string>("--ediscovery-review-set-id", description: "key: id of ediscoveryReviewSet") {
+            var ediscoveryReviewSetIdOption = new Option<string>("--ediscovery-review-set-id", description: "The unique identifier of ediscoveryReviewSet") {
             };
             ediscoveryReviewSetIdOption.IsRequired = true;
             command.AddOption(ediscoveryReviewSetIdOption);
@@ -72,11 +72,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item {
             var command = new Command("get");
             command.Description = "Returns a list of eDiscoveryReviewSet objects in the case.";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoveryReviewSetIdOption = new Option<string>("--ediscovery-review-set-id", description: "key: id of ediscoveryReviewSet") {
+            var ediscoveryReviewSetIdOption = new Option<string>("--ediscovery-review-set-id", description: "The unique identifier of ediscoveryReviewSet") {
             };
             ediscoveryReviewSetIdOption.IsRequired = true;
             command.AddOption(ediscoveryReviewSetIdOption);
@@ -134,27 +134,17 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the addToReviewSet method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSecurityAddToReviewSetCommand() {
-            var command = new Command("microsoft-graph-security-add-to-review-set");
-            command.Description = "Provides operations to call the addToReviewSet method.";
-            var builder = new MicrosoftGraphSecurityAddToReviewSetRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property reviewSets in security
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property reviewSets in security";
             // Create options for all the parameters
-            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "key: id of ediscoveryCase") {
+            var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
             command.AddOption(ediscoveryCaseIdOption);
-            var ediscoveryReviewSetIdOption = new Option<string>("--ediscovery-review-set-id", description: "key: id of ediscoveryReviewSet") {
+            var ediscoveryReviewSetIdOption = new Option<string>("--ediscovery-review-set-id", description: "The unique identifier of ediscoveryReviewSet") {
             };
             ediscoveryReviewSetIdOption.IsRequired = true;
             command.AddOption(ediscoveryReviewSetIdOption);
@@ -194,6 +184,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item {
                 });
                 if (ediscoveryCaseId is not null) requestInfo.PathParameters.Add("ediscoveryCase%2Did", ediscoveryCaseId);
                 if (ediscoveryReviewSetId is not null) requestInfo.PathParameters.Add("ediscoveryReviewSet%2Did", ediscoveryReviewSetId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -217,6 +208,16 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item {
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the addToReviewSet method.
+        /// </summary>
+        public Command BuildSecurityAddToReviewSetCommand() {
+            var command = new Command("security-add-to-review-set");
+            command.Description = "Provides operations to call the addToReviewSet method.";
+            var builder = new SecurityAddToReviewSetRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

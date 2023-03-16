@@ -30,7 +30,7 @@ namespace ApiSdk.SubscribedSkus.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from subscribedSkus";
             // Create options for all the parameters
-            var subscribedSkuIdOption = new Option<string>("--subscribed-sku-id", description: "key: id of subscribedSku") {
+            var subscribedSkuIdOption = new Option<string>("--subscribed-sku-id", description: "The unique identifier of subscribedSku") {
             };
             subscribedSkuIdOption.IsRequired = true;
             command.AddOption(subscribedSkuIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.SubscribedSkus.Item {
             var command = new Command("get");
             command.Description = "Get a specific commercial subscription that an organization has acquired.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/subscribedsku-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var subscribedSkuIdOption = new Option<string>("--subscribed-sku-id", description: "key: id of subscribedSku") {
+            var subscribedSkuIdOption = new Option<string>("--subscribed-sku-id", description: "The unique identifier of subscribedSku") {
             };
             subscribedSkuIdOption.IsRequired = true;
             command.AddOption(subscribedSkuIdOption);
@@ -120,7 +120,7 @@ namespace ApiSdk.SubscribedSkus.Item {
             var command = new Command("patch");
             command.Description = "Update entity in subscribedSkus";
             // Create options for all the parameters
-            var subscribedSkuIdOption = new Option<string>("--subscribed-sku-id", description: "key: id of subscribedSku") {
+            var subscribedSkuIdOption = new Option<string>("--subscribed-sku-id", description: "The unique identifier of subscribedSku") {
             };
             subscribedSkuIdOption.IsRequired = true;
             command.AddOption(subscribedSkuIdOption);
@@ -158,6 +158,7 @@ namespace ApiSdk.SubscribedSkus.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (subscribedSkuId is not null) requestInfo.PathParameters.Add("subscribedSku%2Did", subscribedSkuId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

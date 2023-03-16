@@ -6,12 +6,12 @@ using ApiSdk.Sites.Item.ContentTypes;
 using ApiSdk.Sites.Item.Drive;
 using ApiSdk.Sites.Item.Drives;
 using ApiSdk.Sites.Item.ExternalColumns;
+using ApiSdk.Sites.Item.GetActivitiesByInterval;
+using ApiSdk.Sites.Item.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval;
+using ApiSdk.Sites.Item.GetApplicableContentTypesForListWithListId;
+using ApiSdk.Sites.Item.GetByPathWithPath;
 using ApiSdk.Sites.Item.Items;
 using ApiSdk.Sites.Item.Lists;
-using ApiSdk.Sites.Item.MicrosoftGraphGetActivitiesByInterval;
-using ApiSdk.Sites.Item.MicrosoftGraphGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval;
-using ApiSdk.Sites.Item.MicrosoftGraphGetApplicableContentTypesForListWithListId;
-using ApiSdk.Sites.Item.MicrosoftGraphGetByPathWithPath;
 using ApiSdk.Sites.Item.Onenote;
 using ApiSdk.Sites.Item.Operations;
 using ApiSdk.Sites.Item.Permissions;
@@ -71,13 +71,13 @@ namespace ApiSdk.Sites.Item {
             var command = new Command("content-types");
             command.Description = "Provides operations to manage the contentTypes property of the microsoft.graph.site entity.";
             var builder = new ContentTypesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAddCopyCommand());
+            command.AddCommand(builder.BuildAddCopyFromContentTypeHubCommand());
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildGetCompatibleHubContentTypesCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAddCopyCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAddCopyFromContentTypeHubCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphGetCompatibleHubContentTypesCommand());
             return command;
         }
         /// <summary>
@@ -115,6 +115,16 @@ namespace ApiSdk.Sites.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the getActivitiesByInterval method.
+        /// </summary>
+        public Command BuildGetActivitiesByIntervalCommand() {
+            var command = new Command("get-activities-by-interval");
+            command.Description = "Provides operations to call the getActivitiesByInterval method.";
+            var builder = new GetActivitiesByIntervalRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Retrieve properties and relationships for a [site][] resource.A **site** resource represents a team site in SharePoint.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/site-get?view=graph-rest-1.0" />
         /// </summary>
@@ -122,7 +132,7 @@ namespace ApiSdk.Sites.Item {
             var command = new Command("get");
             command.Description = "Retrieve properties and relationships for a [site][] resource.A **site** resource represents a team site in SharePoint.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/site-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
@@ -203,16 +213,6 @@ namespace ApiSdk.Sites.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the getActivitiesByInterval method.
-        /// </summary>
-        public Command BuildMicrosoftGraphGetActivitiesByIntervalCommand() {
-            var command = new Command("microsoft-graph-get-activities-by-interval");
-            command.Description = "Provides operations to call the getActivitiesByInterval method.";
-            var builder = new MicrosoftGraphGetActivitiesByIntervalRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the onenote property of the microsoft.graph.site entity.
         /// </summary>
         public Command BuildOnenoteCommand() {
@@ -250,7 +250,7 @@ namespace ApiSdk.Sites.Item {
             var command = new Command("patch");
             command.Description = "Update entity in sites";
             // Create options for all the parameters
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
@@ -288,6 +288,7 @@ namespace ApiSdk.Sites.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

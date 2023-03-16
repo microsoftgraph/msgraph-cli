@@ -1,4 +1,4 @@
-using ApiSdk.Groups.Item.Sites.Item.Permissions.Item.MicrosoftGraphGrant;
+using ApiSdk.Groups.Item.Sites.Item.Permissions.Item.Grant;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,15 +31,15 @@ namespace ApiSdk.Groups.Item.Sites.Item.Permissions.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property permissions for groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var permissionIdOption = new Option<string>("--permission-id", description: "key: id of permission") {
+            var permissionIdOption = new Option<string>("--permission-id", description: "The unique identifier of permission") {
             };
             permissionIdOption.IsRequired = true;
             command.AddOption(permissionIdOption);
@@ -77,15 +77,15 @@ namespace ApiSdk.Groups.Item.Sites.Item.Permissions.Item {
             var command = new Command("get");
             command.Description = "The permissions associated with the site. Nullable.";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var permissionIdOption = new Option<string>("--permission-id", description: "key: id of permission") {
+            var permissionIdOption = new Option<string>("--permission-id", description: "The unique identifier of permission") {
             };
             permissionIdOption.IsRequired = true;
             command.AddOption(permissionIdOption);
@@ -147,10 +147,10 @@ namespace ApiSdk.Groups.Item.Sites.Item.Permissions.Item {
         /// <summary>
         /// Provides operations to call the grant method.
         /// </summary>
-        public Command BuildMicrosoftGraphGrantCommand() {
-            var command = new Command("microsoft-graph-grant");
+        public Command BuildGrantCommand() {
+            var command = new Command("grant");
             command.Description = "Provides operations to call the grant method.";
-            var builder = new MicrosoftGraphGrantRequestBuilder(PathParameters);
+            var builder = new GrantRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -161,15 +161,15 @@ namespace ApiSdk.Groups.Item.Sites.Item.Permissions.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property permissions in groups";
             // Create options for all the parameters
-            var groupIdOption = new Option<string>("--group-id", description: "key: id of group") {
+            var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
             command.AddOption(groupIdOption);
-            var siteIdOption = new Option<string>("--site-id", description: "key: id of site") {
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
             command.AddOption(siteIdOption);
-            var permissionIdOption = new Option<string>("--permission-id", description: "key: id of permission") {
+            var permissionIdOption = new Option<string>("--permission-id", description: "The unique identifier of permission") {
             };
             permissionIdOption.IsRequired = true;
             command.AddOption(permissionIdOption);
@@ -211,6 +211,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Permissions.Item {
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
                 if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
                 if (permissionId is not null) requestInfo.PathParameters.Add("permission%2Did", permissionId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

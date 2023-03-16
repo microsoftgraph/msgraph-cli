@@ -30,7 +30,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item.AppScope
             var command = new Command("delete");
             command.Description = "Delete navigation property appScope for roleManagement";
             // Create options for all the parameters
-            var unifiedRoleAssignmentIdOption = new Option<string>("--unified-role-assignment-id", description: "key: id of unifiedRoleAssignment") {
+            var unifiedRoleAssignmentIdOption = new Option<string>("--unified-role-assignment-id", description: "The unique identifier of unifiedRoleAssignment") {
             };
             unifiedRoleAssignmentIdOption.IsRequired = true;
             command.AddOption(unifiedRoleAssignmentIdOption);
@@ -64,7 +64,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item.AppScope
             var command = new Command("get");
             command.Description = "Read-only property with details of the app specific scope when the assignment scope is app specific. Containment entity. Supports $expand.";
             // Create options for all the parameters
-            var unifiedRoleAssignmentIdOption = new Option<string>("--unified-role-assignment-id", description: "key: id of unifiedRoleAssignment") {
+            var unifiedRoleAssignmentIdOption = new Option<string>("--unified-role-assignment-id", description: "The unique identifier of unifiedRoleAssignment") {
             };
             unifiedRoleAssignmentIdOption.IsRequired = true;
             command.AddOption(unifiedRoleAssignmentIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item.AppScope
             var command = new Command("patch");
             command.Description = "Update the navigation property appScope in roleManagement";
             // Create options for all the parameters
-            var unifiedRoleAssignmentIdOption = new Option<string>("--unified-role-assignment-id", description: "key: id of unifiedRoleAssignment") {
+            var unifiedRoleAssignmentIdOption = new Option<string>("--unified-role-assignment-id", description: "The unique identifier of unifiedRoleAssignment") {
             };
             unifiedRoleAssignmentIdOption.IsRequired = true;
             command.AddOption(unifiedRoleAssignmentIdOption);
@@ -164,6 +164,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item.AppScope
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (unifiedRoleAssignmentId is not null) requestInfo.PathParameters.Add("unifiedRoleAssignment%2Did", unifiedRoleAssignmentId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

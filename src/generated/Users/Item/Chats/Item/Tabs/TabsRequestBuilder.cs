@@ -55,11 +55,11 @@ namespace ApiSdk.Users.Item.Chats.Item.Tabs {
             var command = new Command("create");
             command.Description = "Add (pin) a tab to the specified chat. The corresponding app must already be installed in the chat.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-post-tabs?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);
@@ -99,6 +99,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Tabs {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (chatId is not null) requestInfo.PathParameters.Add("chat%2Did", chatId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -119,11 +120,11 @@ namespace ApiSdk.Users.Item.Chats.Item.Tabs {
             var command = new Command("list");
             command.Description = "Retrieve the list of tabs in the specified chat.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-list-tabs?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var chatIdOption = new Option<string>("--chat-id", description: "key: id of chat") {
+            var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
             command.AddOption(chatIdOption);

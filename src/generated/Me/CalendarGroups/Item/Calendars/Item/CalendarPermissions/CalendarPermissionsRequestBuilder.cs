@@ -54,11 +54,11 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarPermissions {
             var command = new Command("create");
             command.Description = "Create a calendarPermission resource to specify the identity and role of the user with whom the specified calendar is being shared or delegated.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/calendar-post-calendarpermissions?view=graph-rest-1.0";
             // Create options for all the parameters
-            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "key: id of calendarGroup") {
+            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "The unique identifier of calendarGroup") {
             };
             calendarGroupIdOption.IsRequired = true;
             command.AddOption(calendarGroupIdOption);
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            var calendarIdOption = new Option<string>("--calendar-id", description: "The unique identifier of calendar") {
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
@@ -98,6 +98,7 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarPermissions {
                 });
                 if (calendarGroupId is not null) requestInfo.PathParameters.Add("calendarGroup%2Did", calendarGroupId);
                 if (calendarId is not null) requestInfo.PathParameters.Add("calendar%2Did", calendarId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -117,11 +118,11 @@ namespace ApiSdk.Me.CalendarGroups.Item.Calendars.Item.CalendarPermissions {
             var command = new Command("list");
             command.Description = "The permissions of the users with whom the calendar is shared.";
             // Create options for all the parameters
-            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "key: id of calendarGroup") {
+            var calendarGroupIdOption = new Option<string>("--calendar-group-id", description: "The unique identifier of calendarGroup") {
             };
             calendarGroupIdOption.IsRequired = true;
             command.AddOption(calendarGroupIdOption);
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            var calendarIdOption = new Option<string>("--calendar-id", description: "The unique identifier of calendar") {
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);

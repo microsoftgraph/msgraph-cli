@@ -31,7 +31,7 @@ namespace ApiSdk.Invitations.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from invitations";
             // Create options for all the parameters
-            var invitationIdOption = new Option<string>("--invitation-id", description: "key: id of invitation") {
+            var invitationIdOption = new Option<string>("--invitation-id", description: "The unique identifier of invitation") {
             };
             invitationIdOption.IsRequired = true;
             command.AddOption(invitationIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.Invitations.Item {
             var command = new Command("get");
             command.Description = "Get entity from invitations by key";
             // Create options for all the parameters
-            var invitationIdOption = new Option<string>("--invitation-id", description: "key: id of invitation") {
+            var invitationIdOption = new Option<string>("--invitation-id", description: "The unique identifier of invitation") {
             };
             invitationIdOption.IsRequired = true;
             command.AddOption(invitationIdOption);
@@ -137,7 +137,7 @@ namespace ApiSdk.Invitations.Item {
             var command = new Command("patch");
             command.Description = "Update entity in invitations";
             // Create options for all the parameters
-            var invitationIdOption = new Option<string>("--invitation-id", description: "key: id of invitation") {
+            var invitationIdOption = new Option<string>("--invitation-id", description: "The unique identifier of invitation") {
             };
             invitationIdOption.IsRequired = true;
             command.AddOption(invitationIdOption);
@@ -175,6 +175,7 @@ namespace ApiSdk.Invitations.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (invitationId is not null) requestInfo.PathParameters.Add("invitation%2Did", invitationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

@@ -53,7 +53,7 @@ namespace ApiSdk.Me.Events.Item.MultiValueExtendedProperties {
             var command = new Command("create");
             command.Description = "Create new navigation property to multiValueExtendedProperties for me";
             // Create options for all the parameters
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
@@ -91,6 +91,7 @@ namespace ApiSdk.Me.Events.Item.MultiValueExtendedProperties {
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (eventId is not null) requestInfo.PathParameters.Add("event%2Did", eventId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -110,7 +111,7 @@ namespace ApiSdk.Me.Events.Item.MultiValueExtendedProperties {
             var command = new Command("list");
             command.Description = "The collection of multi-value extended properties defined for the event. Read-only. Nullable.";
             // Create options for all the parameters
-            var eventIdOption = new Option<string>("--event-id", description: "key: id of event") {
+            var eventIdOption = new Option<string>("--event-id", description: "The unique identifier of event") {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);

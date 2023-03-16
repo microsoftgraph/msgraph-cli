@@ -44,7 +44,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property teamsApps for appCatalogs";
             // Create options for all the parameters
-            var teamsAppIdOption = new Option<string>("--teams-app-id", description: "key: id of teamsApp") {
+            var teamsAppIdOption = new Option<string>("--teams-app-id", description: "The unique identifier of teamsApp") {
             };
             teamsAppIdOption.IsRequired = true;
             command.AddOption(teamsAppIdOption);
@@ -78,7 +78,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item {
             var command = new Command("get");
             command.Description = "Get teamsApps from appCatalogs";
             // Create options for all the parameters
-            var teamsAppIdOption = new Option<string>("--teams-app-id", description: "key: id of teamsApp") {
+            var teamsAppIdOption = new Option<string>("--teams-app-id", description: "The unique identifier of teamsApp") {
             };
             teamsAppIdOption.IsRequired = true;
             command.AddOption(teamsAppIdOption);
@@ -140,7 +140,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property teamsApps in appCatalogs";
             // Create options for all the parameters
-            var teamsAppIdOption = new Option<string>("--teams-app-id", description: "key: id of teamsApp") {
+            var teamsAppIdOption = new Option<string>("--teams-app-id", description: "The unique identifier of teamsApp") {
             };
             teamsAppIdOption.IsRequired = true;
             command.AddOption(teamsAppIdOption);
@@ -178,6 +178,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (teamsAppId is not null) requestInfo.PathParameters.Add("teamsApp%2Did", teamsAppId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

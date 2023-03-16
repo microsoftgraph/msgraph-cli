@@ -1,4 +1,4 @@
-using ApiSdk.Drives.Item.Items.Item.Workbook.Application.MicrosoftGraphCalculate;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Application.Calculate;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,17 +25,27 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Application {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to call the calculate method.
+        /// </summary>
+        public Command BuildCalculateCommand() {
+            var command = new Command("calculate");
+            command.Description = "Provides operations to call the calculate method.";
+            var builder = new CalculateRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Delete navigation property application for drives
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property application for drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
@@ -72,11 +82,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Application {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a workbookApplication object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/workbookapplication-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
@@ -134,27 +144,17 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Application {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the calculate method.
-        /// </summary>
-        public Command BuildMicrosoftGraphCalculateCommand() {
-            var command = new Command("microsoft-graph-calculate");
-            command.Description = "Provides operations to call the calculate method.";
-            var builder = new MicrosoftGraphCalculateRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property application in drives
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property application in drives";
             // Create options for all the parameters
-            var driveIdOption = new Option<string>("--drive-id", description: "key: id of drive") {
+            var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
             command.AddOption(driveIdOption);
-            var driveItemIdOption = new Option<string>("--drive-item-id", description: "key: id of driveItem") {
+            var driveItemIdOption = new Option<string>("--drive-item-id", description: "The unique identifier of driveItem") {
             };
             driveItemIdOption.IsRequired = true;
             command.AddOption(driveItemIdOption);
@@ -194,6 +194,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Application {
                 });
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
                 if (driveItemId is not null) requestInfo.PathParameters.Add("driveItem%2Did", driveItemId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

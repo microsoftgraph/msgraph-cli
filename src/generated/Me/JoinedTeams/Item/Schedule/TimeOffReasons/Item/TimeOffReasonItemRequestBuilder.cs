@@ -30,11 +30,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.Schedule.TimeOffReasons.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property timeOffReasons for me";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var timeOffReasonIdOption = new Option<string>("--time-off-reason-id", description: "key: id of timeOffReason") {
+            var timeOffReasonIdOption = new Option<string>("--time-off-reason-id", description: "The unique identifier of timeOffReason") {
             };
             timeOffReasonIdOption.IsRequired = true;
             command.AddOption(timeOffReasonIdOption);
@@ -70,11 +70,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.Schedule.TimeOffReasons.Item {
             var command = new Command("get");
             command.Description = "The set of reasons for a time off in the schedule.";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var timeOffReasonIdOption = new Option<string>("--time-off-reason-id", description: "key: id of timeOffReason") {
+            var timeOffReasonIdOption = new Option<string>("--time-off-reason-id", description: "The unique identifier of timeOffReason") {
             };
             timeOffReasonIdOption.IsRequired = true;
             command.AddOption(timeOffReasonIdOption);
@@ -131,11 +131,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.Schedule.TimeOffReasons.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property timeOffReasons in me";
             // Create options for all the parameters
-            var teamIdOption = new Option<string>("--team-id", description: "key: id of team") {
+            var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
             command.AddOption(teamIdOption);
-            var timeOffReasonIdOption = new Option<string>("--time-off-reason-id", description: "key: id of timeOffReason") {
+            var timeOffReasonIdOption = new Option<string>("--time-off-reason-id", description: "The unique identifier of timeOffReason") {
             };
             timeOffReasonIdOption.IsRequired = true;
             command.AddOption(timeOffReasonIdOption);
@@ -175,6 +175,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Schedule.TimeOffReasons.Item {
                 });
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
                 if (timeOffReasonId is not null) requestInfo.PathParameters.Add("timeOffReason%2Did", timeOffReasonId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

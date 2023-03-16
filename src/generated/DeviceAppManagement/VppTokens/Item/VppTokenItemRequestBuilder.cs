@@ -1,4 +1,4 @@
-using ApiSdk.DeviceAppManagement.VppTokens.Item.MicrosoftGraphSyncLicenses;
+using ApiSdk.DeviceAppManagement.VppTokens.Item.SyncLicenses;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,7 +31,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property vppTokens for deviceAppManagement";
             // Create options for all the parameters
-            var vppTokenIdOption = new Option<string>("--vpp-token-id", description: "key: id of vppToken") {
+            var vppTokenIdOption = new Option<string>("--vpp-token-id", description: "The unique identifier of vppToken") {
             };
             vppTokenIdOption.IsRequired = true;
             command.AddOption(vppTokenIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
             var command = new Command("get");
             command.Description = "List of Vpp tokens for this organization.";
             // Create options for all the parameters
-            var vppTokenIdOption = new Option<string>("--vpp-token-id", description: "key: id of vppToken") {
+            var vppTokenIdOption = new Option<string>("--vpp-token-id", description: "The unique identifier of vppToken") {
             };
             vppTokenIdOption.IsRequired = true;
             command.AddOption(vppTokenIdOption);
@@ -121,23 +121,13 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the syncLicenses method.
-        /// </summary>
-        public Command BuildMicrosoftGraphSyncLicensesCommand() {
-            var command = new Command("microsoft-graph-sync-licenses");
-            command.Description = "Provides operations to call the syncLicenses method.";
-            var builder = new MicrosoftGraphSyncLicensesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property vppTokens in deviceAppManagement
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property vppTokens in deviceAppManagement";
             // Create options for all the parameters
-            var vppTokenIdOption = new Option<string>("--vpp-token-id", description: "key: id of vppToken") {
+            var vppTokenIdOption = new Option<string>("--vpp-token-id", description: "The unique identifier of vppToken") {
             };
             vppTokenIdOption.IsRequired = true;
             command.AddOption(vppTokenIdOption);
@@ -175,6 +165,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (vppTokenId is not null) requestInfo.PathParameters.Add("vppToken%2Did", vppTokenId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -185,6 +176,16 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the syncLicenses method.
+        /// </summary>
+        public Command BuildSyncLicensesCommand() {
+            var command = new Command("sync-licenses");
+            command.Description = "Provides operations to call the syncLicenses method.";
+            var builder = new SyncLicensesRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
             return command;
         }
         /// <summary>

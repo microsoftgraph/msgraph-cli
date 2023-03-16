@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 namespace ApiSdk.Models {
-    /// <summary>
-    /// Singleton entity that acts as a container for all device management functionality.
-    /// </summary>
     public class DeviceManagement : Entity, IParsable {
         /// <summary>Apple push notification certificate.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

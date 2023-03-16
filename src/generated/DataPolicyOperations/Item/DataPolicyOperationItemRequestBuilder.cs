@@ -30,7 +30,7 @@ namespace ApiSdk.DataPolicyOperations.Item {
             var command = new Command("delete");
             command.Description = "Delete entity from dataPolicyOperations";
             // Create options for all the parameters
-            var dataPolicyOperationIdOption = new Option<string>("--data-policy-operation-id", description: "key: id of dataPolicyOperation") {
+            var dataPolicyOperationIdOption = new Option<string>("--data-policy-operation-id", description: "The unique identifier of dataPolicyOperation") {
             };
             dataPolicyOperationIdOption.IsRequired = true;
             command.AddOption(dataPolicyOperationIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.DataPolicyOperations.Item {
             var command = new Command("get");
             command.Description = "Retrieve the properties of a **dataPolicyOperation** object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/datapolicyoperation-get?view=graph-rest-1.0";
             // Create options for all the parameters
-            var dataPolicyOperationIdOption = new Option<string>("--data-policy-operation-id", description: "key: id of dataPolicyOperation") {
+            var dataPolicyOperationIdOption = new Option<string>("--data-policy-operation-id", description: "The unique identifier of dataPolicyOperation") {
             };
             dataPolicyOperationIdOption.IsRequired = true;
             command.AddOption(dataPolicyOperationIdOption);
@@ -127,7 +127,7 @@ namespace ApiSdk.DataPolicyOperations.Item {
             var command = new Command("patch");
             command.Description = "Update entity in dataPolicyOperations";
             // Create options for all the parameters
-            var dataPolicyOperationIdOption = new Option<string>("--data-policy-operation-id", description: "key: id of dataPolicyOperation") {
+            var dataPolicyOperationIdOption = new Option<string>("--data-policy-operation-id", description: "The unique identifier of dataPolicyOperation") {
             };
             dataPolicyOperationIdOption.IsRequired = true;
             command.AddOption(dataPolicyOperationIdOption);
@@ -165,6 +165,7 @@ namespace ApiSdk.DataPolicyOperations.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (dataPolicyOperationId is not null) requestInfo.PathParameters.Add("dataPolicyOperation%2Did", dataPolicyOperationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

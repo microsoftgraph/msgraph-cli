@@ -1,8 +1,8 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.Calendars.Item.Events.Count;
+using ApiSdk.Users.Item.Calendars.Item.Events.Delta;
 using ApiSdk.Users.Item.Calendars.Item.Events.Item;
-using ApiSdk.Users.Item.Calendars.Item.Events.MicrosoftGraphDelta;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
@@ -32,22 +32,22 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events {
         public Command BuildCommand() {
             var command = new Command("item");
             var builder = new EventItemRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildAcceptCommand());
             command.AddCommand(builder.BuildAttachmentsCommand());
             command.AddCommand(builder.BuildCalendarCommand());
+            command.AddCommand(builder.BuildCancelCommand());
+            command.AddCommand(builder.BuildDeclineCommand());
             command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildDismissReminderCommand());
             command.AddCommand(builder.BuildExtensionsCommand());
+            command.AddCommand(builder.BuildForwardCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildInstancesCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphAcceptCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphCancelCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeclineCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDismissReminderCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphForwardCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphSnoozeReminderCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphTentativelyAcceptCommand());
             command.AddCommand(builder.BuildMultiValueExtendedPropertiesCommand());
             command.AddCommand(builder.BuildPatchCommand());
             command.AddCommand(builder.BuildSingleValueExtendedPropertiesCommand());
+            command.AddCommand(builder.BuildSnoozeReminderCommand());
+            command.AddCommand(builder.BuildTentativelyAcceptCommand());
             return command;
         }
         /// <summary>
@@ -68,11 +68,11 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events {
             var command = new Command("create");
             command.Description = "Use this API to create a new event in a calendar. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/calendar-post-events?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            var calendarIdOption = new Option<string>("--calendar-id", description: "The unique identifier of calendar") {
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
@@ -112,6 +112,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (calendarId is not null) requestInfo.PathParameters.Add("calendar%2Did", calendarId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -125,6 +126,16 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildDeltaCommand() {
+            var command = new Command("delta");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Retrieve a list of events in a calendar.  The calendar can be one for a user, or the default calendar of a Microsoft 365 group. The list of events contains single instance meetings and series masters. To get expanded event instances, you can get the calendar view, or get the instances of an event.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/calendar-list-events?view=graph-rest-1.0" />
         /// </summary>
@@ -132,11 +143,11 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events {
             var command = new Command("list");
             command.Description = "Retrieve a list of events in a calendar.  The calendar can be one for a user, or the default calendar of a Microsoft 365 group. The list of events contains single instance meetings and series masters. To get expanded event instances, you can get the calendar view, or get the instances of an event.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/calendar-list-events?view=graph-rest-1.0";
             // Create options for all the parameters
-            var userIdOption = new Option<string>("--user-id", description: "key: id of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            var calendarIdOption = new Option<string>("--calendar-id", description: "The unique identifier of calendar") {
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
@@ -227,16 +238,6 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the delta method.
-        /// </summary>
-        public Command BuildMicrosoftGraphDeltaCommand() {
-            var command = new Command("microsoft-graph-delta");
-            command.Description = "Provides operations to call the delta method.";
-            var builder = new MicrosoftGraphDeltaRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>

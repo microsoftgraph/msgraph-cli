@@ -30,15 +30,15 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item.De
             var command = new Command("delete");
             command.Description = "Delete navigation property deviceStates for deviceAppManagement";
             // Create options for all the parameters
-            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "key: id of managedEBook") {
+            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
             command.AddOption(managedEBookIdOption);
-            var userInstallStateSummaryIdOption = new Option<string>("--user-install-state-summary-id", description: "key: id of userInstallStateSummary") {
+            var userInstallStateSummaryIdOption = new Option<string>("--user-install-state-summary-id", description: "The unique identifier of userInstallStateSummary") {
             };
             userInstallStateSummaryIdOption.IsRequired = true;
             command.AddOption(userInstallStateSummaryIdOption);
-            var deviceInstallStateIdOption = new Option<string>("--device-install-state-id", description: "key: id of deviceInstallState") {
+            var deviceInstallStateIdOption = new Option<string>("--device-install-state-id", description: "The unique identifier of deviceInstallState") {
             };
             deviceInstallStateIdOption.IsRequired = true;
             command.AddOption(deviceInstallStateIdOption);
@@ -76,15 +76,15 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item.De
             var command = new Command("get");
             command.Description = "The install state of the eBook.";
             // Create options for all the parameters
-            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "key: id of managedEBook") {
+            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
             command.AddOption(managedEBookIdOption);
-            var userInstallStateSummaryIdOption = new Option<string>("--user-install-state-summary-id", description: "key: id of userInstallStateSummary") {
+            var userInstallStateSummaryIdOption = new Option<string>("--user-install-state-summary-id", description: "The unique identifier of userInstallStateSummary") {
             };
             userInstallStateSummaryIdOption.IsRequired = true;
             command.AddOption(userInstallStateSummaryIdOption);
-            var deviceInstallStateIdOption = new Option<string>("--device-install-state-id", description: "key: id of deviceInstallState") {
+            var deviceInstallStateIdOption = new Option<string>("--device-install-state-id", description: "The unique identifier of deviceInstallState") {
             };
             deviceInstallStateIdOption.IsRequired = true;
             command.AddOption(deviceInstallStateIdOption);
@@ -150,15 +150,15 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item.De
             var command = new Command("patch");
             command.Description = "Update the navigation property deviceStates in deviceAppManagement";
             // Create options for all the parameters
-            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "key: id of managedEBook") {
+            var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
             command.AddOption(managedEBookIdOption);
-            var userInstallStateSummaryIdOption = new Option<string>("--user-install-state-summary-id", description: "key: id of userInstallStateSummary") {
+            var userInstallStateSummaryIdOption = new Option<string>("--user-install-state-summary-id", description: "The unique identifier of userInstallStateSummary") {
             };
             userInstallStateSummaryIdOption.IsRequired = true;
             command.AddOption(userInstallStateSummaryIdOption);
-            var deviceInstallStateIdOption = new Option<string>("--device-install-state-id", description: "key: id of deviceInstallState") {
+            var deviceInstallStateIdOption = new Option<string>("--device-install-state-id", description: "The unique identifier of deviceInstallState") {
             };
             deviceInstallStateIdOption.IsRequired = true;
             command.AddOption(deviceInstallStateIdOption);
@@ -200,6 +200,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item.De
                 if (managedEBookId is not null) requestInfo.PathParameters.Add("managedEBook%2Did", managedEBookId);
                 if (userInstallStateSummaryId is not null) requestInfo.PathParameters.Add("userInstallStateSummary%2Did", userInstallStateSummaryId);
                 if (deviceInstallStateId is not null) requestInfo.PathParameters.Add("deviceInstallState%2Did", deviceInstallStateId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

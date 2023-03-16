@@ -29,7 +29,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             var command = new Command("get");
             command.Description = "Get the number of the resource";
             // Create options for all the parameters
-            var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "key: id of appConsentRequest") {
+            var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "The unique identifier of appConsentRequest") {
             };
             appConsentRequestIdOption.IsRequired = true;
             command.AddOption(appConsentRequestIdOption);

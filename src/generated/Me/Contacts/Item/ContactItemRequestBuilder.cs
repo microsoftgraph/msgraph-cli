@@ -34,7 +34,7 @@ namespace ApiSdk.Me.Contacts.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property contacts for me";
             // Create options for all the parameters
-            var contactIdOption = new Option<string>("--contact-id", description: "key: id of contact") {
+            var contactIdOption = new Option<string>("--contact-id", description: "The unique identifier of contact") {
             };
             contactIdOption.IsRequired = true;
             command.AddOption(contactIdOption);
@@ -81,7 +81,7 @@ namespace ApiSdk.Me.Contacts.Item {
             var command = new Command("get");
             command.Description = "The user's contacts. Read-only. Nullable.";
             // Create options for all the parameters
-            var contactIdOption = new Option<string>("--contact-id", description: "key: id of contact") {
+            var contactIdOption = new Option<string>("--contact-id", description: "The unique identifier of contact") {
             };
             contactIdOption.IsRequired = true;
             command.AddOption(contactIdOption);
@@ -149,7 +149,7 @@ namespace ApiSdk.Me.Contacts.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property contacts in me";
             // Create options for all the parameters
-            var contactIdOption = new Option<string>("--contact-id", description: "key: id of contact") {
+            var contactIdOption = new Option<string>("--contact-id", description: "The unique identifier of contact") {
             };
             contactIdOption.IsRequired = true;
             command.AddOption(contactIdOption);
@@ -187,6 +187,7 @@ namespace ApiSdk.Me.Contacts.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (contactId is not null) requestInfo.PathParameters.Add("contact%2Did", contactId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

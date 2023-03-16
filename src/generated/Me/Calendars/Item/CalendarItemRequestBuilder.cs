@@ -1,8 +1,8 @@
+using ApiSdk.Me.Calendars.Item.AllowedCalendarSharingRolesWithUser;
 using ApiSdk.Me.Calendars.Item.CalendarPermissions;
 using ApiSdk.Me.Calendars.Item.CalendarView;
 using ApiSdk.Me.Calendars.Item.Events;
-using ApiSdk.Me.Calendars.Item.MicrosoftGraphAllowedCalendarSharingRolesWithUser;
-using ApiSdk.Me.Calendars.Item.MicrosoftGraphGetSchedule;
+using ApiSdk.Me.Calendars.Item.GetSchedule;
 using ApiSdk.Me.Calendars.Item.MultiValueExtendedProperties;
 using ApiSdk.Me.Calendars.Item.SingleValueExtendedProperties;
 using ApiSdk.Models;
@@ -52,8 +52,8 @@ namespace ApiSdk.Me.Calendars.Item {
             var builder = new CalendarViewRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             return command;
         }
         /// <summary>
@@ -63,7 +63,7 @@ namespace ApiSdk.Me.Calendars.Item {
             var command = new Command("delete");
             command.Description = "Delete navigation property calendars for me";
             // Create options for all the parameters
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            var calendarIdOption = new Option<string>("--calendar-id", description: "The unique identifier of calendar") {
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
@@ -100,8 +100,8 @@ namespace ApiSdk.Me.Calendars.Item {
             command.AddCommand(builder.BuildCommand());
             command.AddCommand(builder.BuildCountCommand());
             command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDeltaCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMicrosoftGraphDeltaCommand());
             return command;
         }
         /// <summary>
@@ -111,7 +111,7 @@ namespace ApiSdk.Me.Calendars.Item {
             var command = new Command("get");
             command.Description = "The user's calendars. Read-only. Nullable.";
             // Create options for all the parameters
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            var calendarIdOption = new Option<string>("--calendar-id", description: "The unique identifier of calendar") {
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
@@ -162,10 +162,10 @@ namespace ApiSdk.Me.Calendars.Item {
         /// <summary>
         /// Provides operations to call the getSchedule method.
         /// </summary>
-        public Command BuildMicrosoftGraphGetScheduleCommand() {
-            var command = new Command("microsoft-graph-get-schedule");
+        public Command BuildGetScheduleCommand() {
+            var command = new Command("get-schedule");
             command.Description = "Provides operations to call the getSchedule method.";
-            var builder = new MicrosoftGraphGetScheduleRequestBuilder(PathParameters);
+            var builder = new GetScheduleRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
             return command;
         }
@@ -189,7 +189,7 @@ namespace ApiSdk.Me.Calendars.Item {
             var command = new Command("patch");
             command.Description = "Update the navigation property calendars in me";
             // Create options for all the parameters
-            var calendarIdOption = new Option<string>("--calendar-id", description: "key: id of calendar") {
+            var calendarIdOption = new Option<string>("--calendar-id", description: "The unique identifier of calendar") {
             };
             calendarIdOption.IsRequired = true;
             command.AddOption(calendarIdOption);
@@ -227,6 +227,7 @@ namespace ApiSdk.Me.Calendars.Item {
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (calendarId is not null) requestInfo.PathParameters.Add("calendar%2Did", calendarId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},

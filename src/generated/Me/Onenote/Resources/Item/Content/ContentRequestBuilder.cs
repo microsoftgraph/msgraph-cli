@@ -29,7 +29,7 @@ namespace ApiSdk.Me.Onenote.Resources.Item.Content {
             var command = new Command("get");
             command.Description = "The content stream";
             // Create options for all the parameters
-            var onenoteResourceIdOption = new Option<string>("--onenote-resource-id", description: "key: id of onenoteResource") {
+            var onenoteResourceIdOption = new Option<string>("--onenote-resource-id", description: "The unique identifier of onenoteResource") {
             };
             onenoteResourceIdOption.IsRequired = true;
             command.AddOption(onenoteResourceIdOption);
@@ -68,7 +68,7 @@ namespace ApiSdk.Me.Onenote.Resources.Item.Content {
             var command = new Command("put");
             command.Description = "The content stream";
             // Create options for all the parameters
-            var onenoteResourceIdOption = new Option<string>("--onenote-resource-id", description: "key: id of onenoteResource") {
+            var onenoteResourceIdOption = new Option<string>("--onenote-resource-id", description: "The unique identifier of onenoteResource") {
             };
             onenoteResourceIdOption.IsRequired = true;
             command.AddOption(onenoteResourceIdOption);

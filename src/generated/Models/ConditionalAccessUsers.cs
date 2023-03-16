@@ -15,6 +15,14 @@ namespace ApiSdk.Models {
 #else
         public List<string> ExcludeGroups { get; set; }
 #endif
+        /// <summary>The excludeGuestsOrExternalUsers property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ConditionalAccessGuestsOrExternalUsers? ExcludeGuestsOrExternalUsers { get; set; }
+#nullable restore
+#else
+        public ConditionalAccessGuestsOrExternalUsers ExcludeGuestsOrExternalUsers { get; set; }
+#endif
         /// <summary>Role IDs excluded from scope of policy.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -38,6 +46,14 @@ namespace ApiSdk.Models {
 #nullable restore
 #else
         public List<string> IncludeGroups { get; set; }
+#endif
+        /// <summary>The includeGuestsOrExternalUsers property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ConditionalAccessGuestsOrExternalUsers? IncludeGuestsOrExternalUsers { get; set; }
+#nullable restore
+#else
+        public ConditionalAccessGuestsOrExternalUsers IncludeGuestsOrExternalUsers { get; set; }
 #endif
         /// <summary>Role IDs in scope of policy unless explicitly excluded, or All.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -83,9 +99,11 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"excludeGroups", n => { ExcludeGroups = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"excludeGuestsOrExternalUsers", n => { ExcludeGuestsOrExternalUsers = n.GetObjectValue<ConditionalAccessGuestsOrExternalUsers>(ConditionalAccessGuestsOrExternalUsers.CreateFromDiscriminatorValue); } },
                 {"excludeRoles", n => { ExcludeRoles = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"excludeUsers", n => { ExcludeUsers = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"includeGroups", n => { IncludeGroups = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"includeGuestsOrExternalUsers", n => { IncludeGuestsOrExternalUsers = n.GetObjectValue<ConditionalAccessGuestsOrExternalUsers>(ConditionalAccessGuestsOrExternalUsers.CreateFromDiscriminatorValue); } },
                 {"includeRoles", n => { IncludeRoles = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"includeUsers", n => { IncludeUsers = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
@@ -98,9 +116,11 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("excludeGroups", ExcludeGroups);
+            writer.WriteObjectValue<ConditionalAccessGuestsOrExternalUsers>("excludeGuestsOrExternalUsers", ExcludeGuestsOrExternalUsers);
             writer.WriteCollectionOfPrimitiveValues<string>("excludeRoles", ExcludeRoles);
             writer.WriteCollectionOfPrimitiveValues<string>("excludeUsers", ExcludeUsers);
             writer.WriteCollectionOfPrimitiveValues<string>("includeGroups", IncludeGroups);
+            writer.WriteObjectValue<ConditionalAccessGuestsOrExternalUsers>("includeGuestsOrExternalUsers", IncludeGuestsOrExternalUsers);
             writer.WriteCollectionOfPrimitiveValues<string>("includeRoles", IncludeRoles);
             writer.WriteCollectionOfPrimitiveValues<string>("includeUsers", IncludeUsers);
             writer.WriteStringValue("@odata.type", OdataType);

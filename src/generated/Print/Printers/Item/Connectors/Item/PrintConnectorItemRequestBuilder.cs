@@ -30,11 +30,11 @@ namespace ApiSdk.Print.Printers.Item.Connectors.Item {
             var command = new Command("get");
             command.Description = "The connectors that are associated with the printer.";
             // Create options for all the parameters
-            var printerIdOption = new Option<string>("--printer-id", description: "key: id of printer") {
+            var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
             };
             printerIdOption.IsRequired = true;
             command.AddOption(printerIdOption);
-            var printConnectorIdOption = new Option<string>("--print-connector-id", description: "key: id of printConnector") {
+            var printConnectorIdOption = new Option<string>("--print-connector-id", description: "The unique identifier of printConnector") {
             };
             printConnectorIdOption.IsRequired = true;
             command.AddOption(printConnectorIdOption);
