@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0-preview.1] - 2023-03-16
+
 ### Added
 - Add Environment login. Client secret login and certificate file login are now possible with this new strategy.
 
