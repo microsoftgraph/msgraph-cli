@@ -4,6 +4,7 @@ trigger:
   batch: true
   branches:
     include:
+      - main
       - refs/tags/v*
   paths:
     include:
@@ -514,6 +515,7 @@ stages:
               addChangeLog: true
               changeLogCompareToRelease: lastNonDraftRelease
               assets: |
-                $(artifactsDownloadLocation)/build-output-linux-*/*.zip
+                $(artifactsDownloadLocation)/build-output-linux-*/*.tar*
+                $(artifactsDownloadLocation)/sign-output-*/*.tar*
                 $(artifactsDownloadLocation)/sign-output-*/*.zip
               isPreRelease: $(IS_PREVIEW)
