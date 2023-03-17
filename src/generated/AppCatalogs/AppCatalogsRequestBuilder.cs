@@ -135,12 +135,15 @@ namespace ApiSdk.AppCatalogs {
         /// <summary>
         /// Provides operations to manage the teamsApps property of the microsoft.graph.appCatalogs entity.
         /// </summary>
-        public Command BuildTeamsAppsCommand() {
+        public Command BuildTeamsAppsNavCommand() {
             var command = new Command("teams-apps");
             command.Description = "Provides operations to manage the teamsApps property of the microsoft.graph.appCatalogs entity.";
             var builder = new TeamsAppsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

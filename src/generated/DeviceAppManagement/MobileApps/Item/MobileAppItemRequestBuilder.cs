@@ -29,9 +29,25 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.
+        /// </summary>
+        public Command BuildAssignmentsNavCommand() {
+            var command = new Command("assignments");
+            command.Description = "Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.";
+            var builder = new AssignmentsRequestBuilder(PathParameters);
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the assign method.
         /// </summary>
-        public Command BuildAssignCommand() {
+        public Command BuildAssignNavCommand() {
             var command = new Command("assign");
             command.Description = "Provides operations to call the assign method.";
             var builder = new AssignRequestBuilder(PathParameters);
@@ -39,27 +55,17 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.
-        /// </summary>
-        public Command BuildAssignmentsCommand() {
-            var command = new Command("assignments");
-            command.Description = "Provides operations to manage the assignments property of the microsoft.graph.mobileApp entity.";
-            var builder = new AssignmentsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the categories property of the microsoft.graph.mobileApp entity.
         /// </summary>
-        public Command BuildCategoriesCommand() {
+        public Command BuildCategoriesNavCommand() {
             var command = new Command("categories");
             command.Description = "Provides operations to manage the categories property of the microsoft.graph.mobileApp entity.";
             var builder = new CategoriesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -162,7 +168,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// <summary>
         /// Casts the previous resource to managedMobileLobApp.
         /// </summary>
-        public Command BuildGraphManagedMobileLobAppCommand() {
+        public Command BuildGraphManagedMobileLobAppNavCommand() {
             var command = new Command("graph-managed-mobile-lob-app");
             command.Description = "Casts the previous resource to managedMobileLobApp.";
             var builder = new GraphManagedMobileLobAppRequestBuilder(PathParameters);
@@ -172,7 +178,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// <summary>
         /// Casts the previous resource to mobileLobApp.
         /// </summary>
-        public Command BuildGraphMobileLobAppCommand() {
+        public Command BuildGraphMobileLobAppNavCommand() {
             var command = new Command("graph-mobile-lob-app");
             command.Description = "Casts the previous resource to mobileLobApp.";
             var builder = new GraphMobileLobAppRequestBuilder(PathParameters);

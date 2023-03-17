@@ -36,7 +36,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
         /// <summary>
         /// Provides operations to call the associateWithHubSites method.
         /// </summary>
-        public Command BuildAssociateWithHubSitesCommand() {
+        public Command BuildAssociateWithHubSitesNavCommand() {
             var command = new Command("associate-with-hub-sites");
             command.Description = "Provides operations to call the associateWithHubSites method.";
             var builder = new AssociateWithHubSitesRequestBuilder(PathParameters);
@@ -46,7 +46,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
         /// <summary>
         /// Provides operations to manage the base property of the microsoft.graph.contentType entity.
         /// </summary>
-        public Command BuildBaseCommand() {
+        public Command BuildBaseNavCommand() {
             var command = new Command("base");
             command.Description = "Provides operations to manage the base property of the microsoft.graph.contentType entity.";
             var builder = new BaseRequestBuilder(PathParameters);
@@ -56,24 +56,30 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
         /// <summary>
         /// Provides operations to manage the baseTypes property of the microsoft.graph.contentType entity.
         /// </summary>
-        public Command BuildBaseTypesCommand() {
+        public Command BuildBaseTypesNavCommand() {
             var command = new Command("base-types");
             command.Description = "Provides operations to manage the baseTypes property of the microsoft.graph.contentType entity.";
             var builder = new BaseTypesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the columnLinks property of the microsoft.graph.contentType entity.
         /// </summary>
-        public Command BuildColumnLinksCommand() {
+        public Command BuildColumnLinksNavCommand() {
             var command = new Command("column-links");
             command.Description = "Provides operations to manage the columnLinks property of the microsoft.graph.contentType entity.";
             var builder = new ColumnLinksRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -81,24 +87,30 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
         /// <summary>
         /// Provides operations to manage the columnPositions property of the microsoft.graph.contentType entity.
         /// </summary>
-        public Command BuildColumnPositionsCommand() {
+        public Command BuildColumnPositionsNavCommand() {
             var command = new Command("column-positions");
             command.Description = "Provides operations to manage the columnPositions property of the microsoft.graph.contentType entity.";
             var builder = new ColumnPositionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the columns property of the microsoft.graph.contentType entity.
         /// </summary>
-        public Command BuildColumnsCommand() {
+        public Command BuildColumnsNavCommand() {
             var command = new Command("columns");
             command.Description = "Provides operations to manage the columns property of the microsoft.graph.contentType entity.";
             var builder = new ColumnsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -106,7 +118,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
         /// <summary>
         /// Provides operations to call the copyToDefaultContentLocation method.
         /// </summary>
-        public Command BuildCopyToDefaultContentLocationCommand() {
+        public Command BuildCopyToDefaultContentLocationNavCommand() {
             var command = new Command("copy-to-default-content-location");
             command.Description = "Provides operations to call the copyToDefaultContentLocation method.";
             var builder = new CopyToDefaultContentLocationRequestBuilder(PathParameters);
@@ -236,7 +248,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
         /// <summary>
         /// Provides operations to call the isPublished method.
         /// </summary>
-        public Command BuildIsPublishedCommand() {
+        public Command BuildIsPublishedNavCommand() {
             var command = new Command("is-published");
             command.Description = "Provides operations to call the isPublished method.";
             var builder = new IsPublishedRequestBuilder(PathParameters);
@@ -316,7 +328,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
         /// <summary>
         /// Provides operations to call the publish method.
         /// </summary>
-        public Command BuildPublishCommand() {
+        public Command BuildPublishNavCommand() {
             var command = new Command("publish");
             command.Description = "Provides operations to call the publish method.";
             var builder = new PublishRequestBuilder(PathParameters);
@@ -326,7 +338,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
         /// <summary>
         /// Provides operations to call the unpublish method.
         /// </summary>
-        public Command BuildUnpublishCommand() {
+        public Command BuildUnpublishNavCommand() {
             var command = new Command("unpublish");
             command.Description = "Provides operations to call the unpublish method.";
             var builder = new UnpublishRequestBuilder(PathParameters);

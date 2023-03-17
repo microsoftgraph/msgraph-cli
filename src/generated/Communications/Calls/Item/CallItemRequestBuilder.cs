@@ -44,7 +44,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the addLargeGalleryView method.
         /// </summary>
-        public Command BuildAddLargeGalleryViewCommand() {
+        public Command BuildAddLargeGalleryViewNavCommand() {
             var command = new Command("add-large-gallery-view");
             command.Description = "Provides operations to call the addLargeGalleryView method.";
             var builder = new AddLargeGalleryViewRequestBuilder(PathParameters);
@@ -54,7 +54,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the answer method.
         /// </summary>
-        public Command BuildAnswerCommand() {
+        public Command BuildAnswerNavCommand() {
             var command = new Command("answer");
             command.Description = "Provides operations to call the answer method.";
             var builder = new AnswerRequestBuilder(PathParameters);
@@ -64,12 +64,15 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to manage the audioRoutingGroups property of the microsoft.graph.call entity.
         /// </summary>
-        public Command BuildAudioRoutingGroupsCommand() {
+        public Command BuildAudioRoutingGroupsNavCommand() {
             var command = new Command("audio-routing-groups");
             command.Description = "Provides operations to manage the audioRoutingGroups property of the microsoft.graph.call entity.";
             var builder = new AudioRoutingGroupsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -77,7 +80,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the cancelMediaProcessing method.
         /// </summary>
-        public Command BuildCancelMediaProcessingCommand() {
+        public Command BuildCancelMediaProcessingNavCommand() {
             var command = new Command("cancel-media-processing");
             command.Description = "Provides operations to call the cancelMediaProcessing method.";
             var builder = new CancelMediaProcessingRequestBuilder(PathParameters);
@@ -87,7 +90,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the changeScreenSharingRole method.
         /// </summary>
-        public Command BuildChangeScreenSharingRoleCommand() {
+        public Command BuildChangeScreenSharingRoleNavCommand() {
             var command = new Command("change-screen-sharing-role");
             command.Description = "Provides operations to call the changeScreenSharingRole method.";
             var builder = new ChangeScreenSharingRoleRequestBuilder(PathParameters);
@@ -97,12 +100,15 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to manage the contentSharingSessions property of the microsoft.graph.call entity.
         /// </summary>
-        public Command BuildContentSharingSessionsCommand() {
+        public Command BuildContentSharingSessionsNavCommand() {
             var command = new Command("content-sharing-sessions");
             command.Description = "Provides operations to manage the contentSharingSessions property of the microsoft.graph.call entity.";
             var builder = new ContentSharingSessionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -206,7 +212,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the keepAlive method.
         /// </summary>
-        public Command BuildKeepAliveCommand() {
+        public Command BuildKeepAliveNavCommand() {
             var command = new Command("keep-alive");
             command.Description = "Provides operations to call the keepAlive method.";
             var builder = new KeepAliveRequestBuilder(PathParameters);
@@ -216,7 +222,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the mute method.
         /// </summary>
-        public Command BuildMuteCommand() {
+        public Command BuildMuteNavCommand() {
             var command = new Command("mute");
             command.Description = "Provides operations to call the mute method.";
             var builder = new MuteRequestBuilder(PathParameters);
@@ -226,12 +232,15 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to manage the operations property of the microsoft.graph.call entity.
         /// </summary>
-        public Command BuildOperationsCommand() {
+        public Command BuildOperationsNavCommand() {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.call entity.";
             var builder = new OperationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -239,14 +248,17 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to manage the participants property of the microsoft.graph.call entity.
         /// </summary>
-        public Command BuildParticipantsCommand() {
+        public Command BuildParticipantsNavCommand() {
             var command = new Command("participants");
             command.Description = "Provides operations to manage the participants property of the microsoft.graph.call entity.";
             var builder = new ParticipantsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildInviteCommand());
+            command.AddCommand(builder.BuildInviteNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -311,7 +323,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the playPrompt method.
         /// </summary>
-        public Command BuildPlayPromptCommand() {
+        public Command BuildPlayPromptNavCommand() {
             var command = new Command("play-prompt");
             command.Description = "Provides operations to call the playPrompt method.";
             var builder = new PlayPromptRequestBuilder(PathParameters);
@@ -321,7 +333,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the recordResponse method.
         /// </summary>
-        public Command BuildRecordResponseCommand() {
+        public Command BuildRecordResponseNavCommand() {
             var command = new Command("record-response");
             command.Description = "Provides operations to call the recordResponse method.";
             var builder = new RecordResponseRequestBuilder(PathParameters);
@@ -331,7 +343,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the redirect method.
         /// </summary>
-        public Command BuildRedirectCommand() {
+        public Command BuildRedirectNavCommand() {
             var command = new Command("redirect");
             command.Description = "Provides operations to call the redirect method.";
             var builder = new RedirectRequestBuilder(PathParameters);
@@ -341,7 +353,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the reject method.
         /// </summary>
-        public Command BuildRejectCommand() {
+        public Command BuildRejectNavCommand() {
             var command = new Command("reject");
             command.Description = "Provides operations to call the reject method.";
             var builder = new RejectRequestBuilder(PathParameters);
@@ -351,7 +363,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the subscribeToTone method.
         /// </summary>
-        public Command BuildSubscribeToToneCommand() {
+        public Command BuildSubscribeToToneNavCommand() {
             var command = new Command("subscribe-to-tone");
             command.Description = "Provides operations to call the subscribeToTone method.";
             var builder = new SubscribeToToneRequestBuilder(PathParameters);
@@ -361,7 +373,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the transfer method.
         /// </summary>
-        public Command BuildTransferCommand() {
+        public Command BuildTransferNavCommand() {
             var command = new Command("transfer");
             command.Description = "Provides operations to call the transfer method.";
             var builder = new TransferRequestBuilder(PathParameters);
@@ -371,7 +383,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the unmute method.
         /// </summary>
-        public Command BuildUnmuteCommand() {
+        public Command BuildUnmuteNavCommand() {
             var command = new Command("unmute");
             command.Description = "Provides operations to call the unmute method.";
             var builder = new UnmuteRequestBuilder(PathParameters);
@@ -381,7 +393,7 @@ namespace ApiSdk.Communications.Calls.Item {
         /// <summary>
         /// Provides operations to call the updateRecordingStatus method.
         /// </summary>
-        public Command BuildUpdateRecordingStatusCommand() {
+        public Command BuildUpdateRecordingStatusNavCommand() {
             var command = new Command("update-recording-status");
             command.Description = "Provides operations to call the updateRecordingStatus method.";
             var builder = new UpdateRecordingStatusRequestBuilder(PathParameters);

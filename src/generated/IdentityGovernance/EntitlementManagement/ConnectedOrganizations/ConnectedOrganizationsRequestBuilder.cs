@@ -28,20 +28,20 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
         /// <summary>
         /// Provides operations to manage the connectedOrganizations property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new ConnectedOrganizationItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildExternalSponsorsCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildInternalSponsorsCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildExternalSponsorsNavCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildInternalSponsorsNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

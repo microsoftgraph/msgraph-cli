@@ -62,12 +62,15 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item {
         /// <summary>
         /// Provides operations to manage the excludes property of the microsoft.graph.permissionGrantPolicy entity.
         /// </summary>
-        public Command BuildExcludesCommand() {
+        public Command BuildExcludesNavCommand() {
             var command = new Command("excludes");
             command.Description = "Provides operations to manage the excludes property of the microsoft.graph.permissionGrantPolicy entity.";
             var builder = new ExcludesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -137,12 +140,15 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item {
         /// <summary>
         /// Provides operations to manage the includes property of the microsoft.graph.permissionGrantPolicy entity.
         /// </summary>
-        public Command BuildIncludesCommand() {
+        public Command BuildIncludesNavCommand() {
             var command = new Command("includes");
             command.Description = "Provides operations to manage the includes property of the microsoft.graph.permissionGrantPolicy entity.";
             var builder = new IncludesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

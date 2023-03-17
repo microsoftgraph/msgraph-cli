@@ -28,19 +28,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Names {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Provides operations to call the add method.
-        /// </summary>
-        public Command BuildAddCommand() {
-            var command = new Command("add");
-            command.Description = "Provides operations to call the add method.";
-            var builder = new AddRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to call the addFormulaLocal method.
         /// </summary>
-        public Command BuildAddFormulaLocalCommand() {
+        public Command BuildAddFormulaLocalNavCommand() {
             var command = new Command("add-formula-local");
             command.Description = "Provides operations to call the addFormulaLocal method.";
             var builder = new AddFormulaLocalRequestBuilder(PathParameters);
@@ -48,22 +38,32 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Names {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the add method.
+        /// </summary>
+        public Command BuildAddNavCommand() {
+            var command = new Command("add");
+            command.Description = "Provides operations to call the add method.";
+            var builder = new AddRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the names property of the microsoft.graph.workbookWorksheet entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new WorkbookNamedItemItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildRangeCommand());
-            command.AddCommand(builder.BuildWorksheetCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildRangeNavCommand());
+            commands.Add(builder.BuildWorksheetNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

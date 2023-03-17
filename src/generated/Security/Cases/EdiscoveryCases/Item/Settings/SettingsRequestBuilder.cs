@@ -183,7 +183,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings {
         /// <summary>
         /// Provides operations to call the resetToDefault method.
         /// </summary>
-        public Command BuildSecurityResetToDefaultCommand() {
+        public Command BuildSecurityResetToDefaultNavCommand() {
             var command = new Command("security-reset-to-default");
             command.Description = "Provides operations to call the resetToDefault method.";
             var builder = new SecurityResetToDefaultRequestBuilder(PathParameters);

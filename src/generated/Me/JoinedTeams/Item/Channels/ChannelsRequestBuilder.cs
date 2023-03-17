@@ -29,27 +29,27 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels {
         /// <summary>
         /// Provides operations to manage the channels property of the microsoft.graph.team entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new ChannelItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCompleteMigrationCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameCommand());
-            command.AddCommand(builder.BuildFilesFolderCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMembersCommand());
-            command.AddCommand(builder.BuildMessagesCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildProvisionEmailCommand());
-            command.AddCommand(builder.BuildRemoveEmailCommand());
-            command.AddCommand(builder.BuildSharedWithTeamsCommand());
-            command.AddCommand(builder.BuildTabsCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildCompleteMigrationNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameNavCommand());
+            commands.Add(builder.BuildFilesFolderNavCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildMembersNavCommand());
+            commands.Add(builder.BuildMessagesNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildProvisionEmailNavCommand());
+            commands.Add(builder.BuildRemoveEmailNavCommand());
+            commands.Add(builder.BuildSharedWithTeamsNavCommand());
+            commands.Add(builder.BuildTabsNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -118,7 +118,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.Channels {
         /// <summary>
         /// Provides operations to call the getAllMessages method.
         /// </summary>
-        public Command BuildGetAllMessagesCommand() {
+        public Command BuildGetAllMessagesNavCommand() {
             var command = new Command("get-all-messages");
             command.Description = "Provides operations to call the getAllMessages method.";
             var builder = new GetAllMessagesRequestBuilder(PathParameters);

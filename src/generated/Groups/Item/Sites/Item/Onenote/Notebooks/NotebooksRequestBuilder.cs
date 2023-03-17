@@ -30,21 +30,21 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks {
         /// <summary>
         /// Provides operations to manage the notebooks property of the microsoft.graph.onenote entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new NotebookItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCopyNotebookCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSectionGroupsCommand());
-            command.AddCommand(builder.BuildSectionsCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildCopyNotebookNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildSectionGroupsNavCommand());
+            commands.Add(builder.BuildSectionsNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -119,7 +119,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks {
         /// <summary>
         /// Provides operations to call the getNotebookFromWebUrl method.
         /// </summary>
-        public Command BuildGetNotebookFromWebUrlCommand() {
+        public Command BuildGetNotebookFromWebUrlNavCommand() {
             var command = new Command("get-notebook-from-web-url");
             command.Description = "Provides operations to call the getNotebookFromWebUrl method.";
             var builder = new GetNotebookFromWebUrlRequestBuilder(PathParameters);

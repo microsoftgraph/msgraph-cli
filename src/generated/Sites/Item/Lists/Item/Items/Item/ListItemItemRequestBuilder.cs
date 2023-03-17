@@ -33,7 +33,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the analytics property of the microsoft.graph.listItem entity.
         /// </summary>
-        public Command BuildAnalyticsCommand() {
+        public Command BuildAnalyticsNavCommand() {
             var command = new Command("analytics");
             command.Description = "Provides operations to manage the analytics property of the microsoft.graph.listItem entity.";
             var builder = new AnalyticsRequestBuilder(PathParameters);
@@ -89,12 +89,15 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the documentSetVersions property of the microsoft.graph.listItem entity.
         /// </summary>
-        public Command BuildDocumentSetVersionsCommand() {
+        public Command BuildDocumentSetVersionsNavCommand() {
             var command = new Command("document-set-versions");
             command.Description = "Provides operations to manage the documentSetVersions property of the microsoft.graph.listItem entity.";
             var builder = new DocumentSetVersionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -102,18 +105,18 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the driveItem property of the microsoft.graph.listItem entity.
         /// </summary>
-        public Command BuildDriveItemCommand() {
+        public Command BuildDriveItemNavCommand() {
             var command = new Command("drive-item");
             command.Description = "Provides operations to manage the driveItem property of the microsoft.graph.listItem entity.";
             var builder = new DriveItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildContentCommand());
+            command.AddCommand(builder.BuildContentNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the fields property of the microsoft.graph.listItem entity.
         /// </summary>
-        public Command BuildFieldsCommand() {
+        public Command BuildFieldsNavCommand() {
             var command = new Command("fields");
             command.Description = "Provides operations to manage the fields property of the microsoft.graph.listItem entity.";
             var builder = new FieldsRequestBuilder(PathParameters);
@@ -125,7 +128,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the getActivitiesByInterval method.
         /// </summary>
-        public Command BuildGetActivitiesByIntervalCommand() {
+        public Command BuildGetActivitiesByIntervalNavCommand() {
             var command = new Command("get-activities-by-interval");
             command.Description = "Provides operations to call the getActivitiesByInterval method.";
             var builder = new GetActivitiesByIntervalRequestBuilder(PathParameters);
@@ -279,12 +282,15 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the versions property of the microsoft.graph.listItem entity.
         /// </summary>
-        public Command BuildVersionsCommand() {
+        public Command BuildVersionsNavCommand() {
             var command = new Command("versions");
             command.Description = "Provides operations to manage the versions property of the microsoft.graph.listItem entity.";
             var builder = new VersionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

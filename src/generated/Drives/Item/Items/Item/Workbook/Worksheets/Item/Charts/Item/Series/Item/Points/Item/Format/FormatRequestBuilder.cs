@@ -91,15 +91,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
         /// <summary>
         /// Provides operations to manage the fill property of the microsoft.graph.workbookChartPointFormat entity.
         /// </summary>
-        public Command BuildFillCommand() {
+        public Command BuildFillNavCommand() {
             var command = new Command("fill");
             command.Description = "Provides operations to manage the fill property of the microsoft.graph.workbookChartPointFormat entity.";
             var builder = new FillRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildClearCommand());
+            command.AddCommand(builder.BuildClearNavCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSetSolidColorCommand());
+            command.AddCommand(builder.BuildSetSolidColorNavCommand());
             return command;
         }
         /// <summary>

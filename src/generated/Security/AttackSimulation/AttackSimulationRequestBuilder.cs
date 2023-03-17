@@ -164,12 +164,15 @@ namespace ApiSdk.Security.AttackSimulation {
         /// <summary>
         /// Provides operations to manage the simulationAutomations property of the microsoft.graph.attackSimulationRoot entity.
         /// </summary>
-        public Command BuildSimulationAutomationsCommand() {
+        public Command BuildSimulationAutomationsNavCommand() {
             var command = new Command("simulation-automations");
             command.Description = "Provides operations to manage the simulationAutomations property of the microsoft.graph.attackSimulationRoot entity.";
             var builder = new SimulationAutomationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -177,12 +180,15 @@ namespace ApiSdk.Security.AttackSimulation {
         /// <summary>
         /// Provides operations to manage the simulations property of the microsoft.graph.attackSimulationRoot entity.
         /// </summary>
-        public Command BuildSimulationsCommand() {
+        public Command BuildSimulationsNavCommand() {
             var command = new Command("simulations");
             command.Description = "Provides operations to manage the simulations property of the microsoft.graph.attackSimulationRoot entity.";
             var builder = new SimulationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

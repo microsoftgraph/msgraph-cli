@@ -123,12 +123,15 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item {
         /// <summary>
         /// Provides operations to manage the learningContents property of the microsoft.graph.learningProvider entity.
         /// </summary>
-        public Command BuildLearningContentsCommand() {
+        public Command BuildLearningContentsNavCommand() {
             var command = new Command("learning-contents");
             command.Description = "Provides operations to manage the learningContents property of the microsoft.graph.learningProvider entity.";
             var builder = new LearningContentsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

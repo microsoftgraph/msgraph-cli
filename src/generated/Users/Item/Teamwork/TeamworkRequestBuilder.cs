@@ -29,12 +29,15 @@ namespace ApiSdk.Users.Item.Teamwork {
         /// <summary>
         /// Provides operations to manage the associatedTeams property of the microsoft.graph.userTeamwork entity.
         /// </summary>
-        public Command BuildAssociatedTeamsCommand() {
+        public Command BuildAssociatedTeamsNavCommand() {
             var command = new Command("associated-teams");
             command.Description = "Provides operations to manage the associatedTeams property of the microsoft.graph.userTeamwork entity.";
             var builder = new AssociatedTeamsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -138,12 +141,15 @@ namespace ApiSdk.Users.Item.Teamwork {
         /// <summary>
         /// Provides operations to manage the installedApps property of the microsoft.graph.userTeamwork entity.
         /// </summary>
-        public Command BuildInstalledAppsCommand() {
+        public Command BuildInstalledAppsNavCommand() {
             var command = new Command("installed-apps");
             command.Description = "Provides operations to manage the installedApps property of the microsoft.graph.userTeamwork entity.";
             var builder = new InstalledAppsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -209,7 +215,7 @@ namespace ApiSdk.Users.Item.Teamwork {
         /// <summary>
         /// Provides operations to call the sendActivityNotification method.
         /// </summary>
-        public Command BuildSendActivityNotificationCommand() {
+        public Command BuildSendActivityNotificationNavCommand() {
             var command = new Command("send-activity-notification");
             command.Description = "Provides operations to call the sendActivityNotification method.";
             var builder = new SendActivityNotificationRequestBuilder(PathParameters);

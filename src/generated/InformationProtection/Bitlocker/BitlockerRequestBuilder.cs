@@ -83,12 +83,15 @@ namespace ApiSdk.InformationProtection.Bitlocker {
         /// <summary>
         /// Provides operations to manage the recoveryKeys property of the microsoft.graph.bitlocker entity.
         /// </summary>
-        public Command BuildRecoveryKeysCommand() {
+        public Command BuildRecoveryKeysNavCommand() {
             var command = new Command("recovery-keys");
             command.Description = "Provides operations to manage the recoveryKeys property of the microsoft.graph.bitlocker entity.";
             var builder = new RecoveryKeysRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }

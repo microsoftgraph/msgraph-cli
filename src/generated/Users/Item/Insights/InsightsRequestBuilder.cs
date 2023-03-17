@@ -183,12 +183,15 @@ namespace ApiSdk.Users.Item.Insights {
         /// <summary>
         /// Provides operations to manage the shared property of the microsoft.graph.officeGraphInsights entity.
         /// </summary>
-        public Command BuildSharedCommand() {
+        public Command BuildSharedNavCommand() {
             var command = new Command("shared");
             command.Description = "Provides operations to manage the shared property of the microsoft.graph.officeGraphInsights entity.";
             var builder = new SharedRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -196,12 +199,15 @@ namespace ApiSdk.Users.Item.Insights {
         /// <summary>
         /// Provides operations to manage the trending property of the microsoft.graph.officeGraphInsights entity.
         /// </summary>
-        public Command BuildTrendingCommand() {
+        public Command BuildTrendingNavCommand() {
             var command = new Command("trending");
             command.Description = "Provides operations to manage the trending property of the microsoft.graph.officeGraphInsights entity.";
             var builder = new TrendingRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -209,12 +215,15 @@ namespace ApiSdk.Users.Item.Insights {
         /// <summary>
         /// Provides operations to manage the used property of the microsoft.graph.officeGraphInsights entity.
         /// </summary>
-        public Command BuildUsedCommand() {
+        public Command BuildUsedNavCommand() {
             var command = new Command("used");
             command.Description = "Provides operations to manage the used property of the microsoft.graph.officeGraphInsights entity.";
             var builder = new UsedRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

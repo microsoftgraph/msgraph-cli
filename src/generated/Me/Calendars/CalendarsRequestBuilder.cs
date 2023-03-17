@@ -28,24 +28,24 @@ namespace ApiSdk.Me.Calendars {
         /// <summary>
         /// Provides operations to manage the calendars property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new CalendarItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCalendarPermissionsCommand());
-            command.AddCommand(builder.BuildCalendarViewCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildEventsCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildGetScheduleCommand());
-            command.AddCommand(builder.BuildMultiValueExtendedPropertiesCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSingleValueExtendedPropertiesCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildCalendarPermissionsNavCommand());
+            commands.Add(builder.BuildCalendarViewNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildEventsNavCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildGetScheduleNavCommand());
+            commands.Add(builder.BuildMultiValueExtendedPropertiesNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildSingleValueExtendedPropertiesNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

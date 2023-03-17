@@ -34,7 +34,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// <summary>
         /// Provides operations to call the archive method.
         /// </summary>
-        public Command BuildArchiveCommand() {
+        public Command BuildArchiveNavCommand() {
             var command = new Command("archive");
             command.Description = "Provides operations to call the archive method.";
             var builder = new ArchiveRequestBuilder(PathParameters);
@@ -44,20 +44,20 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// <summary>
         /// Provides operations to manage the messages property of the microsoft.graph.serviceAnnouncement entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new ServiceUpdateMessageItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAttachmentsArchiveCommand());
-            command.AddCommand(builder.BuildAttachmentsCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildAttachmentsArchiveNavCommand());
+            commands.Add(builder.BuildAttachmentsNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildPatchCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -119,7 +119,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// <summary>
         /// Provides operations to call the favorite method.
         /// </summary>
-        public Command BuildFavoriteCommand() {
+        public Command BuildFavoriteNavCommand() {
             var command = new Command("favorite");
             command.Description = "Provides operations to call the favorite method.";
             var builder = new FavoriteRequestBuilder(PathParameters);
@@ -235,7 +235,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// <summary>
         /// Provides operations to call the markRead method.
         /// </summary>
-        public Command BuildMarkReadCommand() {
+        public Command BuildMarkReadNavCommand() {
             var command = new Command("mark-read");
             command.Description = "Provides operations to call the markRead method.";
             var builder = new MarkReadRequestBuilder(PathParameters);
@@ -245,7 +245,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// <summary>
         /// Provides operations to call the markUnread method.
         /// </summary>
-        public Command BuildMarkUnreadCommand() {
+        public Command BuildMarkUnreadNavCommand() {
             var command = new Command("mark-unread");
             command.Description = "Provides operations to call the markUnread method.";
             var builder = new MarkUnreadRequestBuilder(PathParameters);
@@ -255,7 +255,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// <summary>
         /// Provides operations to call the unarchive method.
         /// </summary>
-        public Command BuildUnarchiveCommand() {
+        public Command BuildUnarchiveNavCommand() {
             var command = new Command("unarchive");
             command.Description = "Provides operations to call the unarchive method.";
             var builder = new UnarchiveRequestBuilder(PathParameters);
@@ -265,7 +265,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages {
         /// <summary>
         /// Provides operations to call the unfavorite method.
         /// </summary>
-        public Command BuildUnfavoriteCommand() {
+        public Command BuildUnfavoriteNavCommand() {
             var command = new Command("unfavorite");
             command.Description = "Provides operations to call the unfavorite method.";
             var builder = new UnfavoriteRequestBuilder(PathParameters);

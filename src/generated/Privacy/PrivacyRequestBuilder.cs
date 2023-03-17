@@ -135,12 +135,15 @@ namespace ApiSdk.Privacy {
         /// <summary>
         /// Provides operations to manage the subjectRightsRequests property of the microsoft.graph.privacy entity.
         /// </summary>
-        public Command BuildSubjectRightsRequestsCommand() {
+        public Command BuildSubjectRightsRequestsNavCommand() {
             var command = new Command("subject-rights-requests");
             command.Description = "Provides operations to manage the subjectRightsRequests property of the microsoft.graph.privacy entity.";
             var builder = new SubjectRightsRequestsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

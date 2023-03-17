@@ -28,7 +28,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
         /// <summary>
         /// Provides operations to call the beginOnboarding method.
         /// </summary>
-        public Command BuildBeginOnboardingCommand() {
+        public Command BuildBeginOnboardingNavCommand() {
             var command = new Command("begin-onboarding");
             command.Description = "Provides operations to call the beginOnboarding method.";
             var builder = new BeginOnboardingRequestBuilder(PathParameters);
@@ -72,7 +72,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item {
         /// <summary>
         /// Provides operations to call the disconnect method.
         /// </summary>
-        public Command BuildDisconnectCommand() {
+        public Command BuildDisconnectNavCommand() {
             var command = new Command("disconnect");
             command.Description = "Provides operations to call the disconnect method.";
             var builder = new DisconnectRequestBuilder(PathParameters);

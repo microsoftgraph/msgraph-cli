@@ -76,12 +76,15 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item {
         /// <summary>
         /// Provides operations to manage the extensions property of the microsoft.graph.contact entity.
         /// </summary>
-        public Command BuildExtensionsCommand() {
+        public Command BuildExtensionsNavCommand() {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.contact entity.";
             var builder = new ExtensionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -163,12 +166,15 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item {
         /// <summary>
         /// Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.contact entity.
         /// </summary>
-        public Command BuildMultiValueExtendedPropertiesCommand() {
+        public Command BuildMultiValueExtendedPropertiesNavCommand() {
             var command = new Command("multi-value-extended-properties");
             command.Description = "Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.contact entity.";
             var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -246,11 +252,11 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item {
         /// <summary>
         /// Provides operations to manage the photo property of the microsoft.graph.contact entity.
         /// </summary>
-        public Command BuildPhotoCommand() {
+        public Command BuildPhotoNavCommand() {
             var command = new Command("photo");
             command.Description = "Provides operations to manage the photo property of the microsoft.graph.contact entity.";
             var builder = new PhotoRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildContentCommand());
+            command.AddCommand(builder.BuildContentNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
@@ -258,12 +264,15 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item {
         /// <summary>
         /// Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.contact entity.
         /// </summary>
-        public Command BuildSingleValueExtendedPropertiesCommand() {
+        public Command BuildSingleValueExtendedPropertiesNavCommand() {
             var command = new Command("single-value-extended-properties");
             command.Description = "Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.contact entity.";
             var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

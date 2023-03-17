@@ -199,19 +199,9 @@ namespace ApiSdk.Me.Chats.Item.InstalledApps.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to manage the teamsApp property of the microsoft.graph.teamsAppInstallation entity.
-        /// </summary>
-        public Command BuildTeamsAppCommand() {
-            var command = new Command("teams-app");
-            command.Description = "Provides operations to manage the teamsApp property of the microsoft.graph.teamsAppInstallation entity.";
-            var builder = new TeamsAppRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the teamsAppDefinition property of the microsoft.graph.teamsAppInstallation entity.
         /// </summary>
-        public Command BuildTeamsAppDefinitionCommand() {
+        public Command BuildTeamsAppDefinitionNavCommand() {
             var command = new Command("teams-app-definition");
             command.Description = "Provides operations to manage the teamsAppDefinition property of the microsoft.graph.teamsAppInstallation entity.";
             var builder = new TeamsAppDefinitionRequestBuilder(PathParameters);
@@ -219,9 +209,19 @@ namespace ApiSdk.Me.Chats.Item.InstalledApps.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to manage the teamsApp property of the microsoft.graph.teamsAppInstallation entity.
+        /// </summary>
+        public Command BuildTeamsAppNavCommand() {
+            var command = new Command("teams-app");
+            command.Description = "Provides operations to manage the teamsApp property of the microsoft.graph.teamsAppInstallation entity.";
+            var builder = new TeamsAppRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the upgrade method.
         /// </summary>
-        public Command BuildUpgradeCommand() {
+        public Command BuildUpgradeNavCommand() {
             var command = new Command("upgrade");
             command.Description = "Provides operations to call the upgrade method.";
             var builder = new UpgradeRequestBuilder(PathParameters);

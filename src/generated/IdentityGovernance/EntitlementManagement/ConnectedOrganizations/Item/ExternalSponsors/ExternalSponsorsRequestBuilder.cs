@@ -33,16 +33,15 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
         /// <summary>
         /// Gets an item from the ApiSdk.identityGovernance.entitlementManagement.connectedOrganizations.item.externalSponsors.item collection
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildRefCommand());
-            return command;
+            var commands = new List<Command>();
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -110,7 +109,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
         /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
-        public Command BuildDeltaCommand() {
+        public Command BuildDeltaNavCommand() {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
             var builder = new DeltaRequestBuilder(PathParameters);
@@ -120,7 +119,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
         /// <summary>
         /// Provides operations to call the getAvailableExtensionProperties method.
         /// </summary>
-        public Command BuildGetAvailableExtensionPropertiesCommand() {
+        public Command BuildGetAvailableExtensionPropertiesNavCommand() {
             var command = new Command("get-available-extension-properties");
             command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
             var builder = new GetAvailableExtensionPropertiesRequestBuilder(PathParameters);
@@ -130,7 +129,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
         /// <summary>
         /// Provides operations to call the getByIds method.
         /// </summary>
-        public Command BuildGetByIdsCommand() {
+        public Command BuildGetByIdsNavCommand() {
             var command = new Command("get-by-ids");
             command.Description = "Provides operations to call the getByIds method.";
             var builder = new GetByIdsRequestBuilder(PathParameters);
@@ -252,8 +251,9 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
         /// <summary>
         /// Provides operations to manage the collection of identityGovernance entities.
         /// </summary>
-        public Command BuildRefCommand() {
-            var command = new Command("ref");
+        public Command BuildRefNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildRefNavCommand();
             command.Description = "Provides operations to manage the collection of identityGovernance entities.";
             var builder = new RefRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
@@ -263,7 +263,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
         /// <summary>
         /// Provides operations to call the validateProperties method.
         /// </summary>
-        public Command BuildValidatePropertiesCommand() {
+        public Command BuildValidatePropertiesNavCommand() {
             var command = new Command("validate-properties");
             command.Description = "Provides operations to call the validateProperties method.";
             var builder = new ValidatePropertiesRequestBuilder(PathParameters);

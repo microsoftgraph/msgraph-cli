@@ -29,20 +29,20 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions {
         /// <summary>
         /// Provides operations to manage the definitions property of the microsoft.graph.accessReviewSet entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new AccessReviewScheduleDefinitionItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildInstancesCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildStopCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildInstancesNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildStopNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

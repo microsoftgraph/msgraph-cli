@@ -35,12 +35,15 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         /// <summary>
         /// Provides operations to manage the appointments property of the microsoft.graph.bookingBusiness entity.
         /// </summary>
-        public Command BuildAppointmentsCommand() {
+        public Command BuildAppointmentsNavCommand() {
             var command = new Command("appointments");
             command.Description = "Provides operations to manage the appointments property of the microsoft.graph.bookingBusiness entity.";
             var builder = new AppointmentsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -48,12 +51,15 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         /// <summary>
         /// Provides operations to manage the calendarView property of the microsoft.graph.bookingBusiness entity.
         /// </summary>
-        public Command BuildCalendarViewCommand() {
+        public Command BuildCalendarViewNavCommand() {
             var command = new Command("calendar-view");
             command.Description = "Provides operations to manage the calendarView property of the microsoft.graph.bookingBusiness entity.";
             var builder = new CalendarViewRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -61,12 +67,15 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         /// <summary>
         /// Provides operations to manage the customers property of the microsoft.graph.bookingBusiness entity.
         /// </summary>
-        public Command BuildCustomersCommand() {
+        public Command BuildCustomersNavCommand() {
             var command = new Command("customers");
             command.Description = "Provides operations to manage the customers property of the microsoft.graph.bookingBusiness entity.";
             var builder = new CustomersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -74,12 +83,15 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         /// <summary>
         /// Provides operations to manage the customQuestions property of the microsoft.graph.bookingBusiness entity.
         /// </summary>
-        public Command BuildCustomQuestionsCommand() {
+        public Command BuildCustomQuestionsNavCommand() {
             var command = new Command("custom-questions");
             command.Description = "Provides operations to manage the customQuestions property of the microsoft.graph.bookingBusiness entity.";
             var builder = new CustomQuestionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -183,7 +195,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         /// <summary>
         /// Provides operations to call the getStaffAvailability method.
         /// </summary>
-        public Command BuildGetStaffAvailabilityCommand() {
+        public Command BuildGetStaffAvailabilityNavCommand() {
             var command = new Command("get-staff-availability");
             command.Description = "Provides operations to call the getStaffAvailability method.";
             var builder = new GetStaffAvailabilityRequestBuilder(PathParameters);
@@ -251,7 +263,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         /// <summary>
         /// Provides operations to call the publish method.
         /// </summary>
-        public Command BuildPublishCommand() {
+        public Command BuildPublishNavCommand() {
             var command = new Command("publish");
             command.Description = "Provides operations to call the publish method.";
             var builder = new PublishRequestBuilder(PathParameters);
@@ -261,12 +273,15 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         /// <summary>
         /// Provides operations to manage the services property of the microsoft.graph.bookingBusiness entity.
         /// </summary>
-        public Command BuildServicesCommand() {
+        public Command BuildServicesNavCommand() {
             var command = new Command("services");
             command.Description = "Provides operations to manage the services property of the microsoft.graph.bookingBusiness entity.";
             var builder = new ServicesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -274,12 +289,15 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         /// <summary>
         /// Provides operations to manage the staffMembers property of the microsoft.graph.bookingBusiness entity.
         /// </summary>
-        public Command BuildStaffMembersCommand() {
+        public Command BuildStaffMembersNavCommand() {
             var command = new Command("staff-members");
             command.Description = "Provides operations to manage the staffMembers property of the microsoft.graph.bookingBusiness entity.";
             var builder = new StaffMembersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -287,7 +305,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item {
         /// <summary>
         /// Provides operations to call the unpublish method.
         /// </summary>
-        public Command BuildUnpublishCommand() {
+        public Command BuildUnpublishNavCommand() {
             var command = new Command("unpublish");
             command.Description = "Provides operations to call the unpublish method.";
             var builder = new UnpublishRequestBuilder(PathParameters);

@@ -27,7 +27,7 @@ namespace ApiSdk.Shares.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the media for the sharedDriveItem entity.
         /// </summary>
-        public Command BuildContentCommand() {
+        public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the sharedDriveItem entity.";
             var builder = new ContentRequestBuilder(PathParameters);

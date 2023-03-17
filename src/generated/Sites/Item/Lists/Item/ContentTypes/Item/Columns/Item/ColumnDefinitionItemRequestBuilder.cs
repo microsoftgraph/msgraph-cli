@@ -235,7 +235,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Columns.Item {
         /// <summary>
         /// Provides operations to manage the sourceColumn property of the microsoft.graph.columnDefinition entity.
         /// </summary>
-        public Command BuildSourceColumnCommand() {
+        public Command BuildSourceColumnNavCommand() {
             var command = new Command("source-column");
             command.Description = "Provides operations to manage the sourceColumn property of the microsoft.graph.columnDefinition entity.";
             var builder = new SourceColumnRequestBuilder(PathParameters);

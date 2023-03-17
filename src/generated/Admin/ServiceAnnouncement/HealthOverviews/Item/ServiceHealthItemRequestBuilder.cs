@@ -123,12 +123,15 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item {
         /// <summary>
         /// Provides operations to manage the issues property of the microsoft.graph.serviceHealth entity.
         /// </summary>
-        public Command BuildIssuesCommand() {
+        public Command BuildIssuesNavCommand() {
             var command = new Command("issues");
             command.Description = "Provides operations to manage the issues property of the microsoft.graph.serviceHealth entity.";
             var builder = new IssuesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

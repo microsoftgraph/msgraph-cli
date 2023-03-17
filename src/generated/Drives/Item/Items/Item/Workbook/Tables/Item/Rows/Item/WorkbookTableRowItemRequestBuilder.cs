@@ -235,7 +235,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Rows.Item {
         /// <summary>
         /// Provides operations to call the range method.
         /// </summary>
-        public Command BuildRangeCommand() {
+        public Command BuildRangeNavCommand() {
             var command = new Command("range");
             command.Description = "Provides operations to call the range method.";
             var builder = new RangeRequestBuilder(PathParameters);

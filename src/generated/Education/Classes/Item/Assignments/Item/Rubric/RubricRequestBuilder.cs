@@ -200,7 +200,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Rubric {
         /// <summary>
         /// Provides operations to manage the collection of educationRoot entities.
         /// </summary>
-        public Command BuildRefCommand() {
+        public Command BuildRefNavCommand() {
             var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of educationRoot entities.";
             var builder = new RefRequestBuilder(PathParameters);

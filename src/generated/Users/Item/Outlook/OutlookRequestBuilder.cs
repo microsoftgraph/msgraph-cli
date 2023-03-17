@@ -85,12 +85,15 @@ namespace ApiSdk.Users.Item.Outlook {
         /// <summary>
         /// Provides operations to manage the masterCategories property of the microsoft.graph.outlookUser entity.
         /// </summary>
-        public Command BuildMasterCategoriesCommand() {
+        public Command BuildMasterCategoriesNavCommand() {
             var command = new Command("master-categories");
             command.Description = "Provides operations to manage the masterCategories property of the microsoft.graph.outlookUser entity.";
             var builder = new MasterCategoriesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -98,7 +101,7 @@ namespace ApiSdk.Users.Item.Outlook {
         /// <summary>
         /// Provides operations to call the supportedLanguages method.
         /// </summary>
-        public Command BuildSupportedLanguagesCommand() {
+        public Command BuildSupportedLanguagesNavCommand() {
             var command = new Command("supported-languages");
             command.Description = "Provides operations to call the supportedLanguages method.";
             var builder = new SupportedLanguagesRequestBuilder(PathParameters);
@@ -108,7 +111,7 @@ namespace ApiSdk.Users.Item.Outlook {
         /// <summary>
         /// Provides operations to call the supportedTimeZones method.
         /// </summary>
-        public Command BuildSupportedTimeZonesCommand() {
+        public Command BuildSupportedTimeZonesNavCommand() {
             var command = new Command("supported-time-zones");
             command.Description = "Provides operations to call the supportedTimeZones method.";
             var builder = new SupportedTimeZonesRequestBuilder(PathParameters);

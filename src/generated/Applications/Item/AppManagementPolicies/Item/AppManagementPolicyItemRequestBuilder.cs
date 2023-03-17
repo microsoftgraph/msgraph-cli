@@ -22,7 +22,7 @@ namespace ApiSdk.Applications.Item.AppManagementPolicies.Item {
         /// <summary>
         /// Provides operations to manage the collection of application entities.
         /// </summary>
-        public Command BuildRefCommand() {
+        public Command BuildRefNavCommand() {
             var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of application entities.";
             var builder = new RefRequestBuilder(PathParameters);

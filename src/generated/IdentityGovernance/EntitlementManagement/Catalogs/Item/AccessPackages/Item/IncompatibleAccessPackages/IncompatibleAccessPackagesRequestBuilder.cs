@@ -29,16 +29,15 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
         /// <summary>
         /// Gets an item from the ApiSdk.identityGovernance.entitlementManagement.catalogs.item.accessPackages.item.incompatibleAccessPackages.item collection
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPackages.Item.IncompatibleAccessPackages.Item.AccessPackageItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildRefCommand());
-            return command;
+            var commands = new List<Command>();
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -166,8 +165,9 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
         /// <summary>
         /// Provides operations to manage the collection of identityGovernance entities.
         /// </summary>
-        public Command BuildRefCommand() {
-            var command = new Command("ref");
+        public Command BuildRefNavCommand() {
+            var accessPackageIndexer = new ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPackages.Item.IncompatibleAccessPackages.Item.AccessPackageItemRequestBuilder(PathParameters);
+            var command = accessPackageIndexer.BuildRefNavCommand();
             command.Description = "Provides operations to manage the collection of identityGovernance entities.";
             var builder = new RefRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());

@@ -28,19 +28,19 @@ namespace ApiSdk.Invitations {
         /// <summary>
         /// Provides operations to manage the collection of invitation entities.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new InvitationItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildInvitedUserCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildInvitedUserNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

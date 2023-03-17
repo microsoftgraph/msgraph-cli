@@ -135,7 +135,7 @@ namespace ApiSdk.Me.Chats.Item.PinnedMessages.Item {
         /// <summary>
         /// Provides operations to manage the message property of the microsoft.graph.pinnedChatMessageInfo entity.
         /// </summary>
-        public Command BuildMessageCommand() {
+        public Command BuildMessageNavCommand() {
             var command = new Command("message");
             command.Description = "Provides operations to manage the message property of the microsoft.graph.pinnedChatMessageInfo entity.";
             var builder = new MessageRequestBuilder(PathParameters);

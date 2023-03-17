@@ -62,7 +62,7 @@ namespace ApiSdk.Me.Authentication.PhoneMethods.Item {
         /// <summary>
         /// Provides operations to call the disableSmsSignIn method.
         /// </summary>
-        public Command BuildDisableSmsSignInCommand() {
+        public Command BuildDisableSmsSignInNavCommand() {
             var command = new Command("disable-sms-sign-in");
             command.Description = "Provides operations to call the disableSmsSignIn method.";
             var builder = new DisableSmsSignInRequestBuilder(PathParameters);
@@ -72,7 +72,7 @@ namespace ApiSdk.Me.Authentication.PhoneMethods.Item {
         /// <summary>
         /// Provides operations to call the enableSmsSignIn method.
         /// </summary>
-        public Command BuildEnableSmsSignInCommand() {
+        public Command BuildEnableSmsSignInNavCommand() {
             var command = new Command("enable-sms-sign-in");
             command.Description = "Provides operations to call the enableSmsSignIn method.";
             var builder = new EnableSmsSignInRequestBuilder(PathParameters);

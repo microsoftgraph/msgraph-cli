@@ -181,12 +181,15 @@ namespace ApiSdk.Communications.CallRecords.Item {
         /// <summary>
         /// Provides operations to manage the sessions property of the microsoft.graph.callRecords.callRecord entity.
         /// </summary>
-        public Command BuildSessionsCommand() {
+        public Command BuildSessionsNavCommand() {
             var command = new Command("sessions");
             command.Description = "Provides operations to manage the sessions property of the microsoft.graph.callRecords.callRecord entity.";
             var builder = new SessionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

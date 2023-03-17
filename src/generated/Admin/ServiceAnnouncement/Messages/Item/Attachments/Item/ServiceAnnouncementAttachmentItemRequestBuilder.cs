@@ -27,7 +27,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item {
         /// <summary>
         /// Provides operations to manage the media for the admin entity.
         /// </summary>
-        public Command BuildContentCommand() {
+        public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the admin entity.";
             var builder = new ContentRequestBuilder(PathParameters);

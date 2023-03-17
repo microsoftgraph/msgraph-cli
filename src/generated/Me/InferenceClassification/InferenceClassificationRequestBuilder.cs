@@ -76,12 +76,15 @@ namespace ApiSdk.Me.InferenceClassification {
         /// <summary>
         /// Provides operations to manage the overrides property of the microsoft.graph.inferenceClassification entity.
         /// </summary>
-        public Command BuildOverridesCommand() {
+        public Command BuildOverridesNavCommand() {
             var command = new Command("overrides");
             command.Description = "Provides operations to manage the overrides property of the microsoft.graph.inferenceClassification entity.";
             var builder = new OverridesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

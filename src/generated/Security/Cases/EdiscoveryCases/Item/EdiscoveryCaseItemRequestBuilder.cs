@@ -35,16 +35,19 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         /// <summary>
         /// Provides operations to manage the custodians property of the microsoft.graph.security.ediscoveryCase entity.
         /// </summary>
-        public Command BuildCustodiansCommand() {
+        public Command BuildCustodiansNavCommand() {
             var command = new Command("custodians");
             command.Description = "Provides operations to manage the custodians property of the microsoft.graph.security.ediscoveryCase entity.";
             var builder = new CustodiansRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildSecurityApplyHoldCommand());
-            command.AddCommand(builder.BuildSecurityRemoveHoldCommand());
+            command.AddCommand(builder.BuildSecurityApplyHoldNavCommand());
+            command.AddCommand(builder.BuildSecurityRemoveHoldNavCommand());
             return command;
         }
         /// <summary>
@@ -146,27 +149,33 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         /// <summary>
         /// Provides operations to manage the noncustodialDataSources property of the microsoft.graph.security.ediscoveryCase entity.
         /// </summary>
-        public Command BuildNoncustodialDataSourcesCommand() {
+        public Command BuildNoncustodialDataSourcesNavCommand() {
             var command = new Command("noncustodial-data-sources");
             command.Description = "Provides operations to manage the noncustodialDataSources property of the microsoft.graph.security.ediscoveryCase entity.";
             var builder = new NoncustodialDataSourcesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildSecurityApplyHoldCommand());
-            command.AddCommand(builder.BuildSecurityRemoveHoldCommand());
+            command.AddCommand(builder.BuildSecurityApplyHoldNavCommand());
+            command.AddCommand(builder.BuildSecurityRemoveHoldNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the operations property of the microsoft.graph.security.ediscoveryCase entity.
         /// </summary>
-        public Command BuildOperationsCommand() {
+        public Command BuildOperationsNavCommand() {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.security.ediscoveryCase entity.";
             var builder = new OperationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -232,12 +241,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         /// <summary>
         /// Provides operations to manage the reviewSets property of the microsoft.graph.security.ediscoveryCase entity.
         /// </summary>
-        public Command BuildReviewSetsCommand() {
+        public Command BuildReviewSetsNavCommand() {
             var command = new Command("review-sets");
             command.Description = "Provides operations to manage the reviewSets property of the microsoft.graph.security.ediscoveryCase entity.";
             var builder = new ReviewSetsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -245,12 +257,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         /// <summary>
         /// Provides operations to manage the searches property of the microsoft.graph.security.ediscoveryCase entity.
         /// </summary>
-        public Command BuildSearchesCommand() {
+        public Command BuildSearchesNavCommand() {
             var command = new Command("searches");
             command.Description = "Provides operations to manage the searches property of the microsoft.graph.security.ediscoveryCase entity.";
             var builder = new SearchesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -258,7 +273,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         /// <summary>
         /// Provides operations to call the close method.
         /// </summary>
-        public Command BuildSecurityCloseCommand() {
+        public Command BuildSecurityCloseNavCommand() {
             var command = new Command("security-close");
             command.Description = "Provides operations to call the close method.";
             var builder = new SecurityCloseRequestBuilder(PathParameters);
@@ -268,7 +283,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         /// <summary>
         /// Provides operations to call the reopen method.
         /// </summary>
-        public Command BuildSecurityReopenCommand() {
+        public Command BuildSecurityReopenNavCommand() {
             var command = new Command("security-reopen");
             command.Description = "Provides operations to call the reopen method.";
             var builder = new SecurityReopenRequestBuilder(PathParameters);
@@ -278,28 +293,31 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         /// <summary>
         /// Provides operations to manage the settings property of the microsoft.graph.security.ediscoveryCase entity.
         /// </summary>
-        public Command BuildSettingsCommand() {
+        public Command BuildSettingsNavCommand() {
             var command = new Command("settings");
             command.Description = "Provides operations to manage the settings property of the microsoft.graph.security.ediscoveryCase entity.";
             var builder = new SettingsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSecurityResetToDefaultCommand());
+            command.AddCommand(builder.BuildSecurityResetToDefaultNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the tags property of the microsoft.graph.security.ediscoveryCase entity.
         /// </summary>
-        public Command BuildTagsCommand() {
+        public Command BuildTagsNavCommand() {
             var command = new Command("tags");
             command.Description = "Provides operations to manage the tags property of the microsoft.graph.security.ediscoveryCase entity.";
             var builder = new TagsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildSecurityAsHierarchyCommand());
+            command.AddCommand(builder.BuildSecurityAsHierarchyNavCommand());
             return command;
         }
         /// <summary>

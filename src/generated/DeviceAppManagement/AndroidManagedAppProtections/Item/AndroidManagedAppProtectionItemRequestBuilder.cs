@@ -28,12 +28,15 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
         /// <summary>
         /// Provides operations to manage the apps property of the microsoft.graph.androidManagedAppProtection entity.
         /// </summary>
-        public Command BuildAppsCommand() {
+        public Command BuildAppsNavCommand() {
             var command = new Command("apps");
             command.Description = "Provides operations to manage the apps property of the microsoft.graph.androidManagedAppProtection entity.";
             var builder = new AppsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -75,7 +78,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
         /// <summary>
         /// Provides operations to manage the deploymentSummary property of the microsoft.graph.androidManagedAppProtection entity.
         /// </summary>
-        public Command BuildDeploymentSummaryCommand() {
+        public Command BuildDeploymentSummaryNavCommand() {
             var command = new Command("deployment-summary");
             command.Description = "Provides operations to manage the deploymentSummary property of the microsoft.graph.androidManagedAppProtection entity.";
             var builder = new DeploymentSummaryRequestBuilder(PathParameters);

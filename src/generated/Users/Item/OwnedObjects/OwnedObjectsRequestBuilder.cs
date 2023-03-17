@@ -31,19 +31,16 @@ namespace ApiSdk.Users.Item.OwnedObjects {
         /// <summary>
         /// Provides operations to manage the ownedObjects property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildGraphApplicationCommand());
-            command.AddCommand(builder.BuildGraphGroupCommand());
-            command.AddCommand(builder.BuildGraphServicePrincipalCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildGetCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -53,33 +50,36 @@ namespace ApiSdk.Users.Item.OwnedObjects {
         /// <summary>
         /// Casts the previous resource to application.
         /// </summary>
-        public Command BuildGraphApplicationCommand() {
-            var command = new Command("graph-application");
+        public Command BuildGraphApplicationNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildGraphApplicationNavCommand();
             command.Description = "Casts the previous resource to application.";
             var builder = new GraphApplicationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
-        public Command BuildGraphGroupCommand() {
-            var command = new Command("graph-group");
+        public Command BuildGraphGroupNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildGraphGroupNavCommand();
             command.Description = "Casts the previous resource to group.";
             var builder = new GraphGroupRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        public Command BuildGraphServicePrincipalCommand() {
-            var command = new Command("graph-service-principal");
+        public Command BuildGraphServicePrincipalNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildGraphServicePrincipalNavCommand();
             command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }

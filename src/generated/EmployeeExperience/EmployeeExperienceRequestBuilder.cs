@@ -83,12 +83,15 @@ namespace ApiSdk.EmployeeExperience {
         /// <summary>
         /// Provides operations to manage the learningProviders property of the microsoft.graph.employeeExperience entity.
         /// </summary>
-        public Command BuildLearningProvidersCommand() {
+        public Command BuildLearningProvidersNavCommand() {
             var command = new Command("learning-providers");
             command.Description = "Provides operations to manage the learningProviders property of the microsoft.graph.employeeExperience entity.";
             var builder = new LearningProvidersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

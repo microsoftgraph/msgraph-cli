@@ -29,14 +29,17 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item {
         /// <summary>
         /// Provides operations to manage the contacts property of the microsoft.graph.contactFolder entity.
         /// </summary>
-        public Command BuildContactsCommand() {
+        public Command BuildContactsNavCommand() {
             var command = new Command("contacts");
             command.Description = "Provides operations to manage the contacts property of the microsoft.graph.contactFolder entity.";
             var builder = new ContactsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
+            command.AddCommand(builder.BuildDeltaNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -163,12 +166,15 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item {
         /// <summary>
         /// Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.contactFolder entity.
         /// </summary>
-        public Command BuildMultiValueExtendedPropertiesCommand() {
+        public Command BuildMultiValueExtendedPropertiesNavCommand() {
             var command = new Command("multi-value-extended-properties");
             command.Description = "Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.contactFolder entity.";
             var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -246,12 +252,15 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item {
         /// <summary>
         /// Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.contactFolder entity.
         /// </summary>
-        public Command BuildSingleValueExtendedPropertiesCommand() {
+        public Command BuildSingleValueExtendedPropertiesNavCommand() {
             var command = new Command("single-value-extended-properties");
             command.Description = "Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.contactFolder entity.";
             var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

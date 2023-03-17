@@ -31,12 +31,15 @@ namespace ApiSdk.Identity {
         /// <summary>
         /// Provides operations to manage the apiConnectors property of the microsoft.graph.identityContainer entity.
         /// </summary>
-        public Command BuildApiConnectorsCommand() {
+        public Command BuildApiConnectorsNavCommand() {
             var command = new Command("api-connectors");
             command.Description = "Provides operations to manage the apiConnectors property of the microsoft.graph.identityContainer entity.";
             var builder = new ApiConnectorsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -44,12 +47,15 @@ namespace ApiSdk.Identity {
         /// <summary>
         /// Provides operations to manage the b2xUserFlows property of the microsoft.graph.identityContainer entity.
         /// </summary>
-        public Command BuildB2xUserFlowsCommand() {
+        public Command BuildB2xUserFlowsNavCommand() {
             var command = new Command("b2x-user-flows");
             command.Description = "Provides operations to manage the b2xUserFlows property of the microsoft.graph.identityContainer entity.";
             var builder = new B2xUserFlowsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -57,17 +63,17 @@ namespace ApiSdk.Identity {
         /// <summary>
         /// Provides operations to manage the conditionalAccess property of the microsoft.graph.identityContainer entity.
         /// </summary>
-        public Command BuildConditionalAccessCommand() {
+        public Command BuildConditionalAccessNavCommand() {
             var command = new Command("conditional-access");
             command.Description = "Provides operations to manage the conditionalAccess property of the microsoft.graph.identityContainer entity.";
             var builder = new ConditionalAccessRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAuthenticationContextClassReferencesCommand());
+            command.AddCommand(builder.BuildAuthenticationContextClassReferencesNavCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildNamedLocationsCommand());
+            command.AddCommand(builder.BuildNamedLocationsNavCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPoliciesCommand());
-            command.AddCommand(builder.BuildTemplatesCommand());
+            command.AddCommand(builder.BuildPoliciesNavCommand());
+            command.AddCommand(builder.BuildTemplatesNavCommand());
             return command;
         }
         /// <summary>
@@ -129,13 +135,16 @@ namespace ApiSdk.Identity {
         /// <summary>
         /// Provides operations to manage the identityProviders property of the microsoft.graph.identityContainer entity.
         /// </summary>
-        public Command BuildIdentityProvidersCommand() {
+        public Command BuildIdentityProvidersNavCommand() {
             var command = new Command("identity-providers");
             command.Description = "Provides operations to manage the identityProviders property of the microsoft.graph.identityContainer entity.";
             var builder = new IdentityProvidersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAvailableProviderTypesCommand());
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildAvailableProviderTypesNavCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -195,12 +204,15 @@ namespace ApiSdk.Identity {
         /// <summary>
         /// Provides operations to manage the userFlowAttributes property of the microsoft.graph.identityContainer entity.
         /// </summary>
-        public Command BuildUserFlowAttributesCommand() {
+        public Command BuildUserFlowAttributesNavCommand() {
             var command = new Command("user-flow-attributes");
             command.Description = "Provides operations to manage the userFlowAttributes property of the microsoft.graph.identityContainer entity.";
             var builder = new UserFlowAttributesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

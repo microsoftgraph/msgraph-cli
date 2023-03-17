@@ -27,7 +27,7 @@ namespace ApiSdk.Groups.Item.Photos.Item {
         /// <summary>
         /// Provides operations to manage the media for the group entity.
         /// </summary>
-        public Command BuildContentCommand() {
+        public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the group entity.";
             var builder = new ContentRequestBuilder(PathParameters);

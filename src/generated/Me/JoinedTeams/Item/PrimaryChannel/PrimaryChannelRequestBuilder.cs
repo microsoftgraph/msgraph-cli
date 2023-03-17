@@ -35,7 +35,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel {
         /// <summary>
         /// Provides operations to call the completeMigration method.
         /// </summary>
-        public Command BuildCompleteMigrationCommand() {
+        public Command BuildCompleteMigrationNavCommand() {
             var command = new Command("complete-migration");
             command.Description = "Provides operations to call the completeMigration method.";
             var builder = new CompleteMigrationRequestBuilder(PathParameters);
@@ -79,7 +79,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel {
         /// <summary>
         /// Provides operations to call the doesUserHaveAccess method.
         /// </summary>
-        public Command BuildDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameCommand() {
+        public Command BuildDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameNavCommand() {
             var command = new Command("does-user-have-accessuser-id-user-id-tenant-id-tenant-id-user-principal-name-user-principal-name");
             command.Description = "Provides operations to call the doesUserHaveAccess method.";
             var builder = new DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameRequestBuilder(PathParameters);
@@ -89,11 +89,11 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel {
         /// <summary>
         /// Provides operations to manage the filesFolder property of the microsoft.graph.channel entity.
         /// </summary>
-        public Command BuildFilesFolderCommand() {
+        public Command BuildFilesFolderNavCommand() {
             var command = new Command("files-folder");
             command.Description = "Provides operations to manage the filesFolder property of the microsoft.graph.channel entity.";
             var builder = new FilesFolderRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildContentCommand());
+            command.AddCommand(builder.BuildContentNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -163,13 +163,16 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel {
         /// <summary>
         /// Provides operations to manage the members property of the microsoft.graph.channel entity.
         /// </summary>
-        public Command BuildMembersCommand() {
+        public Command BuildMembersNavCommand() {
             var command = new Command("members");
             command.Description = "Provides operations to manage the members property of the microsoft.graph.channel entity.";
             var builder = new MembersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAddCommand());
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildAddNavCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -177,14 +180,17 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel {
         /// <summary>
         /// Provides operations to manage the messages property of the microsoft.graph.channel entity.
         /// </summary>
-        public Command BuildMessagesCommand() {
+        public Command BuildMessagesNavCommand() {
             var command = new Command("messages");
             command.Description = "Provides operations to manage the messages property of the microsoft.graph.channel entity.";
             var builder = new MessagesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
+            command.AddCommand(builder.BuildDeltaNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -249,7 +255,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel {
         /// <summary>
         /// Provides operations to call the provisionEmail method.
         /// </summary>
-        public Command BuildProvisionEmailCommand() {
+        public Command BuildProvisionEmailNavCommand() {
             var command = new Command("provision-email");
             command.Description = "Provides operations to call the provisionEmail method.";
             var builder = new ProvisionEmailRequestBuilder(PathParameters);
@@ -259,7 +265,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel {
         /// <summary>
         /// Provides operations to call the removeEmail method.
         /// </summary>
-        public Command BuildRemoveEmailCommand() {
+        public Command BuildRemoveEmailNavCommand() {
             var command = new Command("remove-email");
             command.Description = "Provides operations to call the removeEmail method.";
             var builder = new RemoveEmailRequestBuilder(PathParameters);
@@ -269,12 +275,15 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel {
         /// <summary>
         /// Provides operations to manage the sharedWithTeams property of the microsoft.graph.channel entity.
         /// </summary>
-        public Command BuildSharedWithTeamsCommand() {
+        public Command BuildSharedWithTeamsNavCommand() {
             var command = new Command("shared-with-teams");
             command.Description = "Provides operations to manage the sharedWithTeams property of the microsoft.graph.channel entity.";
             var builder = new SharedWithTeamsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -282,12 +291,15 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel {
         /// <summary>
         /// Provides operations to manage the tabs property of the microsoft.graph.channel entity.
         /// </summary>
-        public Command BuildTabsCommand() {
+        public Command BuildTabsNavCommand() {
             var command = new Command("tabs");
             command.Description = "Provides operations to manage the tabs property of the microsoft.graph.channel entity.";
             var builder = new TabsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

@@ -29,24 +29,24 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages {
         /// <summary>
         /// Provides operations to manage the accessPackages property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new AccessPackageItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAccessPackagesIncompatibleWithCommand());
-            command.AddCommand(builder.BuildAssignmentPoliciesCommand());
-            command.AddCommand(builder.BuildCatalogCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetApplicablePolicyRequirementsCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildIncompatibleAccessPackagesCommand());
-            command.AddCommand(builder.BuildIncompatibleGroupsCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildAccessPackagesIncompatibleWithNavCommand());
+            commands.Add(builder.BuildAssignmentPoliciesNavCommand());
+            commands.Add(builder.BuildCatalogNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetApplicablePolicyRequirementsNavCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildIncompatibleAccessPackagesNavCommand());
+            commands.Add(builder.BuildIncompatibleGroupsNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

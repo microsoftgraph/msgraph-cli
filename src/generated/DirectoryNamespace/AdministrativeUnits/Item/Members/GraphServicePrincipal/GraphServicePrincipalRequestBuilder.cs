@@ -27,7 +27,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.GraphServic
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

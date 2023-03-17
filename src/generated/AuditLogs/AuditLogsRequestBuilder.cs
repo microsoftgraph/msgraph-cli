@@ -29,12 +29,15 @@ namespace ApiSdk.AuditLogs {
         /// <summary>
         /// Provides operations to manage the directoryAudits property of the microsoft.graph.auditLogRoot entity.
         /// </summary>
-        public Command BuildDirectoryAuditsCommand() {
+        public Command BuildDirectoryAuditsNavCommand() {
             var command = new Command("directory-audits");
             command.Description = "Provides operations to manage the directoryAudits property of the microsoft.graph.auditLogRoot entity.";
             var builder = new DirectoryAuditsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -150,12 +153,15 @@ namespace ApiSdk.AuditLogs {
         /// <summary>
         /// Provides operations to manage the provisioning property of the microsoft.graph.auditLogRoot entity.
         /// </summary>
-        public Command BuildProvisioningCommand() {
+        public Command BuildProvisioningNavCommand() {
             var command = new Command("provisioning");
             command.Description = "Provides operations to manage the provisioning property of the microsoft.graph.auditLogRoot entity.";
             var builder = new ProvisioningRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -163,12 +169,15 @@ namespace ApiSdk.AuditLogs {
         /// <summary>
         /// Provides operations to manage the signIns property of the microsoft.graph.auditLogRoot entity.
         /// </summary>
-        public Command BuildSignInsCommand() {
+        public Command BuildSignInsNavCommand() {
             var command = new Command("sign-ins");
             command.Description = "Provides operations to manage the signIns property of the microsoft.graph.auditLogRoot entity.";
             var builder = new SignInsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

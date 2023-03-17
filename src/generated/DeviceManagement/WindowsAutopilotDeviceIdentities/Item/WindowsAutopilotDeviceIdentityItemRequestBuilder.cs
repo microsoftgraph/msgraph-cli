@@ -29,7 +29,7 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
         /// <summary>
         /// Provides operations to call the assignUserToDevice method.
         /// </summary>
-        public Command BuildAssignUserToDeviceCommand() {
+        public Command BuildAssignUserToDeviceNavCommand() {
             var command = new Command("assign-user-to-device");
             command.Description = "Provides operations to call the assignUserToDevice method.";
             var builder = new AssignUserToDeviceRequestBuilder(PathParameters);
@@ -193,7 +193,7 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
         /// <summary>
         /// Provides operations to call the unassignUserFromDevice method.
         /// </summary>
-        public Command BuildUnassignUserFromDeviceCommand() {
+        public Command BuildUnassignUserFromDeviceNavCommand() {
             var command = new Command("unassign-user-from-device");
             command.Description = "Provides operations to call the unassignUserFromDevice method.";
             var builder = new UnassignUserFromDeviceRequestBuilder(PathParameters);
@@ -203,7 +203,7 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item {
         /// <summary>
         /// Provides operations to call the updateDeviceProperties method.
         /// </summary>
-        public Command BuildUpdateDevicePropertiesCommand() {
+        public Command BuildUpdateDevicePropertiesNavCommand() {
             var command = new Command("update-device-properties");
             command.Description = "Provides operations to call the updateDeviceProperties method.";
             var builder = new UpdateDevicePropertiesRequestBuilder(PathParameters);

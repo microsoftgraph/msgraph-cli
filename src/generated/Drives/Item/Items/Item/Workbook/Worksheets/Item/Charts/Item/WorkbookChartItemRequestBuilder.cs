@@ -39,27 +39,27 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
         /// <summary>
         /// Provides operations to manage the axes property of the microsoft.graph.workbookChart entity.
         /// </summary>
-        public Command BuildAxesCommand() {
+        public Command BuildAxesNavCommand() {
             var command = new Command("axes");
             command.Description = "Provides operations to manage the axes property of the microsoft.graph.workbookChart entity.";
             var builder = new AxesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCategoryAxisCommand());
+            command.AddCommand(builder.BuildCategoryAxisNavCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSeriesAxisCommand());
-            command.AddCommand(builder.BuildValueAxisCommand());
+            command.AddCommand(builder.BuildSeriesAxisNavCommand());
+            command.AddCommand(builder.BuildValueAxisNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the dataLabels property of the microsoft.graph.workbookChart entity.
         /// </summary>
-        public Command BuildDataLabelsCommand() {
+        public Command BuildDataLabelsNavCommand() {
             var command = new Command("data-labels");
             command.Description = "Provides operations to manage the dataLabels property of the microsoft.graph.workbookChart entity.";
             var builder = new DataLabelsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildFormatCommand());
+            command.AddCommand(builder.BuildFormatNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
@@ -119,13 +119,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
         /// <summary>
         /// Provides operations to manage the format property of the microsoft.graph.workbookChart entity.
         /// </summary>
-        public Command BuildFormatCommand() {
+        public Command BuildFormatNavCommand() {
             var command = new Command("format");
             command.Description = "Provides operations to manage the format property of the microsoft.graph.workbookChart entity.";
             var builder = new FormatRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildFillCommand());
-            command.AddCommand(builder.BuildFontCommand());
+            command.AddCommand(builder.BuildFillNavCommand());
+            command.AddCommand(builder.BuildFontNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
@@ -213,7 +213,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
         /// <summary>
         /// Provides operations to call the image method.
         /// </summary>
-        public Command BuildImageCommand() {
+        public Command BuildImageNavCommand() {
             var command = new Command("image");
             command.Description = "Provides operations to call the image method.";
             var builder = new ImageRequestBuilder(PathParameters);
@@ -223,12 +223,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
         /// <summary>
         /// Provides operations to manage the legend property of the microsoft.graph.workbookChart entity.
         /// </summary>
-        public Command BuildLegendCommand() {
+        public Command BuildLegendNavCommand() {
             var command = new Command("legend");
             command.Description = "Provides operations to manage the legend property of the microsoft.graph.workbookChart entity.";
             var builder = new LegendRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildFormatCommand());
+            command.AddCommand(builder.BuildFormatNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
@@ -312,12 +312,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
         /// <summary>
         /// Provides operations to manage the series property of the microsoft.graph.workbookChart entity.
         /// </summary>
-        public Command BuildSeriesCommand() {
+        public Command BuildSeriesNavCommand() {
             var command = new Command("series");
             command.Description = "Provides operations to manage the series property of the microsoft.graph.workbookChart entity.";
             var builder = new SeriesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -325,7 +328,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
         /// <summary>
         /// Provides operations to call the setData method.
         /// </summary>
-        public Command BuildSetDataCommand() {
+        public Command BuildSetDataNavCommand() {
             var command = new Command("set-data");
             command.Description = "Provides operations to call the setData method.";
             var builder = new SetDataRequestBuilder(PathParameters);
@@ -335,7 +338,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
         /// <summary>
         /// Provides operations to call the setPosition method.
         /// </summary>
-        public Command BuildSetPositionCommand() {
+        public Command BuildSetPositionNavCommand() {
             var command = new Command("set-position");
             command.Description = "Provides operations to call the setPosition method.";
             var builder = new SetPositionRequestBuilder(PathParameters);
@@ -345,12 +348,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
         /// <summary>
         /// Provides operations to manage the title property of the microsoft.graph.workbookChart entity.
         /// </summary>
-        public Command BuildTitleCommand() {
+        public Command BuildTitleNavCommand() {
             var command = new Command("title");
             command.Description = "Provides operations to manage the title property of the microsoft.graph.workbookChart entity.";
             var builder = new TitleRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildFormatCommand());
+            command.AddCommand(builder.BuildFormatNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
@@ -358,7 +361,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
         /// <summary>
         /// Provides operations to manage the worksheet property of the microsoft.graph.workbookChart entity.
         /// </summary>
-        public Command BuildWorksheetCommand() {
+        public Command BuildWorksheetNavCommand() {
             var command = new Command("worksheet");
             command.Description = "Provides operations to manage the worksheet property of the microsoft.graph.workbookChart entity.";
             var builder = new WorksheetRequestBuilder(PathParameters);

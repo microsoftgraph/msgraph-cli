@@ -32,7 +32,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.I
         /// <summary>
         /// Provides operations to manage the media for the user entity.
         /// </summary>
-        public Command BuildContentCommand() {
+        public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the user entity.";
             var builder = new ContentRequestBuilder(PathParameters);
@@ -43,7 +43,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.I
         /// <summary>
         /// Provides operations to call the copyToSection method.
         /// </summary>
-        public Command BuildCopyToSectionCommand() {
+        public Command BuildCopyToSectionNavCommand() {
             var command = new Command("copy-to-section");
             command.Description = "Provides operations to call the copyToSection method.";
             var builder = new CopyToSectionRequestBuilder(PathParameters);
@@ -197,7 +197,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.I
         /// <summary>
         /// Provides operations to call the onenotePatchContent method.
         /// </summary>
-        public Command BuildOnenotePatchContentCommand() {
+        public Command BuildOnenotePatchContentNavCommand() {
             var command = new Command("onenote-patch-content");
             command.Description = "Provides operations to call the onenotePatchContent method.";
             var builder = new OnenotePatchContentRequestBuilder(PathParameters);
@@ -207,7 +207,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.I
         /// <summary>
         /// Provides operations to manage the parentNotebook property of the microsoft.graph.onenotePage entity.
         /// </summary>
-        public Command BuildParentNotebookCommand() {
+        public Command BuildParentNotebookNavCommand() {
             var command = new Command("parent-notebook");
             command.Description = "Provides operations to manage the parentNotebook property of the microsoft.graph.onenotePage entity.";
             var builder = new ParentNotebookRequestBuilder(PathParameters);
@@ -217,7 +217,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.I
         /// <summary>
         /// Provides operations to manage the parentSection property of the microsoft.graph.onenotePage entity.
         /// </summary>
-        public Command BuildParentSectionCommand() {
+        public Command BuildParentSectionNavCommand() {
             var command = new Command("parent-section");
             command.Description = "Provides operations to manage the parentSection property of the microsoft.graph.onenotePage entity.";
             var builder = new ParentSectionRequestBuilder(PathParameters);
@@ -309,7 +309,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.I
         /// <summary>
         /// Provides operations to call the preview method.
         /// </summary>
-        public Command BuildPreviewCommand() {
+        public Command BuildPreviewNavCommand() {
             var command = new Command("preview");
             command.Description = "Provides operations to call the preview method.";
             var builder = new PreviewRequestBuilder(PathParameters);

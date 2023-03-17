@@ -28,22 +28,22 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item.Tasks {
         /// <summary>
         /// Provides operations to manage the tasks property of the microsoft.graph.plannerBucket entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new PlannerTaskItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAssignedToTaskBoardFormatCommand());
-            command.AddCommand(builder.BuildBucketTaskBoardFormatCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildDetailsCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildProgressTaskBoardFormatCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildAssignedToTaskBoardFormatNavCommand());
+            commands.Add(builder.BuildBucketTaskBoardFormatNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildDetailsNavCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildProgressTaskBoardFormatNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

@@ -27,12 +27,15 @@ namespace ApiSdk.Teams.Item.Channels.Item.SharedWithTeams.Item {
         /// <summary>
         /// Provides operations to manage the allowedMembers property of the microsoft.graph.sharedWithChannelTeamInfo entity.
         /// </summary>
-        public Command BuildAllowedMembersCommand() {
+        public Command BuildAllowedMembersNavCommand() {
             var command = new Command("allowed-members");
             command.Description = "Provides operations to manage the allowedMembers property of the microsoft.graph.sharedWithChannelTeamInfo entity.";
             var builder = new AllowedMembersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }

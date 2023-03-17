@@ -33,7 +33,7 @@ namespace ApiSdk.DirectoryRoles.Item {
         /// <summary>
         /// Provides operations to call the checkMemberGroups method.
         /// </summary>
-        public Command BuildCheckMemberGroupsCommand() {
+        public Command BuildCheckMemberGroupsNavCommand() {
             var command = new Command("check-member-groups");
             command.Description = "Provides operations to call the checkMemberGroups method.";
             var builder = new CheckMemberGroupsRequestBuilder(PathParameters);
@@ -43,7 +43,7 @@ namespace ApiSdk.DirectoryRoles.Item {
         /// <summary>
         /// Provides operations to call the checkMemberObjects method.
         /// </summary>
-        public Command BuildCheckMemberObjectsCommand() {
+        public Command BuildCheckMemberObjectsNavCommand() {
             var command = new Command("check-member-objects");
             command.Description = "Provides operations to call the checkMemberObjects method.";
             var builder = new CheckMemberObjectsRequestBuilder(PathParameters);
@@ -150,7 +150,7 @@ namespace ApiSdk.DirectoryRoles.Item {
         /// <summary>
         /// Provides operations to call the getMemberGroups method.
         /// </summary>
-        public Command BuildGetMemberGroupsCommand() {
+        public Command BuildGetMemberGroupsNavCommand() {
             var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
             var builder = new GetMemberGroupsRequestBuilder(PathParameters);
@@ -160,7 +160,7 @@ namespace ApiSdk.DirectoryRoles.Item {
         /// <summary>
         /// Provides operations to call the getMemberObjects method.
         /// </summary>
-        public Command BuildGetMemberObjectsCommand() {
+        public Command BuildGetMemberObjectsNavCommand() {
             var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
             var builder = new GetMemberObjectsRequestBuilder(PathParameters);
@@ -170,20 +170,23 @@ namespace ApiSdk.DirectoryRoles.Item {
         /// <summary>
         /// Provides operations to manage the members property of the microsoft.graph.directoryRole entity.
         /// </summary>
-        public Command BuildMembersCommand() {
+        public Command BuildMembersNavCommand() {
             var command = new Command("members");
             command.Description = "Provides operations to manage the members property of the microsoft.graph.directoryRole entity.";
             var builder = new MembersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGraphApplicationCommand());
-            command.AddCommand(builder.BuildGraphDeviceCommand());
-            command.AddCommand(builder.BuildGraphGroupCommand());
-            command.AddCommand(builder.BuildGraphOrgContactCommand());
-            command.AddCommand(builder.BuildGraphServicePrincipalCommand());
-            command.AddCommand(builder.BuildGraphUserCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildGraphApplicationNavCommand());
+            command.AddCommand(builder.BuildGraphDeviceNavCommand());
+            command.AddCommand(builder.BuildGraphGroupNavCommand());
+            command.AddCommand(builder.BuildGraphOrgContactNavCommand());
+            command.AddCommand(builder.BuildGraphServicePrincipalNavCommand());
+            command.AddCommand(builder.BuildGraphUserNavCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildRefNavCommand());
             return command;
         }
         /// <summary>
@@ -247,7 +250,7 @@ namespace ApiSdk.DirectoryRoles.Item {
         /// <summary>
         /// Provides operations to call the restore method.
         /// </summary>
-        public Command BuildRestoreCommand() {
+        public Command BuildRestoreNavCommand() {
             var command = new Command("restore");
             command.Description = "Provides operations to call the restore method.";
             var builder = new RestoreRequestBuilder(PathParameters);
@@ -257,12 +260,15 @@ namespace ApiSdk.DirectoryRoles.Item {
         /// <summary>
         /// Provides operations to manage the scopedMembers property of the microsoft.graph.directoryRole entity.
         /// </summary>
-        public Command BuildScopedMembersCommand() {
+        public Command BuildScopedMembersNavCommand() {
             var command = new Command("scoped-members");
             command.Description = "Provides operations to manage the scopedMembers property of the microsoft.graph.directoryRole entity.";
             var builder = new ScopedMembersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

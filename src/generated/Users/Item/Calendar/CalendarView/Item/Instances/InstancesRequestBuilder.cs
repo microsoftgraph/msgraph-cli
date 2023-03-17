@@ -29,28 +29,28 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances {
         /// <summary>
         /// Provides operations to manage the instances property of the microsoft.graph.event entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances.Item.EventItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAcceptCommand());
-            command.AddCommand(builder.BuildAttachmentsCommand());
-            command.AddCommand(builder.BuildCalendarCommand());
-            command.AddCommand(builder.BuildCancelCommand());
-            command.AddCommand(builder.BuildDeclineCommand());
-            command.AddCommand(builder.BuildDismissReminderCommand());
-            command.AddCommand(builder.BuildExtensionsCommand());
-            command.AddCommand(builder.BuildForwardCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMultiValueExtendedPropertiesCommand());
-            command.AddCommand(builder.BuildSingleValueExtendedPropertiesCommand());
-            command.AddCommand(builder.BuildSnoozeReminderCommand());
-            command.AddCommand(builder.BuildTentativelyAcceptCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildAcceptNavCommand());
+            commands.Add(builder.BuildAttachmentsNavCommand());
+            commands.Add(builder.BuildCalendarNavCommand());
+            commands.Add(builder.BuildCancelNavCommand());
+            commands.Add(builder.BuildDeclineNavCommand());
+            commands.Add(builder.BuildDismissReminderNavCommand());
+            commands.Add(builder.BuildExtensionsNavCommand());
+            commands.Add(builder.BuildForwardNavCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildMultiValueExtendedPropertiesNavCommand());
+            commands.Add(builder.BuildSingleValueExtendedPropertiesNavCommand());
+            commands.Add(builder.BuildSnoozeReminderNavCommand());
+            commands.Add(builder.BuildTentativelyAcceptNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -60,7 +60,7 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances {
         /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
-        public Command BuildDeltaCommand() {
+        public Command BuildDeltaNavCommand() {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
             var builder = new DeltaRequestBuilder(PathParameters);

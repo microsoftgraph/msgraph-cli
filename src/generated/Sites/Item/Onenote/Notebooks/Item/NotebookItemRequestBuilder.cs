@@ -29,7 +29,7 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item {
         /// <summary>
         /// Provides operations to call the copyNotebook method.
         /// </summary>
-        public Command BuildCopyNotebookCommand() {
+        public Command BuildCopyNotebookNavCommand() {
             var command = new Command("copy-notebook");
             command.Description = "Provides operations to call the copyNotebook method.";
             var builder = new CopyNotebookRequestBuilder(PathParameters);
@@ -211,12 +211,15 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item {
         /// <summary>
         /// Provides operations to manage the sectionGroups property of the microsoft.graph.notebook entity.
         /// </summary>
-        public Command BuildSectionGroupsCommand() {
+        public Command BuildSectionGroupsNavCommand() {
             var command = new Command("section-groups");
             command.Description = "Provides operations to manage the sectionGroups property of the microsoft.graph.notebook entity.";
             var builder = new SectionGroupsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -224,12 +227,15 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item {
         /// <summary>
         /// Provides operations to manage the sections property of the microsoft.graph.notebook entity.
         /// </summary>
-        public Command BuildSectionsCommand() {
+        public Command BuildSectionsNavCommand() {
             var command = new Command("sections");
             command.Description = "Provides operations to manage the sections property of the microsoft.graph.notebook entity.";
             var builder = new SectionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

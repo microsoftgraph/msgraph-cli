@@ -128,12 +128,15 @@ namespace ApiSdk.Groups.Item.Conversations.Item {
         /// <summary>
         /// Provides operations to manage the threads property of the microsoft.graph.conversation entity.
         /// </summary>
-        public Command BuildThreadsCommand() {
+        public Command BuildThreadsNavCommand() {
             var command = new Command("threads");
             command.Description = "Provides operations to manage the threads property of the microsoft.graph.conversation entity.";
             var builder = new ThreadsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

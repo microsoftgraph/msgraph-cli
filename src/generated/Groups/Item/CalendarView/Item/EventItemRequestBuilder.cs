@@ -39,7 +39,7 @@ namespace ApiSdk.Groups.Item.CalendarView.Item {
         /// <summary>
         /// Provides operations to call the accept method.
         /// </summary>
-        public Command BuildAcceptCommand() {
+        public Command BuildAcceptNavCommand() {
             var command = new Command("accept");
             command.Description = "Provides operations to call the accept method.";
             var builder = new AcceptRequestBuilder(PathParameters);
@@ -49,21 +49,24 @@ namespace ApiSdk.Groups.Item.CalendarView.Item {
         /// <summary>
         /// Provides operations to manage the attachments property of the microsoft.graph.event entity.
         /// </summary>
-        public Command BuildAttachmentsCommand() {
+        public Command BuildAttachmentsNavCommand() {
             var command = new Command("attachments");
             command.Description = "Provides operations to manage the attachments property of the microsoft.graph.event entity.";
             var builder = new AttachmentsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildCreateUploadSessionCommand());
+            command.AddCommand(builder.BuildCreateUploadSessionNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the calendar property of the microsoft.graph.event entity.
         /// </summary>
-        public Command BuildCalendarCommand() {
+        public Command BuildCalendarNavCommand() {
             var command = new Command("calendar");
             command.Description = "Provides operations to manage the calendar property of the microsoft.graph.event entity.";
             var builder = new CalendarRequestBuilder(PathParameters);
@@ -73,7 +76,7 @@ namespace ApiSdk.Groups.Item.CalendarView.Item {
         /// <summary>
         /// Provides operations to call the cancel method.
         /// </summary>
-        public Command BuildCancelCommand() {
+        public Command BuildCancelNavCommand() {
             var command = new Command("cancel");
             command.Description = "Provides operations to call the cancel method.";
             var builder = new CancelRequestBuilder(PathParameters);
@@ -83,7 +86,7 @@ namespace ApiSdk.Groups.Item.CalendarView.Item {
         /// <summary>
         /// Provides operations to call the decline method.
         /// </summary>
-        public Command BuildDeclineCommand() {
+        public Command BuildDeclineNavCommand() {
             var command = new Command("decline");
             command.Description = "Provides operations to call the decline method.";
             var builder = new DeclineRequestBuilder(PathParameters);
@@ -93,7 +96,7 @@ namespace ApiSdk.Groups.Item.CalendarView.Item {
         /// <summary>
         /// Provides operations to call the dismissReminder method.
         /// </summary>
-        public Command BuildDismissReminderCommand() {
+        public Command BuildDismissReminderNavCommand() {
             var command = new Command("dismiss-reminder");
             command.Description = "Provides operations to call the dismissReminder method.";
             var builder = new DismissReminderRequestBuilder(PathParameters);
@@ -103,12 +106,15 @@ namespace ApiSdk.Groups.Item.CalendarView.Item {
         /// <summary>
         /// Provides operations to manage the extensions property of the microsoft.graph.event entity.
         /// </summary>
-        public Command BuildExtensionsCommand() {
+        public Command BuildExtensionsNavCommand() {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.event entity.";
             var builder = new ExtensionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -116,7 +122,7 @@ namespace ApiSdk.Groups.Item.CalendarView.Item {
         /// <summary>
         /// Provides operations to call the forward method.
         /// </summary>
-        public Command BuildForwardCommand() {
+        public Command BuildForwardNavCommand() {
             var command = new Command("forward");
             command.Description = "Provides operations to call the forward method.";
             var builder = new ForwardRequestBuilder(PathParameters);
@@ -199,25 +205,31 @@ namespace ApiSdk.Groups.Item.CalendarView.Item {
         /// <summary>
         /// Provides operations to manage the instances property of the microsoft.graph.event entity.
         /// </summary>
-        public Command BuildInstancesCommand() {
+        public Command BuildInstancesNavCommand() {
             var command = new Command("instances");
             command.Description = "Provides operations to manage the instances property of the microsoft.graph.event entity.";
             var builder = new InstancesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildDeltaNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.event entity.
         /// </summary>
-        public Command BuildMultiValueExtendedPropertiesCommand() {
+        public Command BuildMultiValueExtendedPropertiesNavCommand() {
             var command = new Command("multi-value-extended-properties");
             command.Description = "Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.event entity.";
             var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -225,12 +237,15 @@ namespace ApiSdk.Groups.Item.CalendarView.Item {
         /// <summary>
         /// Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.event entity.
         /// </summary>
-        public Command BuildSingleValueExtendedPropertiesCommand() {
+        public Command BuildSingleValueExtendedPropertiesNavCommand() {
             var command = new Command("single-value-extended-properties");
             command.Description = "Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.event entity.";
             var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -238,7 +253,7 @@ namespace ApiSdk.Groups.Item.CalendarView.Item {
         /// <summary>
         /// Provides operations to call the snoozeReminder method.
         /// </summary>
-        public Command BuildSnoozeReminderCommand() {
+        public Command BuildSnoozeReminderNavCommand() {
             var command = new Command("snooze-reminder");
             command.Description = "Provides operations to call the snoozeReminder method.";
             var builder = new SnoozeReminderRequestBuilder(PathParameters);
@@ -248,7 +263,7 @@ namespace ApiSdk.Groups.Item.CalendarView.Item {
         /// <summary>
         /// Provides operations to call the tentativelyAccept method.
         /// </summary>
-        public Command BuildTentativelyAcceptCommand() {
+        public Command BuildTentativelyAcceptNavCommand() {
             var command = new Command("tentatively-accept");
             command.Description = "Provides operations to call the tentativelyAccept method.";
             var builder = new TentativelyAcceptRequestBuilder(PathParameters);

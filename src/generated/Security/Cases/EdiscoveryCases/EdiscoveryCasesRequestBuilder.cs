@@ -28,27 +28,27 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases {
         /// <summary>
         /// Provides operations to manage the ediscoveryCases property of the microsoft.graph.security.casesRoot entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new EdiscoveryCaseItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCustodiansCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildNoncustodialDataSourcesCommand());
-            command.AddCommand(builder.BuildOperationsCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildReviewSetsCommand());
-            command.AddCommand(builder.BuildSearchesCommand());
-            command.AddCommand(builder.BuildSecurityCloseCommand());
-            command.AddCommand(builder.BuildSecurityReopenCommand());
-            command.AddCommand(builder.BuildSettingsCommand());
-            command.AddCommand(builder.BuildTagsCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildCustodiansNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildNoncustodialDataSourcesNavCommand());
+            commands.Add(builder.BuildOperationsNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildReviewSetsNavCommand());
+            commands.Add(builder.BuildSearchesNavCommand());
+            commands.Add(builder.BuildSecurityCloseNavCommand());
+            commands.Add(builder.BuildSecurityReopenNavCommand());
+            commands.Add(builder.BuildSettingsNavCommand());
+            commands.Add(builder.BuildTagsNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

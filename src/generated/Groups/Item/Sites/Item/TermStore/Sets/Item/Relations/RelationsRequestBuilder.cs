@@ -28,21 +28,21 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Sets.Item.Relations {
         /// <summary>
         /// Provides operations to manage the relations property of the microsoft.graph.termStore.set entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new RelationItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildFromTermCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSetCommand());
-            command.AddCommand(builder.BuildToTermCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildFromTermNavCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildSetNavCommand());
+            commands.Add(builder.BuildToTermNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

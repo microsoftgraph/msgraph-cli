@@ -147,7 +147,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.UnifiedGrou
         /// <summary>
         /// Provides operations to manage the group property of the microsoft.graph.security.unifiedGroupSource entity.
         /// </summary>
-        public Command BuildGroupCommand() {
+        public Command BuildGroupNavCommand() {
             var command = new Command("group");
             command.Description = "Provides operations to manage the group property of the microsoft.graph.security.unifiedGroupSource entity.";
             var builder = new GroupRequestBuilder(PathParameters);

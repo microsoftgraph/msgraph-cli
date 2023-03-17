@@ -181,7 +181,7 @@ namespace ApiSdk.Users.Item.Settings {
         /// <summary>
         /// Provides operations to manage the shiftPreferences property of the microsoft.graph.userSettings entity.
         /// </summary>
-        public Command BuildShiftPreferencesCommand() {
+        public Command BuildShiftPreferencesNavCommand() {
             var command = new Command("shift-preferences");
             command.Description = "Provides operations to manage the shiftPreferences property of the microsoft.graph.userSettings entity.";
             var builder = new ShiftPreferencesRequestBuilder(PathParameters);

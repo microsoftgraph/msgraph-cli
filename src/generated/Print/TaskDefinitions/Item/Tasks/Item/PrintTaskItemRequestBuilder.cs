@@ -28,7 +28,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item {
         /// <summary>
         /// Provides operations to manage the definition property of the microsoft.graph.printTask entity.
         /// </summary>
-        public Command BuildDefinitionCommand() {
+        public Command BuildDefinitionNavCommand() {
             var command = new Command("definition");
             command.Description = "Provides operations to manage the definition property of the microsoft.graph.printTask entity.";
             var builder = new DefinitionRequestBuilder(PathParameters);
@@ -210,7 +210,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks.Item {
         /// <summary>
         /// Provides operations to manage the trigger property of the microsoft.graph.printTask entity.
         /// </summary>
-        public Command BuildTriggerCommand() {
+        public Command BuildTriggerNavCommand() {
             var command = new Command("trigger");
             command.Description = "Provides operations to manage the trigger property of the microsoft.graph.printTask entity.";
             var builder = new TriggerRequestBuilder(PathParameters);

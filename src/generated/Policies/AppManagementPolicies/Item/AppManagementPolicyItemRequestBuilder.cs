@@ -27,12 +27,15 @@ namespace ApiSdk.Policies.AppManagementPolicies.Item {
         /// <summary>
         /// Provides operations to manage the appliesTo property of the microsoft.graph.appManagementPolicy entity.
         /// </summary>
-        public Command BuildAppliesToCommand() {
+        public Command BuildAppliesToNavCommand() {
             var command = new Command("applies-to");
             command.Description = "Provides operations to manage the appliesTo property of the microsoft.graph.appManagementPolicy entity.";
             var builder = new AppliesToRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }

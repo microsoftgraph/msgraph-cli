@@ -52,7 +52,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to call the addKey method.
         /// </summary>
-        public Command BuildAddKeyCommand() {
+        public Command BuildAddKeyNavCommand() {
             var command = new Command("add-key");
             command.Description = "Provides operations to call the addKey method.";
             var builder = new AddKeyRequestBuilder(PathParameters);
@@ -62,7 +62,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to call the addPassword method.
         /// </summary>
-        public Command BuildAddPasswordCommand() {
+        public Command BuildAddPasswordNavCommand() {
             var command = new Command("add-password");
             command.Description = "Provides operations to call the addPassword method.";
             var builder = new AddPasswordRequestBuilder(PathParameters);
@@ -72,7 +72,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to call the addTokenSigningCertificate method.
         /// </summary>
-        public Command BuildAddTokenSigningCertificateCommand() {
+        public Command BuildAddTokenSigningCertificateNavCommand() {
             var command = new Command("add-token-signing-certificate");
             command.Description = "Provides operations to call the addTokenSigningCertificate method.";
             var builder = new AddTokenSigningCertificateRequestBuilder(PathParameters);
@@ -82,24 +82,30 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to manage the appManagementPolicies property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
-        public Command BuildAppManagementPoliciesCommand() {
+        public Command BuildAppManagementPoliciesNavCommand() {
             var command = new Command("app-management-policies");
             command.Description = "Provides operations to manage the appManagementPolicies property of the microsoft.graph.servicePrincipal entity.";
             var builder = new AppManagementPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the appRoleAssignedTo property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
-        public Command BuildAppRoleAssignedToCommand() {
+        public Command BuildAppRoleAssignedToNavCommand() {
             var command = new Command("app-role-assigned-to");
             command.Description = "Provides operations to manage the appRoleAssignedTo property of the microsoft.graph.servicePrincipal entity.";
             var builder = new AppRoleAssignedToRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -107,12 +113,15 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to manage the appRoleAssignments property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
-        public Command BuildAppRoleAssignmentsCommand() {
+        public Command BuildAppRoleAssignmentsNavCommand() {
             var command = new Command("app-role-assignments");
             command.Description = "Provides operations to manage the appRoleAssignments property of the microsoft.graph.servicePrincipal entity.";
             var builder = new AppRoleAssignmentsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -120,7 +129,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to call the checkMemberGroups method.
         /// </summary>
-        public Command BuildCheckMemberGroupsCommand() {
+        public Command BuildCheckMemberGroupsNavCommand() {
             var command = new Command("check-member-groups");
             command.Description = "Provides operations to call the checkMemberGroups method.";
             var builder = new CheckMemberGroupsRequestBuilder(PathParameters);
@@ -130,7 +139,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to call the checkMemberObjects method.
         /// </summary>
-        public Command BuildCheckMemberObjectsCommand() {
+        public Command BuildCheckMemberObjectsNavCommand() {
             var command = new Command("check-member-objects");
             command.Description = "Provides operations to call the checkMemberObjects method.";
             var builder = new CheckMemberObjectsRequestBuilder(PathParameters);
@@ -140,38 +149,47 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to manage the claimsMappingPolicies property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
-        public Command BuildClaimsMappingPoliciesCommand() {
+        public Command BuildClaimsMappingPoliciesNavCommand() {
             var command = new Command("claims-mapping-policies");
             command.Description = "Provides operations to manage the claimsMappingPolicies property of the microsoft.graph.servicePrincipal entity.";
             var builder = new ClaimsMappingPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildRefNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the createdObjects property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
-        public Command BuildCreatedObjectsCommand() {
+        public Command BuildCreatedObjectsNavCommand() {
             var command = new Command("created-objects");
             command.Description = "Provides operations to manage the createdObjects property of the microsoft.graph.servicePrincipal entity.";
             var builder = new CreatedObjectsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGraphServicePrincipalCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildGraphServicePrincipalNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the delegatedPermissionClassifications property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
-        public Command BuildDelegatedPermissionClassificationsCommand() {
+        public Command BuildDelegatedPermissionClassificationsNavCommand() {
             var command = new Command("delegated-permission-classifications");
             command.Description = "Provides operations to manage the delegatedPermissionClassifications property of the microsoft.graph.servicePrincipal entity.";
             var builder = new DelegatedPermissionClassificationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -214,12 +232,15 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to manage the endpoints property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
-        public Command BuildEndpointsCommand() {
+        public Command BuildEndpointsNavCommand() {
             var command = new Command("endpoints");
             command.Description = "Provides operations to manage the endpoints property of the microsoft.graph.servicePrincipal entity.";
             var builder = new EndpointsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -227,12 +248,15 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to manage the federatedIdentityCredentials property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
-        public Command BuildFederatedIdentityCredentialsCommand() {
+        public Command BuildFederatedIdentityCredentialsNavCommand() {
             var command = new Command("federated-identity-credentials");
             command.Description = "Provides operations to manage the federatedIdentityCredentials property of the microsoft.graph.servicePrincipal entity.";
             var builder = new FederatedIdentityCredentialsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -303,7 +327,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to call the getMemberGroups method.
         /// </summary>
-        public Command BuildGetMemberGroupsCommand() {
+        public Command BuildGetMemberGroupsNavCommand() {
             var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
             var builder = new GetMemberGroupsRequestBuilder(PathParameters);
@@ -313,7 +337,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to call the getMemberObjects method.
         /// </summary>
-        public Command BuildGetMemberObjectsCommand() {
+        public Command BuildGetMemberObjectsNavCommand() {
             var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
             var builder = new GetMemberObjectsRequestBuilder(PathParameters);
@@ -323,73 +347,88 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
-        public Command BuildHomeRealmDiscoveryPoliciesCommand() {
+        public Command BuildHomeRealmDiscoveryPoliciesNavCommand() {
             var command = new Command("home-realm-discovery-policies");
             command.Description = "Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.servicePrincipal entity.";
             var builder = new HomeRealmDiscoveryPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildRefNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the memberOf property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
-        public Command BuildMemberOfCommand() {
+        public Command BuildMemberOfNavCommand() {
             var command = new Command("member-of");
             command.Description = "Provides operations to manage the memberOf property of the microsoft.graph.servicePrincipal entity.";
             var builder = new MemberOfRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGraphGroupCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildGraphGroupNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the oauth2PermissionGrants property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
-        public Command BuildOauth2PermissionGrantsCommand() {
+        public Command BuildOauth2PermissionGrantsNavCommand() {
             var command = new Command("oauth2-permission-grants");
             command.Description = "Provides operations to manage the oauth2PermissionGrants property of the microsoft.graph.servicePrincipal entity.";
             var builder = new Oauth2PermissionGrantsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the ownedObjects property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
-        public Command BuildOwnedObjectsCommand() {
+        public Command BuildOwnedObjectsNavCommand() {
             var command = new Command("owned-objects");
             command.Description = "Provides operations to manage the ownedObjects property of the microsoft.graph.servicePrincipal entity.";
             var builder = new OwnedObjectsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGraphApplicationCommand());
-            command.AddCommand(builder.BuildGraphAppRoleAssignmentCommand());
-            command.AddCommand(builder.BuildGraphEndpointCommand());
-            command.AddCommand(builder.BuildGraphGroupCommand());
-            command.AddCommand(builder.BuildGraphServicePrincipalCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildGraphApplicationNavCommand());
+            command.AddCommand(builder.BuildGraphAppRoleAssignmentNavCommand());
+            command.AddCommand(builder.BuildGraphEndpointNavCommand());
+            command.AddCommand(builder.BuildGraphGroupNavCommand());
+            command.AddCommand(builder.BuildGraphServicePrincipalNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the owners property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
-        public Command BuildOwnersCommand() {
+        public Command BuildOwnersNavCommand() {
             var command = new Command("owners");
             command.Description = "Provides operations to manage the owners property of the microsoft.graph.servicePrincipal entity.";
             var builder = new OwnersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGraphAppRoleAssignmentCommand());
-            command.AddCommand(builder.BuildGraphEndpointCommand());
-            command.AddCommand(builder.BuildGraphServicePrincipalCommand());
-            command.AddCommand(builder.BuildGraphUserCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildGraphAppRoleAssignmentNavCommand());
+            command.AddCommand(builder.BuildGraphEndpointNavCommand());
+            command.AddCommand(builder.BuildGraphServicePrincipalNavCommand());
+            command.AddCommand(builder.BuildGraphUserNavCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildRefNavCommand());
             return command;
         }
         /// <summary>
@@ -453,7 +492,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to call the removeKey method.
         /// </summary>
-        public Command BuildRemoveKeyCommand() {
+        public Command BuildRemoveKeyNavCommand() {
             var command = new Command("remove-key");
             command.Description = "Provides operations to call the removeKey method.";
             var builder = new RemoveKeyRequestBuilder(PathParameters);
@@ -463,7 +502,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to call the removePassword method.
         /// </summary>
-        public Command BuildRemovePasswordCommand() {
+        public Command BuildRemovePasswordNavCommand() {
             var command = new Command("remove-password");
             command.Description = "Provides operations to call the removePassword method.";
             var builder = new RemovePasswordRequestBuilder(PathParameters);
@@ -473,7 +512,7 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to call the restore method.
         /// </summary>
-        public Command BuildRestoreCommand() {
+        public Command BuildRestoreNavCommand() {
             var command = new Command("restore");
             command.Description = "Provides operations to call the restore method.";
             var builder = new RestoreRequestBuilder(PathParameters);
@@ -483,37 +522,46 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <summary>
         /// Provides operations to manage the tokenIssuancePolicies property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
-        public Command BuildTokenIssuancePoliciesCommand() {
+        public Command BuildTokenIssuancePoliciesNavCommand() {
             var command = new Command("token-issuance-policies");
             command.Description = "Provides operations to manage the tokenIssuancePolicies property of the microsoft.graph.servicePrincipal entity.";
             var builder = new TokenIssuancePoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the tokenLifetimePolicies property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
-        public Command BuildTokenLifetimePoliciesCommand() {
+        public Command BuildTokenLifetimePoliciesNavCommand() {
             var command = new Command("token-lifetime-policies");
             command.Description = "Provides operations to manage the tokenLifetimePolicies property of the microsoft.graph.servicePrincipal entity.";
             var builder = new TokenLifetimePoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the transitiveMemberOf property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
-        public Command BuildTransitiveMemberOfCommand() {
+        public Command BuildTransitiveMemberOfNavCommand() {
             var command = new Command("transitive-member-of");
             command.Description = "Provides operations to manage the transitiveMemberOf property of the microsoft.graph.servicePrincipal entity.";
             var builder = new TransitiveMemberOfRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGraphGroupCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildGraphGroupNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }

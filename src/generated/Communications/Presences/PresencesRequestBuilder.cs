@@ -28,22 +28,22 @@ namespace ApiSdk.Communications.Presences {
         /// <summary>
         /// Provides operations to manage the presences property of the microsoft.graph.cloudCommunications entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new PresenceItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildClearPresenceCommand());
-            command.AddCommand(builder.BuildClearUserPreferredPresenceCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSetPresenceCommand());
-            command.AddCommand(builder.BuildSetUserPreferredPresenceCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildClearPresenceNavCommand());
+            commands.Add(builder.BuildClearUserPreferredPresenceNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildSetPresenceNavCommand());
+            commands.Add(builder.BuildSetUserPreferredPresenceNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

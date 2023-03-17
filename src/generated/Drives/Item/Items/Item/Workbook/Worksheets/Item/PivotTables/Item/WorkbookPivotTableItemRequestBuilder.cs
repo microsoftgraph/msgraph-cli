@@ -236,7 +236,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.Ite
         /// <summary>
         /// Provides operations to call the refresh method.
         /// </summary>
-        public Command BuildRefreshCommand() {
+        public Command BuildRefreshNavCommand() {
             var command = new Command("refresh");
             command.Description = "Provides operations to call the refresh method.";
             var builder = new RefreshRequestBuilder(PathParameters);
@@ -246,7 +246,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.Ite
         /// <summary>
         /// Provides operations to manage the worksheet property of the microsoft.graph.workbookPivotTable entity.
         /// </summary>
-        public Command BuildWorksheetCommand() {
+        public Command BuildWorksheetNavCommand() {
             var command = new Command("worksheet");
             command.Description = "Provides operations to manage the worksheet property of the microsoft.graph.workbookPivotTable entity.";
             var builder = new WorksheetRequestBuilder(PathParameters);

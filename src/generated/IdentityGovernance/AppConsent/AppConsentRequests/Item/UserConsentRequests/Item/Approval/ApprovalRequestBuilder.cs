@@ -199,12 +199,15 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
         /// <summary>
         /// Provides operations to manage the stages property of the microsoft.graph.approval entity.
         /// </summary>
-        public Command BuildStagesCommand() {
+        public Command BuildStagesNavCommand() {
             var command = new Command("stages");
             command.Description = "Provides operations to manage the stages property of the microsoft.graph.approval entity.";
             var builder = new StagesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

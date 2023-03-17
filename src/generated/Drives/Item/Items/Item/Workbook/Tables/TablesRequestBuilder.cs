@@ -30,7 +30,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables {
         /// <summary>
         /// Provides operations to call the add method.
         /// </summary>
-        public Command BuildAddCommand() {
+        public Command BuildAddNavCommand() {
             var command = new Command("add");
             command.Description = "Provides operations to call the add method.";
             var builder = new AddRequestBuilder(PathParameters);
@@ -40,29 +40,29 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables {
         /// <summary>
         /// Provides operations to manage the tables property of the microsoft.graph.workbook entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new WorkbookTableItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildClearFiltersCommand());
-            command.AddCommand(builder.BuildColumnsCommand());
-            command.AddCommand(builder.BuildConvertToRangeCommand());
-            command.AddCommand(builder.BuildDataBodyRangeCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildHeaderRowRangeCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildRangeCommand());
-            command.AddCommand(builder.BuildReapplyFiltersCommand());
-            command.AddCommand(builder.BuildRowsCommand());
-            command.AddCommand(builder.BuildSortCommand());
-            command.AddCommand(builder.BuildTotalRowRangeCommand());
-            command.AddCommand(builder.BuildWorksheetCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildClearFiltersNavCommand());
+            commands.Add(builder.BuildColumnsNavCommand());
+            commands.Add(builder.BuildConvertToRangeNavCommand());
+            commands.Add(builder.BuildDataBodyRangeNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildHeaderRowRangeNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildRangeNavCommand());
+            commands.Add(builder.BuildReapplyFiltersNavCommand());
+            commands.Add(builder.BuildRowsNavCommand());
+            commands.Add(builder.BuildSortNavCommand());
+            commands.Add(builder.BuildTotalRowRangeNavCommand());
+            commands.Add(builder.BuildWorksheetNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to call the count method.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to call the count method.";
             var builder = new CountRequestBuilder(PathParameters);

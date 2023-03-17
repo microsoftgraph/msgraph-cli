@@ -27,12 +27,15 @@ namespace ApiSdk.IdentityGovernance.AppConsent {
         /// <summary>
         /// Provides operations to manage the appConsentRequests property of the microsoft.graph.appConsentApprovalRoute entity.
         /// </summary>
-        public Command BuildAppConsentRequestsCommand() {
+        public Command BuildAppConsentRequestsNavCommand() {
             var command = new Command("app-consent-requests");
             command.Description = "Provides operations to manage the appConsentRequests property of the microsoft.graph.appConsentApprovalRoute entity.";
             var builder = new AppConsentRequestsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

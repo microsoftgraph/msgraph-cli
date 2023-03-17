@@ -199,7 +199,7 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item {
         /// <summary>
         /// Provides operations to manage the resource property of the microsoft.graph.trending entity.
         /// </summary>
-        public Command BuildResourceCommand() {
+        public Command BuildResourceNavCommand() {
             var command = new Command("resource");
             command.Description = "Provides operations to manage the resource property of the microsoft.graph.trending entity.";
             var builder = new ResourceRequestBuilder(PathParameters);

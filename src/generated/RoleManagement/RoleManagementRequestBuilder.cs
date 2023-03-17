@@ -28,41 +28,41 @@ namespace ApiSdk.RoleManagement {
         /// <summary>
         /// Provides operations to manage the directory property of the microsoft.graph.roleManagement entity.
         /// </summary>
-        public Command BuildDirectoryCommand() {
+        public Command BuildDirectoryNavCommand() {
             var command = new Command("directory");
             command.Description = "Provides operations to manage the directory property of the microsoft.graph.roleManagement entity.";
             var builder = new DirectoryRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildRoleAssignmentScheduleInstancesCommand());
-            command.AddCommand(builder.BuildRoleAssignmentScheduleRequestsCommand());
-            command.AddCommand(builder.BuildRoleAssignmentSchedulesCommand());
-            command.AddCommand(builder.BuildRoleAssignmentsCommand());
-            command.AddCommand(builder.BuildRoleDefinitionsCommand());
-            command.AddCommand(builder.BuildRoleEligibilityScheduleInstancesCommand());
-            command.AddCommand(builder.BuildRoleEligibilityScheduleRequestsCommand());
-            command.AddCommand(builder.BuildRoleEligibilitySchedulesCommand());
+            command.AddCommand(builder.BuildRoleAssignmentScheduleInstancesNavCommand());
+            command.AddCommand(builder.BuildRoleAssignmentScheduleRequestsNavCommand());
+            command.AddCommand(builder.BuildRoleAssignmentSchedulesNavCommand());
+            command.AddCommand(builder.BuildRoleAssignmentsNavCommand());
+            command.AddCommand(builder.BuildRoleDefinitionsNavCommand());
+            command.AddCommand(builder.BuildRoleEligibilityScheduleInstancesNavCommand());
+            command.AddCommand(builder.BuildRoleEligibilityScheduleRequestsNavCommand());
+            command.AddCommand(builder.BuildRoleEligibilitySchedulesNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the entitlementManagement property of the microsoft.graph.roleManagement entity.
         /// </summary>
-        public Command BuildEntitlementManagementCommand() {
+        public Command BuildEntitlementManagementNavCommand() {
             var command = new Command("entitlement-management");
             command.Description = "Provides operations to manage the entitlementManagement property of the microsoft.graph.roleManagement entity.";
             var builder = new EntitlementManagementRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildRoleAssignmentScheduleInstancesCommand());
-            command.AddCommand(builder.BuildRoleAssignmentScheduleRequestsCommand());
-            command.AddCommand(builder.BuildRoleAssignmentSchedulesCommand());
-            command.AddCommand(builder.BuildRoleAssignmentsCommand());
-            command.AddCommand(builder.BuildRoleDefinitionsCommand());
-            command.AddCommand(builder.BuildRoleEligibilityScheduleInstancesCommand());
-            command.AddCommand(builder.BuildRoleEligibilityScheduleRequestsCommand());
-            command.AddCommand(builder.BuildRoleEligibilitySchedulesCommand());
+            command.AddCommand(builder.BuildRoleAssignmentScheduleInstancesNavCommand());
+            command.AddCommand(builder.BuildRoleAssignmentScheduleRequestsNavCommand());
+            command.AddCommand(builder.BuildRoleAssignmentSchedulesNavCommand());
+            command.AddCommand(builder.BuildRoleAssignmentsNavCommand());
+            command.AddCommand(builder.BuildRoleDefinitionsNavCommand());
+            command.AddCommand(builder.BuildRoleEligibilityScheduleInstancesNavCommand());
+            command.AddCommand(builder.BuildRoleEligibilityScheduleRequestsNavCommand());
+            command.AddCommand(builder.BuildRoleEligibilitySchedulesNavCommand());
             return command;
         }
         /// <summary>

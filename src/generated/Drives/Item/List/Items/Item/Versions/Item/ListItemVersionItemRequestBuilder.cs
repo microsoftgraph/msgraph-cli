@@ -74,7 +74,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Versions.Item {
         /// <summary>
         /// Provides operations to manage the fields property of the microsoft.graph.listItemVersion entity.
         /// </summary>
-        public Command BuildFieldsCommand() {
+        public Command BuildFieldsNavCommand() {
             var command = new Command("fields");
             command.Description = "Provides operations to manage the fields property of the microsoft.graph.listItemVersion entity.";
             var builder = new FieldsRequestBuilder(PathParameters);
@@ -230,7 +230,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.Versions.Item {
         /// <summary>
         /// Provides operations to call the restoreVersion method.
         /// </summary>
-        public Command BuildRestoreVersionCommand() {
+        public Command BuildRestoreVersionNavCommand() {
             var command = new Command("restore-version");
             command.Description = "Provides operations to call the restoreVersion method.";
             var builder = new RestoreVersionRequestBuilder(PathParameters);

@@ -80,21 +80,21 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Leg
         /// <summary>
         /// Provides operations to manage the fill property of the microsoft.graph.workbookChartLegendFormat entity.
         /// </summary>
-        public Command BuildFillCommand() {
+        public Command BuildFillNavCommand() {
             var command = new Command("fill");
             command.Description = "Provides operations to manage the fill property of the microsoft.graph.workbookChartLegendFormat entity.";
             var builder = new FillRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildClearCommand());
+            command.AddCommand(builder.BuildClearNavCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSetSolidColorCommand());
+            command.AddCommand(builder.BuildSetSolidColorNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the font property of the microsoft.graph.workbookChartLegendFormat entity.
         /// </summary>
-        public Command BuildFontCommand() {
+        public Command BuildFontNavCommand() {
             var command = new Command("font");
             command.Description = "Provides operations to manage the font property of the microsoft.graph.workbookChartLegendFormat entity.";
             var builder = new FontRequestBuilder(PathParameters);

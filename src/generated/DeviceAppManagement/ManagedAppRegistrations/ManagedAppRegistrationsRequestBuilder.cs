@@ -29,21 +29,21 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations {
         /// <summary>
         /// Provides operations to manage the managedAppRegistrations property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new ManagedAppRegistrationItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAppliedPoliciesCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildIntendedPoliciesCommand());
-            command.AddCommand(builder.BuildOperationsCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildAppliedPoliciesNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildIntendedPoliciesNavCommand());
+            commands.Add(builder.BuildOperationsNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -105,7 +105,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations {
         /// <summary>
         /// Provides operations to call the getUserIdsWithFlaggedAppRegistration method.
         /// </summary>
-        public Command BuildGetUserIdsWithFlaggedAppRegistrationCommand() {
+        public Command BuildGetUserIdsWithFlaggedAppRegistrationNavCommand() {
             var command = new Command("get-user-ids-with-flagged-app-registration");
             command.Description = "Provides operations to call the getUserIdsWithFlaggedAppRegistration method.";
             var builder = new GetUserIdsWithFlaggedAppRegistrationRequestBuilder(PathParameters);

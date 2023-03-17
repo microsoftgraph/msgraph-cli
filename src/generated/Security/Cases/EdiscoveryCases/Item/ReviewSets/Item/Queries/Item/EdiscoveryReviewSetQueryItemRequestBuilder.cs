@@ -217,7 +217,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Ite
         /// <summary>
         /// Provides operations to call the applyTags method.
         /// </summary>
-        public Command BuildSecurityApplyTagsCommand() {
+        public Command BuildSecurityApplyTagsNavCommand() {
             var command = new Command("security-apply-tags");
             command.Description = "Provides operations to call the applyTags method.";
             var builder = new SecurityApplyTagsRequestBuilder(PathParameters);

@@ -29,7 +29,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets {
         /// <summary>
         /// Provides operations to call the add method.
         /// </summary>
-        public Command BuildAddCommand() {
+        public Command BuildAddNavCommand() {
             var command = new Command("add");
             command.Description = "Provides operations to call the add method.";
             var builder = new AddRequestBuilder(PathParameters);
@@ -39,25 +39,25 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets {
         /// <summary>
         /// Provides operations to manage the worksheets property of the microsoft.graph.workbook entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new WorkbookWorksheetItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildChartsCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildNamesCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPivotTablesCommand());
-            command.AddCommand(builder.BuildProtectionCommand());
-            command.AddCommand(builder.BuildRangeCommand());
-            command.AddCommand(builder.BuildTablesCommand());
-            command.AddCommand(builder.BuildUsedRangeCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildChartsNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildNamesNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildPivotTablesNavCommand());
+            commands.Add(builder.BuildProtectionNavCommand());
+            commands.Add(builder.BuildRangeNavCommand());
+            commands.Add(builder.BuildTablesNavCommand());
+            commands.Add(builder.BuildUsedRangeNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

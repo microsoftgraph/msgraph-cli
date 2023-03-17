@@ -28,16 +28,16 @@ namespace ApiSdk.Organization.Item.CertificateBasedAuthConfiguration {
         /// <summary>
         /// Provides operations to manage the certificateBasedAuthConfiguration property of the microsoft.graph.organization entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new CertificateBasedAuthConfigurationItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildGetCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

@@ -28,20 +28,20 @@ namespace ApiSdk.Policies.PermissionGrantPolicies {
         /// <summary>
         /// Provides operations to manage the permissionGrantPolicies property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new PermissionGrantPolicyItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildExcludesCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildIncludesCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildExcludesNavCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildIncludesNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

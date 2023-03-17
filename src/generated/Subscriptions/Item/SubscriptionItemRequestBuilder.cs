@@ -177,7 +177,7 @@ namespace ApiSdk.Subscriptions.Item {
         /// <summary>
         /// Provides operations to call the reauthorize method.
         /// </summary>
-        public Command BuildReauthorizeCommand() {
+        public Command BuildReauthorizeNavCommand() {
             var command = new Command("reauthorize");
             command.Description = "Provides operations to call the reauthorize method.";
             var builder = new ReauthorizeRequestBuilder(PathParameters);

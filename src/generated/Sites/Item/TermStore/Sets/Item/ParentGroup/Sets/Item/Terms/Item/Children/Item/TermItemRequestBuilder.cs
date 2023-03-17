@@ -254,12 +254,15 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.ParentGroup.Sets.Item.Terms.Item
         /// <summary>
         /// Provides operations to manage the relations property of the microsoft.graph.termStore.term entity.
         /// </summary>
-        public Command BuildRelationsCommand() {
+        public Command BuildRelationsNavCommand() {
             var command = new Command("relations");
             command.Description = "Provides operations to manage the relations property of the microsoft.graph.termStore.term entity.";
             var builder = new RelationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -267,7 +270,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.ParentGroup.Sets.Item.Terms.Item
         /// <summary>
         /// Provides operations to manage the set property of the microsoft.graph.termStore.term entity.
         /// </summary>
-        public Command BuildSetCommand() {
+        public Command BuildSetNavCommand() {
             var command = new Command("set");
             command.Description = "Provides operations to manage the set property of the microsoft.graph.termStore.term entity.";
             var builder = new SetRequestBuilder(PathParameters);

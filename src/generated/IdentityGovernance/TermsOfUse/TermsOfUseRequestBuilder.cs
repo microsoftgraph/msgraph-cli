@@ -28,12 +28,15 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse {
         /// <summary>
         /// Provides operations to manage the agreementAcceptances property of the microsoft.graph.termsOfUseContainer entity.
         /// </summary>
-        public Command BuildAgreementAcceptancesCommand() {
+        public Command BuildAgreementAcceptancesNavCommand() {
             var command = new Command("agreement-acceptances");
             command.Description = "Provides operations to manage the agreementAcceptances property of the microsoft.graph.termsOfUseContainer entity.";
             var builder = new AgreementAcceptancesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -41,12 +44,15 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse {
         /// <summary>
         /// Provides operations to manage the agreements property of the microsoft.graph.termsOfUseContainer entity.
         /// </summary>
-        public Command BuildAgreementsCommand() {
+        public Command BuildAgreementsNavCommand() {
             var command = new Command("agreements");
             command.Description = "Provides operations to manage the agreements property of the microsoft.graph.termsOfUseContainer entity.";
             var builder = new AgreementsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

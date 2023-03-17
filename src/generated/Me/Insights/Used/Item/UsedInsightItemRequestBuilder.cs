@@ -181,7 +181,7 @@ namespace ApiSdk.Me.Insights.Used.Item {
         /// <summary>
         /// Provides operations to manage the resource property of the microsoft.graph.usedInsight entity.
         /// </summary>
-        public Command BuildResourceCommand() {
+        public Command BuildResourceNavCommand() {
             var command = new Command("resource");
             command.Description = "Provides operations to manage the resource property of the microsoft.graph.usedInsight entity.";
             var builder = new ResourceRequestBuilder(PathParameters);

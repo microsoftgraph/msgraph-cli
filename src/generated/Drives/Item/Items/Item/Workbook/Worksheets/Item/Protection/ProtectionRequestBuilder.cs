@@ -219,7 +219,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection {
         /// <summary>
         /// Provides operations to call the protect method.
         /// </summary>
-        public Command BuildProtectCommand() {
+        public Command BuildProtectNavCommand() {
             var command = new Command("protect");
             command.Description = "Provides operations to call the protect method.";
             var builder = new ProtectRequestBuilder(PathParameters);
@@ -229,7 +229,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection {
         /// <summary>
         /// Provides operations to call the unprotect method.
         /// </summary>
-        public Command BuildUnprotectCommand() {
+        public Command BuildUnprotectNavCommand() {
             var command = new Command("unprotect");
             command.Description = "Provides operations to call the unprotect method.";
             var builder = new UnprotectRequestBuilder(PathParameters);

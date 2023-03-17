@@ -159,11 +159,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
         /// <summary>
         /// Provides operations to manage the line property of the microsoft.graph.workbookChartGridlinesFormat entity.
         /// </summary>
-        public Command BuildLineCommand() {
+        public Command BuildLineNavCommand() {
             var command = new Command("line");
             command.Description = "Provides operations to manage the line property of the microsoft.graph.workbookChartGridlinesFormat entity.";
             var builder = new LineRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildClearCommand());
+            command.AddCommand(builder.BuildClearNavCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());

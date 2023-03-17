@@ -35,26 +35,23 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
         /// <summary>
         /// Provides operations to manage the deletedItems property of the microsoft.graph.directory entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCheckMemberGroupsCommand());
-            command.AddCommand(builder.BuildCheckMemberObjectsCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildGetMemberGroupsCommand());
-            command.AddCommand(builder.BuildGetMemberObjectsCommand());
-            command.AddCommand(builder.BuildGraphApplicationCommand());
-            command.AddCommand(builder.BuildGraphGroupCommand());
-            command.AddCommand(builder.BuildGraphUserCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildRestoreCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildCheckMemberGroupsNavCommand());
+            commands.Add(builder.BuildCheckMemberObjectsNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildGetMemberGroupsNavCommand());
+            commands.Add(builder.BuildGetMemberObjectsNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildRestoreNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -116,7 +113,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
         /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
-        public Command BuildDeltaCommand() {
+        public Command BuildDeltaNavCommand() {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
             var builder = new DeltaRequestBuilder(PathParameters);
@@ -126,7 +123,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
         /// <summary>
         /// Provides operations to call the getAvailableExtensionProperties method.
         /// </summary>
-        public Command BuildGetAvailableExtensionPropertiesCommand() {
+        public Command BuildGetAvailableExtensionPropertiesNavCommand() {
             var command = new Command("get-available-extension-properties");
             command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
             var builder = new GetAvailableExtensionPropertiesRequestBuilder(PathParameters);
@@ -136,7 +133,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
         /// <summary>
         /// Provides operations to call the getByIds method.
         /// </summary>
-        public Command BuildGetByIdsCommand() {
+        public Command BuildGetByIdsNavCommand() {
             var command = new Command("get-by-ids");
             command.Description = "Provides operations to call the getByIds method.";
             var builder = new GetByIdsRequestBuilder(PathParameters);
@@ -146,33 +143,36 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
         /// <summary>
         /// Casts the previous resource to application.
         /// </summary>
-        public Command BuildGraphApplicationCommand() {
-            var command = new Command("graph-application");
+        public Command BuildGraphApplicationNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildGraphApplicationNavCommand();
             command.Description = "Casts the previous resource to application.";
             var builder = new GraphApplicationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
-        public Command BuildGraphGroupCommand() {
-            var command = new Command("graph-group");
+        public Command BuildGraphGroupNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildGraphGroupNavCommand();
             command.Description = "Casts the previous resource to group.";
             var builder = new GraphGroupRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
-        public Command BuildGraphUserCommand() {
-            var command = new Command("graph-user");
+        public Command BuildGraphUserNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildGraphUserNavCommand();
             command.Description = "Casts the previous resource to user.";
             var builder = new GraphUserRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -284,7 +284,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
         /// <summary>
         /// Provides operations to call the validateProperties method.
         /// </summary>
-        public Command BuildValidatePropertiesCommand() {
+        public Command BuildValidatePropertiesNavCommand() {
             var command = new Command("validate-properties");
             command.Description = "Provides operations to call the validateProperties method.";
             var builder = new ValidatePropertiesRequestBuilder(PathParameters);

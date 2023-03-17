@@ -61,7 +61,7 @@ namespace ApiSdk.Places.Item {
         /// <summary>
         /// Casts the previous resource to room.
         /// </summary>
-        public Command BuildGraphRoomCommand() {
+        public Command BuildGraphRoomNavCommand() {
             var command = new Command("graph-room");
             command.Description = "Casts the previous resource to room.";
             var builder = new GraphRoomRequestBuilder(PathParameters);

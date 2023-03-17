@@ -32,23 +32,23 @@ namespace ApiSdk.Groups.Item.PermissionGrants {
         /// <summary>
         /// Provides operations to manage the permissionGrants property of the microsoft.graph.group entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new ResourceSpecificPermissionGrantItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCheckMemberGroupsCommand());
-            command.AddCommand(builder.BuildCheckMemberObjectsCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildGetMemberGroupsCommand());
-            command.AddCommand(builder.BuildGetMemberObjectsCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildRestoreCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildCheckMemberGroupsNavCommand());
+            commands.Add(builder.BuildCheckMemberObjectsNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildGetMemberGroupsNavCommand());
+            commands.Add(builder.BuildGetMemberObjectsNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildRestoreNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -116,7 +116,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants {
         /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
-        public Command BuildDeltaCommand() {
+        public Command BuildDeltaNavCommand() {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
             var builder = new DeltaRequestBuilder(PathParameters);
@@ -126,7 +126,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants {
         /// <summary>
         /// Provides operations to call the getAvailableExtensionProperties method.
         /// </summary>
-        public Command BuildGetAvailableExtensionPropertiesCommand() {
+        public Command BuildGetAvailableExtensionPropertiesNavCommand() {
             var command = new Command("get-available-extension-properties");
             command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
             var builder = new GetAvailableExtensionPropertiesRequestBuilder(PathParameters);
@@ -136,7 +136,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants {
         /// <summary>
         /// Provides operations to call the getByIds method.
         /// </summary>
-        public Command BuildGetByIdsCommand() {
+        public Command BuildGetByIdsNavCommand() {
             var command = new Command("get-by-ids");
             command.Description = "Provides operations to call the getByIds method.";
             var builder = new GetByIdsRequestBuilder(PathParameters);
@@ -258,7 +258,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants {
         /// <summary>
         /// Provides operations to call the validateProperties method.
         /// </summary>
-        public Command BuildValidatePropertiesCommand() {
+        public Command BuildValidatePropertiesNavCommand() {
             var command = new Command("validate-properties");
             command.Description = "Provides operations to call the validateProperties method.";
             var builder = new ValidatePropertiesRequestBuilder(PathParameters);

@@ -218,7 +218,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Item {
         /// <summary>
         /// Provides operations to call the range method.
         /// </summary>
-        public Command BuildRangeCommand() {
+        public Command BuildRangeNavCommand() {
             var command = new Command("range");
             command.Description = "Provides operations to call the range method.";
             var builder = new RangeRequestBuilder(PathParameters);
@@ -228,7 +228,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names.Item {
         /// <summary>
         /// Provides operations to manage the worksheet property of the microsoft.graph.workbookNamedItem entity.
         /// </summary>
-        public Command BuildWorksheetCommand() {
+        public Command BuildWorksheetNavCommand() {
             var command = new Command("worksheet");
             command.Description = "Provides operations to manage the worksheet property of the microsoft.graph.workbookNamedItem entity.";
             var builder = new WorksheetRequestBuilder(PathParameters);

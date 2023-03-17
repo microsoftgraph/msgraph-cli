@@ -124,12 +124,15 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
         /// <summary>
         /// Provides operations to manage the localizedNotificationMessages property of the microsoft.graph.notificationMessageTemplate entity.
         /// </summary>
-        public Command BuildLocalizedNotificationMessagesCommand() {
+        public Command BuildLocalizedNotificationMessagesNavCommand() {
             var command = new Command("localized-notification-messages");
             command.Description = "Provides operations to manage the localizedNotificationMessages property of the microsoft.graph.notificationMessageTemplate entity.";
             var builder = new LocalizedNotificationMessagesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -195,7 +198,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
         /// <summary>
         /// Provides operations to call the sendTestMessage method.
         /// </summary>
-        public Command BuildSendTestMessageCommand() {
+        public Command BuildSendTestMessageNavCommand() {
             var command = new Command("send-test-message");
             command.Description = "Provides operations to call the sendTestMessage method.";
             var builder = new SendTestMessageRequestBuilder(PathParameters);

@@ -31,7 +31,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
         /// <summary>
         /// Provides operations to call the additionalAccess method.
         /// </summary>
-        public Command BuildAdditionalAccessCommand() {
+        public Command BuildAdditionalAccessNavCommand() {
             var command = new Command("additional-access");
             command.Description = "Provides operations to call the additionalAccess method.";
             var builder = new AdditionalAccessRequestBuilder(PathParameters);
@@ -41,22 +41,22 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new AccessPackageAssignmentItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAccessPackageCommand());
-            command.AddCommand(builder.BuildAssignmentPolicyCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildReprocessCommand());
-            command.AddCommand(builder.BuildTargetCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildAccessPackageNavCommand());
+            commands.Add(builder.BuildAssignmentPolicyNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildReprocessNavCommand());
+            commands.Add(builder.BuildTargetNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

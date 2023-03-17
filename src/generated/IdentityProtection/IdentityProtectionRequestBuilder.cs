@@ -138,12 +138,15 @@ namespace ApiSdk.IdentityProtection {
         /// <summary>
         /// Provides operations to manage the riskDetections property of the microsoft.graph.identityProtectionRoot entity.
         /// </summary>
-        public Command BuildRiskDetectionsCommand() {
+        public Command BuildRiskDetectionsNavCommand() {
             var command = new Command("risk-detections");
             command.Description = "Provides operations to manage the riskDetections property of the microsoft.graph.identityProtectionRoot entity.";
             var builder = new RiskDetectionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -151,42 +154,51 @@ namespace ApiSdk.IdentityProtection {
         /// <summary>
         /// Provides operations to manage the riskyServicePrincipals property of the microsoft.graph.identityProtectionRoot entity.
         /// </summary>
-        public Command BuildRiskyServicePrincipalsCommand() {
+        public Command BuildRiskyServicePrincipalsNavCommand() {
             var command = new Command("risky-service-principals");
             command.Description = "Provides operations to manage the riskyServicePrincipals property of the microsoft.graph.identityProtectionRoot entity.";
             var builder = new RiskyServicePrincipalsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildConfirmCompromisedCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildConfirmCompromisedNavCommand());
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDismissCommand());
+            command.AddCommand(builder.BuildDismissNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the riskyUsers property of the microsoft.graph.identityProtectionRoot entity.
         /// </summary>
-        public Command BuildRiskyUsersCommand() {
+        public Command BuildRiskyUsersNavCommand() {
             var command = new Command("risky-users");
             command.Description = "Provides operations to manage the riskyUsers property of the microsoft.graph.identityProtectionRoot entity.";
             var builder = new RiskyUsersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildConfirmCompromisedCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildConfirmCompromisedNavCommand());
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDismissCommand());
+            command.AddCommand(builder.BuildDismissNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the servicePrincipalRiskDetections property of the microsoft.graph.identityProtectionRoot entity.
         /// </summary>
-        public Command BuildServicePrincipalRiskDetectionsCommand() {
+        public Command BuildServicePrincipalRiskDetectionsNavCommand() {
             var command = new Command("service-principal-risk-detections");
             command.Description = "Provides operations to manage the servicePrincipalRiskDetections property of the microsoft.graph.identityProtectionRoot entity.";
             var builder = new ServicePrincipalRiskDetectionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

@@ -29,17 +29,17 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
         /// <summary>
         /// Provides operations to manage the categoryAxis property of the microsoft.graph.workbookChartAxes entity.
         /// </summary>
-        public Command BuildCategoryAxisCommand() {
+        public Command BuildCategoryAxisNavCommand() {
             var command = new Command("category-axis");
             command.Description = "Provides operations to manage the categoryAxis property of the microsoft.graph.workbookChartAxes entity.";
             var builder = new CategoryAxisRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildFormatCommand());
+            command.AddCommand(builder.BuildFormatNavCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMajorGridlinesCommand());
-            command.AddCommand(builder.BuildMinorGridlinesCommand());
+            command.AddCommand(builder.BuildMajorGridlinesNavCommand());
+            command.AddCommand(builder.BuildMinorGridlinesNavCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildTitleCommand());
+            command.AddCommand(builder.BuildTitleNavCommand());
             return command;
         }
         /// <summary>
@@ -253,33 +253,33 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
         /// <summary>
         /// Provides operations to manage the seriesAxis property of the microsoft.graph.workbookChartAxes entity.
         /// </summary>
-        public Command BuildSeriesAxisCommand() {
+        public Command BuildSeriesAxisNavCommand() {
             var command = new Command("series-axis");
             command.Description = "Provides operations to manage the seriesAxis property of the microsoft.graph.workbookChartAxes entity.";
             var builder = new SeriesAxisRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildFormatCommand());
+            command.AddCommand(builder.BuildFormatNavCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMajorGridlinesCommand());
-            command.AddCommand(builder.BuildMinorGridlinesCommand());
+            command.AddCommand(builder.BuildMajorGridlinesNavCommand());
+            command.AddCommand(builder.BuildMinorGridlinesNavCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildTitleCommand());
+            command.AddCommand(builder.BuildTitleNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the valueAxis property of the microsoft.graph.workbookChartAxes entity.
         /// </summary>
-        public Command BuildValueAxisCommand() {
+        public Command BuildValueAxisNavCommand() {
             var command = new Command("value-axis");
             command.Description = "Provides operations to manage the valueAxis property of the microsoft.graph.workbookChartAxes entity.";
             var builder = new ValueAxisRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildFormatCommand());
+            command.AddCommand(builder.BuildFormatNavCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMajorGridlinesCommand());
-            command.AddCommand(builder.BuildMinorGridlinesCommand());
+            command.AddCommand(builder.BuildMajorGridlinesNavCommand());
+            command.AddCommand(builder.BuildMinorGridlinesNavCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildTitleCommand());
+            command.AddCommand(builder.BuildTitleNavCommand());
             return command;
         }
         /// <summary>

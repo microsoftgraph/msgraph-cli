@@ -127,12 +127,15 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to manage the dailyPrintUsageByPrinter property of the microsoft.graph.reportRoot entity.
         /// </summary>
-        public Command BuildDailyPrintUsageByPrinterCommand() {
+        public Command BuildDailyPrintUsageByPrinterNavCommand() {
             var command = new Command("daily-print-usage-by-printer");
             command.Description = "Provides operations to manage the dailyPrintUsageByPrinter property of the microsoft.graph.reportRoot entity.";
             var builder = new DailyPrintUsageByPrinterRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -140,12 +143,15 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to manage the dailyPrintUsageByUser property of the microsoft.graph.reportRoot entity.
         /// </summary>
-        public Command BuildDailyPrintUsageByUserCommand() {
+        public Command BuildDailyPrintUsageByUserNavCommand() {
             var command = new Command("daily-print-usage-by-user");
             command.Description = "Provides operations to manage the dailyPrintUsageByUser property of the microsoft.graph.reportRoot entity.";
             var builder = new DailyPrintUsageByUserRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -153,7 +159,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the deviceConfigurationDeviceActivity method.
         /// </summary>
-        public Command BuildDeviceConfigurationDeviceActivityCommand() {
+        public Command BuildDeviceConfigurationDeviceActivityNavCommand() {
             var command = new Command("device-configuration-device-activity");
             command.Description = "Provides operations to call the deviceConfigurationDeviceActivity method.";
             var builder = new DeviceConfigurationDeviceActivityRequestBuilder(PathParameters);
@@ -163,7 +169,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the deviceConfigurationUserActivity method.
         /// </summary>
-        public Command BuildDeviceConfigurationUserActivityCommand() {
+        public Command BuildDeviceConfigurationUserActivityNavCommand() {
             var command = new Command("device-configuration-user-activity");
             command.Description = "Provides operations to call the deviceConfigurationUserActivity method.";
             var builder = new DeviceConfigurationUserActivityRequestBuilder(PathParameters);
@@ -229,7 +235,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getOffice365ActivationCounts method.
         /// </summary>
-        public Command BuildGetOffice365ActivationCountsCommand() {
+        public Command BuildGetOffice365ActivationCountsNavCommand() {
             var command = new Command("get-office365-activation-counts");
             command.Description = "Provides operations to call the getOffice365ActivationCounts method.";
             var builder = new GetOffice365ActivationCountsRequestBuilder(PathParameters);
@@ -239,7 +245,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getOffice365ActivationsUserCounts method.
         /// </summary>
-        public Command BuildGetOffice365ActivationsUserCountsCommand() {
+        public Command BuildGetOffice365ActivationsUserCountsNavCommand() {
             var command = new Command("get-office365-activations-user-counts");
             command.Description = "Provides operations to call the getOffice365ActivationsUserCounts method.";
             var builder = new GetOffice365ActivationsUserCountsRequestBuilder(PathParameters);
@@ -249,7 +255,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the getOffice365ActivationsUserDetail method.
         /// </summary>
-        public Command BuildGetOffice365ActivationsUserDetailCommand() {
+        public Command BuildGetOffice365ActivationsUserDetailNavCommand() {
             var command = new Command("get-office365-activations-user-detail");
             command.Description = "Provides operations to call the getOffice365ActivationsUserDetail method.";
             var builder = new GetOffice365ActivationsUserDetailRequestBuilder(PathParameters);
@@ -259,7 +265,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the managedDeviceEnrollmentFailureDetails method.
         /// </summary>
-        public Command BuildManagedDeviceEnrollmentFailureDetailsCommand() {
+        public Command BuildManagedDeviceEnrollmentFailureDetailsNavCommand() {
             var command = new Command("managed-device-enrollment-failure-details");
             command.Description = "Provides operations to call the managedDeviceEnrollmentFailureDetails method.";
             var builder = new ManagedDeviceEnrollmentFailureDetailsRequestBuilder(PathParameters);
@@ -269,7 +275,7 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to call the managedDeviceEnrollmentTopFailures method.
         /// </summary>
-        public Command BuildManagedDeviceEnrollmentTopFailuresCommand() {
+        public Command BuildManagedDeviceEnrollmentTopFailuresNavCommand() {
             var command = new Command("managed-device-enrollment-top-failures");
             command.Description = "Provides operations to call the managedDeviceEnrollmentTopFailures method.";
             var builder = new ManagedDeviceEnrollmentTopFailuresRequestBuilder(PathParameters);
@@ -279,12 +285,15 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to manage the monthlyPrintUsageByPrinter property of the microsoft.graph.reportRoot entity.
         /// </summary>
-        public Command BuildMonthlyPrintUsageByPrinterCommand() {
+        public Command BuildMonthlyPrintUsageByPrinterNavCommand() {
             var command = new Command("monthly-print-usage-by-printer");
             command.Description = "Provides operations to manage the monthlyPrintUsageByPrinter property of the microsoft.graph.reportRoot entity.";
             var builder = new MonthlyPrintUsageByPrinterRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -292,12 +301,15 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to manage the monthlyPrintUsageByUser property of the microsoft.graph.reportRoot entity.
         /// </summary>
-        public Command BuildMonthlyPrintUsageByUserCommand() {
+        public Command BuildMonthlyPrintUsageByUserNavCommand() {
             var command = new Command("monthly-print-usage-by-user");
             command.Description = "Provides operations to manage the monthlyPrintUsageByUser property of the microsoft.graph.reportRoot entity.";
             var builder = new MonthlyPrintUsageByUserRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -357,14 +369,14 @@ namespace ApiSdk.Reports {
         /// <summary>
         /// Provides operations to manage the security property of the microsoft.graph.reportRoot entity.
         /// </summary>
-        public Command BuildSecurityCommand() {
+        public Command BuildSecurityNavCommand() {
             var command = new Command("security");
             command.Description = "Provides operations to manage the security property of the microsoft.graph.reportRoot entity.";
             var builder = new SecurityRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetAttackSimulationRepeatOffendersCommand());
-            command.AddCommand(builder.BuildGetAttackSimulationSimulationUserCoverageCommand());
-            command.AddCommand(builder.BuildGetAttackSimulationTrainingUserCoverageCommand());
+            command.AddCommand(builder.BuildGetAttackSimulationRepeatOffendersNavCommand());
+            command.AddCommand(builder.BuildGetAttackSimulationSimulationUserCoverageNavCommand());
+            command.AddCommand(builder.BuildGetAttackSimulationTrainingUserCoverageNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;

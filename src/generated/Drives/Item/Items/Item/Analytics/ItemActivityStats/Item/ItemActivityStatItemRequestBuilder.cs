@@ -27,12 +27,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Analytics.ItemActivityStats.Item {
         /// <summary>
         /// Provides operations to manage the activities property of the microsoft.graph.itemActivityStat entity.
         /// </summary>
-        public Command BuildActivitiesCommand() {
+        public Command BuildActivitiesNavCommand() {
             var command = new Command("activities");
             command.Description = "Provides operations to manage the activities property of the microsoft.graph.itemActivityStat entity.";
             var builder = new ActivitiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

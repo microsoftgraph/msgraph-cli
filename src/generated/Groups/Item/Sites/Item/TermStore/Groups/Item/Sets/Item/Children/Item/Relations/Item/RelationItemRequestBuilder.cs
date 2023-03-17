@@ -93,7 +93,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.Children
         /// <summary>
         /// Provides operations to manage the fromTerm property of the microsoft.graph.termStore.relation entity.
         /// </summary>
-        public Command BuildFromTermCommand() {
+        public Command BuildFromTermNavCommand() {
             var command = new Command("from-term");
             command.Description = "Provides operations to manage the fromTerm property of the microsoft.graph.termStore.relation entity.";
             var builder = new FromTermRequestBuilder(PathParameters);
@@ -283,7 +283,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.Children
         /// <summary>
         /// Provides operations to manage the set property of the microsoft.graph.termStore.relation entity.
         /// </summary>
-        public Command BuildSetCommand() {
+        public Command BuildSetNavCommand() {
             var command = new Command("set");
             command.Description = "Provides operations to manage the set property of the microsoft.graph.termStore.relation entity.";
             var builder = new SetRequestBuilder(PathParameters);
@@ -293,7 +293,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.Children
         /// <summary>
         /// Provides operations to manage the toTerm property of the microsoft.graph.termStore.relation entity.
         /// </summary>
-        public Command BuildToTermCommand() {
+        public Command BuildToTermNavCommand() {
             var command = new Command("to-term");
             command.Description = "Provides operations to manage the toTerm property of the microsoft.graph.termStore.relation entity.";
             var builder = new ToTermRequestBuilder(PathParameters);

@@ -28,24 +28,24 @@ namespace ApiSdk.Sites.Item.Lists {
         /// <summary>
         /// Provides operations to manage the lists property of the microsoft.graph.site entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new ListItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildColumnsCommand());
-            command.AddCommand(builder.BuildContentTypesCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildDriveCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildItemsCommand());
-            command.AddCommand(builder.BuildOperationsCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSubscriptionsCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildColumnsNavCommand());
+            commands.Add(builder.BuildContentTypesNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildDriveNavCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildItemsNavCommand());
+            commands.Add(builder.BuildOperationsNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildSubscriptionsNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

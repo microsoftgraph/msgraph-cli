@@ -32,26 +32,32 @@ namespace ApiSdk.Education.Me {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.educationUser entity.
         /// </summary>
-        public Command BuildAssignmentsCommand() {
+        public Command BuildAssignmentsNavCommand() {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.educationUser entity.";
             var builder = new AssignmentsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
+            command.AddCommand(builder.BuildDeltaNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the classes property of the microsoft.graph.educationUser entity.
         /// </summary>
-        public Command BuildClassesCommand() {
+        public Command BuildClassesNavCommand() {
             var command = new Command("classes");
             command.Description = "Provides operations to manage the classes property of the microsoft.graph.educationUser entity.";
             var builder = new ClassesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -194,12 +200,15 @@ namespace ApiSdk.Education.Me {
         /// <summary>
         /// Provides operations to manage the rubrics property of the microsoft.graph.educationUser entity.
         /// </summary>
-        public Command BuildRubricsCommand() {
+        public Command BuildRubricsNavCommand() {
             var command = new Command("rubrics");
             command.Description = "Provides operations to manage the rubrics property of the microsoft.graph.educationUser entity.";
             var builder = new RubricsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -207,31 +216,37 @@ namespace ApiSdk.Education.Me {
         /// <summary>
         /// Provides operations to manage the schools property of the microsoft.graph.educationUser entity.
         /// </summary>
-        public Command BuildSchoolsCommand() {
+        public Command BuildSchoolsNavCommand() {
             var command = new Command("schools");
             command.Description = "Provides operations to manage the schools property of the microsoft.graph.educationUser entity.";
             var builder = new SchoolsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the taughtClasses property of the microsoft.graph.educationUser entity.
         /// </summary>
-        public Command BuildTaughtClassesCommand() {
+        public Command BuildTaughtClassesNavCommand() {
             var command = new Command("taught-classes");
             command.Description = "Provides operations to manage the taughtClasses property of the microsoft.graph.educationUser entity.";
             var builder = new TaughtClassesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the user property of the microsoft.graph.educationUser entity.
         /// </summary>
-        public Command BuildUserCommand() {
+        public Command BuildUserNavCommand() {
             var command = new Command("user");
             command.Description = "Provides operations to manage the user property of the microsoft.graph.educationUser entity.";
             var builder = new UserRequestBuilder(PathParameters);

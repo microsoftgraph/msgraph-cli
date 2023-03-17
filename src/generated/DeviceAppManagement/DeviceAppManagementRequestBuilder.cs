@@ -41,12 +41,15 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to manage the androidManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
-        public Command BuildAndroidManagedAppProtectionsCommand() {
+        public Command BuildAndroidManagedAppProtectionsNavCommand() {
             var command = new Command("android-managed-app-protections");
             command.Description = "Provides operations to manage the androidManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.";
             var builder = new AndroidManagedAppProtectionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -54,12 +57,15 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to manage the defaultManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
-        public Command BuildDefaultManagedAppProtectionsCommand() {
+        public Command BuildDefaultManagedAppProtectionsNavCommand() {
             var command = new Command("default-managed-app-protections");
             command.Description = "Provides operations to manage the defaultManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.";
             var builder = new DefaultManagedAppProtectionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -123,12 +129,15 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to manage the iosManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
-        public Command BuildIosManagedAppProtectionsCommand() {
+        public Command BuildIosManagedAppProtectionsNavCommand() {
             var command = new Command("ios-managed-app-protections");
             command.Description = "Provides operations to manage the iosManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.";
             var builder = new IosManagedAppProtectionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -136,12 +145,15 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to manage the managedAppPolicies property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
-        public Command BuildManagedAppPoliciesCommand() {
+        public Command BuildManagedAppPoliciesNavCommand() {
             var command = new Command("managed-app-policies");
             command.Description = "Provides operations to manage the managedAppPolicies property of the microsoft.graph.deviceAppManagement entity.";
             var builder = new ManagedAppPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -149,26 +161,32 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to manage the managedAppRegistrations property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
-        public Command BuildManagedAppRegistrationsCommand() {
+        public Command BuildManagedAppRegistrationsNavCommand() {
             var command = new Command("managed-app-registrations");
             command.Description = "Provides operations to manage the managedAppRegistrations property of the microsoft.graph.deviceAppManagement entity.";
             var builder = new ManagedAppRegistrationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildGetUserIdsWithFlaggedAppRegistrationCommand());
+            command.AddCommand(builder.BuildGetUserIdsWithFlaggedAppRegistrationNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the managedAppStatuses property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
-        public Command BuildManagedAppStatusesCommand() {
+        public Command BuildManagedAppStatusesNavCommand() {
             var command = new Command("managed-app-statuses");
             command.Description = "Provides operations to manage the managedAppStatuses property of the microsoft.graph.deviceAppManagement entity.";
             var builder = new ManagedAppStatusesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -176,12 +194,15 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to manage the managedEBooks property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
-        public Command BuildManagedEBooksCommand() {
+        public Command BuildManagedEBooksNavCommand() {
             var command = new Command("managed-e-books");
             command.Description = "Provides operations to manage the managedEBooks property of the microsoft.graph.deviceAppManagement entity.";
             var builder = new ManagedEBooksRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -189,12 +210,15 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to manage the mdmWindowsInformationProtectionPolicies property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
-        public Command BuildMdmWindowsInformationProtectionPoliciesCommand() {
+        public Command BuildMdmWindowsInformationProtectionPoliciesNavCommand() {
             var command = new Command("mdm-windows-information-protection-policies");
             command.Description = "Provides operations to manage the mdmWindowsInformationProtectionPolicies property of the microsoft.graph.deviceAppManagement entity.";
             var builder = new MdmWindowsInformationProtectionPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -202,12 +226,15 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to manage the mobileAppCategories property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
-        public Command BuildMobileAppCategoriesCommand() {
+        public Command BuildMobileAppCategoriesNavCommand() {
             var command = new Command("mobile-app-categories");
             command.Description = "Provides operations to manage the mobileAppCategories property of the microsoft.graph.deviceAppManagement entity.";
             var builder = new MobileAppCategoriesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -215,12 +242,15 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to manage the mobileAppConfigurations property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
-        public Command BuildMobileAppConfigurationsCommand() {
+        public Command BuildMobileAppConfigurationsNavCommand() {
             var command = new Command("mobile-app-configurations");
             command.Description = "Provides operations to manage the mobileAppConfigurations property of the microsoft.graph.deviceAppManagement entity.";
             var builder = new MobileAppConfigurationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -228,15 +258,18 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to manage the mobileApps property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
-        public Command BuildMobileAppsCommand() {
+        public Command BuildMobileAppsNavCommand() {
             var command = new Command("mobile-apps");
             command.Description = "Provides operations to manage the mobileApps property of the microsoft.graph.deviceAppManagement entity.";
             var builder = new MobileAppsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildGraphManagedMobileLobAppCommand());
-            command.AddCommand(builder.BuildGraphMobileLobAppCommand());
+            command.AddCommand(builder.BuildGraphManagedMobileLobAppNavCommand());
+            command.AddCommand(builder.BuildGraphMobileLobAppNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -295,7 +328,7 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to call the syncMicrosoftStoreForBusinessApps method.
         /// </summary>
-        public Command BuildSyncMicrosoftStoreForBusinessAppsCommand() {
+        public Command BuildSyncMicrosoftStoreForBusinessAppsNavCommand() {
             var command = new Command("sync-microsoft-store-for-business-apps");
             command.Description = "Provides operations to call the syncMicrosoftStoreForBusinessApps method.";
             var builder = new SyncMicrosoftStoreForBusinessAppsRequestBuilder(PathParameters);
@@ -305,12 +338,15 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to manage the targetedManagedAppConfigurations property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
-        public Command BuildTargetedManagedAppConfigurationsCommand() {
+        public Command BuildTargetedManagedAppConfigurationsNavCommand() {
             var command = new Command("targeted-managed-app-configurations");
             command.Description = "Provides operations to manage the targetedManagedAppConfigurations property of the microsoft.graph.deviceAppManagement entity.";
             var builder = new TargetedManagedAppConfigurationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -318,12 +354,15 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to manage the vppTokens property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
-        public Command BuildVppTokensCommand() {
+        public Command BuildVppTokensNavCommand() {
             var command = new Command("vpp-tokens");
             command.Description = "Provides operations to manage the vppTokens property of the microsoft.graph.deviceAppManagement entity.";
             var builder = new VppTokensRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -331,12 +370,15 @@ namespace ApiSdk.DeviceAppManagement {
         /// <summary>
         /// Provides operations to manage the windowsInformationProtectionPolicies property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
-        public Command BuildWindowsInformationProtectionPoliciesCommand() {
+        public Command BuildWindowsInformationProtectionPoliciesNavCommand() {
             var command = new Command("windows-information-protection-policies");
             command.Description = "Provides operations to manage the windowsInformationProtectionPolicies property of the microsoft.graph.deviceAppManagement entity.";
             var builder = new WindowsInformationProtectionPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

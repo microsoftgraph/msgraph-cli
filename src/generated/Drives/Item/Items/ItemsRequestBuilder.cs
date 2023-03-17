@@ -28,40 +28,40 @@ namespace ApiSdk.Drives.Item.Items {
         /// <summary>
         /// Provides operations to manage the items property of the microsoft.graph.drive entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new DriveItemItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAnalyticsCommand());
-            command.AddCommand(builder.BuildCheckinCommand());
-            command.AddCommand(builder.BuildCheckoutCommand());
-            command.AddCommand(builder.BuildChildrenCommand());
-            command.AddCommand(builder.BuildContentCommand());
-            command.AddCommand(builder.BuildCopyCommand());
-            command.AddCommand(builder.BuildCreateLinkCommand());
-            command.AddCommand(builder.BuildCreateUploadSessionCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
-            command.AddCommand(builder.BuildFollowCommand());
-            command.AddCommand(builder.BuildGetActivitiesByIntervalCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildInviteCommand());
-            command.AddCommand(builder.BuildListItemCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPermissionsCommand());
-            command.AddCommand(builder.BuildPreviewCommand());
-            command.AddCommand(builder.BuildRestoreCommand());
-            command.AddCommand(builder.BuildSubscriptionsCommand());
-            command.AddCommand(builder.BuildThumbnailsCommand());
-            command.AddCommand(builder.BuildUnfollowCommand());
-            command.AddCommand(builder.BuildValidatePermissionCommand());
-            command.AddCommand(builder.BuildVersionsCommand());
-            command.AddCommand(builder.BuildWorkbookCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildAnalyticsNavCommand());
+            commands.Add(builder.BuildCheckinNavCommand());
+            commands.Add(builder.BuildCheckoutNavCommand());
+            commands.Add(builder.BuildChildrenNavCommand());
+            commands.Add(builder.BuildContentNavCommand());
+            commands.Add(builder.BuildCopyNavCommand());
+            commands.Add(builder.BuildCreateLinkNavCommand());
+            commands.Add(builder.BuildCreateUploadSessionNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildDeltaNavCommand());
+            commands.Add(builder.BuildFollowNavCommand());
+            commands.Add(builder.BuildGetActivitiesByIntervalNavCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildInviteNavCommand());
+            commands.Add(builder.BuildListItemNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildPermissionsNavCommand());
+            commands.Add(builder.BuildPreviewNavCommand());
+            commands.Add(builder.BuildRestoreNavCommand());
+            commands.Add(builder.BuildSubscriptionsNavCommand());
+            commands.Add(builder.BuildThumbnailsNavCommand());
+            commands.Add(builder.BuildUnfollowNavCommand());
+            commands.Add(builder.BuildValidatePermissionNavCommand());
+            commands.Add(builder.BuildVersionsNavCommand());
+            commands.Add(builder.BuildWorkbookNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

@@ -29,12 +29,15 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item {
         /// <summary>
         /// Provides operations to manage the acceptances property of the microsoft.graph.agreement entity.
         /// </summary>
-        public Command BuildAcceptancesCommand() {
+        public Command BuildAcceptancesNavCommand() {
             var command = new Command("acceptances");
             command.Description = "Provides operations to manage the acceptances property of the microsoft.graph.agreement entity.";
             var builder = new AcceptancesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -76,25 +79,28 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item {
         /// <summary>
         /// Provides operations to manage the file property of the microsoft.graph.agreement entity.
         /// </summary>
-        public Command BuildFileCommand() {
+        public Command BuildFileNavCommand() {
             var command = new Command("file");
             command.Description = "Provides operations to manage the file property of the microsoft.graph.agreement entity.";
             var builder = new FileRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildLocalizationsCommand());
+            command.AddCommand(builder.BuildLocalizationsNavCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the files property of the microsoft.graph.agreement entity.
         /// </summary>
-        public Command BuildFilesCommand() {
+        public Command BuildFilesNavCommand() {
             var command = new Command("files");
             command.Description = "Provides operations to manage the files property of the microsoft.graph.agreement entity.";
             var builder = new FilesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

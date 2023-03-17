@@ -181,7 +181,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
         /// <summary>
         /// Provides operations to call the syncLicenses method.
         /// </summary>
-        public Command BuildSyncLicensesCommand() {
+        public Command BuildSyncLicensesNavCommand() {
             var command = new Command("sync-licenses");
             command.Description = "Provides operations to call the syncLicenses method.";
             var builder = new SyncLicensesRequestBuilder(PathParameters);

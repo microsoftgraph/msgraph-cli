@@ -29,25 +29,25 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.educationClass entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new EducationAssignmentItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCategoriesCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPublishCommand());
-            command.AddCommand(builder.BuildResourcesCommand());
-            command.AddCommand(builder.BuildRubricCommand());
-            command.AddCommand(builder.BuildSetUpFeedbackResourcesFolderCommand());
-            command.AddCommand(builder.BuildSetUpResourcesFolderCommand());
-            command.AddCommand(builder.BuildSubmissionsCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildCategoriesNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildPublishNavCommand());
+            commands.Add(builder.BuildResourcesNavCommand());
+            commands.Add(builder.BuildRubricNavCommand());
+            commands.Add(builder.BuildSetUpFeedbackResourcesFolderNavCommand());
+            commands.Add(builder.BuildSetUpResourcesFolderNavCommand());
+            commands.Add(builder.BuildSubmissionsNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -116,7 +116,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments {
         /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
-        public Command BuildDeltaCommand() {
+        public Command BuildDeltaNavCommand() {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
             var builder = new DeltaRequestBuilder(PathParameters);

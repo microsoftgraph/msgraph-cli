@@ -32,84 +32,84 @@ namespace ApiSdk.Users {
         /// <summary>
         /// Provides operations to manage the collection of user entities.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new UserItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildActivitiesCommand());
-            command.AddCommand(builder.BuildAgreementAcceptancesCommand());
-            command.AddCommand(builder.BuildAppRoleAssignmentsCommand());
-            command.AddCommand(builder.BuildAssignLicenseCommand());
-            command.AddCommand(builder.BuildAuthenticationCommand());
-            command.AddCommand(builder.BuildCalendarCommand());
-            command.AddCommand(builder.BuildCalendarGroupsCommand());
-            command.AddCommand(builder.BuildCalendarsCommand());
-            command.AddCommand(builder.BuildCalendarViewCommand());
-            command.AddCommand(builder.BuildChangePasswordCommand());
-            command.AddCommand(builder.BuildChatsCommand());
-            command.AddCommand(builder.BuildCheckMemberGroupsCommand());
-            command.AddCommand(builder.BuildCheckMemberObjectsCommand());
-            command.AddCommand(builder.BuildContactFoldersCommand());
-            command.AddCommand(builder.BuildContactsCommand());
-            command.AddCommand(builder.BuildCreatedObjectsCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildDeviceManagementTroubleshootingEventsCommand());
-            command.AddCommand(builder.BuildDirectReportsCommand());
-            command.AddCommand(builder.BuildDriveCommand());
-            command.AddCommand(builder.BuildDrivesCommand());
-            command.AddCommand(builder.BuildEventsCommand());
-            command.AddCommand(builder.BuildExportDeviceAndAppManagementDataCommand());
-            command.AddCommand(builder.BuildExportPersonalDataCommand());
-            command.AddCommand(builder.BuildExtensionsCommand());
-            command.AddCommand(builder.BuildFindMeetingTimesCommand());
-            command.AddCommand(builder.BuildFollowedSitesCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildGetMailTipsCommand());
-            command.AddCommand(builder.BuildGetManagedAppDiagnosticStatusesCommand());
-            command.AddCommand(builder.BuildGetManagedAppPoliciesCommand());
-            command.AddCommand(builder.BuildGetManagedDevicesWithAppFailuresCommand());
-            command.AddCommand(builder.BuildGetMemberGroupsCommand());
-            command.AddCommand(builder.BuildGetMemberObjectsCommand());
-            command.AddCommand(builder.BuildInferenceClassificationCommand());
-            command.AddCommand(builder.BuildInsightsCommand());
-            command.AddCommand(builder.BuildJoinedTeamsCommand());
-            command.AddCommand(builder.BuildLicenseDetailsCommand());
-            command.AddCommand(builder.BuildMailFoldersCommand());
-            command.AddCommand(builder.BuildManagedAppRegistrationsCommand());
-            command.AddCommand(builder.BuildManagedDevicesCommand());
-            command.AddCommand(builder.BuildManagerCommand());
-            command.AddCommand(builder.BuildMemberOfCommand());
-            command.AddCommand(builder.BuildMessagesCommand());
-            command.AddCommand(builder.BuildOauth2PermissionGrantsCommand());
-            command.AddCommand(builder.BuildOnenoteCommand());
-            command.AddCommand(builder.BuildOnlineMeetingsCommand());
-            command.AddCommand(builder.BuildOutlookCommand());
-            command.AddCommand(builder.BuildOwnedDevicesCommand());
-            command.AddCommand(builder.BuildOwnedObjectsCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPeopleCommand());
-            command.AddCommand(builder.BuildPhotoCommand());
-            command.AddCommand(builder.BuildPhotosCommand());
-            command.AddCommand(builder.BuildPlannerCommand());
-            command.AddCommand(builder.BuildPresenceCommand());
-            command.AddCommand(builder.BuildRegisteredDevicesCommand());
-            command.AddCommand(builder.BuildRemoveAllDevicesFromManagementCommand());
-            command.AddCommand(builder.BuildReprocessLicenseAssignmentCommand());
-            command.AddCommand(builder.BuildRestoreCommand());
-            command.AddCommand(builder.BuildRevokeSignInSessionsCommand());
-            command.AddCommand(builder.BuildScopedRoleMemberOfCommand());
-            command.AddCommand(builder.BuildSendMailCommand());
-            command.AddCommand(builder.BuildSettingsCommand());
-            command.AddCommand(builder.BuildTeamworkCommand());
-            command.AddCommand(builder.BuildTodoCommand());
-            command.AddCommand(builder.BuildTransitiveMemberOfCommand());
-            command.AddCommand(builder.BuildTranslateExchangeIdsCommand());
-            command.AddCommand(builder.BuildWipeManagedAppRegistrationsByDeviceTagCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildActivitiesNavCommand());
+            commands.Add(builder.BuildAgreementAcceptancesNavCommand());
+            commands.Add(builder.BuildAppRoleAssignmentsNavCommand());
+            commands.Add(builder.BuildAssignLicenseNavCommand());
+            commands.Add(builder.BuildAuthenticationNavCommand());
+            commands.Add(builder.BuildCalendarGroupsNavCommand());
+            commands.Add(builder.BuildCalendarNavCommand());
+            commands.Add(builder.BuildCalendarsNavCommand());
+            commands.Add(builder.BuildCalendarViewNavCommand());
+            commands.Add(builder.BuildChangePasswordNavCommand());
+            commands.Add(builder.BuildChatsNavCommand());
+            commands.Add(builder.BuildCheckMemberGroupsNavCommand());
+            commands.Add(builder.BuildCheckMemberObjectsNavCommand());
+            commands.Add(builder.BuildContactFoldersNavCommand());
+            commands.Add(builder.BuildContactsNavCommand());
+            commands.Add(builder.BuildCreatedObjectsNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildDeviceManagementTroubleshootingEventsNavCommand());
+            commands.Add(builder.BuildDirectReportsNavCommand());
+            commands.Add(builder.BuildDriveNavCommand());
+            commands.Add(builder.BuildDrivesNavCommand());
+            commands.Add(builder.BuildEventsNavCommand());
+            commands.Add(builder.BuildExportDeviceAndAppManagementDataNavCommand());
+            commands.Add(builder.BuildExportPersonalDataNavCommand());
+            commands.Add(builder.BuildExtensionsNavCommand());
+            commands.Add(builder.BuildFindMeetingTimesNavCommand());
+            commands.Add(builder.BuildFollowedSitesNavCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildGetMailTipsNavCommand());
+            commands.Add(builder.BuildGetManagedAppDiagnosticStatusesNavCommand());
+            commands.Add(builder.BuildGetManagedAppPoliciesNavCommand());
+            commands.Add(builder.BuildGetManagedDevicesWithAppFailuresNavCommand());
+            commands.Add(builder.BuildGetMemberGroupsNavCommand());
+            commands.Add(builder.BuildGetMemberObjectsNavCommand());
+            commands.Add(builder.BuildInferenceClassificationNavCommand());
+            commands.Add(builder.BuildInsightsNavCommand());
+            commands.Add(builder.BuildJoinedTeamsNavCommand());
+            commands.Add(builder.BuildLicenseDetailsNavCommand());
+            commands.Add(builder.BuildMailFoldersNavCommand());
+            commands.Add(builder.BuildManagedAppRegistrationsNavCommand());
+            commands.Add(builder.BuildManagedDevicesNavCommand());
+            commands.Add(builder.BuildManagerNavCommand());
+            commands.Add(builder.BuildMemberOfNavCommand());
+            commands.Add(builder.BuildMessagesNavCommand());
+            commands.Add(builder.BuildOauth2PermissionGrantsNavCommand());
+            commands.Add(builder.BuildOnenoteNavCommand());
+            commands.Add(builder.BuildOnlineMeetingsNavCommand());
+            commands.Add(builder.BuildOutlookNavCommand());
+            commands.Add(builder.BuildOwnedDevicesNavCommand());
+            commands.Add(builder.BuildOwnedObjectsNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildPeopleNavCommand());
+            commands.Add(builder.BuildPhotoNavCommand());
+            commands.Add(builder.BuildPhotosNavCommand());
+            commands.Add(builder.BuildPlannerNavCommand());
+            commands.Add(builder.BuildPresenceNavCommand());
+            commands.Add(builder.BuildRegisteredDevicesNavCommand());
+            commands.Add(builder.BuildRemoveAllDevicesFromManagementNavCommand());
+            commands.Add(builder.BuildReprocessLicenseAssignmentNavCommand());
+            commands.Add(builder.BuildRestoreNavCommand());
+            commands.Add(builder.BuildRevokeSignInSessionsNavCommand());
+            commands.Add(builder.BuildScopedRoleMemberOfNavCommand());
+            commands.Add(builder.BuildSendMailNavCommand());
+            commands.Add(builder.BuildSettingsNavCommand());
+            commands.Add(builder.BuildTeamworkNavCommand());
+            commands.Add(builder.BuildTodoNavCommand());
+            commands.Add(builder.BuildTransitiveMemberOfNavCommand());
+            commands.Add(builder.BuildTranslateExchangeIdsNavCommand());
+            commands.Add(builder.BuildWipeManagedAppRegistrationsByDeviceTagNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -172,7 +172,7 @@ namespace ApiSdk.Users {
         /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
-        public Command BuildDeltaCommand() {
+        public Command BuildDeltaNavCommand() {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
             var builder = new DeltaRequestBuilder(PathParameters);
@@ -182,7 +182,7 @@ namespace ApiSdk.Users {
         /// <summary>
         /// Provides operations to call the getAvailableExtensionProperties method.
         /// </summary>
-        public Command BuildGetAvailableExtensionPropertiesCommand() {
+        public Command BuildGetAvailableExtensionPropertiesNavCommand() {
             var command = new Command("get-available-extension-properties");
             command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
             var builder = new GetAvailableExtensionPropertiesRequestBuilder(PathParameters);
@@ -192,7 +192,7 @@ namespace ApiSdk.Users {
         /// <summary>
         /// Provides operations to call the getByIds method.
         /// </summary>
-        public Command BuildGetByIdsCommand() {
+        public Command BuildGetByIdsNavCommand() {
             var command = new Command("get-by-ids");
             command.Description = "Provides operations to call the getByIds method.";
             var builder = new GetByIdsRequestBuilder(PathParameters);
@@ -309,7 +309,7 @@ namespace ApiSdk.Users {
         /// <summary>
         /// Provides operations to call the validateProperties method.
         /// </summary>
-        public Command BuildValidatePropertiesCommand() {
+        public Command BuildValidatePropertiesNavCommand() {
             var command = new Command("validate-properties");
             command.Description = "Provides operations to call the validateProperties method.";
             var builder = new ValidatePropertiesRequestBuilder(PathParameters);

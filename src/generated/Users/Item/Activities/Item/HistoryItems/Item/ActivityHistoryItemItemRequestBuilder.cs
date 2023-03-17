@@ -27,7 +27,7 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item {
         /// <summary>
         /// Provides operations to manage the activity property of the microsoft.graph.activityHistoryItem entity.
         /// </summary>
-        public Command BuildActivityCommand() {
+        public Command BuildActivityNavCommand() {
             var command = new Command("activity");
             command.Description = "Provides operations to manage the activity property of the microsoft.graph.activityHistoryItem entity.";
             var builder = new ActivityRequestBuilder(PathParameters);

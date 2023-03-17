@@ -217,12 +217,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item {
         /// <summary>
         /// Provides operations to manage the replies property of the microsoft.graph.workbookComment entity.
         /// </summary>
-        public Command BuildRepliesCommand() {
+        public Command BuildRepliesNavCommand() {
             var command = new Command("replies");
             command.Description = "Provides operations to manage the replies property of the microsoft.graph.workbookComment entity.";
             var builder = new RepliesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

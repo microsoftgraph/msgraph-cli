@@ -217,7 +217,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.DocumentSetVersions.Item {
         /// <summary>
         /// Provides operations to call the restore method.
         /// </summary>
-        public Command BuildRestoreCommand() {
+        public Command BuildRestoreNavCommand() {
             var command = new Command("restore");
             command.Description = "Provides operations to call the restore method.";
             var builder = new RestoreRequestBuilder(PathParameters);

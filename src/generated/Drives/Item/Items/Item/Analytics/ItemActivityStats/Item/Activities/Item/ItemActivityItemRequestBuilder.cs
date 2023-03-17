@@ -79,11 +79,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Analytics.ItemActivityStats.Item.Activit
         /// <summary>
         /// Provides operations to manage the driveItem property of the microsoft.graph.itemActivity entity.
         /// </summary>
-        public Command BuildDriveItemCommand() {
+        public Command BuildDriveItemNavCommand() {
             var command = new Command("drive-item");
             command.Description = "Provides operations to manage the driveItem property of the microsoft.graph.itemActivity entity.";
             var builder = new ApiSdk.Drives.Item.Items.Item.Analytics.ItemActivityStats.Item.Activities.Item.DriveItem.DriveItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildContentCommand());
+            command.AddCommand(builder.BuildContentNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }

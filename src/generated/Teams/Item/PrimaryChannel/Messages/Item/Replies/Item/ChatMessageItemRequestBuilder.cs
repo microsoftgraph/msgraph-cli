@@ -149,12 +149,15 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.Replies.Item {
         /// <summary>
         /// Provides operations to manage the hostedContents property of the microsoft.graph.chatMessage entity.
         /// </summary>
-        public Command BuildHostedContentsCommand() {
+        public Command BuildHostedContentsNavCommand() {
             var command = new Command("hosted-contents");
             command.Description = "Provides operations to manage the hostedContents property of the microsoft.graph.chatMessage entity.";
             var builder = new HostedContentsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -232,7 +235,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.Replies.Item {
         /// <summary>
         /// Provides operations to call the softDelete method.
         /// </summary>
-        public Command BuildSoftDeleteCommand() {
+        public Command BuildSoftDeleteNavCommand() {
             var command = new Command("soft-delete");
             command.Description = "Provides operations to call the softDelete method.";
             var builder = new SoftDeleteRequestBuilder(PathParameters);
@@ -242,7 +245,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.Replies.Item {
         /// <summary>
         /// Provides operations to call the undoSoftDelete method.
         /// </summary>
-        public Command BuildUndoSoftDeleteCommand() {
+        public Command BuildUndoSoftDeleteNavCommand() {
             var command = new Command("undo-soft-delete");
             command.Description = "Provides operations to call the undoSoftDelete method.";
             var builder = new UndoSoftDeleteRequestBuilder(PathParameters);

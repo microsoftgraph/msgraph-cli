@@ -199,7 +199,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item {
         /// <summary>
         /// Provides operations to manage the userAttribute property of the microsoft.graph.identityUserFlowAttributeAssignment entity.
         /// </summary>
-        public Command BuildUserAttributeCommand() {
+        public Command BuildUserAttributeNavCommand() {
             var command = new Command("user-attribute");
             command.Description = "Provides operations to manage the userAttribute property of the microsoft.graph.identityUserFlowAttributeAssignment entity.";
             var builder = new UserAttributeRequestBuilder(PathParameters);

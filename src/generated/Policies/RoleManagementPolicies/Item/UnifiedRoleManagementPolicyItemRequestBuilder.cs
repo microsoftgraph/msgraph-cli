@@ -62,12 +62,15 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item {
         /// <summary>
         /// Provides operations to manage the effectiveRules property of the microsoft.graph.unifiedRoleManagementPolicy entity.
         /// </summary>
-        public Command BuildEffectiveRulesCommand() {
+        public Command BuildEffectiveRulesNavCommand() {
             var command = new Command("effective-rules");
             command.Description = "Provides operations to manage the effectiveRules property of the microsoft.graph.unifiedRoleManagementPolicy entity.";
             var builder = new EffectiveRulesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -195,12 +198,15 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item {
         /// <summary>
         /// Provides operations to manage the rules property of the microsoft.graph.unifiedRoleManagementPolicy entity.
         /// </summary>
-        public Command BuildRulesCommand() {
+        public Command BuildRulesNavCommand() {
             var command = new Command("rules");
             command.Description = "Provides operations to manage the rules property of the microsoft.graph.unifiedRoleManagementPolicy entity.";
             var builder = new RulesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

@@ -96,7 +96,7 @@ namespace ApiSdk.Me.TransitiveMemberOf.Item {
         /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
-        public Command BuildGraphGroupCommand() {
+        public Command BuildGraphGroupNavCommand() {
             var command = new Command("graph-group");
             command.Description = "Casts the previous resource to group.";
             var builder = new GraphGroupRequestBuilder(PathParameters);

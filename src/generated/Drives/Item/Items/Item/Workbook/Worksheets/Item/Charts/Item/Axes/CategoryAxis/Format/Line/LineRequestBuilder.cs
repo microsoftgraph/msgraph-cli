@@ -27,7 +27,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
         /// <summary>
         /// Provides operations to call the clear method.
         /// </summary>
-        public Command BuildClearCommand() {
+        public Command BuildClearNavCommand() {
             var command = new Command("clear");
             command.Description = "Provides operations to call the clear method.";
             var builder = new ClearRequestBuilder(PathParameters);

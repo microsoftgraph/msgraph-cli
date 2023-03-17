@@ -46,7 +46,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to call the addKey method.
         /// </summary>
-        public Command BuildAddKeyCommand() {
+        public Command BuildAddKeyNavCommand() {
             var command = new Command("add-key");
             command.Description = "Provides operations to call the addKey method.";
             var builder = new AddKeyRequestBuilder(PathParameters);
@@ -56,7 +56,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to call the addPassword method.
         /// </summary>
-        public Command BuildAddPasswordCommand() {
+        public Command BuildAddPasswordNavCommand() {
             var command = new Command("add-password");
             command.Description = "Provides operations to call the addPassword method.";
             var builder = new AddPasswordRequestBuilder(PathParameters);
@@ -66,20 +66,23 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to manage the appManagementPolicies property of the microsoft.graph.application entity.
         /// </summary>
-        public Command BuildAppManagementPoliciesCommand() {
+        public Command BuildAppManagementPoliciesNavCommand() {
             var command = new Command("app-management-policies");
             command.Description = "Provides operations to manage the appManagementPolicies property of the microsoft.graph.application entity.";
             var builder = new AppManagementPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildRefNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the checkMemberGroups method.
         /// </summary>
-        public Command BuildCheckMemberGroupsCommand() {
+        public Command BuildCheckMemberGroupsNavCommand() {
             var command = new Command("check-member-groups");
             command.Description = "Provides operations to call the checkMemberGroups method.";
             var builder = new CheckMemberGroupsRequestBuilder(PathParameters);
@@ -89,7 +92,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to call the checkMemberObjects method.
         /// </summary>
-        public Command BuildCheckMemberObjectsCommand() {
+        public Command BuildCheckMemberObjectsNavCommand() {
             var command = new Command("check-member-objects");
             command.Description = "Provides operations to call the checkMemberObjects method.";
             var builder = new CheckMemberObjectsRequestBuilder(PathParameters);
@@ -99,7 +102,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to manage the createdOnBehalfOf property of the microsoft.graph.application entity.
         /// </summary>
-        public Command BuildCreatedOnBehalfOfCommand() {
+        public Command BuildCreatedOnBehalfOfNavCommand() {
             var command = new Command("created-on-behalf-of");
             command.Description = "Provides operations to manage the createdOnBehalfOf property of the microsoft.graph.application entity.";
             var builder = new CreatedOnBehalfOfRequestBuilder(PathParameters);
@@ -144,12 +147,15 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to manage the extensionProperties property of the microsoft.graph.application entity.
         /// </summary>
-        public Command BuildExtensionPropertiesCommand() {
+        public Command BuildExtensionPropertiesNavCommand() {
             var command = new Command("extension-properties");
             command.Description = "Provides operations to manage the extensionProperties property of the microsoft.graph.application entity.";
             var builder = new ExtensionPropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -157,12 +163,15 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to manage the federatedIdentityCredentials property of the microsoft.graph.application entity.
         /// </summary>
-        public Command BuildFederatedIdentityCredentialsCommand() {
+        public Command BuildFederatedIdentityCredentialsNavCommand() {
             var command = new Command("federated-identity-credentials");
             command.Description = "Provides operations to manage the federatedIdentityCredentials property of the microsoft.graph.application entity.";
             var builder = new FederatedIdentityCredentialsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -233,7 +242,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to call the getMemberGroups method.
         /// </summary>
-        public Command BuildGetMemberGroupsCommand() {
+        public Command BuildGetMemberGroupsNavCommand() {
             var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
             var builder = new GetMemberGroupsRequestBuilder(PathParameters);
@@ -243,7 +252,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to call the getMemberObjects method.
         /// </summary>
-        public Command BuildGetMemberObjectsCommand() {
+        public Command BuildGetMemberObjectsNavCommand() {
             var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
             var builder = new GetMemberObjectsRequestBuilder(PathParameters);
@@ -253,19 +262,22 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.application entity.
         /// </summary>
-        public Command BuildHomeRealmDiscoveryPoliciesCommand() {
+        public Command BuildHomeRealmDiscoveryPoliciesNavCommand() {
             var command = new Command("home-realm-discovery-policies");
             command.Description = "Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.application entity.";
             var builder = new HomeRealmDiscoveryPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the media for the application entity.
         /// </summary>
-        public Command BuildLogoCommand() {
+        public Command BuildLogoNavCommand() {
             var command = new Command("logo");
             command.Description = "Provides operations to manage the media for the application entity.";
             var builder = new LogoRequestBuilder(PathParameters);
@@ -276,18 +288,21 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to manage the owners property of the microsoft.graph.application entity.
         /// </summary>
-        public Command BuildOwnersCommand() {
+        public Command BuildOwnersNavCommand() {
             var command = new Command("owners");
             command.Description = "Provides operations to manage the owners property of the microsoft.graph.application entity.";
             var builder = new OwnersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGraphAppRoleAssignmentCommand());
-            command.AddCommand(builder.BuildGraphEndpointCommand());
-            command.AddCommand(builder.BuildGraphServicePrincipalCommand());
-            command.AddCommand(builder.BuildGraphUserCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildGraphAppRoleAssignmentNavCommand());
+            command.AddCommand(builder.BuildGraphEndpointNavCommand());
+            command.AddCommand(builder.BuildGraphServicePrincipalNavCommand());
+            command.AddCommand(builder.BuildGraphUserNavCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildRefNavCommand());
             return command;
         }
         /// <summary>
@@ -352,7 +367,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to call the removeKey method.
         /// </summary>
-        public Command BuildRemoveKeyCommand() {
+        public Command BuildRemoveKeyNavCommand() {
             var command = new Command("remove-key");
             command.Description = "Provides operations to call the removeKey method.";
             var builder = new RemoveKeyRequestBuilder(PathParameters);
@@ -362,7 +377,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to call the removePassword method.
         /// </summary>
-        public Command BuildRemovePasswordCommand() {
+        public Command BuildRemovePasswordNavCommand() {
             var command = new Command("remove-password");
             command.Description = "Provides operations to call the removePassword method.";
             var builder = new RemovePasswordRequestBuilder(PathParameters);
@@ -372,7 +387,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to call the restore method.
         /// </summary>
-        public Command BuildRestoreCommand() {
+        public Command BuildRestoreNavCommand() {
             var command = new Command("restore");
             command.Description = "Provides operations to call the restore method.";
             var builder = new RestoreRequestBuilder(PathParameters);
@@ -382,7 +397,7 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to call the setVerifiedPublisher method.
         /// </summary>
-        public Command BuildSetVerifiedPublisherCommand() {
+        public Command BuildSetVerifiedPublisherNavCommand() {
             var command = new Command("set-verified-publisher");
             command.Description = "Provides operations to call the setVerifiedPublisher method.";
             var builder = new SetVerifiedPublisherRequestBuilder(PathParameters);
@@ -392,33 +407,39 @@ namespace ApiSdk.Applications.Item {
         /// <summary>
         /// Provides operations to manage the tokenIssuancePolicies property of the microsoft.graph.application entity.
         /// </summary>
-        public Command BuildTokenIssuancePoliciesCommand() {
+        public Command BuildTokenIssuancePoliciesNavCommand() {
             var command = new Command("token-issuance-policies");
             command.Description = "Provides operations to manage the tokenIssuancePolicies property of the microsoft.graph.application entity.";
             var builder = new TokenIssuancePoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildRefNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the tokenLifetimePolicies property of the microsoft.graph.application entity.
         /// </summary>
-        public Command BuildTokenLifetimePoliciesCommand() {
+        public Command BuildTokenLifetimePoliciesNavCommand() {
             var command = new Command("token-lifetime-policies");
             command.Description = "Provides operations to manage the tokenLifetimePolicies property of the microsoft.graph.application entity.";
             var builder = new TokenLifetimePoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildRefNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the unsetVerifiedPublisher method.
         /// </summary>
-        public Command BuildUnsetVerifiedPublisherCommand() {
+        public Command BuildUnsetVerifiedPublisherNavCommand() {
             var command = new Command("unset-verified-publisher");
             command.Description = "Provides operations to call the unsetVerifiedPublisher method.";
             var builder = new UnsetVerifiedPublisherRequestBuilder(PathParameters);

@@ -181,7 +181,7 @@ namespace ApiSdk.DeviceManagement.DeviceManagementPartners.Item {
         /// <summary>
         /// Provides operations to call the terminate method.
         /// </summary>
-        public Command BuildTerminateCommand() {
+        public Command BuildTerminateNavCommand() {
             var command = new Command("terminate");
             command.Description = "Provides operations to call the terminate method.";
             var builder = new TerminateRequestBuilder(PathParameters);

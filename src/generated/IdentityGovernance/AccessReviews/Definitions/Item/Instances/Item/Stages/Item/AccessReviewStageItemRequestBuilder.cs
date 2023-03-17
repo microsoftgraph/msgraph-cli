@@ -28,12 +28,15 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>
         /// Provides operations to manage the decisions property of the microsoft.graph.accessReviewStage entity.
         /// </summary>
-        public Command BuildDecisionsCommand() {
+        public Command BuildDecisionsNavCommand() {
             var command = new Command("decisions");
             command.Description = "Provides operations to manage the decisions property of the microsoft.graph.accessReviewStage entity.";
             var builder = new DecisionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -231,7 +234,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>
         /// Provides operations to call the stop method.
         /// </summary>
-        public Command BuildStopCommand() {
+        public Command BuildStopNavCommand() {
             var command = new Command("stop");
             command.Description = "Provides operations to call the stop method.";
             var builder = new StopRequestBuilder(PathParameters);

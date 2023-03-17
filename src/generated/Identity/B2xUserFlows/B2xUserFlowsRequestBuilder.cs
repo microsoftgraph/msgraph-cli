@@ -28,22 +28,22 @@ namespace ApiSdk.Identity.B2xUserFlows {
         /// <summary>
         /// Provides operations to manage the b2xUserFlows property of the microsoft.graph.identityContainer entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new B2xIdentityUserFlowItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildIdentityProvidersCommand());
-            command.AddCommand(builder.BuildLanguagesCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildUserAttributeAssignmentsCommand());
-            command.AddCommand(builder.BuildUserFlowIdentityProvidersCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildIdentityProvidersNavCommand());
+            commands.Add(builder.BuildLanguagesNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildUserAttributeAssignmentsNavCommand());
+            commands.Add(builder.BuildUserFlowIdentityProvidersNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

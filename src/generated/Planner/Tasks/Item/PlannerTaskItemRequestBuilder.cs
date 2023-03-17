@@ -30,7 +30,7 @@ namespace ApiSdk.Planner.Tasks.Item {
         /// <summary>
         /// Provides operations to manage the assignedToTaskBoardFormat property of the microsoft.graph.plannerTask entity.
         /// </summary>
-        public Command BuildAssignedToTaskBoardFormatCommand() {
+        public Command BuildAssignedToTaskBoardFormatNavCommand() {
             var command = new Command("assigned-to-task-board-format");
             command.Description = "Provides operations to manage the assignedToTaskBoardFormat property of the microsoft.graph.plannerTask entity.";
             var builder = new AssignedToTaskBoardFormatRequestBuilder(PathParameters);
@@ -42,7 +42,7 @@ namespace ApiSdk.Planner.Tasks.Item {
         /// <summary>
         /// Provides operations to manage the bucketTaskBoardFormat property of the microsoft.graph.plannerTask entity.
         /// </summary>
-        public Command BuildBucketTaskBoardFormatCommand() {
+        public Command BuildBucketTaskBoardFormatNavCommand() {
             var command = new Command("bucket-task-board-format");
             command.Description = "Provides operations to manage the bucketTaskBoardFormat property of the microsoft.graph.plannerTask entity.";
             var builder = new BucketTaskBoardFormatRequestBuilder(PathParameters);
@@ -88,7 +88,7 @@ namespace ApiSdk.Planner.Tasks.Item {
         /// <summary>
         /// Provides operations to manage the details property of the microsoft.graph.plannerTask entity.
         /// </summary>
-        public Command BuildDetailsCommand() {
+        public Command BuildDetailsNavCommand() {
             var command = new Command("details");
             command.Description = "Provides operations to manage the details property of the microsoft.graph.plannerTask entity.";
             var builder = new DetailsRequestBuilder(PathParameters);
@@ -227,7 +227,7 @@ namespace ApiSdk.Planner.Tasks.Item {
         /// <summary>
         /// Provides operations to manage the progressTaskBoardFormat property of the microsoft.graph.plannerTask entity.
         /// </summary>
-        public Command BuildProgressTaskBoardFormatCommand() {
+        public Command BuildProgressTaskBoardFormatNavCommand() {
             var command = new Command("progress-task-board-format");
             command.Description = "Provides operations to manage the progressTaskBoardFormat property of the microsoft.graph.plannerTask entity.";
             var builder = new ProgressTaskBoardFormatRequestBuilder(PathParameters);

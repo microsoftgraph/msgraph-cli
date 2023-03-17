@@ -27,7 +27,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item {
         /// <summary>
         /// Provides operations to manage the definition property of the microsoft.graph.printTaskTrigger entity.
         /// </summary>
-        public Command BuildDefinitionCommand() {
+        public Command BuildDefinitionNavCommand() {
             var command = new Command("definition");
             command.Description = "Provides operations to manage the definition property of the microsoft.graph.printTaskTrigger entity.";
             var builder = new DefinitionRequestBuilder(PathParameters);

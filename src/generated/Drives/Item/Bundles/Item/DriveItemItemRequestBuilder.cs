@@ -27,7 +27,7 @@ namespace ApiSdk.Drives.Item.Bundles.Item {
         /// <summary>
         /// Provides operations to manage the media for the drive entity.
         /// </summary>
-        public Command BuildContentCommand() {
+        public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the drive entity.";
             var builder = new ContentRequestBuilder(PathParameters);

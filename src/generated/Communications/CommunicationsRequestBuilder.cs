@@ -31,12 +31,15 @@ namespace ApiSdk.Communications {
         /// <summary>
         /// Provides operations to manage the callRecords property of the microsoft.graph.cloudCommunications entity.
         /// </summary>
-        public Command BuildCallRecordsCommand() {
+        public Command BuildCallRecordsNavCommand() {
             var command = new Command("call-records");
             command.Description = "Provides operations to manage the callRecords property of the microsoft.graph.cloudCommunications entity.";
             var builder = new CallRecordsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -44,15 +47,18 @@ namespace ApiSdk.Communications {
         /// <summary>
         /// Provides operations to manage the calls property of the microsoft.graph.cloudCommunications entity.
         /// </summary>
-        public Command BuildCallsCommand() {
+        public Command BuildCallsNavCommand() {
             var command = new Command("calls");
             command.Description = "Provides operations to manage the calls property of the microsoft.graph.cloudCommunications entity.";
             var builder = new CallsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildLogTeleconferenceDeviceQualityCommand());
+            command.AddCommand(builder.BuildLogTeleconferenceDeviceQualityNavCommand());
             return command;
         }
         /// <summary>
@@ -114,7 +120,7 @@ namespace ApiSdk.Communications {
         /// <summary>
         /// Provides operations to call the getPresencesByUserId method.
         /// </summary>
-        public Command BuildGetPresencesByUserIdCommand() {
+        public Command BuildGetPresencesByUserIdNavCommand() {
             var command = new Command("get-presences-by-user-id");
             command.Description = "Provides operations to call the getPresencesByUserId method.";
             var builder = new GetPresencesByUserIdRequestBuilder(PathParameters);
@@ -124,14 +130,17 @@ namespace ApiSdk.Communications {
         /// <summary>
         /// Provides operations to manage the onlineMeetings property of the microsoft.graph.cloudCommunications entity.
         /// </summary>
-        public Command BuildOnlineMeetingsCommand() {
+        public Command BuildOnlineMeetingsNavCommand() {
             var command = new Command("online-meetings");
             command.Description = "Provides operations to manage the onlineMeetings property of the microsoft.graph.cloudCommunications entity.";
             var builder = new OnlineMeetingsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildCreateOrGetCommand());
+            command.AddCommand(builder.BuildCreateOrGetNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -190,12 +199,15 @@ namespace ApiSdk.Communications {
         /// <summary>
         /// Provides operations to manage the presences property of the microsoft.graph.cloudCommunications entity.
         /// </summary>
-        public Command BuildPresencesCommand() {
+        public Command BuildPresencesNavCommand() {
             var command = new Command("presences");
             command.Description = "Provides operations to manage the presences property of the microsoft.graph.cloudCommunications entity.";
             var builder = new PresencesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

@@ -30,27 +30,25 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
         /// <summary>
         /// Provides operations to manage the custodians property of the microsoft.graph.security.ediscoveryCase entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new EdiscoveryCustodianItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildLastIndexOperationCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSecurityActivateCommand());
-            command.AddCommand(builder.BuildSecurityApplyHoldCommand());
-            command.AddCommand(builder.BuildSecurityReleaseCommand());
-            command.AddCommand(builder.BuildSecurityRemoveHoldCommand());
-            command.AddCommand(builder.BuildSecurityUpdateIndexCommand());
-            command.AddCommand(builder.BuildSiteSourcesCommand());
-            command.AddCommand(builder.BuildUnifiedGroupSourcesCommand());
-            command.AddCommand(builder.BuildUserSourcesCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildLastIndexOperationNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildSecurityActivateNavCommand());
+            commands.Add(builder.BuildSecurityReleaseNavCommand());
+            commands.Add(builder.BuildSecurityUpdateIndexNavCommand());
+            commands.Add(builder.BuildSiteSourcesNavCommand());
+            commands.Add(builder.BuildUnifiedGroupSourcesNavCommand());
+            commands.Add(builder.BuildUserSourcesNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -231,8 +229,9 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
         /// <summary>
         /// Provides operations to call the applyHold method.
         /// </summary>
-        public Command BuildSecurityApplyHoldCommand() {
-            var command = new Command("security-apply-hold");
+        public Command BuildSecurityApplyHoldNavCommand() {
+            var ediscoveryCustodianIndexer = new EdiscoveryCustodianItemRequestBuilder(PathParameters);
+            var command = ediscoveryCustodianIndexer.BuildSecurityApplyHoldNavCommand();
             command.Description = "Provides operations to call the applyHold method.";
             var builder = new SecurityApplyHoldRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
@@ -241,8 +240,9 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
         /// <summary>
         /// Provides operations to call the removeHold method.
         /// </summary>
-        public Command BuildSecurityRemoveHoldCommand() {
-            var command = new Command("security-remove-hold");
+        public Command BuildSecurityRemoveHoldNavCommand() {
+            var ediscoveryCustodianIndexer = new EdiscoveryCustodianItemRequestBuilder(PathParameters);
+            var command = ediscoveryCustodianIndexer.BuildSecurityRemoveHoldNavCommand();
             command.Description = "Provides operations to call the removeHold method.";
             var builder = new SecurityRemoveHoldRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());

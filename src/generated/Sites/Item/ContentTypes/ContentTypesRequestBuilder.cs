@@ -29,19 +29,9 @@ namespace ApiSdk.Sites.Item.ContentTypes {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Provides operations to call the addCopy method.
-        /// </summary>
-        public Command BuildAddCopyCommand() {
-            var command = new Command("add-copy");
-            command.Description = "Provides operations to call the addCopy method.";
-            var builder = new AddCopyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to call the addCopyFromContentTypeHub method.
         /// </summary>
-        public Command BuildAddCopyFromContentTypeHubCommand() {
+        public Command BuildAddCopyFromContentTypeHubNavCommand() {
             var command = new Command("add-copy-from-content-type-hub");
             command.Description = "Provides operations to call the addCopyFromContentTypeHub method.";
             var builder = new AddCopyFromContentTypeHubRequestBuilder(PathParameters);
@@ -49,30 +39,40 @@ namespace ApiSdk.Sites.Item.ContentTypes {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the addCopy method.
+        /// </summary>
+        public Command BuildAddCopyNavCommand() {
+            var command = new Command("add-copy");
+            command.Description = "Provides operations to call the addCopy method.";
+            var builder = new AddCopyRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the contentTypes property of the microsoft.graph.site entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new ContentTypeItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAssociateWithHubSitesCommand());
-            command.AddCommand(builder.BuildBaseCommand());
-            command.AddCommand(builder.BuildBaseTypesCommand());
-            command.AddCommand(builder.BuildColumnLinksCommand());
-            command.AddCommand(builder.BuildColumnPositionsCommand());
-            command.AddCommand(builder.BuildColumnsCommand());
-            command.AddCommand(builder.BuildCopyToDefaultContentLocationCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildIsPublishedCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPublishCommand());
-            command.AddCommand(builder.BuildUnpublishCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildAssociateWithHubSitesNavCommand());
+            commands.Add(builder.BuildBaseNavCommand());
+            commands.Add(builder.BuildBaseTypesNavCommand());
+            commands.Add(builder.BuildColumnLinksNavCommand());
+            commands.Add(builder.BuildColumnPositionsNavCommand());
+            commands.Add(builder.BuildColumnsNavCommand());
+            commands.Add(builder.BuildCopyToDefaultContentLocationNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildIsPublishedNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildPublishNavCommand());
+            commands.Add(builder.BuildUnpublishNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -141,7 +141,7 @@ namespace ApiSdk.Sites.Item.ContentTypes {
         /// <summary>
         /// Provides operations to call the getCompatibleHubContentTypes method.
         /// </summary>
-        public Command BuildGetCompatibleHubContentTypesCommand() {
+        public Command BuildGetCompatibleHubContentTypesNavCommand() {
             var command = new Command("get-compatible-hub-content-types");
             command.Description = "Provides operations to call the getCompatibleHubContentTypes method.";
             var builder = new GetCompatibleHubContentTypesRequestBuilder(PathParameters);

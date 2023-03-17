@@ -67,7 +67,7 @@ namespace ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods.Item {
         /// <summary>
         /// Provides operations to manage the device property of the microsoft.graph.windowsHelloForBusinessAuthenticationMethod entity.
         /// </summary>
-        public Command BuildDeviceCommand() {
+        public Command BuildDeviceNavCommand() {
             var command = new Command("device");
             command.Description = "Provides operations to manage the device property of the microsoft.graph.windowsHelloForBusinessAuthenticationMethod entity.";
             var builder = new DeviceRequestBuilder(PathParameters);

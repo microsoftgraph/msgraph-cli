@@ -27,12 +27,15 @@ namespace ApiSdk.External {
         /// <summary>
         /// Provides operations to manage the connections property of the microsoft.graph.externalConnectors.external entity.
         /// </summary>
-        public Command BuildConnectionsCommand() {
+        public Command BuildConnectionsNavCommand() {
             var command = new Command("connections");
             command.Description = "Provides operations to manage the connections property of the microsoft.graph.externalConnectors.external entity.";
             var builder = new ConnectionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

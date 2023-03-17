@@ -35,35 +35,38 @@ namespace ApiSdk.Organization.Item {
         /// <summary>
         /// Provides operations to manage the branding property of the microsoft.graph.organization entity.
         /// </summary>
-        public Command BuildBrandingCommand() {
+        public Command BuildBrandingNavCommand() {
             var command = new Command("branding");
             command.Description = "Provides operations to manage the branding property of the microsoft.graph.organization entity.";
             var builder = new BrandingRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildBackgroundImageCommand());
-            command.AddCommand(builder.BuildBannerLogoCommand());
+            command.AddCommand(builder.BuildBackgroundImageNavCommand());
+            command.AddCommand(builder.BuildBannerLogoNavCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildLocalizationsCommand());
+            command.AddCommand(builder.BuildLocalizationsNavCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSquareLogoCommand());
+            command.AddCommand(builder.BuildSquareLogoNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the certificateBasedAuthConfiguration property of the microsoft.graph.organization entity.
         /// </summary>
-        public Command BuildCertificateBasedAuthConfigurationCommand() {
+        public Command BuildCertificateBasedAuthConfigurationNavCommand() {
             var command = new Command("certificate-based-auth-configuration");
             command.Description = "Provides operations to manage the certificateBasedAuthConfiguration property of the microsoft.graph.organization entity.";
             var builder = new CertificateBasedAuthConfigurationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the checkMemberGroups method.
         /// </summary>
-        public Command BuildCheckMemberGroupsCommand() {
+        public Command BuildCheckMemberGroupsNavCommand() {
             var command = new Command("check-member-groups");
             command.Description = "Provides operations to call the checkMemberGroups method.";
             var builder = new CheckMemberGroupsRequestBuilder(PathParameters);
@@ -73,7 +76,7 @@ namespace ApiSdk.Organization.Item {
         /// <summary>
         /// Provides operations to call the checkMemberObjects method.
         /// </summary>
-        public Command BuildCheckMemberObjectsCommand() {
+        public Command BuildCheckMemberObjectsNavCommand() {
             var command = new Command("check-member-objects");
             command.Description = "Provides operations to call the checkMemberObjects method.";
             var builder = new CheckMemberObjectsRequestBuilder(PathParameters);
@@ -117,12 +120,15 @@ namespace ApiSdk.Organization.Item {
         /// <summary>
         /// Provides operations to manage the extensions property of the microsoft.graph.organization entity.
         /// </summary>
-        public Command BuildExtensionsCommand() {
+        public Command BuildExtensionsNavCommand() {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.organization entity.";
             var builder = new ExtensionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -193,7 +199,7 @@ namespace ApiSdk.Organization.Item {
         /// <summary>
         /// Provides operations to call the getMemberGroups method.
         /// </summary>
-        public Command BuildGetMemberGroupsCommand() {
+        public Command BuildGetMemberGroupsNavCommand() {
             var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
             var builder = new GetMemberGroupsRequestBuilder(PathParameters);
@@ -203,7 +209,7 @@ namespace ApiSdk.Organization.Item {
         /// <summary>
         /// Provides operations to call the getMemberObjects method.
         /// </summary>
-        public Command BuildGetMemberObjectsCommand() {
+        public Command BuildGetMemberObjectsNavCommand() {
             var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
             var builder = new GetMemberObjectsRequestBuilder(PathParameters);
@@ -272,7 +278,7 @@ namespace ApiSdk.Organization.Item {
         /// <summary>
         /// Provides operations to call the restore method.
         /// </summary>
-        public Command BuildRestoreCommand() {
+        public Command BuildRestoreNavCommand() {
             var command = new Command("restore");
             command.Description = "Provides operations to call the restore method.";
             var builder = new RestoreRequestBuilder(PathParameters);
@@ -282,7 +288,7 @@ namespace ApiSdk.Organization.Item {
         /// <summary>
         /// Provides operations to call the setMobileDeviceManagementAuthority method.
         /// </summary>
-        public Command BuildSetMobileDeviceManagementAuthorityCommand() {
+        public Command BuildSetMobileDeviceManagementAuthorityNavCommand() {
             var command = new Command("set-mobile-device-management-authority");
             command.Description = "Provides operations to call the setMobileDeviceManagementAuthority method.";
             var builder = new SetMobileDeviceManagementAuthorityRequestBuilder(PathParameters);

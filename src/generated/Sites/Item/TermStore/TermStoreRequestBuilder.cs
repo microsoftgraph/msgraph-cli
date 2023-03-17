@@ -125,12 +125,15 @@ namespace ApiSdk.Sites.Item.TermStore {
         /// <summary>
         /// Provides operations to manage the groups property of the microsoft.graph.termStore.store entity.
         /// </summary>
-        public Command BuildGroupsCommand() {
+        public Command BuildGroupsNavCommand() {
             var command = new Command("groups");
             command.Description = "Provides operations to manage the groups property of the microsoft.graph.termStore.store entity.";
             var builder = new GroupsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -197,12 +200,15 @@ namespace ApiSdk.Sites.Item.TermStore {
         /// <summary>
         /// Provides operations to manage the sets property of the microsoft.graph.termStore.store entity.
         /// </summary>
-        public Command BuildSetsCommand() {
+        public Command BuildSetsNavCommand() {
             var command = new Command("sets");
             command.Description = "Provides operations to manage the sets property of the microsoft.graph.termStore.store entity.";
             var builder = new SetsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

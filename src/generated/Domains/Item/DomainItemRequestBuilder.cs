@@ -68,24 +68,30 @@ namespace ApiSdk.Domains.Item {
         /// <summary>
         /// Provides operations to manage the domainNameReferences property of the microsoft.graph.domain entity.
         /// </summary>
-        public Command BuildDomainNameReferencesCommand() {
+        public Command BuildDomainNameReferencesNavCommand() {
             var command = new Command("domain-name-references");
             command.Description = "Provides operations to manage the domainNameReferences property of the microsoft.graph.domain entity.";
             var builder = new DomainNameReferencesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the federationConfiguration property of the microsoft.graph.domain entity.
         /// </summary>
-        public Command BuildFederationConfigurationCommand() {
+        public Command BuildFederationConfigurationNavCommand() {
             var command = new Command("federation-configuration");
             command.Description = "Provides operations to manage the federationConfiguration property of the microsoft.graph.domain entity.";
             var builder = new FederationConfigurationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -93,7 +99,7 @@ namespace ApiSdk.Domains.Item {
         /// <summary>
         /// Provides operations to call the forceDelete method.
         /// </summary>
-        public Command BuildForceDeleteCommand() {
+        public Command BuildForceDeleteNavCommand() {
             var command = new Command("force-delete");
             command.Description = "Provides operations to call the forceDelete method.";
             var builder = new ForceDeleteRequestBuilder(PathParameters);
@@ -225,7 +231,7 @@ namespace ApiSdk.Domains.Item {
         /// <summary>
         /// Provides operations to call the promote method.
         /// </summary>
-        public Command BuildPromoteCommand() {
+        public Command BuildPromoteNavCommand() {
             var command = new Command("promote");
             command.Description = "Provides operations to call the promote method.";
             var builder = new PromoteRequestBuilder(PathParameters);
@@ -235,12 +241,15 @@ namespace ApiSdk.Domains.Item {
         /// <summary>
         /// Provides operations to manage the serviceConfigurationRecords property of the microsoft.graph.domain entity.
         /// </summary>
-        public Command BuildServiceConfigurationRecordsCommand() {
+        public Command BuildServiceConfigurationRecordsNavCommand() {
             var command = new Command("service-configuration-records");
             command.Description = "Provides operations to manage the serviceConfigurationRecords property of the microsoft.graph.domain entity.";
             var builder = new ServiceConfigurationRecordsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -248,12 +257,15 @@ namespace ApiSdk.Domains.Item {
         /// <summary>
         /// Provides operations to manage the verificationDnsRecords property of the microsoft.graph.domain entity.
         /// </summary>
-        public Command BuildVerificationDnsRecordsCommand() {
+        public Command BuildVerificationDnsRecordsNavCommand() {
             var command = new Command("verification-dns-records");
             command.Description = "Provides operations to manage the verificationDnsRecords property of the microsoft.graph.domain entity.";
             var builder = new VerificationDnsRecordsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -261,7 +273,7 @@ namespace ApiSdk.Domains.Item {
         /// <summary>
         /// Provides operations to call the verify method.
         /// </summary>
-        public Command BuildVerifyCommand() {
+        public Command BuildVerifyNavCommand() {
             var command = new Command("verify");
             command.Description = "Provides operations to call the verify method.";
             var builder = new VerifyRequestBuilder(PathParameters);

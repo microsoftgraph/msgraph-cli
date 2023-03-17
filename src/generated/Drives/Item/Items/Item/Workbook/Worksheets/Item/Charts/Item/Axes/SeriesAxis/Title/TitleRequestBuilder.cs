@@ -79,12 +79,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
         /// <summary>
         /// Provides operations to manage the format property of the microsoft.graph.workbookChartAxisTitle entity.
         /// </summary>
-        public Command BuildFormatCommand() {
+        public Command BuildFormatNavCommand() {
             var command = new Command("format");
             command.Description = "Provides operations to manage the format property of the microsoft.graph.workbookChartAxisTitle entity.";
             var builder = new FormatRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildFontCommand());
+            command.AddCommand(builder.BuildFontNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;

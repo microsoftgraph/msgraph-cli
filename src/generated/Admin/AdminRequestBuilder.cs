@@ -135,15 +135,15 @@ namespace ApiSdk.Admin {
         /// <summary>
         /// Provides operations to manage the serviceAnnouncement property of the microsoft.graph.admin entity.
         /// </summary>
-        public Command BuildServiceAnnouncementCommand() {
+        public Command BuildServiceAnnouncementNavCommand() {
             var command = new Command("service-announcement");
             command.Description = "Provides operations to manage the serviceAnnouncement property of the microsoft.graph.admin entity.";
             var builder = new ServiceAnnouncementRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildHealthOverviewsCommand());
-            command.AddCommand(builder.BuildIssuesCommand());
-            command.AddCommand(builder.BuildMessagesCommand());
+            command.AddCommand(builder.BuildHealthOverviewsNavCommand());
+            command.AddCommand(builder.BuildIssuesNavCommand());
+            command.AddCommand(builder.BuildMessagesNavCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }

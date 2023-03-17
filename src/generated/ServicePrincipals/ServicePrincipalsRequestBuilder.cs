@@ -32,44 +32,44 @@ namespace ApiSdk.ServicePrincipals {
         /// <summary>
         /// Provides operations to manage the collection of servicePrincipal entities.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new ServicePrincipalItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAddKeyCommand());
-            command.AddCommand(builder.BuildAddPasswordCommand());
-            command.AddCommand(builder.BuildAddTokenSigningCertificateCommand());
-            command.AddCommand(builder.BuildAppManagementPoliciesCommand());
-            command.AddCommand(builder.BuildAppRoleAssignedToCommand());
-            command.AddCommand(builder.BuildAppRoleAssignmentsCommand());
-            command.AddCommand(builder.BuildCheckMemberGroupsCommand());
-            command.AddCommand(builder.BuildCheckMemberObjectsCommand());
-            command.AddCommand(builder.BuildClaimsMappingPoliciesCommand());
-            command.AddCommand(builder.BuildCreatedObjectsCommand());
-            command.AddCommand(builder.BuildDelegatedPermissionClassificationsCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildEndpointsCommand());
-            command.AddCommand(builder.BuildFederatedIdentityCredentialsCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildGetMemberGroupsCommand());
-            command.AddCommand(builder.BuildGetMemberObjectsCommand());
-            command.AddCommand(builder.BuildHomeRealmDiscoveryPoliciesCommand());
-            command.AddCommand(builder.BuildMemberOfCommand());
-            command.AddCommand(builder.BuildOauth2PermissionGrantsCommand());
-            command.AddCommand(builder.BuildOwnedObjectsCommand());
-            command.AddCommand(builder.BuildOwnersCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildRemoveKeyCommand());
-            command.AddCommand(builder.BuildRemovePasswordCommand());
-            command.AddCommand(builder.BuildRestoreCommand());
-            command.AddCommand(builder.BuildTokenIssuancePoliciesCommand());
-            command.AddCommand(builder.BuildTokenLifetimePoliciesCommand());
-            command.AddCommand(builder.BuildTransitiveMemberOfCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildAddKeyNavCommand());
+            commands.Add(builder.BuildAddPasswordNavCommand());
+            commands.Add(builder.BuildAddTokenSigningCertificateNavCommand());
+            commands.Add(builder.BuildAppManagementPoliciesNavCommand());
+            commands.Add(builder.BuildAppRoleAssignedToNavCommand());
+            commands.Add(builder.BuildAppRoleAssignmentsNavCommand());
+            commands.Add(builder.BuildCheckMemberGroupsNavCommand());
+            commands.Add(builder.BuildCheckMemberObjectsNavCommand());
+            commands.Add(builder.BuildClaimsMappingPoliciesNavCommand());
+            commands.Add(builder.BuildCreatedObjectsNavCommand());
+            commands.Add(builder.BuildDelegatedPermissionClassificationsNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildEndpointsNavCommand());
+            commands.Add(builder.BuildFederatedIdentityCredentialsNavCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildGetMemberGroupsNavCommand());
+            commands.Add(builder.BuildGetMemberObjectsNavCommand());
+            commands.Add(builder.BuildHomeRealmDiscoveryPoliciesNavCommand());
+            commands.Add(builder.BuildMemberOfNavCommand());
+            commands.Add(builder.BuildOauth2PermissionGrantsNavCommand());
+            commands.Add(builder.BuildOwnedObjectsNavCommand());
+            commands.Add(builder.BuildOwnersNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildRemoveKeyNavCommand());
+            commands.Add(builder.BuildRemovePasswordNavCommand());
+            commands.Add(builder.BuildRestoreNavCommand());
+            commands.Add(builder.BuildTokenIssuancePoliciesNavCommand());
+            commands.Add(builder.BuildTokenLifetimePoliciesNavCommand());
+            commands.Add(builder.BuildTransitiveMemberOfNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -132,7 +132,7 @@ namespace ApiSdk.ServicePrincipals {
         /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
-        public Command BuildDeltaCommand() {
+        public Command BuildDeltaNavCommand() {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
             var builder = new DeltaRequestBuilder(PathParameters);
@@ -142,7 +142,7 @@ namespace ApiSdk.ServicePrincipals {
         /// <summary>
         /// Provides operations to call the getAvailableExtensionProperties method.
         /// </summary>
-        public Command BuildGetAvailableExtensionPropertiesCommand() {
+        public Command BuildGetAvailableExtensionPropertiesNavCommand() {
             var command = new Command("get-available-extension-properties");
             command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
             var builder = new GetAvailableExtensionPropertiesRequestBuilder(PathParameters);
@@ -152,7 +152,7 @@ namespace ApiSdk.ServicePrincipals {
         /// <summary>
         /// Provides operations to call the getByIds method.
         /// </summary>
-        public Command BuildGetByIdsCommand() {
+        public Command BuildGetByIdsNavCommand() {
             var command = new Command("get-by-ids");
             command.Description = "Provides operations to call the getByIds method.";
             var builder = new GetByIdsRequestBuilder(PathParameters);
@@ -275,7 +275,7 @@ namespace ApiSdk.ServicePrincipals {
         /// <summary>
         /// Provides operations to call the validateProperties method.
         /// </summary>
-        public Command BuildValidatePropertiesCommand() {
+        public Command BuildValidatePropertiesNavCommand() {
             var command = new Command("validate-properties");
             command.Description = "Provides operations to call the validateProperties method.";
             var builder = new ValidatePropertiesRequestBuilder(PathParameters);

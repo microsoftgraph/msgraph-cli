@@ -27,7 +27,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item {
         /// <summary>
         /// Provides operations to call the cancel method.
         /// </summary>
-        public Command BuildCancelCommand() {
+        public Command BuildCancelNavCommand() {
             var command = new Command("cancel");
             command.Description = "Provides operations to call the cancel method.";
             var builder = new CancelRequestBuilder(PathParameters);

@@ -199,12 +199,15 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions.Item {
         /// <summary>
         /// Provides operations to manage the segments property of the microsoft.graph.callRecords.session entity.
         /// </summary>
-        public Command BuildSegmentsCommand() {
+        public Command BuildSegmentsNavCommand() {
             var command = new Command("segments");
             command.Description = "Provides operations to manage the segments property of the microsoft.graph.callRecords.session entity.";
             var builder = new SegmentsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

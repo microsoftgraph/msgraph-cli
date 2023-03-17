@@ -33,12 +33,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         /// <summary>
         /// Provides operations to manage the additionalSources property of the microsoft.graph.security.ediscoverySearch entity.
         /// </summary>
-        public Command BuildAdditionalSourcesCommand() {
+        public Command BuildAdditionalSourcesNavCommand() {
             var command = new Command("additional-sources");
             command.Description = "Provides operations to manage the additionalSources property of the microsoft.graph.security.ediscoverySearch entity.";
             var builder = new AdditionalSourcesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -46,7 +49,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         /// <summary>
         /// Provides operations to manage the addToReviewSetOperation property of the microsoft.graph.security.ediscoverySearch entity.
         /// </summary>
-        public Command BuildAddToReviewSetOperationCommand() {
+        public Command BuildAddToReviewSetOperationNavCommand() {
             var command = new Command("add-to-review-set-operation");
             command.Description = "Provides operations to manage the addToReviewSetOperation property of the microsoft.graph.security.ediscoverySearch entity.";
             var builder = new AddToReviewSetOperationRequestBuilder(PathParameters);
@@ -56,12 +59,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         /// <summary>
         /// Provides operations to manage the custodianSources property of the microsoft.graph.security.ediscoverySearch entity.
         /// </summary>
-        public Command BuildCustodianSourcesCommand() {
+        public Command BuildCustodianSourcesNavCommand() {
             var command = new Command("custodian-sources");
             command.Description = "Provides operations to manage the custodianSources property of the microsoft.graph.security.ediscoverySearch entity.";
             var builder = new CustodianSourcesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -176,7 +182,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         /// <summary>
         /// Provides operations to manage the lastEstimateStatisticsOperation property of the microsoft.graph.security.ediscoverySearch entity.
         /// </summary>
-        public Command BuildLastEstimateStatisticsOperationCommand() {
+        public Command BuildLastEstimateStatisticsOperationNavCommand() {
             var command = new Command("last-estimate-statistics-operation");
             command.Description = "Provides operations to manage the lastEstimateStatisticsOperation property of the microsoft.graph.security.ediscoverySearch entity.";
             var builder = new LastEstimateStatisticsOperationRequestBuilder(PathParameters);
@@ -186,12 +192,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         /// <summary>
         /// Provides operations to manage the noncustodialSources property of the microsoft.graph.security.ediscoverySearch entity.
         /// </summary>
-        public Command BuildNoncustodialSourcesCommand() {
+        public Command BuildNoncustodialSourcesNavCommand() {
             var command = new Command("noncustodial-sources");
             command.Description = "Provides operations to manage the noncustodialSources property of the microsoft.graph.security.ediscoverySearch entity.";
             var builder = new NoncustodialSourcesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -262,7 +271,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         /// <summary>
         /// Provides operations to call the estimateStatistics method.
         /// </summary>
-        public Command BuildSecurityEstimateStatisticsCommand() {
+        public Command BuildSecurityEstimateStatisticsNavCommand() {
             var command = new Command("security-estimate-statistics");
             command.Description = "Provides operations to call the estimateStatistics method.";
             var builder = new SecurityEstimateStatisticsRequestBuilder(PathParameters);
@@ -272,7 +281,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
         /// <summary>
         /// Provides operations to call the purgeData method.
         /// </summary>
-        public Command BuildSecurityPurgeDataCommand() {
+        public Command BuildSecurityPurgeDataNavCommand() {
             var command = new Command("security-purge-data");
             command.Description = "Provides operations to call the purgeData method.";
             var builder = new SecurityPurgeDataRequestBuilder(PathParameters);

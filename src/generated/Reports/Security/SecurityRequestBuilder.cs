@@ -57,7 +57,7 @@ namespace ApiSdk.Reports.Security {
         /// <summary>
         /// Provides operations to call the getAttackSimulationRepeatOffenders method.
         /// </summary>
-        public Command BuildGetAttackSimulationRepeatOffendersCommand() {
+        public Command BuildGetAttackSimulationRepeatOffendersNavCommand() {
             var command = new Command("get-attack-simulation-repeat-offenders");
             command.Description = "Provides operations to call the getAttackSimulationRepeatOffenders method.";
             var builder = new GetAttackSimulationRepeatOffendersRequestBuilder(PathParameters);
@@ -67,7 +67,7 @@ namespace ApiSdk.Reports.Security {
         /// <summary>
         /// Provides operations to call the getAttackSimulationSimulationUserCoverage method.
         /// </summary>
-        public Command BuildGetAttackSimulationSimulationUserCoverageCommand() {
+        public Command BuildGetAttackSimulationSimulationUserCoverageNavCommand() {
             var command = new Command("get-attack-simulation-simulation-user-coverage");
             command.Description = "Provides operations to call the getAttackSimulationSimulationUserCoverage method.";
             var builder = new GetAttackSimulationSimulationUserCoverageRequestBuilder(PathParameters);
@@ -77,7 +77,7 @@ namespace ApiSdk.Reports.Security {
         /// <summary>
         /// Provides operations to call the getAttackSimulationTrainingUserCoverage method.
         /// </summary>
-        public Command BuildGetAttackSimulationTrainingUserCoverageCommand() {
+        public Command BuildGetAttackSimulationTrainingUserCoverageNavCommand() {
             var command = new Command("get-attack-simulation-training-user-coverage");
             command.Description = "Provides operations to call the getAttackSimulationTrainingUserCoverage method.";
             var builder = new GetAttackSimulationTrainingUserCoverageRequestBuilder(PathParameters);

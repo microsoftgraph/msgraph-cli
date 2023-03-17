@@ -99,7 +99,7 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item {
         /// <summary>
         /// Casts the previous resource to application.
         /// </summary>
-        public Command BuildGraphApplicationCommand() {
+        public Command BuildGraphApplicationNavCommand() {
             var command = new Command("graph-application");
             command.Description = "Casts the previous resource to application.";
             var builder = new GraphApplicationRequestBuilder(PathParameters);
@@ -109,7 +109,7 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item {
         /// <summary>
         /// Casts the previous resource to appRoleAssignment.
         /// </summary>
-        public Command BuildGraphAppRoleAssignmentCommand() {
+        public Command BuildGraphAppRoleAssignmentNavCommand() {
             var command = new Command("graph-app-role-assignment");
             command.Description = "Casts the previous resource to appRoleAssignment.";
             var builder = new GraphAppRoleAssignmentRequestBuilder(PathParameters);
@@ -119,7 +119,7 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item {
         /// <summary>
         /// Casts the previous resource to endpoint.
         /// </summary>
-        public Command BuildGraphEndpointCommand() {
+        public Command BuildGraphEndpointNavCommand() {
             var command = new Command("graph-endpoint");
             command.Description = "Casts the previous resource to endpoint.";
             var builder = new GraphEndpointRequestBuilder(PathParameters);
@@ -129,7 +129,7 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item {
         /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
-        public Command BuildGraphGroupCommand() {
+        public Command BuildGraphGroupNavCommand() {
             var command = new Command("graph-group");
             command.Description = "Casts the previous resource to group.";
             var builder = new GraphGroupRequestBuilder(PathParameters);
@@ -139,7 +139,7 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item {
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        public Command BuildGraphServicePrincipalCommand() {
+        public Command BuildGraphServicePrincipalNavCommand() {
             var command = new Command("graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new GraphServicePrincipalRequestBuilder(PathParameters);

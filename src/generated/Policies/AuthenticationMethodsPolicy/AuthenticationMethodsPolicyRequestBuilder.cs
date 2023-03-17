@@ -27,12 +27,15 @@ namespace ApiSdk.Policies.AuthenticationMethodsPolicy {
         /// <summary>
         /// Provides operations to manage the authenticationMethodConfigurations property of the microsoft.graph.authenticationMethodsPolicy entity.
         /// </summary>
-        public Command BuildAuthenticationMethodConfigurationsCommand() {
+        public Command BuildAuthenticationMethodConfigurationsNavCommand() {
             var command = new Command("authentication-method-configurations");
             command.Description = "Provides operations to manage the authenticationMethodConfigurations property of the microsoft.graph.authenticationMethodsPolicy entity.";
             var builder = new AuthenticationMethodConfigurationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

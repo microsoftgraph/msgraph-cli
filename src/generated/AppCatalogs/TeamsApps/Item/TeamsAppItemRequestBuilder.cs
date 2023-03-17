@@ -27,12 +27,15 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item {
         /// <summary>
         /// Provides operations to manage the appDefinitions property of the microsoft.graph.teamsApp entity.
         /// </summary>
-        public Command BuildAppDefinitionsCommand() {
+        public Command BuildAppDefinitionsNavCommand() {
             var command = new Command("app-definitions");
             command.Description = "Provides operations to manage the appDefinitions property of the microsoft.graph.teamsApp entity.";
             var builder = new AppDefinitionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

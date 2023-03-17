@@ -31,7 +31,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts {
         /// <summary>
         /// Provides operations to call the add method.
         /// </summary>
-        public Command BuildAddCommand() {
+        public Command BuildAddNavCommand() {
             var command = new Command("add");
             command.Description = "Provides operations to call the add method.";
             var builder = new AddRequestBuilder(PathParameters);
@@ -41,28 +41,28 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts {
         /// <summary>
         /// Provides operations to manage the charts property of the microsoft.graph.workbookWorksheet entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new WorkbookChartItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAxesCommand());
-            command.AddCommand(builder.BuildDataLabelsCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildFormatCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildImageCommand());
-            command.AddCommand(builder.BuildLegendCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSeriesCommand());
-            command.AddCommand(builder.BuildSetDataCommand());
-            command.AddCommand(builder.BuildSetPositionCommand());
-            command.AddCommand(builder.BuildTitleCommand());
-            command.AddCommand(builder.BuildWorksheetCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildAxesNavCommand());
+            commands.Add(builder.BuildDataLabelsNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildFormatNavCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildImageNavCommand());
+            commands.Add(builder.BuildLegendNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildSeriesNavCommand());
+            commands.Add(builder.BuildSetDataNavCommand());
+            commands.Add(builder.BuildSetPositionNavCommand());
+            commands.Add(builder.BuildTitleNavCommand());
+            commands.Add(builder.BuildWorksheetNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to call the count method.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to call the count method.";
             var builder = new CountRequestBuilder(PathParameters);

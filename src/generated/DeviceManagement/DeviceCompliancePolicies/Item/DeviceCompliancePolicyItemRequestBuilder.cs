@@ -33,26 +33,29 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to manage the assignments property of the microsoft.graph.deviceCompliancePolicy entity.
+        /// </summary>
+        public Command BuildAssignmentsNavCommand() {
+            var command = new Command("assignments");
+            command.Description = "Provides operations to manage the assignments property of the microsoft.graph.deviceCompliancePolicy entity.";
+            var builder = new AssignmentsRequestBuilder(PathParameters);
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the assign method.
         /// </summary>
-        public Command BuildAssignCommand() {
+        public Command BuildAssignNavCommand() {
             var command = new Command("assign");
             command.Description = "Provides operations to call the assign method.";
             var builder = new AssignRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to manage the assignments property of the microsoft.graph.deviceCompliancePolicy entity.
-        /// </summary>
-        public Command BuildAssignmentsCommand() {
-            var command = new Command("assignments");
-            command.Description = "Provides operations to manage the assignments property of the microsoft.graph.deviceCompliancePolicy entity.";
-            var builder = new AssignmentsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -92,12 +95,15 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// <summary>
         /// Provides operations to manage the deviceSettingStateSummaries property of the microsoft.graph.deviceCompliancePolicy entity.
         /// </summary>
-        public Command BuildDeviceSettingStateSummariesCommand() {
+        public Command BuildDeviceSettingStateSummariesNavCommand() {
             var command = new Command("device-setting-state-summaries");
             command.Description = "Provides operations to manage the deviceSettingStateSummaries property of the microsoft.graph.deviceCompliancePolicy entity.";
             var builder = new DeviceSettingStateSummariesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -105,12 +111,15 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// <summary>
         /// Provides operations to manage the deviceStatuses property of the microsoft.graph.deviceCompliancePolicy entity.
         /// </summary>
-        public Command BuildDeviceStatusesCommand() {
+        public Command BuildDeviceStatusesNavCommand() {
             var command = new Command("device-statuses");
             command.Description = "Provides operations to manage the deviceStatuses property of the microsoft.graph.deviceCompliancePolicy entity.";
             var builder = new DeviceStatusesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -118,7 +127,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// <summary>
         /// Provides operations to manage the deviceStatusOverview property of the microsoft.graph.deviceCompliancePolicy entity.
         /// </summary>
-        public Command BuildDeviceStatusOverviewCommand() {
+        public Command BuildDeviceStatusOverviewNavCommand() {
             var command = new Command("device-status-overview");
             command.Description = "Provides operations to manage the deviceStatusOverview property of the microsoft.graph.deviceCompliancePolicy entity.";
             var builder = new DeviceStatusOverviewRequestBuilder(PathParameters);
@@ -250,7 +259,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// <summary>
         /// Provides operations to call the scheduleActionsForRules method.
         /// </summary>
-        public Command BuildScheduleActionsForRulesCommand() {
+        public Command BuildScheduleActionsForRulesNavCommand() {
             var command = new Command("schedule-actions-for-rules");
             command.Description = "Provides operations to call the scheduleActionsForRules method.";
             var builder = new ScheduleActionsForRulesRequestBuilder(PathParameters);
@@ -260,12 +269,15 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// <summary>
         /// Provides operations to manage the scheduledActionsForRule property of the microsoft.graph.deviceCompliancePolicy entity.
         /// </summary>
-        public Command BuildScheduledActionsForRuleCommand() {
+        public Command BuildScheduledActionsForRuleNavCommand() {
             var command = new Command("scheduled-actions-for-rule");
             command.Description = "Provides operations to manage the scheduledActionsForRule property of the microsoft.graph.deviceCompliancePolicy entity.";
             var builder = new ScheduledActionsForRuleRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -273,12 +285,15 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// <summary>
         /// Provides operations to manage the userStatuses property of the microsoft.graph.deviceCompliancePolicy entity.
         /// </summary>
-        public Command BuildUserStatusesCommand() {
+        public Command BuildUserStatusesNavCommand() {
             var command = new Command("user-statuses");
             command.Description = "Provides operations to manage the userStatuses property of the microsoft.graph.deviceCompliancePolicy entity.";
             var builder = new UserStatusesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -286,7 +301,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         /// <summary>
         /// Provides operations to manage the userStatusOverview property of the microsoft.graph.deviceCompliancePolicy entity.
         /// </summary>
-        public Command BuildUserStatusOverviewCommand() {
+        public Command BuildUserStatusOverviewNavCommand() {
             var command = new Command("user-status-overview");
             command.Description = "Provides operations to manage the userStatusOverview property of the microsoft.graph.deviceCompliancePolicy entity.";
             var builder = new UserStatusOverviewRequestBuilder(PathParameters);

@@ -29,16 +29,15 @@ namespace ApiSdk.Education.Classes.Item.Members {
         /// <summary>
         /// Gets an item from the ApiSdk.education.classes.item.members.item collection
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new EducationUserItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildRefCommand());
-            return command;
+            var commands = new List<Command>();
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -160,8 +159,9 @@ namespace ApiSdk.Education.Classes.Item.Members {
         /// <summary>
         /// Provides operations to manage the collection of educationRoot entities.
         /// </summary>
-        public Command BuildRefCommand() {
-            var command = new Command("ref");
+        public Command BuildRefNavCommand() {
+            var educationUserIndexer = new EducationUserItemRequestBuilder(PathParameters);
+            var command = educationUserIndexer.BuildRefNavCommand();
             command.Description = "Provides operations to manage the collection of educationRoot entities.";
             var builder = new RefRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());

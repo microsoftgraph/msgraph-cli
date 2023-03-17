@@ -28,26 +28,25 @@ namespace ApiSdk.Drives {
         /// <summary>
         /// Provides operations to manage the collection of drive entities.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new DriveItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildBundlesCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildFollowingCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildItemsCommand());
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildRecentCommand());
-            command.AddCommand(builder.BuildRootCommand());
-            command.AddCommand(builder.BuildSharedWithMeCommand());
-            command.AddCommand(builder.BuildSpecialCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildBundlesNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildFollowingNavCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildItemsNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildRecentNavCommand());
+            commands.Add(builder.BuildRootNavCommand());
+            commands.Add(builder.BuildSharedWithMeNavCommand());
+            commands.Add(builder.BuildSpecialNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -110,7 +109,8 @@ namespace ApiSdk.Drives {
         /// Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.
         /// </summary>
         public Command BuildListCommand() {
-            var command = new Command("list");
+            var driveIndexer = new DriveItemRequestBuilder(PathParameters);
+            var command = driveIndexer.BuildListNavCommand();
             command.Description = "Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {

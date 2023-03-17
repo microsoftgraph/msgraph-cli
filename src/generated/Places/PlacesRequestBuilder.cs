@@ -24,18 +24,17 @@ namespace ApiSdk.Places {
         /// <summary>
         /// Provides operations to manage the collection of place entities.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new PlaceItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGraphRoomCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildPatchCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -45,11 +44,12 @@ namespace ApiSdk.Places {
         /// <summary>
         /// Casts the previous resource to room.
         /// </summary>
-        public Command BuildGraphRoomCommand() {
-            var command = new Command("graph-room");
+        public Command BuildGraphRoomNavCommand() {
+            var placeIndexer = new PlaceItemRequestBuilder(PathParameters);
+            var command = placeIndexer.BuildGraphRoomNavCommand();
             command.Description = "Casts the previous resource to room.";
             var builder = new GraphRoomRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }

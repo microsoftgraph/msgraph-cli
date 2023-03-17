@@ -29,12 +29,15 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item {
         /// <summary>
         /// Provides operations to manage the buckets property of the microsoft.graph.plannerPlan entity.
         /// </summary>
-        public Command BuildBucketsCommand() {
+        public Command BuildBucketsNavCommand() {
             var command = new Command("buckets");
             command.Description = "Provides operations to manage the buckets property of the microsoft.graph.plannerPlan entity.";
             var builder = new BucketsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -82,7 +85,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item {
         /// <summary>
         /// Provides operations to manage the details property of the microsoft.graph.plannerPlan entity.
         /// </summary>
-        public Command BuildDetailsCommand() {
+        public Command BuildDetailsNavCommand() {
             var command = new Command("details");
             command.Description = "Provides operations to manage the details property of the microsoft.graph.plannerPlan entity.";
             var builder = new DetailsRequestBuilder(PathParameters);
@@ -226,12 +229,15 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item {
         /// <summary>
         /// Provides operations to manage the tasks property of the microsoft.graph.plannerPlan entity.
         /// </summary>
-        public Command BuildTasksCommand() {
+        public Command BuildTasksNavCommand() {
             var command = new Command("tasks");
             command.Description = "Provides operations to manage the tasks property of the microsoft.graph.plannerPlan entity.";
             var builder = new TasksRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

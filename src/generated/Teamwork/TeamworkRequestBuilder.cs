@@ -29,14 +29,17 @@ namespace ApiSdk.Teamwork {
         /// <summary>
         /// Provides operations to manage the deletedTeams property of the microsoft.graph.teamwork entity.
         /// </summary>
-        public Command BuildDeletedTeamsCommand() {
+        public Command BuildDeletedTeamsNavCommand() {
             var command = new Command("deleted-teams");
             command.Description = "Provides operations to manage the deletedTeams property of the microsoft.graph.teamwork entity.";
             var builder = new DeletedTeamsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildGetAllMessagesCommand());
+            command.AddCommand(builder.BuildGetAllMessagesNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -151,7 +154,7 @@ namespace ApiSdk.Teamwork {
         /// <summary>
         /// Provides operations to call the sendActivityNotificationToRecipients method.
         /// </summary>
-        public Command BuildSendActivityNotificationToRecipientsCommand() {
+        public Command BuildSendActivityNotificationToRecipientsNavCommand() {
             var command = new Command("send-activity-notification-to-recipients");
             command.Description = "Provides operations to call the sendActivityNotificationToRecipients method.";
             var builder = new SendActivityNotificationToRecipientsRequestBuilder(PathParameters);
@@ -161,12 +164,15 @@ namespace ApiSdk.Teamwork {
         /// <summary>
         /// Provides operations to manage the workforceIntegrations property of the microsoft.graph.teamwork entity.
         /// </summary>
-        public Command BuildWorkforceIntegrationsCommand() {
+        public Command BuildWorkforceIntegrationsNavCommand() {
             var command = new Command("workforce-integrations");
             command.Description = "Provides operations to manage the workforceIntegrations property of the microsoft.graph.teamwork entity.";
             var builder = new WorkforceIntegrationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

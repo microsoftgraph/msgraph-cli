@@ -29,35 +29,35 @@ namespace ApiSdk.Users.Item.JoinedTeams {
         /// <summary>
         /// Provides operations to manage the joinedTeams property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new TeamItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAllChannelsCommand());
-            command.AddCommand(builder.BuildArchiveCommand());
-            command.AddCommand(builder.BuildChannelsCommand());
-            command.AddCommand(builder.BuildCloneCommand());
-            command.AddCommand(builder.BuildCompleteMigrationCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildGroupCommand());
-            command.AddCommand(builder.BuildIncomingChannelsCommand());
-            command.AddCommand(builder.BuildInstalledAppsCommand());
-            command.AddCommand(builder.BuildMembersCommand());
-            command.AddCommand(builder.BuildOperationsCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPhotoCommand());
-            command.AddCommand(builder.BuildPrimaryChannelCommand());
-            command.AddCommand(builder.BuildScheduleCommand());
-            command.AddCommand(builder.BuildSendActivityNotificationCommand());
-            command.AddCommand(builder.BuildTagsCommand());
-            command.AddCommand(builder.BuildTemplateCommand());
-            command.AddCommand(builder.BuildUnarchiveCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildAllChannelsNavCommand());
+            commands.Add(builder.BuildArchiveNavCommand());
+            commands.Add(builder.BuildChannelsNavCommand());
+            commands.Add(builder.BuildCloneNavCommand());
+            commands.Add(builder.BuildCompleteMigrationNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildGroupNavCommand());
+            commands.Add(builder.BuildIncomingChannelsNavCommand());
+            commands.Add(builder.BuildInstalledAppsNavCommand());
+            commands.Add(builder.BuildMembersNavCommand());
+            commands.Add(builder.BuildOperationsNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildPhotoNavCommand());
+            commands.Add(builder.BuildPrimaryChannelNavCommand());
+            commands.Add(builder.BuildScheduleNavCommand());
+            commands.Add(builder.BuildSendActivityNotificationNavCommand());
+            commands.Add(builder.BuildTagsNavCommand());
+            commands.Add(builder.BuildTemplateNavCommand());
+            commands.Add(builder.BuildUnarchiveNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -125,7 +125,7 @@ namespace ApiSdk.Users.Item.JoinedTeams {
         /// <summary>
         /// Provides operations to call the getAllMessages method.
         /// </summary>
-        public Command BuildGetAllMessagesCommand() {
+        public Command BuildGetAllMessagesNavCommand() {
             var command = new Command("get-all-messages");
             command.Description = "Provides operations to call the getAllMessages method.";
             var builder = new GetAllMessagesRequestBuilder(PathParameters);

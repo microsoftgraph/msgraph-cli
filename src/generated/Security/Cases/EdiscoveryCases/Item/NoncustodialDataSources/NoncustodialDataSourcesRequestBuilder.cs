@@ -30,24 +30,22 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources {
         /// <summary>
         /// Provides operations to manage the noncustodialDataSources property of the microsoft.graph.security.ediscoveryCase entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new EdiscoveryNoncustodialDataSourceItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDataSourceCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildLastIndexOperationCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSecurityApplyHoldCommand());
-            command.AddCommand(builder.BuildSecurityReleaseCommand());
-            command.AddCommand(builder.BuildSecurityRemoveHoldCommand());
-            command.AddCommand(builder.BuildSecurityUpdateIndexCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildDataSourceNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildLastIndexOperationNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildSecurityReleaseNavCommand());
+            commands.Add(builder.BuildSecurityUpdateIndexNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -227,8 +225,9 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources {
         /// <summary>
         /// Provides operations to call the applyHold method.
         /// </summary>
-        public Command BuildSecurityApplyHoldCommand() {
-            var command = new Command("security-apply-hold");
+        public Command BuildSecurityApplyHoldNavCommand() {
+            var ediscoveryNoncustodialDataSourceIndexer = new EdiscoveryNoncustodialDataSourceItemRequestBuilder(PathParameters);
+            var command = ediscoveryNoncustodialDataSourceIndexer.BuildSecurityApplyHoldNavCommand();
             command.Description = "Provides operations to call the applyHold method.";
             var builder = new SecurityApplyHoldRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
@@ -237,8 +236,9 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources {
         /// <summary>
         /// Provides operations to call the removeHold method.
         /// </summary>
-        public Command BuildSecurityRemoveHoldCommand() {
-            var command = new Command("security-remove-hold");
+        public Command BuildSecurityRemoveHoldNavCommand() {
+            var ediscoveryNoncustodialDataSourceIndexer = new EdiscoveryNoncustodialDataSourceItemRequestBuilder(PathParameters);
+            var command = ediscoveryNoncustodialDataSourceIndexer.BuildSecurityRemoveHoldNavCommand();
             command.Description = "Provides operations to call the removeHold method.";
             var builder = new SecurityRemoveHoldRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());

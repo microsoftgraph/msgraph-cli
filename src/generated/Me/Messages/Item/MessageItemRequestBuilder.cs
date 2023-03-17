@@ -40,21 +40,24 @@ namespace ApiSdk.Me.Messages.Item {
         /// <summary>
         /// Provides operations to manage the attachments property of the microsoft.graph.message entity.
         /// </summary>
-        public Command BuildAttachmentsCommand() {
+        public Command BuildAttachmentsNavCommand() {
             var command = new Command("attachments");
             command.Description = "Provides operations to manage the attachments property of the microsoft.graph.message entity.";
             var builder = new AttachmentsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildCreateUploadSessionCommand());
+            command.AddCommand(builder.BuildCreateUploadSessionNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the media for the user entity.
         /// </summary>
-        public Command BuildContentCommand() {
+        public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the user entity.";
             var builder = new ContentRequestBuilder(PathParameters);
@@ -65,7 +68,7 @@ namespace ApiSdk.Me.Messages.Item {
         /// <summary>
         /// Provides operations to call the copy method.
         /// </summary>
-        public Command BuildCopyCommand() {
+        public Command BuildCopyNavCommand() {
             var command = new Command("copy");
             command.Description = "Provides operations to call the copy method.";
             var builder = new CopyRequestBuilder(PathParameters);
@@ -75,7 +78,7 @@ namespace ApiSdk.Me.Messages.Item {
         /// <summary>
         /// Provides operations to call the createForward method.
         /// </summary>
-        public Command BuildCreateForwardCommand() {
+        public Command BuildCreateForwardNavCommand() {
             var command = new Command("create-forward");
             command.Description = "Provides operations to call the createForward method.";
             var builder = new CreateForwardRequestBuilder(PathParameters);
@@ -85,7 +88,7 @@ namespace ApiSdk.Me.Messages.Item {
         /// <summary>
         /// Provides operations to call the createReplyAll method.
         /// </summary>
-        public Command BuildCreateReplyAllCommand() {
+        public Command BuildCreateReplyAllNavCommand() {
             var command = new Command("create-reply-all");
             command.Description = "Provides operations to call the createReplyAll method.";
             var builder = new CreateReplyAllRequestBuilder(PathParameters);
@@ -95,7 +98,7 @@ namespace ApiSdk.Me.Messages.Item {
         /// <summary>
         /// Provides operations to call the createReply method.
         /// </summary>
-        public Command BuildCreateReplyCommand() {
+        public Command BuildCreateReplyNavCommand() {
             var command = new Command("create-reply");
             command.Description = "Provides operations to call the createReply method.";
             var builder = new CreateReplyRequestBuilder(PathParameters);
@@ -139,12 +142,15 @@ namespace ApiSdk.Me.Messages.Item {
         /// <summary>
         /// Provides operations to manage the extensions property of the microsoft.graph.message entity.
         /// </summary>
-        public Command BuildExtensionsCommand() {
+        public Command BuildExtensionsNavCommand() {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.message entity.";
             var builder = new ExtensionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -152,7 +158,7 @@ namespace ApiSdk.Me.Messages.Item {
         /// <summary>
         /// Provides operations to call the forward method.
         /// </summary>
-        public Command BuildForwardCommand() {
+        public Command BuildForwardNavCommand() {
             var command = new Command("forward");
             command.Description = "Provides operations to call the forward method.";
             var builder = new ForwardRequestBuilder(PathParameters);
@@ -217,7 +223,7 @@ namespace ApiSdk.Me.Messages.Item {
         /// <summary>
         /// Provides operations to call the move method.
         /// </summary>
-        public Command BuildMoveCommand() {
+        public Command BuildMoveNavCommand() {
             var command = new Command("move");
             command.Description = "Provides operations to call the move method.";
             var builder = new MoveRequestBuilder(PathParameters);
@@ -227,12 +233,15 @@ namespace ApiSdk.Me.Messages.Item {
         /// <summary>
         /// Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.message entity.
         /// </summary>
-        public Command BuildMultiValueExtendedPropertiesCommand() {
+        public Command BuildMultiValueExtendedPropertiesNavCommand() {
             var command = new Command("multi-value-extended-properties");
             command.Description = "Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.message entity.";
             var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -298,7 +307,7 @@ namespace ApiSdk.Me.Messages.Item {
         /// <summary>
         /// Provides operations to call the replyAll method.
         /// </summary>
-        public Command BuildReplyAllCommand() {
+        public Command BuildReplyAllNavCommand() {
             var command = new Command("reply-all");
             command.Description = "Provides operations to call the replyAll method.";
             var builder = new ReplyAllRequestBuilder(PathParameters);
@@ -308,7 +317,7 @@ namespace ApiSdk.Me.Messages.Item {
         /// <summary>
         /// Provides operations to call the reply method.
         /// </summary>
-        public Command BuildReplyCommand() {
+        public Command BuildReplyNavCommand() {
             var command = new Command("reply");
             command.Description = "Provides operations to call the reply method.";
             var builder = new ReplyRequestBuilder(PathParameters);
@@ -318,7 +327,7 @@ namespace ApiSdk.Me.Messages.Item {
         /// <summary>
         /// Provides operations to call the send method.
         /// </summary>
-        public Command BuildSendCommand() {
+        public Command BuildSendNavCommand() {
             var command = new Command("send");
             command.Description = "Provides operations to call the send method.";
             var builder = new SendRequestBuilder(PathParameters);
@@ -328,12 +337,15 @@ namespace ApiSdk.Me.Messages.Item {
         /// <summary>
         /// Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.message entity.
         /// </summary>
-        public Command BuildSingleValueExtendedPropertiesCommand() {
+        public Command BuildSingleValueExtendedPropertiesNavCommand() {
             var command = new Command("single-value-extended-properties");
             command.Description = "Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.message entity.";
             var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

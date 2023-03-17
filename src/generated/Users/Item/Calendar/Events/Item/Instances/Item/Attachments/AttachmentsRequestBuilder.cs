@@ -29,17 +29,17 @@ namespace ApiSdk.Users.Item.Calendar.Events.Item.Instances.Item.Attachments {
         /// <summary>
         /// Provides operations to manage the attachments property of the microsoft.graph.event entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new AttachmentItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -120,7 +120,7 @@ namespace ApiSdk.Users.Item.Calendar.Events.Item.Instances.Item.Attachments {
         /// <summary>
         /// Provides operations to call the createUploadSession method.
         /// </summary>
-        public Command BuildCreateUploadSessionCommand() {
+        public Command BuildCreateUploadSessionNavCommand() {
             var command = new Command("create-upload-session");
             command.Description = "Provides operations to call the createUploadSession method.";
             var builder = new CreateUploadSessionRequestBuilder(PathParameters);

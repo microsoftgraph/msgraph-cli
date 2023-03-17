@@ -34,21 +34,24 @@ namespace ApiSdk.Education.Classes.Item {
         /// <summary>
         /// Provides operations to manage the assignmentCategories property of the microsoft.graph.educationClass entity.
         /// </summary>
-        public Command BuildAssignmentCategoriesCommand() {
+        public Command BuildAssignmentCategoriesNavCommand() {
             var command = new Command("assignment-categories");
             command.Description = "Provides operations to manage the assignmentCategories property of the microsoft.graph.educationClass entity.";
             var builder = new AssignmentCategoriesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
+            command.AddCommand(builder.BuildDeltaNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the assignmentDefaults property of the microsoft.graph.educationClass entity.
         /// </summary>
-        public Command BuildAssignmentDefaultsCommand() {
+        public Command BuildAssignmentDefaultsNavCommand() {
             var command = new Command("assignment-defaults");
             command.Description = "Provides operations to manage the assignmentDefaults property of the microsoft.graph.educationClass entity.";
             var builder = new AssignmentDefaultsRequestBuilder(PathParameters);
@@ -58,29 +61,32 @@ namespace ApiSdk.Education.Classes.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to manage the assignments property of the microsoft.graph.educationClass entity.
-        /// </summary>
-        public Command BuildAssignmentsCommand() {
-            var command = new Command("assignments");
-            command.Description = "Provides operations to manage the assignments property of the microsoft.graph.educationClass entity.";
-            var builder = new AssignmentsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
-            command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the assignmentSettings property of the microsoft.graph.educationClass entity.
         /// </summary>
-        public Command BuildAssignmentSettingsCommand() {
+        public Command BuildAssignmentSettingsNavCommand() {
             var command = new Command("assignment-settings");
             command.Description = "Provides operations to manage the assignmentSettings property of the microsoft.graph.educationClass entity.";
             var builder = new AssignmentSettingsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the assignments property of the microsoft.graph.educationClass entity.
+        /// </summary>
+        public Command BuildAssignmentsNavCommand() {
+            var command = new Command("assignments");
+            command.Description = "Provides operations to manage the assignments property of the microsoft.graph.educationClass entity.";
+            var builder = new AssignmentsRequestBuilder(PathParameters);
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildDeltaNavCommand());
+            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -182,7 +188,7 @@ namespace ApiSdk.Education.Classes.Item {
         /// <summary>
         /// Provides operations to manage the group property of the microsoft.graph.educationClass entity.
         /// </summary>
-        public Command BuildGroupCommand() {
+        public Command BuildGroupNavCommand() {
             var command = new Command("group");
             command.Description = "Provides operations to manage the group property of the microsoft.graph.educationClass entity.";
             var builder = new GroupRequestBuilder(PathParameters);
@@ -192,14 +198,17 @@ namespace ApiSdk.Education.Classes.Item {
         /// <summary>
         /// Provides operations to manage the members property of the microsoft.graph.educationClass entity.
         /// </summary>
-        public Command BuildMembersCommand() {
+        public Command BuildMembersNavCommand() {
             var command = new Command("members");
             command.Description = "Provides operations to manage the members property of the microsoft.graph.educationClass entity.";
             var builder = new MembersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildRefNavCommand());
             return command;
         }
         /// <summary>
@@ -263,26 +272,32 @@ namespace ApiSdk.Education.Classes.Item {
         /// <summary>
         /// Provides operations to manage the schools property of the microsoft.graph.educationClass entity.
         /// </summary>
-        public Command BuildSchoolsCommand() {
+        public Command BuildSchoolsNavCommand() {
             var command = new Command("schools");
             command.Description = "Provides operations to manage the schools property of the microsoft.graph.educationClass entity.";
             var builder = new SchoolsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the teachers property of the microsoft.graph.educationClass entity.
         /// </summary>
-        public Command BuildTeachersCommand() {
+        public Command BuildTeachersNavCommand() {
             var command = new Command("teachers");
             command.Description = "Provides operations to manage the teachers property of the microsoft.graph.educationClass entity.";
             var builder = new TeachersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildRefNavCommand());
             return command;
         }
         /// <summary>

@@ -31,7 +31,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
         /// <summary>
         /// Provides operations to manage the accessPackage property of the microsoft.graph.accessPackageAssignmentRequest entity.
         /// </summary>
-        public Command BuildAccessPackageCommand() {
+        public Command BuildAccessPackageNavCommand() {
             var command = new Command("access-package");
             command.Description = "Provides operations to manage the accessPackage property of the microsoft.graph.accessPackageAssignmentRequest entity.";
             var builder = new AccessPackageRequestBuilder(PathParameters);
@@ -41,7 +41,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
         /// <summary>
         /// Provides operations to manage the assignment property of the microsoft.graph.accessPackageAssignmentRequest entity.
         /// </summary>
-        public Command BuildAssignmentCommand() {
+        public Command BuildAssignmentNavCommand() {
             var command = new Command("assignment");
             command.Description = "Provides operations to manage the assignment property of the microsoft.graph.accessPackageAssignmentRequest entity.";
             var builder = new AssignmentRequestBuilder(PathParameters);
@@ -51,7 +51,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
         /// <summary>
         /// Provides operations to call the cancel method.
         /// </summary>
-        public Command BuildCancelCommand() {
+        public Command BuildCancelNavCommand() {
             var command = new Command("cancel");
             command.Description = "Provides operations to call the cancel method.";
             var builder = new CancelRequestBuilder(PathParameters);
@@ -215,7 +215,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
         /// <summary>
         /// Provides operations to call the reprocess method.
         /// </summary>
-        public Command BuildReprocessCommand() {
+        public Command BuildReprocessNavCommand() {
             var command = new Command("reprocess");
             command.Description = "Provides operations to call the reprocess method.";
             var builder = new ReprocessRequestBuilder(PathParameters);
@@ -225,7 +225,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
         /// <summary>
         /// Provides operations to manage the requestor property of the microsoft.graph.accessPackageAssignmentRequest entity.
         /// </summary>
-        public Command BuildRequestorCommand() {
+        public Command BuildRequestorNavCommand() {
             var command = new Command("requestor");
             command.Description = "Provides operations to manage the requestor property of the microsoft.graph.accessPackageAssignmentRequest entity.";
             var builder = new RequestorRequestBuilder(PathParameters);

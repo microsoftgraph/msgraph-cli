@@ -30,12 +30,15 @@ namespace ApiSdk.Print.Printers.Item {
         /// <summary>
         /// Provides operations to manage the connectors property of the microsoft.graph.printer entity.
         /// </summary>
-        public Command BuildConnectorsCommand() {
+        public Command BuildConnectorsNavCommand() {
             var command = new Command("connectors");
             command.Description = "Provides operations to manage the connectors property of the microsoft.graph.printer entity.";
             var builder = new ConnectorsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -196,7 +199,7 @@ namespace ApiSdk.Print.Printers.Item {
         /// <summary>
         /// Provides operations to call the restoreFactoryDefaults method.
         /// </summary>
-        public Command BuildRestoreFactoryDefaultsCommand() {
+        public Command BuildRestoreFactoryDefaultsNavCommand() {
             var command = new Command("restore-factory-defaults");
             command.Description = "Provides operations to call the restoreFactoryDefaults method.";
             var builder = new RestoreFactoryDefaultsRequestBuilder(PathParameters);
@@ -206,24 +209,30 @@ namespace ApiSdk.Print.Printers.Item {
         /// <summary>
         /// Provides operations to manage the shares property of the microsoft.graph.printer entity.
         /// </summary>
-        public Command BuildSharesCommand() {
+        public Command BuildSharesNavCommand() {
             var command = new Command("shares");
             command.Description = "Provides operations to manage the shares property of the microsoft.graph.printer entity.";
             var builder = new SharesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the taskTriggers property of the microsoft.graph.printer entity.
         /// </summary>
-        public Command BuildTaskTriggersCommand() {
+        public Command BuildTaskTriggersNavCommand() {
             var command = new Command("task-triggers");
             command.Description = "Provides operations to manage the taskTriggers property of the microsoft.graph.printer entity.";
             var builder = new TaskTriggersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

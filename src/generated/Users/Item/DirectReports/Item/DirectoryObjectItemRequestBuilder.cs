@@ -103,7 +103,7 @@ namespace ApiSdk.Users.Item.DirectReports.Item {
         /// <summary>
         /// Casts the previous resource to orgContact.
         /// </summary>
-        public Command BuildGraphOrgContactCommand() {
+        public Command BuildGraphOrgContactNavCommand() {
             var command = new Command("graph-org-contact");
             command.Description = "Casts the previous resource to orgContact.";
             var builder = new GraphOrgContactRequestBuilder(PathParameters);
@@ -113,7 +113,7 @@ namespace ApiSdk.Users.Item.DirectReports.Item {
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
-        public Command BuildGraphUserCommand() {
+        public Command BuildGraphUserNavCommand() {
             var command = new Command("graph-user");
             command.Description = "Casts the previous resource to user.";
             var builder = new GraphUserRequestBuilder(PathParameters);

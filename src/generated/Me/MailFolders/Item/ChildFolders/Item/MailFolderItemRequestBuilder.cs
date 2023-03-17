@@ -32,7 +32,7 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item {
         /// <summary>
         /// Provides operations to call the copy method.
         /// </summary>
-        public Command BuildCopyCommand() {
+        public Command BuildCopyNavCommand() {
             var command = new Command("copy");
             command.Description = "Provides operations to call the copy method.";
             var builder = new CopyRequestBuilder(PathParameters);
@@ -150,12 +150,15 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item {
         /// <summary>
         /// Provides operations to manage the messageRules property of the microsoft.graph.mailFolder entity.
         /// </summary>
-        public Command BuildMessageRulesCommand() {
+        public Command BuildMessageRulesNavCommand() {
             var command = new Command("message-rules");
             command.Description = "Provides operations to manage the messageRules property of the microsoft.graph.mailFolder entity.";
             var builder = new MessageRulesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -163,21 +166,24 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item {
         /// <summary>
         /// Provides operations to manage the messages property of the microsoft.graph.mailFolder entity.
         /// </summary>
-        public Command BuildMessagesCommand() {
+        public Command BuildMessagesNavCommand() {
             var command = new Command("messages");
             command.Description = "Provides operations to manage the messages property of the microsoft.graph.mailFolder entity.";
             var builder = new MessagesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
+            command.AddCommand(builder.BuildDeltaNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the move method.
         /// </summary>
-        public Command BuildMoveCommand() {
+        public Command BuildMoveNavCommand() {
             var command = new Command("move");
             command.Description = "Provides operations to call the move method.";
             var builder = new MoveRequestBuilder(PathParameters);
@@ -187,12 +193,15 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item {
         /// <summary>
         /// Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.mailFolder entity.
         /// </summary>
-        public Command BuildMultiValueExtendedPropertiesCommand() {
+        public Command BuildMultiValueExtendedPropertiesNavCommand() {
             var command = new Command("multi-value-extended-properties");
             command.Description = "Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.mailFolder entity.";
             var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -264,12 +273,15 @@ namespace ApiSdk.Me.MailFolders.Item.ChildFolders.Item {
         /// <summary>
         /// Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.mailFolder entity.
         /// </summary>
-        public Command BuildSingleValueExtendedPropertiesCommand() {
+        public Command BuildSingleValueExtendedPropertiesNavCommand() {
             var command = new Command("single-value-extended-properties");
             command.Description = "Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.mailFolder entity.";
             var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

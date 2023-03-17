@@ -27,12 +27,15 @@ namespace ApiSdk.Security.Incidents.Item {
         /// <summary>
         /// Provides operations to manage the alerts property of the microsoft.graph.security.incident entity.
         /// </summary>
-        public Command BuildAlertsCommand() {
+        public Command BuildAlertsNavCommand() {
             var command = new Command("alerts");
             command.Description = "Provides operations to manage the alerts property of the microsoft.graph.security.incident entity.";
             var builder = new AlertsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }

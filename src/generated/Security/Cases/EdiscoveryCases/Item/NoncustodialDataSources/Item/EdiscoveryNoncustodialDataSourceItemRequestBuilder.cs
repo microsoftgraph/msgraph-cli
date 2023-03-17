@@ -32,7 +32,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Ite
         /// <summary>
         /// Provides operations to manage the dataSource property of the microsoft.graph.security.ediscoveryNoncustodialDataSource entity.
         /// </summary>
-        public Command BuildDataSourceCommand() {
+        public Command BuildDataSourceNavCommand() {
             var command = new Command("data-source");
             command.Description = "Provides operations to manage the dataSource property of the microsoft.graph.security.ediscoveryNoncustodialDataSource entity.";
             var builder = new DataSourceRequestBuilder(PathParameters);
@@ -152,7 +152,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Ite
         /// <summary>
         /// Provides operations to manage the lastIndexOperation property of the microsoft.graph.security.ediscoveryNoncustodialDataSource entity.
         /// </summary>
-        public Command BuildLastIndexOperationCommand() {
+        public Command BuildLastIndexOperationNavCommand() {
             var command = new Command("last-index-operation");
             command.Description = "Provides operations to manage the lastIndexOperation property of the microsoft.graph.security.ediscoveryNoncustodialDataSource entity.";
             var builder = new LastIndexOperationRequestBuilder(PathParameters);
@@ -226,7 +226,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Ite
         /// <summary>
         /// Provides operations to call the applyHold method.
         /// </summary>
-        public Command BuildSecurityApplyHoldCommand() {
+        public Command BuildSecurityApplyHoldNavCommand() {
             var command = new Command("security-apply-hold");
             command.Description = "Provides operations to call the applyHold method.";
             var builder = new SecurityApplyHoldRequestBuilder(PathParameters);
@@ -236,7 +236,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Ite
         /// <summary>
         /// Provides operations to call the release method.
         /// </summary>
-        public Command BuildSecurityReleaseCommand() {
+        public Command BuildSecurityReleaseNavCommand() {
             var command = new Command("security-release");
             command.Description = "Provides operations to call the release method.";
             var builder = new SecurityReleaseRequestBuilder(PathParameters);
@@ -246,7 +246,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Ite
         /// <summary>
         /// Provides operations to call the removeHold method.
         /// </summary>
-        public Command BuildSecurityRemoveHoldCommand() {
+        public Command BuildSecurityRemoveHoldNavCommand() {
             var command = new Command("security-remove-hold");
             command.Description = "Provides operations to call the removeHold method.";
             var builder = new SecurityRemoveHoldRequestBuilder(PathParameters);
@@ -256,7 +256,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Ite
         /// <summary>
         /// Provides operations to call the updateIndex method.
         /// </summary>
-        public Command BuildSecurityUpdateIndexCommand() {
+        public Command BuildSecurityUpdateIndexNavCommand() {
             var command = new Command("security-update-index");
             command.Description = "Provides operations to call the updateIndex method.";
             var builder = new SecurityUpdateIndexRequestBuilder(PathParameters);

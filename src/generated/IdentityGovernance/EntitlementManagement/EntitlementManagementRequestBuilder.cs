@@ -34,12 +34,15 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// <summary>
         /// Provides operations to manage the accessPackageAssignmentApprovals property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
-        public Command BuildAccessPackageAssignmentApprovalsCommand() {
+        public Command BuildAccessPackageAssignmentApprovalsNavCommand() {
             var command = new Command("access-package-assignment-approvals");
             command.Description = "Provides operations to manage the accessPackageAssignmentApprovals property of the microsoft.graph.entitlementManagement entity.";
             var builder = new AccessPackageAssignmentApprovalsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -47,12 +50,15 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// <summary>
         /// Provides operations to manage the accessPackages property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
-        public Command BuildAccessPackagesCommand() {
+        public Command BuildAccessPackagesNavCommand() {
             var command = new Command("access-packages");
             command.Description = "Provides operations to manage the accessPackages property of the microsoft.graph.entitlementManagement entity.";
             var builder = new AccessPackagesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -60,12 +66,15 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// <summary>
         /// Provides operations to manage the assignmentPolicies property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
-        public Command BuildAssignmentPoliciesCommand() {
+        public Command BuildAssignmentPoliciesNavCommand() {
             var command = new Command("assignment-policies");
             command.Description = "Provides operations to manage the assignmentPolicies property of the microsoft.graph.entitlementManagement entity.";
             var builder = new AssignmentPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -73,12 +82,15 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// <summary>
         /// Provides operations to manage the assignmentRequests property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
-        public Command BuildAssignmentRequestsCommand() {
+        public Command BuildAssignmentRequestsNavCommand() {
             var command = new Command("assignment-requests");
             command.Description = "Provides operations to manage the assignmentRequests property of the microsoft.graph.entitlementManagement entity.";
             var builder = new AssignmentRequestsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -86,13 +98,16 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
-        public Command BuildAssignmentsCommand() {
+        public Command BuildAssignmentsNavCommand() {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.entitlementManagement entity.";
             var builder = new AssignmentsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAdditionalAccessCommand());
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildAdditionalAccessNavCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -100,12 +115,15 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// <summary>
         /// Provides operations to manage the catalogs property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
-        public Command BuildCatalogsCommand() {
+        public Command BuildCatalogsNavCommand() {
             var command = new Command("catalogs");
             command.Description = "Provides operations to manage the catalogs property of the microsoft.graph.entitlementManagement entity.";
             var builder = new CatalogsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -113,12 +131,15 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// <summary>
         /// Provides operations to manage the connectedOrganizations property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
-        public Command BuildConnectedOrganizationsCommand() {
+        public Command BuildConnectedOrganizationsNavCommand() {
             var command = new Command("connected-organizations");
             command.Description = "Provides operations to manage the connectedOrganizations property of the microsoft.graph.entitlementManagement entity.";
             var builder = new ConnectedOrganizationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -262,7 +283,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
         /// <summary>
         /// Provides operations to manage the settings property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
-        public Command BuildSettingsCommand() {
+        public Command BuildSettingsNavCommand() {
             var command = new Command("settings");
             command.Description = "Provides operations to manage the settings property of the microsoft.graph.entitlementManagement entity.";
             var builder = new SettingsRequestBuilder(PathParameters);

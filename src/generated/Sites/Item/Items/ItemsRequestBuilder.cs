@@ -28,16 +28,16 @@ namespace ApiSdk.Sites.Item.Items {
         /// <summary>
         /// Provides operations to manage the items property of the microsoft.graph.site entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new BaseItemItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildGetCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

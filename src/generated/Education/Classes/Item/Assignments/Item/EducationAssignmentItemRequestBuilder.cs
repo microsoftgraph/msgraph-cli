@@ -33,16 +33,19 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
         /// <summary>
         /// Provides operations to manage the categories property of the microsoft.graph.educationAssignment entity.
         /// </summary>
-        public Command BuildCategoriesCommand() {
+        public Command BuildCategoriesNavCommand() {
             var command = new Command("categories");
             command.Description = "Provides operations to manage the categories property of the microsoft.graph.educationAssignment entity.";
             var builder = new CategoriesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
+            command.AddCommand(builder.BuildDeltaNavCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildRefNavCommand());
             return command;
         }
         /// <summary>
@@ -220,7 +223,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
         /// <summary>
         /// Provides operations to call the publish method.
         /// </summary>
-        public Command BuildPublishCommand() {
+        public Command BuildPublishNavCommand() {
             var command = new Command("publish");
             command.Description = "Provides operations to call the publish method.";
             var builder = new PublishRequestBuilder(PathParameters);
@@ -230,12 +233,15 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
         /// <summary>
         /// Provides operations to manage the resources property of the microsoft.graph.educationAssignment entity.
         /// </summary>
-        public Command BuildResourcesCommand() {
+        public Command BuildResourcesNavCommand() {
             var command = new Command("resources");
             command.Description = "Provides operations to manage the resources property of the microsoft.graph.educationAssignment entity.";
             var builder = new ResourcesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -243,20 +249,20 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
         /// <summary>
         /// Provides operations to manage the rubric property of the microsoft.graph.educationAssignment entity.
         /// </summary>
-        public Command BuildRubricCommand() {
+        public Command BuildRubricNavCommand() {
             var command = new Command("rubric");
             command.Description = "Provides operations to manage the rubric property of the microsoft.graph.educationAssignment entity.";
             var builder = new RubricRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildRefNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the setUpFeedbackResourcesFolder method.
         /// </summary>
-        public Command BuildSetUpFeedbackResourcesFolderCommand() {
+        public Command BuildSetUpFeedbackResourcesFolderNavCommand() {
             var command = new Command("set-up-feedback-resources-folder");
             command.Description = "Provides operations to call the setUpFeedbackResourcesFolder method.";
             var builder = new SetUpFeedbackResourcesFolderRequestBuilder(PathParameters);
@@ -266,7 +272,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
         /// <summary>
         /// Provides operations to call the setUpResourcesFolder method.
         /// </summary>
-        public Command BuildSetUpResourcesFolderCommand() {
+        public Command BuildSetUpResourcesFolderNavCommand() {
             var command = new Command("set-up-resources-folder");
             command.Description = "Provides operations to call the setUpResourcesFolder method.";
             var builder = new SetUpResourcesFolderRequestBuilder(PathParameters);
@@ -276,12 +282,15 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
         /// <summary>
         /// Provides operations to manage the submissions property of the microsoft.graph.educationAssignment entity.
         /// </summary>
-        public Command BuildSubmissionsCommand() {
+        public Command BuildSubmissionsNavCommand() {
             var command = new Command("submissions");
             command.Description = "Provides operations to manage the submissions property of the microsoft.graph.educationAssignment entity.";
             var builder = new SubmissionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

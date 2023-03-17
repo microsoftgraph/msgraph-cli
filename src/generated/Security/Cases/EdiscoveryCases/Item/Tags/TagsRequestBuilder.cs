@@ -29,20 +29,20 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags {
         /// <summary>
         /// Provides operations to manage the tags property of the microsoft.graph.security.ediscoveryCase entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new EdiscoveryReviewTagItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildChildTagsCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildParentCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildChildTagsNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildParentNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -223,7 +223,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags {
         /// <summary>
         /// Provides operations to call the asHierarchy method.
         /// </summary>
-        public Command BuildSecurityAsHierarchyCommand() {
+        public Command BuildSecurityAsHierarchyNavCommand() {
             var command = new Command("security-as-hierarchy");
             command.Description = "Provides operations to call the asHierarchy method.";
             var builder = new SecurityAsHierarchyRequestBuilder(PathParameters);

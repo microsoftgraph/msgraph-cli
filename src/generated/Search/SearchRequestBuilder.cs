@@ -135,7 +135,7 @@ namespace ApiSdk.Search {
         /// <summary>
         /// Provides operations to call the query method.
         /// </summary>
-        public Command BuildQueryCommand() {
+        public Command BuildQueryNavCommand() {
             var command = new Command("query");
             command.Description = "Provides operations to call the query method.";
             var builder = new QueryRequestBuilder(PathParameters);

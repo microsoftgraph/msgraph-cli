@@ -35,7 +35,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>
         /// Provides operations to call the acceptRecommendations method.
         /// </summary>
-        public Command BuildAcceptRecommendationsCommand() {
+        public Command BuildAcceptRecommendationsNavCommand() {
             var command = new Command("accept-recommendations");
             command.Description = "Provides operations to call the acceptRecommendations method.";
             var builder = new AcceptRecommendationsRequestBuilder(PathParameters);
@@ -45,7 +45,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>
         /// Provides operations to call the applyDecisions method.
         /// </summary>
-        public Command BuildApplyDecisionsCommand() {
+        public Command BuildApplyDecisionsNavCommand() {
             var command = new Command("apply-decisions");
             command.Description = "Provides operations to call the applyDecisions method.";
             var builder = new ApplyDecisionsRequestBuilder(PathParameters);
@@ -55,7 +55,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>
         /// Provides operations to call the batchRecordDecisions method.
         /// </summary>
-        public Command BuildBatchRecordDecisionsCommand() {
+        public Command BuildBatchRecordDecisionsNavCommand() {
             var command = new Command("batch-record-decisions");
             command.Description = "Provides operations to call the batchRecordDecisions method.";
             var builder = new BatchRecordDecisionsRequestBuilder(PathParameters);
@@ -65,12 +65,15 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>
         /// Provides operations to manage the contactedReviewers property of the microsoft.graph.accessReviewInstance entity.
         /// </summary>
-        public Command BuildContactedReviewersCommand() {
+        public Command BuildContactedReviewersNavCommand() {
             var command = new Command("contacted-reviewers");
             command.Description = "Provides operations to manage the contactedReviewers property of the microsoft.graph.accessReviewInstance entity.";
             var builder = new ContactedReviewersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -78,12 +81,15 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>
         /// Provides operations to manage the decisions property of the microsoft.graph.accessReviewInstance entity.
         /// </summary>
-        public Command BuildDecisionsCommand() {
+        public Command BuildDecisionsNavCommand() {
             var command = new Command("decisions");
             command.Description = "Provides operations to manage the decisions property of the microsoft.graph.accessReviewInstance entity.";
             var builder = new DecisionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -263,7 +269,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>
         /// Provides operations to call the resetDecisions method.
         /// </summary>
-        public Command BuildResetDecisionsCommand() {
+        public Command BuildResetDecisionsNavCommand() {
             var command = new Command("reset-decisions");
             command.Description = "Provides operations to call the resetDecisions method.";
             var builder = new ResetDecisionsRequestBuilder(PathParameters);
@@ -273,7 +279,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>
         /// Provides operations to call the sendReminder method.
         /// </summary>
-        public Command BuildSendReminderCommand() {
+        public Command BuildSendReminderNavCommand() {
             var command = new Command("send-reminder");
             command.Description = "Provides operations to call the sendReminder method.";
             var builder = new SendReminderRequestBuilder(PathParameters);
@@ -283,12 +289,15 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>
         /// Provides operations to manage the stages property of the microsoft.graph.accessReviewInstance entity.
         /// </summary>
-        public Command BuildStagesCommand() {
+        public Command BuildStagesNavCommand() {
             var command = new Command("stages");
             command.Description = "Provides operations to manage the stages property of the microsoft.graph.accessReviewInstance entity.";
             var builder = new StagesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -296,7 +305,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>
         /// Provides operations to call the stop method.
         /// </summary>
-        public Command BuildStopCommand() {
+        public Command BuildStopNavCommand() {
             var command = new Command("stop");
             command.Description = "Provides operations to call the stop method.";
             var builder = new StopRequestBuilder(PathParameters);

@@ -67,12 +67,15 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item {
         /// <summary>
         /// Provides operations to manage the deviceStates property of the microsoft.graph.userInstallStateSummary entity.
         /// </summary>
-        public Command BuildDeviceStatesCommand() {
+        public Command BuildDeviceStatesNavCommand() {
             var command = new Command("device-states");
             command.Description = "Provides operations to manage the deviceStates property of the microsoft.graph.userInstallStateSummary entity.";
             var builder = new DeviceStatesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

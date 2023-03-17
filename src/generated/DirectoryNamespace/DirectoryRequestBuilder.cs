@@ -30,47 +30,56 @@ namespace ApiSdk.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the administrativeUnits property of the microsoft.graph.directory entity.
         /// </summary>
-        public Command BuildAdministrativeUnitsCommand() {
+        public Command BuildAdministrativeUnitsNavCommand() {
             var command = new Command("administrative-units");
             command.Description = "Provides operations to manage the administrativeUnits property of the microsoft.graph.directory entity.";
             var builder = new AdministrativeUnitsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
+            command.AddCommand(builder.BuildDeltaNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the deletedItems property of the microsoft.graph.directory entity.
         /// </summary>
-        public Command BuildDeletedItemsCommand() {
+        public Command BuildDeletedItemsNavCommand() {
             var command = new Command("deleted-items");
             command.Description = "Provides operations to manage the deletedItems property of the microsoft.graph.directory entity.";
             var builder = new DeletedItemsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
-            command.AddCommand(builder.BuildGetByIdsCommand());
-            command.AddCommand(builder.BuildGraphApplicationCommand());
-            command.AddCommand(builder.BuildGraphGroupCommand());
-            command.AddCommand(builder.BuildGraphUserCommand());
+            command.AddCommand(builder.BuildDeltaNavCommand());
+            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesNavCommand());
+            command.AddCommand(builder.BuildGetByIdsNavCommand());
+            command.AddCommand(builder.BuildGraphApplicationNavCommand());
+            command.AddCommand(builder.BuildGraphGroupNavCommand());
+            command.AddCommand(builder.BuildGraphUserNavCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildValidatePropertiesCommand());
+            command.AddCommand(builder.BuildValidatePropertiesNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the federationConfigurations property of the microsoft.graph.directory entity.
         /// </summary>
-        public Command BuildFederationConfigurationsCommand() {
+        public Command BuildFederationConfigurationsNavCommand() {
             var command = new Command("federation-configurations");
             command.Description = "Provides operations to manage the federationConfigurations property of the microsoft.graph.directory entity.";
             var builder = new FederationConfigurationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAvailableProviderTypesCommand());
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildAvailableProviderTypesNavCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -134,12 +143,15 @@ namespace ApiSdk.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the onPremisesSynchronization property of the microsoft.graph.directory entity.
         /// </summary>
-        public Command BuildOnPremisesSynchronizationCommand() {
+        public Command BuildOnPremisesSynchronizationNavCommand() {
             var command = new Command("on-premises-synchronization");
             command.Description = "Provides operations to manage the onPremisesSynchronization property of the microsoft.graph.directory entity.";
             var builder = new OnPremisesSynchronizationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

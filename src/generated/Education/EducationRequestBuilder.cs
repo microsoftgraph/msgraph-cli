@@ -30,14 +30,17 @@ namespace ApiSdk.Education {
         /// <summary>
         /// Provides operations to manage the classes property of the microsoft.graph.educationRoot entity.
         /// </summary>
-        public Command BuildClassesCommand() {
+        public Command BuildClassesNavCommand() {
             var command = new Command("classes");
             command.Description = "Provides operations to manage the classes property of the microsoft.graph.educationRoot entity.";
             var builder = new ClassesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
+            command.AddCommand(builder.BuildDeltaNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -100,19 +103,19 @@ namespace ApiSdk.Education {
         /// <summary>
         /// Provides operations to manage the me property of the microsoft.graph.educationRoot entity.
         /// </summary>
-        public Command BuildMeCommand() {
+        public Command BuildMeNavCommand() {
             var command = new Command("me");
             command.Description = "Provides operations to manage the me property of the microsoft.graph.educationRoot entity.";
             var builder = new MeRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAssignmentsCommand());
-            command.AddCommand(builder.BuildClassesCommand());
+            command.AddCommand(builder.BuildAssignmentsNavCommand());
+            command.AddCommand(builder.BuildClassesNavCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildRubricsCommand());
-            command.AddCommand(builder.BuildSchoolsCommand());
-            command.AddCommand(builder.BuildTaughtClassesCommand());
-            command.AddCommand(builder.BuildUserCommand());
+            command.AddCommand(builder.BuildRubricsNavCommand());
+            command.AddCommand(builder.BuildSchoolsNavCommand());
+            command.AddCommand(builder.BuildTaughtClassesNavCommand());
+            command.AddCommand(builder.BuildUserNavCommand());
             return command;
         }
         /// <summary>
@@ -170,28 +173,34 @@ namespace ApiSdk.Education {
         /// <summary>
         /// Provides operations to manage the schools property of the microsoft.graph.educationRoot entity.
         /// </summary>
-        public Command BuildSchoolsCommand() {
+        public Command BuildSchoolsNavCommand() {
             var command = new Command("schools");
             command.Description = "Provides operations to manage the schools property of the microsoft.graph.educationRoot entity.";
             var builder = new SchoolsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
+            command.AddCommand(builder.BuildDeltaNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the users property of the microsoft.graph.educationRoot entity.
         /// </summary>
-        public Command BuildUsersCommand() {
+        public Command BuildUsersNavCommand() {
             var command = new Command("users");
             command.Description = "Provides operations to manage the users property of the microsoft.graph.educationRoot entity.";
             var builder = new UsersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
+            command.AddCommand(builder.BuildDeltaNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }

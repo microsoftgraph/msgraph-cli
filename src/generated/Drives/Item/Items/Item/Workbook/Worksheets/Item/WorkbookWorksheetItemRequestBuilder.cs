@@ -36,13 +36,16 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
         /// <summary>
         /// Provides operations to manage the charts property of the microsoft.graph.workbookWorksheet entity.
         /// </summary>
-        public Command BuildChartsCommand() {
+        public Command BuildChartsNavCommand() {
             var command = new Command("charts");
             command.Description = "Provides operations to manage the charts property of the microsoft.graph.workbookWorksheet entity.";
             var builder = new ChartsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAddCommand());
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildAddNavCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -170,14 +173,17 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
         /// <summary>
         /// Provides operations to manage the names property of the microsoft.graph.workbookWorksheet entity.
         /// </summary>
-        public Command BuildNamesCommand() {
+        public Command BuildNamesNavCommand() {
             var command = new Command("names");
             command.Description = "Provides operations to manage the names property of the microsoft.graph.workbookWorksheet entity.";
             var builder = new NamesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAddCommand());
-            command.AddCommand(builder.BuildAddFormulaLocalCommand());
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildAddFormulaLocalNavCommand());
+            command.AddCommand(builder.BuildAddNavCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -255,35 +261,38 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
         /// <summary>
         /// Provides operations to manage the pivotTables property of the microsoft.graph.workbookWorksheet entity.
         /// </summary>
-        public Command BuildPivotTablesCommand() {
+        public Command BuildPivotTablesNavCommand() {
             var command = new Command("pivot-tables");
             command.Description = "Provides operations to manage the pivotTables property of the microsoft.graph.workbookWorksheet entity.";
             var builder = new PivotTablesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRefreshAllCommand());
+            command.AddCommand(builder.BuildRefreshAllNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the protection property of the microsoft.graph.workbookWorksheet entity.
         /// </summary>
-        public Command BuildProtectionCommand() {
+        public Command BuildProtectionNavCommand() {
             var command = new Command("protection");
             command.Description = "Provides operations to manage the protection property of the microsoft.graph.workbookWorksheet entity.";
             var builder = new ProtectionRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildProtectCommand());
-            command.AddCommand(builder.BuildUnprotectCommand());
+            command.AddCommand(builder.BuildProtectNavCommand());
+            command.AddCommand(builder.BuildUnprotectNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the range method.
         /// </summary>
-        public Command BuildRangeCommand() {
+        public Command BuildRangeNavCommand() {
             var command = new Command("range");
             command.Description = "Provides operations to call the range method.";
             var builder = new RangeRequestBuilder(PathParameters);
@@ -293,13 +302,16 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
         /// <summary>
         /// Provides operations to manage the tables property of the microsoft.graph.workbookWorksheet entity.
         /// </summary>
-        public Command BuildTablesCommand() {
+        public Command BuildTablesNavCommand() {
             var command = new Command("tables");
             command.Description = "Provides operations to manage the tables property of the microsoft.graph.workbookWorksheet entity.";
             var builder = new TablesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAddCommand());
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildAddNavCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -307,7 +319,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
         /// <summary>
         /// Provides operations to call the usedRange method.
         /// </summary>
-        public Command BuildUsedRangeCommand() {
+        public Command BuildUsedRangeNavCommand() {
             var command = new Command("used-range");
             command.Description = "Provides operations to call the usedRange method.";
             var builder = new UsedRangeRequestBuilder(PathParameters);

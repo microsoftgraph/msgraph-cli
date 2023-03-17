@@ -165,7 +165,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default {
         /// <summary>
         /// Provides operations to call the resetToSystemDefault method.
         /// </summary>
-        public Command BuildResetToSystemDefaultCommand() {
+        public Command BuildResetToSystemDefaultNavCommand() {
             var command = new Command("reset-to-system-default");
             command.Description = "Provides operations to call the resetToSystemDefault method.";
             var builder = new ResetToSystemDefaultRequestBuilder(PathParameters);

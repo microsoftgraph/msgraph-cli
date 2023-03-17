@@ -28,12 +28,15 @@ namespace ApiSdk.TenantRelationships {
         /// <summary>
         /// Provides operations to manage the delegatedAdminCustomers property of the microsoft.graph.tenantRelationship entity.
         /// </summary>
-        public Command BuildDelegatedAdminCustomersCommand() {
+        public Command BuildDelegatedAdminCustomersNavCommand() {
             var command = new Command("delegated-admin-customers");
             command.Description = "Provides operations to manage the delegatedAdminCustomers property of the microsoft.graph.tenantRelationship entity.";
             var builder = new DelegatedAdminCustomersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -41,12 +44,15 @@ namespace ApiSdk.TenantRelationships {
         /// <summary>
         /// Provides operations to manage the delegatedAdminRelationships property of the microsoft.graph.tenantRelationship entity.
         /// </summary>
-        public Command BuildDelegatedAdminRelationshipsCommand() {
+        public Command BuildDelegatedAdminRelationshipsNavCommand() {
             var command = new Command("delegated-admin-relationships");
             command.Description = "Provides operations to manage the delegatedAdminRelationships property of the microsoft.graph.tenantRelationship entity.";
             var builder = new DelegatedAdminRelationshipsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

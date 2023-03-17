@@ -31,7 +31,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// <summary>
         /// Provides operations to call the dataBodyRange method.
         /// </summary>
-        public Command BuildDataBodyRangeCommand() {
+        public Command BuildDataBodyRangeNavCommand() {
             var command = new Command("data-body-range");
             command.Description = "Provides operations to call the dataBodyRange method.";
             var builder = new DataBodyRangeRequestBuilder(PathParameters);
@@ -99,22 +99,22 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// <summary>
         /// Provides operations to manage the filter property of the microsoft.graph.workbookTableColumn entity.
         /// </summary>
-        public Command BuildFilterCommand() {
+        public Command BuildFilterNavCommand() {
             var command = new Command("filter");
             command.Description = "Provides operations to manage the filter property of the microsoft.graph.workbookTableColumn entity.";
             var builder = new FilterRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildApplyBottomItemsFilterCommand());
-            command.AddCommand(builder.BuildApplyBottomPercentFilterCommand());
-            command.AddCommand(builder.BuildApplyCellColorFilterCommand());
-            command.AddCommand(builder.BuildApplyCommand());
-            command.AddCommand(builder.BuildApplyCustomFilterCommand());
-            command.AddCommand(builder.BuildApplyDynamicFilterCommand());
-            command.AddCommand(builder.BuildApplyFontColorFilterCommand());
-            command.AddCommand(builder.BuildApplyIconFilterCommand());
-            command.AddCommand(builder.BuildApplyTopItemsFilterCommand());
-            command.AddCommand(builder.BuildApplyTopPercentFilterCommand());
-            command.AddCommand(builder.BuildApplyValuesFilterCommand());
-            command.AddCommand(builder.BuildClearCommand());
+            command.AddCommand(builder.BuildApplyBottomItemsFilterNavCommand());
+            command.AddCommand(builder.BuildApplyBottomPercentFilterNavCommand());
+            command.AddCommand(builder.BuildApplyCellColorFilterNavCommand());
+            command.AddCommand(builder.BuildApplyCustomFilterNavCommand());
+            command.AddCommand(builder.BuildApplyDynamicFilterNavCommand());
+            command.AddCommand(builder.BuildApplyFontColorFilterNavCommand());
+            command.AddCommand(builder.BuildApplyIconFilterNavCommand());
+            command.AddCommand(builder.BuildApplyNavCommand());
+            command.AddCommand(builder.BuildApplyTopItemsFilterNavCommand());
+            command.AddCommand(builder.BuildApplyTopPercentFilterNavCommand());
+            command.AddCommand(builder.BuildApplyValuesFilterNavCommand());
+            command.AddCommand(builder.BuildClearNavCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -209,7 +209,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// <summary>
         /// Provides operations to call the headerRowRange method.
         /// </summary>
-        public Command BuildHeaderRowRangeCommand() {
+        public Command BuildHeaderRowRangeNavCommand() {
             var command = new Command("header-row-range");
             command.Description = "Provides operations to call the headerRowRange method.";
             var builder = new HeaderRowRangeRequestBuilder(PathParameters);
@@ -301,7 +301,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// <summary>
         /// Provides operations to call the range method.
         /// </summary>
-        public Command BuildRangeCommand() {
+        public Command BuildRangeNavCommand() {
             var command = new Command("range");
             command.Description = "Provides operations to call the range method.";
             var builder = new RangeRequestBuilder(PathParameters);
@@ -311,7 +311,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// <summary>
         /// Provides operations to call the totalRowRange method.
         /// </summary>
-        public Command BuildTotalRowRangeCommand() {
+        public Command BuildTotalRowRangeNavCommand() {
             var command = new Command("total-row-range");
             command.Description = "Provides operations to call the totalRowRange method.";
             var builder = new TotalRowRangeRequestBuilder(PathParameters);

@@ -34,12 +34,15 @@ namespace ApiSdk.Security {
         /// <summary>
         /// Provides operations to manage the alerts_v2 property of the microsoft.graph.security entity.
         /// </summary>
-        public Command BuildAlerts_v2Command() {
+        public Command BuildAlerts_v2NavCommand() {
             var command = new Command("alerts_v2");
             command.Description = "Provides operations to manage the alerts_v2 property of the microsoft.graph.security entity.";
             var builder = new Alerts_v2RequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -47,12 +50,15 @@ namespace ApiSdk.Security {
         /// <summary>
         /// Provides operations to manage the alerts property of the microsoft.graph.security entity.
         /// </summary>
-        public Command BuildAlertsCommand() {
+        public Command BuildAlertsNavCommand() {
             var command = new Command("alerts");
             command.Description = "Provides operations to manage the alerts property of the microsoft.graph.security entity.";
             var builder = new AlertsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -60,26 +66,26 @@ namespace ApiSdk.Security {
         /// <summary>
         /// Provides operations to manage the attackSimulation property of the microsoft.graph.security entity.
         /// </summary>
-        public Command BuildAttackSimulationCommand() {
+        public Command BuildAttackSimulationNavCommand() {
             var command = new Command("attack-simulation");
             command.Description = "Provides operations to manage the attackSimulation property of the microsoft.graph.security entity.";
             var builder = new AttackSimulationRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSimulationAutomationsCommand());
-            command.AddCommand(builder.BuildSimulationsCommand());
+            command.AddCommand(builder.BuildSimulationAutomationsNavCommand());
+            command.AddCommand(builder.BuildSimulationsNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the cases property of the microsoft.graph.security entity.
         /// </summary>
-        public Command BuildCasesCommand() {
+        public Command BuildCasesNavCommand() {
             var command = new Command("cases");
             command.Description = "Provides operations to manage the cases property of the microsoft.graph.security entity.";
             var builder = new CasesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildEdiscoveryCasesCommand());
+            command.AddCommand(builder.BuildEdiscoveryCasesNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
@@ -143,12 +149,15 @@ namespace ApiSdk.Security {
         /// <summary>
         /// Provides operations to manage the incidents property of the microsoft.graph.security entity.
         /// </summary>
-        public Command BuildIncidentsCommand() {
+        public Command BuildIncidentsNavCommand() {
             var command = new Command("incidents");
             command.Description = "Provides operations to manage the incidents property of the microsoft.graph.security entity.";
             var builder = new IncidentsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -208,12 +217,15 @@ namespace ApiSdk.Security {
         /// <summary>
         /// Provides operations to manage the secureScoreControlProfiles property of the microsoft.graph.security entity.
         /// </summary>
-        public Command BuildSecureScoreControlProfilesCommand() {
+        public Command BuildSecureScoreControlProfilesNavCommand() {
             var command = new Command("secure-score-control-profiles");
             command.Description = "Provides operations to manage the secureScoreControlProfiles property of the microsoft.graph.security entity.";
             var builder = new SecureScoreControlProfilesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -221,12 +233,15 @@ namespace ApiSdk.Security {
         /// <summary>
         /// Provides operations to manage the secureScores property of the microsoft.graph.security entity.
         /// </summary>
-        public Command BuildSecureScoresCommand() {
+        public Command BuildSecureScoresNavCommand() {
             var command = new Command("secure-scores");
             command.Description = "Provides operations to manage the secureScores property of the microsoft.graph.security entity.";
             var builder = new SecureScoresRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -234,7 +249,7 @@ namespace ApiSdk.Security {
         /// <summary>
         /// Provides operations to call the runHuntingQuery method.
         /// </summary>
-        public Command BuildSecurityRunHuntingQueryCommand() {
+        public Command BuildSecurityRunHuntingQueryNavCommand() {
             var command = new Command("security-run-hunting-query");
             command.Description = "Provides operations to call the runHuntingQuery method.";
             var builder = new SecurityRunHuntingQueryRequestBuilder(PathParameters);

@@ -29,32 +29,32 @@ namespace ApiSdk.Users.Item.Messages {
         /// <summary>
         /// Provides operations to manage the messages property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new MessageItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAttachmentsCommand());
-            command.AddCommand(builder.BuildContentCommand());
-            command.AddCommand(builder.BuildCopyCommand());
-            command.AddCommand(builder.BuildCreateForwardCommand());
-            command.AddCommand(builder.BuildCreateReplyAllCommand());
-            command.AddCommand(builder.BuildCreateReplyCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildExtensionsCommand());
-            command.AddCommand(builder.BuildForwardCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMoveCommand());
-            command.AddCommand(builder.BuildMultiValueExtendedPropertiesCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildReplyAllCommand());
-            command.AddCommand(builder.BuildReplyCommand());
-            command.AddCommand(builder.BuildSendCommand());
-            command.AddCommand(builder.BuildSingleValueExtendedPropertiesCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildAttachmentsNavCommand());
+            commands.Add(builder.BuildContentNavCommand());
+            commands.Add(builder.BuildCopyNavCommand());
+            commands.Add(builder.BuildCreateForwardNavCommand());
+            commands.Add(builder.BuildCreateReplyAllNavCommand());
+            commands.Add(builder.BuildCreateReplyNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildExtensionsNavCommand());
+            commands.Add(builder.BuildForwardNavCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildMoveNavCommand());
+            commands.Add(builder.BuildMultiValueExtendedPropertiesNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildReplyAllNavCommand());
+            commands.Add(builder.BuildReplyNavCommand());
+            commands.Add(builder.BuildSendNavCommand());
+            commands.Add(builder.BuildSingleValueExtendedPropertiesNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -123,7 +123,7 @@ namespace ApiSdk.Users.Item.Messages {
         /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
-        public Command BuildDeltaCommand() {
+        public Command BuildDeltaNavCommand() {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
             var builder = new DeltaRequestBuilder(PathParameters);

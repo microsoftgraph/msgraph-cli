@@ -116,26 +116,32 @@ namespace ApiSdk.Me.Onenote {
         /// <summary>
         /// Provides operations to manage the notebooks property of the microsoft.graph.onenote entity.
         /// </summary>
-        public Command BuildNotebooksCommand() {
+        public Command BuildNotebooksNavCommand() {
             var command = new Command("notebooks");
             command.Description = "Provides operations to manage the notebooks property of the microsoft.graph.onenote entity.";
             var builder = new NotebooksRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildGetNotebookFromWebUrlCommand());
+            command.AddCommand(builder.BuildGetNotebookFromWebUrlNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the operations property of the microsoft.graph.onenote entity.
         /// </summary>
-        public Command BuildOperationsCommand() {
+        public Command BuildOperationsNavCommand() {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.onenote entity.";
             var builder = new OperationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -143,12 +149,15 @@ namespace ApiSdk.Me.Onenote {
         /// <summary>
         /// Provides operations to manage the pages property of the microsoft.graph.onenote entity.
         /// </summary>
-        public Command BuildPagesCommand() {
+        public Command BuildPagesNavCommand() {
             var command = new Command("pages");
             command.Description = "Provides operations to manage the pages property of the microsoft.graph.onenote entity.";
             var builder = new PagesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -208,12 +217,15 @@ namespace ApiSdk.Me.Onenote {
         /// <summary>
         /// Provides operations to manage the resources property of the microsoft.graph.onenote entity.
         /// </summary>
-        public Command BuildResourcesCommand() {
+        public Command BuildResourcesNavCommand() {
             var command = new Command("resources");
             command.Description = "Provides operations to manage the resources property of the microsoft.graph.onenote entity.";
             var builder = new ResourcesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -221,12 +233,15 @@ namespace ApiSdk.Me.Onenote {
         /// <summary>
         /// Provides operations to manage the sectionGroups property of the microsoft.graph.onenote entity.
         /// </summary>
-        public Command BuildSectionGroupsCommand() {
+        public Command BuildSectionGroupsNavCommand() {
             var command = new Command("section-groups");
             command.Description = "Provides operations to manage the sectionGroups property of the microsoft.graph.onenote entity.";
             var builder = new SectionGroupsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -234,12 +249,15 @@ namespace ApiSdk.Me.Onenote {
         /// <summary>
         /// Provides operations to manage the sections property of the microsoft.graph.onenote entity.
         /// </summary>
-        public Command BuildSectionsCommand() {
+        public Command BuildSectionsNavCommand() {
             var command = new Command("sections");
             command.Description = "Provides operations to manage the sections property of the microsoft.graph.onenote entity.";
             var builder = new SectionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

@@ -29,24 +29,24 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleReq
         /// <summary>
         /// Provides operations to manage the roleEligibilityScheduleRequests property of the microsoft.graph.rbacApplication entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new UnifiedRoleEligibilityScheduleRequestItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAppScopeCommand());
-            command.AddCommand(builder.BuildCancelCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildDirectoryScopeCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPrincipalCommand());
-            command.AddCommand(builder.BuildRoleDefinitionCommand());
-            command.AddCommand(builder.BuildTargetScheduleCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildAppScopeNavCommand());
+            commands.Add(builder.BuildCancelNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildDirectoryScopeNavCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildPrincipalNavCommand());
+            commands.Add(builder.BuildRoleDefinitionNavCommand());
+            commands.Add(builder.BuildTargetScheduleNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

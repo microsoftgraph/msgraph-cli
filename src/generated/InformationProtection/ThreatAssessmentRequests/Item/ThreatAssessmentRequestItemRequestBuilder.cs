@@ -181,12 +181,15 @@ namespace ApiSdk.InformationProtection.ThreatAssessmentRequests.Item {
         /// <summary>
         /// Provides operations to manage the results property of the microsoft.graph.threatAssessmentRequest entity.
         /// </summary>
-        public Command BuildResultsCommand() {
+        public Command BuildResultsNavCommand() {
             var command = new Command("results");
             command.Description = "Provides operations to manage the results property of the microsoft.graph.threatAssessmentRequest entity.";
             var builder = new ResultsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

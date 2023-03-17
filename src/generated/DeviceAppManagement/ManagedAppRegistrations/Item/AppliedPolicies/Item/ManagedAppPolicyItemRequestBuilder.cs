@@ -199,7 +199,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.AppliedPolicie
         /// <summary>
         /// Provides operations to call the targetApps method.
         /// </summary>
-        public Command BuildTargetAppsCommand() {
+        public Command BuildTargetAppsNavCommand() {
             var command = new Command("target-apps");
             command.Description = "Provides operations to call the targetApps method.";
             var builder = new TargetAppsRequestBuilder(PathParameters);

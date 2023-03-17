@@ -28,40 +28,40 @@ namespace ApiSdk.DeviceManagement.ManagedDevices {
         /// <summary>
         /// Provides operations to manage the managedDevices property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new ManagedDeviceItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildBypassActivationLockCommand());
-            command.AddCommand(builder.BuildCleanWindowsDeviceCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildDeleteUserFromSharedAppleDeviceCommand());
-            command.AddCommand(builder.BuildDeviceCategoryCommand());
-            command.AddCommand(builder.BuildDeviceCompliancePolicyStatesCommand());
-            command.AddCommand(builder.BuildDeviceConfigurationStatesCommand());
-            command.AddCommand(builder.BuildDisableLostModeCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildLocateDeviceCommand());
-            command.AddCommand(builder.BuildLogoutSharedAppleDeviceActiveUserCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildRebootNowCommand());
-            command.AddCommand(builder.BuildRecoverPasscodeCommand());
-            command.AddCommand(builder.BuildRemoteLockCommand());
-            command.AddCommand(builder.BuildRequestRemoteAssistanceCommand());
-            command.AddCommand(builder.BuildResetPasscodeCommand());
-            command.AddCommand(builder.BuildRetireCommand());
-            command.AddCommand(builder.BuildShutDownCommand());
-            command.AddCommand(builder.BuildSyncDeviceCommand());
-            command.AddCommand(builder.BuildUpdateWindowsDeviceAccountCommand());
-            command.AddCommand(builder.BuildUsersCommand());
-            command.AddCommand(builder.BuildWindowsDefenderScanCommand());
-            command.AddCommand(builder.BuildWindowsDefenderUpdateSignaturesCommand());
-            command.AddCommand(builder.BuildWipeCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildBypassActivationLockNavCommand());
+            commands.Add(builder.BuildCleanWindowsDeviceNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildDeleteUserFromSharedAppleDeviceNavCommand());
+            commands.Add(builder.BuildDeviceCategoryNavCommand());
+            commands.Add(builder.BuildDeviceCompliancePolicyStatesNavCommand());
+            commands.Add(builder.BuildDeviceConfigurationStatesNavCommand());
+            commands.Add(builder.BuildDisableLostModeNavCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildLocateDeviceNavCommand());
+            commands.Add(builder.BuildLogoutSharedAppleDeviceActiveUserNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildRebootNowNavCommand());
+            commands.Add(builder.BuildRecoverPasscodeNavCommand());
+            commands.Add(builder.BuildRemoteLockNavCommand());
+            commands.Add(builder.BuildRequestRemoteAssistanceNavCommand());
+            commands.Add(builder.BuildResetPasscodeNavCommand());
+            commands.Add(builder.BuildRetireNavCommand());
+            commands.Add(builder.BuildShutDownNavCommand());
+            commands.Add(builder.BuildSyncDeviceNavCommand());
+            commands.Add(builder.BuildUpdateWindowsDeviceAccountNavCommand());
+            commands.Add(builder.BuildUsersNavCommand());
+            commands.Add(builder.BuildWindowsDefenderScanNavCommand());
+            commands.Add(builder.BuildWindowsDefenderUpdateSignaturesNavCommand());
+            commands.Add(builder.BuildWipeNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

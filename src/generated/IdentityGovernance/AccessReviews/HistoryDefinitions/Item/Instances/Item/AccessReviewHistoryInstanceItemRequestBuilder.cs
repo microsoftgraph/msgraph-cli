@@ -67,7 +67,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item.Instan
         /// <summary>
         /// Provides operations to call the generateDownloadUri method.
         /// </summary>
-        public Command BuildGenerateDownloadUriCommand() {
+        public Command BuildGenerateDownloadUriNavCommand() {
             var command = new Command("generate-download-uri");
             command.Description = "Provides operations to call the generateDownloadUri method.";
             var builder = new GenerateDownloadUriRequestBuilder(PathParameters);

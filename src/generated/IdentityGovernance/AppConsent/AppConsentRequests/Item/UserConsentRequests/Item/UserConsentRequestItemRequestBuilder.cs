@@ -27,14 +27,14 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
         /// <summary>
         /// Provides operations to manage the approval property of the microsoft.graph.userConsentRequest entity.
         /// </summary>
-        public Command BuildApprovalCommand() {
+        public Command BuildApprovalNavCommand() {
             var command = new Command("approval");
             command.Description = "Provides operations to manage the approval property of the microsoft.graph.userConsentRequest entity.";
             var builder = new ApprovalRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildStagesCommand());
+            command.AddCommand(builder.BuildStagesNavCommand());
             return command;
         }
         /// <summary>

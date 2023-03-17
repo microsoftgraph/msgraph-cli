@@ -113,12 +113,15 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
         /// <summary>
         /// Provides operations to manage the healthOverviews property of the microsoft.graph.serviceAnnouncement entity.
         /// </summary>
-        public Command BuildHealthOverviewsCommand() {
+        public Command BuildHealthOverviewsNavCommand() {
             var command = new Command("health-overviews");
             command.Description = "Provides operations to manage the healthOverviews property of the microsoft.graph.serviceAnnouncement entity.";
             var builder = new HealthOverviewsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -126,12 +129,15 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
         /// <summary>
         /// Provides operations to manage the issues property of the microsoft.graph.serviceAnnouncement entity.
         /// </summary>
-        public Command BuildIssuesCommand() {
+        public Command BuildIssuesNavCommand() {
             var command = new Command("issues");
             command.Description = "Provides operations to manage the issues property of the microsoft.graph.serviceAnnouncement entity.";
             var builder = new IssuesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -139,20 +145,23 @@ namespace ApiSdk.Admin.ServiceAnnouncement {
         /// <summary>
         /// Provides operations to manage the messages property of the microsoft.graph.serviceAnnouncement entity.
         /// </summary>
-        public Command BuildMessagesCommand() {
+        public Command BuildMessagesNavCommand() {
             var command = new Command("messages");
             command.Description = "Provides operations to manage the messages property of the microsoft.graph.serviceAnnouncement entity.";
             var builder = new MessagesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildArchiveCommand());
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildArchiveNavCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildFavoriteCommand());
+            command.AddCommand(builder.BuildFavoriteNavCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildMarkReadCommand());
-            command.AddCommand(builder.BuildMarkUnreadCommand());
-            command.AddCommand(builder.BuildUnarchiveCommand());
-            command.AddCommand(builder.BuildUnfavoriteCommand());
+            command.AddCommand(builder.BuildMarkReadNavCommand());
+            command.AddCommand(builder.BuildMarkUnreadNavCommand());
+            command.AddCommand(builder.BuildUnarchiveNavCommand());
+            command.AddCommand(builder.BuildUnfavoriteNavCommand());
             return command;
         }
         /// <summary>

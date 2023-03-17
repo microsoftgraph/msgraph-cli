@@ -32,59 +32,58 @@ namespace ApiSdk.Groups {
         /// <summary>
         /// Provides operations to manage the collection of group entities.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new GroupItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAcceptedSendersCommand());
-            command.AddCommand(builder.BuildAddFavoriteCommand());
-            command.AddCommand(builder.BuildAppRoleAssignmentsCommand());
-            command.AddCommand(builder.BuildAssignLicenseCommand());
-            command.AddCommand(builder.BuildCalendarCommand());
-            command.AddCommand(builder.BuildCalendarViewCommand());
-            command.AddCommand(builder.BuildCheckGrantedPermissionsForAppCommand());
-            command.AddCommand(builder.BuildCheckMemberGroupsCommand());
-            command.AddCommand(builder.BuildCheckMemberObjectsCommand());
-            command.AddCommand(builder.BuildConversationsCommand());
-            command.AddCommand(builder.BuildCreatedOnBehalfOfCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildDriveCommand());
-            command.AddCommand(builder.BuildDrivesCommand());
-            command.AddCommand(builder.BuildEventsCommand());
-            command.AddCommand(builder.BuildExtensionsCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildGetMemberGroupsCommand());
-            command.AddCommand(builder.BuildGetMemberObjectsCommand());
-            command.AddCommand(builder.BuildGroupLifecyclePoliciesCommand());
-            command.AddCommand(builder.BuildMemberOfCommand());
-            command.AddCommand(builder.BuildMembersCommand());
-            command.AddCommand(builder.BuildMembersWithLicenseErrorsCommand());
-            command.AddCommand(builder.BuildOnenoteCommand());
-            command.AddCommand(builder.BuildOwnersCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPermissionGrantsCommand());
-            command.AddCommand(builder.BuildPhotoCommand());
-            command.AddCommand(builder.BuildPhotosCommand());
-            command.AddCommand(builder.BuildPlannerCommand());
-            command.AddCommand(builder.BuildRejectedSendersCommand());
-            command.AddCommand(builder.BuildRemoveFavoriteCommand());
-            command.AddCommand(builder.BuildRenewCommand());
-            command.AddCommand(builder.BuildResetUnseenCountCommand());
-            command.AddCommand(builder.BuildRestoreCommand());
-            command.AddCommand(builder.BuildSettingsCommand());
-            command.AddCommand(builder.BuildSitesCommand());
-            command.AddCommand(builder.BuildSubscribeByMailCommand());
-            command.AddCommand(builder.BuildTeamCommand());
-            command.AddCommand(builder.BuildThreadsCommand());
-            command.AddCommand(builder.BuildTransitiveMemberOfCommand());
-            command.AddCommand(builder.BuildTransitiveMembersCommand());
-            command.AddCommand(builder.BuildUnsubscribeByMailCommand());
-            command.AddCommand(builder.BuildValidatePropertiesCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildAcceptedSendersNavCommand());
+            commands.Add(builder.BuildAddFavoriteNavCommand());
+            commands.Add(builder.BuildAppRoleAssignmentsNavCommand());
+            commands.Add(builder.BuildAssignLicenseNavCommand());
+            commands.Add(builder.BuildCalendarNavCommand());
+            commands.Add(builder.BuildCalendarViewNavCommand());
+            commands.Add(builder.BuildCheckGrantedPermissionsForAppNavCommand());
+            commands.Add(builder.BuildCheckMemberGroupsNavCommand());
+            commands.Add(builder.BuildCheckMemberObjectsNavCommand());
+            commands.Add(builder.BuildConversationsNavCommand());
+            commands.Add(builder.BuildCreatedOnBehalfOfNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildDriveNavCommand());
+            commands.Add(builder.BuildDrivesNavCommand());
+            commands.Add(builder.BuildEventsNavCommand());
+            commands.Add(builder.BuildExtensionsNavCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildGetMemberGroupsNavCommand());
+            commands.Add(builder.BuildGetMemberObjectsNavCommand());
+            commands.Add(builder.BuildGroupLifecyclePoliciesNavCommand());
+            commands.Add(builder.BuildMemberOfNavCommand());
+            commands.Add(builder.BuildMembersNavCommand());
+            commands.Add(builder.BuildMembersWithLicenseErrorsNavCommand());
+            commands.Add(builder.BuildOnenoteNavCommand());
+            commands.Add(builder.BuildOwnersNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildPermissionGrantsNavCommand());
+            commands.Add(builder.BuildPhotoNavCommand());
+            commands.Add(builder.BuildPhotosNavCommand());
+            commands.Add(builder.BuildPlannerNavCommand());
+            commands.Add(builder.BuildRejectedSendersNavCommand());
+            commands.Add(builder.BuildRemoveFavoriteNavCommand());
+            commands.Add(builder.BuildRenewNavCommand());
+            commands.Add(builder.BuildResetUnseenCountNavCommand());
+            commands.Add(builder.BuildRestoreNavCommand());
+            commands.Add(builder.BuildSettingsNavCommand());
+            commands.Add(builder.BuildSitesNavCommand());
+            commands.Add(builder.BuildSubscribeByMailNavCommand());
+            commands.Add(builder.BuildTeamNavCommand());
+            commands.Add(builder.BuildThreadsNavCommand());
+            commands.Add(builder.BuildTransitiveMemberOfNavCommand());
+            commands.Add(builder.BuildTransitiveMembersNavCommand());
+            commands.Add(builder.BuildUnsubscribeByMailNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -147,7 +146,7 @@ namespace ApiSdk.Groups {
         /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
-        public Command BuildDeltaCommand() {
+        public Command BuildDeltaNavCommand() {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
             var builder = new DeltaRequestBuilder(PathParameters);
@@ -157,7 +156,7 @@ namespace ApiSdk.Groups {
         /// <summary>
         /// Provides operations to call the getAvailableExtensionProperties method.
         /// </summary>
-        public Command BuildGetAvailableExtensionPropertiesCommand() {
+        public Command BuildGetAvailableExtensionPropertiesNavCommand() {
             var command = new Command("get-available-extension-properties");
             command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
             var builder = new GetAvailableExtensionPropertiesRequestBuilder(PathParameters);
@@ -167,7 +166,7 @@ namespace ApiSdk.Groups {
         /// <summary>
         /// Provides operations to call the getByIds method.
         /// </summary>
-        public Command BuildGetByIdsCommand() {
+        public Command BuildGetByIdsNavCommand() {
             var command = new Command("get-by-ids");
             command.Description = "Provides operations to call the getByIds method.";
             var builder = new GetByIdsRequestBuilder(PathParameters);
@@ -290,8 +289,9 @@ namespace ApiSdk.Groups {
         /// <summary>
         /// Provides operations to call the validateProperties method.
         /// </summary>
-        public Command BuildValidatePropertiesCommand() {
-            var command = new Command("validate-properties");
+        public Command BuildValidatePropertiesNavCommand() {
+            var groupIndexer = new GroupItemRequestBuilder(PathParameters);
+            var command = groupIndexer.BuildValidatePropertiesNavCommand();
             command.Description = "Provides operations to call the validateProperties method.";
             var builder = new ValidatePropertiesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());

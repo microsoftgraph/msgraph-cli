@@ -28,12 +28,15 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
         /// <summary>
         /// Provides operations to manage the defaultPages property of the microsoft.graph.userFlowLanguageConfiguration entity.
         /// </summary>
-        public Command BuildDefaultPagesCommand() {
+        public Command BuildDefaultPagesNavCommand() {
             var command = new Command("default-pages");
             command.Description = "Provides operations to manage the defaultPages property of the microsoft.graph.userFlowLanguageConfiguration entity.";
             var builder = new DefaultPagesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -149,12 +152,15 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item {
         /// <summary>
         /// Provides operations to manage the overridesPages property of the microsoft.graph.userFlowLanguageConfiguration entity.
         /// </summary>
-        public Command BuildOverridesPagesCommand() {
+        public Command BuildOverridesPagesNavCommand() {
             var command = new Command("overrides-pages");
             command.Description = "Provides operations to manage the overridesPages property of the microsoft.graph.userFlowLanguageConfiguration entity.";
             var builder = new OverridesPagesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

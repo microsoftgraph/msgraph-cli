@@ -89,7 +89,7 @@ namespace ApiSdk.Me.CreatedObjects.Item {
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        public Command BuildGraphServicePrincipalCommand() {
+        public Command BuildGraphServicePrincipalNavCommand() {
             var command = new Command("graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new GraphServicePrincipalRequestBuilder(PathParameters);

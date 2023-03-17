@@ -217,7 +217,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.SiteSources
         /// <summary>
         /// Provides operations to manage the site property of the microsoft.graph.security.siteSource entity.
         /// </summary>
-        public Command BuildSiteCommand() {
+        public Command BuildSiteNavCommand() {
             var command = new Command("site");
             command.Description = "Provides operations to manage the site property of the microsoft.graph.security.siteSource entity.";
             var builder = new SiteRequestBuilder(PathParameters);

@@ -28,24 +28,24 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items {
         /// <summary>
         /// Provides operations to manage the items property of the microsoft.graph.list entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new ListItemItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAnalyticsCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildDocumentSetVersionsCommand());
-            command.AddCommand(builder.BuildDriveItemCommand());
-            command.AddCommand(builder.BuildFieldsCommand());
-            command.AddCommand(builder.BuildGetActivitiesByIntervalCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildVersionsCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildAnalyticsNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildDocumentSetVersionsNavCommand());
+            commands.Add(builder.BuildDriveItemNavCommand());
+            commands.Add(builder.BuildFieldsNavCommand());
+            commands.Add(builder.BuildGetActivitiesByIntervalNavCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildVersionsNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

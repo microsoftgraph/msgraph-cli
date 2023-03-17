@@ -62,19 +62,22 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
         /// <summary>
         /// Provides operations to manage the externalSponsors property of the microsoft.graph.connectedOrganization entity.
         /// </summary>
-        public Command BuildExternalSponsorsCommand() {
+        public Command BuildExternalSponsorsNavCommand() {
             var command = new Command("external-sponsors");
             command.Description = "Provides operations to manage the externalSponsors property of the microsoft.graph.connectedOrganization entity.";
             var builder = new ExternalSponsorsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
-            command.AddCommand(builder.BuildGetByIdsCommand());
+            command.AddCommand(builder.BuildDeltaNavCommand());
+            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesNavCommand());
+            command.AddCommand(builder.BuildGetByIdsNavCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRefCommand());
-            command.AddCommand(builder.BuildValidatePropertiesCommand());
+            command.AddCommand(builder.BuildRefNavCommand());
+            command.AddCommand(builder.BuildValidatePropertiesNavCommand());
             return command;
         }
         /// <summary>
@@ -142,19 +145,22 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
         /// <summary>
         /// Provides operations to manage the internalSponsors property of the microsoft.graph.connectedOrganization entity.
         /// </summary>
-        public Command BuildInternalSponsorsCommand() {
+        public Command BuildInternalSponsorsNavCommand() {
             var command = new Command("internal-sponsors");
             command.Description = "Provides operations to manage the internalSponsors property of the microsoft.graph.connectedOrganization entity.";
             var builder = new InternalSponsorsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
-            command.AddCommand(builder.BuildGetByIdsCommand());
+            command.AddCommand(builder.BuildDeltaNavCommand());
+            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesNavCommand());
+            command.AddCommand(builder.BuildGetByIdsNavCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRefCommand());
-            command.AddCommand(builder.BuildValidatePropertiesCommand());
+            command.AddCommand(builder.BuildRefNavCommand());
+            command.AddCommand(builder.BuildValidatePropertiesNavCommand());
             return command;
         }
         /// <summary>

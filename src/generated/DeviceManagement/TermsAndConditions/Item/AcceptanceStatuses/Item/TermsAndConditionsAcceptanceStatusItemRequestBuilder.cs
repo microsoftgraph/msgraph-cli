@@ -199,7 +199,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Ite
         /// <summary>
         /// Provides operations to manage the termsAndConditions property of the microsoft.graph.termsAndConditionsAcceptanceStatus entity.
         /// </summary>
-        public Command BuildTermsAndConditionsCommand() {
+        public Command BuildTermsAndConditionsNavCommand() {
             var command = new Command("terms-and-conditions");
             command.Description = "Provides operations to manage the termsAndConditions property of the microsoft.graph.termsAndConditionsAcceptanceStatus entity.";
             var builder = new ApiSdk.DeviceManagement.TermsAndConditions.Item.AcceptanceStatuses.Item.TermsAndConditions.TermsAndConditionsRequestBuilder(PathParameters);

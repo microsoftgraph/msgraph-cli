@@ -33,20 +33,15 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
         /// <summary>
         /// Gets an item from the ApiSdk.devices.item.registeredOwners.item collection
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGraphAppRoleAssignmentCommand());
-            command.AddCommand(builder.BuildGraphEndpointCommand());
-            command.AddCommand(builder.BuildGraphServicePrincipalCommand());
-            command.AddCommand(builder.BuildGraphUserCommand());
-            command.AddCommand(builder.BuildRefCommand());
-            return command;
+            var commands = new List<Command>();
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -56,44 +51,48 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
         /// <summary>
         /// Casts the previous resource to appRoleAssignment.
         /// </summary>
-        public Command BuildGraphAppRoleAssignmentCommand() {
-            var command = new Command("graph-app-role-assignment");
+        public Command BuildGraphAppRoleAssignmentNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildGraphAppRoleAssignmentNavCommand();
             command.Description = "Casts the previous resource to appRoleAssignment.";
             var builder = new GraphAppRoleAssignmentRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Casts the previous resource to endpoint.
         /// </summary>
-        public Command BuildGraphEndpointCommand() {
-            var command = new Command("graph-endpoint");
+        public Command BuildGraphEndpointNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildGraphEndpointNavCommand();
             command.Description = "Casts the previous resource to endpoint.";
             var builder = new GraphEndpointRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        public Command BuildGraphServicePrincipalCommand() {
-            var command = new Command("graph-service-principal");
+        public Command BuildGraphServicePrincipalNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildGraphServicePrincipalNavCommand();
             command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
-        public Command BuildGraphUserCommand() {
-            var command = new Command("graph-user");
+        public Command BuildGraphUserNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildGraphUserNavCommand();
             command.Description = "Casts the previous resource to user.";
             var builder = new GraphUserRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -219,8 +218,9 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
         /// <summary>
         /// Provides operations to manage the collection of device entities.
         /// </summary>
-        public Command BuildRefCommand() {
-            var command = new Command("ref");
+        public Command BuildRefNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildRefNavCommand();
             command.Description = "Provides operations to manage the collection of device entities.";
             var builder = new RefRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());

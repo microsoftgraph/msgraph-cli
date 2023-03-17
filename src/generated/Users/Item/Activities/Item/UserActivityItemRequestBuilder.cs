@@ -135,12 +135,15 @@ namespace ApiSdk.Users.Item.Activities.Item {
         /// <summary>
         /// Provides operations to manage the historyItems property of the microsoft.graph.userActivity entity.
         /// </summary>
-        public Command BuildHistoryItemsCommand() {
+        public Command BuildHistoryItemsNavCommand() {
             var command = new Command("history-items");
             command.Description = "Provides operations to manage the historyItems property of the microsoft.graph.userActivity entity.";
             var builder = new HistoryItemsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

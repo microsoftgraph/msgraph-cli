@@ -28,7 +28,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Tit
         /// <summary>
         /// Provides operations to call the clear method.
         /// </summary>
-        public Command BuildClearCommand() {
+        public Command BuildClearNavCommand() {
             var command = new Command("clear");
             command.Description = "Provides operations to call the clear method.";
             var builder = new ClearRequestBuilder(PathParameters);
@@ -246,7 +246,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Tit
         /// <summary>
         /// Provides operations to call the setSolidColor method.
         /// </summary>
-        public Command BuildSetSolidColorCommand() {
+        public Command BuildSetSolidColorNavCommand() {
             var command = new Command("set-solid-color");
             command.Description = "Provides operations to call the setSolidColor method.";
             var builder = new SetSolidColorRequestBuilder(PathParameters);

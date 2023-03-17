@@ -27,12 +27,15 @@ namespace ApiSdk.Me.CalendarGroups.Item {
         /// <summary>
         /// Provides operations to manage the calendars property of the microsoft.graph.calendarGroup entity.
         /// </summary>
-        public Command BuildCalendarsCommand() {
+        public Command BuildCalendarsNavCommand() {
             var command = new Command("calendars");
             command.Description = "Provides operations to manage the calendars property of the microsoft.graph.calendarGroup entity.";
             var builder = new CalendarsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

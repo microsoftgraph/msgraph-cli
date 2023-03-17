@@ -30,19 +30,19 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
         /// <summary>
         /// Provides operations to manage the riskyUsers property of the microsoft.graph.identityProtectionRoot entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new RiskyUserItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildHistoryCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildHistoryNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to call the confirmCompromised method.
         /// </summary>
-        public Command BuildConfirmCompromisedCommand() {
+        public Command BuildConfirmCompromisedNavCommand() {
             var command = new Command("confirm-compromised");
             command.Description = "Provides operations to call the confirmCompromised method.";
             var builder = new ConfirmCompromisedRequestBuilder(PathParameters);
@@ -52,7 +52,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -114,7 +114,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
         /// <summary>
         /// Provides operations to call the dismiss method.
         /// </summary>
-        public Command BuildDismissCommand() {
+        public Command BuildDismissNavCommand() {
             var command = new Command("dismiss");
             command.Description = "Provides operations to call the dismiss method.";
             var builder = new DismissRequestBuilder(PathParameters);

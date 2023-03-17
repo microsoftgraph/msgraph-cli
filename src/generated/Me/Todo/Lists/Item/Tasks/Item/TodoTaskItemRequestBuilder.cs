@@ -29,40 +29,49 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
-        /// Provides operations to manage the attachments property of the microsoft.graph.todoTask entity.
+        /// Provides operations to manage the attachmentSessions property of the microsoft.graph.todoTask entity.
         /// </summary>
-        public Command BuildAttachmentsCommand() {
-            var command = new Command("attachments");
-            command.Description = "Provides operations to manage the attachments property of the microsoft.graph.todoTask entity.";
-            var builder = new AttachmentsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildCreateUploadSessionCommand());
+        public Command BuildAttachmentSessionsNavCommand() {
+            var command = new Command("attachment-sessions");
+            command.Description = "Provides operations to manage the attachmentSessions property of the microsoft.graph.todoTask entity.";
+            var builder = new AttachmentSessionsRequestBuilder(PathParameters);
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
-        /// Provides operations to manage the attachmentSessions property of the microsoft.graph.todoTask entity.
+        /// Provides operations to manage the attachments property of the microsoft.graph.todoTask entity.
         /// </summary>
-        public Command BuildAttachmentSessionsCommand() {
-            var command = new Command("attachment-sessions");
-            command.Description = "Provides operations to manage the attachmentSessions property of the microsoft.graph.todoTask entity.";
-            var builder = new AttachmentSessionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+        public Command BuildAttachmentsNavCommand() {
+            var command = new Command("attachments");
+            command.Description = "Provides operations to manage the attachments property of the microsoft.graph.todoTask entity.";
+            var builder = new AttachmentsRequestBuilder(PathParameters);
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildCreateUploadSessionNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the checklistItems property of the microsoft.graph.todoTask entity.
         /// </summary>
-        public Command BuildChecklistItemsCommand() {
+        public Command BuildChecklistItemsNavCommand() {
             var command = new Command("checklist-items");
             command.Description = "Provides operations to manage the checklistItems property of the microsoft.graph.todoTask entity.";
             var builder = new ChecklistItemsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -110,12 +119,15 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item {
         /// <summary>
         /// Provides operations to manage the extensions property of the microsoft.graph.todoTask entity.
         /// </summary>
-        public Command BuildExtensionsCommand() {
+        public Command BuildExtensionsNavCommand() {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.todoTask entity.";
             var builder = new ExtensionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -191,12 +203,15 @@ namespace ApiSdk.Me.Todo.Lists.Item.Tasks.Item {
         /// <summary>
         /// Provides operations to manage the linkedResources property of the microsoft.graph.todoTask entity.
         /// </summary>
-        public Command BuildLinkedResourcesCommand() {
+        public Command BuildLinkedResourcesNavCommand() {
             var command = new Command("linked-resources");
             command.Description = "Provides operations to manage the linkedResources property of the microsoft.graph.todoTask entity.";
             var builder = new LinkedResourcesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

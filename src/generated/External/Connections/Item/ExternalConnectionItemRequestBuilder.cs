@@ -126,12 +126,15 @@ namespace ApiSdk.External.Connections.Item {
         /// <summary>
         /// Provides operations to manage the groups property of the microsoft.graph.externalConnectors.externalConnection entity.
         /// </summary>
-        public Command BuildGroupsCommand() {
+        public Command BuildGroupsNavCommand() {
             var command = new Command("groups");
             command.Description = "Provides operations to manage the groups property of the microsoft.graph.externalConnectors.externalConnection entity.";
             var builder = new GroupsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -139,12 +142,15 @@ namespace ApiSdk.External.Connections.Item {
         /// <summary>
         /// Provides operations to manage the items property of the microsoft.graph.externalConnectors.externalConnection entity.
         /// </summary>
-        public Command BuildItemsCommand() {
+        public Command BuildItemsNavCommand() {
             var command = new Command("items");
             command.Description = "Provides operations to manage the items property of the microsoft.graph.externalConnectors.externalConnection entity.";
             var builder = new ItemsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -152,12 +158,15 @@ namespace ApiSdk.External.Connections.Item {
         /// <summary>
         /// Provides operations to manage the operations property of the microsoft.graph.externalConnectors.externalConnection entity.
         /// </summary>
-        public Command BuildOperationsCommand() {
+        public Command BuildOperationsNavCommand() {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.externalConnectors.externalConnection entity.";
             var builder = new OperationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -223,7 +232,7 @@ namespace ApiSdk.External.Connections.Item {
         /// <summary>
         /// Provides operations to manage the schema property of the microsoft.graph.externalConnectors.externalConnection entity.
         /// </summary>
-        public Command BuildSchemaCommand() {
+        public Command BuildSchemaNavCommand() {
             var command = new Command("schema");
             command.Description = "Provides operations to manage the schema property of the microsoft.graph.externalConnectors.externalConnection entity.";
             var builder = new SchemaRequestBuilder(PathParameters);

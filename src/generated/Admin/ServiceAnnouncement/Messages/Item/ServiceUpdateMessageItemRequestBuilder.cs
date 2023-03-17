@@ -28,7 +28,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
         /// <summary>
         /// Provides operations to manage the media for the admin entity.
         /// </summary>
-        public Command BuildAttachmentsArchiveCommand() {
+        public Command BuildAttachmentsArchiveNavCommand() {
             var command = new Command("attachments-archive");
             command.Description = "Provides operations to manage the media for the admin entity.";
             var builder = new AttachmentsArchiveRequestBuilder(PathParameters);
@@ -39,12 +39,15 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
         /// <summary>
         /// Provides operations to manage the attachments property of the microsoft.graph.serviceUpdateMessage entity.
         /// </summary>
-        public Command BuildAttachmentsCommand() {
+        public Command BuildAttachmentsNavCommand() {
             var command = new Command("attachments");
             command.Description = "Provides operations to manage the attachments property of the microsoft.graph.serviceUpdateMessage entity.";
             var builder = new AttachmentsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

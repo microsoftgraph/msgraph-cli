@@ -27,7 +27,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DriveItem {
         /// <summary>
         /// Provides operations to manage the media for the site entity.
         /// </summary>
-        public Command BuildContentCommand() {
+        public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the site entity.";
             var builder = new ContentRequestBuilder(PathParameters);

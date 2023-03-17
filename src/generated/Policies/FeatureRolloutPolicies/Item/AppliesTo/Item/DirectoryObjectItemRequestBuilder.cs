@@ -22,7 +22,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Item {
         /// <summary>
         /// Provides operations to manage the collection of policyRoot entities.
         /// </summary>
-        public Command BuildRefCommand() {
+        public Command BuildRefNavCommand() {
             var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of policyRoot entities.";
             var builder = new RefRequestBuilder(PathParameters);

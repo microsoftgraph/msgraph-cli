@@ -137,7 +137,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item {
         /// <summary>
         /// Provides operations to call the mute method.
         /// </summary>
-        public Command BuildMuteCommand() {
+        public Command BuildMuteNavCommand() {
             var command = new Command("mute");
             command.Description = "Provides operations to call the mute method.";
             var builder = new MuteRequestBuilder(PathParameters);
@@ -211,7 +211,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item {
         /// <summary>
         /// Provides operations to call the startHoldMusic method.
         /// </summary>
-        public Command BuildStartHoldMusicCommand() {
+        public Command BuildStartHoldMusicNavCommand() {
             var command = new Command("start-hold-music");
             command.Description = "Provides operations to call the startHoldMusic method.";
             var builder = new StartHoldMusicRequestBuilder(PathParameters);
@@ -221,7 +221,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item {
         /// <summary>
         /// Provides operations to call the stopHoldMusic method.
         /// </summary>
-        public Command BuildStopHoldMusicCommand() {
+        public Command BuildStopHoldMusicNavCommand() {
             var command = new Command("stop-hold-music");
             command.Description = "Provides operations to call the stopHoldMusic method.";
             var builder = new StopHoldMusicRequestBuilder(PathParameters);

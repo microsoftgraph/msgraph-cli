@@ -28,21 +28,21 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships {
         /// <summary>
         /// Provides operations to manage the delegatedAdminRelationships property of the microsoft.graph.tenantRelationship entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new DelegatedAdminRelationshipItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAccessAssignmentsCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildOperationsCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildRequestsCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildAccessAssignmentsNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildOperationsNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildRequestsNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

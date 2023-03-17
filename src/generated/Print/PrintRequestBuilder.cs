@@ -32,12 +32,15 @@ namespace ApiSdk.Print {
         /// <summary>
         /// Provides operations to manage the connectors property of the microsoft.graph.print entity.
         /// </summary>
-        public Command BuildConnectorsCommand() {
+        public Command BuildConnectorsNavCommand() {
             var command = new Command("connectors");
             command.Description = "Provides operations to manage the connectors property of the microsoft.graph.print entity.";
             var builder = new ConnectorsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -101,12 +104,15 @@ namespace ApiSdk.Print {
         /// <summary>
         /// Provides operations to manage the operations property of the microsoft.graph.print entity.
         /// </summary>
-        public Command BuildOperationsCommand() {
+        public Command BuildOperationsNavCommand() {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.print entity.";
             var builder = new OperationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -166,12 +172,15 @@ namespace ApiSdk.Print {
         /// <summary>
         /// Provides operations to manage the printers property of the microsoft.graph.print entity.
         /// </summary>
-        public Command BuildPrintersCommand() {
+        public Command BuildPrintersNavCommand() {
             var command = new Command("printers");
             command.Description = "Provides operations to manage the printers property of the microsoft.graph.print entity.";
             var builder = new PrintersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -179,12 +188,15 @@ namespace ApiSdk.Print {
         /// <summary>
         /// Provides operations to manage the services property of the microsoft.graph.print entity.
         /// </summary>
-        public Command BuildServicesCommand() {
+        public Command BuildServicesNavCommand() {
             var command = new Command("services");
             command.Description = "Provides operations to manage the services property of the microsoft.graph.print entity.";
             var builder = new ServicesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -192,12 +204,15 @@ namespace ApiSdk.Print {
         /// <summary>
         /// Provides operations to manage the shares property of the microsoft.graph.print entity.
         /// </summary>
-        public Command BuildSharesCommand() {
+        public Command BuildSharesNavCommand() {
             var command = new Command("shares");
             command.Description = "Provides operations to manage the shares property of the microsoft.graph.print entity.";
             var builder = new SharesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -205,12 +220,15 @@ namespace ApiSdk.Print {
         /// <summary>
         /// Provides operations to manage the taskDefinitions property of the microsoft.graph.print entity.
         /// </summary>
-        public Command BuildTaskDefinitionsCommand() {
+        public Command BuildTaskDefinitionsNavCommand() {
             var command = new Command("task-definitions");
             command.Description = "Provides operations to manage the taskDefinitions property of the microsoft.graph.print entity.";
             var builder = new TaskDefinitionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

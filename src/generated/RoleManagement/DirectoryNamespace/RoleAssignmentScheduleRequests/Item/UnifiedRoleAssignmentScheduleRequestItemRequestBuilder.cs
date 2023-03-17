@@ -33,7 +33,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentScheduleRequest
         /// <summary>
         /// Provides operations to manage the activatedUsing property of the microsoft.graph.unifiedRoleAssignmentScheduleRequest entity.
         /// </summary>
-        public Command BuildActivatedUsingCommand() {
+        public Command BuildActivatedUsingNavCommand() {
             var command = new Command("activated-using");
             command.Description = "Provides operations to manage the activatedUsing property of the microsoft.graph.unifiedRoleAssignmentScheduleRequest entity.";
             var builder = new ActivatedUsingRequestBuilder(PathParameters);
@@ -43,7 +43,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentScheduleRequest
         /// <summary>
         /// Provides operations to manage the appScope property of the microsoft.graph.unifiedRoleAssignmentScheduleRequest entity.
         /// </summary>
-        public Command BuildAppScopeCommand() {
+        public Command BuildAppScopeNavCommand() {
             var command = new Command("app-scope");
             command.Description = "Provides operations to manage the appScope property of the microsoft.graph.unifiedRoleAssignmentScheduleRequest entity.";
             var builder = new AppScopeRequestBuilder(PathParameters);
@@ -53,7 +53,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentScheduleRequest
         /// <summary>
         /// Provides operations to call the cancel method.
         /// </summary>
-        public Command BuildCancelCommand() {
+        public Command BuildCancelNavCommand() {
             var command = new Command("cancel");
             command.Description = "Provides operations to call the cancel method.";
             var builder = new CancelRequestBuilder(PathParameters);
@@ -97,7 +97,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentScheduleRequest
         /// <summary>
         /// Provides operations to manage the directoryScope property of the microsoft.graph.unifiedRoleAssignmentScheduleRequest entity.
         /// </summary>
-        public Command BuildDirectoryScopeCommand() {
+        public Command BuildDirectoryScopeNavCommand() {
             var command = new Command("directory-scope");
             command.Description = "Provides operations to manage the directoryScope property of the microsoft.graph.unifiedRoleAssignmentScheduleRequest entity.";
             var builder = new DirectoryScopeRequestBuilder(PathParameters);
@@ -227,7 +227,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentScheduleRequest
         /// <summary>
         /// Provides operations to manage the principal property of the microsoft.graph.unifiedRoleAssignmentScheduleRequest entity.
         /// </summary>
-        public Command BuildPrincipalCommand() {
+        public Command BuildPrincipalNavCommand() {
             var command = new Command("principal");
             command.Description = "Provides operations to manage the principal property of the microsoft.graph.unifiedRoleAssignmentScheduleRequest entity.";
             var builder = new PrincipalRequestBuilder(PathParameters);
@@ -237,7 +237,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentScheduleRequest
         /// <summary>
         /// Provides operations to manage the roleDefinition property of the microsoft.graph.unifiedRoleAssignmentScheduleRequest entity.
         /// </summary>
-        public Command BuildRoleDefinitionCommand() {
+        public Command BuildRoleDefinitionNavCommand() {
             var command = new Command("role-definition");
             command.Description = "Provides operations to manage the roleDefinition property of the microsoft.graph.unifiedRoleAssignmentScheduleRequest entity.";
             var builder = new RoleDefinitionRequestBuilder(PathParameters);
@@ -247,7 +247,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentScheduleRequest
         /// <summary>
         /// Provides operations to manage the targetSchedule property of the microsoft.graph.unifiedRoleAssignmentScheduleRequest entity.
         /// </summary>
-        public Command BuildTargetScheduleCommand() {
+        public Command BuildTargetScheduleNavCommand() {
             var command = new Command("target-schedule");
             command.Description = "Provides operations to manage the targetSchedule property of the microsoft.graph.unifiedRoleAssignmentScheduleRequest entity.";
             var builder = new TargetScheduleRequestBuilder(PathParameters);

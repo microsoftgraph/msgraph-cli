@@ -86,14 +86,14 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
         /// <summary>
         /// Provides operations to manage the format property of the microsoft.graph.workbookChartSeries entity.
         /// </summary>
-        public Command BuildFormatCommand() {
+        public Command BuildFormatNavCommand() {
             var command = new Command("format");
             command.Description = "Provides operations to manage the format property of the microsoft.graph.workbookChartSeries entity.";
             var builder = new FormatRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildFillCommand());
+            command.AddCommand(builder.BuildFillNavCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildLineCommand());
+            command.AddCommand(builder.BuildLineNavCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
@@ -268,12 +268,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
         /// <summary>
         /// Provides operations to manage the points property of the microsoft.graph.workbookChartSeries entity.
         /// </summary>
-        public Command BuildPointsCommand() {
+        public Command BuildPointsNavCommand() {
             var command = new Command("points");
             command.Description = "Provides operations to manage the points property of the microsoft.graph.workbookChartSeries entity.";
             var builder = new PointsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

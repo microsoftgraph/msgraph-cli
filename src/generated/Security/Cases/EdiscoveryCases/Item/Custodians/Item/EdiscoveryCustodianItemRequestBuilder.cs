@@ -143,7 +143,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
         /// <summary>
         /// Provides operations to manage the lastIndexOperation property of the microsoft.graph.security.ediscoveryCustodian entity.
         /// </summary>
-        public Command BuildLastIndexOperationCommand() {
+        public Command BuildLastIndexOperationNavCommand() {
             var command = new Command("last-index-operation");
             command.Description = "Provides operations to manage the lastIndexOperation property of the microsoft.graph.security.ediscoveryCustodian entity.";
             var builder = new LastIndexOperationRequestBuilder(PathParameters);
@@ -217,7 +217,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
         /// <summary>
         /// Provides operations to call the activate method.
         /// </summary>
-        public Command BuildSecurityActivateCommand() {
+        public Command BuildSecurityActivateNavCommand() {
             var command = new Command("security-activate");
             command.Description = "Provides operations to call the activate method.";
             var builder = new SecurityActivateRequestBuilder(PathParameters);
@@ -227,7 +227,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
         /// <summary>
         /// Provides operations to call the applyHold method.
         /// </summary>
-        public Command BuildSecurityApplyHoldCommand() {
+        public Command BuildSecurityApplyHoldNavCommand() {
             var command = new Command("security-apply-hold");
             command.Description = "Provides operations to call the applyHold method.";
             var builder = new SecurityApplyHoldRequestBuilder(PathParameters);
@@ -237,7 +237,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
         /// <summary>
         /// Provides operations to call the release method.
         /// </summary>
-        public Command BuildSecurityReleaseCommand() {
+        public Command BuildSecurityReleaseNavCommand() {
             var command = new Command("security-release");
             command.Description = "Provides operations to call the release method.";
             var builder = new SecurityReleaseRequestBuilder(PathParameters);
@@ -247,7 +247,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
         /// <summary>
         /// Provides operations to call the removeHold method.
         /// </summary>
-        public Command BuildSecurityRemoveHoldCommand() {
+        public Command BuildSecurityRemoveHoldNavCommand() {
             var command = new Command("security-remove-hold");
             command.Description = "Provides operations to call the removeHold method.";
             var builder = new SecurityRemoveHoldRequestBuilder(PathParameters);
@@ -257,7 +257,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
         /// <summary>
         /// Provides operations to call the updateIndex method.
         /// </summary>
-        public Command BuildSecurityUpdateIndexCommand() {
+        public Command BuildSecurityUpdateIndexNavCommand() {
             var command = new Command("security-update-index");
             command.Description = "Provides operations to call the updateIndex method.";
             var builder = new SecurityUpdateIndexRequestBuilder(PathParameters);
@@ -267,12 +267,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
         /// <summary>
         /// Provides operations to manage the siteSources property of the microsoft.graph.security.ediscoveryCustodian entity.
         /// </summary>
-        public Command BuildSiteSourcesCommand() {
+        public Command BuildSiteSourcesNavCommand() {
             var command = new Command("site-sources");
             command.Description = "Provides operations to manage the siteSources property of the microsoft.graph.security.ediscoveryCustodian entity.";
             var builder = new SiteSourcesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -280,12 +283,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
         /// <summary>
         /// Provides operations to manage the unifiedGroupSources property of the microsoft.graph.security.ediscoveryCustodian entity.
         /// </summary>
-        public Command BuildUnifiedGroupSourcesCommand() {
+        public Command BuildUnifiedGroupSourcesNavCommand() {
             var command = new Command("unified-group-sources");
             command.Description = "Provides operations to manage the unifiedGroupSources property of the microsoft.graph.security.ediscoveryCustodian entity.";
             var builder = new UnifiedGroupSourcesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -293,12 +299,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item {
         /// <summary>
         /// Provides operations to manage the userSources property of the microsoft.graph.security.ediscoveryCustodian entity.
         /// </summary>
-        public Command BuildUserSourcesCommand() {
+        public Command BuildUserSourcesNavCommand() {
             var command = new Command("user-sources");
             command.Description = "Provides operations to manage the userSources property of the microsoft.graph.security.ediscoveryCustodian entity.";
             var builder = new UserSourcesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

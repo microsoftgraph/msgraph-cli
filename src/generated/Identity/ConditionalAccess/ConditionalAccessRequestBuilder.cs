@@ -30,12 +30,15 @@ namespace ApiSdk.Identity.ConditionalAccess {
         /// <summary>
         /// Provides operations to manage the authenticationContextClassReferences property of the microsoft.graph.conditionalAccessRoot entity.
         /// </summary>
-        public Command BuildAuthenticationContextClassReferencesCommand() {
+        public Command BuildAuthenticationContextClassReferencesNavCommand() {
             var command = new Command("authentication-context-class-references");
             command.Description = "Provides operations to manage the authenticationContextClassReferences property of the microsoft.graph.conditionalAccessRoot entity.";
             var builder = new AuthenticationContextClassReferencesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -127,12 +130,15 @@ namespace ApiSdk.Identity.ConditionalAccess {
         /// <summary>
         /// Provides operations to manage the namedLocations property of the microsoft.graph.conditionalAccessRoot entity.
         /// </summary>
-        public Command BuildNamedLocationsCommand() {
+        public Command BuildNamedLocationsNavCommand() {
             var command = new Command("named-locations");
             command.Description = "Provides operations to manage the namedLocations property of the microsoft.graph.conditionalAccessRoot entity.";
             var builder = new NamedLocationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -192,12 +198,15 @@ namespace ApiSdk.Identity.ConditionalAccess {
         /// <summary>
         /// Provides operations to manage the policies property of the microsoft.graph.conditionalAccessRoot entity.
         /// </summary>
-        public Command BuildPoliciesCommand() {
+        public Command BuildPoliciesNavCommand() {
             var command = new Command("policies");
             command.Description = "Provides operations to manage the policies property of the microsoft.graph.conditionalAccessRoot entity.";
             var builder = new PoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -205,12 +214,15 @@ namespace ApiSdk.Identity.ConditionalAccess {
         /// <summary>
         /// Provides operations to manage the templates property of the microsoft.graph.conditionalAccessRoot entity.
         /// </summary>
-        public Command BuildTemplatesCommand() {
+        public Command BuildTemplatesNavCommand() {
             var command = new Command("templates");
             command.Description = "Provides operations to manage the templates property of the microsoft.graph.conditionalAccessRoot entity.";
             var builder = new TemplatesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }

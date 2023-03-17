@@ -48,7 +48,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the bypassActivationLock method.
         /// </summary>
-        public Command BuildBypassActivationLockCommand() {
+        public Command BuildBypassActivationLockNavCommand() {
             var command = new Command("bypass-activation-lock");
             command.Description = "Provides operations to call the bypassActivationLock method.";
             var builder = new BypassActivationLockRequestBuilder(PathParameters);
@@ -58,7 +58,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the cleanWindowsDevice method.
         /// </summary>
-        public Command BuildCleanWindowsDeviceCommand() {
+        public Command BuildCleanWindowsDeviceNavCommand() {
             var command = new Command("clean-windows-device");
             command.Description = "Provides operations to call the cleanWindowsDevice method.";
             var builder = new CleanWindowsDeviceRequestBuilder(PathParameters);
@@ -108,7 +108,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the deleteUserFromSharedAppleDevice method.
         /// </summary>
-        public Command BuildDeleteUserFromSharedAppleDeviceCommand() {
+        public Command BuildDeleteUserFromSharedAppleDeviceNavCommand() {
             var command = new Command("delete-user-from-shared-apple-device");
             command.Description = "Provides operations to call the deleteUserFromSharedAppleDevice method.";
             var builder = new DeleteUserFromSharedAppleDeviceRequestBuilder(PathParameters);
@@ -118,7 +118,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to manage the deviceCategory property of the microsoft.graph.managedDevice entity.
         /// </summary>
-        public Command BuildDeviceCategoryCommand() {
+        public Command BuildDeviceCategoryNavCommand() {
             var command = new Command("device-category");
             command.Description = "Provides operations to manage the deviceCategory property of the microsoft.graph.managedDevice entity.";
             var builder = new DeviceCategoryRequestBuilder(PathParameters);
@@ -130,12 +130,15 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to manage the deviceCompliancePolicyStates property of the microsoft.graph.managedDevice entity.
         /// </summary>
-        public Command BuildDeviceCompliancePolicyStatesCommand() {
+        public Command BuildDeviceCompliancePolicyStatesNavCommand() {
             var command = new Command("device-compliance-policy-states");
             command.Description = "Provides operations to manage the deviceCompliancePolicyStates property of the microsoft.graph.managedDevice entity.";
             var builder = new DeviceCompliancePolicyStatesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -143,12 +146,15 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to manage the deviceConfigurationStates property of the microsoft.graph.managedDevice entity.
         /// </summary>
-        public Command BuildDeviceConfigurationStatesCommand() {
+        public Command BuildDeviceConfigurationStatesNavCommand() {
             var command = new Command("device-configuration-states");
             command.Description = "Provides operations to manage the deviceConfigurationStates property of the microsoft.graph.managedDevice entity.";
             var builder = new DeviceConfigurationStatesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -156,7 +162,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the disableLostMode method.
         /// </summary>
-        public Command BuildDisableLostModeCommand() {
+        public Command BuildDisableLostModeNavCommand() {
             var command = new Command("disable-lost-mode");
             command.Description = "Provides operations to call the disableLostMode method.";
             var builder = new DisableLostModeRequestBuilder(PathParameters);
@@ -234,7 +240,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the locateDevice method.
         /// </summary>
-        public Command BuildLocateDeviceCommand() {
+        public Command BuildLocateDeviceNavCommand() {
             var command = new Command("locate-device");
             command.Description = "Provides operations to call the locateDevice method.";
             var builder = new LocateDeviceRequestBuilder(PathParameters);
@@ -244,7 +250,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the logoutSharedAppleDeviceActiveUser method.
         /// </summary>
-        public Command BuildLogoutSharedAppleDeviceActiveUserCommand() {
+        public Command BuildLogoutSharedAppleDeviceActiveUserNavCommand() {
             var command = new Command("logout-shared-apple-device-active-user");
             command.Description = "Provides operations to call the logoutSharedAppleDeviceActiveUser method.";
             var builder = new LogoutSharedAppleDeviceActiveUserRequestBuilder(PathParameters);
@@ -318,7 +324,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the rebootNow method.
         /// </summary>
-        public Command BuildRebootNowCommand() {
+        public Command BuildRebootNowNavCommand() {
             var command = new Command("reboot-now");
             command.Description = "Provides operations to call the rebootNow method.";
             var builder = new RebootNowRequestBuilder(PathParameters);
@@ -328,7 +334,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the recoverPasscode method.
         /// </summary>
-        public Command BuildRecoverPasscodeCommand() {
+        public Command BuildRecoverPasscodeNavCommand() {
             var command = new Command("recover-passcode");
             command.Description = "Provides operations to call the recoverPasscode method.";
             var builder = new RecoverPasscodeRequestBuilder(PathParameters);
@@ -338,7 +344,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the remoteLock method.
         /// </summary>
-        public Command BuildRemoteLockCommand() {
+        public Command BuildRemoteLockNavCommand() {
             var command = new Command("remote-lock");
             command.Description = "Provides operations to call the remoteLock method.";
             var builder = new RemoteLockRequestBuilder(PathParameters);
@@ -348,7 +354,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the requestRemoteAssistance method.
         /// </summary>
-        public Command BuildRequestRemoteAssistanceCommand() {
+        public Command BuildRequestRemoteAssistanceNavCommand() {
             var command = new Command("request-remote-assistance");
             command.Description = "Provides operations to call the requestRemoteAssistance method.";
             var builder = new RequestRemoteAssistanceRequestBuilder(PathParameters);
@@ -358,7 +364,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the resetPasscode method.
         /// </summary>
-        public Command BuildResetPasscodeCommand() {
+        public Command BuildResetPasscodeNavCommand() {
             var command = new Command("reset-passcode");
             command.Description = "Provides operations to call the resetPasscode method.";
             var builder = new ResetPasscodeRequestBuilder(PathParameters);
@@ -368,7 +374,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the retire method.
         /// </summary>
-        public Command BuildRetireCommand() {
+        public Command BuildRetireNavCommand() {
             var command = new Command("retire");
             command.Description = "Provides operations to call the retire method.";
             var builder = new RetireRequestBuilder(PathParameters);
@@ -378,7 +384,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the shutDown method.
         /// </summary>
-        public Command BuildShutDownCommand() {
+        public Command BuildShutDownNavCommand() {
             var command = new Command("shut-down");
             command.Description = "Provides operations to call the shutDown method.";
             var builder = new ShutDownRequestBuilder(PathParameters);
@@ -388,7 +394,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the syncDevice method.
         /// </summary>
-        public Command BuildSyncDeviceCommand() {
+        public Command BuildSyncDeviceNavCommand() {
             var command = new Command("sync-device");
             command.Description = "Provides operations to call the syncDevice method.";
             var builder = new SyncDeviceRequestBuilder(PathParameters);
@@ -398,7 +404,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the updateWindowsDeviceAccount method.
         /// </summary>
-        public Command BuildUpdateWindowsDeviceAccountCommand() {
+        public Command BuildUpdateWindowsDeviceAccountNavCommand() {
             var command = new Command("update-windows-device-account");
             command.Description = "Provides operations to call the updateWindowsDeviceAccount method.";
             var builder = new UpdateWindowsDeviceAccountRequestBuilder(PathParameters);
@@ -408,7 +414,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to manage the users property of the microsoft.graph.managedDevice entity.
         /// </summary>
-        public Command BuildUsersCommand() {
+        public Command BuildUsersNavCommand() {
             var command = new Command("users");
             command.Description = "Provides operations to manage the users property of the microsoft.graph.managedDevice entity.";
             var builder = new ApiSdk.Users.Item.ManagedDevices.Item.Users.UsersRequestBuilder(PathParameters);
@@ -418,7 +424,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the windowsDefenderScan method.
         /// </summary>
-        public Command BuildWindowsDefenderScanCommand() {
+        public Command BuildWindowsDefenderScanNavCommand() {
             var command = new Command("windows-defender-scan");
             command.Description = "Provides operations to call the windowsDefenderScan method.";
             var builder = new WindowsDefenderScanRequestBuilder(PathParameters);
@@ -428,7 +434,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the windowsDefenderUpdateSignatures method.
         /// </summary>
-        public Command BuildWindowsDefenderUpdateSignaturesCommand() {
+        public Command BuildWindowsDefenderUpdateSignaturesNavCommand() {
             var command = new Command("windows-defender-update-signatures");
             command.Description = "Provides operations to call the windowsDefenderUpdateSignatures method.";
             var builder = new WindowsDefenderUpdateSignaturesRequestBuilder(PathParameters);
@@ -438,7 +444,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
         /// <summary>
         /// Provides operations to call the wipe method.
         /// </summary>
-        public Command BuildWipeCommand() {
+        public Command BuildWipeNavCommand() {
             var command = new Command("wipe");
             command.Description = "Provides operations to call the wipe method.";
             var builder = new WipeRequestBuilder(PathParameters);

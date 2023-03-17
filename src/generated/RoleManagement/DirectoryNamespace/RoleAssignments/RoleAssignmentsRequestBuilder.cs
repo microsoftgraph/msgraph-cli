@@ -28,22 +28,22 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments {
         /// <summary>
         /// Provides operations to manage the roleAssignments property of the microsoft.graph.rbacApplication entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new UnifiedRoleAssignmentItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAppScopeCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildDirectoryScopeCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPrincipalCommand());
-            command.AddCommand(builder.BuildRoleDefinitionCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildAppScopeNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildDirectoryScopeNavCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildPrincipalNavCommand());
+            commands.Add(builder.BuildRoleDefinitionNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

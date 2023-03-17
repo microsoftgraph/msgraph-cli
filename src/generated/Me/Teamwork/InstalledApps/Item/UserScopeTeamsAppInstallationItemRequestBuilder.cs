@@ -27,7 +27,7 @@ namespace ApiSdk.Me.Teamwork.InstalledApps.Item {
         /// <summary>
         /// Provides operations to manage the chat property of the microsoft.graph.userScopeTeamsAppInstallation entity.
         /// </summary>
-        public Command BuildChatCommand() {
+        public Command BuildChatNavCommand() {
             var command = new Command("chat");
             command.Description = "Provides operations to manage the chat property of the microsoft.graph.userScopeTeamsAppInstallation entity.";
             var builder = new ChatRequestBuilder(PathParameters);

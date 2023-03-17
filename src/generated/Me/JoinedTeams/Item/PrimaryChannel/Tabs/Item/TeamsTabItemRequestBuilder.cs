@@ -199,7 +199,7 @@ namespace ApiSdk.Me.JoinedTeams.Item.PrimaryChannel.Tabs.Item {
         /// <summary>
         /// Provides operations to manage the teamsApp property of the microsoft.graph.teamsTab entity.
         /// </summary>
-        public Command BuildTeamsAppCommand() {
+        public Command BuildTeamsAppNavCommand() {
             var command = new Command("teams-app");
             command.Description = "Provides operations to manage the teamsApp property of the microsoft.graph.teamsTab entity.";
             var builder = new TeamsAppRequestBuilder(PathParameters);

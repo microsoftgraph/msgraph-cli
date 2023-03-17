@@ -28,7 +28,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item {
         /// <summary>
         /// Casts the previous resource to application.
         /// </summary>
-        public Command BuildGraphApplicationCommand() {
+        public Command BuildGraphApplicationNavCommand() {
             var command = new Command("graph-application");
             command.Description = "Casts the previous resource to application.";
             var builder = new GraphApplicationRequestBuilder(PathParameters);
@@ -38,7 +38,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item {
         /// <summary>
         /// Casts the previous resource to device.
         /// </summary>
-        public Command BuildGraphDeviceCommand() {
+        public Command BuildGraphDeviceNavCommand() {
             var command = new Command("graph-device");
             command.Description = "Casts the previous resource to device.";
             var builder = new GraphDeviceRequestBuilder(PathParameters);
@@ -48,7 +48,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item {
         /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
-        public Command BuildGraphGroupCommand() {
+        public Command BuildGraphGroupNavCommand() {
             var command = new Command("graph-group");
             command.Description = "Casts the previous resource to group.";
             var builder = new GraphGroupRequestBuilder(PathParameters);
@@ -58,7 +58,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item {
         /// <summary>
         /// Casts the previous resource to orgContact.
         /// </summary>
-        public Command BuildGraphOrgContactCommand() {
+        public Command BuildGraphOrgContactNavCommand() {
             var command = new Command("graph-org-contact");
             command.Description = "Casts the previous resource to orgContact.";
             var builder = new GraphOrgContactRequestBuilder(PathParameters);
@@ -68,7 +68,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item {
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        public Command BuildGraphServicePrincipalCommand() {
+        public Command BuildGraphServicePrincipalNavCommand() {
             var command = new Command("graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
@@ -78,7 +78,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item {
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
-        public Command BuildGraphUserCommand() {
+        public Command BuildGraphUserNavCommand() {
             var command = new Command("graph-user");
             command.Description = "Casts the previous resource to user.";
             var builder = new GraphUserRequestBuilder(PathParameters);
@@ -88,7 +88,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item {
         /// <summary>
         /// Provides operations to manage the collection of directory entities.
         /// </summary>
-        public Command BuildRefCommand() {
+        public Command BuildRefNavCommand() {
             var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of directory entities.";
             var builder = new RefRequestBuilder(PathParameters);

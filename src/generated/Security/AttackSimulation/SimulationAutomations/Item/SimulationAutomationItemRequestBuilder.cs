@@ -181,12 +181,15 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item {
         /// <summary>
         /// Provides operations to manage the runs property of the microsoft.graph.simulationAutomation entity.
         /// </summary>
-        public Command BuildRunsCommand() {
+        public Command BuildRunsNavCommand() {
             var command = new Command("runs");
             command.Description = "Provides operations to manage the runs property of the microsoft.graph.simulationAutomation entity.";
             var builder = new RunsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

@@ -181,12 +181,15 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item {
         /// <summary>
         /// Provides operations to manage the serviceManagementDetails property of the microsoft.graph.delegatedAdminCustomer entity.
         /// </summary>
-        public Command BuildServiceManagementDetailsCommand() {
+        public Command BuildServiceManagementDetailsNavCommand() {
             var command = new Command("service-management-details");
             command.Description = "Provides operations to manage the serviceManagementDetails property of the microsoft.graph.delegatedAdminCustomer entity.";
             var builder = new ServiceManagementDetailsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

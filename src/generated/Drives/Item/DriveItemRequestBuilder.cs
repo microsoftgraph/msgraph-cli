@@ -35,12 +35,15 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Provides operations to manage the bundles property of the microsoft.graph.drive entity.
         /// </summary>
-        public Command BuildBundlesCommand() {
+        public Command BuildBundlesNavCommand() {
             var command = new Command("bundles");
             command.Description = "Provides operations to manage the bundles property of the microsoft.graph.drive entity.";
             var builder = new BundlesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -82,12 +85,15 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Provides operations to manage the following property of the microsoft.graph.drive entity.
         /// </summary>
-        public Command BuildFollowingCommand() {
+        public Command BuildFollowingNavCommand() {
             var command = new Command("following");
             command.Description = "Provides operations to manage the following property of the microsoft.graph.drive entity.";
             var builder = new FollowingRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -157,12 +163,15 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Provides operations to manage the items property of the microsoft.graph.drive entity.
         /// </summary>
-        public Command BuildItemsCommand() {
+        public Command BuildItemsNavCommand() {
             var command = new Command("items");
             command.Description = "Provides operations to manage the items property of the microsoft.graph.drive entity.";
             var builder = new ItemsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -170,19 +179,19 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Provides operations to manage the list property of the microsoft.graph.drive entity.
         /// </summary>
-        public Command BuildListCommand() {
+        public Command BuildListNavCommand() {
             var command = new Command("list");
             command.Description = "Provides operations to manage the list property of the microsoft.graph.drive entity.";
             var builder = new ListRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildColumnsCommand());
-            command.AddCommand(builder.BuildContentTypesCommand());
+            command.AddCommand(builder.BuildColumnsNavCommand());
+            command.AddCommand(builder.BuildContentTypesNavCommand());
             command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildDriveCommand());
+            command.AddCommand(builder.BuildDriveNavCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildItemsCommand());
-            command.AddCommand(builder.BuildOperationsCommand());
+            command.AddCommand(builder.BuildItemsNavCommand());
+            command.AddCommand(builder.BuildOperationsNavCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSubscriptionsCommand());
+            command.AddCommand(builder.BuildSubscriptionsNavCommand());
             return command;
         }
         /// <summary>
@@ -246,7 +255,7 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Provides operations to call the recent method.
         /// </summary>
-        public Command BuildRecentCommand() {
+        public Command BuildRecentNavCommand() {
             var command = new Command("recent");
             command.Description = "Provides operations to call the recent method.";
             var builder = new RecentRequestBuilder(PathParameters);
@@ -256,18 +265,18 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Provides operations to manage the root property of the microsoft.graph.drive entity.
         /// </summary>
-        public Command BuildRootCommand() {
+        public Command BuildRootNavCommand() {
             var command = new Command("root");
             command.Description = "Provides operations to manage the root property of the microsoft.graph.drive entity.";
             var builder = new RootRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildContentCommand());
+            command.AddCommand(builder.BuildContentNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the sharedWithMe method.
         /// </summary>
-        public Command BuildSharedWithMeCommand() {
+        public Command BuildSharedWithMeNavCommand() {
             var command = new Command("shared-with-me");
             command.Description = "Provides operations to call the sharedWithMe method.";
             var builder = new SharedWithMeRequestBuilder(PathParameters);
@@ -277,12 +286,15 @@ namespace ApiSdk.Drives.Item {
         /// <summary>
         /// Provides operations to manage the special property of the microsoft.graph.drive entity.
         /// </summary>
-        public Command BuildSpecialCommand() {
+        public Command BuildSpecialNavCommand() {
             var command = new Command("special");
             command.Description = "Provides operations to manage the special property of the microsoft.graph.drive entity.";
             var builder = new SpecialRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }

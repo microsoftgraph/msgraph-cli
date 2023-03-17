@@ -123,7 +123,7 @@ namespace ApiSdk.Invitations.Item {
         /// <summary>
         /// Provides operations to manage the invitedUser property of the microsoft.graph.invitation entity.
         /// </summary>
-        public Command BuildInvitedUserCommand() {
+        public Command BuildInvitedUserNavCommand() {
             var command = new Command("invited-user");
             command.Description = "Provides operations to manage the invitedUser property of the microsoft.graph.invitation entity.";
             var builder = new InvitedUserRequestBuilder(PathParameters);

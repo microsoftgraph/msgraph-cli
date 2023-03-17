@@ -60,12 +60,12 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the applePushNotificationCertificate property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildApplePushNotificationCertificateCommand() {
+        public Command BuildApplePushNotificationCertificateNavCommand() {
             var command = new Command("apple-push-notification-certificate");
             command.Description = "Provides operations to manage the applePushNotificationCertificate property of the microsoft.graph.deviceManagement entity.";
             var builder = new ApplePushNotificationCertificateRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildDownloadApplePushNotificationCertificateSigningRequestCommand());
+            command.AddCommand(builder.BuildDownloadApplePushNotificationCertificateSigningRequestNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
@@ -73,26 +73,32 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the auditEvents property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildAuditEventsCommand() {
+        public Command BuildAuditEventsNavCommand() {
             var command = new Command("audit-events");
             command.Description = "Provides operations to manage the auditEvents property of the microsoft.graph.deviceManagement entity.";
             var builder = new AuditEventsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildGetAuditCategoriesCommand());
+            command.AddCommand(builder.BuildGetAuditCategoriesNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the complianceManagementPartners property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildComplianceManagementPartnersCommand() {
+        public Command BuildComplianceManagementPartnersNavCommand() {
             var command = new Command("compliance-management-partners");
             command.Description = "Provides operations to manage the complianceManagementPartners property of the microsoft.graph.deviceManagement entity.";
             var builder = new ComplianceManagementPartnersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -100,7 +106,7 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the conditionalAccessSettings property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildConditionalAccessSettingsCommand() {
+        public Command BuildConditionalAccessSettingsNavCommand() {
             var command = new Command("conditional-access-settings");
             command.Description = "Provides operations to manage the conditionalAccessSettings property of the microsoft.graph.deviceManagement entity.";
             var builder = new ConditionalAccessSettingsRequestBuilder(PathParameters);
@@ -112,12 +118,15 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the detectedApps property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildDetectedAppsCommand() {
+        public Command BuildDetectedAppsNavCommand() {
             var command = new Command("detected-apps");
             command.Description = "Provides operations to manage the detectedApps property of the microsoft.graph.deviceManagement entity.";
             var builder = new DetectedAppsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -125,12 +134,15 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the deviceCategories property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildDeviceCategoriesCommand() {
+        public Command BuildDeviceCategoriesNavCommand() {
             var command = new Command("device-categories");
             command.Description = "Provides operations to manage the deviceCategories property of the microsoft.graph.deviceManagement entity.";
             var builder = new DeviceCategoriesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -138,12 +150,15 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the deviceCompliancePolicies property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildDeviceCompliancePoliciesCommand() {
+        public Command BuildDeviceCompliancePoliciesNavCommand() {
             var command = new Command("device-compliance-policies");
             command.Description = "Provides operations to manage the deviceCompliancePolicies property of the microsoft.graph.deviceManagement entity.";
             var builder = new DeviceCompliancePoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -151,7 +166,7 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the deviceCompliancePolicyDeviceStateSummary property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildDeviceCompliancePolicyDeviceStateSummaryCommand() {
+        public Command BuildDeviceCompliancePolicyDeviceStateSummaryNavCommand() {
             var command = new Command("device-compliance-policy-device-state-summary");
             command.Description = "Provides operations to manage the deviceCompliancePolicyDeviceStateSummary property of the microsoft.graph.deviceManagement entity.";
             var builder = new DeviceCompliancePolicyDeviceStateSummaryRequestBuilder(PathParameters);
@@ -163,12 +178,15 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the deviceCompliancePolicySettingStateSummaries property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildDeviceCompliancePolicySettingStateSummariesCommand() {
+        public Command BuildDeviceCompliancePolicySettingStateSummariesNavCommand() {
             var command = new Command("device-compliance-policy-setting-state-summaries");
             command.Description = "Provides operations to manage the deviceCompliancePolicySettingStateSummaries property of the microsoft.graph.deviceManagement entity.";
             var builder = new DeviceCompliancePolicySettingStateSummariesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -176,7 +194,7 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the deviceConfigurationDeviceStateSummaries property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildDeviceConfigurationDeviceStateSummariesCommand() {
+        public Command BuildDeviceConfigurationDeviceStateSummariesNavCommand() {
             var command = new Command("device-configuration-device-state-summaries");
             command.Description = "Provides operations to manage the deviceConfigurationDeviceStateSummaries property of the microsoft.graph.deviceManagement entity.";
             var builder = new DeviceConfigurationDeviceStateSummariesRequestBuilder(PathParameters);
@@ -188,12 +206,15 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the deviceConfigurations property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildDeviceConfigurationsCommand() {
+        public Command BuildDeviceConfigurationsNavCommand() {
             var command = new Command("device-configurations");
             command.Description = "Provides operations to manage the deviceConfigurations property of the microsoft.graph.deviceManagement entity.";
             var builder = new DeviceConfigurationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -201,12 +222,15 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the deviceEnrollmentConfigurations property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildDeviceEnrollmentConfigurationsCommand() {
+        public Command BuildDeviceEnrollmentConfigurationsNavCommand() {
             var command = new Command("device-enrollment-configurations");
             command.Description = "Provides operations to manage the deviceEnrollmentConfigurations property of the microsoft.graph.deviceManagement entity.";
             var builder = new DeviceEnrollmentConfigurationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -214,12 +238,15 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the deviceManagementPartners property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildDeviceManagementPartnersCommand() {
+        public Command BuildDeviceManagementPartnersNavCommand() {
             var command = new Command("device-management-partners");
             command.Description = "Provides operations to manage the deviceManagementPartners property of the microsoft.graph.deviceManagement entity.";
             var builder = new DeviceManagementPartnersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -227,12 +254,15 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the exchangeConnectors property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildExchangeConnectorsCommand() {
+        public Command BuildExchangeConnectorsNavCommand() {
             var command = new Command("exchange-connectors");
             command.Description = "Provides operations to manage the exchangeConnectors property of the microsoft.graph.deviceManagement entity.";
             var builder = new ExchangeConnectorsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -296,26 +326,32 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the importedWindowsAutopilotDeviceIdentities property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildImportedWindowsAutopilotDeviceIdentitiesCommand() {
+        public Command BuildImportedWindowsAutopilotDeviceIdentitiesNavCommand() {
             var command = new Command("imported-windows-autopilot-device-identities");
             command.Description = "Provides operations to manage the importedWindowsAutopilotDeviceIdentities property of the microsoft.graph.deviceManagement entity.";
             var builder = new ImportedWindowsAutopilotDeviceIdentitiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildImportCommand());
+            command.AddCommand(builder.BuildImportNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the iosUpdateStatuses property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildIosUpdateStatusesCommand() {
+        public Command BuildIosUpdateStatusesNavCommand() {
             var command = new Command("ios-update-statuses");
             command.Description = "Provides operations to manage the iosUpdateStatuses property of the microsoft.graph.deviceManagement entity.";
             var builder = new IosUpdateStatusesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -323,7 +359,7 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the managedDeviceOverview property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildManagedDeviceOverviewCommand() {
+        public Command BuildManagedDeviceOverviewNavCommand() {
             var command = new Command("managed-device-overview");
             command.Description = "Provides operations to manage the managedDeviceOverview property of the microsoft.graph.deviceManagement entity.";
             var builder = new ManagedDeviceOverviewRequestBuilder(PathParameters);
@@ -333,12 +369,15 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the managedDevices property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildManagedDevicesCommand() {
+        public Command BuildManagedDevicesNavCommand() {
             var command = new Command("managed-devices");
             command.Description = "Provides operations to manage the managedDevices property of the microsoft.graph.deviceManagement entity.";
             var builder = new ManagedDevicesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -346,12 +385,15 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the mobileThreatDefenseConnectors property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildMobileThreatDefenseConnectorsCommand() {
+        public Command BuildMobileThreatDefenseConnectorsNavCommand() {
             var command = new Command("mobile-threat-defense-connectors");
             command.Description = "Provides operations to manage the mobileThreatDefenseConnectors property of the microsoft.graph.deviceManagement entity.";
             var builder = new MobileThreatDefenseConnectorsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -359,12 +401,15 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the notificationMessageTemplates property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildNotificationMessageTemplatesCommand() {
+        public Command BuildNotificationMessageTemplatesNavCommand() {
             var command = new Command("notification-message-templates");
             command.Description = "Provides operations to manage the notificationMessageTemplates property of the microsoft.graph.deviceManagement entity.";
             var builder = new NotificationMessageTemplatesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -424,12 +469,15 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the remoteAssistancePartners property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildRemoteAssistancePartnersCommand() {
+        public Command BuildRemoteAssistancePartnersNavCommand() {
             var command = new Command("remote-assistance-partners");
             command.Description = "Provides operations to manage the remoteAssistancePartners property of the microsoft.graph.deviceManagement entity.";
             var builder = new RemoteAssistancePartnersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -437,43 +485,46 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the reports property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildReportsCommand() {
+        public Command BuildReportsNavCommand() {
             var command = new Command("reports");
             command.Description = "Provides operations to manage the reports property of the microsoft.graph.deviceManagement entity.";
             var builder = new ReportsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildExportJobsCommand());
-            command.AddCommand(builder.BuildGetCachedReportCommand());
+            command.AddCommand(builder.BuildExportJobsNavCommand());
+            command.AddCommand(builder.BuildGetCachedReportNavCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildGetCompliancePolicyNonComplianceReportCommand());
-            command.AddCommand(builder.BuildGetCompliancePolicyNonComplianceSummaryReportCommand());
-            command.AddCommand(builder.BuildGetComplianceSettingNonComplianceReportCommand());
-            command.AddCommand(builder.BuildGetConfigurationPolicyNonComplianceReportCommand());
-            command.AddCommand(builder.BuildGetConfigurationPolicyNonComplianceSummaryReportCommand());
-            command.AddCommand(builder.BuildGetConfigurationSettingNonComplianceReportCommand());
-            command.AddCommand(builder.BuildGetDeviceManagementIntentPerSettingContributingProfilesCommand());
-            command.AddCommand(builder.BuildGetDeviceManagementIntentSettingsReportCommand());
-            command.AddCommand(builder.BuildGetDeviceNonComplianceReportCommand());
-            command.AddCommand(builder.BuildGetDevicesWithoutCompliancePolicyReportCommand());
-            command.AddCommand(builder.BuildGetHistoricalReportCommand());
-            command.AddCommand(builder.BuildGetNoncompliantDevicesAndSettingsReportCommand());
-            command.AddCommand(builder.BuildGetPolicyNonComplianceMetadataCommand());
-            command.AddCommand(builder.BuildGetPolicyNonComplianceReportCommand());
-            command.AddCommand(builder.BuildGetPolicyNonComplianceSummaryReportCommand());
-            command.AddCommand(builder.BuildGetReportFiltersCommand());
-            command.AddCommand(builder.BuildGetSettingNonComplianceReportCommand());
+            command.AddCommand(builder.BuildGetCompliancePolicyNonComplianceReportNavCommand());
+            command.AddCommand(builder.BuildGetCompliancePolicyNonComplianceSummaryReportNavCommand());
+            command.AddCommand(builder.BuildGetComplianceSettingNonComplianceReportNavCommand());
+            command.AddCommand(builder.BuildGetConfigurationPolicyNonComplianceReportNavCommand());
+            command.AddCommand(builder.BuildGetConfigurationPolicyNonComplianceSummaryReportNavCommand());
+            command.AddCommand(builder.BuildGetConfigurationSettingNonComplianceReportNavCommand());
+            command.AddCommand(builder.BuildGetDeviceManagementIntentPerSettingContributingProfilesNavCommand());
+            command.AddCommand(builder.BuildGetDeviceManagementIntentSettingsReportNavCommand());
+            command.AddCommand(builder.BuildGetDeviceNonComplianceReportNavCommand());
+            command.AddCommand(builder.BuildGetDevicesWithoutCompliancePolicyReportNavCommand());
+            command.AddCommand(builder.BuildGetHistoricalReportNavCommand());
+            command.AddCommand(builder.BuildGetNoncompliantDevicesAndSettingsReportNavCommand());
+            command.AddCommand(builder.BuildGetPolicyNonComplianceMetadataNavCommand());
+            command.AddCommand(builder.BuildGetPolicyNonComplianceReportNavCommand());
+            command.AddCommand(builder.BuildGetPolicyNonComplianceSummaryReportNavCommand());
+            command.AddCommand(builder.BuildGetReportFiltersNavCommand());
+            command.AddCommand(builder.BuildGetSettingNonComplianceReportNavCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the resourceOperations property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildResourceOperationsCommand() {
+        public Command BuildResourceOperationsNavCommand() {
             var command = new Command("resource-operations");
             command.Description = "Provides operations to manage the resourceOperations property of the microsoft.graph.deviceManagement entity.";
             var builder = new ResourceOperationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -481,12 +532,15 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the roleAssignments property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildRoleAssignmentsCommand() {
+        public Command BuildRoleAssignmentsNavCommand() {
             var command = new Command("role-assignments");
             command.Description = "Provides operations to manage the roleAssignments property of the microsoft.graph.deviceManagement entity.";
             var builder = new RoleAssignmentsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -494,12 +548,15 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the roleDefinitions property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildRoleDefinitionsCommand() {
+        public Command BuildRoleDefinitionsNavCommand() {
             var command = new Command("role-definitions");
             command.Description = "Provides operations to manage the roleDefinitions property of the microsoft.graph.deviceManagement entity.";
             var builder = new RoleDefinitionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -507,7 +564,7 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the softwareUpdateStatusSummary property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildSoftwareUpdateStatusSummaryCommand() {
+        public Command BuildSoftwareUpdateStatusSummaryNavCommand() {
             var command = new Command("software-update-status-summary");
             command.Description = "Provides operations to manage the softwareUpdateStatusSummary property of the microsoft.graph.deviceManagement entity.";
             var builder = new SoftwareUpdateStatusSummaryRequestBuilder(PathParameters);
@@ -517,12 +574,15 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the telecomExpenseManagementPartners property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildTelecomExpenseManagementPartnersCommand() {
+        public Command BuildTelecomExpenseManagementPartnersNavCommand() {
             var command = new Command("telecom-expense-management-partners");
             command.Description = "Provides operations to manage the telecomExpenseManagementPartners property of the microsoft.graph.deviceManagement entity.";
             var builder = new TelecomExpenseManagementPartnersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -530,12 +590,15 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the termsAndConditions property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildTermsAndConditionsCommand() {
+        public Command BuildTermsAndConditionsNavCommand() {
             var command = new Command("terms-and-conditions");
             command.Description = "Provides operations to manage the termsAndConditions property of the microsoft.graph.deviceManagement entity.";
             var builder = new TermsAndConditionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -543,12 +606,15 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the troubleshootingEvents property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildTroubleshootingEventsCommand() {
+        public Command BuildTroubleshootingEventsNavCommand() {
             var command = new Command("troubleshooting-events");
             command.Description = "Provides operations to manage the troubleshootingEvents property of the microsoft.graph.deviceManagement entity.";
             var builder = new TroubleshootingEventsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -556,12 +622,15 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the windowsAutopilotDeviceIdentities property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildWindowsAutopilotDeviceIdentitiesCommand() {
+        public Command BuildWindowsAutopilotDeviceIdentitiesNavCommand() {
             var command = new Command("windows-autopilot-device-identities");
             command.Description = "Provides operations to manage the windowsAutopilotDeviceIdentities property of the microsoft.graph.deviceManagement entity.";
             var builder = new WindowsAutopilotDeviceIdentitiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -569,12 +638,15 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the windowsInformationProtectionAppLearningSummaries property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildWindowsInformationProtectionAppLearningSummariesCommand() {
+        public Command BuildWindowsInformationProtectionAppLearningSummariesNavCommand() {
             var command = new Command("windows-information-protection-app-learning-summaries");
             command.Description = "Provides operations to manage the windowsInformationProtectionAppLearningSummaries property of the microsoft.graph.deviceManagement entity.";
             var builder = new WindowsInformationProtectionAppLearningSummariesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -582,12 +654,15 @@ namespace ApiSdk.DeviceManagement {
         /// <summary>
         /// Provides operations to manage the windowsInformationProtectionNetworkLearningSummaries property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildWindowsInformationProtectionNetworkLearningSummariesCommand() {
+        public Command BuildWindowsInformationProtectionNetworkLearningSummariesNavCommand() {
             var command = new Command("windows-information-protection-network-learning-summaries");
             command.Description = "Provides operations to manage the windowsInformationProtectionNetworkLearningSummaries property of the microsoft.graph.deviceManagement entity.";
             var builder = new WindowsInformationProtectionNetworkLearningSummariesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

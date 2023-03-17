@@ -63,12 +63,15 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
         /// <summary>
         /// Provides operations to manage the extensions property of the microsoft.graph.administrativeUnit entity.
         /// </summary>
-        public Command BuildExtensionsCommand() {
+        public Command BuildExtensionsNavCommand() {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.administrativeUnit entity.";
             var builder = new ExtensionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -138,20 +141,23 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
         /// <summary>
         /// Provides operations to manage the members property of the microsoft.graph.administrativeUnit entity.
         /// </summary>
-        public Command BuildMembersCommand() {
+        public Command BuildMembersNavCommand() {
             var command = new Command("members");
             command.Description = "Provides operations to manage the members property of the microsoft.graph.administrativeUnit entity.";
             var builder = new MembersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGraphApplicationCommand());
-            command.AddCommand(builder.BuildGraphDeviceCommand());
-            command.AddCommand(builder.BuildGraphGroupCommand());
-            command.AddCommand(builder.BuildGraphOrgContactCommand());
-            command.AddCommand(builder.BuildGraphServicePrincipalCommand());
-            command.AddCommand(builder.BuildGraphUserCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildGraphApplicationNavCommand());
+            command.AddCommand(builder.BuildGraphDeviceNavCommand());
+            command.AddCommand(builder.BuildGraphGroupNavCommand());
+            command.AddCommand(builder.BuildGraphOrgContactNavCommand());
+            command.AddCommand(builder.BuildGraphServicePrincipalNavCommand());
+            command.AddCommand(builder.BuildGraphUserNavCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildRefNavCommand());
             return command;
         }
         /// <summary>
@@ -215,12 +221,15 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
         /// <summary>
         /// Provides operations to manage the scopedRoleMembers property of the microsoft.graph.administrativeUnit entity.
         /// </summary>
-        public Command BuildScopedRoleMembersCommand() {
+        public Command BuildScopedRoleMembersNavCommand() {
             var command = new Command("scoped-role-members");
             command.Description = "Provides operations to manage the scopedRoleMembers property of the microsoft.graph.administrativeUnit entity.";
             var builder = new ScopedRoleMembersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

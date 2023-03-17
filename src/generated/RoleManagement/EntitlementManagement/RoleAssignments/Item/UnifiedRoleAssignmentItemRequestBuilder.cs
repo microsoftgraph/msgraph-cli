@@ -30,7 +30,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item {
         /// <summary>
         /// Provides operations to manage the appScope property of the microsoft.graph.unifiedRoleAssignment entity.
         /// </summary>
-        public Command BuildAppScopeCommand() {
+        public Command BuildAppScopeNavCommand() {
             var command = new Command("app-scope");
             command.Description = "Provides operations to manage the appScope property of the microsoft.graph.unifiedRoleAssignment entity.";
             var builder = new AppScopeRequestBuilder(PathParameters);
@@ -76,7 +76,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item {
         /// <summary>
         /// Provides operations to manage the directoryScope property of the microsoft.graph.unifiedRoleAssignment entity.
         /// </summary>
-        public Command BuildDirectoryScopeCommand() {
+        public Command BuildDirectoryScopeNavCommand() {
             var command = new Command("directory-scope");
             command.Description = "Provides operations to manage the directoryScope property of the microsoft.graph.unifiedRoleAssignment entity.";
             var builder = new DirectoryScopeRequestBuilder(PathParameters);
@@ -206,7 +206,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item {
         /// <summary>
         /// Provides operations to manage the principal property of the microsoft.graph.unifiedRoleAssignment entity.
         /// </summary>
-        public Command BuildPrincipalCommand() {
+        public Command BuildPrincipalNavCommand() {
             var command = new Command("principal");
             command.Description = "Provides operations to manage the principal property of the microsoft.graph.unifiedRoleAssignment entity.";
             var builder = new PrincipalRequestBuilder(PathParameters);
@@ -216,7 +216,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments.Item {
         /// <summary>
         /// Provides operations to manage the roleDefinition property of the microsoft.graph.unifiedRoleAssignment entity.
         /// </summary>
-        public Command BuildRoleDefinitionCommand() {
+        public Command BuildRoleDefinitionNavCommand() {
             var command = new Command("role-definition");
             command.Description = "Provides operations to manage the roleDefinition property of the microsoft.graph.unifiedRoleAssignment entity.";
             var builder = new RoleDefinitionRequestBuilder(PathParameters);

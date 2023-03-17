@@ -28,26 +28,26 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions {
         /// <summary>
         /// Provides operations to manage the submissions property of the microsoft.graph.educationAssignment entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new EducationSubmissionItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildOutcomesCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildReassignCommand());
-            command.AddCommand(builder.BuildResourcesCommand());
-            command.AddCommand(builder.BuildReturnCommand());
-            command.AddCommand(builder.BuildSetUpResourcesFolderCommand());
-            command.AddCommand(builder.BuildSubmitCommand());
-            command.AddCommand(builder.BuildSubmittedResourcesCommand());
-            command.AddCommand(builder.BuildUnsubmitCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildOutcomesNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildReassignNavCommand());
+            commands.Add(builder.BuildResourcesNavCommand());
+            commands.Add(builder.BuildReturnNavCommand());
+            commands.Add(builder.BuildSetUpResourcesFolderNavCommand());
+            commands.Add(builder.BuildSubmitNavCommand());
+            commands.Add(builder.BuildSubmittedResourcesNavCommand());
+            commands.Add(builder.BuildUnsubmitNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

@@ -29,7 +29,7 @@ namespace ApiSdk.Education.Schools.Item {
         /// <summary>
         /// Provides operations to manage the administrativeUnit property of the microsoft.graph.educationSchool entity.
         /// </summary>
-        public Command BuildAdministrativeUnitCommand() {
+        public Command BuildAdministrativeUnitNavCommand() {
             var command = new Command("administrative-unit");
             command.Description = "Provides operations to manage the administrativeUnit property of the microsoft.graph.educationSchool entity.";
             var builder = new AdministrativeUnitRequestBuilder(PathParameters);
@@ -40,14 +40,17 @@ namespace ApiSdk.Education.Schools.Item {
         /// <summary>
         /// Provides operations to manage the classes property of the microsoft.graph.educationSchool entity.
         /// </summary>
-        public Command BuildClassesCommand() {
+        public Command BuildClassesNavCommand() {
             var command = new Command("classes");
             command.Description = "Provides operations to manage the classes property of the microsoft.graph.educationSchool entity.";
             var builder = new ClassesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildRefNavCommand());
             return command;
         }
         /// <summary>
@@ -207,14 +210,17 @@ namespace ApiSdk.Education.Schools.Item {
         /// <summary>
         /// Provides operations to manage the users property of the microsoft.graph.educationSchool entity.
         /// </summary>
-        public Command BuildUsersCommand() {
+        public Command BuildUsersNavCommand() {
             var command = new Command("users");
             command.Description = "Provides operations to manage the users property of the microsoft.graph.educationSchool entity.";
             var builder = new UsersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildRefNavCommand());
             return command;
         }
         /// <summary>

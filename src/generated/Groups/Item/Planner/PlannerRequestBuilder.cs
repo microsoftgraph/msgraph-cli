@@ -188,12 +188,15 @@ namespace ApiSdk.Groups.Item.Planner {
         /// <summary>
         /// Provides operations to manage the plans property of the microsoft.graph.plannerGroup entity.
         /// </summary>
-        public Command BuildPlansCommand() {
+        public Command BuildPlansNavCommand() {
             var command = new Command("plans");
             command.Description = "Provides operations to manage the plans property of the microsoft.graph.plannerGroup entity.";
             var builder = new PlansRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

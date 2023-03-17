@@ -28,12 +28,15 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
         /// <summary>
         /// Provides operations to manage the attendanceReports property of the microsoft.graph.onlineMeeting entity.
         /// </summary>
-        public Command BuildAttendanceReportsCommand() {
+        public Command BuildAttendanceReportsNavCommand() {
             var command = new Command("attendance-reports");
             command.Description = "Provides operations to manage the attendanceReports property of the microsoft.graph.onlineMeeting entity.";
             var builder = new AttendanceReportsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -41,7 +44,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item {
         /// <summary>
         /// Provides operations to manage the media for the user entity.
         /// </summary>
-        public Command BuildAttendeeReportCommand() {
+        public Command BuildAttendeeReportNavCommand() {
             var command = new Command("attendee-report");
             command.Description = "Provides operations to manage the media for the user entity.";
             var builder = new AttendeeReportRequestBuilder(PathParameters);

@@ -123,12 +123,15 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions.Item {
         /// <summary>
         /// Provides operations to manage the inheritsPermissionsFrom property of the microsoft.graph.unifiedRoleDefinition entity.
         /// </summary>
-        public Command BuildInheritsPermissionsFromCommand() {
+        public Command BuildInheritsPermissionsFromNavCommand() {
             var command = new Command("inherits-permissions-from");
             command.Description = "Provides operations to manage the inheritsPermissionsFrom property of the microsoft.graph.unifiedRoleDefinition entity.";
             var builder = new InheritsPermissionsFromRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

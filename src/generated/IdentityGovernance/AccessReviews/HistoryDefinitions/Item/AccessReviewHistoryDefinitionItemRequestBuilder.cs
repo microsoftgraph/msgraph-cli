@@ -123,12 +123,15 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item {
         /// <summary>
         /// Provides operations to manage the instances property of the microsoft.graph.accessReviewHistoryDefinition entity.
         /// </summary>
-        public Command BuildInstancesCommand() {
+        public Command BuildInstancesNavCommand() {
             var command = new Command("instances");
             command.Description = "Provides operations to manage the instances property of the microsoft.graph.accessReviewHistoryDefinition entity.";
             var builder = new InstancesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

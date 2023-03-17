@@ -27,7 +27,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item {
         /// <summary>
         /// Provides operations to manage the bot property of the microsoft.graph.teamsAppDefinition entity.
         /// </summary>
-        public Command BuildBotCommand() {
+        public Command BuildBotNavCommand() {
             var command = new Command("bot");
             command.Description = "Provides operations to manage the bot property of the microsoft.graph.teamsAppDefinition entity.";
             var builder = new BotRequestBuilder(PathParameters);

@@ -28,12 +28,12 @@ namespace ApiSdk.InformationProtection {
         /// <summary>
         /// Provides operations to manage the bitlocker property of the microsoft.graph.informationProtection entity.
         /// </summary>
-        public Command BuildBitlockerCommand() {
+        public Command BuildBitlockerNavCommand() {
             var command = new Command("bitlocker");
             command.Description = "Provides operations to manage the bitlocker property of the microsoft.graph.informationProtection entity.";
             var builder = new BitlockerRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildRecoveryKeysCommand());
+            command.AddCommand(builder.BuildRecoveryKeysNavCommand());
             return command;
         }
         /// <summary>
@@ -147,12 +147,15 @@ namespace ApiSdk.InformationProtection {
         /// <summary>
         /// Provides operations to manage the threatAssessmentRequests property of the microsoft.graph.informationProtection entity.
         /// </summary>
-        public Command BuildThreatAssessmentRequestsCommand() {
+        public Command BuildThreatAssessmentRequestsNavCommand() {
             var command = new Command("threat-assessment-requests");
             command.Description = "Provides operations to manage the threatAssessmentRequests property of the microsoft.graph.informationProtection entity.";
             var builder = new ThreatAssessmentRequestsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

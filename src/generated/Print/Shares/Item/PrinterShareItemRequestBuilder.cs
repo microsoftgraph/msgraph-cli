@@ -29,27 +29,33 @@ namespace ApiSdk.Print.Shares.Item {
         /// <summary>
         /// Provides operations to manage the allowedGroups property of the microsoft.graph.printerShare entity.
         /// </summary>
-        public Command BuildAllowedGroupsCommand() {
+        public Command BuildAllowedGroupsNavCommand() {
             var command = new Command("allowed-groups");
             command.Description = "Provides operations to manage the allowedGroups property of the microsoft.graph.printerShare entity.";
             var builder = new AllowedGroupsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildRefNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the allowedUsers property of the microsoft.graph.printerShare entity.
         /// </summary>
-        public Command BuildAllowedUsersCommand() {
+        public Command BuildAllowedUsersNavCommand() {
             var command = new Command("allowed-users");
             command.Description = "Provides operations to manage the allowedUsers property of the microsoft.graph.printerShare entity.";
             var builder = new AllowedUsersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildRefNavCommand());
             return command;
         }
         /// <summary>
@@ -209,7 +215,7 @@ namespace ApiSdk.Print.Shares.Item {
         /// <summary>
         /// Provides operations to manage the printer property of the microsoft.graph.printerShare entity.
         /// </summary>
-        public Command BuildPrinterCommand() {
+        public Command BuildPrinterNavCommand() {
             var command = new Command("printer");
             command.Description = "Provides operations to manage the printer property of the microsoft.graph.printerShare entity.";
             var builder = new PrinterRequestBuilder(PathParameters);

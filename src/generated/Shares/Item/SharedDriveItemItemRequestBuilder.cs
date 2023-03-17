@@ -67,11 +67,11 @@ namespace ApiSdk.Shares.Item {
         /// <summary>
         /// Provides operations to manage the driveItem property of the microsoft.graph.sharedDriveItem entity.
         /// </summary>
-        public Command BuildDriveItemCommand() {
+        public Command BuildDriveItemNavCommand() {
             var command = new Command("drive-item");
             command.Description = "Provides operations to manage the driveItem property of the microsoft.graph.sharedDriveItem entity.";
             var builder = new DriveItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildContentCommand());
+            command.AddCommand(builder.BuildContentNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
@@ -141,41 +141,44 @@ namespace ApiSdk.Shares.Item {
         /// <summary>
         /// Provides operations to manage the items property of the microsoft.graph.sharedDriveItem entity.
         /// </summary>
-        public Command BuildItemsCommand() {
+        public Command BuildItemsNavCommand() {
             var command = new Command("items");
             command.Description = "Provides operations to manage the items property of the microsoft.graph.sharedDriveItem entity.";
             var builder = new ItemsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to manage the list property of the microsoft.graph.sharedDriveItem entity.
-        /// </summary>
-        public Command BuildListCommand() {
-            var command = new Command("list");
-            command.Description = "Provides operations to manage the list property of the microsoft.graph.sharedDriveItem entity.";
-            var builder = new ListRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildColumnsCommand());
-            command.AddCommand(builder.BuildContentTypesCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildDriveCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildItemsCommand());
-            command.AddCommand(builder.BuildOperationsCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSubscriptionsCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the listItem property of the microsoft.graph.sharedDriveItem entity.
         /// </summary>
-        public Command BuildListItemCommand() {
+        public Command BuildListItemNavCommand() {
             var command = new Command("list-item");
             command.Description = "Provides operations to manage the listItem property of the microsoft.graph.sharedDriveItem entity.";
             var builder = new ListItemRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the list property of the microsoft.graph.sharedDriveItem entity.
+        /// </summary>
+        public Command BuildListNavCommand() {
+            var command = new Command("list");
+            command.Description = "Provides operations to manage the list property of the microsoft.graph.sharedDriveItem entity.";
+            var builder = new ListRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildColumnsNavCommand());
+            command.AddCommand(builder.BuildContentTypesNavCommand());
+            command.AddCommand(builder.BuildDeleteCommand());
+            command.AddCommand(builder.BuildDriveNavCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildItemsNavCommand());
+            command.AddCommand(builder.BuildOperationsNavCommand());
+            command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildSubscriptionsNavCommand());
             return command;
         }
         /// <summary>
@@ -239,31 +242,31 @@ namespace ApiSdk.Shares.Item {
         /// <summary>
         /// Provides operations to manage the permission property of the microsoft.graph.sharedDriveItem entity.
         /// </summary>
-        public Command BuildPermissionCommand() {
+        public Command BuildPermissionNavCommand() {
             var command = new Command("permission");
             command.Description = "Provides operations to manage the permission property of the microsoft.graph.sharedDriveItem entity.";
             var builder = new PermissionRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildGrantCommand());
+            command.AddCommand(builder.BuildGrantNavCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the root property of the microsoft.graph.sharedDriveItem entity.
         /// </summary>
-        public Command BuildRootCommand() {
+        public Command BuildRootNavCommand() {
             var command = new Command("root");
             command.Description = "Provides operations to manage the root property of the microsoft.graph.sharedDriveItem entity.";
             var builder = new RootRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildContentCommand());
+            command.AddCommand(builder.BuildContentNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the site property of the microsoft.graph.sharedDriveItem entity.
         /// </summary>
-        public Command BuildSiteCommand() {
+        public Command BuildSiteNavCommand() {
             var command = new Command("site");
             command.Description = "Provides operations to manage the site property of the microsoft.graph.sharedDriveItem entity.";
             var builder = new SiteRequestBuilder(PathParameters);

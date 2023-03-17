@@ -29,21 +29,21 @@ namespace ApiSdk.Communications.Calls.Item.Participants {
         /// <summary>
         /// Provides operations to manage the participants property of the microsoft.graph.call entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new ParticipantItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMuteCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildStartHoldMusicCommand());
-            command.AddCommand(builder.BuildStopHoldMusicCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildMuteNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildStartHoldMusicNavCommand());
+            commands.Add(builder.BuildStopHoldMusicNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -111,7 +111,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants {
         /// <summary>
         /// Provides operations to call the invite method.
         /// </summary>
-        public Command BuildInviteCommand() {
+        public Command BuildInviteNavCommand() {
             var command = new Command("invite");
             command.Description = "Provides operations to call the invite method.";
             var builder = new InviteRequestBuilder(PathParameters);

@@ -126,24 +126,30 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         /// <summary>
         /// Provides operations to manage the identityProviders property of the microsoft.graph.b2xIdentityUserFlow entity.
         /// </summary>
-        public Command BuildIdentityProvidersCommand() {
+        public Command BuildIdentityProvidersNavCommand() {
             var command = new Command("identity-providers");
             command.Description = "Provides operations to manage the identityProviders property of the microsoft.graph.b2xIdentityUserFlow entity.";
             var builder = new IdentityProvidersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the languages property of the microsoft.graph.b2xIdentityUserFlow entity.
         /// </summary>
-        public Command BuildLanguagesCommand() {
+        public Command BuildLanguagesNavCommand() {
             var command = new Command("languages");
             command.Description = "Provides operations to manage the languages property of the microsoft.graph.b2xIdentityUserFlow entity.";
             var builder = new LanguagesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -209,29 +215,35 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         /// <summary>
         /// Provides operations to manage the userAttributeAssignments property of the microsoft.graph.b2xIdentityUserFlow entity.
         /// </summary>
-        public Command BuildUserAttributeAssignmentsCommand() {
+        public Command BuildUserAttributeAssignmentsNavCommand() {
             var command = new Command("user-attribute-assignments");
             command.Description = "Provides operations to manage the userAttributeAssignments property of the microsoft.graph.b2xIdentityUserFlow entity.";
             var builder = new UserAttributeAssignmentsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildGetOrderCommand());
+            command.AddCommand(builder.BuildGetOrderNavCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildSetOrderCommand());
+            command.AddCommand(builder.BuildSetOrderNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the userFlowIdentityProviders property of the microsoft.graph.b2xIdentityUserFlow entity.
         /// </summary>
-        public Command BuildUserFlowIdentityProvidersCommand() {
+        public Command BuildUserFlowIdentityProvidersNavCommand() {
             var command = new Command("user-flow-identity-providers");
             command.Description = "Provides operations to manage the userFlowIdentityProviders property of the microsoft.graph.b2xIdentityUserFlow entity.";
             var builder = new UserFlowIdentityProvidersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildRefNavCommand());
             return command;
         }
         /// <summary>

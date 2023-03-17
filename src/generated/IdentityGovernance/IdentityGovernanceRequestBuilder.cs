@@ -30,25 +30,25 @@ namespace ApiSdk.IdentityGovernance {
         /// <summary>
         /// Provides operations to manage the accessReviews property of the microsoft.graph.identityGovernance entity.
         /// </summary>
-        public Command BuildAccessReviewsCommand() {
+        public Command BuildAccessReviewsNavCommand() {
             var command = new Command("access-reviews");
             command.Description = "Provides operations to manage the accessReviews property of the microsoft.graph.identityGovernance entity.";
             var builder = new AccessReviewsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDefinitionsCommand());
+            command.AddCommand(builder.BuildDefinitionsNavCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildHistoryDefinitionsCommand());
+            command.AddCommand(builder.BuildHistoryDefinitionsNavCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the appConsent property of the microsoft.graph.identityGovernance entity.
         /// </summary>
-        public Command BuildAppConsentCommand() {
+        public Command BuildAppConsentNavCommand() {
             var command = new Command("app-consent");
             command.Description = "Provides operations to manage the appConsent property of the microsoft.graph.identityGovernance entity.";
             var builder = new AppConsentRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAppConsentRequestsCommand());
+            command.AddCommand(builder.BuildAppConsentRequestsNavCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -57,21 +57,21 @@ namespace ApiSdk.IdentityGovernance {
         /// <summary>
         /// Provides operations to manage the entitlementManagement property of the microsoft.graph.identityGovernance entity.
         /// </summary>
-        public Command BuildEntitlementManagementCommand() {
+        public Command BuildEntitlementManagementNavCommand() {
             var command = new Command("entitlement-management");
             command.Description = "Provides operations to manage the entitlementManagement property of the microsoft.graph.identityGovernance entity.";
             var builder = new EntitlementManagementRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAccessPackageAssignmentApprovalsCommand());
-            command.AddCommand(builder.BuildAccessPackagesCommand());
-            command.AddCommand(builder.BuildAssignmentPoliciesCommand());
-            command.AddCommand(builder.BuildAssignmentRequestsCommand());
-            command.AddCommand(builder.BuildAssignmentsCommand());
-            command.AddCommand(builder.BuildCatalogsCommand());
-            command.AddCommand(builder.BuildConnectedOrganizationsCommand());
+            command.AddCommand(builder.BuildAccessPackageAssignmentApprovalsNavCommand());
+            command.AddCommand(builder.BuildAccessPackagesNavCommand());
+            command.AddCommand(builder.BuildAssignmentPoliciesNavCommand());
+            command.AddCommand(builder.BuildAssignmentRequestsNavCommand());
+            command.AddCommand(builder.BuildAssignmentsNavCommand());
+            command.AddCommand(builder.BuildCatalogsNavCommand());
+            command.AddCommand(builder.BuildConnectedOrganizationsNavCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSettingsCommand());
+            command.AddCommand(builder.BuildSettingsNavCommand());
             return command;
         }
         /// <summary>
@@ -185,12 +185,12 @@ namespace ApiSdk.IdentityGovernance {
         /// <summary>
         /// Provides operations to manage the termsOfUse property of the microsoft.graph.identityGovernance entity.
         /// </summary>
-        public Command BuildTermsOfUseCommand() {
+        public Command BuildTermsOfUseNavCommand() {
             var command = new Command("terms-of-use");
             command.Description = "Provides operations to manage the termsOfUse property of the microsoft.graph.identityGovernance entity.";
             var builder = new TermsOfUseRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAgreementAcceptancesCommand());
-            command.AddCommand(builder.BuildAgreementsCommand());
+            command.AddCommand(builder.BuildAgreementAcceptancesNavCommand());
+            command.AddCommand(builder.BuildAgreementsNavCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());

@@ -28,12 +28,15 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
         /// <summary>
         /// Provides operations to manage the acceptanceStatuses property of the microsoft.graph.termsAndConditions entity.
         /// </summary>
-        public Command BuildAcceptanceStatusesCommand() {
+        public Command BuildAcceptanceStatusesNavCommand() {
             var command = new Command("acceptance-statuses");
             command.Description = "Provides operations to manage the acceptanceStatuses property of the microsoft.graph.termsAndConditions entity.";
             var builder = new AcceptanceStatusesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -41,12 +44,15 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item {
         /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.termsAndConditions entity.
         /// </summary>
-        public Command BuildAssignmentsCommand() {
+        public Command BuildAssignmentsNavCommand() {
             var command = new Command("assignments");
             command.Description = "Provides operations to manage the assignments property of the microsoft.graph.termsAndConditions entity.";
             var builder = new AssignmentsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

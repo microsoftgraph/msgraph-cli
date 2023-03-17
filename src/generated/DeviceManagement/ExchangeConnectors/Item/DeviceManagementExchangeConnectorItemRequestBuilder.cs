@@ -181,7 +181,7 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item {
         /// <summary>
         /// Provides operations to call the sync method.
         /// </summary>
-        public Command BuildSyncCommand() {
+        public Command BuildSyncNavCommand() {
             var command = new Command("sync");
             command.Description = "Provides operations to call the sync method.";
             var builder = new SyncRequestBuilder(PathParameters);

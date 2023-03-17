@@ -28,7 +28,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item {
         /// <summary>
         /// Provides operations to manage the media for the drive entity.
         /// </summary>
-        public Command BuildContentCommand() {
+        public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the drive entity.";
             var builder = new ContentRequestBuilder(PathParameters);
@@ -229,7 +229,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item {
         /// <summary>
         /// Provides operations to call the restoreVersion method.
         /// </summary>
-        public Command BuildRestoreVersionCommand() {
+        public Command BuildRestoreVersionNavCommand() {
             var command = new Command("restore-version");
             command.Description = "Provides operations to call the restoreVersion method.";
             var builder = new RestoreVersionRequestBuilder(PathParameters);

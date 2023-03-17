@@ -28,24 +28,24 @@ namespace ApiSdk.Me.Onenote.Pages {
         /// <summary>
         /// Provides operations to manage the pages property of the microsoft.graph.onenote entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new OnenotePageItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildContentCommand());
-            command.AddCommand(builder.BuildCopyToSectionCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildOnenotePatchContentCommand());
-            command.AddCommand(builder.BuildParentNotebookCommand());
-            command.AddCommand(builder.BuildParentSectionCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPreviewCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildContentNavCommand());
+            commands.Add(builder.BuildCopyToSectionNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildOnenotePatchContentNavCommand());
+            commands.Add(builder.BuildParentNotebookNavCommand());
+            commands.Add(builder.BuildParentSectionNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildPreviewNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

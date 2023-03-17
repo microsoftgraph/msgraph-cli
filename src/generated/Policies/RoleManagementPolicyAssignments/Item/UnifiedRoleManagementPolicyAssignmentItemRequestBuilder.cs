@@ -181,7 +181,7 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments.Item {
         /// <summary>
         /// Provides operations to manage the policy property of the microsoft.graph.unifiedRoleManagementPolicyAssignment entity.
         /// </summary>
-        public Command BuildPolicyCommand() {
+        public Command BuildPolicyNavCommand() {
             var command = new Command("policy");
             command.Description = "Provides operations to manage the policy property of the microsoft.graph.unifiedRoleManagementPolicyAssignment entity.";
             var builder = new PolicyRequestBuilder(PathParameters);

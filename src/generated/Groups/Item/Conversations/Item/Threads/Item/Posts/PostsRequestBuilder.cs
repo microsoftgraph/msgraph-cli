@@ -28,23 +28,23 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts {
         /// <summary>
         /// Provides operations to manage the posts property of the microsoft.graph.conversationThread entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new PostItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAttachmentsCommand());
-            command.AddCommand(builder.BuildExtensionsCommand());
-            command.AddCommand(builder.BuildForwardCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildInReplyToCommand());
-            command.AddCommand(builder.BuildMultiValueExtendedPropertiesCommand());
-            command.AddCommand(builder.BuildReplyCommand());
-            command.AddCommand(builder.BuildSingleValueExtendedPropertiesCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildAttachmentsNavCommand());
+            commands.Add(builder.BuildExtensionsNavCommand());
+            commands.Add(builder.BuildForwardNavCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildInReplyToNavCommand());
+            commands.Add(builder.BuildMultiValueExtendedPropertiesNavCommand());
+            commands.Add(builder.BuildReplyNavCommand());
+            commands.Add(builder.BuildSingleValueExtendedPropertiesNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

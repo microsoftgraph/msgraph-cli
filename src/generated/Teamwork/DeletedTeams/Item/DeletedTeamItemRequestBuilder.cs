@@ -27,14 +27,17 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item {
         /// <summary>
         /// Provides operations to manage the channels property of the microsoft.graph.deletedTeam entity.
         /// </summary>
-        public Command BuildChannelsCommand() {
+        public Command BuildChannelsNavCommand() {
             var command = new Command("channels");
             command.Description = "Provides operations to manage the channels property of the microsoft.graph.deletedTeam entity.";
             var builder = new ChannelsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildGetAllMessagesCommand());
+            command.AddCommand(builder.BuildGetAllMessagesNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }

@@ -133,12 +133,15 @@ namespace ApiSdk.Teams.Item.Schedule {
         /// <summary>
         /// Provides operations to manage the offerShiftRequests property of the microsoft.graph.schedule entity.
         /// </summary>
-        public Command BuildOfferShiftRequestsCommand() {
+        public Command BuildOfferShiftRequestsNavCommand() {
             var command = new Command("offer-shift-requests");
             command.Description = "Provides operations to manage the offerShiftRequests property of the microsoft.graph.schedule entity.";
             var builder = new OfferShiftRequestsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -146,12 +149,15 @@ namespace ApiSdk.Teams.Item.Schedule {
         /// <summary>
         /// Provides operations to manage the openShiftChangeRequests property of the microsoft.graph.schedule entity.
         /// </summary>
-        public Command BuildOpenShiftChangeRequestsCommand() {
+        public Command BuildOpenShiftChangeRequestsNavCommand() {
             var command = new Command("open-shift-change-requests");
             command.Description = "Provides operations to manage the openShiftChangeRequests property of the microsoft.graph.schedule entity.";
             var builder = new OpenShiftChangeRequestsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -159,12 +165,15 @@ namespace ApiSdk.Teams.Item.Schedule {
         /// <summary>
         /// Provides operations to manage the openShifts property of the microsoft.graph.schedule entity.
         /// </summary>
-        public Command BuildOpenShiftsCommand() {
+        public Command BuildOpenShiftsNavCommand() {
             var command = new Command("open-shifts");
             command.Description = "Provides operations to manage the openShifts property of the microsoft.graph.schedule entity.";
             var builder = new OpenShiftsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -230,12 +239,15 @@ namespace ApiSdk.Teams.Item.Schedule {
         /// <summary>
         /// Provides operations to manage the schedulingGroups property of the microsoft.graph.schedule entity.
         /// </summary>
-        public Command BuildSchedulingGroupsCommand() {
+        public Command BuildSchedulingGroupsNavCommand() {
             var command = new Command("scheduling-groups");
             command.Description = "Provides operations to manage the schedulingGroups property of the microsoft.graph.schedule entity.";
             var builder = new SchedulingGroupsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -243,7 +255,7 @@ namespace ApiSdk.Teams.Item.Schedule {
         /// <summary>
         /// Provides operations to call the share method.
         /// </summary>
-        public Command BuildShareCommand() {
+        public Command BuildShareNavCommand() {
             var command = new Command("share");
             command.Description = "Provides operations to call the share method.";
             var builder = new ShareRequestBuilder(PathParameters);
@@ -253,12 +265,15 @@ namespace ApiSdk.Teams.Item.Schedule {
         /// <summary>
         /// Provides operations to manage the shifts property of the microsoft.graph.schedule entity.
         /// </summary>
-        public Command BuildShiftsCommand() {
+        public Command BuildShiftsNavCommand() {
             var command = new Command("shifts");
             command.Description = "Provides operations to manage the shifts property of the microsoft.graph.schedule entity.";
             var builder = new ShiftsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -266,12 +281,15 @@ namespace ApiSdk.Teams.Item.Schedule {
         /// <summary>
         /// Provides operations to manage the swapShiftsChangeRequests property of the microsoft.graph.schedule entity.
         /// </summary>
-        public Command BuildSwapShiftsChangeRequestsCommand() {
+        public Command BuildSwapShiftsChangeRequestsNavCommand() {
             var command = new Command("swap-shifts-change-requests");
             command.Description = "Provides operations to manage the swapShiftsChangeRequests property of the microsoft.graph.schedule entity.";
             var builder = new SwapShiftsChangeRequestsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -279,12 +297,15 @@ namespace ApiSdk.Teams.Item.Schedule {
         /// <summary>
         /// Provides operations to manage the timeOffReasons property of the microsoft.graph.schedule entity.
         /// </summary>
-        public Command BuildTimeOffReasonsCommand() {
+        public Command BuildTimeOffReasonsNavCommand() {
             var command = new Command("time-off-reasons");
             command.Description = "Provides operations to manage the timeOffReasons property of the microsoft.graph.schedule entity.";
             var builder = new TimeOffReasonsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -292,12 +313,15 @@ namespace ApiSdk.Teams.Item.Schedule {
         /// <summary>
         /// Provides operations to manage the timeOffRequests property of the microsoft.graph.schedule entity.
         /// </summary>
-        public Command BuildTimeOffRequestsCommand() {
+        public Command BuildTimeOffRequestsNavCommand() {
             var command = new Command("time-off-requests");
             command.Description = "Provides operations to manage the timeOffRequests property of the microsoft.graph.schedule entity.";
             var builder = new TimeOffRequestsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -305,12 +329,15 @@ namespace ApiSdk.Teams.Item.Schedule {
         /// <summary>
         /// Provides operations to manage the timesOff property of the microsoft.graph.schedule entity.
         /// </summary>
-        public Command BuildTimesOffCommand() {
+        public Command BuildTimesOffNavCommand() {
             var command = new Command("times-off");
             command.Description = "Provides operations to manage the timesOff property of the microsoft.graph.schedule entity.";
             var builder = new TimesOffRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

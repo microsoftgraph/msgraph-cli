@@ -159,7 +159,7 @@ namespace ApiSdk.Users.Item.Authentication.Methods.Item {
         /// <summary>
         /// Provides operations to call the resetPassword method.
         /// </summary>
-        public Command BuildResetPasswordCommand() {
+        public Command BuildResetPasswordNavCommand() {
             var command = new Command("reset-password");
             command.Description = "Provides operations to call the resetPassword method.";
             var builder = new ResetPasswordRequestBuilder(PathParameters);

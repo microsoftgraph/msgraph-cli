@@ -28,7 +28,7 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item {
         /// <summary>
         /// Provides operations to call the addGroup method.
         /// </summary>
-        public Command BuildAddGroupCommand() {
+        public Command BuildAddGroupNavCommand() {
             var command = new Command("add-group");
             command.Description = "Provides operations to call the addGroup method.";
             var builder = new AddGroupRequestBuilder(PathParameters);
@@ -210,7 +210,7 @@ namespace ApiSdk.Groups.Item.GroupLifecyclePolicies.Item {
         /// <summary>
         /// Provides operations to call the removeGroup method.
         /// </summary>
-        public Command BuildRemoveGroupCommand() {
+        public Command BuildRemoveGroupNavCommand() {
             var command = new Command("remove-group");
             command.Description = "Provides operations to call the removeGroup method.";
             var builder = new RemoveGroupRequestBuilder(PathParameters);

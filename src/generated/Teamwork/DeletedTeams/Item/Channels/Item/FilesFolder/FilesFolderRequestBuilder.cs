@@ -27,7 +27,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.FilesFolder {
         /// <summary>
         /// Provides operations to manage the media for the teamwork entity.
         /// </summary>
-        public Command BuildContentCommand() {
+        public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the teamwork entity.";
             var builder = new ContentRequestBuilder(PathParameters);

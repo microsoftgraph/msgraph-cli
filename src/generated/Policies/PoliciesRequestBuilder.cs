@@ -44,12 +44,15 @@ namespace ApiSdk.Policies {
         /// <summary>
         /// Provides operations to manage the activityBasedTimeoutPolicies property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildActivityBasedTimeoutPoliciesCommand() {
+        public Command BuildActivityBasedTimeoutPoliciesNavCommand() {
             var command = new Command("activity-based-timeout-policies");
             command.Description = "Provides operations to manage the activityBasedTimeoutPolicies property of the microsoft.graph.policyRoot entity.";
             var builder = new ActivityBasedTimeoutPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -57,7 +60,7 @@ namespace ApiSdk.Policies {
         /// <summary>
         /// Provides operations to manage the adminConsentRequestPolicy property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildAdminConsentRequestPolicyCommand() {
+        public Command BuildAdminConsentRequestPolicyNavCommand() {
             var command = new Command("admin-consent-request-policy");
             command.Description = "Provides operations to manage the adminConsentRequestPolicy property of the microsoft.graph.policyRoot entity.";
             var builder = new AdminConsentRequestPolicyRequestBuilder(PathParameters);
@@ -69,12 +72,15 @@ namespace ApiSdk.Policies {
         /// <summary>
         /// Provides operations to manage the appManagementPolicies property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildAppManagementPoliciesCommand() {
+        public Command BuildAppManagementPoliciesNavCommand() {
             var command = new Command("app-management-policies");
             command.Description = "Provides operations to manage the appManagementPolicies property of the microsoft.graph.policyRoot entity.";
             var builder = new AppManagementPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -82,7 +88,7 @@ namespace ApiSdk.Policies {
         /// <summary>
         /// Provides operations to manage the authenticationFlowsPolicy property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildAuthenticationFlowsPolicyCommand() {
+        public Command BuildAuthenticationFlowsPolicyNavCommand() {
             var command = new Command("authentication-flows-policy");
             command.Description = "Provides operations to manage the authenticationFlowsPolicy property of the microsoft.graph.policyRoot entity.";
             var builder = new AuthenticationFlowsPolicyRequestBuilder(PathParameters);
@@ -94,11 +100,11 @@ namespace ApiSdk.Policies {
         /// <summary>
         /// Provides operations to manage the authenticationMethodsPolicy property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildAuthenticationMethodsPolicyCommand() {
+        public Command BuildAuthenticationMethodsPolicyNavCommand() {
             var command = new Command("authentication-methods-policy");
             command.Description = "Provides operations to manage the authenticationMethodsPolicy property of the microsoft.graph.policyRoot entity.";
             var builder = new AuthenticationMethodsPolicyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAuthenticationMethodConfigurationsCommand());
+            command.AddCommand(builder.BuildAuthenticationMethodConfigurationsNavCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -107,7 +113,7 @@ namespace ApiSdk.Policies {
         /// <summary>
         /// Provides operations to manage the authorizationPolicy property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildAuthorizationPolicyCommand() {
+        public Command BuildAuthorizationPolicyNavCommand() {
             var command = new Command("authorization-policy");
             command.Description = "Provides operations to manage the authorizationPolicy property of the microsoft.graph.policyRoot entity.";
             var builder = new AuthorizationPolicyRequestBuilder(PathParameters);
@@ -119,12 +125,15 @@ namespace ApiSdk.Policies {
         /// <summary>
         /// Provides operations to manage the claimsMappingPolicies property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildClaimsMappingPoliciesCommand() {
+        public Command BuildClaimsMappingPoliciesNavCommand() {
             var command = new Command("claims-mapping-policies");
             command.Description = "Provides operations to manage the claimsMappingPolicies property of the microsoft.graph.policyRoot entity.";
             var builder = new ClaimsMappingPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -132,12 +141,15 @@ namespace ApiSdk.Policies {
         /// <summary>
         /// Provides operations to manage the conditionalAccessPolicies property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildConditionalAccessPoliciesCommand() {
+        public Command BuildConditionalAccessPoliciesNavCommand() {
             var command = new Command("conditional-access-policies");
             command.Description = "Provides operations to manage the conditionalAccessPolicies property of the microsoft.graph.policyRoot entity.";
             var builder = new ConditionalAccessPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -145,21 +157,21 @@ namespace ApiSdk.Policies {
         /// <summary>
         /// Provides operations to manage the crossTenantAccessPolicy property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildCrossTenantAccessPolicyCommand() {
+        public Command BuildCrossTenantAccessPolicyNavCommand() {
             var command = new Command("cross-tenant-access-policy");
             command.Description = "Provides operations to manage the crossTenantAccessPolicy property of the microsoft.graph.policyRoot entity.";
             var builder = new CrossTenantAccessPolicyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDefaultCommand());
+            command.AddCommand(builder.BuildDefaultNavCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPartnersCommand());
+            command.AddCommand(builder.BuildPartnersNavCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the defaultAppManagementPolicy property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildDefaultAppManagementPolicyCommand() {
+        public Command BuildDefaultAppManagementPolicyNavCommand() {
             var command = new Command("default-app-management-policy");
             command.Description = "Provides operations to manage the defaultAppManagementPolicy property of the microsoft.graph.policyRoot entity.";
             var builder = new DefaultAppManagementPolicyRequestBuilder(PathParameters);
@@ -171,12 +183,15 @@ namespace ApiSdk.Policies {
         /// <summary>
         /// Provides operations to manage the featureRolloutPolicies property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildFeatureRolloutPoliciesCommand() {
+        public Command BuildFeatureRolloutPoliciesNavCommand() {
             var command = new Command("feature-rollout-policies");
             command.Description = "Provides operations to manage the featureRolloutPolicies property of the microsoft.graph.policyRoot entity.";
             var builder = new FeatureRolloutPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -240,12 +255,15 @@ namespace ApiSdk.Policies {
         /// <summary>
         /// Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildHomeRealmDiscoveryPoliciesCommand() {
+        public Command BuildHomeRealmDiscoveryPoliciesNavCommand() {
             var command = new Command("home-realm-discovery-policies");
             command.Description = "Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.policyRoot entity.";
             var builder = new HomeRealmDiscoveryPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -253,7 +271,7 @@ namespace ApiSdk.Policies {
         /// <summary>
         /// Provides operations to manage the identitySecurityDefaultsEnforcementPolicy property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildIdentitySecurityDefaultsEnforcementPolicyCommand() {
+        public Command BuildIdentitySecurityDefaultsEnforcementPolicyNavCommand() {
             var command = new Command("identity-security-defaults-enforcement-policy");
             command.Description = "Provides operations to manage the identitySecurityDefaultsEnforcementPolicy property of the microsoft.graph.policyRoot entity.";
             var builder = new IdentitySecurityDefaultsEnforcementPolicyRequestBuilder(PathParameters);
@@ -317,12 +335,15 @@ namespace ApiSdk.Policies {
         /// <summary>
         /// Provides operations to manage the permissionGrantPolicies property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildPermissionGrantPoliciesCommand() {
+        public Command BuildPermissionGrantPoliciesNavCommand() {
             var command = new Command("permission-grant-policies");
             command.Description = "Provides operations to manage the permissionGrantPolicies property of the microsoft.graph.policyRoot entity.";
             var builder = new PermissionGrantPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -330,12 +351,15 @@ namespace ApiSdk.Policies {
         /// <summary>
         /// Provides operations to manage the roleManagementPolicies property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildRoleManagementPoliciesCommand() {
+        public Command BuildRoleManagementPoliciesNavCommand() {
             var command = new Command("role-management-policies");
             command.Description = "Provides operations to manage the roleManagementPolicies property of the microsoft.graph.policyRoot entity.";
             var builder = new RoleManagementPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -343,12 +367,15 @@ namespace ApiSdk.Policies {
         /// <summary>
         /// Provides operations to manage the roleManagementPolicyAssignments property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildRoleManagementPolicyAssignmentsCommand() {
+        public Command BuildRoleManagementPolicyAssignmentsNavCommand() {
             var command = new Command("role-management-policy-assignments");
             command.Description = "Provides operations to manage the roleManagementPolicyAssignments property of the microsoft.graph.policyRoot entity.";
             var builder = new RoleManagementPolicyAssignmentsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -356,12 +383,15 @@ namespace ApiSdk.Policies {
         /// <summary>
         /// Provides operations to manage the tokenIssuancePolicies property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildTokenIssuancePoliciesCommand() {
+        public Command BuildTokenIssuancePoliciesNavCommand() {
             var command = new Command("token-issuance-policies");
             command.Description = "Provides operations to manage the tokenIssuancePolicies property of the microsoft.graph.policyRoot entity.";
             var builder = new TokenIssuancePoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -369,12 +399,15 @@ namespace ApiSdk.Policies {
         /// <summary>
         /// Provides operations to manage the tokenLifetimePolicies property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildTokenLifetimePoliciesCommand() {
+        public Command BuildTokenLifetimePoliciesNavCommand() {
             var command = new Command("token-lifetime-policies");
             command.Description = "Provides operations to manage the tokenLifetimePolicies property of the microsoft.graph.policyRoot entity.";
             var builder = new TokenLifetimePoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

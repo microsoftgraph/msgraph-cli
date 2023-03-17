@@ -123,12 +123,15 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
         /// <summary>
         /// Provides operations to manage the managedDevices property of the microsoft.graph.detectedApp entity.
         /// </summary>
-        public Command BuildManagedDevicesCommand() {
+        public Command BuildManagedDevicesNavCommand() {
             var command = new Command("managed-devices");
             command.Description = "Provides operations to manage the managedDevices property of the microsoft.graph.detectedApp entity.";
             var builder = new ManagedDevicesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }

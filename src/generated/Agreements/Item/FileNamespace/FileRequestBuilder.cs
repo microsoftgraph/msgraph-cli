@@ -124,12 +124,15 @@ namespace ApiSdk.Agreements.Item.FileNamespace {
         /// <summary>
         /// Provides operations to manage the localizations property of the microsoft.graph.agreementFile entity.
         /// </summary>
-        public Command BuildLocalizationsCommand() {
+        public Command BuildLocalizationsNavCommand() {
             var command = new Command("localizations");
             command.Description = "Provides operations to manage the localizations property of the microsoft.graph.agreementFile entity.";
             var builder = new LocalizationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

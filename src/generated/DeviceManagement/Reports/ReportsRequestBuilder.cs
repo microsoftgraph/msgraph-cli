@@ -73,12 +73,15 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to manage the exportJobs property of the microsoft.graph.deviceManagementReports entity.
         /// </summary>
-        public Command BuildExportJobsCommand() {
+        public Command BuildExportJobsNavCommand() {
             var command = new Command("export-jobs");
             command.Description = "Provides operations to manage the exportJobs property of the microsoft.graph.deviceManagementReports entity.";
             var builder = new ExportJobsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -86,7 +89,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getCachedReport method.
         /// </summary>
-        public Command BuildGetCachedReportCommand() {
+        public Command BuildGetCachedReportNavCommand() {
             var command = new Command("get-cached-report");
             command.Description = "Provides operations to call the getCachedReport method.";
             var builder = new GetCachedReportRequestBuilder(PathParameters);
@@ -152,7 +155,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getCompliancePolicyNonComplianceReport method.
         /// </summary>
-        public Command BuildGetCompliancePolicyNonComplianceReportCommand() {
+        public Command BuildGetCompliancePolicyNonComplianceReportNavCommand() {
             var command = new Command("get-compliance-policy-non-compliance-report");
             command.Description = "Provides operations to call the getCompliancePolicyNonComplianceReport method.";
             var builder = new GetCompliancePolicyNonComplianceReportRequestBuilder(PathParameters);
@@ -162,7 +165,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getCompliancePolicyNonComplianceSummaryReport method.
         /// </summary>
-        public Command BuildGetCompliancePolicyNonComplianceSummaryReportCommand() {
+        public Command BuildGetCompliancePolicyNonComplianceSummaryReportNavCommand() {
             var command = new Command("get-compliance-policy-non-compliance-summary-report");
             command.Description = "Provides operations to call the getCompliancePolicyNonComplianceSummaryReport method.";
             var builder = new GetCompliancePolicyNonComplianceSummaryReportRequestBuilder(PathParameters);
@@ -172,7 +175,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getComplianceSettingNonComplianceReport method.
         /// </summary>
-        public Command BuildGetComplianceSettingNonComplianceReportCommand() {
+        public Command BuildGetComplianceSettingNonComplianceReportNavCommand() {
             var command = new Command("get-compliance-setting-non-compliance-report");
             command.Description = "Provides operations to call the getComplianceSettingNonComplianceReport method.";
             var builder = new GetComplianceSettingNonComplianceReportRequestBuilder(PathParameters);
@@ -182,7 +185,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getConfigurationPolicyNonComplianceReport method.
         /// </summary>
-        public Command BuildGetConfigurationPolicyNonComplianceReportCommand() {
+        public Command BuildGetConfigurationPolicyNonComplianceReportNavCommand() {
             var command = new Command("get-configuration-policy-non-compliance-report");
             command.Description = "Provides operations to call the getConfigurationPolicyNonComplianceReport method.";
             var builder = new GetConfigurationPolicyNonComplianceReportRequestBuilder(PathParameters);
@@ -192,7 +195,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getConfigurationPolicyNonComplianceSummaryReport method.
         /// </summary>
-        public Command BuildGetConfigurationPolicyNonComplianceSummaryReportCommand() {
+        public Command BuildGetConfigurationPolicyNonComplianceSummaryReportNavCommand() {
             var command = new Command("get-configuration-policy-non-compliance-summary-report");
             command.Description = "Provides operations to call the getConfigurationPolicyNonComplianceSummaryReport method.";
             var builder = new GetConfigurationPolicyNonComplianceSummaryReportRequestBuilder(PathParameters);
@@ -202,7 +205,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getConfigurationSettingNonComplianceReport method.
         /// </summary>
-        public Command BuildGetConfigurationSettingNonComplianceReportCommand() {
+        public Command BuildGetConfigurationSettingNonComplianceReportNavCommand() {
             var command = new Command("get-configuration-setting-non-compliance-report");
             command.Description = "Provides operations to call the getConfigurationSettingNonComplianceReport method.";
             var builder = new GetConfigurationSettingNonComplianceReportRequestBuilder(PathParameters);
@@ -212,7 +215,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getDeviceManagementIntentPerSettingContributingProfiles method.
         /// </summary>
-        public Command BuildGetDeviceManagementIntentPerSettingContributingProfilesCommand() {
+        public Command BuildGetDeviceManagementIntentPerSettingContributingProfilesNavCommand() {
             var command = new Command("get-device-management-intent-per-setting-contributing-profiles");
             command.Description = "Provides operations to call the getDeviceManagementIntentPerSettingContributingProfiles method.";
             var builder = new GetDeviceManagementIntentPerSettingContributingProfilesRequestBuilder(PathParameters);
@@ -222,7 +225,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getDeviceManagementIntentSettingsReport method.
         /// </summary>
-        public Command BuildGetDeviceManagementIntentSettingsReportCommand() {
+        public Command BuildGetDeviceManagementIntentSettingsReportNavCommand() {
             var command = new Command("get-device-management-intent-settings-report");
             command.Description = "Provides operations to call the getDeviceManagementIntentSettingsReport method.";
             var builder = new GetDeviceManagementIntentSettingsReportRequestBuilder(PathParameters);
@@ -232,7 +235,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getDeviceNonComplianceReport method.
         /// </summary>
-        public Command BuildGetDeviceNonComplianceReportCommand() {
+        public Command BuildGetDeviceNonComplianceReportNavCommand() {
             var command = new Command("get-device-non-compliance-report");
             command.Description = "Provides operations to call the getDeviceNonComplianceReport method.";
             var builder = new GetDeviceNonComplianceReportRequestBuilder(PathParameters);
@@ -242,7 +245,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getDevicesWithoutCompliancePolicyReport method.
         /// </summary>
-        public Command BuildGetDevicesWithoutCompliancePolicyReportCommand() {
+        public Command BuildGetDevicesWithoutCompliancePolicyReportNavCommand() {
             var command = new Command("get-devices-without-compliance-policy-report");
             command.Description = "Provides operations to call the getDevicesWithoutCompliancePolicyReport method.";
             var builder = new GetDevicesWithoutCompliancePolicyReportRequestBuilder(PathParameters);
@@ -252,7 +255,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getHistoricalReport method.
         /// </summary>
-        public Command BuildGetHistoricalReportCommand() {
+        public Command BuildGetHistoricalReportNavCommand() {
             var command = new Command("get-historical-report");
             command.Description = "Provides operations to call the getHistoricalReport method.";
             var builder = new GetHistoricalReportRequestBuilder(PathParameters);
@@ -262,7 +265,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getNoncompliantDevicesAndSettingsReport method.
         /// </summary>
-        public Command BuildGetNoncompliantDevicesAndSettingsReportCommand() {
+        public Command BuildGetNoncompliantDevicesAndSettingsReportNavCommand() {
             var command = new Command("get-noncompliant-devices-and-settings-report");
             command.Description = "Provides operations to call the getNoncompliantDevicesAndSettingsReport method.";
             var builder = new GetNoncompliantDevicesAndSettingsReportRequestBuilder(PathParameters);
@@ -272,7 +275,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getPolicyNonComplianceMetadata method.
         /// </summary>
-        public Command BuildGetPolicyNonComplianceMetadataCommand() {
+        public Command BuildGetPolicyNonComplianceMetadataNavCommand() {
             var command = new Command("get-policy-non-compliance-metadata");
             command.Description = "Provides operations to call the getPolicyNonComplianceMetadata method.";
             var builder = new GetPolicyNonComplianceMetadataRequestBuilder(PathParameters);
@@ -282,7 +285,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getPolicyNonComplianceReport method.
         /// </summary>
-        public Command BuildGetPolicyNonComplianceReportCommand() {
+        public Command BuildGetPolicyNonComplianceReportNavCommand() {
             var command = new Command("get-policy-non-compliance-report");
             command.Description = "Provides operations to call the getPolicyNonComplianceReport method.";
             var builder = new GetPolicyNonComplianceReportRequestBuilder(PathParameters);
@@ -292,7 +295,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getPolicyNonComplianceSummaryReport method.
         /// </summary>
-        public Command BuildGetPolicyNonComplianceSummaryReportCommand() {
+        public Command BuildGetPolicyNonComplianceSummaryReportNavCommand() {
             var command = new Command("get-policy-non-compliance-summary-report");
             command.Description = "Provides operations to call the getPolicyNonComplianceSummaryReport method.";
             var builder = new GetPolicyNonComplianceSummaryReportRequestBuilder(PathParameters);
@@ -302,7 +305,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getReportFilters method.
         /// </summary>
-        public Command BuildGetReportFiltersCommand() {
+        public Command BuildGetReportFiltersNavCommand() {
             var command = new Command("get-report-filters");
             command.Description = "Provides operations to call the getReportFilters method.";
             var builder = new GetReportFiltersRequestBuilder(PathParameters);
@@ -312,7 +315,7 @@ namespace ApiSdk.DeviceManagement.Reports {
         /// <summary>
         /// Provides operations to call the getSettingNonComplianceReport method.
         /// </summary>
-        public Command BuildGetSettingNonComplianceReportCommand() {
+        public Command BuildGetSettingNonComplianceReportNavCommand() {
             var command = new Command("get-setting-non-compliance-report");
             command.Description = "Provides operations to call the getSettingNonComplianceReport method.";
             var builder = new GetSettingNonComplianceReportRequestBuilder(PathParameters);

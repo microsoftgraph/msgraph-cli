@@ -28,12 +28,15 @@ namespace ApiSdk.IdentityGovernance.AccessReviews {
         /// <summary>
         /// Provides operations to manage the definitions property of the microsoft.graph.accessReviewSet entity.
         /// </summary>
-        public Command BuildDefinitionsCommand() {
+        public Command BuildDefinitionsNavCommand() {
             var command = new Command("definitions");
             command.Description = "Provides operations to manage the definitions property of the microsoft.graph.accessReviewSet entity.";
             var builder = new DefinitionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -125,12 +128,15 @@ namespace ApiSdk.IdentityGovernance.AccessReviews {
         /// <summary>
         /// Provides operations to manage the historyDefinitions property of the microsoft.graph.accessReviewSet entity.
         /// </summary>
-        public Command BuildHistoryDefinitionsCommand() {
+        public Command BuildHistoryDefinitionsNavCommand() {
             var command = new Command("history-definitions");
             command.Description = "Provides operations to manage the historyDefinitions property of the microsoft.graph.accessReviewSet entity.";
             var builder = new HistoryDefinitionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

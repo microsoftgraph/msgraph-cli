@@ -217,12 +217,15 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.ParentGroup {
         /// <summary>
         /// Provides operations to manage the sets property of the microsoft.graph.termStore.group entity.
         /// </summary>
-        public Command BuildSetsCommand() {
+        public Command BuildSetsNavCommand() {
             var command = new Command("sets");
             command.Description = "Provides operations to manage the sets property of the microsoft.graph.termStore.group entity.";
             var builder = new ApiSdk.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Sets.SetsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

@@ -27,19 +27,22 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item {
         /// <summary>
         /// Provides operations to manage the appliesTo property of the microsoft.graph.featureRolloutPolicy entity.
         /// </summary>
-        public Command BuildAppliesToCommand() {
+        public Command BuildAppliesToNavCommand() {
             var command = new Command("applies-to");
             command.Description = "Provides operations to manage the appliesTo property of the microsoft.graph.featureRolloutPolicy entity.";
             var builder = new AppliesToRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesCommand());
-            command.AddCommand(builder.BuildGetByIdsCommand());
+            command.AddCommand(builder.BuildDeltaNavCommand());
+            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesNavCommand());
+            command.AddCommand(builder.BuildGetByIdsNavCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRefCommand());
-            command.AddCommand(builder.BuildValidatePropertiesCommand());
+            command.AddCommand(builder.BuildRefNavCommand());
+            command.AddCommand(builder.BuildValidatePropertiesNavCommand());
             return command;
         }
         /// <summary>

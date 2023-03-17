@@ -145,7 +145,7 @@ namespace ApiSdk.Users.Item.Chats.Item {
         /// <summary>
         /// Provides operations to call the hideForUser method.
         /// </summary>
-        public Command BuildHideForUserCommand() {
+        public Command BuildHideForUserNavCommand() {
             var command = new Command("hide-for-user");
             command.Description = "Provides operations to call the hideForUser method.";
             var builder = new HideForUserRequestBuilder(PathParameters);
@@ -155,12 +155,15 @@ namespace ApiSdk.Users.Item.Chats.Item {
         /// <summary>
         /// Provides operations to manage the installedApps property of the microsoft.graph.chat entity.
         /// </summary>
-        public Command BuildInstalledAppsCommand() {
+        public Command BuildInstalledAppsNavCommand() {
             var command = new Command("installed-apps");
             command.Description = "Provides operations to manage the installedApps property of the microsoft.graph.chat entity.";
             var builder = new InstalledAppsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -168,7 +171,7 @@ namespace ApiSdk.Users.Item.Chats.Item {
         /// <summary>
         /// Provides operations to manage the lastMessagePreview property of the microsoft.graph.chat entity.
         /// </summary>
-        public Command BuildLastMessagePreviewCommand() {
+        public Command BuildLastMessagePreviewNavCommand() {
             var command = new Command("last-message-preview");
             command.Description = "Provides operations to manage the lastMessagePreview property of the microsoft.graph.chat entity.";
             var builder = new LastMessagePreviewRequestBuilder(PathParameters);
@@ -180,7 +183,7 @@ namespace ApiSdk.Users.Item.Chats.Item {
         /// <summary>
         /// Provides operations to call the markChatReadForUser method.
         /// </summary>
-        public Command BuildMarkChatReadForUserCommand() {
+        public Command BuildMarkChatReadForUserNavCommand() {
             var command = new Command("mark-chat-read-for-user");
             command.Description = "Provides operations to call the markChatReadForUser method.";
             var builder = new MarkChatReadForUserRequestBuilder(PathParameters);
@@ -190,7 +193,7 @@ namespace ApiSdk.Users.Item.Chats.Item {
         /// <summary>
         /// Provides operations to call the markChatUnreadForUser method.
         /// </summary>
-        public Command BuildMarkChatUnreadForUserCommand() {
+        public Command BuildMarkChatUnreadForUserNavCommand() {
             var command = new Command("mark-chat-unread-for-user");
             command.Description = "Provides operations to call the markChatUnreadForUser method.";
             var builder = new MarkChatUnreadForUserRequestBuilder(PathParameters);
@@ -200,13 +203,16 @@ namespace ApiSdk.Users.Item.Chats.Item {
         /// <summary>
         /// Provides operations to manage the members property of the microsoft.graph.chat entity.
         /// </summary>
-        public Command BuildMembersCommand() {
+        public Command BuildMembersNavCommand() {
             var command = new Command("members");
             command.Description = "Provides operations to manage the members property of the microsoft.graph.chat entity.";
             var builder = new MembersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAddCommand());
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildAddNavCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -214,14 +220,17 @@ namespace ApiSdk.Users.Item.Chats.Item {
         /// <summary>
         /// Provides operations to manage the messages property of the microsoft.graph.chat entity.
         /// </summary>
-        public Command BuildMessagesCommand() {
+        public Command BuildMessagesNavCommand() {
             var command = new Command("messages");
             command.Description = "Provides operations to manage the messages property of the microsoft.graph.chat entity.";
             var builder = new MessagesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
+            command.AddCommand(builder.BuildDeltaNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -292,12 +301,15 @@ namespace ApiSdk.Users.Item.Chats.Item {
         /// <summary>
         /// Provides operations to manage the pinnedMessages property of the microsoft.graph.chat entity.
         /// </summary>
-        public Command BuildPinnedMessagesCommand() {
+        public Command BuildPinnedMessagesNavCommand() {
             var command = new Command("pinned-messages");
             command.Description = "Provides operations to manage the pinnedMessages property of the microsoft.graph.chat entity.";
             var builder = new PinnedMessagesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -305,7 +317,7 @@ namespace ApiSdk.Users.Item.Chats.Item {
         /// <summary>
         /// Provides operations to call the sendActivityNotification method.
         /// </summary>
-        public Command BuildSendActivityNotificationCommand() {
+        public Command BuildSendActivityNotificationNavCommand() {
             var command = new Command("send-activity-notification");
             command.Description = "Provides operations to call the sendActivityNotification method.";
             var builder = new SendActivityNotificationRequestBuilder(PathParameters);
@@ -315,12 +327,15 @@ namespace ApiSdk.Users.Item.Chats.Item {
         /// <summary>
         /// Provides operations to manage the tabs property of the microsoft.graph.chat entity.
         /// </summary>
-        public Command BuildTabsCommand() {
+        public Command BuildTabsNavCommand() {
             var command = new Command("tabs");
             command.Description = "Provides operations to manage the tabs property of the microsoft.graph.chat entity.";
             var builder = new TabsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -328,7 +343,7 @@ namespace ApiSdk.Users.Item.Chats.Item {
         /// <summary>
         /// Provides operations to call the unhideForUser method.
         /// </summary>
-        public Command BuildUnhideForUserCommand() {
+        public Command BuildUnhideForUserNavCommand() {
             var command = new Command("unhide-for-user");
             command.Description = "Provides operations to call the unhideForUser method.";
             var builder = new UnhideForUserRequestBuilder(PathParameters);

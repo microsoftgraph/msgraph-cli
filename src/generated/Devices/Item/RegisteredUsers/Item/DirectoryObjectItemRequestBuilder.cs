@@ -105,7 +105,7 @@ namespace ApiSdk.Devices.Item.RegisteredUsers.Item {
         /// <summary>
         /// Casts the previous resource to appRoleAssignment.
         /// </summary>
-        public Command BuildGraphAppRoleAssignmentCommand() {
+        public Command BuildGraphAppRoleAssignmentNavCommand() {
             var command = new Command("graph-app-role-assignment");
             command.Description = "Casts the previous resource to appRoleAssignment.";
             var builder = new GraphAppRoleAssignmentRequestBuilder(PathParameters);
@@ -115,7 +115,7 @@ namespace ApiSdk.Devices.Item.RegisteredUsers.Item {
         /// <summary>
         /// Casts the previous resource to endpoint.
         /// </summary>
-        public Command BuildGraphEndpointCommand() {
+        public Command BuildGraphEndpointNavCommand() {
             var command = new Command("graph-endpoint");
             command.Description = "Casts the previous resource to endpoint.";
             var builder = new GraphEndpointRequestBuilder(PathParameters);
@@ -125,7 +125,7 @@ namespace ApiSdk.Devices.Item.RegisteredUsers.Item {
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        public Command BuildGraphServicePrincipalCommand() {
+        public Command BuildGraphServicePrincipalNavCommand() {
             var command = new Command("graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
@@ -135,7 +135,7 @@ namespace ApiSdk.Devices.Item.RegisteredUsers.Item {
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
-        public Command BuildGraphUserCommand() {
+        public Command BuildGraphUserNavCommand() {
             var command = new Command("graph-user");
             command.Description = "Casts the previous resource to user.";
             var builder = new GraphUserRequestBuilder(PathParameters);

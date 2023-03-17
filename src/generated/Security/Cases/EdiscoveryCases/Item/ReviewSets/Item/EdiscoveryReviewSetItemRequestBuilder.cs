@@ -200,12 +200,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item {
         /// <summary>
         /// Provides operations to manage the queries property of the microsoft.graph.security.ediscoveryReviewSet entity.
         /// </summary>
-        public Command BuildQueriesCommand() {
+        public Command BuildQueriesNavCommand() {
             var command = new Command("queries");
             command.Description = "Provides operations to manage the queries property of the microsoft.graph.security.ediscoveryReviewSet entity.";
             var builder = new QueriesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -213,7 +216,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item {
         /// <summary>
         /// Provides operations to call the addToReviewSet method.
         /// </summary>
-        public Command BuildSecurityAddToReviewSetCommand() {
+        public Command BuildSecurityAddToReviewSetNavCommand() {
             var command = new Command("security-add-to-review-set");
             command.Description = "Provides operations to call the addToReviewSet method.";
             var builder = new SecurityAddToReviewSetRequestBuilder(PathParameters);

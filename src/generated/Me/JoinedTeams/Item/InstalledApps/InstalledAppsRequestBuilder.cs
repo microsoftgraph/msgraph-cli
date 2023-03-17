@@ -28,21 +28,21 @@ namespace ApiSdk.Me.JoinedTeams.Item.InstalledApps {
         /// <summary>
         /// Provides operations to manage the installedApps property of the microsoft.graph.team entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new TeamsAppInstallationItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildTeamsAppCommand());
-            command.AddCommand(builder.BuildTeamsAppDefinitionCommand());
-            command.AddCommand(builder.BuildUpgradeCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildTeamsAppDefinitionNavCommand());
+            commands.Add(builder.BuildTeamsAppNavCommand());
+            commands.Add(builder.BuildUpgradeNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

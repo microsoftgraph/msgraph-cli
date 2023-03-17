@@ -126,7 +126,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
         /// <summary>
         /// Provides operations to call the getFinalAttachment method.
         /// </summary>
-        public Command BuildGetFinalAttachmentCommand() {
+        public Command BuildGetFinalAttachmentNavCommand() {
             var command = new Command("get-final-attachment");
             command.Description = "Provides operations to call the getFinalAttachment method.";
             var builder = new GetFinalAttachmentRequestBuilder(PathParameters);
@@ -136,7 +136,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
         /// <summary>
         /// Provides operations to call the getFinalReport method.
         /// </summary>
-        public Command BuildGetFinalReportCommand() {
+        public Command BuildGetFinalReportNavCommand() {
             var command = new Command("get-final-report");
             command.Description = "Provides operations to call the getFinalReport method.";
             var builder = new GetFinalReportRequestBuilder(PathParameters);
@@ -146,12 +146,15 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
         /// <summary>
         /// Provides operations to manage the notes property of the microsoft.graph.subjectRightsRequest entity.
         /// </summary>
-        public Command BuildNotesCommand() {
+        public Command BuildNotesNavCommand() {
             var command = new Command("notes");
             command.Description = "Provides operations to manage the notes property of the microsoft.graph.subjectRightsRequest entity.";
             var builder = new NotesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -217,7 +220,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
         /// <summary>
         /// Provides operations to manage the team property of the microsoft.graph.subjectRightsRequest entity.
         /// </summary>
-        public Command BuildTeamCommand() {
+        public Command BuildTeamNavCommand() {
             var command = new Command("team");
             command.Description = "Provides operations to manage the team property of the microsoft.graph.subjectRightsRequest entity.";
             var builder = new TeamRequestBuilder(PathParameters);

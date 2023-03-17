@@ -30,7 +30,7 @@ namespace ApiSdk.Communications.Presences.Item {
         /// <summary>
         /// Provides operations to call the clearPresence method.
         /// </summary>
-        public Command BuildClearPresenceCommand() {
+        public Command BuildClearPresenceNavCommand() {
             var command = new Command("clear-presence");
             command.Description = "Provides operations to call the clearPresence method.";
             var builder = new ClearPresenceRequestBuilder(PathParameters);
@@ -40,7 +40,7 @@ namespace ApiSdk.Communications.Presences.Item {
         /// <summary>
         /// Provides operations to call the clearUserPreferredPresence method.
         /// </summary>
-        public Command BuildClearUserPreferredPresenceCommand() {
+        public Command BuildClearUserPreferredPresenceNavCommand() {
             var command = new Command("clear-user-preferred-presence");
             command.Description = "Provides operations to call the clearUserPreferredPresence method.";
             var builder = new ClearUserPreferredPresenceRequestBuilder(PathParameters);
@@ -204,7 +204,7 @@ namespace ApiSdk.Communications.Presences.Item {
         /// <summary>
         /// Provides operations to call the setPresence method.
         /// </summary>
-        public Command BuildSetPresenceCommand() {
+        public Command BuildSetPresenceNavCommand() {
             var command = new Command("set-presence");
             command.Description = "Provides operations to call the setPresence method.";
             var builder = new SetPresenceRequestBuilder(PathParameters);
@@ -214,7 +214,7 @@ namespace ApiSdk.Communications.Presences.Item {
         /// <summary>
         /// Provides operations to call the setUserPreferredPresence method.
         /// </summary>
-        public Command BuildSetUserPreferredPresenceCommand() {
+        public Command BuildSetUserPreferredPresenceNavCommand() {
             var command = new Command("set-user-preferred-presence");
             command.Description = "Provides operations to call the setUserPreferredPresence method.";
             var builder = new SetUserPreferredPresenceRequestBuilder(PathParameters);

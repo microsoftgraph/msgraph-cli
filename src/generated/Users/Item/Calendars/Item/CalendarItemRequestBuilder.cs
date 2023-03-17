@@ -33,12 +33,15 @@ namespace ApiSdk.Users.Item.Calendars.Item {
         /// <summary>
         /// Provides operations to manage the calendarPermissions property of the microsoft.graph.calendar entity.
         /// </summary>
-        public Command BuildCalendarPermissionsCommand() {
+        public Command BuildCalendarPermissionsNavCommand() {
             var command = new Command("calendar-permissions");
             command.Description = "Provides operations to manage the calendarPermissions property of the microsoft.graph.calendar entity.";
             var builder = new CalendarPermissionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -46,13 +49,16 @@ namespace ApiSdk.Users.Item.Calendars.Item {
         /// <summary>
         /// Provides operations to manage the calendarView property of the microsoft.graph.calendar entity.
         /// </summary>
-        public Command BuildCalendarViewCommand() {
+        public Command BuildCalendarViewNavCommand() {
             var command = new Command("calendar-view");
             command.Description = "Provides operations to manage the calendarView property of the microsoft.graph.calendar entity.";
             var builder = new CalendarViewRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildDeltaNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -99,14 +105,17 @@ namespace ApiSdk.Users.Item.Calendars.Item {
         /// <summary>
         /// Provides operations to manage the events property of the microsoft.graph.calendar entity.
         /// </summary>
-        public Command BuildEventsCommand() {
+        public Command BuildEventsNavCommand() {
             var command = new Command("events");
             command.Description = "Provides operations to manage the events property of the microsoft.graph.calendar entity.";
             var builder = new EventsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
+            command.AddCommand(builder.BuildDeltaNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -174,7 +183,7 @@ namespace ApiSdk.Users.Item.Calendars.Item {
         /// <summary>
         /// Provides operations to call the getSchedule method.
         /// </summary>
-        public Command BuildGetScheduleCommand() {
+        public Command BuildGetScheduleNavCommand() {
             var command = new Command("get-schedule");
             command.Description = "Provides operations to call the getSchedule method.";
             var builder = new GetScheduleRequestBuilder(PathParameters);
@@ -184,12 +193,15 @@ namespace ApiSdk.Users.Item.Calendars.Item {
         /// <summary>
         /// Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.calendar entity.
         /// </summary>
-        public Command BuildMultiValueExtendedPropertiesCommand() {
+        public Command BuildMultiValueExtendedPropertiesNavCommand() {
             var command = new Command("multi-value-extended-properties");
             command.Description = "Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.calendar entity.";
             var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -261,12 +273,15 @@ namespace ApiSdk.Users.Item.Calendars.Item {
         /// <summary>
         /// Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.calendar entity.
         /// </summary>
-        public Command BuildSingleValueExtendedPropertiesCommand() {
+        public Command BuildSingleValueExtendedPropertiesNavCommand() {
             var command = new Command("single-value-extended-properties");
             command.Description = "Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.calendar entity.";
             var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

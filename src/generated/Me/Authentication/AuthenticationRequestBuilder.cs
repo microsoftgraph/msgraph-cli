@@ -64,12 +64,15 @@ namespace ApiSdk.Me.Authentication {
         /// <summary>
         /// Provides operations to manage the emailMethods property of the microsoft.graph.authentication entity.
         /// </summary>
-        public Command BuildEmailMethodsCommand() {
+        public Command BuildEmailMethodsNavCommand() {
             var command = new Command("email-methods");
             command.Description = "Provides operations to manage the emailMethods property of the microsoft.graph.authentication entity.";
             var builder = new EmailMethodsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -77,12 +80,15 @@ namespace ApiSdk.Me.Authentication {
         /// <summary>
         /// Provides operations to manage the fido2Methods property of the microsoft.graph.authentication entity.
         /// </summary>
-        public Command BuildFido2MethodsCommand() {
+        public Command BuildFido2MethodsNavCommand() {
             var command = new Command("fido2-methods");
             command.Description = "Provides operations to manage the fido2Methods property of the microsoft.graph.authentication entity.";
             var builder = new Fido2MethodsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -145,12 +151,15 @@ namespace ApiSdk.Me.Authentication {
         /// <summary>
         /// Provides operations to manage the methods property of the microsoft.graph.authentication entity.
         /// </summary>
-        public Command BuildMethodsCommand() {
+        public Command BuildMethodsNavCommand() {
             var command = new Command("methods");
             command.Description = "Provides operations to manage the methods property of the microsoft.graph.authentication entity.";
             var builder = new MethodsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -158,24 +167,30 @@ namespace ApiSdk.Me.Authentication {
         /// <summary>
         /// Provides operations to manage the microsoftAuthenticatorMethods property of the microsoft.graph.authentication entity.
         /// </summary>
-        public Command BuildMicrosoftAuthenticatorMethodsCommand() {
+        public Command BuildMicrosoftAuthenticatorMethodsNavCommand() {
             var command = new Command("microsoft-authenticator-methods");
             command.Description = "Provides operations to manage the microsoftAuthenticatorMethods property of the microsoft.graph.authentication entity.";
             var builder = new MicrosoftAuthenticatorMethodsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the operations property of the microsoft.graph.authentication entity.
         /// </summary>
-        public Command BuildOperationsCommand() {
+        public Command BuildOperationsNavCommand() {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.authentication entity.";
             var builder = new OperationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -183,12 +198,15 @@ namespace ApiSdk.Me.Authentication {
         /// <summary>
         /// Provides operations to manage the passwordMethods property of the microsoft.graph.authentication entity.
         /// </summary>
-        public Command BuildPasswordMethodsCommand() {
+        public Command BuildPasswordMethodsNavCommand() {
             var command = new Command("password-methods");
             command.Description = "Provides operations to manage the passwordMethods property of the microsoft.graph.authentication entity.";
             var builder = new PasswordMethodsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -248,12 +266,15 @@ namespace ApiSdk.Me.Authentication {
         /// <summary>
         /// Provides operations to manage the phoneMethods property of the microsoft.graph.authentication entity.
         /// </summary>
-        public Command BuildPhoneMethodsCommand() {
+        public Command BuildPhoneMethodsNavCommand() {
             var command = new Command("phone-methods");
             command.Description = "Provides operations to manage the phoneMethods property of the microsoft.graph.authentication entity.";
             var builder = new PhoneMethodsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -261,24 +282,30 @@ namespace ApiSdk.Me.Authentication {
         /// <summary>
         /// Provides operations to manage the softwareOathMethods property of the microsoft.graph.authentication entity.
         /// </summary>
-        public Command BuildSoftwareOathMethodsCommand() {
+        public Command BuildSoftwareOathMethodsNavCommand() {
             var command = new Command("software-oath-methods");
             command.Description = "Provides operations to manage the softwareOathMethods property of the microsoft.graph.authentication entity.";
             var builder = new SoftwareOathMethodsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the temporaryAccessPassMethods property of the microsoft.graph.authentication entity.
         /// </summary>
-        public Command BuildTemporaryAccessPassMethodsCommand() {
+        public Command BuildTemporaryAccessPassMethodsNavCommand() {
             var command = new Command("temporary-access-pass-methods");
             command.Description = "Provides operations to manage the temporaryAccessPassMethods property of the microsoft.graph.authentication entity.";
             var builder = new TemporaryAccessPassMethodsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -286,12 +313,15 @@ namespace ApiSdk.Me.Authentication {
         /// <summary>
         /// Provides operations to manage the windowsHelloForBusinessMethods property of the microsoft.graph.authentication entity.
         /// </summary>
-        public Command BuildWindowsHelloForBusinessMethodsCommand() {
+        public Command BuildWindowsHelloForBusinessMethodsNavCommand() {
             var command = new Command("windows-hello-for-business-methods");
             command.Description = "Provides operations to manage the windowsHelloForBusinessMethods property of the microsoft.graph.authentication entity.";
             var builder = new WindowsHelloForBusinessMethodsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }

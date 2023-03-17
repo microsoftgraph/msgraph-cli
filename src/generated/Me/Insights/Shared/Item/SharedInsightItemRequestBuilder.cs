@@ -124,7 +124,7 @@ namespace ApiSdk.Me.Insights.Shared.Item {
         /// <summary>
         /// Provides operations to manage the lastSharedMethod property of the microsoft.graph.sharedInsight entity.
         /// </summary>
-        public Command BuildLastSharedMethodCommand() {
+        public Command BuildLastSharedMethodNavCommand() {
             var command = new Command("last-shared-method");
             command.Description = "Provides operations to manage the lastSharedMethod property of the microsoft.graph.sharedInsight entity.";
             var builder = new LastSharedMethodRequestBuilder(PathParameters);
@@ -192,7 +192,7 @@ namespace ApiSdk.Me.Insights.Shared.Item {
         /// <summary>
         /// Provides operations to manage the resource property of the microsoft.graph.sharedInsight entity.
         /// </summary>
-        public Command BuildResourceCommand() {
+        public Command BuildResourceNavCommand() {
             var command = new Command("resource");
             command.Description = "Provides operations to manage the resource property of the microsoft.graph.sharedInsight entity.";
             var builder = new ResourceRequestBuilder(PathParameters);

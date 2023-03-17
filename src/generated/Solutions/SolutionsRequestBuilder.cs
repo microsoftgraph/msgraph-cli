@@ -28,12 +28,15 @@ namespace ApiSdk.Solutions {
         /// <summary>
         /// Provides operations to manage the bookingBusinesses property of the microsoft.graph.solutionsRoot entity.
         /// </summary>
-        public Command BuildBookingBusinessesCommand() {
+        public Command BuildBookingBusinessesNavCommand() {
             var command = new Command("booking-businesses");
             command.Description = "Provides operations to manage the bookingBusinesses property of the microsoft.graph.solutionsRoot entity.";
             var builder = new BookingBusinessesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -41,12 +44,15 @@ namespace ApiSdk.Solutions {
         /// <summary>
         /// Provides operations to manage the bookingCurrencies property of the microsoft.graph.solutionsRoot entity.
         /// </summary>
-        public Command BuildBookingCurrenciesCommand() {
+        public Command BuildBookingCurrenciesNavCommand() {
             var command = new Command("booking-currencies");
             command.Description = "Provides operations to manage the bookingCurrencies property of the microsoft.graph.solutionsRoot entity.";
             var builder = new BookingCurrenciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

@@ -27,7 +27,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.Languages.Item.OverridesPages.Item {
         /// <summary>
         /// Provides operations to manage the media for the identityContainer entity.
         /// </summary>
-        public Command BuildContentCommand() {
+        public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the identityContainer entity.";
             var builder = new ContentRequestBuilder(PathParameters);

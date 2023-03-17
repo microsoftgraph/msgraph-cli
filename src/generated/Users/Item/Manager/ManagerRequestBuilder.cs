@@ -90,7 +90,7 @@ namespace ApiSdk.Users.Item.Manager {
         /// <summary>
         /// Provides operations to manage the collection of user entities.
         /// </summary>
-        public Command BuildRefCommand() {
+        public Command BuildRefNavCommand() {
             var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of user entities.";
             var builder = new RefRequestBuilder(PathParameters);

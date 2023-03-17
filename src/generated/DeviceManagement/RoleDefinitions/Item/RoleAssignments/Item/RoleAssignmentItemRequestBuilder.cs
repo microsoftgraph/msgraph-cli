@@ -199,7 +199,7 @@ namespace ApiSdk.DeviceManagement.RoleDefinitions.Item.RoleAssignments.Item {
         /// <summary>
         /// Provides operations to manage the roleDefinition property of the microsoft.graph.roleAssignment entity.
         /// </summary>
-        public Command BuildRoleDefinitionCommand() {
+        public Command BuildRoleDefinitionNavCommand() {
             var command = new Command("role-definition");
             command.Description = "Provides operations to manage the roleDefinition property of the microsoft.graph.roleAssignment entity.";
             var builder = new RoleDefinitionRequestBuilder(PathParameters);

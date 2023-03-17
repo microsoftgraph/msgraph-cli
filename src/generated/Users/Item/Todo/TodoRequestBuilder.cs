@@ -123,14 +123,17 @@ namespace ApiSdk.Users.Item.Todo {
         /// <summary>
         /// Provides operations to manage the lists property of the microsoft.graph.todo entity.
         /// </summary>
-        public Command BuildListsCommand() {
+        public Command BuildListsNavCommand() {
             var command = new Command("lists");
             command.Description = "Provides operations to manage the lists property of the microsoft.graph.todo entity.";
             var builder = new ListsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
+            command.AddCommand(builder.BuildDeltaNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }

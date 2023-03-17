@@ -27,7 +27,7 @@ namespace ApiSdk.Me.ContactFolders.Item.ChildFolders.Item.Contacts.Item.Photo {
         /// <summary>
         /// Provides operations to manage the media for the user entity.
         /// </summary>
-        public Command BuildContentCommand() {
+        public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the user entity.";
             var builder = new ContentRequestBuilder(PathParameters);

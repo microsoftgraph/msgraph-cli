@@ -36,7 +36,7 @@ namespace ApiSdk.Devices.Item {
         /// <summary>
         /// Provides operations to call the checkMemberGroups method.
         /// </summary>
-        public Command BuildCheckMemberGroupsCommand() {
+        public Command BuildCheckMemberGroupsNavCommand() {
             var command = new Command("check-member-groups");
             command.Description = "Provides operations to call the checkMemberGroups method.";
             var builder = new CheckMemberGroupsRequestBuilder(PathParameters);
@@ -46,7 +46,7 @@ namespace ApiSdk.Devices.Item {
         /// <summary>
         /// Provides operations to call the checkMemberObjects method.
         /// </summary>
-        public Command BuildCheckMemberObjectsCommand() {
+        public Command BuildCheckMemberObjectsNavCommand() {
             var command = new Command("check-member-objects");
             command.Description = "Provides operations to call the checkMemberObjects method.";
             var builder = new CheckMemberObjectsRequestBuilder(PathParameters);
@@ -91,12 +91,15 @@ namespace ApiSdk.Devices.Item {
         /// <summary>
         /// Provides operations to manage the extensions property of the microsoft.graph.device entity.
         /// </summary>
-        public Command BuildExtensionsCommand() {
+        public Command BuildExtensionsNavCommand() {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.device entity.";
             var builder = new ExtensionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -167,7 +170,7 @@ namespace ApiSdk.Devices.Item {
         /// <summary>
         /// Provides operations to call the getMemberGroups method.
         /// </summary>
-        public Command BuildGetMemberGroupsCommand() {
+        public Command BuildGetMemberGroupsNavCommand() {
             var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
             var builder = new GetMemberGroupsRequestBuilder(PathParameters);
@@ -177,7 +180,7 @@ namespace ApiSdk.Devices.Item {
         /// <summary>
         /// Provides operations to call the getMemberObjects method.
         /// </summary>
-        public Command BuildGetMemberObjectsCommand() {
+        public Command BuildGetMemberObjectsNavCommand() {
             var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
             var builder = new GetMemberObjectsRequestBuilder(PathParameters);
@@ -187,13 +190,16 @@ namespace ApiSdk.Devices.Item {
         /// <summary>
         /// Provides operations to manage the memberOf property of the microsoft.graph.device entity.
         /// </summary>
-        public Command BuildMemberOfCommand() {
+        public Command BuildMemberOfNavCommand() {
             var command = new Command("member-of");
             command.Description = "Provides operations to manage the memberOf property of the microsoft.graph.device entity.";
             var builder = new MemberOfRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGraphGroupCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildGraphGroupNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -259,40 +265,46 @@ namespace ApiSdk.Devices.Item {
         /// <summary>
         /// Provides operations to manage the registeredOwners property of the microsoft.graph.device entity.
         /// </summary>
-        public Command BuildRegisteredOwnersCommand() {
+        public Command BuildRegisteredOwnersNavCommand() {
             var command = new Command("registered-owners");
             command.Description = "Provides operations to manage the registeredOwners property of the microsoft.graph.device entity.";
             var builder = new RegisteredOwnersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGraphAppRoleAssignmentCommand());
-            command.AddCommand(builder.BuildGraphEndpointCommand());
-            command.AddCommand(builder.BuildGraphServicePrincipalCommand());
-            command.AddCommand(builder.BuildGraphUserCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildGraphAppRoleAssignmentNavCommand());
+            command.AddCommand(builder.BuildGraphEndpointNavCommand());
+            command.AddCommand(builder.BuildGraphServicePrincipalNavCommand());
+            command.AddCommand(builder.BuildGraphUserNavCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildRefNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the registeredUsers property of the microsoft.graph.device entity.
         /// </summary>
-        public Command BuildRegisteredUsersCommand() {
+        public Command BuildRegisteredUsersNavCommand() {
             var command = new Command("registered-users");
             command.Description = "Provides operations to manage the registeredUsers property of the microsoft.graph.device entity.";
             var builder = new RegisteredUsersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGraphAppRoleAssignmentCommand());
-            command.AddCommand(builder.BuildGraphEndpointCommand());
-            command.AddCommand(builder.BuildGraphServicePrincipalCommand());
-            command.AddCommand(builder.BuildGraphUserCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildGraphAppRoleAssignmentNavCommand());
+            command.AddCommand(builder.BuildGraphEndpointNavCommand());
+            command.AddCommand(builder.BuildGraphServicePrincipalNavCommand());
+            command.AddCommand(builder.BuildGraphUserNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the restore method.
         /// </summary>
-        public Command BuildRestoreCommand() {
+        public Command BuildRestoreNavCommand() {
             var command = new Command("restore");
             command.Description = "Provides operations to call the restore method.";
             var builder = new RestoreRequestBuilder(PathParameters);
@@ -302,13 +314,16 @@ namespace ApiSdk.Devices.Item {
         /// <summary>
         /// Provides operations to manage the transitiveMemberOf property of the microsoft.graph.device entity.
         /// </summary>
-        public Command BuildTransitiveMemberOfCommand() {
+        public Command BuildTransitiveMemberOfNavCommand() {
             var command = new Command("transitive-member-of");
             command.Description = "Provides operations to manage the transitiveMemberOf property of the microsoft.graph.device entity.";
             var builder = new TransitiveMemberOfRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGraphGroupCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildGraphGroupNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }

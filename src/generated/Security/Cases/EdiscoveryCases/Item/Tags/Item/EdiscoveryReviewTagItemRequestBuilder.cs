@@ -28,12 +28,15 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
         /// <summary>
         /// Provides operations to manage the childTags property of the microsoft.graph.security.ediscoveryReviewTag entity.
         /// </summary>
-        public Command BuildChildTagsCommand() {
+        public Command BuildChildTagsNavCommand() {
             var command = new Command("child-tags");
             command.Description = "Provides operations to manage the childTags property of the microsoft.graph.security.ediscoveryReviewTag entity.";
             var builder = new ChildTagsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -148,7 +151,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
         /// <summary>
         /// Provides operations to manage the parent property of the microsoft.graph.security.ediscoveryReviewTag entity.
         /// </summary>
-        public Command BuildParentCommand() {
+        public Command BuildParentNavCommand() {
             var command = new Command("parent");
             command.Description = "Provides operations to manage the parent property of the microsoft.graph.security.ediscoveryReviewTag entity.";
             var builder = new ParentRequestBuilder(PathParameters);

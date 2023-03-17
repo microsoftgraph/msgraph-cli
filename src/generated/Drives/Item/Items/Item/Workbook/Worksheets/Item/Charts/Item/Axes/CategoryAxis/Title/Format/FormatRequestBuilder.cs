@@ -79,7 +79,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
         /// <summary>
         /// Provides operations to manage the font property of the microsoft.graph.workbookChartAxisTitleFormat entity.
         /// </summary>
-        public Command BuildFontCommand() {
+        public Command BuildFontNavCommand() {
             var command = new Command("font");
             command.Description = "Provides operations to manage the font property of the microsoft.graph.workbookChartAxisTitleFormat entity.";
             var builder = new FontRequestBuilder(PathParameters);

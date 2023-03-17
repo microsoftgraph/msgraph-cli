@@ -33,26 +33,32 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item {
         /// <summary>
         /// Provides operations to manage the attachments property of the microsoft.graph.post entity.
         /// </summary>
-        public Command BuildAttachmentsCommand() {
+        public Command BuildAttachmentsNavCommand() {
             var command = new Command("attachments");
             command.Description = "Provides operations to manage the attachments property of the microsoft.graph.post entity.";
             var builder = new AttachmentsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildCreateUploadSessionCommand());
+            command.AddCommand(builder.BuildCreateUploadSessionNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the extensions property of the microsoft.graph.post entity.
         /// </summary>
-        public Command BuildExtensionsCommand() {
+        public Command BuildExtensionsNavCommand() {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.post entity.";
             var builder = new ExtensionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -60,7 +66,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item {
         /// <summary>
         /// Provides operations to call the forward method.
         /// </summary>
-        public Command BuildForwardCommand() {
+        public Command BuildForwardNavCommand() {
             var command = new Command("forward");
             command.Description = "Provides operations to call the forward method.";
             var builder = new ForwardRequestBuilder(PathParameters);
@@ -150,28 +156,31 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item {
         /// <summary>
         /// Provides operations to manage the inReplyTo property of the microsoft.graph.post entity.
         /// </summary>
-        public Command BuildInReplyToCommand() {
+        public Command BuildInReplyToNavCommand() {
             var command = new Command("in-reply-to");
             command.Description = "Provides operations to manage the inReplyTo property of the microsoft.graph.post entity.";
             var builder = new InReplyToRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAttachmentsCommand());
-            command.AddCommand(builder.BuildExtensionsCommand());
-            command.AddCommand(builder.BuildForwardCommand());
+            command.AddCommand(builder.BuildAttachmentsNavCommand());
+            command.AddCommand(builder.BuildExtensionsNavCommand());
+            command.AddCommand(builder.BuildForwardNavCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMultiValueExtendedPropertiesCommand());
-            command.AddCommand(builder.BuildReplyCommand());
-            command.AddCommand(builder.BuildSingleValueExtendedPropertiesCommand());
+            command.AddCommand(builder.BuildMultiValueExtendedPropertiesNavCommand());
+            command.AddCommand(builder.BuildReplyNavCommand());
+            command.AddCommand(builder.BuildSingleValueExtendedPropertiesNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.post entity.
         /// </summary>
-        public Command BuildMultiValueExtendedPropertiesCommand() {
+        public Command BuildMultiValueExtendedPropertiesNavCommand() {
             var command = new Command("multi-value-extended-properties");
             command.Description = "Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.post entity.";
             var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -179,7 +188,7 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item {
         /// <summary>
         /// Provides operations to call the reply method.
         /// </summary>
-        public Command BuildReplyCommand() {
+        public Command BuildReplyNavCommand() {
             var command = new Command("reply");
             command.Description = "Provides operations to call the reply method.";
             var builder = new ReplyRequestBuilder(PathParameters);
@@ -189,12 +198,15 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item.Posts.Item {
         /// <summary>
         /// Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.post entity.
         /// </summary>
-        public Command BuildSingleValueExtendedPropertiesCommand() {
+        public Command BuildSingleValueExtendedPropertiesNavCommand() {
             var command = new Command("single-value-extended-properties");
             command.Description = "Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.post entity.";
             var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

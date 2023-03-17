@@ -61,12 +61,15 @@ namespace ApiSdk.Print.Services.Item {
         /// <summary>
         /// Provides operations to manage the endpoints property of the microsoft.graph.printService entity.
         /// </summary>
-        public Command BuildEndpointsCommand() {
+        public Command BuildEndpointsNavCommand() {
             var command = new Command("endpoints");
             command.Description = "Provides operations to manage the endpoints property of the microsoft.graph.printService entity.";
             var builder = new EndpointsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

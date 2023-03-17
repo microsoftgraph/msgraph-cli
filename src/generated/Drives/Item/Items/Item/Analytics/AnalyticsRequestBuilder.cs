@@ -29,7 +29,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Analytics {
         /// <summary>
         /// Provides operations to manage the allTime property of the microsoft.graph.itemAnalytics entity.
         /// </summary>
-        public Command BuildAllTimeCommand() {
+        public Command BuildAllTimeNavCommand() {
             var command = new Command("all-time");
             command.Description = "Provides operations to manage the allTime property of the microsoft.graph.itemAnalytics entity.";
             var builder = new AllTimeRequestBuilder(PathParameters);
@@ -147,12 +147,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Analytics {
         /// <summary>
         /// Provides operations to manage the itemActivityStats property of the microsoft.graph.itemAnalytics entity.
         /// </summary>
-        public Command BuildItemActivityStatsCommand() {
+        public Command BuildItemActivityStatsNavCommand() {
             var command = new Command("item-activity-stats");
             command.Description = "Provides operations to manage the itemActivityStats property of the microsoft.graph.itemAnalytics entity.";
             var builder = new ItemActivityStatsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -160,7 +163,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Analytics {
         /// <summary>
         /// Provides operations to manage the lastSevenDays property of the microsoft.graph.itemAnalytics entity.
         /// </summary>
-        public Command BuildLastSevenDaysCommand() {
+        public Command BuildLastSevenDaysNavCommand() {
             var command = new Command("last-seven-days");
             command.Description = "Provides operations to manage the lastSevenDays property of the microsoft.graph.itemAnalytics entity.";
             var builder = new LastSevenDaysRequestBuilder(PathParameters);

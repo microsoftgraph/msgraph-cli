@@ -27,7 +27,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.FilesFolder {
         /// <summary>
         /// Provides operations to manage the media for the team entity.
         /// </summary>
-        public Command BuildContentCommand() {
+        public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the team entity.";
             var builder = new ContentRequestBuilder(PathParameters);

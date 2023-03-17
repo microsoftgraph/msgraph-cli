@@ -135,7 +135,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item {
         /// <summary>
         /// Provides operations to call the incidentReport method.
         /// </summary>
-        public Command BuildIncidentReportCommand() {
+        public Command BuildIncidentReportNavCommand() {
             var command = new Command("incident-report");
             command.Description = "Provides operations to call the incidentReport method.";
             var builder = new IncidentReportRequestBuilder(PathParameters);

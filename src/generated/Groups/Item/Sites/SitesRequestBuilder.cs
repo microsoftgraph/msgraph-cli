@@ -30,7 +30,7 @@ namespace ApiSdk.Groups.Item.Sites {
         /// <summary>
         /// Provides operations to call the add method.
         /// </summary>
-        public Command BuildAddCommand() {
+        public Command BuildAddNavCommand() {
             var command = new Command("add");
             command.Description = "Provides operations to call the add method.";
             var builder = new AddRequestBuilder(PathParameters);
@@ -40,32 +40,32 @@ namespace ApiSdk.Groups.Item.Sites {
         /// <summary>
         /// Provides operations to manage the sites property of the microsoft.graph.group entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new SiteItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAnalyticsCommand());
-            command.AddCommand(builder.BuildColumnsCommand());
-            command.AddCommand(builder.BuildContentTypesCommand());
-            command.AddCommand(builder.BuildDriveCommand());
-            command.AddCommand(builder.BuildDrivesCommand());
-            command.AddCommand(builder.BuildExternalColumnsCommand());
-            command.AddCommand(builder.BuildGetActivitiesByIntervalCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildItemsCommand());
-            command.AddCommand(builder.BuildListsCommand());
-            command.AddCommand(builder.BuildOnenoteCommand());
-            command.AddCommand(builder.BuildOperationsCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPermissionsCommand());
-            command.AddCommand(builder.BuildSitesCommand());
-            command.AddCommand(builder.BuildTermStoreCommand());
-            command.AddCommand(builder.BuildTermStoresCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildAnalyticsNavCommand());
+            commands.Add(builder.BuildColumnsNavCommand());
+            commands.Add(builder.BuildContentTypesNavCommand());
+            commands.Add(builder.BuildDriveNavCommand());
+            commands.Add(builder.BuildDrivesNavCommand());
+            commands.Add(builder.BuildExternalColumnsNavCommand());
+            commands.Add(builder.BuildGetActivitiesByIntervalNavCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildItemsNavCommand());
+            commands.Add(builder.BuildListsNavCommand());
+            commands.Add(builder.BuildOnenoteNavCommand());
+            commands.Add(builder.BuildOperationsNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildPermissionsNavCommand());
+            commands.Add(builder.BuildSitesNavCommand());
+            commands.Add(builder.BuildTermStoreNavCommand());
+            commands.Add(builder.BuildTermStoresNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -186,7 +186,7 @@ namespace ApiSdk.Groups.Item.Sites {
         /// <summary>
         /// Provides operations to call the remove method.
         /// </summary>
-        public Command BuildRemoveCommand() {
+        public Command BuildRemoveNavCommand() {
             var command = new Command("remove");
             command.Description = "Provides operations to call the remove method.";
             var builder = new RemoveRequestBuilder(PathParameters);

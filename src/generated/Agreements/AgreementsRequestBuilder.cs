@@ -27,16 +27,16 @@ namespace ApiSdk.Agreements {
         /// <summary>
         /// Provides operations to manage the collection of agreement entities.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new AgreementItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAcceptancesCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildFileCommand());
-            command.AddCommand(builder.BuildFilesCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildAcceptancesNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildFileNavCommand());
+            commands.Add(builder.BuildFilesNavCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildPatchCommand());
+            return commands;
         }
         /// <summary>
         /// Add new entity to agreements

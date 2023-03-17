@@ -44,7 +44,7 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         /// <summary>
         /// Provides operations to manage the analytics property of the microsoft.graph.site entity.
         /// </summary>
-        public Command BuildAnalyticsCommand() {
+        public Command BuildAnalyticsNavCommand() {
             var command = new Command("analytics");
             command.Description = "Provides operations to manage the analytics property of the microsoft.graph.site entity.";
             var builder = new AnalyticsRequestBuilder(PathParameters);
@@ -54,12 +54,15 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         /// <summary>
         /// Provides operations to manage the columns property of the microsoft.graph.site entity.
         /// </summary>
-        public Command BuildColumnsCommand() {
+        public Command BuildColumnsNavCommand() {
             var command = new Command("columns");
             command.Description = "Provides operations to manage the columns property of the microsoft.graph.site entity.";
             var builder = new ColumnsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -67,23 +70,26 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         /// <summary>
         /// Provides operations to manage the contentTypes property of the microsoft.graph.site entity.
         /// </summary>
-        public Command BuildContentTypesCommand() {
+        public Command BuildContentTypesNavCommand() {
             var command = new Command("content-types");
             command.Description = "Provides operations to manage the contentTypes property of the microsoft.graph.site entity.";
             var builder = new ContentTypesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAddCopyCommand());
-            command.AddCommand(builder.BuildAddCopyFromContentTypeHubCommand());
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildAddCopyFromContentTypeHubNavCommand());
+            command.AddCommand(builder.BuildAddCopyNavCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildGetCompatibleHubContentTypesCommand());
+            command.AddCommand(builder.BuildGetCompatibleHubContentTypesNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the drive property of the microsoft.graph.site entity.
         /// </summary>
-        public Command BuildDriveCommand() {
+        public Command BuildDriveNavCommand() {
             var command = new Command("drive");
             command.Description = "Provides operations to manage the drive property of the microsoft.graph.site entity.";
             var builder = new DriveRequestBuilder(PathParameters);
@@ -93,31 +99,37 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         /// <summary>
         /// Provides operations to manage the drives property of the microsoft.graph.site entity.
         /// </summary>
-        public Command BuildDrivesCommand() {
+        public Command BuildDrivesNavCommand() {
             var command = new Command("drives");
             command.Description = "Provides operations to manage the drives property of the microsoft.graph.site entity.";
             var builder = new DrivesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the externalColumns property of the microsoft.graph.site entity.
         /// </summary>
-        public Command BuildExternalColumnsCommand() {
+        public Command BuildExternalColumnsNavCommand() {
             var command = new Command("external-columns");
             command.Description = "Provides operations to manage the externalColumns property of the microsoft.graph.site entity.";
             var builder = new ExternalColumnsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the getActivitiesByInterval method.
         /// </summary>
-        public Command BuildGetActivitiesByIntervalCommand() {
+        public Command BuildGetActivitiesByIntervalNavCommand() {
             var command = new Command("get-activities-by-interval");
             command.Description = "Provides operations to call the getActivitiesByInterval method.";
             var builder = new GetActivitiesByIntervalRequestBuilder(PathParameters);
@@ -195,24 +207,30 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         /// <summary>
         /// Provides operations to manage the items property of the microsoft.graph.site entity.
         /// </summary>
-        public Command BuildItemsCommand() {
+        public Command BuildItemsNavCommand() {
             var command = new Command("items");
             command.Description = "Provides operations to manage the items property of the microsoft.graph.site entity.";
             var builder = new ItemsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the lists property of the microsoft.graph.site entity.
         /// </summary>
-        public Command BuildListsCommand() {
+        public Command BuildListsNavCommand() {
             var command = new Command("lists");
             command.Description = "Provides operations to manage the lists property of the microsoft.graph.site entity.";
             var builder = new ListsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -220,30 +238,33 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         /// <summary>
         /// Provides operations to manage the onenote property of the microsoft.graph.site entity.
         /// </summary>
-        public Command BuildOnenoteCommand() {
+        public Command BuildOnenoteNavCommand() {
             var command = new Command("onenote");
             command.Description = "Provides operations to manage the onenote property of the microsoft.graph.site entity.";
             var builder = new OnenoteRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildNotebooksCommand());
-            command.AddCommand(builder.BuildOperationsCommand());
-            command.AddCommand(builder.BuildPagesCommand());
+            command.AddCommand(builder.BuildNotebooksNavCommand());
+            command.AddCommand(builder.BuildOperationsNavCommand());
+            command.AddCommand(builder.BuildPagesNavCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildResourcesCommand());
-            command.AddCommand(builder.BuildSectionGroupsCommand());
-            command.AddCommand(builder.BuildSectionsCommand());
+            command.AddCommand(builder.BuildResourcesNavCommand());
+            command.AddCommand(builder.BuildSectionGroupsNavCommand());
+            command.AddCommand(builder.BuildSectionsNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the operations property of the microsoft.graph.site entity.
         /// </summary>
-        public Command BuildOperationsCommand() {
+        public Command BuildOperationsNavCommand() {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.site entity.";
             var builder = new OperationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -315,12 +336,15 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         /// <summary>
         /// Provides operations to manage the permissions property of the microsoft.graph.site entity.
         /// </summary>
-        public Command BuildPermissionsCommand() {
+        public Command BuildPermissionsNavCommand() {
             var command = new Command("permissions");
             command.Description = "Provides operations to manage the permissions property of the microsoft.graph.site entity.";
             var builder = new PermissionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -328,38 +352,44 @@ namespace ApiSdk.Groups.Item.Sites.Item {
         /// <summary>
         /// Provides operations to manage the sites property of the microsoft.graph.site entity.
         /// </summary>
-        public Command BuildSitesCommand() {
+        public Command BuildSitesNavCommand() {
             var command = new Command("sites");
             command.Description = "Provides operations to manage the sites property of the microsoft.graph.site entity.";
             var builder = new ApiSdk.Groups.Item.Sites.Item.Sites.SitesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the termStore property of the microsoft.graph.site entity.
         /// </summary>
-        public Command BuildTermStoreCommand() {
+        public Command BuildTermStoreNavCommand() {
             var command = new Command("term-store");
             command.Description = "Provides operations to manage the termStore property of the microsoft.graph.site entity.";
             var builder = new TermStoreRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildGroupsCommand());
+            command.AddCommand(builder.BuildGroupsNavCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSetsCommand());
+            command.AddCommand(builder.BuildSetsNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the termStores property of the microsoft.graph.site entity.
         /// </summary>
-        public Command BuildTermStoresCommand() {
+        public Command BuildTermStoresNavCommand() {
             var command = new Command("term-stores");
             command.Description = "Provides operations to manage the termStores property of the microsoft.graph.site entity.";
             var builder = new TermStoresRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

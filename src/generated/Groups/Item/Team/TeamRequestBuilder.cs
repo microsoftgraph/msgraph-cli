@@ -43,19 +43,22 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to manage the allChannels property of the microsoft.graph.team entity.
         /// </summary>
-        public Command BuildAllChannelsCommand() {
+        public Command BuildAllChannelsNavCommand() {
             var command = new Command("all-channels");
             command.Description = "Provides operations to manage the allChannels property of the microsoft.graph.team entity.";
             var builder = new AllChannelsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the archive method.
         /// </summary>
-        public Command BuildArchiveCommand() {
+        public Command BuildArchiveNavCommand() {
             var command = new Command("archive");
             command.Description = "Provides operations to call the archive method.";
             var builder = new ArchiveRequestBuilder(PathParameters);
@@ -65,21 +68,24 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to manage the channels property of the microsoft.graph.team entity.
         /// </summary>
-        public Command BuildChannelsCommand() {
+        public Command BuildChannelsNavCommand() {
             var command = new Command("channels");
             command.Description = "Provides operations to manage the channels property of the microsoft.graph.team entity.";
             var builder = new ChannelsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildGetAllMessagesCommand());
+            command.AddCommand(builder.BuildGetAllMessagesNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the clone method.
         /// </summary>
-        public Command BuildCloneCommand() {
+        public Command BuildCloneNavCommand() {
             var command = new Command("clone");
             command.Description = "Provides operations to call the clone method.";
             var builder = new CloneRequestBuilder(PathParameters);
@@ -89,7 +95,7 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to call the completeMigration method.
         /// </summary>
-        public Command BuildCompleteMigrationCommand() {
+        public Command BuildCompleteMigrationNavCommand() {
             var command = new Command("complete-migration");
             command.Description = "Provides operations to call the completeMigration method.";
             var builder = new CompleteMigrationRequestBuilder(PathParameters);
@@ -195,7 +201,7 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to manage the group property of the microsoft.graph.team entity.
         /// </summary>
-        public Command BuildGroupCommand() {
+        public Command BuildGroupNavCommand() {
             var command = new Command("group");
             command.Description = "Provides operations to manage the group property of the microsoft.graph.team entity.";
             var builder = new GroupRequestBuilder(PathParameters);
@@ -205,24 +211,30 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to manage the incomingChannels property of the microsoft.graph.team entity.
         /// </summary>
-        public Command BuildIncomingChannelsCommand() {
+        public Command BuildIncomingChannelsNavCommand() {
             var command = new Command("incoming-channels");
             command.Description = "Provides operations to manage the incomingChannels property of the microsoft.graph.team entity.";
             var builder = new IncomingChannelsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the installedApps property of the microsoft.graph.team entity.
         /// </summary>
-        public Command BuildInstalledAppsCommand() {
+        public Command BuildInstalledAppsNavCommand() {
             var command = new Command("installed-apps");
             command.Description = "Provides operations to manage the installedApps property of the microsoft.graph.team entity.";
             var builder = new InstalledAppsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -230,13 +242,16 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to manage the members property of the microsoft.graph.team entity.
         /// </summary>
-        public Command BuildMembersCommand() {
+        public Command BuildMembersNavCommand() {
             var command = new Command("members");
             command.Description = "Provides operations to manage the members property of the microsoft.graph.team entity.";
             var builder = new MembersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAddCommand());
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildAddNavCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -244,12 +259,15 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to manage the operations property of the microsoft.graph.team entity.
         /// </summary>
-        public Command BuildOperationsCommand() {
+        public Command BuildOperationsNavCommand() {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.team entity.";
             var builder = new OperationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -316,11 +334,11 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to manage the photo property of the microsoft.graph.team entity.
         /// </summary>
-        public Command BuildPhotoCommand() {
+        public Command BuildPhotoNavCommand() {
             var command = new Command("photo");
             command.Description = "Provides operations to manage the photo property of the microsoft.graph.team entity.";
             var builder = new PhotoRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildContentCommand());
+            command.AddCommand(builder.BuildContentNavCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
@@ -329,50 +347,50 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to manage the primaryChannel property of the microsoft.graph.team entity.
         /// </summary>
-        public Command BuildPrimaryChannelCommand() {
+        public Command BuildPrimaryChannelNavCommand() {
             var command = new Command("primary-channel");
             command.Description = "Provides operations to manage the primaryChannel property of the microsoft.graph.team entity.";
             var builder = new PrimaryChannelRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCompleteMigrationCommand());
+            command.AddCommand(builder.BuildCompleteMigrationNavCommand());
             command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameCommand());
-            command.AddCommand(builder.BuildFilesFolderCommand());
+            command.AddCommand(builder.BuildDoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalNameNavCommand());
+            command.AddCommand(builder.BuildFilesFolderNavCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMembersCommand());
-            command.AddCommand(builder.BuildMessagesCommand());
+            command.AddCommand(builder.BuildMembersNavCommand());
+            command.AddCommand(builder.BuildMessagesNavCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildProvisionEmailCommand());
-            command.AddCommand(builder.BuildRemoveEmailCommand());
-            command.AddCommand(builder.BuildSharedWithTeamsCommand());
-            command.AddCommand(builder.BuildTabsCommand());
+            command.AddCommand(builder.BuildProvisionEmailNavCommand());
+            command.AddCommand(builder.BuildRemoveEmailNavCommand());
+            command.AddCommand(builder.BuildSharedWithTeamsNavCommand());
+            command.AddCommand(builder.BuildTabsNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the schedule property of the microsoft.graph.team entity.
         /// </summary>
-        public Command BuildScheduleCommand() {
+        public Command BuildScheduleNavCommand() {
             var command = new Command("schedule");
             command.Description = "Provides operations to manage the schedule property of the microsoft.graph.team entity.";
             var builder = new ScheduleRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildOfferShiftRequestsCommand());
-            command.AddCommand(builder.BuildOpenShiftChangeRequestsCommand());
-            command.AddCommand(builder.BuildOpenShiftsCommand());
+            command.AddCommand(builder.BuildOfferShiftRequestsNavCommand());
+            command.AddCommand(builder.BuildOpenShiftChangeRequestsNavCommand());
+            command.AddCommand(builder.BuildOpenShiftsNavCommand());
             command.AddCommand(builder.BuildPutCommand());
-            command.AddCommand(builder.BuildSchedulingGroupsCommand());
-            command.AddCommand(builder.BuildShareCommand());
-            command.AddCommand(builder.BuildShiftsCommand());
-            command.AddCommand(builder.BuildSwapShiftsChangeRequestsCommand());
-            command.AddCommand(builder.BuildTimeOffReasonsCommand());
-            command.AddCommand(builder.BuildTimeOffRequestsCommand());
-            command.AddCommand(builder.BuildTimesOffCommand());
+            command.AddCommand(builder.BuildSchedulingGroupsNavCommand());
+            command.AddCommand(builder.BuildShareNavCommand());
+            command.AddCommand(builder.BuildShiftsNavCommand());
+            command.AddCommand(builder.BuildSwapShiftsChangeRequestsNavCommand());
+            command.AddCommand(builder.BuildTimeOffReasonsNavCommand());
+            command.AddCommand(builder.BuildTimeOffRequestsNavCommand());
+            command.AddCommand(builder.BuildTimesOffNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the sendActivityNotification method.
         /// </summary>
-        public Command BuildSendActivityNotificationCommand() {
+        public Command BuildSendActivityNotificationNavCommand() {
             var command = new Command("send-activity-notification");
             command.Description = "Provides operations to call the sendActivityNotification method.";
             var builder = new SendActivityNotificationRequestBuilder(PathParameters);
@@ -382,12 +400,15 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to manage the tags property of the microsoft.graph.team entity.
         /// </summary>
-        public Command BuildTagsCommand() {
+        public Command BuildTagsNavCommand() {
             var command = new Command("tags");
             command.Description = "Provides operations to manage the tags property of the microsoft.graph.team entity.";
             var builder = new TagsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -395,7 +416,7 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to manage the template property of the microsoft.graph.team entity.
         /// </summary>
-        public Command BuildTemplateCommand() {
+        public Command BuildTemplateNavCommand() {
             var command = new Command("template");
             command.Description = "Provides operations to manage the template property of the microsoft.graph.team entity.";
             var builder = new TemplateRequestBuilder(PathParameters);
@@ -405,7 +426,7 @@ namespace ApiSdk.Groups.Item.Team {
         /// <summary>
         /// Provides operations to call the unarchive method.
         /// </summary>
-        public Command BuildUnarchiveCommand() {
+        public Command BuildUnarchiveNavCommand() {
             var command = new Command("unarchive");
             command.Description = "Provides operations to call the unarchive method.";
             var builder = new UnarchiveRequestBuilder(PathParameters);

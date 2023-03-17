@@ -27,12 +27,15 @@ namespace ApiSdk.Me.OnlineMeetings.Item.AttendanceReports.Item {
         /// <summary>
         /// Provides operations to manage the attendanceRecords property of the microsoft.graph.meetingAttendanceReport entity.
         /// </summary>
-        public Command BuildAttendanceRecordsCommand() {
+        public Command BuildAttendanceRecordsNavCommand() {
             var command = new Command("attendance-records");
             command.Description = "Provides operations to manage the attendanceRecords property of the microsoft.graph.meetingAttendanceReport entity.";
             var builder = new AttendanceRecordsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

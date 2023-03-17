@@ -82,14 +82,14 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
         /// <summary>
         /// Provides operations to manage the format property of the microsoft.graph.workbookChartAxis entity.
         /// </summary>
-        public Command BuildFormatCommand() {
+        public Command BuildFormatNavCommand() {
             var command = new Command("format");
             command.Description = "Provides operations to manage the format property of the microsoft.graph.workbookChartAxis entity.";
             var builder = new FormatRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildFontCommand());
+            command.AddCommand(builder.BuildFontNavCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildLineCommand());
+            command.AddCommand(builder.BuildLineNavCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
@@ -177,12 +177,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
         /// <summary>
         /// Provides operations to manage the majorGridlines property of the microsoft.graph.workbookChartAxis entity.
         /// </summary>
-        public Command BuildMajorGridlinesCommand() {
+        public Command BuildMajorGridlinesNavCommand() {
             var command = new Command("major-gridlines");
             command.Description = "Provides operations to manage the majorGridlines property of the microsoft.graph.workbookChartAxis entity.";
             var builder = new MajorGridlinesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildFormatCommand());
+            command.AddCommand(builder.BuildFormatNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
@@ -190,12 +190,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
         /// <summary>
         /// Provides operations to manage the minorGridlines property of the microsoft.graph.workbookChartAxis entity.
         /// </summary>
-        public Command BuildMinorGridlinesCommand() {
+        public Command BuildMinorGridlinesNavCommand() {
             var command = new Command("minor-gridlines");
             command.Description = "Provides operations to manage the minorGridlines property of the microsoft.graph.workbookChartAxis entity.";
             var builder = new MinorGridlinesRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildFormatCommand());
+            command.AddCommand(builder.BuildFormatNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
@@ -280,12 +280,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
         /// <summary>
         /// Provides operations to manage the title property of the microsoft.graph.workbookChartAxis entity.
         /// </summary>
-        public Command BuildTitleCommand() {
+        public Command BuildTitleNavCommand() {
             var command = new Command("title");
             command.Description = "Provides operations to manage the title property of the microsoft.graph.workbookChartAxis entity.";
             var builder = new TitleRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildFormatCommand());
+            command.AddCommand(builder.BuildFormatNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;

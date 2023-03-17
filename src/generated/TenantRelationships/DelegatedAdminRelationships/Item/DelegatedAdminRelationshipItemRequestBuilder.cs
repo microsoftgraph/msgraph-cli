@@ -29,12 +29,15 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item {
         /// <summary>
         /// Provides operations to manage the accessAssignments property of the microsoft.graph.delegatedAdminRelationship entity.
         /// </summary>
-        public Command BuildAccessAssignmentsCommand() {
+        public Command BuildAccessAssignmentsNavCommand() {
             var command = new Command("access-assignments");
             command.Description = "Provides operations to manage the accessAssignments property of the microsoft.graph.delegatedAdminRelationship entity.";
             var builder = new AccessAssignmentsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -138,12 +141,15 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item {
         /// <summary>
         /// Provides operations to manage the operations property of the microsoft.graph.delegatedAdminRelationship entity.
         /// </summary>
-        public Command BuildOperationsCommand() {
+        public Command BuildOperationsNavCommand() {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.delegatedAdminRelationship entity.";
             var builder = new OperationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -209,12 +215,15 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item {
         /// <summary>
         /// Provides operations to manage the requests property of the microsoft.graph.delegatedAdminRelationship entity.
         /// </summary>
-        public Command BuildRequestsCommand() {
+        public Command BuildRequestsNavCommand() {
             var command = new Command("requests");
             command.Description = "Provides operations to manage the requests property of the microsoft.graph.delegatedAdminRelationship entity.";
             var builder = new RequestsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

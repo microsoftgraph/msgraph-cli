@@ -30,7 +30,7 @@ namespace ApiSdk.Branding {
         /// <summary>
         /// Provides operations to manage the media for the organizationalBranding entity.
         /// </summary>
-        public Command BuildBackgroundImageCommand() {
+        public Command BuildBackgroundImageNavCommand() {
             var command = new Command("background-image");
             command.Description = "Provides operations to manage the media for the organizationalBranding entity.";
             var builder = new BackgroundImageRequestBuilder(PathParameters);
@@ -41,7 +41,7 @@ namespace ApiSdk.Branding {
         /// <summary>
         /// Provides operations to manage the media for the organizationalBranding entity.
         /// </summary>
-        public Command BuildBannerLogoCommand() {
+        public Command BuildBannerLogoNavCommand() {
             var command = new Command("banner-logo");
             command.Description = "Provides operations to manage the media for the organizationalBranding entity.";
             var builder = new BannerLogoRequestBuilder(PathParameters);
@@ -108,12 +108,15 @@ namespace ApiSdk.Branding {
         /// <summary>
         /// Provides operations to manage the localizations property of the microsoft.graph.organizationalBranding entity.
         /// </summary>
-        public Command BuildLocalizationsCommand() {
+        public Command BuildLocalizationsNavCommand() {
             var command = new Command("localizations");
             command.Description = "Provides operations to manage the localizations property of the microsoft.graph.organizationalBranding entity.";
             var builder = new LocalizationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -173,7 +176,7 @@ namespace ApiSdk.Branding {
         /// <summary>
         /// Provides operations to manage the media for the organizationalBranding entity.
         /// </summary>
-        public Command BuildSquareLogoCommand() {
+        public Command BuildSquareLogoNavCommand() {
             var command = new Command("square-logo");
             command.Description = "Provides operations to manage the media for the organizationalBranding entity.";
             var builder = new SquareLogoRequestBuilder(PathParameters);

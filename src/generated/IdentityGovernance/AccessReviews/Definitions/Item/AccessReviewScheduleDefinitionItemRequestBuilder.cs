@@ -124,12 +124,15 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
         /// <summary>
         /// Provides operations to manage the instances property of the microsoft.graph.accessReviewScheduleDefinition entity.
         /// </summary>
-        public Command BuildInstancesCommand() {
+        public Command BuildInstancesNavCommand() {
             var command = new Command("instances");
             command.Description = "Provides operations to manage the instances property of the microsoft.graph.accessReviewScheduleDefinition entity.";
             var builder = new InstancesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -195,7 +198,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
         /// <summary>
         /// Provides operations to call the stop method.
         /// </summary>
-        public Command BuildStopCommand() {
+        public Command BuildStopNavCommand() {
             var command = new Command("stop");
             command.Description = "Provides operations to call the stop method.";
             var builder = new StopRequestBuilder(PathParameters);

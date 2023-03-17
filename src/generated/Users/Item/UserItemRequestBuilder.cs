@@ -94,38 +94,47 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to manage the activities property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildActivitiesCommand() {
+        public Command BuildActivitiesNavCommand() {
             var command = new Command("activities");
             command.Description = "Provides operations to manage the activities property of the microsoft.graph.user entity.";
             var builder = new ActivitiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRecentCommand());
+            command.AddCommand(builder.BuildRecentNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the agreementAcceptances property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildAgreementAcceptancesCommand() {
+        public Command BuildAgreementAcceptancesNavCommand() {
             var command = new Command("agreement-acceptances");
             command.Description = "Provides operations to manage the agreementAcceptances property of the microsoft.graph.user entity.";
             var builder = new AgreementAcceptancesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the appRoleAssignments property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildAppRoleAssignmentsCommand() {
+        public Command BuildAppRoleAssignmentsNavCommand() {
             var command = new Command("app-role-assignments");
             command.Description = "Provides operations to manage the appRoleAssignments property of the microsoft.graph.user entity.";
             var builder = new AppRoleAssignmentsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -133,7 +142,7 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to call the assignLicense method.
         /// </summary>
-        public Command BuildAssignLicenseCommand() {
+        public Command BuildAssignLicenseNavCommand() {
             var command = new Command("assign-license");
             command.Description = "Provides operations to call the assignLicense method.";
             var builder = new AssignLicenseRequestBuilder(PathParameters);
@@ -143,64 +152,70 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to manage the authentication property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildAuthenticationCommand() {
+        public Command BuildAuthenticationNavCommand() {
             var command = new Command("authentication");
             command.Description = "Provides operations to manage the authentication property of the microsoft.graph.user entity.";
             var builder = new AuthenticationRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildEmailMethodsCommand());
-            command.AddCommand(builder.BuildFido2MethodsCommand());
+            command.AddCommand(builder.BuildEmailMethodsNavCommand());
+            command.AddCommand(builder.BuildFido2MethodsNavCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMethodsCommand());
-            command.AddCommand(builder.BuildMicrosoftAuthenticatorMethodsCommand());
-            command.AddCommand(builder.BuildOperationsCommand());
-            command.AddCommand(builder.BuildPasswordMethodsCommand());
+            command.AddCommand(builder.BuildMethodsNavCommand());
+            command.AddCommand(builder.BuildMicrosoftAuthenticatorMethodsNavCommand());
+            command.AddCommand(builder.BuildOperationsNavCommand());
+            command.AddCommand(builder.BuildPasswordMethodsNavCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPhoneMethodsCommand());
-            command.AddCommand(builder.BuildSoftwareOathMethodsCommand());
-            command.AddCommand(builder.BuildTemporaryAccessPassMethodsCommand());
-            command.AddCommand(builder.BuildWindowsHelloForBusinessMethodsCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to manage the calendar property of the microsoft.graph.user entity.
-        /// </summary>
-        public Command BuildCalendarCommand() {
-            var command = new Command("calendar");
-            command.Description = "Provides operations to manage the calendar property of the microsoft.graph.user entity.";
-            var builder = new CalendarRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCalendarPermissionsCommand());
-            command.AddCommand(builder.BuildCalendarViewCommand());
-            command.AddCommand(builder.BuildEventsCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildGetScheduleCommand());
-            command.AddCommand(builder.BuildMultiValueExtendedPropertiesCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSingleValueExtendedPropertiesCommand());
+            command.AddCommand(builder.BuildPhoneMethodsNavCommand());
+            command.AddCommand(builder.BuildSoftwareOathMethodsNavCommand());
+            command.AddCommand(builder.BuildTemporaryAccessPassMethodsNavCommand());
+            command.AddCommand(builder.BuildWindowsHelloForBusinessMethodsNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the calendarGroups property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildCalendarGroupsCommand() {
+        public Command BuildCalendarGroupsNavCommand() {
             var command = new Command("calendar-groups");
             command.Description = "Provides operations to manage the calendarGroups property of the microsoft.graph.user entity.";
             var builder = new CalendarGroupsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
+        /// Provides operations to manage the calendar property of the microsoft.graph.user entity.
+        /// </summary>
+        public Command BuildCalendarNavCommand() {
+            var command = new Command("calendar");
+            command.Description = "Provides operations to manage the calendar property of the microsoft.graph.user entity.";
+            var builder = new CalendarRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildCalendarPermissionsNavCommand());
+            command.AddCommand(builder.BuildCalendarViewNavCommand());
+            command.AddCommand(builder.BuildEventsNavCommand());
+            command.AddCommand(builder.BuildGetCommand());
+            command.AddCommand(builder.BuildGetScheduleNavCommand());
+            command.AddCommand(builder.BuildMultiValueExtendedPropertiesNavCommand());
+            command.AddCommand(builder.BuildPatchCommand());
+            command.AddCommand(builder.BuildSingleValueExtendedPropertiesNavCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the calendars property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildCalendarsCommand() {
+        public Command BuildCalendarsNavCommand() {
             var command = new Command("calendars");
             command.Description = "Provides operations to manage the calendars property of the microsoft.graph.user entity.";
             var builder = new CalendarsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -208,20 +223,23 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to manage the calendarView property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildCalendarViewCommand() {
+        public Command BuildCalendarViewNavCommand() {
             var command = new Command("calendar-view");
             command.Description = "Provides operations to manage the calendarView property of the microsoft.graph.user entity.";
             var builder = new CalendarViewRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildDeltaNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the changePassword method.
         /// </summary>
-        public Command BuildChangePasswordCommand() {
+        public Command BuildChangePasswordNavCommand() {
             var command = new Command("change-password");
             command.Description = "Provides operations to call the changePassword method.";
             var builder = new ChangePasswordRequestBuilder(PathParameters);
@@ -231,21 +249,24 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to manage the chats property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildChatsCommand() {
+        public Command BuildChatsNavCommand() {
             var command = new Command("chats");
             command.Description = "Provides operations to manage the chats property of the microsoft.graph.user entity.";
             var builder = new ChatsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildGetAllMessagesCommand());
+            command.AddCommand(builder.BuildGetAllMessagesNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the checkMemberGroups method.
         /// </summary>
-        public Command BuildCheckMemberGroupsCommand() {
+        public Command BuildCheckMemberGroupsNavCommand() {
             var command = new Command("check-member-groups");
             command.Description = "Provides operations to call the checkMemberGroups method.";
             var builder = new CheckMemberGroupsRequestBuilder(PathParameters);
@@ -255,7 +276,7 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to call the checkMemberObjects method.
         /// </summary>
-        public Command BuildCheckMemberObjectsCommand() {
+        public Command BuildCheckMemberObjectsNavCommand() {
             var command = new Command("check-member-objects");
             command.Description = "Provides operations to call the checkMemberObjects method.";
             var builder = new CheckMemberObjectsRequestBuilder(PathParameters);
@@ -265,41 +286,50 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to manage the contactFolders property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildContactFoldersCommand() {
+        public Command BuildContactFoldersNavCommand() {
             var command = new Command("contact-folders");
             command.Description = "Provides operations to manage the contactFolders property of the microsoft.graph.user entity.";
             var builder = new ContactFoldersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
+            command.AddCommand(builder.BuildDeltaNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the contacts property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildContactsCommand() {
+        public Command BuildContactsNavCommand() {
             var command = new Command("contacts");
             command.Description = "Provides operations to manage the contacts property of the microsoft.graph.user entity.";
             var builder = new ContactsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
+            command.AddCommand(builder.BuildDeltaNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the createdObjects property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildCreatedObjectsCommand() {
+        public Command BuildCreatedObjectsNavCommand() {
             var command = new Command("created-objects");
             command.Description = "Provides operations to manage the createdObjects property of the microsoft.graph.user entity.";
             var builder = new CreatedObjectsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGraphServicePrincipalCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildGraphServicePrincipalNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -341,12 +371,15 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to manage the deviceManagementTroubleshootingEvents property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildDeviceManagementTroubleshootingEventsCommand() {
+        public Command BuildDeviceManagementTroubleshootingEventsNavCommand() {
             var command = new Command("device-management-troubleshooting-events");
             command.Description = "Provides operations to manage the deviceManagementTroubleshootingEvents property of the microsoft.graph.user entity.";
             var builder = new DeviceManagementTroubleshootingEventsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -354,21 +387,24 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to manage the directReports property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildDirectReportsCommand() {
+        public Command BuildDirectReportsNavCommand() {
             var command = new Command("direct-reports");
             command.Description = "Provides operations to manage the directReports property of the microsoft.graph.user entity.";
             var builder = new DirectReportsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGraphOrgContactCommand());
-            command.AddCommand(builder.BuildGraphUserCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildGraphOrgContactNavCommand());
+            command.AddCommand(builder.BuildGraphUserNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the drive property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildDriveCommand() {
+        public Command BuildDriveNavCommand() {
             var command = new Command("drive");
             command.Description = "Provides operations to manage the drive property of the microsoft.graph.user entity.";
             var builder = new DriveRequestBuilder(PathParameters);
@@ -378,33 +414,39 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to manage the drives property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildDrivesCommand() {
+        public Command BuildDrivesNavCommand() {
             var command = new Command("drives");
             command.Description = "Provides operations to manage the drives property of the microsoft.graph.user entity.";
             var builder = new DrivesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the events property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildEventsCommand() {
+        public Command BuildEventsNavCommand() {
             var command = new Command("events");
             command.Description = "Provides operations to manage the events property of the microsoft.graph.user entity.";
             var builder = new EventsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
+            command.AddCommand(builder.BuildDeltaNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the exportDeviceAndAppManagementData method.
         /// </summary>
-        public Command BuildExportDeviceAndAppManagementDataCommand() {
+        public Command BuildExportDeviceAndAppManagementDataNavCommand() {
             var command = new Command("export-device-and-app-management-data");
             command.Description = "Provides operations to call the exportDeviceAndAppManagementData method.";
             var builder = new ExportDeviceAndAppManagementDataRequestBuilder(PathParameters);
@@ -414,7 +456,7 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to call the exportPersonalData method.
         /// </summary>
-        public Command BuildExportPersonalDataCommand() {
+        public Command BuildExportPersonalDataNavCommand() {
             var command = new Command("export-personal-data");
             command.Description = "Provides operations to call the exportPersonalData method.";
             var builder = new ExportPersonalDataRequestBuilder(PathParameters);
@@ -424,12 +466,15 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to manage the extensions property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildExtensionsCommand() {
+        public Command BuildExtensionsNavCommand() {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.user entity.";
             var builder = new ExtensionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -437,7 +482,7 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to call the findMeetingTimes method.
         /// </summary>
-        public Command BuildFindMeetingTimesCommand() {
+        public Command BuildFindMeetingTimesNavCommand() {
             var command = new Command("find-meeting-times");
             command.Description = "Provides operations to call the findMeetingTimes method.";
             var builder = new FindMeetingTimesRequestBuilder(PathParameters);
@@ -447,12 +492,15 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to manage the followedSites property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildFollowedSitesCommand() {
+        public Command BuildFollowedSitesNavCommand() {
             var command = new Command("followed-sites");
             command.Description = "Provides operations to manage the followedSites property of the microsoft.graph.user entity.";
             var builder = new FollowedSitesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -522,7 +570,7 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to call the getMailTips method.
         /// </summary>
-        public Command BuildGetMailTipsCommand() {
+        public Command BuildGetMailTipsNavCommand() {
             var command = new Command("get-mail-tips");
             command.Description = "Provides operations to call the getMailTips method.";
             var builder = new GetMailTipsRequestBuilder(PathParameters);
@@ -532,7 +580,7 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to call the getManagedAppDiagnosticStatuses method.
         /// </summary>
-        public Command BuildGetManagedAppDiagnosticStatusesCommand() {
+        public Command BuildGetManagedAppDiagnosticStatusesNavCommand() {
             var command = new Command("get-managed-app-diagnostic-statuses");
             command.Description = "Provides operations to call the getManagedAppDiagnosticStatuses method.";
             var builder = new GetManagedAppDiagnosticStatusesRequestBuilder(PathParameters);
@@ -542,7 +590,7 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to call the getManagedAppPolicies method.
         /// </summary>
-        public Command BuildGetManagedAppPoliciesCommand() {
+        public Command BuildGetManagedAppPoliciesNavCommand() {
             var command = new Command("get-managed-app-policies");
             command.Description = "Provides operations to call the getManagedAppPolicies method.";
             var builder = new GetManagedAppPoliciesRequestBuilder(PathParameters);
@@ -552,7 +600,7 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to call the getManagedDevicesWithAppFailures method.
         /// </summary>
-        public Command BuildGetManagedDevicesWithAppFailuresCommand() {
+        public Command BuildGetManagedDevicesWithAppFailuresNavCommand() {
             var command = new Command("get-managed-devices-with-app-failures");
             command.Description = "Provides operations to call the getManagedDevicesWithAppFailures method.";
             var builder = new GetManagedDevicesWithAppFailuresRequestBuilder(PathParameters);
@@ -562,7 +610,7 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to call the getMemberGroups method.
         /// </summary>
-        public Command BuildGetMemberGroupsCommand() {
+        public Command BuildGetMemberGroupsNavCommand() {
             var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
             var builder = new GetMemberGroupsRequestBuilder(PathParameters);
@@ -572,7 +620,7 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to call the getMemberObjects method.
         /// </summary>
-        public Command BuildGetMemberObjectsCommand() {
+        public Command BuildGetMemberObjectsNavCommand() {
             var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
             var builder = new GetMemberObjectsRequestBuilder(PathParameters);
@@ -582,53 +630,59 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to manage the inferenceClassification property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildInferenceClassificationCommand() {
+        public Command BuildInferenceClassificationNavCommand() {
             var command = new Command("inference-classification");
             command.Description = "Provides operations to manage the inferenceClassification property of the microsoft.graph.user entity.";
             var builder = new InferenceClassificationRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildOverridesCommand());
+            command.AddCommand(builder.BuildOverridesNavCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the insights property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildInsightsCommand() {
+        public Command BuildInsightsNavCommand() {
             var command = new Command("insights");
             command.Description = "Provides operations to manage the insights property of the microsoft.graph.user entity.";
             var builder = new InsightsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSharedCommand());
-            command.AddCommand(builder.BuildTrendingCommand());
-            command.AddCommand(builder.BuildUsedCommand());
+            command.AddCommand(builder.BuildSharedNavCommand());
+            command.AddCommand(builder.BuildTrendingNavCommand());
+            command.AddCommand(builder.BuildUsedNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the joinedTeams property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildJoinedTeamsCommand() {
+        public Command BuildJoinedTeamsNavCommand() {
             var command = new Command("joined-teams");
             command.Description = "Provides operations to manage the joinedTeams property of the microsoft.graph.user entity.";
             var builder = new JoinedTeamsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildGetAllMessagesCommand());
+            command.AddCommand(builder.BuildGetAllMessagesNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the licenseDetails property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildLicenseDetailsCommand() {
+        public Command BuildLicenseDetailsNavCommand() {
             var command = new Command("license-details");
             command.Description = "Provides operations to manage the licenseDetails property of the microsoft.graph.user entity.";
             var builder = new LicenseDetailsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -636,38 +690,47 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to manage the mailFolders property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildMailFoldersCommand() {
+        public Command BuildMailFoldersNavCommand() {
             var command = new Command("mail-folders");
             command.Description = "Provides operations to manage the mailFolders property of the microsoft.graph.user entity.";
             var builder = new MailFoldersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
+            command.AddCommand(builder.BuildDeltaNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the managedAppRegistrations property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildManagedAppRegistrationsCommand() {
+        public Command BuildManagedAppRegistrationsNavCommand() {
             var command = new Command("managed-app-registrations");
             command.Description = "Provides operations to manage the managedAppRegistrations property of the microsoft.graph.user entity.";
             var builder = new ManagedAppRegistrationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the managedDevices property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildManagedDevicesCommand() {
+        public Command BuildManagedDevicesNavCommand() {
             var command = new Command("managed-devices");
             command.Description = "Provides operations to manage the managedDevices property of the microsoft.graph.user entity.";
             var builder = new ManagedDevicesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -675,125 +738,143 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to manage the manager property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildManagerCommand() {
+        public Command BuildManagerNavCommand() {
             var command = new Command("manager");
             command.Description = "Provides operations to manage the manager property of the microsoft.graph.user entity.";
             var builder = new ManagerRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildRefNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the memberOf property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildMemberOfCommand() {
+        public Command BuildMemberOfNavCommand() {
             var command = new Command("member-of");
             command.Description = "Provides operations to manage the memberOf property of the microsoft.graph.user entity.";
             var builder = new MemberOfRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGraphGroupCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildGraphGroupNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the messages property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildMessagesCommand() {
+        public Command BuildMessagesNavCommand() {
             var command = new Command("messages");
             command.Description = "Provides operations to manage the messages property of the microsoft.graph.user entity.";
             var builder = new MessagesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
+            command.AddCommand(builder.BuildDeltaNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the oauth2PermissionGrants property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildOauth2PermissionGrantsCommand() {
+        public Command BuildOauth2PermissionGrantsNavCommand() {
             var command = new Command("oauth2-permission-grants");
             command.Description = "Provides operations to manage the oauth2PermissionGrants property of the microsoft.graph.user entity.";
             var builder = new Oauth2PermissionGrantsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the onenote property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildOnenoteCommand() {
+        public Command BuildOnenoteNavCommand() {
             var command = new Command("onenote");
             command.Description = "Provides operations to manage the onenote property of the microsoft.graph.user entity.";
             var builder = new OnenoteRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildNotebooksCommand());
-            command.AddCommand(builder.BuildOperationsCommand());
-            command.AddCommand(builder.BuildPagesCommand());
+            command.AddCommand(builder.BuildNotebooksNavCommand());
+            command.AddCommand(builder.BuildOperationsNavCommand());
+            command.AddCommand(builder.BuildPagesNavCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildResourcesCommand());
-            command.AddCommand(builder.BuildSectionGroupsCommand());
-            command.AddCommand(builder.BuildSectionsCommand());
+            command.AddCommand(builder.BuildResourcesNavCommand());
+            command.AddCommand(builder.BuildSectionGroupsNavCommand());
+            command.AddCommand(builder.BuildSectionsNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the onlineMeetings property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildOnlineMeetingsCommand() {
+        public Command BuildOnlineMeetingsNavCommand() {
             var command = new Command("online-meetings");
             command.Description = "Provides operations to manage the onlineMeetings property of the microsoft.graph.user entity.";
             var builder = new OnlineMeetingsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildCreateOrGetCommand());
+            command.AddCommand(builder.BuildCreateOrGetNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the outlook property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildOutlookCommand() {
+        public Command BuildOutlookNavCommand() {
             var command = new Command("outlook");
             command.Description = "Provides operations to manage the outlook property of the microsoft.graph.user entity.";
             var builder = new OutlookRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMasterCategoriesCommand());
-            command.AddCommand(builder.BuildSupportedLanguagesCommand());
-            command.AddCommand(builder.BuildSupportedTimeZonesCommand());
+            command.AddCommand(builder.BuildMasterCategoriesNavCommand());
+            command.AddCommand(builder.BuildSupportedLanguagesNavCommand());
+            command.AddCommand(builder.BuildSupportedTimeZonesNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the ownedDevices property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildOwnedDevicesCommand() {
+        public Command BuildOwnedDevicesNavCommand() {
             var command = new Command("owned-devices");
             command.Description = "Provides operations to manage the ownedDevices property of the microsoft.graph.user entity.";
             var builder = new OwnedDevicesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGraphAppRoleAssignmentCommand());
-            command.AddCommand(builder.BuildGraphDeviceCommand());
-            command.AddCommand(builder.BuildGraphEndpointCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildGraphAppRoleAssignmentNavCommand());
+            command.AddCommand(builder.BuildGraphDeviceNavCommand());
+            command.AddCommand(builder.BuildGraphEndpointNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the ownedObjects property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildOwnedObjectsCommand() {
+        public Command BuildOwnedObjectsNavCommand() {
             var command = new Command("owned-objects");
             command.Description = "Provides operations to manage the ownedObjects property of the microsoft.graph.user entity.";
             var builder = new OwnedObjectsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGraphApplicationCommand());
-            command.AddCommand(builder.BuildGraphGroupCommand());
-            command.AddCommand(builder.BuildGraphServicePrincipalCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildGraphApplicationNavCommand());
+            command.AddCommand(builder.BuildGraphGroupNavCommand());
+            command.AddCommand(builder.BuildGraphServicePrincipalNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -859,23 +940,26 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to manage the people property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildPeopleCommand() {
+        public Command BuildPeopleNavCommand() {
             var command = new Command("people");
             command.Description = "Provides operations to manage the people property of the microsoft.graph.user entity.";
             var builder = new PeopleRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the photo property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildPhotoCommand() {
+        public Command BuildPhotoNavCommand() {
             var command = new Command("photo");
             command.Description = "Provides operations to manage the photo property of the microsoft.graph.user entity.";
             var builder = new PhotoRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildContentCommand());
+            command.AddCommand(builder.BuildContentNavCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
@@ -883,64 +967,70 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to manage the photos property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildPhotosCommand() {
+        public Command BuildPhotosNavCommand() {
             var command = new Command("photos");
             command.Description = "Provides operations to manage the photos property of the microsoft.graph.user entity.";
             var builder = new PhotosRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the planner property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildPlannerCommand() {
+        public Command BuildPlannerNavCommand() {
             var command = new Command("planner");
             command.Description = "Provides operations to manage the planner property of the microsoft.graph.user entity.";
             var builder = new PlannerRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPlansCommand());
-            command.AddCommand(builder.BuildTasksCommand());
+            command.AddCommand(builder.BuildPlansNavCommand());
+            command.AddCommand(builder.BuildTasksNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the presence property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildPresenceCommand() {
+        public Command BuildPresenceNavCommand() {
             var command = new Command("presence");
             command.Description = "Provides operations to manage the presence property of the microsoft.graph.user entity.";
             var builder = new PresenceRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildClearPresenceCommand());
-            command.AddCommand(builder.BuildClearUserPreferredPresenceCommand());
+            command.AddCommand(builder.BuildClearPresenceNavCommand());
+            command.AddCommand(builder.BuildClearUserPreferredPresenceNavCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSetPresenceCommand());
-            command.AddCommand(builder.BuildSetUserPreferredPresenceCommand());
+            command.AddCommand(builder.BuildSetPresenceNavCommand());
+            command.AddCommand(builder.BuildSetUserPreferredPresenceNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the registeredDevices property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildRegisteredDevicesCommand() {
+        public Command BuildRegisteredDevicesNavCommand() {
             var command = new Command("registered-devices");
             command.Description = "Provides operations to manage the registeredDevices property of the microsoft.graph.user entity.";
             var builder = new RegisteredDevicesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGraphAppRoleAssignmentCommand());
-            command.AddCommand(builder.BuildGraphDeviceCommand());
-            command.AddCommand(builder.BuildGraphEndpointCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildGraphAppRoleAssignmentNavCommand());
+            command.AddCommand(builder.BuildGraphDeviceNavCommand());
+            command.AddCommand(builder.BuildGraphEndpointNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the removeAllDevicesFromManagement method.
         /// </summary>
-        public Command BuildRemoveAllDevicesFromManagementCommand() {
+        public Command BuildRemoveAllDevicesFromManagementNavCommand() {
             var command = new Command("remove-all-devices-from-management");
             command.Description = "Provides operations to call the removeAllDevicesFromManagement method.";
             var builder = new RemoveAllDevicesFromManagementRequestBuilder(PathParameters);
@@ -950,7 +1040,7 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to call the reprocessLicenseAssignment method.
         /// </summary>
-        public Command BuildReprocessLicenseAssignmentCommand() {
+        public Command BuildReprocessLicenseAssignmentNavCommand() {
             var command = new Command("reprocess-license-assignment");
             command.Description = "Provides operations to call the reprocessLicenseAssignment method.";
             var builder = new ReprocessLicenseAssignmentRequestBuilder(PathParameters);
@@ -960,7 +1050,7 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to call the restore method.
         /// </summary>
-        public Command BuildRestoreCommand() {
+        public Command BuildRestoreNavCommand() {
             var command = new Command("restore");
             command.Description = "Provides operations to call the restore method.";
             var builder = new RestoreRequestBuilder(PathParameters);
@@ -970,7 +1060,7 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to call the revokeSignInSessions method.
         /// </summary>
-        public Command BuildRevokeSignInSessionsCommand() {
+        public Command BuildRevokeSignInSessionsNavCommand() {
             var command = new Command("revoke-sign-in-sessions");
             command.Description = "Provides operations to call the revokeSignInSessions method.";
             var builder = new RevokeSignInSessionsRequestBuilder(PathParameters);
@@ -980,12 +1070,15 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to manage the scopedRoleMemberOf property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildScopedRoleMemberOfCommand() {
+        public Command BuildScopedRoleMemberOfNavCommand() {
             var command = new Command("scoped-role-member-of");
             command.Description = "Provides operations to manage the scopedRoleMemberOf property of the microsoft.graph.user entity.";
             var builder = new ScopedRoleMemberOfRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -993,7 +1086,7 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to call the sendMail method.
         /// </summary>
-        public Command BuildSendMailCommand() {
+        public Command BuildSendMailNavCommand() {
             var command = new Command("send-mail");
             command.Description = "Provides operations to call the sendMail method.";
             var builder = new SendMailRequestBuilder(PathParameters);
@@ -1003,61 +1096,64 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to manage the settings property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildSettingsCommand() {
+        public Command BuildSettingsNavCommand() {
             var command = new Command("settings");
             command.Description = "Provides operations to manage the settings property of the microsoft.graph.user entity.";
             var builder = new SettingsRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildShiftPreferencesCommand());
+            command.AddCommand(builder.BuildShiftPreferencesNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the teamwork property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildTeamworkCommand() {
+        public Command BuildTeamworkNavCommand() {
             var command = new Command("teamwork");
             command.Description = "Provides operations to manage the teamwork property of the microsoft.graph.user entity.";
             var builder = new TeamworkRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAssociatedTeamsCommand());
+            command.AddCommand(builder.BuildAssociatedTeamsNavCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildInstalledAppsCommand());
+            command.AddCommand(builder.BuildInstalledAppsNavCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSendActivityNotificationCommand());
+            command.AddCommand(builder.BuildSendActivityNotificationNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the todo property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildTodoCommand() {
+        public Command BuildTodoNavCommand() {
             var command = new Command("todo");
             command.Description = "Provides operations to manage the todo property of the microsoft.graph.user entity.";
             var builder = new TodoRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildListsCommand());
+            command.AddCommand(builder.BuildListsNavCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the transitiveMemberOf property of the microsoft.graph.user entity.
         /// </summary>
-        public Command BuildTransitiveMemberOfCommand() {
+        public Command BuildTransitiveMemberOfNavCommand() {
             var command = new Command("transitive-member-of");
             command.Description = "Provides operations to manage the transitiveMemberOf property of the microsoft.graph.user entity.";
             var builder = new TransitiveMemberOfRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGraphGroupCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildGraphGroupNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the translateExchangeIds method.
         /// </summary>
-        public Command BuildTranslateExchangeIdsCommand() {
+        public Command BuildTranslateExchangeIdsNavCommand() {
             var command = new Command("translate-exchange-ids");
             command.Description = "Provides operations to call the translateExchangeIds method.";
             var builder = new TranslateExchangeIdsRequestBuilder(PathParameters);
@@ -1067,7 +1163,7 @@ namespace ApiSdk.Users.Item {
         /// <summary>
         /// Provides operations to call the wipeManagedAppRegistrationsByDeviceTag method.
         /// </summary>
-        public Command BuildWipeManagedAppRegistrationsByDeviceTagCommand() {
+        public Command BuildWipeManagedAppRegistrationsByDeviceTagNavCommand() {
             var command = new Command("wipe-managed-app-registrations-by-device-tag");
             command.Description = "Provides operations to call the wipeManagedAppRegistrationsByDeviceTag method.";
             var builder = new WipeManagedAppRegistrationsByDeviceTagRequestBuilder(PathParameters);

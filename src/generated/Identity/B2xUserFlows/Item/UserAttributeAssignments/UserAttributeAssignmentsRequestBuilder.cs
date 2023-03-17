@@ -30,19 +30,19 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
         /// <summary>
         /// Provides operations to manage the userAttributeAssignments property of the microsoft.graph.b2xIdentityUserFlow entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new IdentityUserFlowAttributeAssignmentItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildUserAttributeCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildUserAttributeNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -111,7 +111,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
         /// <summary>
         /// Provides operations to call the getOrder method.
         /// </summary>
-        public Command BuildGetOrderCommand() {
+        public Command BuildGetOrderNavCommand() {
             var command = new Command("get-order");
             command.Description = "Provides operations to call the getOrder method.";
             var builder = new GetOrderRequestBuilder(PathParameters);
@@ -233,7 +233,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
         /// <summary>
         /// Provides operations to call the setOrder method.
         /// </summary>
-        public Command BuildSetOrderCommand() {
+        public Command BuildSetOrderNavCommand() {
             var command = new Command("set-order");
             command.Description = "Provides operations to call the setOrder method.";
             var builder = new SetOrderRequestBuilder(PathParameters);

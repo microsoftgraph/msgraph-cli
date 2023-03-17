@@ -32,24 +32,30 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
         /// <summary>
         /// Provides operations to manage the accessPackagesIncompatibleWith property of the microsoft.graph.accessPackage entity.
         /// </summary>
-        public Command BuildAccessPackagesIncompatibleWithCommand() {
+        public Command BuildAccessPackagesIncompatibleWithNavCommand() {
             var command = new Command("access-packages-incompatible-with");
             command.Description = "Provides operations to manage the accessPackagesIncompatibleWith property of the microsoft.graph.accessPackage entity.";
             var builder = new AccessPackagesIncompatibleWithRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the assignmentPolicies property of the microsoft.graph.accessPackage entity.
         /// </summary>
-        public Command BuildAssignmentPoliciesCommand() {
+        public Command BuildAssignmentPoliciesNavCommand() {
             var command = new Command("assignment-policies");
             command.Description = "Provides operations to manage the assignmentPolicies property of the microsoft.graph.accessPackage entity.";
             var builder = new AssignmentPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -57,7 +63,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
         /// <summary>
         /// Provides operations to manage the catalog property of the microsoft.graph.accessPackage entity.
         /// </summary>
-        public Command BuildCatalogCommand() {
+        public Command BuildCatalogNavCommand() {
             var command = new Command("catalog");
             command.Description = "Provides operations to manage the catalog property of the microsoft.graph.accessPackage entity.";
             var builder = new CatalogRequestBuilder(PathParameters);
@@ -107,7 +113,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
         /// <summary>
         /// Provides operations to call the getApplicablePolicyRequirements method.
         /// </summary>
-        public Command BuildGetApplicablePolicyRequirementsCommand() {
+        public Command BuildGetApplicablePolicyRequirementsNavCommand() {
             var command = new Command("get-applicable-policy-requirements");
             command.Description = "Provides operations to call the getApplicablePolicyRequirements method.";
             var builder = new GetApplicablePolicyRequirementsRequestBuilder(PathParameters);
@@ -185,27 +191,33 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
         /// <summary>
         /// Provides operations to manage the incompatibleAccessPackages property of the microsoft.graph.accessPackage entity.
         /// </summary>
-        public Command BuildIncompatibleAccessPackagesCommand() {
+        public Command BuildIncompatibleAccessPackagesNavCommand() {
             var command = new Command("incompatible-access-packages");
             command.Description = "Provides operations to manage the incompatibleAccessPackages property of the microsoft.graph.accessPackage entity.";
             var builder = new IncompatibleAccessPackagesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildRefNavCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the incompatibleGroups property of the microsoft.graph.accessPackage entity.
         /// </summary>
-        public Command BuildIncompatibleGroupsCommand() {
+        public Command BuildIncompatibleGroupsNavCommand() {
             var command = new Command("incompatible-groups");
             command.Description = "Provides operations to manage the incompatibleGroups property of the microsoft.graph.accessPackage entity.";
             var builder = new IncompatibleGroupsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            command.AddCommand(builder.BuildRefNavCommand());
             return command;
         }
         /// <summary>

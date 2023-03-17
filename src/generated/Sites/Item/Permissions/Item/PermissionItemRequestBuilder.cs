@@ -135,7 +135,7 @@ namespace ApiSdk.Sites.Item.Permissions.Item {
         /// <summary>
         /// Provides operations to call the grant method.
         /// </summary>
-        public Command BuildGrantCommand() {
+        public Command BuildGrantNavCommand() {
             var command = new Command("grant");
             command.Description = "Provides operations to call the grant method.";
             var builder = new GrantRequestBuilder(PathParameters);

@@ -162,7 +162,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Ite
         /// <summary>
         /// Provides operations to manage the parentNotebook property of the microsoft.graph.sectionGroup entity.
         /// </summary>
-        public Command BuildParentNotebookCommand() {
+        public Command BuildParentNotebookNavCommand() {
             var command = new Command("parent-notebook");
             command.Description = "Provides operations to manage the parentNotebook property of the microsoft.graph.sectionGroup entity.";
             var builder = new ParentNotebookRequestBuilder(PathParameters);
@@ -172,7 +172,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Ite
         /// <summary>
         /// Provides operations to manage the parentSectionGroup property of the microsoft.graph.sectionGroup entity.
         /// </summary>
-        public Command BuildParentSectionGroupCommand() {
+        public Command BuildParentSectionGroupNavCommand() {
             var command = new Command("parent-section-group");
             command.Description = "Provides operations to manage the parentSectionGroup property of the microsoft.graph.sectionGroup entity.";
             var builder = new ParentSectionGroupRequestBuilder(PathParameters);
@@ -258,24 +258,30 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Ite
         /// <summary>
         /// Provides operations to manage the sectionGroups property of the microsoft.graph.sectionGroup entity.
         /// </summary>
-        public Command BuildSectionGroupsCommand() {
+        public Command BuildSectionGroupsNavCommand() {
             var command = new Command("section-groups");
             command.Description = "Provides operations to manage the sectionGroups property of the microsoft.graph.sectionGroup entity.";
             var builder = new ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Item.SectionGroups.SectionGroupsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to manage the sections property of the microsoft.graph.sectionGroup entity.
         /// </summary>
-        public Command BuildSectionsCommand() {
+        public Command BuildSectionsNavCommand() {
             var command = new Command("sections");
             command.Description = "Provides operations to manage the sections property of the microsoft.graph.sectionGroup entity.";
             var builder = new SectionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

@@ -31,12 +31,31 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
         /// <summary>
         /// Provides operations to manage the apps property of the microsoft.graph.targetedManagedAppConfiguration entity.
         /// </summary>
-        public Command BuildAppsCommand() {
+        public Command BuildAppsNavCommand() {
             var command = new Command("apps");
             command.Description = "Provides operations to manage the apps property of the microsoft.graph.targetedManagedAppConfiguration entity.";
             var builder = new AppsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the assignments property of the microsoft.graph.targetedManagedAppConfiguration entity.
+        /// </summary>
+        public Command BuildAssignmentsNavCommand() {
+            var command = new Command("assignments");
+            command.Description = "Provides operations to manage the assignments property of the microsoft.graph.targetedManagedAppConfiguration entity.";
+            var builder = new AssignmentsRequestBuilder(PathParameters);
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -44,24 +63,11 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
         /// <summary>
         /// Provides operations to call the assign method.
         /// </summary>
-        public Command BuildAssignCommand() {
+        public Command BuildAssignNavCommand() {
             var command = new Command("assign");
             command.Description = "Provides operations to call the assign method.";
             var builder = new AssignRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to manage the assignments property of the microsoft.graph.targetedManagedAppConfiguration entity.
-        /// </summary>
-        public Command BuildAssignmentsCommand() {
-            var command = new Command("assignments");
-            command.Description = "Provides operations to manage the assignments property of the microsoft.graph.targetedManagedAppConfiguration entity.";
-            var builder = new AssignmentsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -101,7 +107,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
         /// <summary>
         /// Provides operations to manage the deploymentSummary property of the microsoft.graph.targetedManagedAppConfiguration entity.
         /// </summary>
-        public Command BuildDeploymentSummaryCommand() {
+        public Command BuildDeploymentSummaryNavCommand() {
             var command = new Command("deployment-summary");
             command.Description = "Provides operations to manage the deploymentSummary property of the microsoft.graph.targetedManagedAppConfiguration entity.";
             var builder = new DeploymentSummaryRequestBuilder(PathParameters);
@@ -233,7 +239,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item {
         /// <summary>
         /// Provides operations to call the targetApps method.
         /// </summary>
-        public Command BuildTargetAppsCommand() {
+        public Command BuildTargetAppsNavCommand() {
             var command = new Command("target-apps");
             command.Description = "Provides operations to call the targetApps method.";
             var builder = new TargetAppsRequestBuilder(PathParameters);

@@ -29,22 +29,22 @@ namespace ApiSdk.Print.Printers {
         /// <summary>
         /// Provides operations to manage the printers property of the microsoft.graph.print entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new PrinterItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildConnectorsCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildRestoreFactoryDefaultsCommand());
-            command.AddCommand(builder.BuildSharesCommand());
-            command.AddCommand(builder.BuildTaskTriggersCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildConnectorsNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildRestoreFactoryDefaultsNavCommand());
+            commands.Add(builder.BuildSharesNavCommand());
+            commands.Add(builder.BuildTaskTriggersNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -52,9 +52,61 @@ namespace ApiSdk.Print.Printers {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the create method.
+        /// Create new navigation property to printers for print
         /// </summary>
         public Command BuildCreateCommand() {
+            var command = BuildCreateNavCommand();
+            command.Description = "Create new navigation property to printers for print";
+            // Create options for all the parameters
+            var bodyOption = new Option<string>("--body", description: "The request body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
+            command.SetHandler(async (invocationContext) => {
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
+                using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
+                var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.Printer>(ApiSdk.Models.Printer.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
+                var requestInfo = ToPostRequestInformation(model, q => {
+                });
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+            });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the create method.
+        /// </summary>
+        public Command BuildCreateNavCommand() {
             var command = new Command("create");
             command.Description = "Provides operations to call the create method.";
             var builder = new CreateRequestBuilder(PathParameters);

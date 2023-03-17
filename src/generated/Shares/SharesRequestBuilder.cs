@@ -28,25 +28,24 @@ namespace ApiSdk.Shares {
         /// <summary>
         /// Provides operations to manage the collection of sharedDriveItem entities.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new SharedDriveItemItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildDriveItemCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildItemsCommand());
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildListItemCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPermissionCommand());
-            command.AddCommand(builder.BuildRootCommand());
-            command.AddCommand(builder.BuildSiteCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildDriveItemNavCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildItemsNavCommand());
+            commands.Add(builder.BuildListItemNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildPermissionNavCommand());
+            commands.Add(builder.BuildRootNavCommand());
+            commands.Add(builder.BuildSiteNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -109,7 +108,8 @@ namespace ApiSdk.Shares {
         /// Access a shared DriveItem or a collection of shared items by using a **shareId** or sharing URL. To use a sharing URL with this API, your app needs to transform the URL into a sharing token.
         /// </summary>
         public Command BuildListCommand() {
-            var command = new Command("list");
+            var sharedDriveItemIndexer = new SharedDriveItemItemRequestBuilder(PathParameters);
+            var command = sharedDriveItemIndexer.BuildListNavCommand();
             command.Description = "Access a shared DriveItem or a collection of shared items by using a **shareId** or sharing URL. To use a sharing URL with this API, your app needs to transform the URL into a sharing token.";
             // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {

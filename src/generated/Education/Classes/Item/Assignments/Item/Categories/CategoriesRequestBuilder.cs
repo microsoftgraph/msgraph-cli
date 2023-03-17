@@ -30,16 +30,15 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Categories {
         /// <summary>
         /// Gets an item from the ApiSdk.education.classes.item.assignments.item.categories.item collection
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new EducationCategoryItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildRefCommand());
-            return command;
+            var commands = new List<Command>();
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -113,7 +112,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Categories {
         /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
-        public Command BuildDeltaCommand() {
+        public Command BuildDeltaNavCommand() {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
             var builder = new DeltaRequestBuilder(PathParameters);
@@ -241,8 +240,9 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Categories {
         /// <summary>
         /// Provides operations to manage the collection of educationRoot entities.
         /// </summary>
-        public Command BuildRefCommand() {
-            var command = new Command("ref");
+        public Command BuildRefNavCommand() {
+            var educationCategoryIndexer = new EducationCategoryItemRequestBuilder(PathParameters);
+            var command = educationCategoryIndexer.BuildRefNavCommand();
             command.Description = "Provides operations to manage the collection of educationRoot entities.";
             var builder = new RefRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());

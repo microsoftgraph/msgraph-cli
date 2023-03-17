@@ -30,7 +30,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
         /// <summary>
         /// Provides operations to manage the accessPackage property of the microsoft.graph.accessPackageAssignment entity.
         /// </summary>
-        public Command BuildAccessPackageCommand() {
+        public Command BuildAccessPackageNavCommand() {
             var command = new Command("access-package");
             command.Description = "Provides operations to manage the accessPackage property of the microsoft.graph.accessPackageAssignment entity.";
             var builder = new AccessPackageRequestBuilder(PathParameters);
@@ -40,7 +40,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
         /// <summary>
         /// Provides operations to manage the assignmentPolicy property of the microsoft.graph.accessPackageAssignment entity.
         /// </summary>
-        public Command BuildAssignmentPolicyCommand() {
+        public Command BuildAssignmentPolicyNavCommand() {
             var command = new Command("assignment-policy");
             command.Description = "Provides operations to manage the assignmentPolicy property of the microsoft.graph.accessPackageAssignment entity.";
             var builder = new AssignmentPolicyRequestBuilder(PathParameters);
@@ -204,7 +204,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
         /// <summary>
         /// Provides operations to call the reprocess method.
         /// </summary>
-        public Command BuildReprocessCommand() {
+        public Command BuildReprocessNavCommand() {
             var command = new Command("reprocess");
             command.Description = "Provides operations to call the reprocess method.";
             var builder = new ReprocessRequestBuilder(PathParameters);
@@ -214,7 +214,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
         /// <summary>
         /// Provides operations to manage the target property of the microsoft.graph.accessPackageAssignment entity.
         /// </summary>
-        public Command BuildTargetCommand() {
+        public Command BuildTargetNavCommand() {
             var command = new Command("target");
             command.Description = "Provides operations to manage the target property of the microsoft.graph.accessPackageAssignment entity.";
             var builder = new TargetRequestBuilder(PathParameters);

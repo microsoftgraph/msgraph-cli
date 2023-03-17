@@ -29,7 +29,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort {
         /// <summary>
         /// Provides operations to call the apply method.
         /// </summary>
-        public Command BuildApplyCommand() {
+        public Command BuildApplyNavCommand() {
             var command = new Command("apply");
             command.Description = "Provides operations to call the apply method.";
             var builder = new ApplyRequestBuilder(PathParameters);
@@ -39,7 +39,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort {
         /// <summary>
         /// Provides operations to call the clear method.
         /// </summary>
-        public Command BuildClearCommand() {
+        public Command BuildClearNavCommand() {
             var command = new Command("clear");
             command.Description = "Provides operations to call the clear method.";
             var builder = new ClearRequestBuilder(PathParameters);
@@ -240,7 +240,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Sort {
         /// <summary>
         /// Provides operations to call the reapply method.
         /// </summary>
-        public Command BuildReapplyCommand() {
+        public Command BuildReapplyNavCommand() {
             var command = new Command("reapply");
             command.Description = "Provides operations to call the reapply method.";
             var builder = new ReapplyRequestBuilder(PathParameters);

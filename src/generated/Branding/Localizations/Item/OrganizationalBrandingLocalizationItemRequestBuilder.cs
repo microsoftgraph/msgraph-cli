@@ -29,7 +29,7 @@ namespace ApiSdk.Branding.Localizations.Item {
         /// <summary>
         /// Provides operations to manage the media for the organizationalBranding entity.
         /// </summary>
-        public Command BuildBackgroundImageCommand() {
+        public Command BuildBackgroundImageNavCommand() {
             var command = new Command("background-image");
             command.Description = "Provides operations to manage the media for the organizationalBranding entity.";
             var builder = new BackgroundImageRequestBuilder(PathParameters);
@@ -40,7 +40,7 @@ namespace ApiSdk.Branding.Localizations.Item {
         /// <summary>
         /// Provides operations to manage the media for the organizationalBranding entity.
         /// </summary>
-        public Command BuildBannerLogoCommand() {
+        public Command BuildBannerLogoNavCommand() {
             var command = new Command("banner-logo");
             command.Description = "Provides operations to manage the media for the organizationalBranding entity.";
             var builder = new BannerLogoRequestBuilder(PathParameters);
@@ -205,7 +205,7 @@ namespace ApiSdk.Branding.Localizations.Item {
         /// <summary>
         /// Provides operations to manage the media for the organizationalBranding entity.
         /// </summary>
-        public Command BuildSquareLogoCommand() {
+        public Command BuildSquareLogoNavCommand() {
             var command = new Command("square-logo");
             command.Description = "Provides operations to manage the media for the organizationalBranding entity.";
             var builder = new SquareLogoRequestBuilder(PathParameters);

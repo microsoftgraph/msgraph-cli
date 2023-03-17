@@ -29,26 +29,29 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to manage the assignments property of the microsoft.graph.managedEBook entity.
+        /// </summary>
+        public Command BuildAssignmentsNavCommand() {
+            var command = new Command("assignments");
+            command.Description = "Provides operations to manage the assignments property of the microsoft.graph.managedEBook entity.";
+            var builder = new AssignmentsRequestBuilder(PathParameters);
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the assign method.
         /// </summary>
-        public Command BuildAssignCommand() {
+        public Command BuildAssignNavCommand() {
             var command = new Command("assign");
             command.Description = "Provides operations to call the assign method.";
             var builder = new AssignRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to manage the assignments property of the microsoft.graph.managedEBook entity.
-        /// </summary>
-        public Command BuildAssignmentsCommand() {
-            var command = new Command("assignments");
-            command.Description = "Provides operations to manage the assignments property of the microsoft.graph.managedEBook entity.";
-            var builder = new AssignmentsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -88,12 +91,15 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
         /// <summary>
         /// Provides operations to manage the deviceStates property of the microsoft.graph.managedEBook entity.
         /// </summary>
-        public Command BuildDeviceStatesCommand() {
+        public Command BuildDeviceStatesNavCommand() {
             var command = new Command("device-states");
             command.Description = "Provides operations to manage the deviceStates property of the microsoft.graph.managedEBook entity.";
             var builder = new DeviceStatesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -163,7 +169,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
         /// <summary>
         /// Provides operations to manage the installSummary property of the microsoft.graph.managedEBook entity.
         /// </summary>
-        public Command BuildInstallSummaryCommand() {
+        public Command BuildInstallSummaryNavCommand() {
             var command = new Command("install-summary");
             command.Description = "Provides operations to manage the installSummary property of the microsoft.graph.managedEBook entity.";
             var builder = new InstallSummaryRequestBuilder(PathParameters);
@@ -233,12 +239,15 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
         /// <summary>
         /// Provides operations to manage the userStateSummary property of the microsoft.graph.managedEBook entity.
         /// </summary>
-        public Command BuildUserStateSummaryCommand() {
+        public Command BuildUserStateSummaryNavCommand() {
             var command = new Command("user-state-summary");
             command.Description = "Provides operations to manage the userStateSummary property of the microsoft.graph.managedEBook entity.";
             var builder = new UserStateSummaryRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

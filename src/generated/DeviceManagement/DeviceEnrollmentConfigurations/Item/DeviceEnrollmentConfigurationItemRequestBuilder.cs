@@ -27,26 +27,29 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
         /// <summary>Url template to use to build the URL for the current request builder</summary>
         private string UrlTemplate { get; set; }
         /// <summary>
+        /// Provides operations to manage the assignments property of the microsoft.graph.deviceEnrollmentConfiguration entity.
+        /// </summary>
+        public Command BuildAssignmentsNavCommand() {
+            var command = new Command("assignments");
+            command.Description = "Provides operations to manage the assignments property of the microsoft.graph.deviceEnrollmentConfiguration entity.";
+            var builder = new AssignmentsRequestBuilder(PathParameters);
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
+            command.AddCommand(builder.BuildCreateCommand());
+            command.AddCommand(builder.BuildListCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the assign method.
         /// </summary>
-        public Command BuildAssignCommand() {
+        public Command BuildAssignNavCommand() {
             var command = new Command("assign");
             command.Description = "Provides operations to call the assign method.";
             var builder = new AssignRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to manage the assignments property of the microsoft.graph.deviceEnrollmentConfiguration entity.
-        /// </summary>
-        public Command BuildAssignmentsCommand() {
-            var command = new Command("assignments");
-            command.Description = "Provides operations to manage the assignments property of the microsoft.graph.deviceEnrollmentConfiguration entity.";
-            var builder = new AssignmentsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
@@ -206,7 +209,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
         /// <summary>
         /// Provides operations to call the setPriority method.
         /// </summary>
-        public Command BuildSetPriorityCommand() {
+        public Command BuildSetPriorityNavCommand() {
             var command = new Command("set-priority");
             command.Description = "Provides operations to call the setPriority method.";
             var builder = new SetPriorityRequestBuilder(PathParameters);

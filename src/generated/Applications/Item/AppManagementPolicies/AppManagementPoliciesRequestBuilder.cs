@@ -29,16 +29,15 @@ namespace ApiSdk.Applications.Item.AppManagementPolicies {
         /// <summary>
         /// Gets an item from the ApiSdk.applications.item.appManagementPolicies.item collection
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new AppManagementPolicyItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildRefCommand());
-            return command;
+            var commands = new List<Command>();
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -159,8 +158,9 @@ namespace ApiSdk.Applications.Item.AppManagementPolicies {
         /// <summary>
         /// Provides operations to manage the collection of application entities.
         /// </summary>
-        public Command BuildRefCommand() {
-            var command = new Command("ref");
+        public Command BuildRefNavCommand() {
+            var appManagementPolicyIndexer = new AppManagementPolicyItemRequestBuilder(PathParameters);
+            var command = appManagementPolicyIndexer.BuildRefNavCommand();
             command.Description = "Provides operations to manage the collection of application entities.";
             var builder = new RefRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildGetCommand());

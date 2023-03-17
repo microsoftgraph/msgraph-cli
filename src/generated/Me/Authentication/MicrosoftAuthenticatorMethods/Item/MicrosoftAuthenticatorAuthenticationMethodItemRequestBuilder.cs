@@ -61,7 +61,7 @@ namespace ApiSdk.Me.Authentication.MicrosoftAuthenticatorMethods.Item {
         /// <summary>
         /// Provides operations to manage the device property of the microsoft.graph.microsoftAuthenticatorAuthenticationMethod entity.
         /// </summary>
-        public Command BuildDeviceCommand() {
+        public Command BuildDeviceNavCommand() {
             var command = new Command("device");
             command.Description = "Provides operations to manage the device property of the microsoft.graph.microsoftAuthenticatorAuthenticationMethod entity.";
             var builder = new DeviceRequestBuilder(PathParameters);

@@ -98,7 +98,7 @@ namespace ApiSdk.Me.OwnedDevices.Item {
         /// <summary>
         /// Casts the previous resource to appRoleAssignment.
         /// </summary>
-        public Command BuildGraphAppRoleAssignmentCommand() {
+        public Command BuildGraphAppRoleAssignmentNavCommand() {
             var command = new Command("graph-app-role-assignment");
             command.Description = "Casts the previous resource to appRoleAssignment.";
             var builder = new GraphAppRoleAssignmentRequestBuilder(PathParameters);
@@ -108,7 +108,7 @@ namespace ApiSdk.Me.OwnedDevices.Item {
         /// <summary>
         /// Casts the previous resource to device.
         /// </summary>
-        public Command BuildGraphDeviceCommand() {
+        public Command BuildGraphDeviceNavCommand() {
             var command = new Command("graph-device");
             command.Description = "Casts the previous resource to device.";
             var builder = new GraphDeviceRequestBuilder(PathParameters);
@@ -118,7 +118,7 @@ namespace ApiSdk.Me.OwnedDevices.Item {
         /// <summary>
         /// Casts the previous resource to endpoint.
         /// </summary>
-        public Command BuildGraphEndpointCommand() {
+        public Command BuildGraphEndpointNavCommand() {
             var command = new Command("graph-endpoint");
             command.Description = "Casts the previous resource to endpoint.";
             var builder = new GraphEndpointRequestBuilder(PathParameters);

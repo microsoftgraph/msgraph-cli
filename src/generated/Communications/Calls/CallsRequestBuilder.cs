@@ -29,36 +29,36 @@ namespace ApiSdk.Communications.Calls {
         /// <summary>
         /// Provides operations to manage the calls property of the microsoft.graph.cloudCommunications entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new CallItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAddLargeGalleryViewCommand());
-            command.AddCommand(builder.BuildAnswerCommand());
-            command.AddCommand(builder.BuildAudioRoutingGroupsCommand());
-            command.AddCommand(builder.BuildCancelMediaProcessingCommand());
-            command.AddCommand(builder.BuildChangeScreenSharingRoleCommand());
-            command.AddCommand(builder.BuildContentSharingSessionsCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildKeepAliveCommand());
-            command.AddCommand(builder.BuildMuteCommand());
-            command.AddCommand(builder.BuildOperationsCommand());
-            command.AddCommand(builder.BuildParticipantsCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPlayPromptCommand());
-            command.AddCommand(builder.BuildRecordResponseCommand());
-            command.AddCommand(builder.BuildRedirectCommand());
-            command.AddCommand(builder.BuildRejectCommand());
-            command.AddCommand(builder.BuildSubscribeToToneCommand());
-            command.AddCommand(builder.BuildTransferCommand());
-            command.AddCommand(builder.BuildUnmuteCommand());
-            command.AddCommand(builder.BuildUpdateRecordingStatusCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildAddLargeGalleryViewNavCommand());
+            commands.Add(builder.BuildAnswerNavCommand());
+            commands.Add(builder.BuildAudioRoutingGroupsNavCommand());
+            commands.Add(builder.BuildCancelMediaProcessingNavCommand());
+            commands.Add(builder.BuildChangeScreenSharingRoleNavCommand());
+            commands.Add(builder.BuildContentSharingSessionsNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildKeepAliveNavCommand());
+            commands.Add(builder.BuildMuteNavCommand());
+            commands.Add(builder.BuildOperationsNavCommand());
+            commands.Add(builder.BuildParticipantsNavCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildPlayPromptNavCommand());
+            commands.Add(builder.BuildRecordResponseNavCommand());
+            commands.Add(builder.BuildRedirectNavCommand());
+            commands.Add(builder.BuildRejectNavCommand());
+            commands.Add(builder.BuildSubscribeToToneNavCommand());
+            commands.Add(builder.BuildTransferNavCommand());
+            commands.Add(builder.BuildUnmuteNavCommand());
+            commands.Add(builder.BuildUpdateRecordingStatusNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
@@ -226,7 +226,7 @@ namespace ApiSdk.Communications.Calls {
         /// <summary>
         /// Provides operations to call the logTeleconferenceDeviceQuality method.
         /// </summary>
-        public Command BuildLogTeleconferenceDeviceQualityCommand() {
+        public Command BuildLogTeleconferenceDeviceQualityNavCommand() {
             var command = new Command("log-teleconference-device-quality");
             command.Description = "Provides operations to call the logTeleconferenceDeviceQuality method.";
             var builder = new LogTeleconferenceDeviceQualityRequestBuilder(PathParameters);

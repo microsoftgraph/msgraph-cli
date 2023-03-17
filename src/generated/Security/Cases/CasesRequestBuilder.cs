@@ -55,12 +55,15 @@ namespace ApiSdk.Security.Cases {
         /// <summary>
         /// Provides operations to manage the ediscoveryCases property of the microsoft.graph.security.casesRoot entity.
         /// </summary>
-        public Command BuildEdiscoveryCasesCommand() {
+        public Command BuildEdiscoveryCasesNavCommand() {
             var command = new Command("ediscovery-cases");
             command.Description = "Provides operations to manage the ediscoveryCases property of the microsoft.graph.security.casesRoot entity.";
             var builder = new EdiscoveryCasesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

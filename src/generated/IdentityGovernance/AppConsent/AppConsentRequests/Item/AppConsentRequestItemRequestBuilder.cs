@@ -181,12 +181,15 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item {
         /// <summary>
         /// Provides operations to manage the userConsentRequests property of the microsoft.graph.appConsentRequest entity.
         /// </summary>
-        public Command BuildUserConsentRequestsCommand() {
+        public Command BuildUserConsentRequestsNavCommand() {
             var command = new Command("user-consent-requests");
             command.Description = "Provides operations to manage the userConsentRequests property of the microsoft.graph.appConsentRequest entity.";
             var builder = new UserConsentRequestsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

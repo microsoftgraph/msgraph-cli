@@ -38,7 +38,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// <summary>
         /// Provides operations to call the applyBottomItemsFilter method.
         /// </summary>
-        public Command BuildApplyBottomItemsFilterCommand() {
+        public Command BuildApplyBottomItemsFilterNavCommand() {
             var command = new Command("apply-bottom-items-filter");
             command.Description = "Provides operations to call the applyBottomItemsFilter method.";
             var builder = new ApplyBottomItemsFilterRequestBuilder(PathParameters);
@@ -48,7 +48,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// <summary>
         /// Provides operations to call the applyBottomPercentFilter method.
         /// </summary>
-        public Command BuildApplyBottomPercentFilterCommand() {
+        public Command BuildApplyBottomPercentFilterNavCommand() {
             var command = new Command("apply-bottom-percent-filter");
             command.Description = "Provides operations to call the applyBottomPercentFilter method.";
             var builder = new ApplyBottomPercentFilterRequestBuilder(PathParameters);
@@ -58,7 +58,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// <summary>
         /// Provides operations to call the applyCellColorFilter method.
         /// </summary>
-        public Command BuildApplyCellColorFilterCommand() {
+        public Command BuildApplyCellColorFilterNavCommand() {
             var command = new Command("apply-cell-color-filter");
             command.Description = "Provides operations to call the applyCellColorFilter method.";
             var builder = new ApplyCellColorFilterRequestBuilder(PathParameters);
@@ -66,19 +66,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
             return command;
         }
         /// <summary>
-        /// Provides operations to call the apply method.
-        /// </summary>
-        public Command BuildApplyCommand() {
-            var command = new Command("apply");
-            command.Description = "Provides operations to call the apply method.";
-            var builder = new ApplyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
-            return command;
-        }
-        /// <summary>
         /// Provides operations to call the applyCustomFilter method.
         /// </summary>
-        public Command BuildApplyCustomFilterCommand() {
+        public Command BuildApplyCustomFilterNavCommand() {
             var command = new Command("apply-custom-filter");
             command.Description = "Provides operations to call the applyCustomFilter method.";
             var builder = new ApplyCustomFilterRequestBuilder(PathParameters);
@@ -88,7 +78,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// <summary>
         /// Provides operations to call the applyDynamicFilter method.
         /// </summary>
-        public Command BuildApplyDynamicFilterCommand() {
+        public Command BuildApplyDynamicFilterNavCommand() {
             var command = new Command("apply-dynamic-filter");
             command.Description = "Provides operations to call the applyDynamicFilter method.";
             var builder = new ApplyDynamicFilterRequestBuilder(PathParameters);
@@ -98,7 +88,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// <summary>
         /// Provides operations to call the applyFontColorFilter method.
         /// </summary>
-        public Command BuildApplyFontColorFilterCommand() {
+        public Command BuildApplyFontColorFilterNavCommand() {
             var command = new Command("apply-font-color-filter");
             command.Description = "Provides operations to call the applyFontColorFilter method.";
             var builder = new ApplyFontColorFilterRequestBuilder(PathParameters);
@@ -108,7 +98,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// <summary>
         /// Provides operations to call the applyIconFilter method.
         /// </summary>
-        public Command BuildApplyIconFilterCommand() {
+        public Command BuildApplyIconFilterNavCommand() {
             var command = new Command("apply-icon-filter");
             command.Description = "Provides operations to call the applyIconFilter method.";
             var builder = new ApplyIconFilterRequestBuilder(PathParameters);
@@ -116,9 +106,19 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
             return command;
         }
         /// <summary>
+        /// Provides operations to call the apply method.
+        /// </summary>
+        public Command BuildApplyNavCommand() {
+            var command = new Command("apply");
+            command.Description = "Provides operations to call the apply method.";
+            var builder = new ApplyRequestBuilder(PathParameters);
+            command.AddCommand(builder.BuildPostCommand());
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the applyTopItemsFilter method.
         /// </summary>
-        public Command BuildApplyTopItemsFilterCommand() {
+        public Command BuildApplyTopItemsFilterNavCommand() {
             var command = new Command("apply-top-items-filter");
             command.Description = "Provides operations to call the applyTopItemsFilter method.";
             var builder = new ApplyTopItemsFilterRequestBuilder(PathParameters);
@@ -128,7 +128,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// <summary>
         /// Provides operations to call the applyTopPercentFilter method.
         /// </summary>
-        public Command BuildApplyTopPercentFilterCommand() {
+        public Command BuildApplyTopPercentFilterNavCommand() {
             var command = new Command("apply-top-percent-filter");
             command.Description = "Provides operations to call the applyTopPercentFilter method.";
             var builder = new ApplyTopPercentFilterRequestBuilder(PathParameters);
@@ -138,7 +138,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// <summary>
         /// Provides operations to call the applyValuesFilter method.
         /// </summary>
-        public Command BuildApplyValuesFilterCommand() {
+        public Command BuildApplyValuesFilterNavCommand() {
             var command = new Command("apply-values-filter");
             command.Description = "Provides operations to call the applyValuesFilter method.";
             var builder = new ApplyValuesFilterRequestBuilder(PathParameters);
@@ -148,7 +148,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         /// <summary>
         /// Provides operations to call the clear method.
         /// </summary>
-        public Command BuildClearCommand() {
+        public Command BuildClearNavCommand() {
             var command = new Command("clear");
             command.Description = "Provides operations to call the clear method.";
             var builder = new ClearRequestBuilder(PathParameters);

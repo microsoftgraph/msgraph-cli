@@ -90,7 +90,7 @@ namespace ApiSdk.ApplicationTemplates.Item {
         /// <summary>
         /// Provides operations to call the instantiate method.
         /// </summary>
-        public Command BuildInstantiateCommand() {
+        public Command BuildInstantiateNavCommand() {
             var command = new Command("instantiate");
             command.Description = "Provides operations to call the instantiate method.";
             var builder = new InstantiateRequestBuilder(PathParameters);

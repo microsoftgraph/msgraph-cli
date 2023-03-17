@@ -22,7 +22,7 @@ namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies.Item {
         /// <summary>
         /// Provides operations to manage the collection of servicePrincipal entities.
         /// </summary>
-        public Command BuildRefCommand() {
+        public Command BuildRefNavCommand() {
             var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of servicePrincipal entities.";
             var builder = new RefRequestBuilder(PathParameters);

@@ -28,14 +28,14 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy {
         /// <summary>
         /// Provides operations to manage the default property of the microsoft.graph.crossTenantAccessPolicy entity.
         /// </summary>
-        public Command BuildDefaultCommand() {
+        public Command BuildDefaultNavCommand() {
             var command = new Command("default");
             command.Description = "Provides operations to manage the default property of the microsoft.graph.crossTenantAccessPolicy entity.";
             var builder = new DefaultRequestBuilder(PathParameters);
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildResetToSystemDefaultCommand());
+            command.AddCommand(builder.BuildResetToSystemDefaultNavCommand());
             return command;
         }
         /// <summary>
@@ -126,12 +126,15 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy {
         /// <summary>
         /// Provides operations to manage the partners property of the microsoft.graph.crossTenantAccessPolicy entity.
         /// </summary>
-        public Command BuildPartnersCommand() {
+        public Command BuildPartnersNavCommand() {
             var command = new Command("partners");
             command.Description = "Provides operations to manage the partners property of the microsoft.graph.crossTenantAccessPolicy entity.";
             var builder = new PartnersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

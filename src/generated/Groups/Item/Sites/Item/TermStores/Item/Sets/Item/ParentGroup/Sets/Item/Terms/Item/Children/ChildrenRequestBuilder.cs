@@ -28,20 +28,20 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Se
         /// <summary>
         /// Provides operations to manage the children property of the microsoft.graph.termStore.term entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Sets.Item.Terms.Item.Children.Item.TermItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildRelationsCommand());
-            command.AddCommand(builder.BuildSetCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildRelationsNavCommand());
+            commands.Add(builder.BuildSetNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

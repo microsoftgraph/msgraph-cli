@@ -29,7 +29,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.As
         /// <summary>
         /// Provides operations to manage the accessPackage property of the microsoft.graph.accessPackageAssignmentPolicy entity.
         /// </summary>
-        public Command BuildAccessPackageCommand() {
+        public Command BuildAccessPackageNavCommand() {
             var command = new Command("access-package");
             command.Description = "Provides operations to manage the accessPackage property of the microsoft.graph.accessPackageAssignmentPolicy entity.";
             var builder = new AccessPackageRequestBuilder(PathParameters);
@@ -39,7 +39,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.As
         /// <summary>
         /// Provides operations to manage the catalog property of the microsoft.graph.accessPackageAssignmentPolicy entity.
         /// </summary>
-        public Command BuildCatalogCommand() {
+        public Command BuildCatalogNavCommand() {
             var command = new Command("catalog");
             command.Description = "Provides operations to manage the catalog property of the microsoft.graph.accessPackageAssignmentPolicy entity.";
             var builder = new CatalogRequestBuilder(PathParameters);
@@ -221,12 +221,15 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.As
         /// <summary>
         /// Provides operations to manage the questions property of the microsoft.graph.accessPackageAssignmentPolicy entity.
         /// </summary>
-        public Command BuildQuestionsCommand() {
+        public Command BuildQuestionsNavCommand() {
             var command = new Command("questions");
             command.Description = "Provides operations to manage the questions property of the microsoft.graph.accessPackageAssignmentPolicy entity.";
             var builder = new QuestionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

@@ -27,7 +27,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item 
         /// <summary>
         /// Provides operations to manage the activatedUsing property of the microsoft.graph.unifiedRoleAssignmentSchedule entity.
         /// </summary>
-        public Command BuildActivatedUsingCommand() {
+        public Command BuildActivatedUsingNavCommand() {
             var command = new Command("activated-using");
             command.Description = "Provides operations to manage the activatedUsing property of the microsoft.graph.unifiedRoleAssignmentSchedule entity.";
             var builder = new ActivatedUsingRequestBuilder(PathParameters);

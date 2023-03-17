@@ -55,7 +55,7 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate {
         /// <summary>
         /// Provides operations to call the downloadApplePushNotificationCertificateSigningRequest method.
         /// </summary>
-        public Command BuildDownloadApplePushNotificationCertificateSigningRequestCommand() {
+        public Command BuildDownloadApplePushNotificationCertificateSigningRequestNavCommand() {
             var command = new Command("download-apple-push-notification-certificate-signing-request");
             command.Description = "Provides operations to call the downloadApplePushNotificationCertificateSigningRequest method.";
             var builder = new DownloadApplePushNotificationCertificateSigningRequestRequestBuilder(PathParameters);

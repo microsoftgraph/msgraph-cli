@@ -51,22 +51,22 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the analytics property of the microsoft.graph.driveItem entity.
         /// </summary>
-        public Command BuildAnalyticsCommand() {
+        public Command BuildAnalyticsNavCommand() {
             var command = new Command("analytics");
             command.Description = "Provides operations to manage the analytics property of the microsoft.graph.driveItem entity.";
             var builder = new AnalyticsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAllTimeCommand());
+            command.AddCommand(builder.BuildAllTimeNavCommand());
             command.AddCommand(builder.BuildDeleteCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildItemActivityStatsCommand());
-            command.AddCommand(builder.BuildLastSevenDaysCommand());
+            command.AddCommand(builder.BuildItemActivityStatsNavCommand());
+            command.AddCommand(builder.BuildLastSevenDaysNavCommand());
             command.AddCommand(builder.BuildPatchCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the checkin method.
         /// </summary>
-        public Command BuildCheckinCommand() {
+        public Command BuildCheckinNavCommand() {
             var command = new Command("checkin");
             command.Description = "Provides operations to call the checkin method.";
             var builder = new CheckinRequestBuilder(PathParameters);
@@ -76,7 +76,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the checkout method.
         /// </summary>
-        public Command BuildCheckoutCommand() {
+        public Command BuildCheckoutNavCommand() {
             var command = new Command("checkout");
             command.Description = "Provides operations to call the checkout method.";
             var builder = new CheckoutRequestBuilder(PathParameters);
@@ -86,12 +86,15 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the children property of the microsoft.graph.driveItem entity.
         /// </summary>
-        public Command BuildChildrenCommand() {
+        public Command BuildChildrenNavCommand() {
             var command = new Command("children");
             command.Description = "Provides operations to manage the children property of the microsoft.graph.driveItem entity.";
             var builder = new ChildrenRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -99,7 +102,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the media for the drive entity.
         /// </summary>
-        public Command BuildContentCommand() {
+        public Command BuildContentNavCommand() {
             var command = new Command("content");
             command.Description = "Provides operations to manage the media for the drive entity.";
             var builder = new ContentRequestBuilder(PathParameters);
@@ -110,7 +113,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the copy method.
         /// </summary>
-        public Command BuildCopyCommand() {
+        public Command BuildCopyNavCommand() {
             var command = new Command("copy");
             command.Description = "Provides operations to call the copy method.";
             var builder = new CopyRequestBuilder(PathParameters);
@@ -120,7 +123,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the createLink method.
         /// </summary>
-        public Command BuildCreateLinkCommand() {
+        public Command BuildCreateLinkNavCommand() {
             var command = new Command("create-link");
             command.Description = "Provides operations to call the createLink method.";
             var builder = new CreateLinkRequestBuilder(PathParameters);
@@ -130,7 +133,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the createUploadSession method.
         /// </summary>
-        public Command BuildCreateUploadSessionCommand() {
+        public Command BuildCreateUploadSessionNavCommand() {
             var command = new Command("create-upload-session");
             command.Description = "Provides operations to call the createUploadSession method.";
             var builder = new CreateUploadSessionRequestBuilder(PathParameters);
@@ -180,7 +183,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
-        public Command BuildDeltaCommand() {
+        public Command BuildDeltaNavCommand() {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
             var builder = new DeltaRequestBuilder(PathParameters);
@@ -190,7 +193,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the follow method.
         /// </summary>
-        public Command BuildFollowCommand() {
+        public Command BuildFollowNavCommand() {
             var command = new Command("follow");
             command.Description = "Provides operations to call the follow method.";
             var builder = new FollowRequestBuilder(PathParameters);
@@ -200,7 +203,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the getActivitiesByInterval method.
         /// </summary>
-        public Command BuildGetActivitiesByIntervalCommand() {
+        public Command BuildGetActivitiesByIntervalNavCommand() {
             var command = new Command("get-activities-by-interval");
             command.Description = "Provides operations to call the getActivitiesByInterval method.";
             var builder = new GetActivitiesByIntervalRequestBuilder(PathParameters);
@@ -278,7 +281,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the invite method.
         /// </summary>
-        public Command BuildInviteCommand() {
+        public Command BuildInviteNavCommand() {
             var command = new Command("invite");
             command.Description = "Provides operations to call the invite method.";
             var builder = new InviteRequestBuilder(PathParameters);
@@ -288,7 +291,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the listItem property of the microsoft.graph.driveItem entity.
         /// </summary>
-        public Command BuildListItemCommand() {
+        public Command BuildListItemNavCommand() {
             var command = new Command("list-item");
             command.Description = "Provides operations to manage the listItem property of the microsoft.graph.driveItem entity.";
             var builder = new ListItemRequestBuilder(PathParameters);
@@ -362,12 +365,15 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the permissions property of the microsoft.graph.driveItem entity.
         /// </summary>
-        public Command BuildPermissionsCommand() {
+        public Command BuildPermissionsNavCommand() {
             var command = new Command("permissions");
             command.Description = "Provides operations to manage the permissions property of the microsoft.graph.driveItem entity.";
             var builder = new PermissionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -375,7 +381,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the preview method.
         /// </summary>
-        public Command BuildPreviewCommand() {
+        public Command BuildPreviewNavCommand() {
             var command = new Command("preview");
             command.Description = "Provides operations to call the preview method.";
             var builder = new PreviewRequestBuilder(PathParameters);
@@ -385,7 +391,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the restore method.
         /// </summary>
-        public Command BuildRestoreCommand() {
+        public Command BuildRestoreNavCommand() {
             var command = new Command("restore");
             command.Description = "Provides operations to call the restore method.";
             var builder = new RestoreRequestBuilder(PathParameters);
@@ -395,12 +401,15 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the subscriptions property of the microsoft.graph.driveItem entity.
         /// </summary>
-        public Command BuildSubscriptionsCommand() {
+        public Command BuildSubscriptionsNavCommand() {
             var command = new Command("subscriptions");
             command.Description = "Provides operations to manage the subscriptions property of the microsoft.graph.driveItem entity.";
             var builder = new SubscriptionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -408,12 +417,15 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the thumbnails property of the microsoft.graph.driveItem entity.
         /// </summary>
-        public Command BuildThumbnailsCommand() {
+        public Command BuildThumbnailsNavCommand() {
             var command = new Command("thumbnails");
             command.Description = "Provides operations to manage the thumbnails property of the microsoft.graph.driveItem entity.";
             var builder = new ThumbnailsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -421,7 +433,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the unfollow method.
         /// </summary>
-        public Command BuildUnfollowCommand() {
+        public Command BuildUnfollowNavCommand() {
             var command = new Command("unfollow");
             command.Description = "Provides operations to call the unfollow method.";
             var builder = new UnfollowRequestBuilder(PathParameters);
@@ -431,7 +443,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to call the validatePermission method.
         /// </summary>
-        public Command BuildValidatePermissionCommand() {
+        public Command BuildValidatePermissionNavCommand() {
             var command = new Command("validate-permission");
             command.Description = "Provides operations to call the validatePermission method.";
             var builder = new ValidatePermissionRequestBuilder(PathParameters);
@@ -441,12 +453,15 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the versions property of the microsoft.graph.driveItem entity.
         /// </summary>
-        public Command BuildVersionsCommand() {
+        public Command BuildVersionsNavCommand() {
             var command = new Command("versions");
             command.Description = "Provides operations to manage the versions property of the microsoft.graph.driveItem entity.";
             var builder = new VersionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -454,23 +469,23 @@ namespace ApiSdk.Drives.Item.Items.Item {
         /// <summary>
         /// Provides operations to manage the workbook property of the microsoft.graph.driveItem entity.
         /// </summary>
-        public Command BuildWorkbookCommand() {
+        public Command BuildWorkbookNavCommand() {
             var command = new Command("workbook");
             command.Description = "Provides operations to manage the workbook property of the microsoft.graph.driveItem entity.";
             var builder = new WorkbookRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildApplicationCommand());
-            command.AddCommand(builder.BuildCloseSessionCommand());
-            command.AddCommand(builder.BuildCommentsCommand());
-            command.AddCommand(builder.BuildCreateSessionCommand());
+            command.AddCommand(builder.BuildApplicationNavCommand());
+            command.AddCommand(builder.BuildCloseSessionNavCommand());
+            command.AddCommand(builder.BuildCommentsNavCommand());
+            command.AddCommand(builder.BuildCreateSessionNavCommand());
             command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildFunctionsCommand());
+            command.AddCommand(builder.BuildFunctionsNavCommand());
             command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildNamesCommand());
-            command.AddCommand(builder.BuildOperationsCommand());
+            command.AddCommand(builder.BuildNamesNavCommand());
+            command.AddCommand(builder.BuildOperationsNavCommand());
             command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildRefreshSessionCommand());
-            command.AddCommand(builder.BuildTablesCommand());
-            command.AddCommand(builder.BuildWorksheetsCommand());
+            command.AddCommand(builder.BuildRefreshSessionNavCommand());
+            command.AddCommand(builder.BuildTablesNavCommand());
+            command.AddCommand(builder.BuildWorksheetsNavCommand());
             return command;
         }
         /// <summary>

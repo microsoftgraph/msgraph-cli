@@ -27,7 +27,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Application {
         /// <summary>
         /// Provides operations to call the calculate method.
         /// </summary>
-        public Command BuildCalculateCommand() {
+        public Command BuildCalculateNavCommand() {
             var command = new Command("calculate");
             command.Description = "Provides operations to call the calculate method.";
             var builder = new CalculateRequestBuilder(PathParameters);

@@ -218,19 +218,22 @@ namespace ApiSdk.Groups.Item.Conversations.Item.Threads.Item {
         /// <summary>
         /// Provides operations to manage the posts property of the microsoft.graph.conversationThread entity.
         /// </summary>
-        public Command BuildPostsCommand() {
+        public Command BuildPostsNavCommand() {
             var command = new Command("posts");
             command.Description = "Provides operations to manage the posts property of the microsoft.graph.conversationThread entity.";
             var builder = new PostsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
         /// <summary>
         /// Provides operations to call the reply method.
         /// </summary>
-        public Command BuildReplyCommand() {
+        public Command BuildReplyNavCommand() {
             var command = new Command("reply");
             command.Description = "Provides operations to call the reply method.";
             var builder = new ReplyRequestBuilder(PathParameters);

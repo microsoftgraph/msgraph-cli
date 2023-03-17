@@ -29,12 +29,15 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item {
         /// <summary>
         /// Provides operations to manage the appliedPolicies property of the microsoft.graph.managedAppRegistration entity.
         /// </summary>
-        public Command BuildAppliedPoliciesCommand() {
+        public Command BuildAppliedPoliciesNavCommand() {
             var command = new Command("applied-policies");
             command.Description = "Provides operations to manage the appliedPolicies property of the microsoft.graph.managedAppRegistration entity.";
             var builder = new AppliedPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -138,12 +141,15 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item {
         /// <summary>
         /// Provides operations to manage the intendedPolicies property of the microsoft.graph.managedAppRegistration entity.
         /// </summary>
-        public Command BuildIntendedPoliciesCommand() {
+        public Command BuildIntendedPoliciesNavCommand() {
             var command = new Command("intended-policies");
             command.Description = "Provides operations to manage the intendedPolicies property of the microsoft.graph.managedAppRegistration entity.";
             var builder = new IntendedPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -151,12 +157,15 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item {
         /// <summary>
         /// Provides operations to manage the operations property of the microsoft.graph.managedAppRegistration entity.
         /// </summary>
-        public Command BuildOperationsCommand() {
+        public Command BuildOperationsNavCommand() {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.managedAppRegistration entity.";
             var builder = new OperationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

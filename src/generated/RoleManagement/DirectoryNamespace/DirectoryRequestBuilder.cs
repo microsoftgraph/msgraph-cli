@@ -170,12 +170,15 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the roleAssignmentScheduleInstances property of the microsoft.graph.rbacApplication entity.
         /// </summary>
-        public Command BuildRoleAssignmentScheduleInstancesCommand() {
+        public Command BuildRoleAssignmentScheduleInstancesNavCommand() {
             var command = new Command("role-assignment-schedule-instances");
             command.Description = "Provides operations to manage the roleAssignmentScheduleInstances property of the microsoft.graph.rbacApplication entity.";
             var builder = new RoleAssignmentScheduleInstancesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -183,12 +186,15 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the roleAssignmentScheduleRequests property of the microsoft.graph.rbacApplication entity.
         /// </summary>
-        public Command BuildRoleAssignmentScheduleRequestsCommand() {
+        public Command BuildRoleAssignmentScheduleRequestsNavCommand() {
             var command = new Command("role-assignment-schedule-requests");
             command.Description = "Provides operations to manage the roleAssignmentScheduleRequests property of the microsoft.graph.rbacApplication entity.";
             var builder = new RoleAssignmentScheduleRequestsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -196,12 +202,15 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the roleAssignmentSchedules property of the microsoft.graph.rbacApplication entity.
         /// </summary>
-        public Command BuildRoleAssignmentSchedulesCommand() {
+        public Command BuildRoleAssignmentSchedulesNavCommand() {
             var command = new Command("role-assignment-schedules");
             command.Description = "Provides operations to manage the roleAssignmentSchedules property of the microsoft.graph.rbacApplication entity.";
             var builder = new RoleAssignmentSchedulesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -209,12 +218,15 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the roleAssignments property of the microsoft.graph.rbacApplication entity.
         /// </summary>
-        public Command BuildRoleAssignmentsCommand() {
+        public Command BuildRoleAssignmentsNavCommand() {
             var command = new Command("role-assignments");
             command.Description = "Provides operations to manage the roleAssignments property of the microsoft.graph.rbacApplication entity.";
             var builder = new RoleAssignmentsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -222,12 +234,15 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the roleDefinitions property of the microsoft.graph.rbacApplication entity.
         /// </summary>
-        public Command BuildRoleDefinitionsCommand() {
+        public Command BuildRoleDefinitionsNavCommand() {
             var command = new Command("role-definitions");
             command.Description = "Provides operations to manage the roleDefinitions property of the microsoft.graph.rbacApplication entity.";
             var builder = new RoleDefinitionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -235,12 +250,15 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the roleEligibilityScheduleInstances property of the microsoft.graph.rbacApplication entity.
         /// </summary>
-        public Command BuildRoleEligibilityScheduleInstancesCommand() {
+        public Command BuildRoleEligibilityScheduleInstancesNavCommand() {
             var command = new Command("role-eligibility-schedule-instances");
             command.Description = "Provides operations to manage the roleEligibilityScheduleInstances property of the microsoft.graph.rbacApplication entity.";
             var builder = new RoleEligibilityScheduleInstancesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -248,12 +266,15 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the roleEligibilityScheduleRequests property of the microsoft.graph.rbacApplication entity.
         /// </summary>
-        public Command BuildRoleEligibilityScheduleRequestsCommand() {
+        public Command BuildRoleEligibilityScheduleRequestsNavCommand() {
             var command = new Command("role-eligibility-schedule-requests");
             command.Description = "Provides operations to manage the roleEligibilityScheduleRequests property of the microsoft.graph.rbacApplication entity.";
             var builder = new RoleEligibilityScheduleRequestsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -261,12 +282,15 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace {
         /// <summary>
         /// Provides operations to manage the roleEligibilitySchedules property of the microsoft.graph.rbacApplication entity.
         /// </summary>
-        public Command BuildRoleEligibilitySchedulesCommand() {
+        public Command BuildRoleEligibilitySchedulesNavCommand() {
             var command = new Command("role-eligibility-schedules");
             command.Description = "Provides operations to manage the roleEligibilitySchedules property of the microsoft.graph.rbacApplication entity.";
             var builder = new RoleEligibilitySchedulesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;

@@ -181,7 +181,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item {
         /// <summary>
         /// Provides operations to call the uploadClientCertificate method.
         /// </summary>
-        public Command BuildUploadClientCertificateCommand() {
+        public Command BuildUploadClientCertificateNavCommand() {
             var command = new Command("upload-client-certificate");
             command.Description = "Provides operations to call the uploadClientCertificate method.";
             var builder = new UploadClientCertificateRequestBuilder(PathParameters);

@@ -28,25 +28,25 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations {
         /// <summary>
         /// Provides operations to manage the deviceConfigurations property of the microsoft.graph.deviceManagement entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public List<Command> BuildCommand() {
             var builder = new DeviceConfigurationItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAssignCommand());
-            command.AddCommand(builder.BuildAssignmentsCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildDeviceSettingStateSummariesCommand());
-            command.AddCommand(builder.BuildDeviceStatusesCommand());
-            command.AddCommand(builder.BuildDeviceStatusOverviewCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildUserStatusesCommand());
-            command.AddCommand(builder.BuildUserStatusOverviewCommand());
-            return command;
+            var commands = new List<Command>();
+            commands.Add(builder.BuildAssignmentsNavCommand());
+            commands.Add(builder.BuildAssignNavCommand());
+            commands.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildDeviceSettingStateSummariesNavCommand());
+            commands.Add(builder.BuildDeviceStatusesNavCommand());
+            commands.Add(builder.BuildDeviceStatusOverviewNavCommand());
+            commands.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildUserStatusesNavCommand());
+            commands.Add(builder.BuildUserStatusOverviewNavCommand());
+            return commands;
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);

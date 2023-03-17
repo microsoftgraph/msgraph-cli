@@ -32,12 +32,15 @@ namespace ApiSdk.Drives.Item.List {
         /// <summary>
         /// Provides operations to manage the columns property of the microsoft.graph.list entity.
         /// </summary>
-        public Command BuildColumnsCommand() {
+        public Command BuildColumnsNavCommand() {
             var command = new Command("columns");
             command.Description = "Provides operations to manage the columns property of the microsoft.graph.list entity.";
             var builder = new ColumnsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -45,16 +48,19 @@ namespace ApiSdk.Drives.Item.List {
         /// <summary>
         /// Provides operations to manage the contentTypes property of the microsoft.graph.list entity.
         /// </summary>
-        public Command BuildContentTypesCommand() {
+        public Command BuildContentTypesNavCommand() {
             var command = new Command("content-types");
             command.Description = "Provides operations to manage the contentTypes property of the microsoft.graph.list entity.";
             var builder = new ContentTypesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAddCopyCommand());
-            command.AddCommand(builder.BuildAddCopyFromContentTypeHubCommand());
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            command.AddCommand(builder.BuildAddCopyFromContentTypeHubNavCommand());
+            command.AddCommand(builder.BuildAddCopyNavCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildGetCompatibleHubContentTypesCommand());
+            command.AddCommand(builder.BuildGetCompatibleHubContentTypesNavCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
         }
@@ -95,7 +101,7 @@ namespace ApiSdk.Drives.Item.List {
         /// <summary>
         /// Provides operations to manage the drive property of the microsoft.graph.list entity.
         /// </summary>
-        public Command BuildDriveCommand() {
+        public Command BuildDriveNavCommand() {
             var command = new Command("drive");
             command.Description = "Provides operations to manage the drive property of the microsoft.graph.list entity.";
             var builder = new DriveRequestBuilder(PathParameters);
@@ -167,12 +173,15 @@ namespace ApiSdk.Drives.Item.List {
         /// <summary>
         /// Provides operations to manage the items property of the microsoft.graph.list entity.
         /// </summary>
-        public Command BuildItemsCommand() {
+        public Command BuildItemsNavCommand() {
             var command = new Command("items");
             command.Description = "Provides operations to manage the items property of the microsoft.graph.list entity.";
             var builder = new ItemsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -180,12 +189,15 @@ namespace ApiSdk.Drives.Item.List {
         /// <summary>
         /// Provides operations to manage the operations property of the microsoft.graph.list entity.
         /// </summary>
-        public Command BuildOperationsCommand() {
+        public Command BuildOperationsNavCommand() {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.list entity.";
             var builder = new OperationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
@@ -251,12 +263,15 @@ namespace ApiSdk.Drives.Item.List {
         /// <summary>
         /// Provides operations to manage the subscriptions property of the microsoft.graph.list entity.
         /// </summary>
-        public Command BuildSubscriptionsCommand() {
+        public Command BuildSubscriptionsNavCommand() {
             var command = new Command("subscriptions");
             command.Description = "Provides operations to manage the subscriptions property of the microsoft.graph.list entity.";
             var builder = new SubscriptionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
+            foreach (var cmd in builder.BuildCommand())
+            {
+                command.AddCommand(cmd);
+            }
+            command.AddCommand(builder.BuildCountNavCommand());
             command.AddCommand(builder.BuildCreateCommand());
             command.AddCommand(builder.BuildListCommand());
             return command;
