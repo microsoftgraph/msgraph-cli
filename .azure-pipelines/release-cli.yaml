@@ -12,16 +12,6 @@ trigger:
     - src
     - msgraph-cli.sln
 
-pr:
-  branches:
-    include:
-    - '*'
-  paths:
-    include:
-    - .azure-pipelines
-    - src
-    - msgraph-cli.sln
-
 pool:
   name: Azure Pipelines
   vmImage: ubuntu-latest
