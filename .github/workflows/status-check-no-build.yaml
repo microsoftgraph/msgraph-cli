@@ -3,9 +3,9 @@ name: ci
 on:
   pull_request:
     paths-ignore:
-      - .azure-pipelines
-      - src
-      - msgraph-cli.sln
+      - '.azure-pipelines/**'
+      - 'src/**'
+      - 'msgraph-cli.sln'
 
 jobs:
   build:
