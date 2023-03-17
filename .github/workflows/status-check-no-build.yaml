@@ -1,0 +1,14 @@
+name: Microsoft Graph CLI - Release
+
+on:
+  pull_request:
+    paths-ignore:
+    - .azure-pipelines
+    - src
+    - msgraph-cli.sln
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: 'echo "No build required"'
