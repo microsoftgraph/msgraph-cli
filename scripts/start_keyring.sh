@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+# Source script to setup gnome-keyring
 
 # Check for required tools first
 if ! which "dbus-daemon" > /dev/null ; then
@@ -7,12 +7,12 @@ else
   if ! which "gnome-keyring-daemon" > /dev/null ; then
     echo "'gnome-keyring-daemon' not found. Please install gnome-keyring."
   else
-    SESSION_FILE=~/.user-dbus-session
+    SESSION_FILE="$HOME/.user-dbus-session"
 
     # Check if session file is orphaned
     if [ -f "$SESSION_FILE" ]; then
       # if the file exists and dbus isn't running, remove it
-      if ! pgrep -u $(whoami) -f "dbus-daemon" > /dev/null ; then
+      if ! pgrep -u "$(whoami)" -f "dbus-daemon" > /dev/null ; then
         rm "$SESSION_FILE"
       fi
     fi
@@ -24,7 +24,7 @@ else
       echo  "export DBUS_SESSION_BUS_ADDRESS=$(dbus-daemon --session --fork --print-address)" > $SESSION_FILE
     fi
 
-    if ! pgrep -u $(whoami) -f "dbus-daemon" > /dev/null ; then
+    if ! pgrep -u "$(whoami)" -f "dbus-daemon" > /dev/null ; then
       echo "Error: DBus session daemon failed to start!"
     else
       # Load DBus session address
@@ -32,9 +32,9 @@ else
 
       if [ -n "$DBUS_SESSION_BUS_ADDRESS" ]; then
         echo "D-Bus daemon address is: $DBUS_SESSION_BUS_ADDRESS"
-        if ! pgrep -u $(whoami) -f "gnome-keyring-daemon" > /dev/null ; then
+        if ! pgrep -u "$(whoami)" -f "gnome-keyring-daemon" > /dev/null ; then
           export KEYRING_PASSWORD=any-password
-          echo -n "$KEYRING_PASSWORD" | gnome-keyring-daemon --daemonize --components=secrets --unlock
+          printf '%s' "$KEYRING_PASSWORD" | gnome-keyring-daemon --daemonize --components=secrets --unlock
         fi
       else
         echo "Error: D-Bus daemon is not running."
