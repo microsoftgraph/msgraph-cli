@@ -3,10 +3,9 @@ using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.CalendarView.Count;
 using ApiSdk.Users.Item.CalendarView.Delta;
 using ApiSdk.Users.Item.CalendarView.Item;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -21,17 +20,14 @@ namespace ApiSdk.Users.Item.CalendarView {
     /// <summary>
     /// Provides operations to manage the calendarView property of the microsoft.graph.user entity.
     /// </summary>
-    public class CalendarViewRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class CalendarViewRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Provides operations to manage the calendarView property of the microsoft.graph.user entity.
         /// </summary>
-        public List<Command> BuildCommand() {
-            var builder = new EventItemRequestBuilder(PathParameters);
+        public Tuple<List<Command>, List<Command>> BuildCommand() {
+            var executables = new List<Command>();
             var commands = new List<Command>();
+            var builder = new EventItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildAcceptNavCommand());
             commands.Add(builder.BuildAttachmentsNavCommand());
             commands.Add(builder.BuildCalendarNavCommand());
@@ -40,13 +36,13 @@ namespace ApiSdk.Users.Item.CalendarView {
             commands.Add(builder.BuildDismissReminderNavCommand());
             commands.Add(builder.BuildExtensionsNavCommand());
             commands.Add(builder.BuildForwardNavCommand());
-            commands.Add(builder.BuildGetCommand());
+            executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildInstancesNavCommand());
             commands.Add(builder.BuildMultiValueExtendedPropertiesNavCommand());
             commands.Add(builder.BuildSingleValueExtendedPropertiesNavCommand());
             commands.Add(builder.BuildSnoozeReminderNavCommand());
             commands.Add(builder.BuildTentativelyAcceptNavCommand());
-            return commands;
+            return new(executables, commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -55,7 +51,12 @@ namespace ApiSdk.Users.Item.CalendarView {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -65,7 +66,12 @@ namespace ApiSdk.Users.Item.CalendarView {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
             var builder = new DeltaRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -75,7 +81,6 @@ namespace ApiSdk.Users.Item.CalendarView {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "The calendar view for the calendar. Read-only. Nullable.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-calendarview?view=graph-rest-1.0";
-            // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -143,9 +148,9 @@ namespace ApiSdk.Users.Item.CalendarView {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
+                IPagingService pagingService = invocationContext.BindingContext.GetService(typeof(IPagingService)) as IPagingService ?? throw new ArgumentNullException("pagingService");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -183,11 +188,7 @@ namespace ApiSdk.Users.Item.CalendarView {
         /// Instantiates a new CalendarViewRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CalendarViewRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/users/{user%2Did}/calendarView{?startDateTime*,endDateTime*,%24top,%24skip,%24filter,%24count,%24orderby,%24select}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public CalendarViewRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendarView{?startDateTime*,endDateTime*,%24top,%24skip,%24filter,%24count,%24orderby,%24select}", pathParameters) {
         }
         /// <summary>
         /// The calendar view for the calendar. Read-only. Nullable.
@@ -195,10 +196,10 @@ namespace ApiSdk.Users.Item.CalendarView {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<CalendarViewRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CalendarViewRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<CalendarViewRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CalendarViewRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -207,7 +208,7 @@ namespace ApiSdk.Users.Item.CalendarView {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new CalendarViewRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<CalendarViewRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -274,24 +275,6 @@ namespace ApiSdk.Users.Item.CalendarView {
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class CalendarViewRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public CalendarViewRequestBuilderGetQueryParameters QueryParameters { get; set; } = new CalendarViewRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new calendarViewRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public CalendarViewRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

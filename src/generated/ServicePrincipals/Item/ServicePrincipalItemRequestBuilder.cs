@@ -26,10 +26,9 @@ using ApiSdk.ServicePrincipals.Item.Restore;
 using ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies;
 using ApiSdk.ServicePrincipals.Item.TokenLifetimePolicies;
 using ApiSdk.ServicePrincipals.Item.TransitiveMemberOf;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -44,11 +43,7 @@ namespace ApiSdk.ServicePrincipals.Item {
     /// <summary>
     /// Provides operations to manage the collection of servicePrincipal entities.
     /// </summary>
-    public class ServicePrincipalItemRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class ServicePrincipalItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Provides operations to call the addKey method.
         /// </summary>
@@ -56,7 +51,12 @@ namespace ApiSdk.ServicePrincipals.Item {
             var command = new Command("add-key");
             command.Description = "Provides operations to call the addKey method.";
             var builder = new AddKeyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -66,7 +66,12 @@ namespace ApiSdk.ServicePrincipals.Item {
             var command = new Command("add-password");
             command.Description = "Provides operations to call the addPassword method.";
             var builder = new AddPasswordRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -76,7 +81,12 @@ namespace ApiSdk.ServicePrincipals.Item {
             var command = new Command("add-token-signing-certificate");
             command.Description = "Provides operations to call the addTokenSigningCertificate method.";
             var builder = new AddTokenSigningCertificateRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -86,12 +96,21 @@ namespace ApiSdk.ServicePrincipals.Item {
             var command = new Command("app-management-policies");
             command.Description = "Provides operations to manage the appManagementPolicies property of the microsoft.graph.servicePrincipal entity.";
             var builder = new AppManagementPoliciesRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -101,13 +120,22 @@ namespace ApiSdk.ServicePrincipals.Item {
             var command = new Command("app-role-assigned-to");
             command.Description = "Provides operations to manage the appRoleAssignedTo property of the microsoft.graph.servicePrincipal entity.";
             var builder = new AppRoleAssignedToRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -117,13 +145,22 @@ namespace ApiSdk.ServicePrincipals.Item {
             var command = new Command("app-role-assignments");
             command.Description = "Provides operations to manage the appRoleAssignments property of the microsoft.graph.servicePrincipal entity.";
             var builder = new AppRoleAssignmentsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -133,7 +170,12 @@ namespace ApiSdk.ServicePrincipals.Item {
             var command = new Command("check-member-groups");
             command.Description = "Provides operations to call the checkMemberGroups method.";
             var builder = new CheckMemberGroupsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -143,7 +185,12 @@ namespace ApiSdk.ServicePrincipals.Item {
             var command = new Command("check-member-objects");
             command.Description = "Provides operations to call the checkMemberObjects method.";
             var builder = new CheckMemberObjectsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -153,13 +200,22 @@ namespace ApiSdk.ServicePrincipals.Item {
             var command = new Command("claims-mapping-policies");
             command.Description = "Provides operations to manage the claimsMappingPolicies property of the microsoft.graph.servicePrincipal entity.";
             var builder = new ClaimsMappingPoliciesRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            nonExecCommands.Add(builder.BuildRefNavCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRefNavCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -169,13 +225,22 @@ namespace ApiSdk.ServicePrincipals.Item {
             var command = new Command("created-objects");
             command.Description = "Provides operations to manage the createdObjects property of the microsoft.graph.servicePrincipal entity.";
             var builder = new CreatedObjectsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            nonExecCommands.Add(builder.BuildGraphServicePrincipalNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildGraphServicePrincipalNavCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -185,13 +250,22 @@ namespace ApiSdk.ServicePrincipals.Item {
             var command = new Command("delegated-permission-classifications");
             command.Description = "Provides operations to manage the delegatedPermissionClassifications property of the microsoft.graph.servicePrincipal entity.";
             var builder = new DelegatedPermissionClassificationsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -201,7 +275,6 @@ namespace ApiSdk.ServicePrincipals.Item {
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a servicePrincipal object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-delete?view=graph-rest-1.0";
-            // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -236,13 +309,22 @@ namespace ApiSdk.ServicePrincipals.Item {
             var command = new Command("endpoints");
             command.Description = "Provides operations to manage the endpoints property of the microsoft.graph.servicePrincipal entity.";
             var builder = new EndpointsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -252,13 +334,22 @@ namespace ApiSdk.ServicePrincipals.Item {
             var command = new Command("federated-identity-credentials");
             command.Description = "Provides operations to manage the federatedIdentityCredentials property of the microsoft.graph.servicePrincipal entity.";
             var builder = new FederatedIdentityCredentialsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -268,7 +359,6 @@ namespace ApiSdk.ServicePrincipals.Item {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a servicePrincipal object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-get?view=graph-rest-1.0";
-            // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -303,8 +393,8 @@ namespace ApiSdk.ServicePrincipals.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -331,7 +421,12 @@ namespace ApiSdk.ServicePrincipals.Item {
             var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
             var builder = new GetMemberGroupsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -341,7 +436,12 @@ namespace ApiSdk.ServicePrincipals.Item {
             var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
             var builder = new GetMemberObjectsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -351,13 +451,22 @@ namespace ApiSdk.ServicePrincipals.Item {
             var command = new Command("home-realm-discovery-policies");
             command.Description = "Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.servicePrincipal entity.";
             var builder = new HomeRealmDiscoveryPoliciesRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            nonExecCommands.Add(builder.BuildRefNavCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRefNavCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -367,13 +476,22 @@ namespace ApiSdk.ServicePrincipals.Item {
             var command = new Command("member-of");
             command.Description = "Provides operations to manage the memberOf property of the microsoft.graph.servicePrincipal entity.";
             var builder = new MemberOfRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            nonExecCommands.Add(builder.BuildGraphGroupNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildGraphGroupNavCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -383,12 +501,21 @@ namespace ApiSdk.ServicePrincipals.Item {
             var command = new Command("oauth2-permission-grants");
             command.Description = "Provides operations to manage the oauth2PermissionGrants property of the microsoft.graph.servicePrincipal entity.";
             var builder = new Oauth2PermissionGrantsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -398,17 +525,26 @@ namespace ApiSdk.ServicePrincipals.Item {
             var command = new Command("owned-objects");
             command.Description = "Provides operations to manage the ownedObjects property of the microsoft.graph.servicePrincipal entity.";
             var builder = new OwnedObjectsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            nonExecCommands.Add(builder.BuildGraphApplicationNavCommand());
+            nonExecCommands.Add(builder.BuildGraphAppRoleAssignmentNavCommand());
+            nonExecCommands.Add(builder.BuildGraphEndpointNavCommand());
+            nonExecCommands.Add(builder.BuildGraphGroupNavCommand());
+            nonExecCommands.Add(builder.BuildGraphServicePrincipalNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildGraphApplicationNavCommand());
-            command.AddCommand(builder.BuildGraphAppRoleAssignmentNavCommand());
-            command.AddCommand(builder.BuildGraphEndpointNavCommand());
-            command.AddCommand(builder.BuildGraphGroupNavCommand());
-            command.AddCommand(builder.BuildGraphServicePrincipalNavCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -418,17 +554,26 @@ namespace ApiSdk.ServicePrincipals.Item {
             var command = new Command("owners");
             command.Description = "Provides operations to manage the owners property of the microsoft.graph.servicePrincipal entity.";
             var builder = new OwnersRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            nonExecCommands.Add(builder.BuildGraphAppRoleAssignmentNavCommand());
+            nonExecCommands.Add(builder.BuildGraphEndpointNavCommand());
+            nonExecCommands.Add(builder.BuildGraphServicePrincipalNavCommand());
+            nonExecCommands.Add(builder.BuildGraphUserNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            nonExecCommands.Add(builder.BuildRefNavCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildGraphAppRoleAssignmentNavCommand());
-            command.AddCommand(builder.BuildGraphEndpointNavCommand());
-            command.AddCommand(builder.BuildGraphServicePrincipalNavCommand());
-            command.AddCommand(builder.BuildGraphUserNavCommand());
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRefNavCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -437,7 +582,6 @@ namespace ApiSdk.ServicePrincipals.Item {
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update entity in servicePrincipals";
-            // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -465,8 +609,8 @@ namespace ApiSdk.ServicePrincipals.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -496,7 +640,12 @@ namespace ApiSdk.ServicePrincipals.Item {
             var command = new Command("remove-key");
             command.Description = "Provides operations to call the removeKey method.";
             var builder = new RemoveKeyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -506,7 +655,12 @@ namespace ApiSdk.ServicePrincipals.Item {
             var command = new Command("remove-password");
             command.Description = "Provides operations to call the removePassword method.";
             var builder = new RemovePasswordRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -516,7 +670,12 @@ namespace ApiSdk.ServicePrincipals.Item {
             var command = new Command("restore");
             command.Description = "Provides operations to call the restore method.";
             var builder = new RestoreRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -526,12 +685,21 @@ namespace ApiSdk.ServicePrincipals.Item {
             var command = new Command("token-issuance-policies");
             command.Description = "Provides operations to manage the tokenIssuancePolicies property of the microsoft.graph.servicePrincipal entity.";
             var builder = new TokenIssuancePoliciesRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -541,12 +709,21 @@ namespace ApiSdk.ServicePrincipals.Item {
             var command = new Command("token-lifetime-policies");
             command.Description = "Provides operations to manage the tokenLifetimePolicies property of the microsoft.graph.servicePrincipal entity.";
             var builder = new TokenLifetimePoliciesRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -556,24 +733,29 @@ namespace ApiSdk.ServicePrincipals.Item {
             var command = new Command("transitive-member-of");
             command.Description = "Provides operations to manage the transitiveMemberOf property of the microsoft.graph.servicePrincipal entity.";
             var builder = new TransitiveMemberOfRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            nonExecCommands.Add(builder.BuildGraphGroupNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildGraphGroupNavCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Instantiates a new ServicePrincipalItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ServicePrincipalItemRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/servicePrincipals/{servicePrincipal%2Did}{?%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public ServicePrincipalItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Delete a servicePrincipal object.
@@ -581,10 +763,10 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<ServicePrincipalItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<ServicePrincipalItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
@@ -592,8 +774,9 @@ namespace ApiSdk.ServicePrincipals.Item {
                 PathParameters = PathParameters,
             };
             if (requestConfiguration != null) {
-                var requestConfig = new ServicePrincipalItemRequestBuilderDeleteRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
@@ -605,10 +788,10 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<ServicePrincipalItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ServicePrincipalItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<ServicePrincipalItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ServicePrincipalItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -617,7 +800,7 @@ namespace ApiSdk.ServicePrincipals.Item {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new ServicePrincipalItemRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<ServicePrincipalItemRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -632,10 +815,10 @@ namespace ApiSdk.ServicePrincipals.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ServicePrincipal body, Action<ServicePrincipalItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ServicePrincipal body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ServicePrincipal body, Action<ServicePrincipalItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ServicePrincipal body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
@@ -645,28 +828,13 @@ namespace ApiSdk.ServicePrincipals.Item {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new ServicePrincipalItemRequestBuilderPatchRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
             return requestInfo;
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class ServicePrincipalItemRequestBuilderDeleteRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new ServicePrincipalItemRequestBuilderDeleteRequestConfiguration and sets the default values.
-            /// </summary>
-            public ServicePrincipalItemRequestBuilderDeleteRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
         /// <summary>
         /// Retrieve the properties and relationships of a servicePrincipal object.
@@ -692,40 +860,6 @@ namespace ApiSdk.ServicePrincipals.Item {
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
 #endif
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class ServicePrincipalItemRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public ServicePrincipalItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ServicePrincipalItemRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new ServicePrincipalItemRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public ServicePrincipalItemRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class ServicePrincipalItemRequestBuilderPatchRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new ServicePrincipalItemRequestBuilderPatchRequestConfiguration and sets the default values.
-            /// </summary>
-            public ServicePrincipalItemRequestBuilderPatchRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

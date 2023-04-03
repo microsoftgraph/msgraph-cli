@@ -7,10 +7,9 @@ using ApiSdk.Groups.Item.Threads.Item.Posts.Item.Reply;
 using ApiSdk.Groups.Item.Threads.Item.Posts.Item.SingleValueExtendedProperties;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -25,11 +24,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
     /// <summary>
     /// Provides operations to manage the posts property of the microsoft.graph.conversationThread entity.
     /// </summary>
-    public class PostItemRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class PostItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Provides operations to manage the attachments property of the microsoft.graph.post entity.
         /// </summary>
@@ -37,14 +32,23 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
             var command = new Command("attachments");
             command.Description = "Provides operations to manage the attachments property of the microsoft.graph.post entity.";
             var builder = new AttachmentsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildCreateUploadSessionNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildCreateUploadSessionNavCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -54,13 +58,22 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.post entity.";
             var builder = new ExtensionsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -70,7 +83,12 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
             var command = new Command("forward");
             command.Description = "Provides operations to call the forward method.";
             var builder = new ForwardRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -79,7 +97,6 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get posts from groups";
-            // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -124,8 +141,8 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -154,13 +171,23 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
             var command = new Command("in-reply-to");
             command.Description = "Provides operations to manage the inReplyTo property of the microsoft.graph.post entity.";
             var builder = new InReplyToRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAttachmentsNavCommand());
-            command.AddCommand(builder.BuildExtensionsNavCommand());
-            command.AddCommand(builder.BuildForwardNavCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMultiValueExtendedPropertiesNavCommand());
-            command.AddCommand(builder.BuildReplyNavCommand());
-            command.AddCommand(builder.BuildSingleValueExtendedPropertiesNavCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAttachmentsNavCommand());
+            nonExecCommands.Add(builder.BuildExtensionsNavCommand());
+            nonExecCommands.Add(builder.BuildForwardNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildMultiValueExtendedPropertiesNavCommand());
+            nonExecCommands.Add(builder.BuildReplyNavCommand());
+            nonExecCommands.Add(builder.BuildSingleValueExtendedPropertiesNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -170,13 +197,22 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
             var command = new Command("multi-value-extended-properties");
             command.Description = "Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.post entity.";
             var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -186,7 +222,12 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
             var command = new Command("reply");
             command.Description = "Provides operations to call the reply method.";
             var builder = new ReplyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -196,24 +237,29 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
             var command = new Command("single-value-extended-properties");
             command.Description = "Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.post entity.";
             var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Instantiates a new PostItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PostItemRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/groups/{group%2Did}/threads/{conversationThread%2Did}/posts/{post%2Did}{?%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public PostItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/threads/{conversationThread%2Did}/posts/{post%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Get posts from groups
@@ -221,10 +267,10 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<PostItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PostItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<PostItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PostItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -233,7 +279,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new PostItemRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<PostItemRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -265,24 +311,6 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
 #endif
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class PostItemRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public PostItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new PostItemRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new PostItemRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public PostItemRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

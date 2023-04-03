@@ -1,9 +1,8 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -18,18 +17,13 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.GraphAppRoleAssignment
     /// <summary>
     /// Casts the previous resource to appRoleAssignment.
     /// </summary>
-    public class GraphAppRoleAssignmentRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class GraphAppRoleAssignmentRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.appRoleAssignment
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the item of type microsoft.graph.directoryObject as microsoft.graph.appRoleAssignment";
-            // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -69,8 +63,8 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.GraphAppRoleAssignment
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -95,11 +89,7 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.GraphAppRoleAssignment
         /// Instantiates a new GraphAppRoleAssignmentRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GraphAppRoleAssignmentRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/ownedObjects/{directoryObject%2Did}/graph.appRoleAssignment{?%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public GraphAppRoleAssignmentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/ownedObjects/{directoryObject%2Did}/graph.appRoleAssignment{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Get the item of type microsoft.graph.directoryObject as microsoft.graph.appRoleAssignment
@@ -107,10 +97,10 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.GraphAppRoleAssignment
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<GraphAppRoleAssignmentRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphAppRoleAssignmentRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<GraphAppRoleAssignmentRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphAppRoleAssignmentRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -119,7 +109,7 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.GraphAppRoleAssignment
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new GraphAppRoleAssignmentRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<GraphAppRoleAssignmentRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -151,24 +141,6 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.GraphAppRoleAssignment
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
 #endif
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class GraphAppRoleAssignmentRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public GraphAppRoleAssignmentRequestBuilderGetQueryParameters QueryParameters { get; set; } = new GraphAppRoleAssignmentRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new graphAppRoleAssignmentRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public GraphAppRoleAssignmentRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

@@ -1,7 +1,6 @@
 using ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders.Item.Ref;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
 using System.Collections.Generic;
@@ -14,11 +13,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders.Item {
     /// <summary>
     /// Builds and executes requests for operations under \identity\b2xUserFlows\{b2xIdentityUserFlow-id}\userFlowIdentityProviders\{identityProviderBase-id}
     /// </summary>
-    public class IdentityProviderBaseItemRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class IdentityProviderBaseItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Provides operations to manage the collection of identityContainer entities.
         /// </summary>
@@ -26,18 +21,19 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders.Item {
             var command = new Command("ref");
             command.Description = "Provides operations to manage the collection of identityContainer entities.";
             var builder = new RefRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeleteCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Instantiates a new IdentityProviderBaseItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public IdentityProviderBaseItemRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/userFlowIdentityProviders/{identityProviderBase%2Did}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public IdentityProviderBaseItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/userFlowIdentityProviders/{identityProviderBase%2Did}", pathParameters) {
         }
     }
 }

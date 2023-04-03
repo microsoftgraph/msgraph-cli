@@ -1,8 +1,7 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -17,18 +16,13 @@ namespace ApiSdk.DeviceManagement.Reports.GetDevicesWithoutCompliancePolicyRepor
     /// <summary>
     /// Provides operations to call the getDevicesWithoutCompliancePolicyReport method.
     /// </summary>
-    public class GetDevicesWithoutCompliancePolicyReportRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class GetDevicesWithoutCompliancePolicyReportRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Invoke action getDevicesWithoutCompliancePolicyReport
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Invoke action getDevicesWithoutCompliancePolicyReport";
-            // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -69,11 +63,7 @@ namespace ApiSdk.DeviceManagement.Reports.GetDevicesWithoutCompliancePolicyRepor
         /// Instantiates a new GetDevicesWithoutCompliancePolicyReportRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetDevicesWithoutCompliancePolicyReportRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/deviceManagement/reports/getDevicesWithoutCompliancePolicyReport";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public GetDevicesWithoutCompliancePolicyReportRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/reports/getDevicesWithoutCompliancePolicyReport", pathParameters) {
         }
         /// <summary>
         /// Invoke action getDevicesWithoutCompliancePolicyReport
@@ -82,10 +72,10 @@ namespace ApiSdk.DeviceManagement.Reports.GetDevicesWithoutCompliancePolicyRepor
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(GetDevicesWithoutCompliancePolicyReportPostRequestBody body, Action<GetDevicesWithoutCompliancePolicyReportRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(GetDevicesWithoutCompliancePolicyReportPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(GetDevicesWithoutCompliancePolicyReportPostRequestBody body, Action<GetDevicesWithoutCompliancePolicyReportRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(GetDevicesWithoutCompliancePolicyReportPostRequestBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
@@ -94,28 +84,13 @@ namespace ApiSdk.DeviceManagement.Reports.GetDevicesWithoutCompliancePolicyRepor
                 PathParameters = PathParameters,
             };
             if (requestConfiguration != null) {
-                var requestConfig = new GetDevicesWithoutCompliancePolicyReportRequestBuilderPostRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
             return requestInfo;
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class GetDevicesWithoutCompliancePolicyReportRequestBuilderPostRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new getDevicesWithoutCompliancePolicyReportRequestBuilderPostRequestConfiguration and sets the default values.
-            /// </summary>
-            public GetDevicesWithoutCompliancePolicyReportRequestBuilderPostRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

@@ -6,10 +6,9 @@ using ApiSdk.ServicePrincipals.GetAvailableExtensionProperties;
 using ApiSdk.ServicePrincipals.GetByIds;
 using ApiSdk.ServicePrincipals.Item;
 using ApiSdk.ServicePrincipals.ValidateProperties;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -24,17 +23,14 @@ namespace ApiSdk.ServicePrincipals {
     /// <summary>
     /// Provides operations to manage the collection of servicePrincipal entities.
     /// </summary>
-    public class ServicePrincipalsRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class ServicePrincipalsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Provides operations to manage the collection of servicePrincipal entities.
         /// </summary>
-        public List<Command> BuildCommand() {
-            var builder = new ServicePrincipalItemRequestBuilder(PathParameters);
+        public Tuple<List<Command>, List<Command>> BuildCommand() {
+            var executables = new List<Command>();
             var commands = new List<Command>();
+            var builder = new ServicePrincipalItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildAddKeyNavCommand());
             commands.Add(builder.BuildAddPasswordNavCommand());
             commands.Add(builder.BuildAddTokenSigningCertificateNavCommand());
@@ -46,10 +42,10 @@ namespace ApiSdk.ServicePrincipals {
             commands.Add(builder.BuildClaimsMappingPoliciesNavCommand());
             commands.Add(builder.BuildCreatedObjectsNavCommand());
             commands.Add(builder.BuildDelegatedPermissionClassificationsNavCommand());
-            commands.Add(builder.BuildDeleteCommand());
+            executables.Add(builder.BuildDeleteCommand());
             commands.Add(builder.BuildEndpointsNavCommand());
             commands.Add(builder.BuildFederatedIdentityCredentialsNavCommand());
-            commands.Add(builder.BuildGetCommand());
+            executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildGetMemberGroupsNavCommand());
             commands.Add(builder.BuildGetMemberObjectsNavCommand());
             commands.Add(builder.BuildHomeRealmDiscoveryPoliciesNavCommand());
@@ -57,14 +53,14 @@ namespace ApiSdk.ServicePrincipals {
             commands.Add(builder.BuildOauth2PermissionGrantsNavCommand());
             commands.Add(builder.BuildOwnedObjectsNavCommand());
             commands.Add(builder.BuildOwnersNavCommand());
-            commands.Add(builder.BuildPatchCommand());
+            executables.Add(builder.BuildPatchCommand());
             commands.Add(builder.BuildRemoveKeyNavCommand());
             commands.Add(builder.BuildRemovePasswordNavCommand());
             commands.Add(builder.BuildRestoreNavCommand());
             commands.Add(builder.BuildTokenIssuancePoliciesNavCommand());
             commands.Add(builder.BuildTokenLifetimePoliciesNavCommand());
             commands.Add(builder.BuildTransitiveMemberOfNavCommand());
-            return commands;
+            return new(executables, commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -73,7 +69,12 @@ namespace ApiSdk.ServicePrincipals {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -83,7 +84,6 @@ namespace ApiSdk.ServicePrincipals {
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create a new servicePrincipal object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-post-serviceprincipals?view=graph-rest-1.0";
-            // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -106,8 +106,8 @@ namespace ApiSdk.ServicePrincipals {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -136,7 +136,12 @@ namespace ApiSdk.ServicePrincipals {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
             var builder = new DeltaRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -146,7 +151,12 @@ namespace ApiSdk.ServicePrincipals {
             var command = new Command("get-available-extension-properties");
             command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
             var builder = new GetAvailableExtensionPropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -156,7 +166,12 @@ namespace ApiSdk.ServicePrincipals {
             var command = new Command("get-by-ids");
             command.Description = "Provides operations to call the getByIds method.";
             var builder = new GetByIdsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -166,7 +181,6 @@ namespace ApiSdk.ServicePrincipals {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Retrieve a list of servicePrincipal objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-list?view=graph-rest-1.0";
-            // Create options for all the parameters
             var consistencyLevelOption = new Option<string[]>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -236,9 +250,9 @@ namespace ApiSdk.ServicePrincipals {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
+                IPagingService pagingService = invocationContext.BindingContext.GetService(typeof(IPagingService)) as IPagingService ?? throw new ArgumentNullException("pagingService");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -279,18 +293,19 @@ namespace ApiSdk.ServicePrincipals {
             var command = new Command("validate-properties");
             command.Description = "Provides operations to call the validateProperties method.";
             var builder = new ValidatePropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Instantiates a new ServicePrincipalsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ServicePrincipalsRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/servicePrincipals{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public ServicePrincipalsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Retrieve a list of servicePrincipal objects.
@@ -298,10 +313,10 @@ namespace ApiSdk.ServicePrincipals {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<ServicePrincipalsRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ServicePrincipalsRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<ServicePrincipalsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ServicePrincipalsRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -310,7 +325,7 @@ namespace ApiSdk.ServicePrincipals {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new ServicePrincipalsRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<ServicePrincipalsRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -325,10 +340,10 @@ namespace ApiSdk.ServicePrincipals {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(ServicePrincipal body, Action<ServicePrincipalsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ServicePrincipal body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(ServicePrincipal body, Action<ServicePrincipalsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ServicePrincipal body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
@@ -338,8 +353,9 @@ namespace ApiSdk.ServicePrincipals {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new ServicePrincipalsRequestBuilderPostRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
@@ -408,40 +424,6 @@ namespace ApiSdk.ServicePrincipals {
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class ServicePrincipalsRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public ServicePrincipalsRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ServicePrincipalsRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new servicePrincipalsRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public ServicePrincipalsRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class ServicePrincipalsRequestBuilderPostRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new servicePrincipalsRequestBuilderPostRequestConfiguration and sets the default values.
-            /// </summary>
-            public ServicePrincipalsRequestBuilderPostRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

@@ -1,9 +1,8 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -18,18 +17,13 @@ namespace ApiSdk.DeviceManagement.MobileThreatDefenseConnectors.Item {
     /// <summary>
     /// Provides operations to manage the mobileThreatDefenseConnectors property of the microsoft.graph.deviceManagement entity.
     /// </summary>
-    public class MobileThreatDefenseConnectorItemRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class MobileThreatDefenseConnectorItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Delete navigation property mobileThreatDefenseConnectors for deviceManagement
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property mobileThreatDefenseConnectors for deviceManagement";
-            // Create options for all the parameters
             var mobileThreatDefenseConnectorIdOption = new Option<string>("--mobile-threat-defense-connector-id", description: "The unique identifier of mobileThreatDefenseConnector") {
             };
             mobileThreatDefenseConnectorIdOption.IsRequired = true;
@@ -63,7 +57,6 @@ namespace ApiSdk.DeviceManagement.MobileThreatDefenseConnectors.Item {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The list of Mobile threat Defense connectors configured by the tenant.";
-            // Create options for all the parameters
             var mobileThreatDefenseConnectorIdOption = new Option<string>("--mobile-threat-defense-connector-id", description: "The unique identifier of mobileThreatDefenseConnector") {
             };
             mobileThreatDefenseConnectorIdOption.IsRequired = true;
@@ -98,8 +91,8 @@ namespace ApiSdk.DeviceManagement.MobileThreatDefenseConnectors.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -125,7 +118,6 @@ namespace ApiSdk.DeviceManagement.MobileThreatDefenseConnectors.Item {
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property mobileThreatDefenseConnectors in deviceManagement";
-            // Create options for all the parameters
             var mobileThreatDefenseConnectorIdOption = new Option<string>("--mobile-threat-defense-connector-id", description: "The unique identifier of mobileThreatDefenseConnector") {
             };
             mobileThreatDefenseConnectorIdOption.IsRequired = true;
@@ -153,8 +145,8 @@ namespace ApiSdk.DeviceManagement.MobileThreatDefenseConnectors.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -181,11 +173,7 @@ namespace ApiSdk.DeviceManagement.MobileThreatDefenseConnectors.Item {
         /// Instantiates a new MobileThreatDefenseConnectorItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public MobileThreatDefenseConnectorItemRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/deviceManagement/mobileThreatDefenseConnectors/{mobileThreatDefenseConnector%2Did}{?%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public MobileThreatDefenseConnectorItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/mobileThreatDefenseConnectors/{mobileThreatDefenseConnector%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Delete navigation property mobileThreatDefenseConnectors for deviceManagement
@@ -193,10 +181,10 @@ namespace ApiSdk.DeviceManagement.MobileThreatDefenseConnectors.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<MobileThreatDefenseConnectorItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<MobileThreatDefenseConnectorItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
@@ -204,8 +192,9 @@ namespace ApiSdk.DeviceManagement.MobileThreatDefenseConnectors.Item {
                 PathParameters = PathParameters,
             };
             if (requestConfiguration != null) {
-                var requestConfig = new MobileThreatDefenseConnectorItemRequestBuilderDeleteRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
@@ -217,10 +206,10 @@ namespace ApiSdk.DeviceManagement.MobileThreatDefenseConnectors.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<MobileThreatDefenseConnectorItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MobileThreatDefenseConnectorItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<MobileThreatDefenseConnectorItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MobileThreatDefenseConnectorItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -229,7 +218,7 @@ namespace ApiSdk.DeviceManagement.MobileThreatDefenseConnectors.Item {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new MobileThreatDefenseConnectorItemRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<MobileThreatDefenseConnectorItemRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -244,10 +233,10 @@ namespace ApiSdk.DeviceManagement.MobileThreatDefenseConnectors.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(MobileThreatDefenseConnector body, Action<MobileThreatDefenseConnectorItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(MobileThreatDefenseConnector body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(MobileThreatDefenseConnector body, Action<MobileThreatDefenseConnectorItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(MobileThreatDefenseConnector body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
@@ -257,28 +246,13 @@ namespace ApiSdk.DeviceManagement.MobileThreatDefenseConnectors.Item {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new MobileThreatDefenseConnectorItemRequestBuilderPatchRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
             return requestInfo;
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class MobileThreatDefenseConnectorItemRequestBuilderDeleteRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new MobileThreatDefenseConnectorItemRequestBuilderDeleteRequestConfiguration and sets the default values.
-            /// </summary>
-            public MobileThreatDefenseConnectorItemRequestBuilderDeleteRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
         /// <summary>
         /// The list of Mobile threat Defense connectors configured by the tenant.
@@ -304,40 +278,6 @@ namespace ApiSdk.DeviceManagement.MobileThreatDefenseConnectors.Item {
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
 #endif
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class MobileThreatDefenseConnectorItemRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public MobileThreatDefenseConnectorItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new MobileThreatDefenseConnectorItemRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new MobileThreatDefenseConnectorItemRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public MobileThreatDefenseConnectorItemRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class MobileThreatDefenseConnectorItemRequestBuilderPatchRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new MobileThreatDefenseConnectorItemRequestBuilderPatchRequestConfiguration and sets the default values.
-            /// </summary>
-            public MobileThreatDefenseConnectorItemRequestBuilderPatchRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

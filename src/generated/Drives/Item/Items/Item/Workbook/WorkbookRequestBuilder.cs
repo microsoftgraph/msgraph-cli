@@ -12,10 +12,9 @@ using ApiSdk.Drives.Item.Items.Item.Workbook.Tables;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -30,11 +29,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
     /// <summary>
     /// Provides operations to manage the workbook property of the microsoft.graph.driveItem entity.
     /// </summary>
-    public class WorkbookRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class WorkbookRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Provides operations to manage the application property of the microsoft.graph.workbook entity.
         /// </summary>
@@ -42,10 +37,20 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
             var command = new Command("application");
             command.Description = "Provides operations to manage the application property of the microsoft.graph.workbook entity.";
             var builder = new ApplicationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCalculateNavCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCalculateNavCommand());
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -55,7 +60,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
             var command = new Command("close-session");
             command.Description = "Provides operations to call the closeSession method.";
             var builder = new CloseSessionRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -65,13 +75,22 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
             var command = new Command("comments");
             command.Description = "Provides operations to manage the comments property of the microsoft.graph.workbook entity.";
             var builder = new CommentsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -81,7 +100,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
             var command = new Command("create-session");
             command.Description = "Provides operations to call the createSession method.";
             var builder = new CreateSessionRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -90,7 +114,6 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property workbook for drives";
-            // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -131,375 +154,385 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
             var command = new Command("functions");
             command.Description = "Provides operations to manage the functions property of the microsoft.graph.workbook entity.";
             var builder = new FunctionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAbsNavCommand());
-            command.AddCommand(builder.BuildAccrIntMNavCommand());
-            command.AddCommand(builder.BuildAccrIntNavCommand());
-            command.AddCommand(builder.BuildAcoshNavCommand());
-            command.AddCommand(builder.BuildAcosNavCommand());
-            command.AddCommand(builder.BuildAcothNavCommand());
-            command.AddCommand(builder.BuildAcotNavCommand());
-            command.AddCommand(builder.BuildAmorDegrcNavCommand());
-            command.AddCommand(builder.BuildAmorLincNavCommand());
-            command.AddCommand(builder.BuildAndNavCommand());
-            command.AddCommand(builder.BuildArabicNavCommand());
-            command.AddCommand(builder.BuildAreasNavCommand());
-            command.AddCommand(builder.BuildAscNavCommand());
-            command.AddCommand(builder.BuildAsinhNavCommand());
-            command.AddCommand(builder.BuildAsinNavCommand());
-            command.AddCommand(builder.BuildAtan2NavCommand());
-            command.AddCommand(builder.BuildAtanhNavCommand());
-            command.AddCommand(builder.BuildAtanNavCommand());
-            command.AddCommand(builder.BuildAveDevNavCommand());
-            command.AddCommand(builder.BuildAverageANavCommand());
-            command.AddCommand(builder.BuildAverageIfNavCommand());
-            command.AddCommand(builder.BuildAverageIfsNavCommand());
-            command.AddCommand(builder.BuildAverageNavCommand());
-            command.AddCommand(builder.BuildBahtTextNavCommand());
-            command.AddCommand(builder.BuildBaseNavCommand());
-            command.AddCommand(builder.BuildBesselINavCommand());
-            command.AddCommand(builder.BuildBesselJNavCommand());
-            command.AddCommand(builder.BuildBesselKNavCommand());
-            command.AddCommand(builder.BuildBesselYNavCommand());
-            command.AddCommand(builder.BuildBeta_DistNavCommand());
-            command.AddCommand(builder.BuildBeta_InvNavCommand());
-            command.AddCommand(builder.BuildBin2DecNavCommand());
-            command.AddCommand(builder.BuildBin2HexNavCommand());
-            command.AddCommand(builder.BuildBin2OctNavCommand());
-            command.AddCommand(builder.BuildBinom_Dist_RangeNavCommand());
-            command.AddCommand(builder.BuildBinom_DistNavCommand());
-            command.AddCommand(builder.BuildBinom_InvNavCommand());
-            command.AddCommand(builder.BuildBitandNavCommand());
-            command.AddCommand(builder.BuildBitlshiftNavCommand());
-            command.AddCommand(builder.BuildBitorNavCommand());
-            command.AddCommand(builder.BuildBitrshiftNavCommand());
-            command.AddCommand(builder.BuildBitxorNavCommand());
-            command.AddCommand(builder.BuildCeiling_MathNavCommand());
-            command.AddCommand(builder.BuildCeiling_PreciseNavCommand());
-            command.AddCommand(builder.BuildCharNavCommand());
-            command.AddCommand(builder.BuildChiSq_Dist_RTNavCommand());
-            command.AddCommand(builder.BuildChiSq_DistNavCommand());
-            command.AddCommand(builder.BuildChiSq_Inv_RTNavCommand());
-            command.AddCommand(builder.BuildChiSq_InvNavCommand());
-            command.AddCommand(builder.BuildChooseNavCommand());
-            command.AddCommand(builder.BuildCleanNavCommand());
-            command.AddCommand(builder.BuildCodeNavCommand());
-            command.AddCommand(builder.BuildColumnsNavCommand());
-            command.AddCommand(builder.BuildCombinaNavCommand());
-            command.AddCommand(builder.BuildCombinNavCommand());
-            command.AddCommand(builder.BuildComplexNavCommand());
-            command.AddCommand(builder.BuildConcatenateNavCommand());
-            command.AddCommand(builder.BuildConfidence_NormNavCommand());
-            command.AddCommand(builder.BuildConfidence_TNavCommand());
-            command.AddCommand(builder.BuildConvertNavCommand());
-            command.AddCommand(builder.BuildCoshNavCommand());
-            command.AddCommand(builder.BuildCosNavCommand());
-            command.AddCommand(builder.BuildCothNavCommand());
-            command.AddCommand(builder.BuildCotNavCommand());
-            command.AddCommand(builder.BuildCountANavCommand());
-            command.AddCommand(builder.BuildCountBlankNavCommand());
-            command.AddCommand(builder.BuildCountIfNavCommand());
-            command.AddCommand(builder.BuildCountIfsNavCommand());
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCoupDayBsNavCommand());
-            command.AddCommand(builder.BuildCoupDaysNavCommand());
-            command.AddCommand(builder.BuildCoupDaysNcNavCommand());
-            command.AddCommand(builder.BuildCoupNcdNavCommand());
-            command.AddCommand(builder.BuildCoupNumNavCommand());
-            command.AddCommand(builder.BuildCoupPcdNavCommand());
-            command.AddCommand(builder.BuildCschNavCommand());
-            command.AddCommand(builder.BuildCscNavCommand());
-            command.AddCommand(builder.BuildCumIPmtNavCommand());
-            command.AddCommand(builder.BuildCumPrincNavCommand());
-            command.AddCommand(builder.BuildDateNavCommand());
-            command.AddCommand(builder.BuildDatevalueNavCommand());
-            command.AddCommand(builder.BuildDaverageNavCommand());
-            command.AddCommand(builder.BuildDayNavCommand());
-            command.AddCommand(builder.BuildDays360NavCommand());
-            command.AddCommand(builder.BuildDaysNavCommand());
-            command.AddCommand(builder.BuildDbcsNavCommand());
-            command.AddCommand(builder.BuildDbNavCommand());
-            command.AddCommand(builder.BuildDcountANavCommand());
-            command.AddCommand(builder.BuildDcountNavCommand());
-            command.AddCommand(builder.BuildDdbNavCommand());
-            command.AddCommand(builder.BuildDec2BinNavCommand());
-            command.AddCommand(builder.BuildDec2HexNavCommand());
-            command.AddCommand(builder.BuildDec2OctNavCommand());
-            command.AddCommand(builder.BuildDecimalNavCommand());
-            command.AddCommand(builder.BuildDegreesNavCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildDeltaNavCommand());
-            command.AddCommand(builder.BuildDevSqNavCommand());
-            command.AddCommand(builder.BuildDgetNavCommand());
-            command.AddCommand(builder.BuildDiscNavCommand());
-            command.AddCommand(builder.BuildDmaxNavCommand());
-            command.AddCommand(builder.BuildDminNavCommand());
-            command.AddCommand(builder.BuildDollarDeNavCommand());
-            command.AddCommand(builder.BuildDollarFrNavCommand());
-            command.AddCommand(builder.BuildDollarNavCommand());
-            command.AddCommand(builder.BuildDproductNavCommand());
-            command.AddCommand(builder.BuildDstDevNavCommand());
-            command.AddCommand(builder.BuildDstDevPNavCommand());
-            command.AddCommand(builder.BuildDsumNavCommand());
-            command.AddCommand(builder.BuildDurationNavCommand());
-            command.AddCommand(builder.BuildDvarNavCommand());
-            command.AddCommand(builder.BuildDvarPNavCommand());
-            command.AddCommand(builder.BuildEcma_CeilingNavCommand());
-            command.AddCommand(builder.BuildEdateNavCommand());
-            command.AddCommand(builder.BuildEffectNavCommand());
-            command.AddCommand(builder.BuildEoMonthNavCommand());
-            command.AddCommand(builder.BuildErf_PreciseNavCommand());
-            command.AddCommand(builder.BuildErfC_PreciseNavCommand());
-            command.AddCommand(builder.BuildErfCNavCommand());
-            command.AddCommand(builder.BuildErfNavCommand());
-            command.AddCommand(builder.BuildError_TypeNavCommand());
-            command.AddCommand(builder.BuildEvenNavCommand());
-            command.AddCommand(builder.BuildExactNavCommand());
-            command.AddCommand(builder.BuildExpNavCommand());
-            command.AddCommand(builder.BuildExpon_DistNavCommand());
-            command.AddCommand(builder.BuildF_Dist_RTNavCommand());
-            command.AddCommand(builder.BuildF_DistNavCommand());
-            command.AddCommand(builder.BuildF_Inv_RTNavCommand());
-            command.AddCommand(builder.BuildF_InvNavCommand());
-            command.AddCommand(builder.BuildFactDoubleNavCommand());
-            command.AddCommand(builder.BuildFactNavCommand());
-            command.AddCommand(builder.BuildFalseNavCommand());
-            command.AddCommand(builder.BuildFindBNavCommand());
-            command.AddCommand(builder.BuildFindNavCommand());
-            command.AddCommand(builder.BuildFisherInvNavCommand());
-            command.AddCommand(builder.BuildFisherNavCommand());
-            command.AddCommand(builder.BuildFixedNavCommand());
-            command.AddCommand(builder.BuildFloor_MathNavCommand());
-            command.AddCommand(builder.BuildFloor_PreciseNavCommand());
-            command.AddCommand(builder.BuildFvNavCommand());
-            command.AddCommand(builder.BuildFvscheduleNavCommand());
-            command.AddCommand(builder.BuildGamma_DistNavCommand());
-            command.AddCommand(builder.BuildGamma_InvNavCommand());
-            command.AddCommand(builder.BuildGammaLn_PreciseNavCommand());
-            command.AddCommand(builder.BuildGammaLnNavCommand());
-            command.AddCommand(builder.BuildGammaNavCommand());
-            command.AddCommand(builder.BuildGaussNavCommand());
-            command.AddCommand(builder.BuildGcdNavCommand());
-            command.AddCommand(builder.BuildGeoMeanNavCommand());
-            command.AddCommand(builder.BuildGeStepNavCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildHarMeanNavCommand());
-            command.AddCommand(builder.BuildHex2BinNavCommand());
-            command.AddCommand(builder.BuildHex2DecNavCommand());
-            command.AddCommand(builder.BuildHex2OctNavCommand());
-            command.AddCommand(builder.BuildHlookupNavCommand());
-            command.AddCommand(builder.BuildHourNavCommand());
-            command.AddCommand(builder.BuildHyperlinkNavCommand());
-            command.AddCommand(builder.BuildHypGeom_DistNavCommand());
-            command.AddCommand(builder.BuildIfNavCommand());
-            command.AddCommand(builder.BuildImAbsNavCommand());
-            command.AddCommand(builder.BuildImaginaryNavCommand());
-            command.AddCommand(builder.BuildImArgumentNavCommand());
-            command.AddCommand(builder.BuildImConjugateNavCommand());
-            command.AddCommand(builder.BuildImCoshNavCommand());
-            command.AddCommand(builder.BuildImCosNavCommand());
-            command.AddCommand(builder.BuildImCotNavCommand());
-            command.AddCommand(builder.BuildImCschNavCommand());
-            command.AddCommand(builder.BuildImCscNavCommand());
-            command.AddCommand(builder.BuildImDivNavCommand());
-            command.AddCommand(builder.BuildImExpNavCommand());
-            command.AddCommand(builder.BuildImLnNavCommand());
-            command.AddCommand(builder.BuildImLog10NavCommand());
-            command.AddCommand(builder.BuildImLog2NavCommand());
-            command.AddCommand(builder.BuildImPowerNavCommand());
-            command.AddCommand(builder.BuildImProductNavCommand());
-            command.AddCommand(builder.BuildImRealNavCommand());
-            command.AddCommand(builder.BuildImSechNavCommand());
-            command.AddCommand(builder.BuildImSecNavCommand());
-            command.AddCommand(builder.BuildImSinhNavCommand());
-            command.AddCommand(builder.BuildImSinNavCommand());
-            command.AddCommand(builder.BuildImSqrtNavCommand());
-            command.AddCommand(builder.BuildImSubNavCommand());
-            command.AddCommand(builder.BuildImSumNavCommand());
-            command.AddCommand(builder.BuildImTanNavCommand());
-            command.AddCommand(builder.BuildIntNavCommand());
-            command.AddCommand(builder.BuildIntRateNavCommand());
-            command.AddCommand(builder.BuildIpmtNavCommand());
-            command.AddCommand(builder.BuildIrrNavCommand());
-            command.AddCommand(builder.BuildIsErrNavCommand());
-            command.AddCommand(builder.BuildIsErrorNavCommand());
-            command.AddCommand(builder.BuildIsEvenNavCommand());
-            command.AddCommand(builder.BuildIsFormulaNavCommand());
-            command.AddCommand(builder.BuildIsLogicalNavCommand());
-            command.AddCommand(builder.BuildIsNANavCommand());
-            command.AddCommand(builder.BuildIsNonTextNavCommand());
-            command.AddCommand(builder.BuildIsNumberNavCommand());
-            command.AddCommand(builder.BuildIso_CeilingNavCommand());
-            command.AddCommand(builder.BuildIsOddNavCommand());
-            command.AddCommand(builder.BuildIsoWeekNumNavCommand());
-            command.AddCommand(builder.BuildIspmtNavCommand());
-            command.AddCommand(builder.BuildIsrefNavCommand());
-            command.AddCommand(builder.BuildIsTextNavCommand());
-            command.AddCommand(builder.BuildKurtNavCommand());
-            command.AddCommand(builder.BuildLargeNavCommand());
-            command.AddCommand(builder.BuildLcmNavCommand());
-            command.AddCommand(builder.BuildLeftbNavCommand());
-            command.AddCommand(builder.BuildLeftNavCommand());
-            command.AddCommand(builder.BuildLenbNavCommand());
-            command.AddCommand(builder.BuildLenNavCommand());
-            command.AddCommand(builder.BuildLnNavCommand());
-            command.AddCommand(builder.BuildLog10NavCommand());
-            command.AddCommand(builder.BuildLogNavCommand());
-            command.AddCommand(builder.BuildLogNorm_DistNavCommand());
-            command.AddCommand(builder.BuildLogNorm_InvNavCommand());
-            command.AddCommand(builder.BuildLookupNavCommand());
-            command.AddCommand(builder.BuildLowerNavCommand());
-            command.AddCommand(builder.BuildMatchNavCommand());
-            command.AddCommand(builder.BuildMaxANavCommand());
-            command.AddCommand(builder.BuildMaxNavCommand());
-            command.AddCommand(builder.BuildMdurationNavCommand());
-            command.AddCommand(builder.BuildMedianNavCommand());
-            command.AddCommand(builder.BuildMidbNavCommand());
-            command.AddCommand(builder.BuildMidNavCommand());
-            command.AddCommand(builder.BuildMinANavCommand());
-            command.AddCommand(builder.BuildMinNavCommand());
-            command.AddCommand(builder.BuildMinuteNavCommand());
-            command.AddCommand(builder.BuildMirrNavCommand());
-            command.AddCommand(builder.BuildModNavCommand());
-            command.AddCommand(builder.BuildMonthNavCommand());
-            command.AddCommand(builder.BuildMroundNavCommand());
-            command.AddCommand(builder.BuildMultiNomialNavCommand());
-            command.AddCommand(builder.BuildNaNavCommand());
-            command.AddCommand(builder.BuildNegBinom_DistNavCommand());
-            command.AddCommand(builder.BuildNetworkDays_IntlNavCommand());
-            command.AddCommand(builder.BuildNetworkDaysNavCommand());
-            command.AddCommand(builder.BuildNNavCommand());
-            command.AddCommand(builder.BuildNominalNavCommand());
-            command.AddCommand(builder.BuildNorm_DistNavCommand());
-            command.AddCommand(builder.BuildNorm_InvNavCommand());
-            command.AddCommand(builder.BuildNorm_S_DistNavCommand());
-            command.AddCommand(builder.BuildNorm_S_InvNavCommand());
-            command.AddCommand(builder.BuildNotNavCommand());
-            command.AddCommand(builder.BuildNowNavCommand());
-            command.AddCommand(builder.BuildNperNavCommand());
-            command.AddCommand(builder.BuildNpvNavCommand());
-            command.AddCommand(builder.BuildNumberValueNavCommand());
-            command.AddCommand(builder.BuildOct2BinNavCommand());
-            command.AddCommand(builder.BuildOct2DecNavCommand());
-            command.AddCommand(builder.BuildOct2HexNavCommand());
-            command.AddCommand(builder.BuildOddFPriceNavCommand());
-            command.AddCommand(builder.BuildOddFYieldNavCommand());
-            command.AddCommand(builder.BuildOddLPriceNavCommand());
-            command.AddCommand(builder.BuildOddLYieldNavCommand());
-            command.AddCommand(builder.BuildOddNavCommand());
-            command.AddCommand(builder.BuildOrNavCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPdurationNavCommand());
-            command.AddCommand(builder.BuildPercentile_ExcNavCommand());
-            command.AddCommand(builder.BuildPercentile_IncNavCommand());
-            command.AddCommand(builder.BuildPercentRank_ExcNavCommand());
-            command.AddCommand(builder.BuildPercentRank_IncNavCommand());
-            command.AddCommand(builder.BuildPermutationaNavCommand());
-            command.AddCommand(builder.BuildPermutNavCommand());
-            command.AddCommand(builder.BuildPhiNavCommand());
-            command.AddCommand(builder.BuildPiNavCommand());
-            command.AddCommand(builder.BuildPmtNavCommand());
-            command.AddCommand(builder.BuildPoisson_DistNavCommand());
-            command.AddCommand(builder.BuildPowerNavCommand());
-            command.AddCommand(builder.BuildPpmtNavCommand());
-            command.AddCommand(builder.BuildPriceDiscNavCommand());
-            command.AddCommand(builder.BuildPriceMatNavCommand());
-            command.AddCommand(builder.BuildPriceNavCommand());
-            command.AddCommand(builder.BuildProductNavCommand());
-            command.AddCommand(builder.BuildProperNavCommand());
-            command.AddCommand(builder.BuildPvNavCommand());
-            command.AddCommand(builder.BuildQuartile_ExcNavCommand());
-            command.AddCommand(builder.BuildQuartile_IncNavCommand());
-            command.AddCommand(builder.BuildQuotientNavCommand());
-            command.AddCommand(builder.BuildRadiansNavCommand());
-            command.AddCommand(builder.BuildRandBetweenNavCommand());
-            command.AddCommand(builder.BuildRandNavCommand());
-            command.AddCommand(builder.BuildRank_AvgNavCommand());
-            command.AddCommand(builder.BuildRank_EqNavCommand());
-            command.AddCommand(builder.BuildRateNavCommand());
-            command.AddCommand(builder.BuildReceivedNavCommand());
-            command.AddCommand(builder.BuildReplaceBNavCommand());
-            command.AddCommand(builder.BuildReplaceNavCommand());
-            command.AddCommand(builder.BuildReptNavCommand());
-            command.AddCommand(builder.BuildRightbNavCommand());
-            command.AddCommand(builder.BuildRightNavCommand());
-            command.AddCommand(builder.BuildRomanNavCommand());
-            command.AddCommand(builder.BuildRoundDownNavCommand());
-            command.AddCommand(builder.BuildRoundNavCommand());
-            command.AddCommand(builder.BuildRoundUpNavCommand());
-            command.AddCommand(builder.BuildRowsNavCommand());
-            command.AddCommand(builder.BuildRriNavCommand());
-            command.AddCommand(builder.BuildSechNavCommand());
-            command.AddCommand(builder.BuildSecNavCommand());
-            command.AddCommand(builder.BuildSecondNavCommand());
-            command.AddCommand(builder.BuildSeriesSumNavCommand());
-            command.AddCommand(builder.BuildSheetNavCommand());
-            command.AddCommand(builder.BuildSheetsNavCommand());
-            command.AddCommand(builder.BuildSignNavCommand());
-            command.AddCommand(builder.BuildSinhNavCommand());
-            command.AddCommand(builder.BuildSinNavCommand());
-            command.AddCommand(builder.BuildSkew_pNavCommand());
-            command.AddCommand(builder.BuildSkewNavCommand());
-            command.AddCommand(builder.BuildSlnNavCommand());
-            command.AddCommand(builder.BuildSmallNavCommand());
-            command.AddCommand(builder.BuildSqrtNavCommand());
-            command.AddCommand(builder.BuildSqrtPiNavCommand());
-            command.AddCommand(builder.BuildStandardizeNavCommand());
-            command.AddCommand(builder.BuildStDev_PNavCommand());
-            command.AddCommand(builder.BuildStDev_SNavCommand());
-            command.AddCommand(builder.BuildStDevANavCommand());
-            command.AddCommand(builder.BuildStDevPANavCommand());
-            command.AddCommand(builder.BuildSubstituteNavCommand());
-            command.AddCommand(builder.BuildSubtotalNavCommand());
-            command.AddCommand(builder.BuildSumIfNavCommand());
-            command.AddCommand(builder.BuildSumIfsNavCommand());
-            command.AddCommand(builder.BuildSumNavCommand());
-            command.AddCommand(builder.BuildSumSqNavCommand());
-            command.AddCommand(builder.BuildSydNavCommand());
-            command.AddCommand(builder.BuildT_Dist_2TNavCommand());
-            command.AddCommand(builder.BuildT_Dist_RTNavCommand());
-            command.AddCommand(builder.BuildT_DistNavCommand());
-            command.AddCommand(builder.BuildT_Inv_2TNavCommand());
-            command.AddCommand(builder.BuildT_InvNavCommand());
-            command.AddCommand(builder.BuildTanhNavCommand());
-            command.AddCommand(builder.BuildTanNavCommand());
-            command.AddCommand(builder.BuildTbillEqNavCommand());
-            command.AddCommand(builder.BuildTbillPriceNavCommand());
-            command.AddCommand(builder.BuildTbillYieldNavCommand());
-            command.AddCommand(builder.BuildTextNavCommand());
-            command.AddCommand(builder.BuildTimeNavCommand());
-            command.AddCommand(builder.BuildTimevalueNavCommand());
-            command.AddCommand(builder.BuildTNavCommand());
-            command.AddCommand(builder.BuildTodayNavCommand());
-            command.AddCommand(builder.BuildTrimMeanNavCommand());
-            command.AddCommand(builder.BuildTrimNavCommand());
-            command.AddCommand(builder.BuildTrueNavCommand());
-            command.AddCommand(builder.BuildTruncNavCommand());
-            command.AddCommand(builder.BuildTypeNavCommand());
-            command.AddCommand(builder.BuildUnicharNavCommand());
-            command.AddCommand(builder.BuildUnicodeNavCommand());
-            command.AddCommand(builder.BuildUpperNavCommand());
-            command.AddCommand(builder.BuildUsdollarNavCommand());
-            command.AddCommand(builder.BuildValueNavCommand());
-            command.AddCommand(builder.BuildVar_PNavCommand());
-            command.AddCommand(builder.BuildVar_SNavCommand());
-            command.AddCommand(builder.BuildVarANavCommand());
-            command.AddCommand(builder.BuildVarPANavCommand());
-            command.AddCommand(builder.BuildVdbNavCommand());
-            command.AddCommand(builder.BuildVlookupNavCommand());
-            command.AddCommand(builder.BuildWeekdayNavCommand());
-            command.AddCommand(builder.BuildWeekNumNavCommand());
-            command.AddCommand(builder.BuildWeibull_DistNavCommand());
-            command.AddCommand(builder.BuildWorkDay_IntlNavCommand());
-            command.AddCommand(builder.BuildWorkDayNavCommand());
-            command.AddCommand(builder.BuildXirrNavCommand());
-            command.AddCommand(builder.BuildXnpvNavCommand());
-            command.AddCommand(builder.BuildXorNavCommand());
-            command.AddCommand(builder.BuildYearFracNavCommand());
-            command.AddCommand(builder.BuildYearNavCommand());
-            command.AddCommand(builder.BuildYieldDiscNavCommand());
-            command.AddCommand(builder.BuildYieldMatNavCommand());
-            command.AddCommand(builder.BuildYieldNavCommand());
-            command.AddCommand(builder.BuildZ_TestNavCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAbsNavCommand());
+            nonExecCommands.Add(builder.BuildAccrIntMNavCommand());
+            nonExecCommands.Add(builder.BuildAccrIntNavCommand());
+            nonExecCommands.Add(builder.BuildAcoshNavCommand());
+            nonExecCommands.Add(builder.BuildAcosNavCommand());
+            nonExecCommands.Add(builder.BuildAcothNavCommand());
+            nonExecCommands.Add(builder.BuildAcotNavCommand());
+            nonExecCommands.Add(builder.BuildAmorDegrcNavCommand());
+            nonExecCommands.Add(builder.BuildAmorLincNavCommand());
+            nonExecCommands.Add(builder.BuildAndNavCommand());
+            nonExecCommands.Add(builder.BuildArabicNavCommand());
+            nonExecCommands.Add(builder.BuildAreasNavCommand());
+            nonExecCommands.Add(builder.BuildAscNavCommand());
+            nonExecCommands.Add(builder.BuildAsinhNavCommand());
+            nonExecCommands.Add(builder.BuildAsinNavCommand());
+            nonExecCommands.Add(builder.BuildAtan2NavCommand());
+            nonExecCommands.Add(builder.BuildAtanhNavCommand());
+            nonExecCommands.Add(builder.BuildAtanNavCommand());
+            nonExecCommands.Add(builder.BuildAveDevNavCommand());
+            nonExecCommands.Add(builder.BuildAverageANavCommand());
+            nonExecCommands.Add(builder.BuildAverageIfNavCommand());
+            nonExecCommands.Add(builder.BuildAverageIfsNavCommand());
+            nonExecCommands.Add(builder.BuildAverageNavCommand());
+            nonExecCommands.Add(builder.BuildBahtTextNavCommand());
+            nonExecCommands.Add(builder.BuildBaseNavCommand());
+            nonExecCommands.Add(builder.BuildBesselINavCommand());
+            nonExecCommands.Add(builder.BuildBesselJNavCommand());
+            nonExecCommands.Add(builder.BuildBesselKNavCommand());
+            nonExecCommands.Add(builder.BuildBesselYNavCommand());
+            nonExecCommands.Add(builder.BuildBeta_DistNavCommand());
+            nonExecCommands.Add(builder.BuildBeta_InvNavCommand());
+            nonExecCommands.Add(builder.BuildBin2DecNavCommand());
+            nonExecCommands.Add(builder.BuildBin2HexNavCommand());
+            nonExecCommands.Add(builder.BuildBin2OctNavCommand());
+            nonExecCommands.Add(builder.BuildBinom_Dist_RangeNavCommand());
+            nonExecCommands.Add(builder.BuildBinom_DistNavCommand());
+            nonExecCommands.Add(builder.BuildBinom_InvNavCommand());
+            nonExecCommands.Add(builder.BuildBitandNavCommand());
+            nonExecCommands.Add(builder.BuildBitlshiftNavCommand());
+            nonExecCommands.Add(builder.BuildBitorNavCommand());
+            nonExecCommands.Add(builder.BuildBitrshiftNavCommand());
+            nonExecCommands.Add(builder.BuildBitxorNavCommand());
+            nonExecCommands.Add(builder.BuildCeiling_MathNavCommand());
+            nonExecCommands.Add(builder.BuildCeiling_PreciseNavCommand());
+            nonExecCommands.Add(builder.BuildCharNavCommand());
+            nonExecCommands.Add(builder.BuildChiSq_Dist_RTNavCommand());
+            nonExecCommands.Add(builder.BuildChiSq_DistNavCommand());
+            nonExecCommands.Add(builder.BuildChiSq_Inv_RTNavCommand());
+            nonExecCommands.Add(builder.BuildChiSq_InvNavCommand());
+            nonExecCommands.Add(builder.BuildChooseNavCommand());
+            nonExecCommands.Add(builder.BuildCleanNavCommand());
+            nonExecCommands.Add(builder.BuildCodeNavCommand());
+            nonExecCommands.Add(builder.BuildColumnsNavCommand());
+            nonExecCommands.Add(builder.BuildCombinaNavCommand());
+            nonExecCommands.Add(builder.BuildCombinNavCommand());
+            nonExecCommands.Add(builder.BuildComplexNavCommand());
+            nonExecCommands.Add(builder.BuildConcatenateNavCommand());
+            nonExecCommands.Add(builder.BuildConfidence_NormNavCommand());
+            nonExecCommands.Add(builder.BuildConfidence_TNavCommand());
+            nonExecCommands.Add(builder.BuildConvertNavCommand());
+            nonExecCommands.Add(builder.BuildCoshNavCommand());
+            nonExecCommands.Add(builder.BuildCosNavCommand());
+            nonExecCommands.Add(builder.BuildCothNavCommand());
+            nonExecCommands.Add(builder.BuildCotNavCommand());
+            nonExecCommands.Add(builder.BuildCountANavCommand());
+            nonExecCommands.Add(builder.BuildCountBlankNavCommand());
+            nonExecCommands.Add(builder.BuildCountIfNavCommand());
+            nonExecCommands.Add(builder.BuildCountIfsNavCommand());
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            nonExecCommands.Add(builder.BuildCoupDayBsNavCommand());
+            nonExecCommands.Add(builder.BuildCoupDaysNavCommand());
+            nonExecCommands.Add(builder.BuildCoupDaysNcNavCommand());
+            nonExecCommands.Add(builder.BuildCoupNcdNavCommand());
+            nonExecCommands.Add(builder.BuildCoupNumNavCommand());
+            nonExecCommands.Add(builder.BuildCoupPcdNavCommand());
+            nonExecCommands.Add(builder.BuildCschNavCommand());
+            nonExecCommands.Add(builder.BuildCscNavCommand());
+            nonExecCommands.Add(builder.BuildCumIPmtNavCommand());
+            nonExecCommands.Add(builder.BuildCumPrincNavCommand());
+            nonExecCommands.Add(builder.BuildDateNavCommand());
+            nonExecCommands.Add(builder.BuildDatevalueNavCommand());
+            nonExecCommands.Add(builder.BuildDaverageNavCommand());
+            nonExecCommands.Add(builder.BuildDayNavCommand());
+            nonExecCommands.Add(builder.BuildDays360NavCommand());
+            nonExecCommands.Add(builder.BuildDaysNavCommand());
+            nonExecCommands.Add(builder.BuildDbcsNavCommand());
+            nonExecCommands.Add(builder.BuildDbNavCommand());
+            nonExecCommands.Add(builder.BuildDcountANavCommand());
+            nonExecCommands.Add(builder.BuildDcountNavCommand());
+            nonExecCommands.Add(builder.BuildDdbNavCommand());
+            nonExecCommands.Add(builder.BuildDec2BinNavCommand());
+            nonExecCommands.Add(builder.BuildDec2HexNavCommand());
+            nonExecCommands.Add(builder.BuildDec2OctNavCommand());
+            nonExecCommands.Add(builder.BuildDecimalNavCommand());
+            nonExecCommands.Add(builder.BuildDegreesNavCommand());
+            execCommands.Add(builder.BuildDeleteCommand());
+            nonExecCommands.Add(builder.BuildDeltaNavCommand());
+            nonExecCommands.Add(builder.BuildDevSqNavCommand());
+            nonExecCommands.Add(builder.BuildDgetNavCommand());
+            nonExecCommands.Add(builder.BuildDiscNavCommand());
+            nonExecCommands.Add(builder.BuildDmaxNavCommand());
+            nonExecCommands.Add(builder.BuildDminNavCommand());
+            nonExecCommands.Add(builder.BuildDollarDeNavCommand());
+            nonExecCommands.Add(builder.BuildDollarFrNavCommand());
+            nonExecCommands.Add(builder.BuildDollarNavCommand());
+            nonExecCommands.Add(builder.BuildDproductNavCommand());
+            nonExecCommands.Add(builder.BuildDstDevNavCommand());
+            nonExecCommands.Add(builder.BuildDstDevPNavCommand());
+            nonExecCommands.Add(builder.BuildDsumNavCommand());
+            nonExecCommands.Add(builder.BuildDurationNavCommand());
+            nonExecCommands.Add(builder.BuildDvarNavCommand());
+            nonExecCommands.Add(builder.BuildDvarPNavCommand());
+            nonExecCommands.Add(builder.BuildEcma_CeilingNavCommand());
+            nonExecCommands.Add(builder.BuildEdateNavCommand());
+            nonExecCommands.Add(builder.BuildEffectNavCommand());
+            nonExecCommands.Add(builder.BuildEoMonthNavCommand());
+            nonExecCommands.Add(builder.BuildErf_PreciseNavCommand());
+            nonExecCommands.Add(builder.BuildErfC_PreciseNavCommand());
+            nonExecCommands.Add(builder.BuildErfCNavCommand());
+            nonExecCommands.Add(builder.BuildErfNavCommand());
+            nonExecCommands.Add(builder.BuildError_TypeNavCommand());
+            nonExecCommands.Add(builder.BuildEvenNavCommand());
+            nonExecCommands.Add(builder.BuildExactNavCommand());
+            nonExecCommands.Add(builder.BuildExpNavCommand());
+            nonExecCommands.Add(builder.BuildExpon_DistNavCommand());
+            nonExecCommands.Add(builder.BuildF_Dist_RTNavCommand());
+            nonExecCommands.Add(builder.BuildF_DistNavCommand());
+            nonExecCommands.Add(builder.BuildF_Inv_RTNavCommand());
+            nonExecCommands.Add(builder.BuildF_InvNavCommand());
+            nonExecCommands.Add(builder.BuildFactDoubleNavCommand());
+            nonExecCommands.Add(builder.BuildFactNavCommand());
+            nonExecCommands.Add(builder.BuildFalseNavCommand());
+            nonExecCommands.Add(builder.BuildFindBNavCommand());
+            nonExecCommands.Add(builder.BuildFindNavCommand());
+            nonExecCommands.Add(builder.BuildFisherInvNavCommand());
+            nonExecCommands.Add(builder.BuildFisherNavCommand());
+            nonExecCommands.Add(builder.BuildFixedNavCommand());
+            nonExecCommands.Add(builder.BuildFloor_MathNavCommand());
+            nonExecCommands.Add(builder.BuildFloor_PreciseNavCommand());
+            nonExecCommands.Add(builder.BuildFvNavCommand());
+            nonExecCommands.Add(builder.BuildFvscheduleNavCommand());
+            nonExecCommands.Add(builder.BuildGamma_DistNavCommand());
+            nonExecCommands.Add(builder.BuildGamma_InvNavCommand());
+            nonExecCommands.Add(builder.BuildGammaLn_PreciseNavCommand());
+            nonExecCommands.Add(builder.BuildGammaLnNavCommand());
+            nonExecCommands.Add(builder.BuildGammaNavCommand());
+            nonExecCommands.Add(builder.BuildGaussNavCommand());
+            nonExecCommands.Add(builder.BuildGcdNavCommand());
+            nonExecCommands.Add(builder.BuildGeoMeanNavCommand());
+            nonExecCommands.Add(builder.BuildGeStepNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildHarMeanNavCommand());
+            nonExecCommands.Add(builder.BuildHex2BinNavCommand());
+            nonExecCommands.Add(builder.BuildHex2DecNavCommand());
+            nonExecCommands.Add(builder.BuildHex2OctNavCommand());
+            nonExecCommands.Add(builder.BuildHlookupNavCommand());
+            nonExecCommands.Add(builder.BuildHourNavCommand());
+            nonExecCommands.Add(builder.BuildHyperlinkNavCommand());
+            nonExecCommands.Add(builder.BuildHypGeom_DistNavCommand());
+            nonExecCommands.Add(builder.BuildIfNavCommand());
+            nonExecCommands.Add(builder.BuildImAbsNavCommand());
+            nonExecCommands.Add(builder.BuildImaginaryNavCommand());
+            nonExecCommands.Add(builder.BuildImArgumentNavCommand());
+            nonExecCommands.Add(builder.BuildImConjugateNavCommand());
+            nonExecCommands.Add(builder.BuildImCoshNavCommand());
+            nonExecCommands.Add(builder.BuildImCosNavCommand());
+            nonExecCommands.Add(builder.BuildImCotNavCommand());
+            nonExecCommands.Add(builder.BuildImCschNavCommand());
+            nonExecCommands.Add(builder.BuildImCscNavCommand());
+            nonExecCommands.Add(builder.BuildImDivNavCommand());
+            nonExecCommands.Add(builder.BuildImExpNavCommand());
+            nonExecCommands.Add(builder.BuildImLnNavCommand());
+            nonExecCommands.Add(builder.BuildImLog10NavCommand());
+            nonExecCommands.Add(builder.BuildImLog2NavCommand());
+            nonExecCommands.Add(builder.BuildImPowerNavCommand());
+            nonExecCommands.Add(builder.BuildImProductNavCommand());
+            nonExecCommands.Add(builder.BuildImRealNavCommand());
+            nonExecCommands.Add(builder.BuildImSechNavCommand());
+            nonExecCommands.Add(builder.BuildImSecNavCommand());
+            nonExecCommands.Add(builder.BuildImSinhNavCommand());
+            nonExecCommands.Add(builder.BuildImSinNavCommand());
+            nonExecCommands.Add(builder.BuildImSqrtNavCommand());
+            nonExecCommands.Add(builder.BuildImSubNavCommand());
+            nonExecCommands.Add(builder.BuildImSumNavCommand());
+            nonExecCommands.Add(builder.BuildImTanNavCommand());
+            nonExecCommands.Add(builder.BuildIntNavCommand());
+            nonExecCommands.Add(builder.BuildIntRateNavCommand());
+            nonExecCommands.Add(builder.BuildIpmtNavCommand());
+            nonExecCommands.Add(builder.BuildIrrNavCommand());
+            nonExecCommands.Add(builder.BuildIsErrNavCommand());
+            nonExecCommands.Add(builder.BuildIsErrorNavCommand());
+            nonExecCommands.Add(builder.BuildIsEvenNavCommand());
+            nonExecCommands.Add(builder.BuildIsFormulaNavCommand());
+            nonExecCommands.Add(builder.BuildIsLogicalNavCommand());
+            nonExecCommands.Add(builder.BuildIsNANavCommand());
+            nonExecCommands.Add(builder.BuildIsNonTextNavCommand());
+            nonExecCommands.Add(builder.BuildIsNumberNavCommand());
+            nonExecCommands.Add(builder.BuildIso_CeilingNavCommand());
+            nonExecCommands.Add(builder.BuildIsOddNavCommand());
+            nonExecCommands.Add(builder.BuildIsoWeekNumNavCommand());
+            nonExecCommands.Add(builder.BuildIspmtNavCommand());
+            nonExecCommands.Add(builder.BuildIsrefNavCommand());
+            nonExecCommands.Add(builder.BuildIsTextNavCommand());
+            nonExecCommands.Add(builder.BuildKurtNavCommand());
+            nonExecCommands.Add(builder.BuildLargeNavCommand());
+            nonExecCommands.Add(builder.BuildLcmNavCommand());
+            nonExecCommands.Add(builder.BuildLeftbNavCommand());
+            nonExecCommands.Add(builder.BuildLeftNavCommand());
+            nonExecCommands.Add(builder.BuildLenbNavCommand());
+            nonExecCommands.Add(builder.BuildLenNavCommand());
+            nonExecCommands.Add(builder.BuildLnNavCommand());
+            nonExecCommands.Add(builder.BuildLog10NavCommand());
+            nonExecCommands.Add(builder.BuildLogNavCommand());
+            nonExecCommands.Add(builder.BuildLogNorm_DistNavCommand());
+            nonExecCommands.Add(builder.BuildLogNorm_InvNavCommand());
+            nonExecCommands.Add(builder.BuildLookupNavCommand());
+            nonExecCommands.Add(builder.BuildLowerNavCommand());
+            nonExecCommands.Add(builder.BuildMatchNavCommand());
+            nonExecCommands.Add(builder.BuildMaxANavCommand());
+            nonExecCommands.Add(builder.BuildMaxNavCommand());
+            nonExecCommands.Add(builder.BuildMdurationNavCommand());
+            nonExecCommands.Add(builder.BuildMedianNavCommand());
+            nonExecCommands.Add(builder.BuildMidbNavCommand());
+            nonExecCommands.Add(builder.BuildMidNavCommand());
+            nonExecCommands.Add(builder.BuildMinANavCommand());
+            nonExecCommands.Add(builder.BuildMinNavCommand());
+            nonExecCommands.Add(builder.BuildMinuteNavCommand());
+            nonExecCommands.Add(builder.BuildMirrNavCommand());
+            nonExecCommands.Add(builder.BuildModNavCommand());
+            nonExecCommands.Add(builder.BuildMonthNavCommand());
+            nonExecCommands.Add(builder.BuildMroundNavCommand());
+            nonExecCommands.Add(builder.BuildMultiNomialNavCommand());
+            nonExecCommands.Add(builder.BuildNaNavCommand());
+            nonExecCommands.Add(builder.BuildNegBinom_DistNavCommand());
+            nonExecCommands.Add(builder.BuildNetworkDays_IntlNavCommand());
+            nonExecCommands.Add(builder.BuildNetworkDaysNavCommand());
+            nonExecCommands.Add(builder.BuildNNavCommand());
+            nonExecCommands.Add(builder.BuildNominalNavCommand());
+            nonExecCommands.Add(builder.BuildNorm_DistNavCommand());
+            nonExecCommands.Add(builder.BuildNorm_InvNavCommand());
+            nonExecCommands.Add(builder.BuildNorm_S_DistNavCommand());
+            nonExecCommands.Add(builder.BuildNorm_S_InvNavCommand());
+            nonExecCommands.Add(builder.BuildNotNavCommand());
+            nonExecCommands.Add(builder.BuildNowNavCommand());
+            nonExecCommands.Add(builder.BuildNperNavCommand());
+            nonExecCommands.Add(builder.BuildNpvNavCommand());
+            nonExecCommands.Add(builder.BuildNumberValueNavCommand());
+            nonExecCommands.Add(builder.BuildOct2BinNavCommand());
+            nonExecCommands.Add(builder.BuildOct2DecNavCommand());
+            nonExecCommands.Add(builder.BuildOct2HexNavCommand());
+            nonExecCommands.Add(builder.BuildOddFPriceNavCommand());
+            nonExecCommands.Add(builder.BuildOddFYieldNavCommand());
+            nonExecCommands.Add(builder.BuildOddLPriceNavCommand());
+            nonExecCommands.Add(builder.BuildOddLYieldNavCommand());
+            nonExecCommands.Add(builder.BuildOddNavCommand());
+            nonExecCommands.Add(builder.BuildOrNavCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildPdurationNavCommand());
+            nonExecCommands.Add(builder.BuildPercentile_ExcNavCommand());
+            nonExecCommands.Add(builder.BuildPercentile_IncNavCommand());
+            nonExecCommands.Add(builder.BuildPercentRank_ExcNavCommand());
+            nonExecCommands.Add(builder.BuildPercentRank_IncNavCommand());
+            nonExecCommands.Add(builder.BuildPermutationaNavCommand());
+            nonExecCommands.Add(builder.BuildPermutNavCommand());
+            nonExecCommands.Add(builder.BuildPhiNavCommand());
+            nonExecCommands.Add(builder.BuildPiNavCommand());
+            nonExecCommands.Add(builder.BuildPmtNavCommand());
+            nonExecCommands.Add(builder.BuildPoisson_DistNavCommand());
+            nonExecCommands.Add(builder.BuildPowerNavCommand());
+            nonExecCommands.Add(builder.BuildPpmtNavCommand());
+            nonExecCommands.Add(builder.BuildPriceDiscNavCommand());
+            nonExecCommands.Add(builder.BuildPriceMatNavCommand());
+            nonExecCommands.Add(builder.BuildPriceNavCommand());
+            nonExecCommands.Add(builder.BuildProductNavCommand());
+            nonExecCommands.Add(builder.BuildProperNavCommand());
+            nonExecCommands.Add(builder.BuildPvNavCommand());
+            nonExecCommands.Add(builder.BuildQuartile_ExcNavCommand());
+            nonExecCommands.Add(builder.BuildQuartile_IncNavCommand());
+            nonExecCommands.Add(builder.BuildQuotientNavCommand());
+            nonExecCommands.Add(builder.BuildRadiansNavCommand());
+            nonExecCommands.Add(builder.BuildRandBetweenNavCommand());
+            nonExecCommands.Add(builder.BuildRandNavCommand());
+            nonExecCommands.Add(builder.BuildRank_AvgNavCommand());
+            nonExecCommands.Add(builder.BuildRank_EqNavCommand());
+            nonExecCommands.Add(builder.BuildRateNavCommand());
+            nonExecCommands.Add(builder.BuildReceivedNavCommand());
+            nonExecCommands.Add(builder.BuildReplaceBNavCommand());
+            nonExecCommands.Add(builder.BuildReplaceNavCommand());
+            nonExecCommands.Add(builder.BuildReptNavCommand());
+            nonExecCommands.Add(builder.BuildRightbNavCommand());
+            nonExecCommands.Add(builder.BuildRightNavCommand());
+            nonExecCommands.Add(builder.BuildRomanNavCommand());
+            nonExecCommands.Add(builder.BuildRoundDownNavCommand());
+            nonExecCommands.Add(builder.BuildRoundNavCommand());
+            nonExecCommands.Add(builder.BuildRoundUpNavCommand());
+            nonExecCommands.Add(builder.BuildRowsNavCommand());
+            nonExecCommands.Add(builder.BuildRriNavCommand());
+            nonExecCommands.Add(builder.BuildSechNavCommand());
+            nonExecCommands.Add(builder.BuildSecNavCommand());
+            nonExecCommands.Add(builder.BuildSecondNavCommand());
+            nonExecCommands.Add(builder.BuildSeriesSumNavCommand());
+            nonExecCommands.Add(builder.BuildSheetNavCommand());
+            nonExecCommands.Add(builder.BuildSheetsNavCommand());
+            nonExecCommands.Add(builder.BuildSignNavCommand());
+            nonExecCommands.Add(builder.BuildSinhNavCommand());
+            nonExecCommands.Add(builder.BuildSinNavCommand());
+            nonExecCommands.Add(builder.BuildSkew_pNavCommand());
+            nonExecCommands.Add(builder.BuildSkewNavCommand());
+            nonExecCommands.Add(builder.BuildSlnNavCommand());
+            nonExecCommands.Add(builder.BuildSmallNavCommand());
+            nonExecCommands.Add(builder.BuildSqrtNavCommand());
+            nonExecCommands.Add(builder.BuildSqrtPiNavCommand());
+            nonExecCommands.Add(builder.BuildStandardizeNavCommand());
+            nonExecCommands.Add(builder.BuildStDev_PNavCommand());
+            nonExecCommands.Add(builder.BuildStDev_SNavCommand());
+            nonExecCommands.Add(builder.BuildStDevANavCommand());
+            nonExecCommands.Add(builder.BuildStDevPANavCommand());
+            nonExecCommands.Add(builder.BuildSubstituteNavCommand());
+            nonExecCommands.Add(builder.BuildSubtotalNavCommand());
+            nonExecCommands.Add(builder.BuildSumIfNavCommand());
+            nonExecCommands.Add(builder.BuildSumIfsNavCommand());
+            nonExecCommands.Add(builder.BuildSumNavCommand());
+            nonExecCommands.Add(builder.BuildSumSqNavCommand());
+            nonExecCommands.Add(builder.BuildSydNavCommand());
+            nonExecCommands.Add(builder.BuildT_Dist_2TNavCommand());
+            nonExecCommands.Add(builder.BuildT_Dist_RTNavCommand());
+            nonExecCommands.Add(builder.BuildT_DistNavCommand());
+            nonExecCommands.Add(builder.BuildT_Inv_2TNavCommand());
+            nonExecCommands.Add(builder.BuildT_InvNavCommand());
+            nonExecCommands.Add(builder.BuildTanhNavCommand());
+            nonExecCommands.Add(builder.BuildTanNavCommand());
+            nonExecCommands.Add(builder.BuildTbillEqNavCommand());
+            nonExecCommands.Add(builder.BuildTbillPriceNavCommand());
+            nonExecCommands.Add(builder.BuildTbillYieldNavCommand());
+            nonExecCommands.Add(builder.BuildTextNavCommand());
+            nonExecCommands.Add(builder.BuildTimeNavCommand());
+            nonExecCommands.Add(builder.BuildTimevalueNavCommand());
+            nonExecCommands.Add(builder.BuildTNavCommand());
+            nonExecCommands.Add(builder.BuildTodayNavCommand());
+            nonExecCommands.Add(builder.BuildTrimMeanNavCommand());
+            nonExecCommands.Add(builder.BuildTrimNavCommand());
+            nonExecCommands.Add(builder.BuildTrueNavCommand());
+            nonExecCommands.Add(builder.BuildTruncNavCommand());
+            nonExecCommands.Add(builder.BuildTypeNavCommand());
+            nonExecCommands.Add(builder.BuildUnicharNavCommand());
+            nonExecCommands.Add(builder.BuildUnicodeNavCommand());
+            nonExecCommands.Add(builder.BuildUpperNavCommand());
+            nonExecCommands.Add(builder.BuildUsdollarNavCommand());
+            nonExecCommands.Add(builder.BuildValueNavCommand());
+            nonExecCommands.Add(builder.BuildVar_PNavCommand());
+            nonExecCommands.Add(builder.BuildVar_SNavCommand());
+            nonExecCommands.Add(builder.BuildVarANavCommand());
+            nonExecCommands.Add(builder.BuildVarPANavCommand());
+            nonExecCommands.Add(builder.BuildVdbNavCommand());
+            nonExecCommands.Add(builder.BuildVlookupNavCommand());
+            nonExecCommands.Add(builder.BuildWeekdayNavCommand());
+            nonExecCommands.Add(builder.BuildWeekNumNavCommand());
+            nonExecCommands.Add(builder.BuildWeibull_DistNavCommand());
+            nonExecCommands.Add(builder.BuildWorkDay_IntlNavCommand());
+            nonExecCommands.Add(builder.BuildWorkDayNavCommand());
+            nonExecCommands.Add(builder.BuildXirrNavCommand());
+            nonExecCommands.Add(builder.BuildXnpvNavCommand());
+            nonExecCommands.Add(builder.BuildXorNavCommand());
+            nonExecCommands.Add(builder.BuildYearFracNavCommand());
+            nonExecCommands.Add(builder.BuildYearNavCommand());
+            nonExecCommands.Add(builder.BuildYieldDiscNavCommand());
+            nonExecCommands.Add(builder.BuildYieldMatNavCommand());
+            nonExecCommands.Add(builder.BuildYieldNavCommand());
+            nonExecCommands.Add(builder.BuildZ_TestNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -508,7 +541,6 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "For files that are Excel spreadsheets, accesses the workbook API to work with the spreadsheet's contents. Nullable.";
-            // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -548,8 +580,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -577,15 +609,24 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
             var command = new Command("names");
             command.Description = "Provides operations to manage the names property of the microsoft.graph.workbook entity.";
             var builder = new NamesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAddFormulaLocalNavCommand());
-            command.AddCommand(builder.BuildAddNavCommand());
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAddFormulaLocalNavCommand());
+            nonExecCommands.Add(builder.BuildAddNavCommand());
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -595,13 +636,22 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
             var command = new Command("operations");
             command.Description = "Provides operations to manage the operations property of the microsoft.graph.workbook entity.";
             var builder = new OperationsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -610,7 +660,6 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property workbook in drives";
-            // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -643,8 +692,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -675,7 +724,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
             var command = new Command("refresh-session");
             command.Description = "Provides operations to call the refreshSession method.";
             var builder = new RefreshSessionRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -685,14 +739,23 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
             var command = new Command("tables");
             command.Description = "Provides operations to manage the tables property of the microsoft.graph.workbook entity.";
             var builder = new TablesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAddNavCommand());
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAddNavCommand());
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -702,25 +765,30 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
             var command = new Command("worksheets");
             command.Description = "Provides operations to manage the worksheets property of the microsoft.graph.workbook entity.";
             var builder = new WorksheetsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAddNavCommand());
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAddNavCommand());
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Instantiates a new WorkbookRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public WorkbookRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook{?%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public WorkbookRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Delete navigation property workbook for drives
@@ -728,10 +796,10 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<WorkbookRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<WorkbookRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
@@ -739,8 +807,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
                 PathParameters = PathParameters,
             };
             if (requestConfiguration != null) {
-                var requestConfig = new WorkbookRequestBuilderDeleteRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
@@ -752,10 +821,10 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<WorkbookRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WorkbookRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<WorkbookRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<WorkbookRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -764,7 +833,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new WorkbookRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<WorkbookRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -779,10 +848,10 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Workbook body, Action<WorkbookRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Workbook body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Workbook body, Action<WorkbookRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Workbook body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
@@ -792,28 +861,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new WorkbookRequestBuilderPatchRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
             return requestInfo;
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class WorkbookRequestBuilderDeleteRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new workbookRequestBuilderDeleteRequestConfiguration and sets the default values.
-            /// </summary>
-            public WorkbookRequestBuilderDeleteRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
         /// <summary>
         /// For files that are Excel spreadsheets, accesses the workbook API to work with the spreadsheet&apos;s contents. Nullable.
@@ -839,40 +893,6 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
 #endif
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class WorkbookRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public WorkbookRequestBuilderGetQueryParameters QueryParameters { get; set; } = new WorkbookRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new workbookRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public WorkbookRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class WorkbookRequestBuilderPatchRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new workbookRequestBuilderPatchRequestConfiguration and sets the default values.
-            /// </summary>
-            public WorkbookRequestBuilderPatchRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

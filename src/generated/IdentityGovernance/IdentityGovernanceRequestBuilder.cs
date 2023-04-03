@@ -4,10 +4,9 @@ using ApiSdk.IdentityGovernance.EntitlementManagement;
 using ApiSdk.IdentityGovernance.TermsOfUse;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -22,11 +21,7 @@ namespace ApiSdk.IdentityGovernance {
     /// <summary>
     /// Provides operations to manage the identityGovernance singleton.
     /// </summary>
-    public class IdentityGovernanceRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class IdentityGovernanceRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Provides operations to manage the accessReviews property of the microsoft.graph.identityGovernance entity.
         /// </summary>
@@ -34,11 +29,21 @@ namespace ApiSdk.IdentityGovernance {
             var command = new Command("access-reviews");
             command.Description = "Provides operations to manage the accessReviews property of the microsoft.graph.identityGovernance entity.";
             var builder = new AccessReviewsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDefinitionsNavCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildHistoryDefinitionsNavCommand());
-            command.AddCommand(builder.BuildPatchCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildDefinitionsNavCommand());
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildHistoryDefinitionsNavCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -48,10 +53,20 @@ namespace ApiSdk.IdentityGovernance {
             var command = new Command("app-consent");
             command.Description = "Provides operations to manage the appConsent property of the microsoft.graph.identityGovernance entity.";
             var builder = new AppConsentRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAppConsentRequestsNavCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAppConsentRequestsNavCommand());
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -61,17 +76,27 @@ namespace ApiSdk.IdentityGovernance {
             var command = new Command("entitlement-management");
             command.Description = "Provides operations to manage the entitlementManagement property of the microsoft.graph.identityGovernance entity.";
             var builder = new EntitlementManagementRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAccessPackageAssignmentApprovalsNavCommand());
-            command.AddCommand(builder.BuildAccessPackagesNavCommand());
-            command.AddCommand(builder.BuildAssignmentPoliciesNavCommand());
-            command.AddCommand(builder.BuildAssignmentRequestsNavCommand());
-            command.AddCommand(builder.BuildAssignmentsNavCommand());
-            command.AddCommand(builder.BuildCatalogsNavCommand());
-            command.AddCommand(builder.BuildConnectedOrganizationsNavCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSettingsNavCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAccessPackageAssignmentApprovalsNavCommand());
+            nonExecCommands.Add(builder.BuildAccessPackagesNavCommand());
+            nonExecCommands.Add(builder.BuildAssignmentPoliciesNavCommand());
+            nonExecCommands.Add(builder.BuildAssignmentRequestsNavCommand());
+            nonExecCommands.Add(builder.BuildAssignmentsNavCommand());
+            nonExecCommands.Add(builder.BuildCatalogsNavCommand());
+            nonExecCommands.Add(builder.BuildConnectedOrganizationsNavCommand());
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildSettingsNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -80,7 +105,6 @@ namespace ApiSdk.IdentityGovernance {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get identityGovernance";
-            // Create options for all the parameters
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -110,8 +134,8 @@ namespace ApiSdk.IdentityGovernance {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -136,7 +160,6 @@ namespace ApiSdk.IdentityGovernance {
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update identityGovernance";
-            // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -159,8 +182,8 @@ namespace ApiSdk.IdentityGovernance {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -189,22 +212,28 @@ namespace ApiSdk.IdentityGovernance {
             var command = new Command("terms-of-use");
             command.Description = "Provides operations to manage the termsOfUse property of the microsoft.graph.identityGovernance entity.";
             var builder = new TermsOfUseRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAgreementAcceptancesNavCommand());
-            command.AddCommand(builder.BuildAgreementsNavCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAgreementAcceptancesNavCommand());
+            nonExecCommands.Add(builder.BuildAgreementsNavCommand());
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Instantiates a new IdentityGovernanceRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public IdentityGovernanceRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/identityGovernance{?%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public IdentityGovernanceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Get identityGovernance
@@ -212,10 +241,10 @@ namespace ApiSdk.IdentityGovernance {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<IdentityGovernanceRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<IdentityGovernanceRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<IdentityGovernanceRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<IdentityGovernanceRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -224,7 +253,7 @@ namespace ApiSdk.IdentityGovernance {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new IdentityGovernanceRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<IdentityGovernanceRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -239,10 +268,10 @@ namespace ApiSdk.IdentityGovernance {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.IdentityGovernance body, Action<IdentityGovernanceRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.IdentityGovernance body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.IdentityGovernance body, Action<IdentityGovernanceRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.IdentityGovernance body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
@@ -252,8 +281,9 @@ namespace ApiSdk.IdentityGovernance {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new IdentityGovernanceRequestBuilderPatchRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
@@ -283,40 +313,6 @@ namespace ApiSdk.IdentityGovernance {
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
 #endif
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class IdentityGovernanceRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public IdentityGovernanceRequestBuilderGetQueryParameters QueryParameters { get; set; } = new IdentityGovernanceRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new identityGovernanceRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public IdentityGovernanceRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class IdentityGovernanceRequestBuilderPatchRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new identityGovernanceRequestBuilderPatchRequestConfiguration and sets the default values.
-            /// </summary>
-            public IdentityGovernanceRequestBuilderPatchRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

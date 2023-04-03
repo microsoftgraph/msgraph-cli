@@ -40,7 +40,6 @@ using ApiSdk.IdentityProviders;
 using ApiSdk.InformationProtection;
 using ApiSdk.Invitations;
 using ApiSdk.Localizations;
-using ApiSdk.Me;
 using ApiSdk.Oauth2PermissionGrants;
 using ApiSdk.Organization;
 using ApiSdk.PermissionGrants;
@@ -66,10 +65,9 @@ using ApiSdk.TeamsTemplates;
 using ApiSdk.Teamwork;
 using ApiSdk.TenantRelationships;
 using ApiSdk.Users;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Extensions;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.IO;
 using Microsoft.Kiota.Serialization.Form;
 using Microsoft.Kiota.Serialization.Json;
@@ -85,11 +83,7 @@ namespace ApiSdk {
     /// <summary>
     /// The main entry point of the SDK, exposes the configuration and the fluent API.
     /// </summary>
-    public class GraphClient {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class GraphClient : BaseCliRequestBuilder {
         /// <summary>
         /// Provides operations to manage the admin singleton.
         /// </summary>
@@ -97,9 +91,19 @@ namespace ApiSdk {
             var command = new Command("admin");
             command.Description = "Provides operations to manage the admin singleton.";
             var builder = new AdminRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildServiceAnnouncementNavCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildServiceAnnouncementNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -109,12 +113,21 @@ namespace ApiSdk {
             var command = new Command("agreement-acceptances");
             command.Description = "Provides operations to manage the collection of agreementAcceptance entities.";
             var builder = new AgreementAcceptancesRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -124,12 +137,21 @@ namespace ApiSdk {
             var command = new Command("agreements");
             command.Description = "Provides operations to manage the collection of agreement entities.";
             var builder = new AgreementsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -139,9 +161,19 @@ namespace ApiSdk {
             var command = new Command("app-catalogs");
             command.Description = "Provides operations to manage the appCatalogs singleton.";
             var builder = new AppCatalogsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildTeamsAppsNavCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildTeamsAppsNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -151,17 +183,26 @@ namespace ApiSdk {
             var command = new Command("applications");
             command.Description = "Provides operations to manage the collection of application entities.";
             var builder = new ApplicationsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildDeltaNavCommand());
+            nonExecCommands.Add(builder.BuildGetAvailableExtensionPropertiesNavCommand());
+            nonExecCommands.Add(builder.BuildGetByIdsNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            nonExecCommands.Add(builder.BuildValidatePropertiesNavCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaNavCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesNavCommand());
-            command.AddCommand(builder.BuildGetByIdsNavCommand());
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildValidatePropertiesNavCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -171,12 +212,21 @@ namespace ApiSdk {
             var command = new Command("application-templates");
             command.Description = "Provides operations to manage the collection of applicationTemplate entities.";
             var builder = new ApplicationTemplatesRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -186,11 +236,21 @@ namespace ApiSdk {
             var command = new Command("audit-logs");
             command.Description = "Provides operations to manage the auditLogRoot singleton.";
             var builder = new AuditLogsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDirectoryAuditsNavCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildProvisioningNavCommand());
-            command.AddCommand(builder.BuildSignInsNavCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildDirectoryAuditsNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildProvisioningNavCommand());
+            nonExecCommands.Add(builder.BuildSignInsNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -200,13 +260,22 @@ namespace ApiSdk {
             var command = new Command("authentication-method-configurations");
             command.Description = "Provides operations to manage the collection of authenticationMethodConfiguration entities.";
             var builder = new AuthenticationMethodConfigurationsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -216,9 +285,19 @@ namespace ApiSdk {
             var command = new Command("authentication-methods-policy");
             command.Description = "Provides operations to manage the authenticationMethodsPolicy singleton.";
             var builder = new AuthenticationMethodsPolicyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAuthenticationMethodConfigurationsNavCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAuthenticationMethodConfigurationsNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -228,12 +307,22 @@ namespace ApiSdk {
             var command = new Command("branding");
             command.Description = "Provides operations to manage the organizationalBranding singleton.";
             var builder = new BrandingRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildBackgroundImageNavCommand());
-            command.AddCommand(builder.BuildBannerLogoNavCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildLocalizationsNavCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSquareLogoNavCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildBackgroundImageNavCommand());
+            nonExecCommands.Add(builder.BuildBannerLogoNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildLocalizationsNavCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildSquareLogoNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -243,13 +332,22 @@ namespace ApiSdk {
             var command = new Command("certificate-based-auth-configuration");
             command.Description = "Provides operations to manage the collection of certificateBasedAuthConfiguration entities.";
             var builder = new CertificateBasedAuthConfigurationRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -259,14 +357,23 @@ namespace ApiSdk {
             var command = new Command("chats");
             command.Description = "Provides operations to manage the collection of chat entities.";
             var builder = new ChatsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildGetAllMessagesNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildGetAllMessagesNavCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -276,13 +383,23 @@ namespace ApiSdk {
             var command = new Command("communications");
             command.Description = "Provides operations to manage the cloudCommunications singleton.";
             var builder = new CommunicationsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCallRecordsNavCommand());
-            command.AddCommand(builder.BuildCallsNavCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildGetPresencesByUserIdNavCommand());
-            command.AddCommand(builder.BuildOnlineMeetingsNavCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPresencesNavCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCallRecordsNavCommand());
+            nonExecCommands.Add(builder.BuildCallsNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildGetPresencesByUserIdNavCommand());
+            nonExecCommands.Add(builder.BuildOnlineMeetingsNavCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildPresencesNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -292,8 +409,13 @@ namespace ApiSdk {
             var command = new Command("compliance");
             command.Description = "Provides operations to manage the compliance singleton.";
             var builder = new ComplianceRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -303,13 +425,22 @@ namespace ApiSdk {
             var command = new Command("connections");
             command.Description = "Provides operations to manage the collection of externalConnection entities.";
             var builder = new ConnectionsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -319,17 +450,26 @@ namespace ApiSdk {
             var command = new Command("contacts");
             command.Description = "Provides operations to manage the collection of orgContact entities.";
             var builder = new ContactsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildDeltaNavCommand());
+            nonExecCommands.Add(builder.BuildGetAvailableExtensionPropertiesNavCommand());
+            nonExecCommands.Add(builder.BuildGetByIdsNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            nonExecCommands.Add(builder.BuildValidatePropertiesNavCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaNavCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesNavCommand());
-            command.AddCommand(builder.BuildGetByIdsNavCommand());
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildValidatePropertiesNavCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -339,17 +479,26 @@ namespace ApiSdk {
             var command = new Command("contracts");
             command.Description = "Provides operations to manage the collection of contract entities.";
             var builder = new ContractsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildDeltaNavCommand());
+            nonExecCommands.Add(builder.BuildGetAvailableExtensionPropertiesNavCommand());
+            nonExecCommands.Add(builder.BuildGetByIdsNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            nonExecCommands.Add(builder.BuildValidatePropertiesNavCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaNavCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesNavCommand());
-            command.AddCommand(builder.BuildGetByIdsNavCommand());
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildValidatePropertiesNavCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -359,13 +508,22 @@ namespace ApiSdk {
             var command = new Command("data-policy-operations");
             command.Description = "Provides operations to manage the collection of dataPolicyOperation entities.";
             var builder = new DataPolicyOperationsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -375,23 +533,33 @@ namespace ApiSdk {
             var command = new Command("device-app-management");
             command.Description = "Provides operations to manage the deviceAppManagement singleton.";
             var builder = new DeviceAppManagementRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAndroidManagedAppProtectionsNavCommand());
-            command.AddCommand(builder.BuildDefaultManagedAppProtectionsNavCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildIosManagedAppProtectionsNavCommand());
-            command.AddCommand(builder.BuildManagedAppPoliciesNavCommand());
-            command.AddCommand(builder.BuildManagedAppRegistrationsNavCommand());
-            command.AddCommand(builder.BuildManagedAppStatusesNavCommand());
-            command.AddCommand(builder.BuildManagedEBooksNavCommand());
-            command.AddCommand(builder.BuildMdmWindowsInformationProtectionPoliciesNavCommand());
-            command.AddCommand(builder.BuildMobileAppCategoriesNavCommand());
-            command.AddCommand(builder.BuildMobileAppConfigurationsNavCommand());
-            command.AddCommand(builder.BuildMobileAppsNavCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSyncMicrosoftStoreForBusinessAppsNavCommand());
-            command.AddCommand(builder.BuildTargetedManagedAppConfigurationsNavCommand());
-            command.AddCommand(builder.BuildVppTokensNavCommand());
-            command.AddCommand(builder.BuildWindowsInformationProtectionPoliciesNavCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAndroidManagedAppProtectionsNavCommand());
+            nonExecCommands.Add(builder.BuildDefaultManagedAppProtectionsNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildIosManagedAppProtectionsNavCommand());
+            nonExecCommands.Add(builder.BuildManagedAppPoliciesNavCommand());
+            nonExecCommands.Add(builder.BuildManagedAppRegistrationsNavCommand());
+            nonExecCommands.Add(builder.BuildManagedAppStatusesNavCommand());
+            nonExecCommands.Add(builder.BuildManagedEBooksNavCommand());
+            nonExecCommands.Add(builder.BuildMdmWindowsInformationProtectionPoliciesNavCommand());
+            nonExecCommands.Add(builder.BuildMobileAppCategoriesNavCommand());
+            nonExecCommands.Add(builder.BuildMobileAppConfigurationsNavCommand());
+            nonExecCommands.Add(builder.BuildMobileAppsNavCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildSyncMicrosoftStoreForBusinessAppsNavCommand());
+            nonExecCommands.Add(builder.BuildTargetedManagedAppConfigurationsNavCommand());
+            nonExecCommands.Add(builder.BuildVppTokensNavCommand());
+            nonExecCommands.Add(builder.BuildWindowsInformationProtectionPoliciesNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -401,40 +569,50 @@ namespace ApiSdk {
             var command = new Command("device-management");
             command.Description = "Provides operations to manage the deviceManagement singleton.";
             var builder = new DeviceManagementRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildApplePushNotificationCertificateNavCommand());
-            command.AddCommand(builder.BuildAuditEventsNavCommand());
-            command.AddCommand(builder.BuildComplianceManagementPartnersNavCommand());
-            command.AddCommand(builder.BuildConditionalAccessSettingsNavCommand());
-            command.AddCommand(builder.BuildDetectedAppsNavCommand());
-            command.AddCommand(builder.BuildDeviceCategoriesNavCommand());
-            command.AddCommand(builder.BuildDeviceCompliancePoliciesNavCommand());
-            command.AddCommand(builder.BuildDeviceCompliancePolicyDeviceStateSummaryNavCommand());
-            command.AddCommand(builder.BuildDeviceCompliancePolicySettingStateSummariesNavCommand());
-            command.AddCommand(builder.BuildDeviceConfigurationDeviceStateSummariesNavCommand());
-            command.AddCommand(builder.BuildDeviceConfigurationsNavCommand());
-            command.AddCommand(builder.BuildDeviceEnrollmentConfigurationsNavCommand());
-            command.AddCommand(builder.BuildDeviceManagementPartnersNavCommand());
-            command.AddCommand(builder.BuildExchangeConnectorsNavCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildImportedWindowsAutopilotDeviceIdentitiesNavCommand());
-            command.AddCommand(builder.BuildIosUpdateStatusesNavCommand());
-            command.AddCommand(builder.BuildManagedDeviceOverviewNavCommand());
-            command.AddCommand(builder.BuildManagedDevicesNavCommand());
-            command.AddCommand(builder.BuildMobileThreatDefenseConnectorsNavCommand());
-            command.AddCommand(builder.BuildNotificationMessageTemplatesNavCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildRemoteAssistancePartnersNavCommand());
-            command.AddCommand(builder.BuildReportsNavCommand());
-            command.AddCommand(builder.BuildResourceOperationsNavCommand());
-            command.AddCommand(builder.BuildRoleAssignmentsNavCommand());
-            command.AddCommand(builder.BuildRoleDefinitionsNavCommand());
-            command.AddCommand(builder.BuildSoftwareUpdateStatusSummaryNavCommand());
-            command.AddCommand(builder.BuildTelecomExpenseManagementPartnersNavCommand());
-            command.AddCommand(builder.BuildTermsAndConditionsNavCommand());
-            command.AddCommand(builder.BuildTroubleshootingEventsNavCommand());
-            command.AddCommand(builder.BuildWindowsAutopilotDeviceIdentitiesNavCommand());
-            command.AddCommand(builder.BuildWindowsInformationProtectionAppLearningSummariesNavCommand());
-            command.AddCommand(builder.BuildWindowsInformationProtectionNetworkLearningSummariesNavCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildApplePushNotificationCertificateNavCommand());
+            nonExecCommands.Add(builder.BuildAuditEventsNavCommand());
+            nonExecCommands.Add(builder.BuildComplianceManagementPartnersNavCommand());
+            nonExecCommands.Add(builder.BuildConditionalAccessSettingsNavCommand());
+            nonExecCommands.Add(builder.BuildDetectedAppsNavCommand());
+            nonExecCommands.Add(builder.BuildDeviceCategoriesNavCommand());
+            nonExecCommands.Add(builder.BuildDeviceCompliancePoliciesNavCommand());
+            nonExecCommands.Add(builder.BuildDeviceCompliancePolicyDeviceStateSummaryNavCommand());
+            nonExecCommands.Add(builder.BuildDeviceCompliancePolicySettingStateSummariesNavCommand());
+            nonExecCommands.Add(builder.BuildDeviceConfigurationDeviceStateSummariesNavCommand());
+            nonExecCommands.Add(builder.BuildDeviceConfigurationsNavCommand());
+            nonExecCommands.Add(builder.BuildDeviceEnrollmentConfigurationsNavCommand());
+            nonExecCommands.Add(builder.BuildDeviceManagementPartnersNavCommand());
+            nonExecCommands.Add(builder.BuildExchangeConnectorsNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildImportedWindowsAutopilotDeviceIdentitiesNavCommand());
+            nonExecCommands.Add(builder.BuildIosUpdateStatusesNavCommand());
+            nonExecCommands.Add(builder.BuildManagedDeviceOverviewNavCommand());
+            nonExecCommands.Add(builder.BuildManagedDevicesNavCommand());
+            nonExecCommands.Add(builder.BuildMobileThreatDefenseConnectorsNavCommand());
+            nonExecCommands.Add(builder.BuildNotificationMessageTemplatesNavCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildRemoteAssistancePartnersNavCommand());
+            nonExecCommands.Add(builder.BuildReportsNavCommand());
+            nonExecCommands.Add(builder.BuildResourceOperationsNavCommand());
+            nonExecCommands.Add(builder.BuildRoleAssignmentsNavCommand());
+            nonExecCommands.Add(builder.BuildRoleDefinitionsNavCommand());
+            nonExecCommands.Add(builder.BuildSoftwareUpdateStatusSummaryNavCommand());
+            nonExecCommands.Add(builder.BuildTelecomExpenseManagementPartnersNavCommand());
+            nonExecCommands.Add(builder.BuildTermsAndConditionsNavCommand());
+            nonExecCommands.Add(builder.BuildTroubleshootingEventsNavCommand());
+            nonExecCommands.Add(builder.BuildWindowsAutopilotDeviceIdentitiesNavCommand());
+            nonExecCommands.Add(builder.BuildWindowsInformationProtectionAppLearningSummariesNavCommand());
+            nonExecCommands.Add(builder.BuildWindowsInformationProtectionNetworkLearningSummariesNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -444,17 +622,26 @@ namespace ApiSdk {
             var command = new Command("devices");
             command.Description = "Provides operations to manage the collection of device entities.";
             var builder = new DevicesRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildDeltaNavCommand());
+            nonExecCommands.Add(builder.BuildGetAvailableExtensionPropertiesNavCommand());
+            nonExecCommands.Add(builder.BuildGetByIdsNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            nonExecCommands.Add(builder.BuildValidatePropertiesNavCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaNavCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesNavCommand());
-            command.AddCommand(builder.BuildGetByIdsNavCommand());
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildValidatePropertiesNavCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -464,12 +651,22 @@ namespace ApiSdk {
             var command = new Command("directory");
             command.Description = "Provides operations to manage the directory singleton.";
             var builder = new DirectoryRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAdministrativeUnitsNavCommand());
-            command.AddCommand(builder.BuildDeletedItemsNavCommand());
-            command.AddCommand(builder.BuildFederationConfigurationsNavCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildOnPremisesSynchronizationNavCommand());
-            command.AddCommand(builder.BuildPatchCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAdministrativeUnitsNavCommand());
+            nonExecCommands.Add(builder.BuildDeletedItemsNavCommand());
+            nonExecCommands.Add(builder.BuildFederationConfigurationsNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildOnPremisesSynchronizationNavCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -479,17 +676,26 @@ namespace ApiSdk {
             var command = new Command("directory-objects");
             command.Description = "Provides operations to manage the collection of directoryObject entities.";
             var builder = new DirectoryObjectsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildDeltaNavCommand());
+            nonExecCommands.Add(builder.BuildGetAvailableExtensionPropertiesNavCommand());
+            nonExecCommands.Add(builder.BuildGetByIdsNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            nonExecCommands.Add(builder.BuildValidatePropertiesNavCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaNavCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesNavCommand());
-            command.AddCommand(builder.BuildGetByIdsNavCommand());
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildValidatePropertiesNavCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -499,17 +705,26 @@ namespace ApiSdk {
             var command = new Command("directory-roles");
             command.Description = "Provides operations to manage the collection of directoryRole entities.";
             var builder = new DirectoryRolesRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildDeltaNavCommand());
+            nonExecCommands.Add(builder.BuildGetAvailableExtensionPropertiesNavCommand());
+            nonExecCommands.Add(builder.BuildGetByIdsNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            nonExecCommands.Add(builder.BuildValidatePropertiesNavCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaNavCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesNavCommand());
-            command.AddCommand(builder.BuildGetByIdsNavCommand());
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildValidatePropertiesNavCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -519,17 +734,26 @@ namespace ApiSdk {
             var command = new Command("directory-role-templates");
             command.Description = "Provides operations to manage the collection of directoryRoleTemplate entities.";
             var builder = new DirectoryRoleTemplatesRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildDeltaNavCommand());
+            nonExecCommands.Add(builder.BuildGetAvailableExtensionPropertiesNavCommand());
+            nonExecCommands.Add(builder.BuildGetByIdsNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            nonExecCommands.Add(builder.BuildValidatePropertiesNavCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaNavCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesNavCommand());
-            command.AddCommand(builder.BuildGetByIdsNavCommand());
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildValidatePropertiesNavCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -539,13 +763,22 @@ namespace ApiSdk {
             var command = new Command("domain-dns-records");
             command.Description = "Provides operations to manage the collection of domainDnsRecord entities.";
             var builder = new DomainDnsRecordsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -555,13 +788,22 @@ namespace ApiSdk {
             var command = new Command("domains");
             command.Description = "Provides operations to manage the collection of domain entities.";
             var builder = new DomainsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -571,13 +813,22 @@ namespace ApiSdk {
             var command = new Command("drives");
             command.Description = "Provides operations to manage the collection of drive entities.";
             var builder = new DrivesRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -587,12 +838,22 @@ namespace ApiSdk {
             var command = new Command("education");
             command.Description = "Provides operations to manage the educationRoot singleton.";
             var builder = new EducationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildClassesNavCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildMeNavCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSchoolsNavCommand());
-            command.AddCommand(builder.BuildUsersNavCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildClassesNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildMeNavCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildSchoolsNavCommand());
+            nonExecCommands.Add(builder.BuildUsersNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -602,9 +863,19 @@ namespace ApiSdk {
             var command = new Command("employee-experience");
             command.Description = "Provides operations to manage the employeeExperience singleton.";
             var builder = new EmployeeExperienceRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildLearningProvidersNavCommand());
-            command.AddCommand(builder.BuildPatchCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildLearningProvidersNavCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -614,9 +885,19 @@ namespace ApiSdk {
             var command = new Command("external");
             command.Description = "Provides operations to manage the external singleton.";
             var builder = new ExternalRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildConnectionsNavCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildConnectionsNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -626,13 +907,22 @@ namespace ApiSdk {
             var command = new Command("group-lifecycle-policies");
             command.Description = "Provides operations to manage the collection of groupLifecyclePolicy entities.";
             var builder = new GroupLifecyclePoliciesRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -642,13 +932,22 @@ namespace ApiSdk {
             var command = new Command("group-settings");
             command.Description = "Provides operations to manage the collection of groupSetting entities.";
             var builder = new GroupSettingsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -658,17 +957,26 @@ namespace ApiSdk {
             var command = new Command("group-setting-templates");
             command.Description = "Provides operations to manage the collection of groupSettingTemplate entities.";
             var builder = new GroupSettingTemplatesRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildDeltaNavCommand());
+            nonExecCommands.Add(builder.BuildGetAvailableExtensionPropertiesNavCommand());
+            nonExecCommands.Add(builder.BuildGetByIdsNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            nonExecCommands.Add(builder.BuildValidatePropertiesNavCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaNavCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesNavCommand());
-            command.AddCommand(builder.BuildGetByIdsNavCommand());
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildValidatePropertiesNavCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -678,17 +986,26 @@ namespace ApiSdk {
             var command = new Command("groups");
             command.Description = "Provides operations to manage the collection of group entities.";
             var builder = new GroupsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildDeltaNavCommand());
+            nonExecCommands.Add(builder.BuildGetAvailableExtensionPropertiesNavCommand());
+            nonExecCommands.Add(builder.BuildGetByIdsNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            nonExecCommands.Add(builder.BuildValidatePropertiesNavCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaNavCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesNavCommand());
-            command.AddCommand(builder.BuildGetByIdsNavCommand());
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildValidatePropertiesNavCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -698,12 +1015,22 @@ namespace ApiSdk {
             var command = new Command("identity-governance");
             command.Description = "Provides operations to manage the identityGovernance singleton.";
             var builder = new IdentityGovernanceRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAccessReviewsNavCommand());
-            command.AddCommand(builder.BuildAppConsentNavCommand());
-            command.AddCommand(builder.BuildEntitlementManagementNavCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildTermsOfUseNavCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAccessReviewsNavCommand());
+            nonExecCommands.Add(builder.BuildAppConsentNavCommand());
+            nonExecCommands.Add(builder.BuildEntitlementManagementNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildTermsOfUseNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -713,13 +1040,23 @@ namespace ApiSdk {
             var command = new Command("identity");
             command.Description = "Provides operations to manage the identityContainer singleton.";
             var builder = new IdentityRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildApiConnectorsNavCommand());
-            command.AddCommand(builder.BuildB2xUserFlowsNavCommand());
-            command.AddCommand(builder.BuildConditionalAccessNavCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildIdentityProvidersNavCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildUserFlowAttributesNavCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildApiConnectorsNavCommand());
+            nonExecCommands.Add(builder.BuildB2xUserFlowsNavCommand());
+            nonExecCommands.Add(builder.BuildConditionalAccessNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildIdentityProvidersNavCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildUserFlowAttributesNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -729,12 +1066,22 @@ namespace ApiSdk {
             var command = new Command("identity-protection");
             command.Description = "Provides operations to manage the identityProtectionRoot singleton.";
             var builder = new IdentityProtectionRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildRiskDetectionsNavCommand());
-            command.AddCommand(builder.BuildRiskyServicePrincipalsNavCommand());
-            command.AddCommand(builder.BuildRiskyUsersNavCommand());
-            command.AddCommand(builder.BuildServicePrincipalRiskDetectionsNavCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildRiskDetectionsNavCommand());
+            nonExecCommands.Add(builder.BuildRiskyServicePrincipalsNavCommand());
+            nonExecCommands.Add(builder.BuildRiskyUsersNavCommand());
+            nonExecCommands.Add(builder.BuildServicePrincipalRiskDetectionsNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -744,14 +1091,23 @@ namespace ApiSdk {
             var command = new Command("identity-providers");
             command.Description = "Provides operations to manage the collection of identityProvider entities.";
             var builder = new IdentityProvidersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAvailableProviderTypesNavCommand());
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAvailableProviderTypesNavCommand());
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -761,10 +1117,20 @@ namespace ApiSdk {
             var command = new Command("information-protection");
             command.Description = "Provides operations to manage the informationProtection singleton.";
             var builder = new InformationProtectionRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildBitlockerNavCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildThreatAssessmentRequestsNavCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildBitlockerNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildThreatAssessmentRequestsNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -774,13 +1140,22 @@ namespace ApiSdk {
             var command = new Command("invitations");
             command.Description = "Provides operations to manage the collection of invitation entities.";
             var builder = new InvitationsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -790,90 +1165,22 @@ namespace ApiSdk {
             var command = new Command("localizations");
             command.Description = "Provides operations to manage the collection of organizationalBrandingLocalization entities.";
             var builder = new LocalizationsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to manage the user singleton.
-        /// </summary>
-        public Command BuildMeNavCommand() {
-            var command = new Command("me");
-            command.Description = "Provides operations to manage the user singleton.";
-            var builder = new MeRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildActivitiesNavCommand());
-            command.AddCommand(builder.BuildAgreementAcceptancesNavCommand());
-            command.AddCommand(builder.BuildAppRoleAssignmentsNavCommand());
-            command.AddCommand(builder.BuildAssignLicenseNavCommand());
-            command.AddCommand(builder.BuildAuthenticationNavCommand());
-            command.AddCommand(builder.BuildCalendarGroupsNavCommand());
-            command.AddCommand(builder.BuildCalendarNavCommand());
-            command.AddCommand(builder.BuildCalendarsNavCommand());
-            command.AddCommand(builder.BuildCalendarViewNavCommand());
-            command.AddCommand(builder.BuildChangePasswordNavCommand());
-            command.AddCommand(builder.BuildChatsNavCommand());
-            command.AddCommand(builder.BuildCheckMemberGroupsNavCommand());
-            command.AddCommand(builder.BuildCheckMemberObjectsNavCommand());
-            command.AddCommand(builder.BuildContactFoldersNavCommand());
-            command.AddCommand(builder.BuildContactsNavCommand());
-            command.AddCommand(builder.BuildCreatedObjectsNavCommand());
-            command.AddCommand(builder.BuildDeviceManagementTroubleshootingEventsNavCommand());
-            command.AddCommand(builder.BuildDirectReportsNavCommand());
-            command.AddCommand(builder.BuildDriveNavCommand());
-            command.AddCommand(builder.BuildDrivesNavCommand());
-            command.AddCommand(builder.BuildEventsNavCommand());
-            command.AddCommand(builder.BuildExportDeviceAndAppManagementDataNavCommand());
-            command.AddCommand(builder.BuildExportPersonalDataNavCommand());
-            command.AddCommand(builder.BuildExtensionsNavCommand());
-            command.AddCommand(builder.BuildFindMeetingTimesNavCommand());
-            command.AddCommand(builder.BuildFollowedSitesNavCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildGetMailTipsNavCommand());
-            command.AddCommand(builder.BuildGetManagedAppDiagnosticStatusesNavCommand());
-            command.AddCommand(builder.BuildGetManagedAppPoliciesNavCommand());
-            command.AddCommand(builder.BuildGetManagedDevicesWithAppFailuresNavCommand());
-            command.AddCommand(builder.BuildGetMemberGroupsNavCommand());
-            command.AddCommand(builder.BuildGetMemberObjectsNavCommand());
-            command.AddCommand(builder.BuildInferenceClassificationNavCommand());
-            command.AddCommand(builder.BuildInsightsNavCommand());
-            command.AddCommand(builder.BuildJoinedTeamsNavCommand());
-            command.AddCommand(builder.BuildLicenseDetailsNavCommand());
-            command.AddCommand(builder.BuildMailFoldersNavCommand());
-            command.AddCommand(builder.BuildManagedAppRegistrationsNavCommand());
-            command.AddCommand(builder.BuildManagedDevicesNavCommand());
-            command.AddCommand(builder.BuildManagerNavCommand());
-            command.AddCommand(builder.BuildMemberOfNavCommand());
-            command.AddCommand(builder.BuildMessagesNavCommand());
-            command.AddCommand(builder.BuildOauth2PermissionGrantsNavCommand());
-            command.AddCommand(builder.BuildOnenoteNavCommand());
-            command.AddCommand(builder.BuildOnlineMeetingsNavCommand());
-            command.AddCommand(builder.BuildOutlookNavCommand());
-            command.AddCommand(builder.BuildOwnedDevicesNavCommand());
-            command.AddCommand(builder.BuildOwnedObjectsNavCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPeopleNavCommand());
-            command.AddCommand(builder.BuildPhotoNavCommand());
-            command.AddCommand(builder.BuildPhotosNavCommand());
-            command.AddCommand(builder.BuildPlannerNavCommand());
-            command.AddCommand(builder.BuildPresenceNavCommand());
-            command.AddCommand(builder.BuildRegisteredDevicesNavCommand());
-            command.AddCommand(builder.BuildRemoveAllDevicesFromManagementNavCommand());
-            command.AddCommand(builder.BuildReprocessLicenseAssignmentNavCommand());
-            command.AddCommand(builder.BuildRestoreNavCommand());
-            command.AddCommand(builder.BuildRevokeSignInSessionsNavCommand());
-            command.AddCommand(builder.BuildScopedRoleMemberOfNavCommand());
-            command.AddCommand(builder.BuildSendMailNavCommand());
-            command.AddCommand(builder.BuildSettingsNavCommand());
-            command.AddCommand(builder.BuildTeamworkNavCommand());
-            command.AddCommand(builder.BuildTodoNavCommand());
-            command.AddCommand(builder.BuildTransitiveMemberOfNavCommand());
-            command.AddCommand(builder.BuildTranslateExchangeIdsNavCommand());
-            command.AddCommand(builder.BuildWipeManagedAppRegistrationsByDeviceTagNavCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -883,14 +1190,23 @@ namespace ApiSdk {
             var command = new Command("oauth2-permission-grants");
             command.Description = "Provides operations to manage the collection of oAuth2PermissionGrant entities.";
             var builder = new Oauth2PermissionGrantsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildDeltaNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaNavCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -900,17 +1216,26 @@ namespace ApiSdk {
             var command = new Command("organization");
             command.Description = "Provides operations to manage the collection of organization entities.";
             var builder = new OrganizationRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildDeltaNavCommand());
+            nonExecCommands.Add(builder.BuildGetAvailableExtensionPropertiesNavCommand());
+            nonExecCommands.Add(builder.BuildGetByIdsNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            nonExecCommands.Add(builder.BuildValidatePropertiesNavCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaNavCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesNavCommand());
-            command.AddCommand(builder.BuildGetByIdsNavCommand());
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildValidatePropertiesNavCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -920,16 +1245,25 @@ namespace ApiSdk {
             var command = new Command("permission-grants");
             command.Description = "Provides operations to manage the collection of resourceSpecificPermissionGrant entities.";
             var builder = new PermissionGrantsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildDeltaNavCommand());
+            nonExecCommands.Add(builder.BuildGetAvailableExtensionPropertiesNavCommand());
+            nonExecCommands.Add(builder.BuildGetByIdsNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            nonExecCommands.Add(builder.BuildValidatePropertiesNavCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaNavCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesNavCommand());
-            command.AddCommand(builder.BuildGetByIdsNavCommand());
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildValidatePropertiesNavCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -939,12 +1273,15 @@ namespace ApiSdk {
             var command = new Command("places");
             command.Description = "The places property";
             var builder = new PlacesRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            nonExecCommands.Add(builder.BuildGraphRoomNavCommand());
+            var cmds = builder.BuildCommand();
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildGraphRoomNavCommand());
             return command;
         }
         /// <summary>
@@ -954,11 +1291,21 @@ namespace ApiSdk {
             var command = new Command("planner");
             command.Description = "Provides operations to manage the planner singleton.";
             var builder = new PlannerRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildBucketsNavCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPlansNavCommand());
-            command.AddCommand(builder.BuildTasksNavCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildBucketsNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildPlansNavCommand());
+            nonExecCommands.Add(builder.BuildTasksNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -968,26 +1315,36 @@ namespace ApiSdk {
             var command = new Command("policies");
             command.Description = "Provides operations to manage the policyRoot singleton.";
             var builder = new PoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildActivityBasedTimeoutPoliciesNavCommand());
-            command.AddCommand(builder.BuildAdminConsentRequestPolicyNavCommand());
-            command.AddCommand(builder.BuildAppManagementPoliciesNavCommand());
-            command.AddCommand(builder.BuildAuthenticationFlowsPolicyNavCommand());
-            command.AddCommand(builder.BuildAuthenticationMethodsPolicyNavCommand());
-            command.AddCommand(builder.BuildAuthorizationPolicyNavCommand());
-            command.AddCommand(builder.BuildClaimsMappingPoliciesNavCommand());
-            command.AddCommand(builder.BuildConditionalAccessPoliciesNavCommand());
-            command.AddCommand(builder.BuildCrossTenantAccessPolicyNavCommand());
-            command.AddCommand(builder.BuildDefaultAppManagementPolicyNavCommand());
-            command.AddCommand(builder.BuildFeatureRolloutPoliciesNavCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildHomeRealmDiscoveryPoliciesNavCommand());
-            command.AddCommand(builder.BuildIdentitySecurityDefaultsEnforcementPolicyNavCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPermissionGrantPoliciesNavCommand());
-            command.AddCommand(builder.BuildRoleManagementPoliciesNavCommand());
-            command.AddCommand(builder.BuildRoleManagementPolicyAssignmentsNavCommand());
-            command.AddCommand(builder.BuildTokenIssuancePoliciesNavCommand());
-            command.AddCommand(builder.BuildTokenLifetimePoliciesNavCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildActivityBasedTimeoutPoliciesNavCommand());
+            nonExecCommands.Add(builder.BuildAdminConsentRequestPolicyNavCommand());
+            nonExecCommands.Add(builder.BuildAppManagementPoliciesNavCommand());
+            nonExecCommands.Add(builder.BuildAuthenticationFlowsPolicyNavCommand());
+            nonExecCommands.Add(builder.BuildAuthenticationMethodsPolicyNavCommand());
+            nonExecCommands.Add(builder.BuildAuthorizationPolicyNavCommand());
+            nonExecCommands.Add(builder.BuildClaimsMappingPoliciesNavCommand());
+            nonExecCommands.Add(builder.BuildConditionalAccessPoliciesNavCommand());
+            nonExecCommands.Add(builder.BuildCrossTenantAccessPolicyNavCommand());
+            nonExecCommands.Add(builder.BuildDefaultAppManagementPolicyNavCommand());
+            nonExecCommands.Add(builder.BuildFeatureRolloutPoliciesNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildHomeRealmDiscoveryPoliciesNavCommand());
+            nonExecCommands.Add(builder.BuildIdentitySecurityDefaultsEnforcementPolicyNavCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildPermissionGrantPoliciesNavCommand());
+            nonExecCommands.Add(builder.BuildRoleManagementPoliciesNavCommand());
+            nonExecCommands.Add(builder.BuildRoleManagementPolicyAssignmentsNavCommand());
+            nonExecCommands.Add(builder.BuildTokenIssuancePoliciesNavCommand());
+            nonExecCommands.Add(builder.BuildTokenLifetimePoliciesNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -997,14 +1354,24 @@ namespace ApiSdk {
             var command = new Command("print");
             command.Description = "Provides operations to manage the print singleton.";
             var builder = new PrintRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildConnectorsNavCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildOperationsNavCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPrintersNavCommand());
-            command.AddCommand(builder.BuildServicesNavCommand());
-            command.AddCommand(builder.BuildSharesNavCommand());
-            command.AddCommand(builder.BuildTaskDefinitionsNavCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildConnectorsNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildOperationsNavCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildPrintersNavCommand());
+            nonExecCommands.Add(builder.BuildServicesNavCommand());
+            nonExecCommands.Add(builder.BuildSharesNavCommand());
+            nonExecCommands.Add(builder.BuildTaskDefinitionsNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -1014,9 +1381,19 @@ namespace ApiSdk {
             var command = new Command("privacy");
             command.Description = "Provides operations to manage the privacy singleton.";
             var builder = new PrivacyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSubjectRightsRequestsNavCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildSubjectRightsRequestsNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -1026,20 +1403,30 @@ namespace ApiSdk {
             var command = new Command("reports");
             command.Description = "Provides operations to manage the reportRoot singleton.";
             var builder = new ReportsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDailyPrintUsageByPrinterNavCommand());
-            command.AddCommand(builder.BuildDailyPrintUsageByUserNavCommand());
-            command.AddCommand(builder.BuildDeviceConfigurationDeviceActivityNavCommand());
-            command.AddCommand(builder.BuildDeviceConfigurationUserActivityNavCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildGetOffice365ActivationCountsNavCommand());
-            command.AddCommand(builder.BuildGetOffice365ActivationsUserCountsNavCommand());
-            command.AddCommand(builder.BuildGetOffice365ActivationsUserDetailNavCommand());
-            command.AddCommand(builder.BuildManagedDeviceEnrollmentFailureDetailsNavCommand());
-            command.AddCommand(builder.BuildManagedDeviceEnrollmentTopFailuresNavCommand());
-            command.AddCommand(builder.BuildMonthlyPrintUsageByPrinterNavCommand());
-            command.AddCommand(builder.BuildMonthlyPrintUsageByUserNavCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSecurityNavCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildDailyPrintUsageByPrinterNavCommand());
+            nonExecCommands.Add(builder.BuildDailyPrintUsageByUserNavCommand());
+            nonExecCommands.Add(builder.BuildDeviceConfigurationDeviceActivityNavCommand());
+            nonExecCommands.Add(builder.BuildDeviceConfigurationUserActivityNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildGetOffice365ActivationCountsNavCommand());
+            nonExecCommands.Add(builder.BuildGetOffice365ActivationsUserCountsNavCommand());
+            nonExecCommands.Add(builder.BuildGetOffice365ActivationsUserDetailNavCommand());
+            nonExecCommands.Add(builder.BuildManagedDeviceEnrollmentFailureDetailsNavCommand());
+            nonExecCommands.Add(builder.BuildManagedDeviceEnrollmentTopFailuresNavCommand());
+            nonExecCommands.Add(builder.BuildMonthlyPrintUsageByPrinterNavCommand());
+            nonExecCommands.Add(builder.BuildMonthlyPrintUsageByUserNavCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildSecurityNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -1049,10 +1436,20 @@ namespace ApiSdk {
             var command = new Command("role-management");
             command.Description = "Provides operations to manage the roleManagement singleton.";
             var builder = new RoleManagementRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDirectoryNavCommand());
-            command.AddCommand(builder.BuildEntitlementManagementNavCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildDirectoryNavCommand());
+            nonExecCommands.Add(builder.BuildEntitlementManagementNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -1103,7 +1500,6 @@ namespace ApiSdk {
             command.AddCommand(BuildInformationProtectionNavCommand());
             command.AddCommand(BuildInvitationsNavCommand());
             command.AddCommand(BuildLocalizationsNavCommand());
-            command.AddCommand(BuildMeNavCommand());
             command.AddCommand(BuildOauth2PermissionGrantsNavCommand());
             command.AddCommand(BuildOrganizationNavCommand());
             command.AddCommand(BuildPermissionGrantsNavCommand());
@@ -1138,13 +1534,22 @@ namespace ApiSdk {
             var command = new Command("schema-extensions");
             command.Description = "Provides operations to manage the collection of schemaExtension entities.";
             var builder = new SchemaExtensionsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -1154,13 +1559,22 @@ namespace ApiSdk {
             var command = new Command("scoped-role-memberships");
             command.Description = "Provides operations to manage the collection of scopedRoleMembership entities.";
             var builder = new ScopedRoleMembershipsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -1170,9 +1584,19 @@ namespace ApiSdk {
             var command = new Command("search");
             command.Description = "Provides operations to manage the searchEntity singleton.";
             var builder = new SearchRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildQueryNavCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildQueryNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -1182,16 +1606,26 @@ namespace ApiSdk {
             var command = new Command("security");
             command.Description = "Provides operations to manage the security singleton.";
             var builder = new SecurityRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAlerts_v2NavCommand());
-            command.AddCommand(builder.BuildAlertsNavCommand());
-            command.AddCommand(builder.BuildAttackSimulationNavCommand());
-            command.AddCommand(builder.BuildCasesNavCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildIncidentsNavCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSecureScoreControlProfilesNavCommand());
-            command.AddCommand(builder.BuildSecureScoresNavCommand());
-            command.AddCommand(builder.BuildSecurityRunHuntingQueryNavCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAlerts_v2NavCommand());
+            nonExecCommands.Add(builder.BuildAlertsNavCommand());
+            nonExecCommands.Add(builder.BuildAttackSimulationNavCommand());
+            nonExecCommands.Add(builder.BuildCasesNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildIncidentsNavCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildSecureScoreControlProfilesNavCommand());
+            nonExecCommands.Add(builder.BuildSecureScoresNavCommand());
+            nonExecCommands.Add(builder.BuildSecurityRunHuntingQueryNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -1201,17 +1635,26 @@ namespace ApiSdk {
             var command = new Command("service-principals");
             command.Description = "Provides operations to manage the collection of servicePrincipal entities.";
             var builder = new ServicePrincipalsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildDeltaNavCommand());
+            nonExecCommands.Add(builder.BuildGetAvailableExtensionPropertiesNavCommand());
+            nonExecCommands.Add(builder.BuildGetByIdsNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            nonExecCommands.Add(builder.BuildValidatePropertiesNavCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaNavCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesNavCommand());
-            command.AddCommand(builder.BuildGetByIdsNavCommand());
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildValidatePropertiesNavCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -1221,13 +1664,22 @@ namespace ApiSdk {
             var command = new Command("shares");
             command.Description = "Provides operations to manage the collection of sharedDriveItem entities.";
             var builder = new SharesRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -1237,14 +1689,23 @@ namespace ApiSdk {
             var command = new Command("sites");
             command.Description = "Provides operations to manage the collection of site entities.";
             var builder = new SitesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAddNavCommand());
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAddNavCommand());
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            nonExecCommands.Add(builder.BuildRemoveNavCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRemoveNavCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -1254,10 +1715,20 @@ namespace ApiSdk {
             var command = new Command("solutions");
             command.Description = "Provides operations to manage the solutionsRoot singleton.";
             var builder = new SolutionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildBookingBusinessesNavCommand());
-            command.AddCommand(builder.BuildBookingCurrenciesNavCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildBookingBusinessesNavCommand());
+            nonExecCommands.Add(builder.BuildBookingCurrenciesNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -1267,12 +1738,21 @@ namespace ApiSdk {
             var command = new Command("subscribed-skus");
             command.Description = "Provides operations to manage the collection of subscribedSku entities.";
             var builder = new SubscribedSkusRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -1282,12 +1762,21 @@ namespace ApiSdk {
             var command = new Command("subscriptions");
             command.Description = "Provides operations to manage the collection of subscription entities.";
             var builder = new SubscriptionsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -1297,13 +1786,22 @@ namespace ApiSdk {
             var command = new Command("teams");
             command.Description = "Provides operations to manage the collection of team entities.";
             var builder = new TeamsRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildGetAllMessagesNavCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildGetAllMessagesNavCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -1313,13 +1811,22 @@ namespace ApiSdk {
             var command = new Command("teams-templates");
             command.Description = "Provides operations to manage the collection of teamsTemplate entities.";
             var builder = new TeamsTemplatesRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -1329,11 +1836,21 @@ namespace ApiSdk {
             var command = new Command("teamwork");
             command.Description = "Provides operations to manage the teamwork singleton.";
             var builder = new TeamworkRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeletedTeamsNavCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSendActivityNotificationToRecipientsNavCommand());
-            command.AddCommand(builder.BuildWorkforceIntegrationsNavCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildDeletedTeamsNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildSendActivityNotificationToRecipientsNavCommand());
+            nonExecCommands.Add(builder.BuildWorkforceIntegrationsNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -1343,10 +1860,20 @@ namespace ApiSdk {
             var command = new Command("tenant-relationships");
             command.Description = "Provides operations to manage the tenantRelationship singleton.";
             var builder = new TenantRelationshipsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDelegatedAdminCustomersNavCommand());
-            command.AddCommand(builder.BuildDelegatedAdminRelationshipsNavCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildDelegatedAdminCustomersNavCommand());
+            nonExecCommands.Add(builder.BuildDelegatedAdminRelationshipsNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -1356,25 +1883,32 @@ namespace ApiSdk {
             var command = new Command("users");
             command.Description = "Provides operations to manage the collection of user entities.";
             var builder = new UsersRequestBuilder(PathParameters);
-            foreach (var cmd in builder.BuildCommand())
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildDeltaNavCommand());
+            nonExecCommands.Add(builder.BuildGetAvailableExtensionPropertiesNavCommand());
+            nonExecCommands.Add(builder.BuildGetByIdsNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            nonExecCommands.Add(builder.BuildValidatePropertiesNavCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
-            command.AddCommand(builder.BuildCountNavCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaNavCommand());
-            command.AddCommand(builder.BuildGetAvailableExtensionPropertiesNavCommand());
-            command.AddCommand(builder.BuildGetByIdsNavCommand());
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildValidatePropertiesNavCommand());
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Instantiates a new GraphClient and sets the default values.
         /// </summary>
-        public GraphClient() {
-            PathParameters = new Dictionary<string, object>();
-            UrlTemplate = "{+baseurl}";
+        public GraphClient() : base("{+baseurl}", new Dictionary<string, object>()) {
         }
     }
 }

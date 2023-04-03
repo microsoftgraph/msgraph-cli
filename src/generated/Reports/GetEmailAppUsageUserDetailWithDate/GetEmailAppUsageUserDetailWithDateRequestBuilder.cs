@@ -1,8 +1,7 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -17,18 +16,13 @@ namespace ApiSdk.Reports.GetEmailAppUsageUserDetailWithDate {
     /// <summary>
     /// Provides operations to call the getEmailAppUsageUserDetail method.
     /// </summary>
-    public class GetEmailAppUsageUserDetailWithDateRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class GetEmailAppUsageUserDetailWithDateRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Invoke function getEmailAppUsageUserDetail
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function getEmailAppUsageUserDetail";
-            // Create options for all the parameters
             var dateOption = new Option<string>("--date", description: "Usage: date={date}") {
             };
             dateOption.IsRequired = true;
@@ -66,12 +60,8 @@ namespace ApiSdk.Reports.GetEmailAppUsageUserDetailWithDate {
         /// </summary>
         /// <param name="date">Usage: date={date}</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetEmailAppUsageUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters, Date? date = default) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/reports/getEmailAppUsageUserDetail(date={date})";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            if (date is not null) urlTplParams.Add("date", date);
-            PathParameters = urlTplParams;
+        public GetEmailAppUsageUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters, Date? date = default) : base("{+baseurl}/reports/getEmailAppUsageUserDetail(date={date})", pathParameters) {
+            if (date is not null) PathParameters.Add("date", date);
         }
         /// <summary>
         /// Invoke function getEmailAppUsageUserDetail
@@ -79,10 +69,10 @@ namespace ApiSdk.Reports.GetEmailAppUsageUserDetailWithDate {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<GetEmailAppUsageUserDetailWithDateRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<GetEmailAppUsageUserDetailWithDateRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -90,28 +80,13 @@ namespace ApiSdk.Reports.GetEmailAppUsageUserDetailWithDate {
                 PathParameters = PathParameters,
             };
             if (requestConfiguration != null) {
-                var requestConfig = new GetEmailAppUsageUserDetailWithDateRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
             return requestInfo;
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class GetEmailAppUsageUserDetailWithDateRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new getEmailAppUsageUserDetailWithDateRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public GetEmailAppUsageUserDetailWithDateRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

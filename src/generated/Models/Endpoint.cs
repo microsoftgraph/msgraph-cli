@@ -46,7 +46,7 @@ namespace ApiSdk.Models {
         public string Uri { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new endpoint and sets the default values.
+        /// Instantiates a new Endpoint and sets the default values.
         /// </summary>
         public Endpoint() : base() {
             OdataType = "#microsoft.graph.endpoint";

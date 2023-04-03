@@ -1,8 +1,7 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -17,18 +16,13 @@ namespace ApiSdk.Communications.CallRecords.CallRecordsGetPstnCallsWithFromDateT
     /// <summary>
     /// Provides operations to call the getPstnCalls method.
     /// </summary>
-    public class CallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class CallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Invoke function getPstnCalls
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function getPstnCalls";
-            // Create options for all the parameters
             var fromDateTimeOption = new Option<string>("--from-date-time", description: "Usage: fromDateTime={fromDateTime}") {
             };
             fromDateTimeOption.IsRequired = true;
@@ -84,9 +78,9 @@ namespace ApiSdk.Communications.CallRecords.CallRecordsGetPstnCallsWithFromDateT
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
+                IPagingService pagingService = invocationContext.BindingContext.GetService(typeof(IPagingService)) as IPagingService ?? throw new ArgumentNullException("pagingService");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -124,13 +118,9 @@ namespace ApiSdk.Communications.CallRecords.CallRecordsGetPstnCallsWithFromDateT
         /// <param name="fromDateTime">Usage: fromDateTime={fromDateTime}</param>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="toDateTime">Usage: toDateTime={toDateTime}</param>
-        public CallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder(Dictionary<string, object> pathParameters, DateTimeOffset? fromDateTime = default, DateTimeOffset? toDateTime = default) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/communications/callRecords/callRecords.getPstnCalls(fromDateTime={fromDateTime},toDateTime={toDateTime}){?%24top,%24skip,%24search,%24filter,%24count}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            if (fromDateTime is not null) urlTplParams.Add("fromDateTime", fromDateTime);
-            if (toDateTime is not null) urlTplParams.Add("toDateTime", toDateTime);
-            PathParameters = urlTplParams;
+        public CallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder(Dictionary<string, object> pathParameters, DateTimeOffset? fromDateTime = default, DateTimeOffset? toDateTime = default) : base("{+baseurl}/communications/callRecords/callRecords.getPstnCalls(fromDateTime={fromDateTime},toDateTime={toDateTime}){?%24top,%24skip,%24search,%24filter,%24count}", pathParameters) {
+            if (fromDateTime is not null) PathParameters.Add("fromDateTime", fromDateTime);
+            if (toDateTime is not null) PathParameters.Add("toDateTime", toDateTime);
         }
         /// <summary>
         /// Invoke function getPstnCalls
@@ -138,10 +128,10 @@ namespace ApiSdk.Communications.CallRecords.CallRecordsGetPstnCallsWithFromDateT
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<CallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<CallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -150,7 +140,7 @@ namespace ApiSdk.Communications.CallRecords.CallRecordsGetPstnCallsWithFromDateT
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new CallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<CallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -191,24 +181,6 @@ namespace ApiSdk.Communications.CallRecords.CallRecordsGetPstnCallsWithFromDateT
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class CallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public CallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilderGetQueryParameters QueryParameters { get; set; } = new CallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new callRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public CallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

@@ -1,8 +1,7 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -17,18 +16,13 @@ namespace ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope {
     /// <summary>
     /// Provides operations to call the getEffectivePermissions method.
     /// </summary>
-    public class GetEffectivePermissionsWithScopeRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class GetEffectivePermissionsWithScopeRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Retrieves the effective permissions of the currently authenticated user
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieves the effective permissions of the currently authenticated user";
-            // Create options for all the parameters
             var scopeOption = new Option<string>("--scope", description: "Usage: scope='{scope}'") {
             };
             scopeOption.IsRequired = true;
@@ -79,9 +73,9 @@ namespace ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
+                IPagingService pagingService = invocationContext.BindingContext.GetService(typeof(IPagingService)) as IPagingService ?? throw new ArgumentNullException("pagingService");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -117,12 +111,8 @@ namespace ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope {
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="scope">Usage: scope=&apos;{scope}&apos;</param>
-        public GetEffectivePermissionsWithScopeRequestBuilder(Dictionary<string, object> pathParameters, string scope = "") {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/deviceManagement/getEffectivePermissions(scope='{scope}'){?%24top,%24skip,%24search,%24filter,%24count}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            if (!string.IsNullOrWhiteSpace(scope)) urlTplParams.Add("scope", scope);
-            PathParameters = urlTplParams;
+        public GetEffectivePermissionsWithScopeRequestBuilder(Dictionary<string, object> pathParameters, string scope = "") : base("{+baseurl}/deviceManagement/getEffectivePermissions(scope='{scope}'){?%24top,%24skip,%24search,%24filter,%24count}", pathParameters) {
+            if (!string.IsNullOrWhiteSpace(scope)) PathParameters.Add("scope", scope);
         }
         /// <summary>
         /// Retrieves the effective permissions of the currently authenticated user
@@ -130,10 +120,10 @@ namespace ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<GetEffectivePermissionsWithScopeRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetEffectivePermissionsWithScopeRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<GetEffectivePermissionsWithScopeRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetEffectivePermissionsWithScopeRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -142,7 +132,7 @@ namespace ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new GetEffectivePermissionsWithScopeRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<GetEffectivePermissionsWithScopeRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -183,24 +173,6 @@ namespace ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope {
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class GetEffectivePermissionsWithScopeRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public GetEffectivePermissionsWithScopeRequestBuilderGetQueryParameters QueryParameters { get; set; } = new GetEffectivePermissionsWithScopeRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new getEffectivePermissionsWithScopeRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public GetEffectivePermissionsWithScopeRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

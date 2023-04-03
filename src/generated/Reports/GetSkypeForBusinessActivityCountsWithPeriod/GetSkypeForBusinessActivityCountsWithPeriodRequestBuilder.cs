@@ -1,8 +1,7 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -17,18 +16,13 @@ namespace ApiSdk.Reports.GetSkypeForBusinessActivityCountsWithPeriod {
     /// <summary>
     /// Provides operations to call the getSkypeForBusinessActivityCounts method.
     /// </summary>
-    public class GetSkypeForBusinessActivityCountsWithPeriodRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class GetSkypeForBusinessActivityCountsWithPeriodRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Invoke function getSkypeForBusinessActivityCounts
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function getSkypeForBusinessActivityCounts";
-            // Create options for all the parameters
             var periodOption = new Option<string>("--period", description: "Usage: period='{period}'") {
             };
             periodOption.IsRequired = true;
@@ -66,12 +60,8 @@ namespace ApiSdk.Reports.GetSkypeForBusinessActivityCountsWithPeriod {
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="period">Usage: period=&apos;{period}&apos;</param>
-        public GetSkypeForBusinessActivityCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters, string period = "") {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/reports/getSkypeForBusinessActivityCounts(period='{period}')";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            if (!string.IsNullOrWhiteSpace(period)) urlTplParams.Add("period", period);
-            PathParameters = urlTplParams;
+        public GetSkypeForBusinessActivityCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters, string period = "") : base("{+baseurl}/reports/getSkypeForBusinessActivityCounts(period='{period}')", pathParameters) {
+            if (!string.IsNullOrWhiteSpace(period)) PathParameters.Add("period", period);
         }
         /// <summary>
         /// Invoke function getSkypeForBusinessActivityCounts
@@ -79,10 +69,10 @@ namespace ApiSdk.Reports.GetSkypeForBusinessActivityCountsWithPeriod {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<GetSkypeForBusinessActivityCountsWithPeriodRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<GetSkypeForBusinessActivityCountsWithPeriodRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -90,28 +80,13 @@ namespace ApiSdk.Reports.GetSkypeForBusinessActivityCountsWithPeriod {
                 PathParameters = PathParameters,
             };
             if (requestConfiguration != null) {
-                var requestConfig = new GetSkypeForBusinessActivityCountsWithPeriodRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
             return requestInfo;
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class GetSkypeForBusinessActivityCountsWithPeriodRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new getSkypeForBusinessActivityCountsWithPeriodRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public GetSkypeForBusinessActivityCountsWithPeriodRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }
