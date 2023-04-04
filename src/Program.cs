@@ -9,6 +9,7 @@ using System.Diagnostics.Tracing;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 using ApiSdk;
 using ApiSdk.Models.ODataErrors;
@@ -41,6 +42,8 @@ namespace Microsoft.Graph.Cli
     {
         static async Task<int> Main(string[] args)
         {
+            Console.InputEncoding = Encoding.Unicode;
+            Console.OutputEncoding = Encoding.Unicode;
             var builder = BuildCommandLine()
                 .UseDefaults()
                 .UseHost(a =>
