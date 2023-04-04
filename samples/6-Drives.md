@@ -9,5 +9,5 @@ mgc drives list
 ### Get drive list
 
 ```sh
-mgc drives item list get --drive-id <DriveId>
+mgc drives list get --drive-id <DriveId>
 ```

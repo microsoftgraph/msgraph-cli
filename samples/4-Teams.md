@@ -51,7 +51,7 @@ PowerShell:
 
 ```powershell
 $teamOwner=mgc users get --user-id "{TEAM_OWNER_UPN}"
-mgc teams item members create --team-id $InternsTeam.id --body '{"additionalProperties": {
+mgc teams members create --team-id $InternsTeam.id --body '{"additionalProperties": {
         "@odata.type": "#microsoft.graph.aadUserConversationMember",
         "user@odata.bind": "https://graph.microsoft.com/v1.0/users/" + $teamOwner.id
     }, "roles": ["owner"]}'
@@ -60,7 +60,7 @@ mgc teams item members create --team-id $InternsTeam.id --body '{"additionalProp
 CMD:
 
 ```shell
-mgc teams item members create --team-id %InternsTeamId% --body "{""additionalProperties"": {""@odata.type"": ""#microsoft.graph.aadUserConversationMember"",""user@odata.bind"": ""https://graph.microsoft.com/v1.0/users/%UserId%""}, ""roles"": [""owner""]}"
+mgc teams members create --team-id %InternsTeamId% --body "{""additionalProperties"": {""@odata.type"": ""#microsoft.graph.aadUserConversationMember"",""user@odata.bind"": ""https://graph.microsoft.com/v1.0/users/%UserId%""}, ""roles"": [""owner""]}"
 ```
 
 Bash:
@@ -69,7 +69,7 @@ Bash:
 teamOwnerId=$(mgc users get --user-id "{TEAM_OWNER_UPN}" | grep -o '"id": "[^"]*' | grep -o '[^"]*$')
 teamId=$(echo $InternsTeam | grep -o '"id": "[^"]*' | grep -o '[^"]*$')
 
-mgc teams item members create --team-id $teamId --body '{"additionalProperties": {
+mgc teams members create --team-id $teamId --body '{"additionalProperties": {
         "@odata.type": "#microsoft.graph.aadUserConversationMember",
         "user@odata.bind": "https://graph.microsoft.com/v1.0/users/" + $teamOwnerId
     }, "roles": ["owner"]}'
@@ -80,23 +80,23 @@ mgc teams item members create --team-id $teamId --body '{"additionalProperties":
 PowerShell:
 
 ```powershell
-$PrimaryChannel = mgc teams item primary-channel get --team-id $InternsTeam.id
+$PrimaryChannel = mgc teams primary-channel get --team-id $InternsTeam.id
 $body = ConvertTo-Json '{"body": {"content": "Welcome to Teams!"}}'
-mgc teams item channels item messages create --team-id $InternsTeam.id --channel-id $PrimaryChannel.id --body $body
+mgc teams channels messages create --team-id $InternsTeam.id --channel-id $PrimaryChannel.id --body $body
 ```
 
 CMD:
 
 ```shell
-mgc teams item primary-channel get --team-id %TeamId%
-mgc teams item channels item messages create --team-id %TeamId% --channel-id %PrimaryChannelId% --body "{""body"": {""content"": ""Welcome to Teams!""}}"
+mgc teams primary-channel get --team-id %TeamId%
+mgc teams channels messages create --team-id %TeamId% --channel-id %PrimaryChannelId% --body "{""body"": {""content"": ""Welcome to Teams!""}}"
 ```
 
 Bash:
 
 ```sh
-PrimaryChannelId=$(mgc teams item primary-channel get --team-id $teamId | grep -o '"id": "[^"]*' | grep -o '[^"]*$')
-mgc teams item channels item messages create --team-id $teamId --channel-id $PrimaryChannelId --body '{"body": {"content": "Welcome to Teams!"}}'
+PrimaryChannelId=$(mgc teams primary-channel get --team-id $teamId | grep -o '"id": "[^"]*' | grep -o '[^"]*$')
+mgc teams channels messages create --team-id $teamId --channel-id $PrimaryChannelId --body '{"body": {"content": "Welcome to Teams!"}}'
 ```
 
 ### Delete team
@@ -130,13 +130,13 @@ mgc chats list
 #### Get Messages from Chat
 
 ```sh
-mgc chats item messages list --chat-id <ChatId>
+mgc chats messages list --chat-id <ChatId>
 ```
 
 #### Send a message in that 1:1 chat
 
 ```sh
-mgc chats item messages create --chat-id <ChatId> --body '{"body": {"content": "Hi from CLI!"}}'
+mgc chats messages create --chat-id <ChatId> --body '{"body": {"content": "Hi from CLI!"}}'
 ```
 
 #### Mention a user in a channel message
@@ -144,19 +144,19 @@ mgc chats item messages create --chat-id <ChatId> --body '{"body": {"content": "
 PowerShell:
 
 ```powershell
-$user = mgc users item get --user-id <UserId> --select "id, displayName, userIdentityType"
+$user = mgc users get --user-id <UserId> --select "id, displayName, userIdentityType"
 $body = ConvertTo-Json '{"body": {"contentType": "html", "content": "Welcome to the channel <at id=\'0\'>${user.displayName}</at>!"}, "mentions": [{"id": 0, "mentionText": "${user.displayName}", "mentioned": {"user": {"id": "${user.id}", "displayName": "${user.displayName}", "userIdentityType": "${user.userIdentityType}"}}}]}'
-mgc teams item channels item messages create --team-id <TeamId> --channel-id $PrimaryChannel.id \
+mgc teams channels messages create --team-id <TeamId> --channel-id $PrimaryChannel.id \
     --body $body
 ```
 
 Bash:
 
 ```sh
-user=$(mgc users item get --user-id <UserId> --select "id, displayName, userIdentityType")
+user=$(mgc users get --user-id <UserId> --select "id, displayName, userIdentityType")
 userId=$(echo $user | grep -o '"id": "[^"]*' | grep -o '[^"]*$')
 userDisplayName=$(echo $user | grep -o '"displayName": "[^"]*' | grep -o '[^"]*$')
 userIdentityType=$(echo $user | grep -o '"userIdentityType": "[^"]*' | grep -o '[^"]*$')
-mgc teams item channels item messages create --team-id <TeamId> --channel-id $PrimaryChannelId \
+mgc teams channels messages create --team-id <TeamId> --channel-id $PrimaryChannelId \
     --body '{"body": {"contentType": "html", "content": "Welcome to the channel <at id=\'0\'>${userDisplayName}</at>!"}, "mentions": [{"id": 0, "mentionText": "${userDisplayName}", "mentioned": {"user": {"id": "${userId}", "displayName": "${userDisplayName}", "userIdentityType": "${userIdentityType}"}}}]}'
 ```

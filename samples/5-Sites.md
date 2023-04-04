@@ -3,7 +3,7 @@
 ### Get root site
 
 ```sh
-mgc sites item get --site-id root --select "id, displayName"
+mgc sites get --site-id root --select "id, displayName"
 ```
 
 ### Search for sites
@@ -21,17 +21,17 @@ mgc sites list --search "marketing" --select id
 ### Get Site Pages
 
 ```sh
-mgc sites item sites list --site-id <SiteId>
+mgc sites sites list --site-id <SiteId>
 ```
 
 ### Get Site Lists
 
 ```sh
-mgc sites item sites list --site-id <SiteId> --select "id, displayName"
+mgc sites sites list --site-id <SiteId> --select "id, displayName"
 ```
 
 ### Get Document Libraries
 
 ```sh
-mgc sites item drive get --site-id <SiteId>
+mgc sites drive get --site-id <SiteId>
 ```
