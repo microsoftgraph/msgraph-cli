@@ -467,7 +467,7 @@
       "Microsoft.Kiota.Cli.Commons": {
         "type": "Transitive",
         "resolved": "0.2.1-preview.1",
-        "contentHash": "SOr1Oz2Hgamymiq9zE3I5XNfQIKukMKm8mTo4uIYAlDRDOXSfCzZM7nDrqzMlaf7G6epBjCsmeZ8anKCa9+d/Q==",
+        "contentHash": "FixD3Ai86J7E/Poq1fu1CAZ9fghZjaaVLs5LJp5hc8TAtcZ4XbsUrwG7tvQnwjJhZ5a39+R2hP98ddn7KTMkMw==",
         "dependencies": {
           "JmesPath.Net": "1.0.205",
           "Microsoft.Kiota.Abstractions": "1.1.0",
