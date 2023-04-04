@@ -1,10 +1,9 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInstances.Item.ActivatedUsing;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -19,19 +18,20 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
     /// <summary>
     /// Provides operations to manage the roleAssignmentScheduleInstances property of the microsoft.graph.rbacApplication entity.
     /// </summary>
-    public class UnifiedRoleAssignmentScheduleInstanceItemRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class UnifiedRoleAssignmentScheduleInstanceItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Provides operations to manage the activatedUsing property of the microsoft.graph.unifiedRoleAssignmentScheduleInstance entity.
         /// </summary>
-        public Command BuildActivatedUsingCommand() {
+        public Command BuildActivatedUsingNavCommand() {
             var command = new Command("activated-using");
             command.Description = "Provides operations to manage the activatedUsing property of the microsoft.graph.unifiedRoleAssignmentScheduleInstance entity.";
             var builder = new ActivatedUsingRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -40,7 +40,6 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property roleAssignmentScheduleInstances for roleManagement";
-            // Create options for all the parameters
             var unifiedRoleAssignmentScheduleInstanceIdOption = new Option<string>("--unified-role-assignment-schedule-instance-id", description: "The unique identifier of unifiedRoleAssignmentScheduleInstance") {
             };
             unifiedRoleAssignmentScheduleInstanceIdOption.IsRequired = true;
@@ -74,7 +73,6 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Instances for active role assignments.";
-            // Create options for all the parameters
             var unifiedRoleAssignmentScheduleInstanceIdOption = new Option<string>("--unified-role-assignment-schedule-instance-id", description: "The unique identifier of unifiedRoleAssignmentScheduleInstance") {
             };
             unifiedRoleAssignmentScheduleInstanceIdOption.IsRequired = true;
@@ -109,8 +107,8 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -136,7 +134,6 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property roleAssignmentScheduleInstances in roleManagement";
-            // Create options for all the parameters
             var unifiedRoleAssignmentScheduleInstanceIdOption = new Option<string>("--unified-role-assignment-schedule-instance-id", description: "The unique identifier of unifiedRoleAssignmentScheduleInstance") {
             };
             unifiedRoleAssignmentScheduleInstanceIdOption.IsRequired = true;
@@ -164,8 +161,8 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -192,11 +189,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
         /// Instantiates a new UnifiedRoleAssignmentScheduleInstanceItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public UnifiedRoleAssignmentScheduleInstanceItemRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/roleManagement/entitlementManagement/roleAssignmentScheduleInstances/{unifiedRoleAssignmentScheduleInstance%2Did}{?%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public UnifiedRoleAssignmentScheduleInstanceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/entitlementManagement/roleAssignmentScheduleInstances/{unifiedRoleAssignmentScheduleInstance%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Delete navigation property roleAssignmentScheduleInstances for roleManagement
@@ -204,10 +197,10 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<UnifiedRoleAssignmentScheduleInstanceItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<UnifiedRoleAssignmentScheduleInstanceItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
@@ -215,8 +208,9 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
                 PathParameters = PathParameters,
             };
             if (requestConfiguration != null) {
-                var requestConfig = new UnifiedRoleAssignmentScheduleInstanceItemRequestBuilderDeleteRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
@@ -228,10 +222,10 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<UnifiedRoleAssignmentScheduleInstanceItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UnifiedRoleAssignmentScheduleInstanceItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<UnifiedRoleAssignmentScheduleInstanceItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UnifiedRoleAssignmentScheduleInstanceItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -240,7 +234,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new UnifiedRoleAssignmentScheduleInstanceItemRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<UnifiedRoleAssignmentScheduleInstanceItemRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -255,10 +249,10 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(UnifiedRoleAssignmentScheduleInstance body, Action<UnifiedRoleAssignmentScheduleInstanceItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(UnifiedRoleAssignmentScheduleInstance body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(UnifiedRoleAssignmentScheduleInstance body, Action<UnifiedRoleAssignmentScheduleInstanceItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(UnifiedRoleAssignmentScheduleInstance body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
@@ -268,28 +262,13 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new UnifiedRoleAssignmentScheduleInstanceItemRequestBuilderPatchRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
             return requestInfo;
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class UnifiedRoleAssignmentScheduleInstanceItemRequestBuilderDeleteRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new UnifiedRoleAssignmentScheduleInstanceItemRequestBuilderDeleteRequestConfiguration and sets the default values.
-            /// </summary>
-            public UnifiedRoleAssignmentScheduleInstanceItemRequestBuilderDeleteRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
         /// <summary>
         /// Instances for active role assignments.
@@ -315,40 +294,6 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
 #endif
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class UnifiedRoleAssignmentScheduleInstanceItemRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public UnifiedRoleAssignmentScheduleInstanceItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new UnifiedRoleAssignmentScheduleInstanceItemRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new UnifiedRoleAssignmentScheduleInstanceItemRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public UnifiedRoleAssignmentScheduleInstanceItemRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class UnifiedRoleAssignmentScheduleInstanceItemRequestBuilderPatchRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new UnifiedRoleAssignmentScheduleInstanceItemRequestBuilderPatchRequestConfiguration and sets the default values.
-            /// </summary>
-            public UnifiedRoleAssignmentScheduleInstanceItemRequestBuilderPatchRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

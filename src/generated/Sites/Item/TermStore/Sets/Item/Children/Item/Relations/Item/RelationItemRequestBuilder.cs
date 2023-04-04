@@ -3,10 +3,9 @@ using ApiSdk.Models.TermStore;
 using ApiSdk.Sites.Item.TermStore.Sets.Item.Children.Item.Relations.Item.FromTerm;
 using ApiSdk.Sites.Item.TermStore.Sets.Item.Children.Item.Relations.Item.Set;
 using ApiSdk.Sites.Item.TermStore.Sets.Item.Children.Item.Relations.Item.ToTerm;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -21,18 +20,13 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Children.Item.Relations.Item {
     /// <summary>
     /// Provides operations to manage the relations property of the microsoft.graph.termStore.term entity.
     /// </summary>
-    public class RelationItemRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class RelationItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Delete navigation property relations for sites
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property relations for sites";
-            // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -81,11 +75,16 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Children.Item.Relations.Item {
         /// <summary>
         /// Provides operations to manage the fromTerm property of the microsoft.graph.termStore.relation entity.
         /// </summary>
-        public Command BuildFromTermCommand() {
+        public Command BuildFromTermNavCommand() {
             var command = new Command("from-term");
             command.Description = "Provides operations to manage the fromTerm property of the microsoft.graph.termStore.relation entity.";
             var builder = new FromTermRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -94,7 +93,6 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Children.Item.Relations.Item {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "To indicate which terms are related to the current term as either pinned or reused.";
-            // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -144,8 +142,8 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Children.Item.Relations.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -174,7 +172,6 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Children.Item.Relations.Item {
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property relations in sites";
-            // Create options for all the parameters
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -217,8 +214,8 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Children.Item.Relations.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -247,32 +244,38 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Children.Item.Relations.Item {
         /// <summary>
         /// Provides operations to manage the set property of the microsoft.graph.termStore.relation entity.
         /// </summary>
-        public Command BuildSetCommand() {
+        public Command BuildSetNavCommand() {
             var command = new Command("set");
             command.Description = "Provides operations to manage the set property of the microsoft.graph.termStore.relation entity.";
             var builder = new SetRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the toTerm property of the microsoft.graph.termStore.relation entity.
         /// </summary>
-        public Command BuildToTermCommand() {
+        public Command BuildToTermNavCommand() {
             var command = new Command("to-term");
             command.Description = "Provides operations to manage the toTerm property of the microsoft.graph.termStore.relation entity.";
             var builder = new ToTermRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Instantiates a new RelationItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RelationItemRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/sites/{site%2Did}/termStore/sets/{set%2Did}/children/{term%2Did}/relations/{relation%2Did}{?%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public RelationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/termStore/sets/{set%2Did}/children/{term%2Did}/relations/{relation%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Delete navigation property relations for sites
@@ -280,10 +283,10 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Children.Item.Relations.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<RelationItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<RelationItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
@@ -291,8 +294,9 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Children.Item.Relations.Item {
                 PathParameters = PathParameters,
             };
             if (requestConfiguration != null) {
-                var requestConfig = new RelationItemRequestBuilderDeleteRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
@@ -304,10 +308,10 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Children.Item.Relations.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RelationItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RelationItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RelationItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RelationItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -316,7 +320,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Children.Item.Relations.Item {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new RelationItemRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<RelationItemRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -331,10 +335,10 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Children.Item.Relations.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(Relation body, Action<RelationItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(Relation body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(Relation body, Action<RelationItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(Relation body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
@@ -344,28 +348,13 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Children.Item.Relations.Item {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new RelationItemRequestBuilderPatchRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
             return requestInfo;
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class RelationItemRequestBuilderDeleteRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new RelationItemRequestBuilderDeleteRequestConfiguration and sets the default values.
-            /// </summary>
-            public RelationItemRequestBuilderDeleteRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
         /// <summary>
         /// To indicate which terms are related to the current term as either pinned or reused.
@@ -391,40 +380,6 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.Children.Item.Relations.Item {
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
 #endif
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class RelationItemRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public RelationItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new RelationItemRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new RelationItemRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public RelationItemRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class RelationItemRequestBuilderPatchRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new RelationItemRequestBuilderPatchRequestConfiguration and sets the default values.
-            /// </summary>
-            public RelationItemRequestBuilderPatchRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

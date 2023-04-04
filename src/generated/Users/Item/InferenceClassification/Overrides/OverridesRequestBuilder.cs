@@ -2,10 +2,9 @@ using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Users.Item.InferenceClassification.Overrides.Count;
 using ApiSdk.Users.Item.InferenceClassification.Overrides.Item;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -20,30 +19,31 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides {
     /// <summary>
     /// Provides operations to manage the overrides property of the microsoft.graph.inferenceClassification entity.
     /// </summary>
-    public class OverridesRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class OverridesRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Provides operations to manage the overrides property of the microsoft.graph.inferenceClassification entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public Tuple<List<Command>, List<Command>> BuildCommand() {
+            var executables = new List<Command>();
             var builder = new InferenceClassificationOverrideItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            return command;
+            executables.Add(builder.BuildDeleteCommand());
+            executables.Add(builder.BuildGetCommand());
+            executables.Add(builder.BuildPatchCommand());
+            return new(executables, new(0));
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -53,7 +53,6 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides {
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create an override for a sender identified by an SMTP address. Future messages from that SMTP address will be consistently classifiedas specified in the override. **Note**\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/inferenceclassification-post-overrides?view=graph-rest-1.0";
-            // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -81,8 +80,8 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -112,7 +111,6 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get the overrides that a user has set up to always classify messages from certain senders in specific ways. Each override corresponds to an SMTP address of a sender. Initially, a user does not have any overrides.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/inferenceclassification-list-overrides?view=graph-rest-1.0";
-            // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -170,9 +168,9 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
+                IPagingService pagingService = invocationContext.BindingContext.GetService(typeof(IPagingService)) as IPagingService ?? throw new ArgumentNullException("pagingService");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -208,11 +206,7 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides {
         /// Instantiates a new OverridesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public OverridesRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/users/{user%2Did}/inferenceClassification/overrides{?%24top,%24skip,%24filter,%24count,%24orderby,%24select}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public OverridesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/inferenceClassification/overrides{?%24top,%24skip,%24filter,%24count,%24orderby,%24select}", pathParameters) {
         }
         /// <summary>
         /// Get the overrides that a user has set up to always classify messages from certain senders in specific ways. Each override corresponds to an SMTP address of a sender. Initially, a user does not have any overrides.
@@ -220,10 +214,10 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<OverridesRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<OverridesRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<OverridesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<OverridesRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -232,7 +226,7 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new OverridesRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<OverridesRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -247,10 +241,10 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(InferenceClassificationOverride body, Action<OverridesRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(InferenceClassificationOverride body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(InferenceClassificationOverride body, Action<OverridesRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(InferenceClassificationOverride body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
@@ -260,8 +254,9 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new OverridesRequestBuilderPostRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
@@ -310,40 +305,6 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides {
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class OverridesRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public OverridesRequestBuilderGetQueryParameters QueryParameters { get; set; } = new OverridesRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new overridesRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public OverridesRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class OverridesRequestBuilderPostRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new overridesRequestBuilderPostRequestConfiguration and sets the default values.
-            /// </summary>
-            public OverridesRequestBuilderPostRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

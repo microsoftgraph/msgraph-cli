@@ -13,10 +13,9 @@ using ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.MultiValueExtendedPrope
 using ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.SingleValueExtendedProperties;
 using ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.SnoozeReminder;
 using ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.TentativelyAccept;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -31,96 +30,146 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item {
     /// <summary>
     /// Provides operations to manage the calendarView property of the microsoft.graph.calendar entity.
     /// </summary>
-    public class EventItemRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class EventItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Provides operations to call the accept method.
         /// </summary>
-        public Command BuildAcceptCommand() {
+        public Command BuildAcceptNavCommand() {
             var command = new Command("accept");
             command.Description = "Provides operations to call the accept method.";
             var builder = new AcceptRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the attachments property of the microsoft.graph.event entity.
         /// </summary>
-        public Command BuildAttachmentsCommand() {
+        public Command BuildAttachmentsNavCommand() {
             var command = new Command("attachments");
             command.Description = "Provides operations to manage the attachments property of the microsoft.graph.event entity.";
             var builder = new AttachmentsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildCreateUploadSessionCommand());
-            command.AddCommand(builder.BuildListCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildCreateUploadSessionNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the calendar property of the microsoft.graph.event entity.
         /// </summary>
-        public Command BuildCalendarCommand() {
+        public Command BuildCalendarNavCommand() {
             var command = new Command("calendar");
             command.Description = "Provides operations to manage the calendar property of the microsoft.graph.event entity.";
             var builder = new CalendarRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to call the cancel method.
         /// </summary>
-        public Command BuildCancelCommand() {
+        public Command BuildCancelNavCommand() {
             var command = new Command("cancel");
             command.Description = "Provides operations to call the cancel method.";
             var builder = new CancelRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to call the decline method.
         /// </summary>
-        public Command BuildDeclineCommand() {
+        public Command BuildDeclineNavCommand() {
             var command = new Command("decline");
             command.Description = "Provides operations to call the decline method.";
             var builder = new DeclineRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to call the dismissReminder method.
         /// </summary>
-        public Command BuildDismissReminderCommand() {
+        public Command BuildDismissReminderNavCommand() {
             var command = new Command("dismiss-reminder");
             command.Description = "Provides operations to call the dismissReminder method.";
             var builder = new DismissReminderRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the extensions property of the microsoft.graph.event entity.
         /// </summary>
-        public Command BuildExtensionsCommand() {
+        public Command BuildExtensionsNavCommand() {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.event entity.";
             var builder = new ExtensionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to call the forward method.
         /// </summary>
-        public Command BuildForwardCommand() {
+        public Command BuildForwardNavCommand() {
             var command = new Command("forward");
             command.Description = "Provides operations to call the forward method.";
             var builder = new ForwardRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -129,7 +178,6 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The calendar view for the calendar. Navigation property. Read-only.";
-            // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -178,8 +226,8 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -205,71 +253,113 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item {
         /// <summary>
         /// Provides operations to manage the instances property of the microsoft.graph.event entity.
         /// </summary>
-        public Command BuildInstancesCommand() {
+        public Command BuildInstancesNavCommand() {
             var command = new Command("instances");
             command.Description = "Provides operations to manage the instances property of the microsoft.graph.event entity.";
             var builder = new InstancesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
-            command.AddCommand(builder.BuildListCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            nonExecCommands.Add(builder.BuildDeltaNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.event entity.
         /// </summary>
-        public Command BuildMultiValueExtendedPropertiesCommand() {
+        public Command BuildMultiValueExtendedPropertiesNavCommand() {
             var command = new Command("multi-value-extended-properties");
             command.Description = "Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.event entity.";
             var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.event entity.
         /// </summary>
-        public Command BuildSingleValueExtendedPropertiesCommand() {
+        public Command BuildSingleValueExtendedPropertiesNavCommand() {
             var command = new Command("single-value-extended-properties");
             command.Description = "Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.event entity.";
             var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to call the snoozeReminder method.
         /// </summary>
-        public Command BuildSnoozeReminderCommand() {
+        public Command BuildSnoozeReminderNavCommand() {
             var command = new Command("snooze-reminder");
             command.Description = "Provides operations to call the snoozeReminder method.";
             var builder = new SnoozeReminderRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to call the tentativelyAccept method.
         /// </summary>
-        public Command BuildTentativelyAcceptCommand() {
+        public Command BuildTentativelyAcceptNavCommand() {
             var command = new Command("tentatively-accept");
             command.Description = "Provides operations to call the tentativelyAccept method.";
             var builder = new TentativelyAcceptRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Instantiates a new EventItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public EventItemRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/users/{user%2Did}/calendars/{calendar%2Did}/calendarView/{event%2Did}{?startDateTime*,endDateTime*,%24select}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public EventItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendars/{calendar%2Did}/calendarView/{event%2Did}{?startDateTime*,endDateTime*,%24select}", pathParameters) {
         }
         /// <summary>
         /// The calendar view for the calendar. Navigation property. Read-only.
@@ -277,10 +367,10 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<EventItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EventItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<EventItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EventItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -289,7 +379,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new EventItemRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<EventItemRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -327,24 +417,6 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item {
 #else
             public string StartDateTime { get; set; }
 #endif
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class EventItemRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public EventItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new EventItemRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new EventItemRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public EventItemRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

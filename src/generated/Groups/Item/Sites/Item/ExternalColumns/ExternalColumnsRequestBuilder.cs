@@ -2,10 +2,9 @@ using ApiSdk.Groups.Item.Sites.Item.ExternalColumns.Count;
 using ApiSdk.Groups.Item.Sites.Item.ExternalColumns.Item;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -20,28 +19,29 @@ namespace ApiSdk.Groups.Item.Sites.Item.ExternalColumns {
     /// <summary>
     /// Provides operations to manage the externalColumns property of the microsoft.graph.site entity.
     /// </summary>
-    public class ExternalColumnsRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class ExternalColumnsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Provides operations to manage the externalColumns property of the microsoft.graph.site entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public Tuple<List<Command>, List<Command>> BuildCommand() {
+            var executables = new List<Command>();
             var builder = new ColumnDefinitionItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
+            executables.Add(builder.BuildGetCommand());
+            return new(executables, new(0));
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -50,7 +50,6 @@ namespace ApiSdk.Groups.Item.Sites.Item.ExternalColumns {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get externalColumns from groups";
-            // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -124,9 +123,9 @@ namespace ApiSdk.Groups.Item.Sites.Item.ExternalColumns {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
+                IPagingService pagingService = invocationContext.BindingContext.GetService(typeof(IPagingService)) as IPagingService ?? throw new ArgumentNullException("pagingService");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -165,11 +164,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ExternalColumns {
         /// Instantiates a new ExternalColumnsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ExternalColumnsRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/externalColumns{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public ExternalColumnsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/externalColumns{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Get externalColumns from groups
@@ -177,10 +172,10 @@ namespace ApiSdk.Groups.Item.Sites.Item.ExternalColumns {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<ExternalColumnsRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ExternalColumnsRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<ExternalColumnsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ExternalColumnsRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -189,7 +184,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ExternalColumns {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new ExternalColumnsRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<ExternalColumnsRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -260,24 +255,6 @@ namespace ApiSdk.Groups.Item.Sites.Item.ExternalColumns {
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class ExternalColumnsRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public ExternalColumnsRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ExternalColumnsRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new externalColumnsRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public ExternalColumnsRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

@@ -1,9 +1,8 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -18,11 +17,7 @@ namespace ApiSdk.GroupSettings.Item {
     /// <summary>
     /// Provides operations to manage the collection of groupSetting entities.
     /// </summary>
-    public class GroupSettingItemRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class GroupSettingItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Delete a tenant-level or group-specific groupSetting object.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/groupsetting-delete?view=graph-rest-1.0" />
@@ -30,7 +25,6 @@ namespace ApiSdk.GroupSettings.Item {
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a tenant-level or group-specific groupSetting object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/groupsetting-delete?view=graph-rest-1.0";
-            // Create options for all the parameters
             var groupSettingIdOption = new Option<string>("--group-setting-id", description: "The unique identifier of groupSetting") {
             };
             groupSettingIdOption.IsRequired = true;
@@ -65,7 +59,6 @@ namespace ApiSdk.GroupSettings.Item {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties of a specific group setting object. The setting can be a tenant-level or group-specific setting.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/groupsetting-get?view=graph-rest-1.0";
-            // Create options for all the parameters
             var groupSettingIdOption = new Option<string>("--group-setting-id", description: "The unique identifier of groupSetting") {
             };
             groupSettingIdOption.IsRequired = true;
@@ -100,8 +93,8 @@ namespace ApiSdk.GroupSettings.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -128,7 +121,6 @@ namespace ApiSdk.GroupSettings.Item {
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a groupSetting object for tenant-wide group settings or a specific group setting.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/groupsetting-update?view=graph-rest-1.0";
-            // Create options for all the parameters
             var groupSettingIdOption = new Option<string>("--group-setting-id", description: "The unique identifier of groupSetting") {
             };
             groupSettingIdOption.IsRequired = true;
@@ -156,8 +148,8 @@ namespace ApiSdk.GroupSettings.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -184,11 +176,7 @@ namespace ApiSdk.GroupSettings.Item {
         /// Instantiates a new GroupSettingItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GroupSettingItemRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/groupSettings/{groupSetting%2Did}{?%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public GroupSettingItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groupSettings/{groupSetting%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Delete a tenant-level or group-specific groupSetting object.
@@ -196,10 +184,10 @@ namespace ApiSdk.GroupSettings.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<GroupSettingItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<GroupSettingItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
@@ -207,8 +195,9 @@ namespace ApiSdk.GroupSettings.Item {
                 PathParameters = PathParameters,
             };
             if (requestConfiguration != null) {
-                var requestConfig = new GroupSettingItemRequestBuilderDeleteRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
@@ -220,10 +209,10 @@ namespace ApiSdk.GroupSettings.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<GroupSettingItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GroupSettingItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<GroupSettingItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GroupSettingItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -232,7 +221,7 @@ namespace ApiSdk.GroupSettings.Item {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new GroupSettingItemRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<GroupSettingItemRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -247,10 +236,10 @@ namespace ApiSdk.GroupSettings.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(GroupSetting body, Action<GroupSettingItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(GroupSetting body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(GroupSetting body, Action<GroupSettingItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(GroupSetting body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
@@ -260,28 +249,13 @@ namespace ApiSdk.GroupSettings.Item {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new GroupSettingItemRequestBuilderPatchRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
             return requestInfo;
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class GroupSettingItemRequestBuilderDeleteRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new GroupSettingItemRequestBuilderDeleteRequestConfiguration and sets the default values.
-            /// </summary>
-            public GroupSettingItemRequestBuilderDeleteRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
         /// <summary>
         /// Retrieve the properties of a specific group setting object. The setting can be a tenant-level or group-specific setting.
@@ -307,40 +281,6 @@ namespace ApiSdk.GroupSettings.Item {
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
 #endif
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class GroupSettingItemRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public GroupSettingItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new GroupSettingItemRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new GroupSettingItemRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public GroupSettingItemRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class GroupSettingItemRequestBuilderPatchRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new GroupSettingItemRequestBuilderPatchRequestConfiguration and sets the default values.
-            /// </summary>
-            public GroupSettingItemRequestBuilderPatchRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

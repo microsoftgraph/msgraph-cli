@@ -5,10 +5,9 @@ using ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item.ParentNotebook;
 using ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item.ParentSectionGroup;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -23,29 +22,35 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item {
     /// <summary>
     /// Provides operations to manage the sections property of the microsoft.graph.notebook entity.
     /// </summary>
-    public class OnenoteSectionItemRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class OnenoteSectionItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Provides operations to call the copyToNotebook method.
         /// </summary>
-        public Command BuildCopyToNotebookCommand() {
+        public Command BuildCopyToNotebookNavCommand() {
             var command = new Command("copy-to-notebook");
             command.Description = "Provides operations to call the copyToNotebook method.";
             var builder = new CopyToNotebookRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to call the copyToSectionGroup method.
         /// </summary>
-        public Command BuildCopyToSectionGroupCommand() {
+        public Command BuildCopyToSectionGroupNavCommand() {
             var command = new Command("copy-to-section-group");
             command.Description = "Provides operations to call the copyToSectionGroup method.";
             var builder = new CopyToSectionGroupRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -54,7 +59,6 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item {
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property sections for groups";
-            // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -100,7 +104,6 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The sections in the notebook. Read-only. Nullable.";
-            // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -145,8 +148,8 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -171,34 +174,56 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item {
         /// <summary>
         /// Provides operations to manage the pages property of the microsoft.graph.onenoteSection entity.
         /// </summary>
-        public Command BuildPagesCommand() {
+        public Command BuildPagesNavCommand() {
             var command = new Command("pages");
             command.Description = "Provides operations to manage the pages property of the microsoft.graph.onenoteSection entity.";
             var builder = new PagesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the parentNotebook property of the microsoft.graph.onenoteSection entity.
         /// </summary>
-        public Command BuildParentNotebookCommand() {
+        public Command BuildParentNotebookNavCommand() {
             var command = new Command("parent-notebook");
             command.Description = "Provides operations to manage the parentNotebook property of the microsoft.graph.onenoteSection entity.";
             var builder = new ParentNotebookRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the parentSectionGroup property of the microsoft.graph.onenoteSection entity.
         /// </summary>
-        public Command BuildParentSectionGroupCommand() {
+        public Command BuildParentSectionGroupNavCommand() {
             var command = new Command("parent-section-group");
             command.Description = "Provides operations to manage the parentSectionGroup property of the microsoft.graph.onenoteSection entity.";
             var builder = new ParentSectionGroupRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -207,7 +232,6 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item {
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property sections in groups";
-            // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -245,8 +269,8 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -275,11 +299,7 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item {
         /// Instantiates a new OnenoteSectionItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public OnenoteSectionItemRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/groups/{group%2Did}/onenote/notebooks/{notebook%2Did}/sections/{onenoteSection%2Did}{?%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public OnenoteSectionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/onenote/notebooks/{notebook%2Did}/sections/{onenoteSection%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Delete navigation property sections for groups
@@ -287,10 +307,10 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<OnenoteSectionItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<OnenoteSectionItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
@@ -298,8 +318,9 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item {
                 PathParameters = PathParameters,
             };
             if (requestConfiguration != null) {
-                var requestConfig = new OnenoteSectionItemRequestBuilderDeleteRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
@@ -311,10 +332,10 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<OnenoteSectionItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<OnenoteSectionItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<OnenoteSectionItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<OnenoteSectionItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -323,7 +344,7 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new OnenoteSectionItemRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<OnenoteSectionItemRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -338,10 +359,10 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(OnenoteSection body, Action<OnenoteSectionItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(OnenoteSection body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(OnenoteSection body, Action<OnenoteSectionItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(OnenoteSection body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
@@ -351,28 +372,13 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new OnenoteSectionItemRequestBuilderPatchRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
             return requestInfo;
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class OnenoteSectionItemRequestBuilderDeleteRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new OnenoteSectionItemRequestBuilderDeleteRequestConfiguration and sets the default values.
-            /// </summary>
-            public OnenoteSectionItemRequestBuilderDeleteRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
         /// <summary>
         /// The sections in the notebook. Read-only. Nullable.
@@ -398,40 +404,6 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.Sections.Item {
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
 #endif
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class OnenoteSectionItemRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public OnenoteSectionItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new OnenoteSectionItemRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new OnenoteSectionItemRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public OnenoteSectionItemRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class OnenoteSectionItemRequestBuilderPatchRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new OnenoteSectionItemRequestBuilderPatchRequestConfiguration and sets the default values.
-            /// </summary>
-            public OnenoteSectionItemRequestBuilderPatchRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

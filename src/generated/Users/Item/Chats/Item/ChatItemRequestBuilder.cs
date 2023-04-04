@@ -11,10 +11,9 @@ using ApiSdk.Users.Item.Chats.Item.PinnedMessages;
 using ApiSdk.Users.Item.Chats.Item.SendActivityNotification;
 using ApiSdk.Users.Item.Chats.Item.Tabs;
 using ApiSdk.Users.Item.Chats.Item.UnhideForUser;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -29,18 +28,13 @@ namespace ApiSdk.Users.Item.Chats.Item {
     /// <summary>
     /// Provides operations to manage the chats property of the microsoft.graph.user entity.
     /// </summary>
-    public class ChatItemRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class ChatItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Delete navigation property chats for users
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property chats for users";
-            // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -80,7 +74,6 @@ namespace ApiSdk.Users.Item.Chats.Item {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get chats from users";
-            // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -120,8 +113,8 @@ namespace ApiSdk.Users.Item.Chats.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -145,84 +138,140 @@ namespace ApiSdk.Users.Item.Chats.Item {
         /// <summary>
         /// Provides operations to call the hideForUser method.
         /// </summary>
-        public Command BuildHideForUserCommand() {
+        public Command BuildHideForUserNavCommand() {
             var command = new Command("hide-for-user");
             command.Description = "Provides operations to call the hideForUser method.";
             var builder = new HideForUserRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the installedApps property of the microsoft.graph.chat entity.
         /// </summary>
-        public Command BuildInstalledAppsCommand() {
+        public Command BuildInstalledAppsNavCommand() {
             var command = new Command("installed-apps");
             command.Description = "Provides operations to manage the installedApps property of the microsoft.graph.chat entity.";
             var builder = new InstalledAppsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the lastMessagePreview property of the microsoft.graph.chat entity.
         /// </summary>
-        public Command BuildLastMessagePreviewCommand() {
+        public Command BuildLastMessagePreviewNavCommand() {
             var command = new Command("last-message-preview");
             command.Description = "Provides operations to manage the lastMessagePreview property of the microsoft.graph.chat entity.";
             var builder = new LastMessagePreviewRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to call the markChatReadForUser method.
         /// </summary>
-        public Command BuildMarkChatReadForUserCommand() {
+        public Command BuildMarkChatReadForUserNavCommand() {
             var command = new Command("mark-chat-read-for-user");
             command.Description = "Provides operations to call the markChatReadForUser method.";
             var builder = new MarkChatReadForUserRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to call the markChatUnreadForUser method.
         /// </summary>
-        public Command BuildMarkChatUnreadForUserCommand() {
+        public Command BuildMarkChatUnreadForUserNavCommand() {
             var command = new Command("mark-chat-unread-for-user");
             command.Description = "Provides operations to call the markChatUnreadForUser method.";
             var builder = new MarkChatUnreadForUserRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the members property of the microsoft.graph.chat entity.
         /// </summary>
-        public Command BuildMembersCommand() {
+        public Command BuildMembersNavCommand() {
             var command = new Command("members");
             command.Description = "Provides operations to manage the members property of the microsoft.graph.chat entity.";
             var builder = new MembersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAddCommand());
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAddNavCommand());
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the messages property of the microsoft.graph.chat entity.
         /// </summary>
-        public Command BuildMessagesCommand() {
+        public Command BuildMessagesNavCommand() {
             var command = new Command("messages");
             command.Description = "Provides operations to manage the messages property of the microsoft.graph.chat entity.";
             var builder = new MessagesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildDeltaCommand());
-            command.AddCommand(builder.BuildListCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildDeltaNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -231,7 +280,6 @@ namespace ApiSdk.Users.Item.Chats.Item {
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property chats in users";
-            // Create options for all the parameters
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -264,8 +312,8 @@ namespace ApiSdk.Users.Item.Chats.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -292,58 +340,88 @@ namespace ApiSdk.Users.Item.Chats.Item {
         /// <summary>
         /// Provides operations to manage the pinnedMessages property of the microsoft.graph.chat entity.
         /// </summary>
-        public Command BuildPinnedMessagesCommand() {
+        public Command BuildPinnedMessagesNavCommand() {
             var command = new Command("pinned-messages");
             command.Description = "Provides operations to manage the pinnedMessages property of the microsoft.graph.chat entity.";
             var builder = new PinnedMessagesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to call the sendActivityNotification method.
         /// </summary>
-        public Command BuildSendActivityNotificationCommand() {
+        public Command BuildSendActivityNotificationNavCommand() {
             var command = new Command("send-activity-notification");
             command.Description = "Provides operations to call the sendActivityNotification method.";
             var builder = new SendActivityNotificationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the tabs property of the microsoft.graph.chat entity.
         /// </summary>
-        public Command BuildTabsCommand() {
+        public Command BuildTabsNavCommand() {
             var command = new Command("tabs");
             command.Description = "Provides operations to manage the tabs property of the microsoft.graph.chat entity.";
             var builder = new TabsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to call the unhideForUser method.
         /// </summary>
-        public Command BuildUnhideForUserCommand() {
+        public Command BuildUnhideForUserNavCommand() {
             var command = new Command("unhide-for-user");
             command.Description = "Provides operations to call the unhideForUser method.";
             var builder = new UnhideForUserRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Instantiates a new ChatItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ChatItemRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/users/{user%2Did}/chats/{chat%2Did}{?%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public ChatItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Delete navigation property chats for users
@@ -351,10 +429,10 @@ namespace ApiSdk.Users.Item.Chats.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<ChatItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<ChatItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
@@ -362,8 +440,9 @@ namespace ApiSdk.Users.Item.Chats.Item {
                 PathParameters = PathParameters,
             };
             if (requestConfiguration != null) {
-                var requestConfig = new ChatItemRequestBuilderDeleteRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
@@ -375,10 +454,10 @@ namespace ApiSdk.Users.Item.Chats.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<ChatItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ChatItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<ChatItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ChatItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -387,7 +466,7 @@ namespace ApiSdk.Users.Item.Chats.Item {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new ChatItemRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<ChatItemRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -402,10 +481,10 @@ namespace ApiSdk.Users.Item.Chats.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Chat body, Action<ChatItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Chat body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Chat body, Action<ChatItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Chat body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
@@ -415,28 +494,13 @@ namespace ApiSdk.Users.Item.Chats.Item {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new ChatItemRequestBuilderPatchRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
             return requestInfo;
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class ChatItemRequestBuilderDeleteRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new ChatItemRequestBuilderDeleteRequestConfiguration and sets the default values.
-            /// </summary>
-            public ChatItemRequestBuilderDeleteRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
         /// <summary>
         /// Get chats from users
@@ -462,40 +526,6 @@ namespace ApiSdk.Users.Item.Chats.Item {
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
 #endif
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class ChatItemRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public ChatItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ChatItemRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new ChatItemRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public ChatItemRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class ChatItemRequestBuilderPatchRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new ChatItemRequestBuilderPatchRequestConfiguration and sets the default values.
-            /// </summary>
-            public ChatItemRequestBuilderPatchRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

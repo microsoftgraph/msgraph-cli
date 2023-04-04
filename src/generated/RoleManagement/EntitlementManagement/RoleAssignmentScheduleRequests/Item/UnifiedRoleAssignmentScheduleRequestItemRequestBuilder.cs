@@ -7,10 +7,9 @@ using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequests
 using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequests.Item.Principal;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequests.Item.RoleDefinition;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequests.Item.TargetSchedule;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -25,39 +24,50 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
     /// <summary>
     /// Provides operations to manage the roleAssignmentScheduleRequests property of the microsoft.graph.rbacApplication entity.
     /// </summary>
-    public class UnifiedRoleAssignmentScheduleRequestItemRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class UnifiedRoleAssignmentScheduleRequestItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Provides operations to manage the activatedUsing property of the microsoft.graph.unifiedRoleAssignmentScheduleRequest entity.
         /// </summary>
-        public Command BuildActivatedUsingCommand() {
+        public Command BuildActivatedUsingNavCommand() {
             var command = new Command("activated-using");
             command.Description = "Provides operations to manage the activatedUsing property of the microsoft.graph.unifiedRoleAssignmentScheduleRequest entity.";
             var builder = new ActivatedUsingRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the appScope property of the microsoft.graph.unifiedRoleAssignmentScheduleRequest entity.
         /// </summary>
-        public Command BuildAppScopeCommand() {
+        public Command BuildAppScopeNavCommand() {
             var command = new Command("app-scope");
             command.Description = "Provides operations to manage the appScope property of the microsoft.graph.unifiedRoleAssignmentScheduleRequest entity.";
             var builder = new AppScopeRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to call the cancel method.
         /// </summary>
-        public Command BuildCancelCommand() {
+        public Command BuildCancelNavCommand() {
             var command = new Command("cancel");
             command.Description = "Provides operations to call the cancel method.";
             var builder = new CancelRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -66,7 +76,6 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property roleAssignmentScheduleRequests for roleManagement";
-            // Create options for all the parameters
             var unifiedRoleAssignmentScheduleRequestIdOption = new Option<string>("--unified-role-assignment-schedule-request-id", description: "The unique identifier of unifiedRoleAssignmentScheduleRequest") {
             };
             unifiedRoleAssignmentScheduleRequestIdOption.IsRequired = true;
@@ -97,11 +106,16 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
         /// <summary>
         /// Provides operations to manage the directoryScope property of the microsoft.graph.unifiedRoleAssignmentScheduleRequest entity.
         /// </summary>
-        public Command BuildDirectoryScopeCommand() {
+        public Command BuildDirectoryScopeNavCommand() {
             var command = new Command("directory-scope");
             command.Description = "Provides operations to manage the directoryScope property of the microsoft.graph.unifiedRoleAssignmentScheduleRequest entity.";
             var builder = new DirectoryScopeRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -110,7 +124,6 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Requests for active role assignments to principals through PIM.";
-            // Create options for all the parameters
             var unifiedRoleAssignmentScheduleRequestIdOption = new Option<string>("--unified-role-assignment-schedule-request-id", description: "The unique identifier of unifiedRoleAssignmentScheduleRequest") {
             };
             unifiedRoleAssignmentScheduleRequestIdOption.IsRequired = true;
@@ -145,8 +158,8 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -172,7 +185,6 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property roleAssignmentScheduleRequests in roleManagement";
-            // Create options for all the parameters
             var unifiedRoleAssignmentScheduleRequestIdOption = new Option<string>("--unified-role-assignment-schedule-request-id", description: "The unique identifier of unifiedRoleAssignmentScheduleRequest") {
             };
             unifiedRoleAssignmentScheduleRequestIdOption.IsRequired = true;
@@ -200,8 +212,8 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -227,42 +239,53 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
         /// <summary>
         /// Provides operations to manage the principal property of the microsoft.graph.unifiedRoleAssignmentScheduleRequest entity.
         /// </summary>
-        public Command BuildPrincipalCommand() {
+        public Command BuildPrincipalNavCommand() {
             var command = new Command("principal");
             command.Description = "Provides operations to manage the principal property of the microsoft.graph.unifiedRoleAssignmentScheduleRequest entity.";
             var builder = new PrincipalRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the roleDefinition property of the microsoft.graph.unifiedRoleAssignmentScheduleRequest entity.
         /// </summary>
-        public Command BuildRoleDefinitionCommand() {
+        public Command BuildRoleDefinitionNavCommand() {
             var command = new Command("role-definition");
             command.Description = "Provides operations to manage the roleDefinition property of the microsoft.graph.unifiedRoleAssignmentScheduleRequest entity.";
             var builder = new RoleDefinitionRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the targetSchedule property of the microsoft.graph.unifiedRoleAssignmentScheduleRequest entity.
         /// </summary>
-        public Command BuildTargetScheduleCommand() {
+        public Command BuildTargetScheduleNavCommand() {
             var command = new Command("target-schedule");
             command.Description = "Provides operations to manage the targetSchedule property of the microsoft.graph.unifiedRoleAssignmentScheduleRequest entity.";
             var builder = new TargetScheduleRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Instantiates a new UnifiedRoleAssignmentScheduleRequestItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public UnifiedRoleAssignmentScheduleRequestItemRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/roleManagement/entitlementManagement/roleAssignmentScheduleRequests/{unifiedRoleAssignmentScheduleRequest%2Did}{?%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public UnifiedRoleAssignmentScheduleRequestItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/entitlementManagement/roleAssignmentScheduleRequests/{unifiedRoleAssignmentScheduleRequest%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Delete navigation property roleAssignmentScheduleRequests for roleManagement
@@ -270,10 +293,10 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<UnifiedRoleAssignmentScheduleRequestItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<UnifiedRoleAssignmentScheduleRequestItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
@@ -281,8 +304,9 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
                 PathParameters = PathParameters,
             };
             if (requestConfiguration != null) {
-                var requestConfig = new UnifiedRoleAssignmentScheduleRequestItemRequestBuilderDeleteRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
@@ -294,10 +318,10 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<UnifiedRoleAssignmentScheduleRequestItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UnifiedRoleAssignmentScheduleRequestItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<UnifiedRoleAssignmentScheduleRequestItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UnifiedRoleAssignmentScheduleRequestItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -306,7 +330,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new UnifiedRoleAssignmentScheduleRequestItemRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<UnifiedRoleAssignmentScheduleRequestItemRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -321,10 +345,10 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(UnifiedRoleAssignmentScheduleRequest body, Action<UnifiedRoleAssignmentScheduleRequestItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(UnifiedRoleAssignmentScheduleRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(UnifiedRoleAssignmentScheduleRequest body, Action<UnifiedRoleAssignmentScheduleRequestItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(UnifiedRoleAssignmentScheduleRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
@@ -334,28 +358,13 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new UnifiedRoleAssignmentScheduleRequestItemRequestBuilderPatchRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
             return requestInfo;
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class UnifiedRoleAssignmentScheduleRequestItemRequestBuilderDeleteRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new UnifiedRoleAssignmentScheduleRequestItemRequestBuilderDeleteRequestConfiguration and sets the default values.
-            /// </summary>
-            public UnifiedRoleAssignmentScheduleRequestItemRequestBuilderDeleteRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
         /// <summary>
         /// Requests for active role assignments to principals through PIM.
@@ -381,40 +390,6 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequ
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
 #endif
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class UnifiedRoleAssignmentScheduleRequestItemRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public UnifiedRoleAssignmentScheduleRequestItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new UnifiedRoleAssignmentScheduleRequestItemRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new UnifiedRoleAssignmentScheduleRequestItemRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public UnifiedRoleAssignmentScheduleRequestItemRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class UnifiedRoleAssignmentScheduleRequestItemRequestBuilderPatchRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new UnifiedRoleAssignmentScheduleRequestItemRequestBuilderPatchRequestConfiguration and sets the default values.
-            /// </summary>
-            public UnifiedRoleAssignmentScheduleRequestItemRequestBuilderPatchRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

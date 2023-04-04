@@ -2,10 +2,9 @@ using ApiSdk.Applications.Item.HomeRealmDiscoveryPolicies.Count;
 using ApiSdk.Applications.Item.HomeRealmDiscoveryPolicies.Item;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -20,28 +19,29 @@ namespace ApiSdk.Applications.Item.HomeRealmDiscoveryPolicies {
     /// <summary>
     /// Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.application entity.
     /// </summary>
-    public class HomeRealmDiscoveryPoliciesRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class HomeRealmDiscoveryPoliciesRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.application entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public Tuple<List<Command>, List<Command>> BuildCommand() {
+            var executables = new List<Command>();
             var builder = new HomeRealmDiscoveryPolicyItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            return command;
+            executables.Add(builder.BuildGetCommand());
+            return new(executables, new(0));
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -50,7 +50,6 @@ namespace ApiSdk.Applications.Item.HomeRealmDiscoveryPolicies {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get homeRealmDiscoveryPolicies from applications";
-            // Create options for all the parameters
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -119,9 +118,9 @@ namespace ApiSdk.Applications.Item.HomeRealmDiscoveryPolicies {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
+                IPagingService pagingService = invocationContext.BindingContext.GetService(typeof(IPagingService)) as IPagingService ?? throw new ArgumentNullException("pagingService");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -159,11 +158,7 @@ namespace ApiSdk.Applications.Item.HomeRealmDiscoveryPolicies {
         /// Instantiates a new HomeRealmDiscoveryPoliciesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public HomeRealmDiscoveryPoliciesRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/applications/{application%2Did}/homeRealmDiscoveryPolicies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public HomeRealmDiscoveryPoliciesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/homeRealmDiscoveryPolicies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Get homeRealmDiscoveryPolicies from applications
@@ -171,10 +166,10 @@ namespace ApiSdk.Applications.Item.HomeRealmDiscoveryPolicies {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<HomeRealmDiscoveryPoliciesRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<HomeRealmDiscoveryPoliciesRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<HomeRealmDiscoveryPoliciesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<HomeRealmDiscoveryPoliciesRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -183,7 +178,7 @@ namespace ApiSdk.Applications.Item.HomeRealmDiscoveryPolicies {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new HomeRealmDiscoveryPoliciesRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<HomeRealmDiscoveryPoliciesRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -254,24 +249,6 @@ namespace ApiSdk.Applications.Item.HomeRealmDiscoveryPolicies {
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class HomeRealmDiscoveryPoliciesRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public HomeRealmDiscoveryPoliciesRequestBuilderGetQueryParameters QueryParameters { get; set; } = new HomeRealmDiscoveryPoliciesRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new homeRealmDiscoveryPoliciesRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public HomeRealmDiscoveryPoliciesRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

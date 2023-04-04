@@ -2,10 +2,9 @@ using ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Count;
 using ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions.Item;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -20,31 +19,33 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions {
     /// <summary>
     /// Provides operations to manage the historyDefinitions property of the microsoft.graph.accessReviewSet entity.
     /// </summary>
-    public class HistoryDefinitionsRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class HistoryDefinitionsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Provides operations to manage the historyDefinitions property of the microsoft.graph.accessReviewSet entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public Tuple<List<Command>, List<Command>> BuildCommand() {
+            var executables = new List<Command>();
+            var commands = new List<Command>();
             var builder = new AccessReviewHistoryDefinitionItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildInstancesCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            return command;
+            executables.Add(builder.BuildDeleteCommand());
+            executables.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildInstancesNavCommand());
+            executables.Add(builder.BuildPatchCommand());
+            return new(executables, commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -54,7 +55,6 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions {
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create a new accessReviewHistoryDefinition object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/accessreviewset-post-historydefinitions?view=graph-rest-1.0";
-            // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -77,8 +77,8 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -107,7 +107,6 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Retrieve the accessReviewHistoryDefinition objects created in the last 30 days, including all nested properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/accessreviewset-list-historydefinitions?view=graph-rest-1.0";
-            // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -171,9 +170,9 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
+                IPagingService pagingService = invocationContext.BindingContext.GetService(typeof(IPagingService)) as IPagingService ?? throw new ArgumentNullException("pagingService");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -210,11 +209,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions {
         /// Instantiates a new HistoryDefinitionsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public HistoryDefinitionsRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/identityGovernance/accessReviews/historyDefinitions{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public HistoryDefinitionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/accessReviews/historyDefinitions{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Retrieve the accessReviewHistoryDefinition objects created in the last 30 days, including all nested properties.
@@ -222,10 +217,10 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<HistoryDefinitionsRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<HistoryDefinitionsRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<HistoryDefinitionsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<HistoryDefinitionsRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -234,7 +229,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new HistoryDefinitionsRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<HistoryDefinitionsRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -249,10 +244,10 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(AccessReviewHistoryDefinition body, Action<HistoryDefinitionsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(AccessReviewHistoryDefinition body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(AccessReviewHistoryDefinition body, Action<HistoryDefinitionsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(AccessReviewHistoryDefinition body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
@@ -262,8 +257,9 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new HistoryDefinitionsRequestBuilderPostRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
@@ -332,40 +328,6 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions {
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class HistoryDefinitionsRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public HistoryDefinitionsRequestBuilderGetQueryParameters QueryParameters { get; set; } = new HistoryDefinitionsRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new historyDefinitionsRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public HistoryDefinitionsRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class HistoryDefinitionsRequestBuilderPostRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new historyDefinitionsRequestBuilderPostRequestConfiguration and sets the default values.
-            /// </summary>
-            public HistoryDefinitionsRequestBuilderPostRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

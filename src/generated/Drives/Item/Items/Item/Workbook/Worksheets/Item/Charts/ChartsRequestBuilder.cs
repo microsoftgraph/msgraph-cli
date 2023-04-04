@@ -5,10 +5,9 @@ using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemAtWithIn
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWithName;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -23,50 +22,57 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts {
     /// <summary>
     /// Provides operations to manage the charts property of the microsoft.graph.workbookWorksheet entity.
     /// </summary>
-    public class ChartsRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class ChartsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Provides operations to call the add method.
         /// </summary>
-        public Command BuildAddCommand() {
+        public Command BuildAddNavCommand() {
             var command = new Command("add");
             command.Description = "Provides operations to call the add method.";
             var builder = new AddRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the charts property of the microsoft.graph.workbookWorksheet entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public Tuple<List<Command>, List<Command>> BuildCommand() {
+            var executables = new List<Command>();
+            var commands = new List<Command>();
             var builder = new WorkbookChartItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAxesCommand());
-            command.AddCommand(builder.BuildDataLabelsCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildFormatCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildImageCommand());
-            command.AddCommand(builder.BuildLegendCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSeriesCommand());
-            command.AddCommand(builder.BuildSetDataCommand());
-            command.AddCommand(builder.BuildSetPositionCommand());
-            command.AddCommand(builder.BuildTitleCommand());
-            command.AddCommand(builder.BuildWorksheetCommand());
-            return command;
+            commands.Add(builder.BuildAxesNavCommand());
+            commands.Add(builder.BuildDataLabelsNavCommand());
+            executables.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildFormatNavCommand());
+            executables.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildImageNavCommand());
+            commands.Add(builder.BuildLegendNavCommand());
+            executables.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildSeriesNavCommand());
+            commands.Add(builder.BuildSetDataNavCommand());
+            commands.Add(builder.BuildSetPositionNavCommand());
+            commands.Add(builder.BuildTitleNavCommand());
+            commands.Add(builder.BuildWorksheetNavCommand());
+            return new(executables, commands);
         }
         /// <summary>
         /// Provides operations to call the count method.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to call the count method.";
             var builder = new CountRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -76,7 +82,6 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts {
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Use this API to create a new Chart.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/worksheet-post-charts?view=graph-rest-1.0";
-            // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -114,8 +119,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -147,7 +152,6 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Retrieve a list of chart objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chart-list?view=graph-rest-1.0";
-            // Create options for all the parameters
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -226,9 +230,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
+                IPagingService pagingService = invocationContext.BindingContext.GetService(typeof(IPagingService)) as IPagingService ?? throw new ArgumentNullException("pagingService");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -268,11 +272,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts {
         /// Instantiates a new ChartsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ChartsRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public ChartsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Retrieve a list of chart objects.
@@ -280,10 +280,10 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<ChartsRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ChartsRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<ChartsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ChartsRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -292,7 +292,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new ChartsRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<ChartsRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -307,10 +307,10 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(WorkbookChart body, Action<ChartsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(WorkbookChart body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(WorkbookChart body, Action<ChartsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(WorkbookChart body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
@@ -320,8 +320,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new ChartsRequestBuilderPostRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
@@ -390,40 +391,6 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts {
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class ChartsRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public ChartsRequestBuilderGetQueryParameters QueryParameters { get; set; } = new ChartsRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new chartsRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public ChartsRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class ChartsRequestBuilderPostRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new chartsRequestBuilderPostRequestConfiguration and sets the default values.
-            /// </summary>
-            public ChartsRequestBuilderPostRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

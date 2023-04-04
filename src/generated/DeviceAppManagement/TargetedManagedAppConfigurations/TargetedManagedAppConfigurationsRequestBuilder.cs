@@ -2,10 +2,9 @@ using ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Count;
 using ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations.Item;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -20,35 +19,37 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations {
     /// <summary>
     /// Provides operations to manage the targetedManagedAppConfigurations property of the microsoft.graph.deviceAppManagement entity.
     /// </summary>
-    public class TargetedManagedAppConfigurationsRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class TargetedManagedAppConfigurationsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Provides operations to manage the targetedManagedAppConfigurations property of the microsoft.graph.deviceAppManagement entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public Tuple<List<Command>, List<Command>> BuildCommand() {
+            var executables = new List<Command>();
+            var commands = new List<Command>();
             var builder = new TargetedManagedAppConfigurationItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAppsCommand());
-            command.AddCommand(builder.BuildAssignCommand());
-            command.AddCommand(builder.BuildAssignmentsCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildDeploymentSummaryCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildTargetAppsCommand());
-            return command;
+            commands.Add(builder.BuildAppsNavCommand());
+            commands.Add(builder.BuildAssignmentsNavCommand());
+            commands.Add(builder.BuildAssignNavCommand());
+            executables.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildDeploymentSummaryNavCommand());
+            executables.Add(builder.BuildGetCommand());
+            executables.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildTargetAppsNavCommand());
+            return new(executables, commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -57,7 +58,6 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations {
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create new navigation property to targetedManagedAppConfigurations for deviceAppManagement";
-            // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -80,8 +80,8 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -109,7 +109,6 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Targeted managed app configurations.";
-            // Create options for all the parameters
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -173,9 +172,9 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
+                IPagingService pagingService = invocationContext.BindingContext.GetService(typeof(IPagingService)) as IPagingService ?? throw new ArgumentNullException("pagingService");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -212,11 +211,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations {
         /// Instantiates a new TargetedManagedAppConfigurationsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TargetedManagedAppConfigurationsRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/deviceAppManagement/targetedManagedAppConfigurations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public TargetedManagedAppConfigurationsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/targetedManagedAppConfigurations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Targeted managed app configurations.
@@ -224,10 +219,10 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<TargetedManagedAppConfigurationsRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TargetedManagedAppConfigurationsRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<TargetedManagedAppConfigurationsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TargetedManagedAppConfigurationsRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -236,7 +231,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new TargetedManagedAppConfigurationsRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<TargetedManagedAppConfigurationsRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -251,10 +246,10 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(TargetedManagedAppConfiguration body, Action<TargetedManagedAppConfigurationsRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(TargetedManagedAppConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(TargetedManagedAppConfiguration body, Action<TargetedManagedAppConfigurationsRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(TargetedManagedAppConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
@@ -264,8 +259,9 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new TargetedManagedAppConfigurationsRequestBuilderPostRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
@@ -334,40 +330,6 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations {
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class TargetedManagedAppConfigurationsRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public TargetedManagedAppConfigurationsRequestBuilderGetQueryParameters QueryParameters { get; set; } = new TargetedManagedAppConfigurationsRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new targetedManagedAppConfigurationsRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public TargetedManagedAppConfigurationsRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class TargetedManagedAppConfigurationsRequestBuilderPostRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new targetedManagedAppConfigurationsRequestBuilderPostRequestConfiguration and sets the default values.
-            /// </summary>
-            public TargetedManagedAppConfigurationsRequestBuilderPostRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

@@ -7,10 +7,9 @@ using ApiSdk.Devices.Item.RegisteredOwners.Item;
 using ApiSdk.Devices.Item.RegisteredOwners.Ref;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -25,76 +24,114 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
     /// <summary>
     /// Provides operations to manage the registeredOwners property of the microsoft.graph.device entity.
     /// </summary>
-    public class RegisteredOwnersRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class RegisteredOwnersRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Gets an item from the ApiSdk.devices.item.registeredOwners.item collection
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
-            var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGraphAppRoleAssignmentCommand());
-            command.AddCommand(builder.BuildGraphEndpointCommand());
-            command.AddCommand(builder.BuildGraphServicePrincipalCommand());
-            command.AddCommand(builder.BuildGraphUserCommand());
-            command.AddCommand(builder.BuildRefCommand());
-            return command;
+        public Tuple<List<Command>, List<Command>> BuildCommand() {
+            return new(new(0), new(0));
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Casts the previous resource to appRoleAssignment.
         /// </summary>
-        public Command BuildGraphAppRoleAssignmentCommand() {
-            var command = new Command("graph-app-role-assignment");
+        public Command BuildGraphAppRoleAssignmentNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildGraphAppRoleAssignmentNavCommand();
             command.Description = "Casts the previous resource to appRoleAssignment.";
             var builder = new GraphAppRoleAssignmentRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Casts the previous resource to endpoint.
         /// </summary>
-        public Command BuildGraphEndpointCommand() {
-            var command = new Command("graph-endpoint");
+        public Command BuildGraphEndpointNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildGraphEndpointNavCommand();
             command.Description = "Casts the previous resource to endpoint.";
             var builder = new GraphEndpointRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        public Command BuildGraphServicePrincipalCommand() {
-            var command = new Command("graph-service-principal");
+        public Command BuildGraphServicePrincipalNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildGraphServicePrincipalNavCommand();
             command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
-        public Command BuildGraphUserCommand() {
-            var command = new Command("graph-user");
+        public Command BuildGraphUserNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildGraphUserNavCommand();
             command.Description = "Casts the previous resource to user.";
             var builder = new GraphUserRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -104,7 +141,6 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "The user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Currently, there can be only one owner. Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/device-list-registeredowners?view=graph-rest-1.0";
-            // Create options for all the parameters
             var deviceIdOption = new Option<string>("--device-id", description: "The unique identifier of device") {
             };
             deviceIdOption.IsRequired = true;
@@ -179,9 +215,9 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
+                IPagingService pagingService = invocationContext.BindingContext.GetService(typeof(IPagingService)) as IPagingService ?? throw new ArgumentNullException("pagingService");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -219,23 +255,25 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
         /// <summary>
         /// Provides operations to manage the collection of device entities.
         /// </summary>
-        public Command BuildRefCommand() {
-            var command = new Command("ref");
+        public Command BuildRefNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildRefNavCommand();
             command.Description = "Provides operations to manage the collection of device entities.";
             var builder = new RefRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Instantiates a new RegisteredOwnersRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RegisteredOwnersRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/devices/{device%2Did}/registeredOwners{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public RegisteredOwnersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/devices/{device%2Did}/registeredOwners{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// The user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Currently, there can be only one owner. Read-only. Nullable. Supports $expand.
@@ -243,10 +281,10 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RegisteredOwnersRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RegisteredOwnersRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RegisteredOwnersRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<RegisteredOwnersRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -255,7 +293,7 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new RegisteredOwnersRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<RegisteredOwnersRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -326,24 +364,6 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class RegisteredOwnersRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public RegisteredOwnersRequestBuilderGetQueryParameters QueryParameters { get; set; } = new RegisteredOwnersRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new registeredOwnersRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public RegisteredOwnersRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

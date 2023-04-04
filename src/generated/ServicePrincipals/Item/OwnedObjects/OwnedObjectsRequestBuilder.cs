@@ -7,10 +7,9 @@ using ApiSdk.ServicePrincipals.Item.OwnedObjects.GraphEndpoint;
 using ApiSdk.ServicePrincipals.Item.OwnedObjects.GraphGroup;
 using ApiSdk.ServicePrincipals.Item.OwnedObjects.GraphServicePrincipal;
 using ApiSdk.ServicePrincipals.Item.OwnedObjects.Item;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -25,88 +24,139 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects {
     /// <summary>
     /// Provides operations to manage the ownedObjects property of the microsoft.graph.servicePrincipal entity.
     /// </summary>
-    public class OwnedObjectsRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class OwnedObjectsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Provides operations to manage the ownedObjects property of the microsoft.graph.servicePrincipal entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public Tuple<List<Command>, List<Command>> BuildCommand() {
+            var executables = new List<Command>();
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildGraphApplicationCommand());
-            command.AddCommand(builder.BuildGraphAppRoleAssignmentCommand());
-            command.AddCommand(builder.BuildGraphEndpointCommand());
-            command.AddCommand(builder.BuildGraphGroupCommand());
-            command.AddCommand(builder.BuildGraphServicePrincipalCommand());
-            return command;
+            executables.Add(builder.BuildGetCommand());
+            return new(executables, new(0));
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Casts the previous resource to application.
         /// </summary>
-        public Command BuildGraphApplicationCommand() {
-            var command = new Command("graph-application");
+        public Command BuildGraphApplicationNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildGraphApplicationNavCommand();
             command.Description = "Casts the previous resource to application.";
             var builder = new GraphApplicationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Casts the previous resource to appRoleAssignment.
         /// </summary>
-        public Command BuildGraphAppRoleAssignmentCommand() {
-            var command = new Command("graph-app-role-assignment");
+        public Command BuildGraphAppRoleAssignmentNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildGraphAppRoleAssignmentNavCommand();
             command.Description = "Casts the previous resource to appRoleAssignment.";
             var builder = new GraphAppRoleAssignmentRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Casts the previous resource to endpoint.
         /// </summary>
-        public Command BuildGraphEndpointCommand() {
-            var command = new Command("graph-endpoint");
+        public Command BuildGraphEndpointNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildGraphEndpointNavCommand();
             command.Description = "Casts the previous resource to endpoint.";
             var builder = new GraphEndpointRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
-        public Command BuildGraphGroupCommand() {
-            var command = new Command("graph-group");
+        public Command BuildGraphGroupNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildGraphGroupNavCommand();
             command.Description = "Casts the previous resource to group.";
             var builder = new GraphGroupRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        public Command BuildGraphServicePrincipalCommand() {
-            var command = new Command("graph-service-principal");
+        public Command BuildGraphServicePrincipalNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildGraphServicePrincipalNavCommand();
             command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -115,7 +165,6 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Directory objects that are owned by this service principal. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).";
-            // Create options for all the parameters
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -184,9 +233,9 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
+                IPagingService pagingService = invocationContext.BindingContext.GetService(typeof(IPagingService)) as IPagingService ?? throw new ArgumentNullException("pagingService");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -224,11 +273,7 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects {
         /// Instantiates a new OwnedObjectsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public OwnedObjectsRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/ownedObjects{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public OwnedObjectsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/ownedObjects{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Directory objects that are owned by this service principal. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
@@ -236,10 +281,10 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<OwnedObjectsRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<OwnedObjectsRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<OwnedObjectsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<OwnedObjectsRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -248,7 +293,7 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new OwnedObjectsRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<OwnedObjectsRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -319,24 +364,6 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects {
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class OwnedObjectsRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public OwnedObjectsRequestBuilderGetQueryParameters QueryParameters { get; set; } = new OwnedObjectsRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new ownedObjectsRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public OwnedObjectsRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

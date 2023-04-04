@@ -10,10 +10,9 @@ using ApiSdk.Devices.Item.Restore;
 using ApiSdk.Devices.Item.TransitiveMemberOf;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -28,29 +27,35 @@ namespace ApiSdk.Devices.Item {
     /// <summary>
     /// Provides operations to manage the collection of device entities.
     /// </summary>
-    public class DeviceItemRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class DeviceItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Provides operations to call the checkMemberGroups method.
         /// </summary>
-        public Command BuildCheckMemberGroupsCommand() {
+        public Command BuildCheckMemberGroupsNavCommand() {
             var command = new Command("check-member-groups");
             command.Description = "Provides operations to call the checkMemberGroups method.";
             var builder = new CheckMemberGroupsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to call the checkMemberObjects method.
         /// </summary>
-        public Command BuildCheckMemberObjectsCommand() {
+        public Command BuildCheckMemberObjectsNavCommand() {
             var command = new Command("check-member-objects");
             command.Description = "Provides operations to call the checkMemberObjects method.";
             var builder = new CheckMemberObjectsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -60,7 +65,6 @@ namespace ApiSdk.Devices.Item {
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a registered device.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/device-delete?view=graph-rest-1.0";
-            // Create options for all the parameters
             var deviceIdOption = new Option<string>("--device-id", description: "The unique identifier of device") {
             };
             deviceIdOption.IsRequired = true;
@@ -91,14 +95,26 @@ namespace ApiSdk.Devices.Item {
         /// <summary>
         /// Provides operations to manage the extensions property of the microsoft.graph.device entity.
         /// </summary>
-        public Command BuildExtensionsCommand() {
+        public Command BuildExtensionsNavCommand() {
             var command = new Command("extensions");
             command.Description = "Provides operations to manage the extensions property of the microsoft.graph.device entity.";
             var builder = new ExtensionsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -108,7 +124,6 @@ namespace ApiSdk.Devices.Item {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the properties and relationships of a device object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/device-get?view=graph-rest-1.0";
-            // Create options for all the parameters
             var deviceIdOption = new Option<string>("--device-id", description: "The unique identifier of device") {
             };
             deviceIdOption.IsRequired = true;
@@ -143,8 +158,8 @@ namespace ApiSdk.Devices.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -167,34 +182,56 @@ namespace ApiSdk.Devices.Item {
         /// <summary>
         /// Provides operations to call the getMemberGroups method.
         /// </summary>
-        public Command BuildGetMemberGroupsCommand() {
+        public Command BuildGetMemberGroupsNavCommand() {
             var command = new Command("get-member-groups");
             command.Description = "Provides operations to call the getMemberGroups method.";
             var builder = new GetMemberGroupsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to call the getMemberObjects method.
         /// </summary>
-        public Command BuildGetMemberObjectsCommand() {
+        public Command BuildGetMemberObjectsNavCommand() {
             var command = new Command("get-member-objects");
             command.Description = "Provides operations to call the getMemberObjects method.";
             var builder = new GetMemberObjectsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the memberOf property of the microsoft.graph.device entity.
         /// </summary>
-        public Command BuildMemberOfCommand() {
+        public Command BuildMemberOfNavCommand() {
             var command = new Command("member-of");
             command.Description = "Provides operations to manage the memberOf property of the microsoft.graph.device entity.";
             var builder = new MemberOfRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGraphGroupCommand());
-            command.AddCommand(builder.BuildListCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            nonExecCommands.Add(builder.BuildGraphGroupNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -204,7 +241,6 @@ namespace ApiSdk.Devices.Item {
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a registered device. Only certain properties of a device can be updated through approved Mobile Device Managment (MDM) apps.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/device-update?view=graph-rest-1.0";
-            // Create options for all the parameters
             var deviceIdOption = new Option<string>("--device-id", description: "The unique identifier of device") {
             };
             deviceIdOption.IsRequired = true;
@@ -232,8 +268,8 @@ namespace ApiSdk.Devices.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -259,68 +295,105 @@ namespace ApiSdk.Devices.Item {
         /// <summary>
         /// Provides operations to manage the registeredOwners property of the microsoft.graph.device entity.
         /// </summary>
-        public Command BuildRegisteredOwnersCommand() {
+        public Command BuildRegisteredOwnersNavCommand() {
             var command = new Command("registered-owners");
             command.Description = "Provides operations to manage the registeredOwners property of the microsoft.graph.device entity.";
             var builder = new RegisteredOwnersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGraphAppRoleAssignmentCommand());
-            command.AddCommand(builder.BuildGraphEndpointCommand());
-            command.AddCommand(builder.BuildGraphServicePrincipalCommand());
-            command.AddCommand(builder.BuildGraphUserCommand());
-            command.AddCommand(builder.BuildListCommand());
-            command.AddCommand(builder.BuildRefCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            nonExecCommands.Add(builder.BuildGraphAppRoleAssignmentNavCommand());
+            nonExecCommands.Add(builder.BuildGraphEndpointNavCommand());
+            nonExecCommands.Add(builder.BuildGraphServicePrincipalNavCommand());
+            nonExecCommands.Add(builder.BuildGraphUserNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            nonExecCommands.Add(builder.BuildRefNavCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the registeredUsers property of the microsoft.graph.device entity.
         /// </summary>
-        public Command BuildRegisteredUsersCommand() {
+        public Command BuildRegisteredUsersNavCommand() {
             var command = new Command("registered-users");
             command.Description = "Provides operations to manage the registeredUsers property of the microsoft.graph.device entity.";
             var builder = new RegisteredUsersRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGraphAppRoleAssignmentCommand());
-            command.AddCommand(builder.BuildGraphEndpointCommand());
-            command.AddCommand(builder.BuildGraphServicePrincipalCommand());
-            command.AddCommand(builder.BuildGraphUserCommand());
-            command.AddCommand(builder.BuildListCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            nonExecCommands.Add(builder.BuildGraphAppRoleAssignmentNavCommand());
+            nonExecCommands.Add(builder.BuildGraphEndpointNavCommand());
+            nonExecCommands.Add(builder.BuildGraphServicePrincipalNavCommand());
+            nonExecCommands.Add(builder.BuildGraphUserNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to call the restore method.
         /// </summary>
-        public Command BuildRestoreCommand() {
+        public Command BuildRestoreNavCommand() {
             var command = new Command("restore");
             command.Description = "Provides operations to call the restore method.";
             var builder = new RestoreRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the transitiveMemberOf property of the microsoft.graph.device entity.
         /// </summary>
-        public Command BuildTransitiveMemberOfCommand() {
+        public Command BuildTransitiveMemberOfNavCommand() {
             var command = new Command("transitive-member-of");
             command.Description = "Provides operations to manage the transitiveMemberOf property of the microsoft.graph.device entity.";
             var builder = new TransitiveMemberOfRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGraphGroupCommand());
-            command.AddCommand(builder.BuildListCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            nonExecCommands.Add(builder.BuildGraphGroupNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Instantiates a new DeviceItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DeviceItemRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/devices/{device%2Did}{?%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public DeviceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/devices/{device%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Delete a registered device.
@@ -328,10 +401,10 @@ namespace ApiSdk.Devices.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<DeviceItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<DeviceItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
@@ -339,8 +412,9 @@ namespace ApiSdk.Devices.Item {
                 PathParameters = PathParameters,
             };
             if (requestConfiguration != null) {
-                var requestConfig = new DeviceItemRequestBuilderDeleteRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
@@ -352,10 +426,10 @@ namespace ApiSdk.Devices.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<DeviceItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeviceItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<DeviceItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DeviceItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -364,7 +438,7 @@ namespace ApiSdk.Devices.Item {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new DeviceItemRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DeviceItemRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -379,10 +453,10 @@ namespace ApiSdk.Devices.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Device body, Action<DeviceItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Device body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Device body, Action<DeviceItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.Device body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
@@ -392,28 +466,13 @@ namespace ApiSdk.Devices.Item {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new DeviceItemRequestBuilderPatchRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
             return requestInfo;
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class DeviceItemRequestBuilderDeleteRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new DeviceItemRequestBuilderDeleteRequestConfiguration and sets the default values.
-            /// </summary>
-            public DeviceItemRequestBuilderDeleteRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
         /// <summary>
         /// Get the properties and relationships of a device object.
@@ -439,40 +498,6 @@ namespace ApiSdk.Devices.Item {
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
 #endif
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class DeviceItemRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public DeviceItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new DeviceItemRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new DeviceItemRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public DeviceItemRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class DeviceItemRequestBuilderPatchRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new DeviceItemRequestBuilderPatchRequestConfiguration and sets the default values.
-            /// </summary>
-            public DeviceItemRequestBuilderPatchRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

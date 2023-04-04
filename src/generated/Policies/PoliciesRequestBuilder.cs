@@ -18,10 +18,9 @@ using ApiSdk.Policies.RoleManagementPolicies;
 using ApiSdk.Policies.RoleManagementPolicyAssignments;
 using ApiSdk.Policies.TokenIssuancePolicies;
 using ApiSdk.Policies.TokenLifetimePolicies;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -36,149 +35,245 @@ namespace ApiSdk.Policies {
     /// <summary>
     /// Provides operations to manage the policyRoot singleton.
     /// </summary>
-    public class PoliciesRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class PoliciesRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Provides operations to manage the activityBasedTimeoutPolicies property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildActivityBasedTimeoutPoliciesCommand() {
+        public Command BuildActivityBasedTimeoutPoliciesNavCommand() {
             var command = new Command("activity-based-timeout-policies");
             command.Description = "Provides operations to manage the activityBasedTimeoutPolicies property of the microsoft.graph.policyRoot entity.";
             var builder = new ActivityBasedTimeoutPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the adminConsentRequestPolicy property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildAdminConsentRequestPolicyCommand() {
+        public Command BuildAdminConsentRequestPolicyNavCommand() {
             var command = new Command("admin-consent-request-policy");
             command.Description = "Provides operations to manage the adminConsentRequestPolicy property of the microsoft.graph.policyRoot entity.";
             var builder = new AdminConsentRequestPolicyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the appManagementPolicies property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildAppManagementPoliciesCommand() {
+        public Command BuildAppManagementPoliciesNavCommand() {
             var command = new Command("app-management-policies");
             command.Description = "Provides operations to manage the appManagementPolicies property of the microsoft.graph.policyRoot entity.";
             var builder = new AppManagementPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the authenticationFlowsPolicy property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildAuthenticationFlowsPolicyCommand() {
+        public Command BuildAuthenticationFlowsPolicyNavCommand() {
             var command = new Command("authentication-flows-policy");
             command.Description = "Provides operations to manage the authenticationFlowsPolicy property of the microsoft.graph.policyRoot entity.";
             var builder = new AuthenticationFlowsPolicyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the authenticationMethodsPolicy property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildAuthenticationMethodsPolicyCommand() {
+        public Command BuildAuthenticationMethodsPolicyNavCommand() {
             var command = new Command("authentication-methods-policy");
             command.Description = "Provides operations to manage the authenticationMethodsPolicy property of the microsoft.graph.policyRoot entity.";
             var builder = new AuthenticationMethodsPolicyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildAuthenticationMethodConfigurationsCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAuthenticationMethodConfigurationsNavCommand());
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the authorizationPolicy property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildAuthorizationPolicyCommand() {
+        public Command BuildAuthorizationPolicyNavCommand() {
             var command = new Command("authorization-policy");
             command.Description = "Provides operations to manage the authorizationPolicy property of the microsoft.graph.policyRoot entity.";
             var builder = new AuthorizationPolicyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the claimsMappingPolicies property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildClaimsMappingPoliciesCommand() {
+        public Command BuildClaimsMappingPoliciesNavCommand() {
             var command = new Command("claims-mapping-policies");
             command.Description = "Provides operations to manage the claimsMappingPolicies property of the microsoft.graph.policyRoot entity.";
             var builder = new ClaimsMappingPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the conditionalAccessPolicies property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildConditionalAccessPoliciesCommand() {
+        public Command BuildConditionalAccessPoliciesNavCommand() {
             var command = new Command("conditional-access-policies");
             command.Description = "Provides operations to manage the conditionalAccessPolicies property of the microsoft.graph.policyRoot entity.";
             var builder = new ConditionalAccessPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the crossTenantAccessPolicy property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildCrossTenantAccessPolicyCommand() {
+        public Command BuildCrossTenantAccessPolicyNavCommand() {
             var command = new Command("cross-tenant-access-policy");
             command.Description = "Provides operations to manage the crossTenantAccessPolicy property of the microsoft.graph.policyRoot entity.";
             var builder = new CrossTenantAccessPolicyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDefaultCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPartnersCommand());
-            command.AddCommand(builder.BuildPatchCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildDefaultNavCommand());
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildPartnersNavCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the defaultAppManagementPolicy property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildDefaultAppManagementPolicyCommand() {
+        public Command BuildDefaultAppManagementPolicyNavCommand() {
             var command = new Command("default-app-management-policy");
             command.Description = "Provides operations to manage the defaultAppManagementPolicy property of the microsoft.graph.policyRoot entity.";
             var builder = new DefaultAppManagementPolicyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the featureRolloutPolicies property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildFeatureRolloutPoliciesCommand() {
+        public Command BuildFeatureRolloutPoliciesNavCommand() {
             var command = new Command("feature-rollout-policies");
             command.Description = "Provides operations to manage the featureRolloutPolicies property of the microsoft.graph.policyRoot entity.";
             var builder = new FeatureRolloutPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -187,7 +282,6 @@ namespace ApiSdk.Policies {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get policies";
-            // Create options for all the parameters
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -217,8 +311,8 @@ namespace ApiSdk.Policies {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -240,26 +334,43 @@ namespace ApiSdk.Policies {
         /// <summary>
         /// Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildHomeRealmDiscoveryPoliciesCommand() {
+        public Command BuildHomeRealmDiscoveryPoliciesNavCommand() {
             var command = new Command("home-realm-discovery-policies");
             command.Description = "Provides operations to manage the homeRealmDiscoveryPolicies property of the microsoft.graph.policyRoot entity.";
             var builder = new HomeRealmDiscoveryPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the identitySecurityDefaultsEnforcementPolicy property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildIdentitySecurityDefaultsEnforcementPolicyCommand() {
+        public Command BuildIdentitySecurityDefaultsEnforcementPolicyNavCommand() {
             var command = new Command("identity-security-defaults-enforcement-policy");
             command.Description = "Provides operations to manage the identitySecurityDefaultsEnforcementPolicy property of the microsoft.graph.policyRoot entity.";
             var builder = new IdentitySecurityDefaultsEnforcementPolicyRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -268,7 +379,6 @@ namespace ApiSdk.Policies {
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update policies";
-            // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -291,8 +401,8 @@ namespace ApiSdk.Policies {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -317,77 +427,133 @@ namespace ApiSdk.Policies {
         /// <summary>
         /// Provides operations to manage the permissionGrantPolicies property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildPermissionGrantPoliciesCommand() {
+        public Command BuildPermissionGrantPoliciesNavCommand() {
             var command = new Command("permission-grant-policies");
             command.Description = "Provides operations to manage the permissionGrantPolicies property of the microsoft.graph.policyRoot entity.";
             var builder = new PermissionGrantPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the roleManagementPolicies property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildRoleManagementPoliciesCommand() {
+        public Command BuildRoleManagementPoliciesNavCommand() {
             var command = new Command("role-management-policies");
             command.Description = "Provides operations to manage the roleManagementPolicies property of the microsoft.graph.policyRoot entity.";
             var builder = new RoleManagementPoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the roleManagementPolicyAssignments property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildRoleManagementPolicyAssignmentsCommand() {
+        public Command BuildRoleManagementPolicyAssignmentsNavCommand() {
             var command = new Command("role-management-policy-assignments");
             command.Description = "Provides operations to manage the roleManagementPolicyAssignments property of the microsoft.graph.policyRoot entity.";
             var builder = new RoleManagementPolicyAssignmentsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the tokenIssuancePolicies property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildTokenIssuancePoliciesCommand() {
+        public Command BuildTokenIssuancePoliciesNavCommand() {
             var command = new Command("token-issuance-policies");
             command.Description = "Provides operations to manage the tokenIssuancePolicies property of the microsoft.graph.policyRoot entity.";
             var builder = new TokenIssuancePoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the tokenLifetimePolicies property of the microsoft.graph.policyRoot entity.
         /// </summary>
-        public Command BuildTokenLifetimePoliciesCommand() {
+        public Command BuildTokenLifetimePoliciesNavCommand() {
             var command = new Command("token-lifetime-policies");
             command.Description = "Provides operations to manage the tokenLifetimePolicies property of the microsoft.graph.policyRoot entity.";
             var builder = new TokenLifetimePoliciesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCommand());
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildCreateCommand());
-            command.AddCommand(builder.BuildListCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Instantiates a new PoliciesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public PoliciesRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/policies{?%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public PoliciesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Get policies
@@ -395,10 +561,10 @@ namespace ApiSdk.Policies {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<PoliciesRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PoliciesRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<PoliciesRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<PoliciesRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -407,7 +573,7 @@ namespace ApiSdk.Policies {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new PoliciesRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<PoliciesRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -422,10 +588,10 @@ namespace ApiSdk.Policies {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(PolicyRoot body, Action<PoliciesRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(PolicyRoot body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(PolicyRoot body, Action<PoliciesRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(PolicyRoot body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
@@ -435,8 +601,9 @@ namespace ApiSdk.Policies {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new PoliciesRequestBuilderPatchRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
@@ -466,40 +633,6 @@ namespace ApiSdk.Policies {
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
 #endif
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class PoliciesRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public PoliciesRequestBuilderGetQueryParameters QueryParameters { get; set; } = new PoliciesRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new policiesRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public PoliciesRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class PoliciesRequestBuilderPatchRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new policiesRequestBuilderPatchRequestConfiguration and sets the default values.
-            /// </summary>
-            public PoliciesRequestBuilderPatchRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

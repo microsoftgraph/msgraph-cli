@@ -1,8 +1,7 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -17,11 +16,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default.ResetToSystemDefault {
     /// <summary>
     /// Provides operations to call the resetToSystemDefault method.
     /// </summary>
-    public class ResetToSystemDefaultRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class ResetToSystemDefaultRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Reset any changes made to the default configuration in a cross-tenant access policy back to the system default.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationdefault-resettosystemdefault?view=graph-rest-1.0" />
@@ -29,7 +24,6 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default.ResetToSystemDefault {
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Reset any changes made to the default configuration in a cross-tenant access policy back to the system default.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationdefault-resettosystemdefault?view=graph-rest-1.0";
-            // Create options for all the parameters
             command.SetHandler(async (invocationContext) => {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
@@ -48,11 +42,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default.ResetToSystemDefault {
         /// Instantiates a new ResetToSystemDefaultRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ResetToSystemDefaultRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/policies/crossTenantAccessPolicy/default/resetToSystemDefault";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public ResetToSystemDefaultRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/crossTenantAccessPolicy/default/resetToSystemDefault", pathParameters) {
         }
         /// <summary>
         /// Reset any changes made to the default configuration in a cross-tenant access policy back to the system default.
@@ -60,10 +50,10 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default.ResetToSystemDefault {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(Action<ResetToSystemDefaultRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(Action<ResetToSystemDefaultRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.POST,
@@ -71,28 +61,13 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default.ResetToSystemDefault {
                 PathParameters = PathParameters,
             };
             if (requestConfiguration != null) {
-                var requestConfig = new ResetToSystemDefaultRequestBuilderPostRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
             return requestInfo;
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class ResetToSystemDefaultRequestBuilderPostRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new resetToSystemDefaultRequestBuilderPostRequestConfiguration and sets the default values.
-            /// </summary>
-            public ResetToSystemDefaultRequestBuilderPostRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

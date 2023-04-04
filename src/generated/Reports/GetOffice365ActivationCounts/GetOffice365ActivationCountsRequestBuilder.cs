@@ -1,8 +1,7 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -17,18 +16,13 @@ namespace ApiSdk.Reports.GetOffice365ActivationCounts {
     /// <summary>
     /// Provides operations to call the getOffice365ActivationCounts method.
     /// </summary>
-    public class GetOffice365ActivationCountsRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class GetOffice365ActivationCountsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Invoke function getOffice365ActivationCounts
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function getOffice365ActivationCounts";
-            // Create options for all the parameters
             var fileOption = new Option<FileInfo>("--file");
             command.AddOption(fileOption);
             command.SetHandler(async (invocationContext) => {
@@ -59,11 +53,7 @@ namespace ApiSdk.Reports.GetOffice365ActivationCounts {
         /// Instantiates a new GetOffice365ActivationCountsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetOffice365ActivationCountsRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/reports/getOffice365ActivationCounts()";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public GetOffice365ActivationCountsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getOffice365ActivationCounts()", pathParameters) {
         }
         /// <summary>
         /// Invoke function getOffice365ActivationCounts
@@ -71,10 +61,10 @@ namespace ApiSdk.Reports.GetOffice365ActivationCounts {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<GetOffice365ActivationCountsRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<GetOffice365ActivationCountsRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -82,28 +72,13 @@ namespace ApiSdk.Reports.GetOffice365ActivationCounts {
                 PathParameters = PathParameters,
             };
             if (requestConfiguration != null) {
-                var requestConfig = new GetOffice365ActivationCountsRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
             return requestInfo;
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class GetOffice365ActivationCountsRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new getOffice365ActivationCountsRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public GetOffice365ActivationCountsRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

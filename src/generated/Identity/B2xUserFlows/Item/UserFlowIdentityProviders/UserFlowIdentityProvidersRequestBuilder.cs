@@ -3,10 +3,9 @@ using ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders.Item;
 using ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders.Ref;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -21,28 +20,26 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders {
     /// <summary>
     /// Provides operations to manage the userFlowIdentityProviders property of the microsoft.graph.b2xIdentityUserFlow entity.
     /// </summary>
-    public class UserFlowIdentityProvidersRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class UserFlowIdentityProvidersRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Gets an item from the ApiSdk.identity.b2xUserFlows.item.userFlowIdentityProviders.item collection
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
-            var builder = new IdentityProviderBaseItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildRefCommand());
-            return command;
+        public Tuple<List<Command>, List<Command>> BuildCommand() {
+            return new(new(0), new(0));
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -51,7 +48,6 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get userFlowIdentityProviders from identity";
-            // Create options for all the parameters
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
@@ -120,9 +116,9 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
+                IPagingService pagingService = invocationContext.BindingContext.GetService(typeof(IPagingService)) as IPagingService ?? throw new ArgumentNullException("pagingService");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -159,23 +155,25 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders {
         /// <summary>
         /// Provides operations to manage the collection of identityContainer entities.
         /// </summary>
-        public Command BuildRefCommand() {
-            var command = new Command("ref");
+        public Command BuildRefNavCommand() {
+            var identityProviderBaseIndexer = new IdentityProviderBaseItemRequestBuilder(PathParameters);
+            var command = identityProviderBaseIndexer.BuildRefNavCommand();
             command.Description = "Provides operations to manage the collection of identityContainer entities.";
             var builder = new RefRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Instantiates a new UserFlowIdentityProvidersRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public UserFlowIdentityProvidersRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/userFlowIdentityProviders{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public UserFlowIdentityProvidersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/userFlowIdentityProviders{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Get userFlowIdentityProviders from identity
@@ -183,10 +181,10 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<UserFlowIdentityProvidersRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserFlowIdentityProvidersRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<UserFlowIdentityProvidersRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UserFlowIdentityProvidersRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -195,7 +193,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new UserFlowIdentityProvidersRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<UserFlowIdentityProvidersRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -266,24 +264,6 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserFlowIdentityProviders {
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class UserFlowIdentityProvidersRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public UserFlowIdentityProvidersRequestBuilderGetQueryParameters QueryParameters { get; set; } = new UserFlowIdentityProvidersRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new userFlowIdentityProvidersRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public UserFlowIdentityProvidersRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

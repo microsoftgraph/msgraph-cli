@@ -4,10 +4,9 @@ using ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item.AppScope;
 using ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item.DirectoryScope;
 using ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item.Principal;
 using ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item.RoleDefinition;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -22,21 +21,22 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item {
     /// <summary>
     /// Provides operations to manage the roleAssignments property of the microsoft.graph.rbacApplication entity.
     /// </summary>
-    public class UnifiedRoleAssignmentItemRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class UnifiedRoleAssignmentItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Provides operations to manage the appScope property of the microsoft.graph.unifiedRoleAssignment entity.
         /// </summary>
-        public Command BuildAppScopeCommand() {
+        public Command BuildAppScopeNavCommand() {
             var command = new Command("app-scope");
             command.Description = "Provides operations to manage the appScope property of the microsoft.graph.unifiedRoleAssignment entity.";
             var builder = new AppScopeRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildPatchCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -45,7 +45,6 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item {
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property roleAssignments for roleManagement";
-            // Create options for all the parameters
             var unifiedRoleAssignmentIdOption = new Option<string>("--unified-role-assignment-id", description: "The unique identifier of unifiedRoleAssignment") {
             };
             unifiedRoleAssignmentIdOption.IsRequired = true;
@@ -76,11 +75,16 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item {
         /// <summary>
         /// Provides operations to manage the directoryScope property of the microsoft.graph.unifiedRoleAssignment entity.
         /// </summary>
-        public Command BuildDirectoryScopeCommand() {
+        public Command BuildDirectoryScopeNavCommand() {
             var command = new Command("directory-scope");
             command.Description = "Provides operations to manage the directoryScope property of the microsoft.graph.unifiedRoleAssignment entity.";
             var builder = new DirectoryScopeRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -89,7 +93,6 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Resource to grant access to users or groups.";
-            // Create options for all the parameters
             var unifiedRoleAssignmentIdOption = new Option<string>("--unified-role-assignment-id", description: "The unique identifier of unifiedRoleAssignment") {
             };
             unifiedRoleAssignmentIdOption.IsRequired = true;
@@ -124,8 +127,8 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -151,7 +154,6 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item {
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property roleAssignments in roleManagement";
-            // Create options for all the parameters
             var unifiedRoleAssignmentIdOption = new Option<string>("--unified-role-assignment-id", description: "The unique identifier of unifiedRoleAssignment") {
             };
             unifiedRoleAssignmentIdOption.IsRequired = true;
@@ -179,8 +181,8 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -206,32 +208,38 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item {
         /// <summary>
         /// Provides operations to manage the principal property of the microsoft.graph.unifiedRoleAssignment entity.
         /// </summary>
-        public Command BuildPrincipalCommand() {
+        public Command BuildPrincipalNavCommand() {
             var command = new Command("principal");
             command.Description = "Provides operations to manage the principal property of the microsoft.graph.unifiedRoleAssignment entity.";
             var builder = new PrincipalRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to manage the roleDefinition property of the microsoft.graph.unifiedRoleAssignment entity.
         /// </summary>
-        public Command BuildRoleDefinitionCommand() {
+        public Command BuildRoleDefinitionNavCommand() {
             var command = new Command("role-definition");
             command.Description = "Provides operations to manage the roleDefinition property of the microsoft.graph.unifiedRoleAssignment entity.";
             var builder = new RoleDefinitionRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Instantiates a new UnifiedRoleAssignmentItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public UnifiedRoleAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/roleManagement/directory/roleAssignments/{unifiedRoleAssignment%2Did}{?%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public UnifiedRoleAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/directory/roleAssignments/{unifiedRoleAssignment%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Delete navigation property roleAssignments for roleManagement
@@ -239,10 +247,10 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<UnifiedRoleAssignmentItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<UnifiedRoleAssignmentItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
@@ -250,8 +258,9 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item {
                 PathParameters = PathParameters,
             };
             if (requestConfiguration != null) {
-                var requestConfig = new UnifiedRoleAssignmentItemRequestBuilderDeleteRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
@@ -263,10 +272,10 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<UnifiedRoleAssignmentItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UnifiedRoleAssignmentItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<UnifiedRoleAssignmentItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UnifiedRoleAssignmentItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -275,7 +284,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new UnifiedRoleAssignmentItemRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<UnifiedRoleAssignmentItemRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -290,10 +299,10 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(UnifiedRoleAssignment body, Action<UnifiedRoleAssignmentItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(UnifiedRoleAssignment body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(UnifiedRoleAssignment body, Action<UnifiedRoleAssignmentItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(UnifiedRoleAssignment body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
@@ -303,28 +312,13 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new UnifiedRoleAssignmentItemRequestBuilderPatchRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
             return requestInfo;
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class UnifiedRoleAssignmentItemRequestBuilderDeleteRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new UnifiedRoleAssignmentItemRequestBuilderDeleteRequestConfiguration and sets the default values.
-            /// </summary>
-            public UnifiedRoleAssignmentItemRequestBuilderDeleteRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
         /// <summary>
         /// Resource to grant access to users or groups.
@@ -350,40 +344,6 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item {
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
 #endif
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class UnifiedRoleAssignmentItemRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public UnifiedRoleAssignmentItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new UnifiedRoleAssignmentItemRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new UnifiedRoleAssignmentItemRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public UnifiedRoleAssignmentItemRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class UnifiedRoleAssignmentItemRequestBuilderPatchRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new UnifiedRoleAssignmentItemRequestBuilderPatchRequestConfiguration and sets the default values.
-            /// </summary>
-            public UnifiedRoleAssignmentItemRequestBuilderPatchRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

@@ -1,5 +1,5 @@
 {
-  "descriptionHash": "30A15CADD12B2C4CBFA196AF3667E5622109172B0A714FB8EFD6CBC63314210C8DF7C4966EAA7E9D19ECB1D7AF389E48FCCDF27E2AEA0C251CD34E05C3D53547",
+  "descriptionHash": "A988875A3603B0F1F92C75F51F58D5F8D56FE08C08C2E370C739EF3BAA6C4E79A26E9873A8680213018729976F678C54054CD1EC2848656E89EDE67DA9AB4D71",
   "descriptionLocation": "C:/Users/calebmagiya/Documents/projects/microsoft/microsoftgraph/msgraph-metadata/openapi/v1.0/openapi.yaml",
   "lockFileVersion": "1.0.0",
   "kiotaVersion": "1.0.1",
@@ -24,6 +24,9 @@
     "application/x-www-form-urlencoded"
   ],
   "includePatterns": [],
-  "excludePatterns": [],
+  "excludePatterns": [
+    "/me",
+    "/me/**"
+  ],
   "disabledValidationRules": []
 }

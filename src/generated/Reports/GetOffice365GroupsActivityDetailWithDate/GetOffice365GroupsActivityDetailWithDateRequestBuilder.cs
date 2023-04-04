@@ -1,8 +1,7 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -17,18 +16,13 @@ namespace ApiSdk.Reports.GetOffice365GroupsActivityDetailWithDate {
     /// <summary>
     /// Provides operations to call the getOffice365GroupsActivityDetail method.
     /// </summary>
-    public class GetOffice365GroupsActivityDetailWithDateRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class GetOffice365GroupsActivityDetailWithDateRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Invoke function getOffice365GroupsActivityDetail
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function getOffice365GroupsActivityDetail";
-            // Create options for all the parameters
             var dateOption = new Option<string>("--date", description: "Usage: date={date}") {
             };
             dateOption.IsRequired = true;
@@ -66,12 +60,8 @@ namespace ApiSdk.Reports.GetOffice365GroupsActivityDetailWithDate {
         /// </summary>
         /// <param name="date">Usage: date={date}</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetOffice365GroupsActivityDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters, Date? date = default) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/reports/getOffice365GroupsActivityDetail(date={date})";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            if (date is not null) urlTplParams.Add("date", date);
-            PathParameters = urlTplParams;
+        public GetOffice365GroupsActivityDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters, Date? date = default) : base("{+baseurl}/reports/getOffice365GroupsActivityDetail(date={date})", pathParameters) {
+            if (date is not null) PathParameters.Add("date", date);
         }
         /// <summary>
         /// Invoke function getOffice365GroupsActivityDetail
@@ -79,10 +69,10 @@ namespace ApiSdk.Reports.GetOffice365GroupsActivityDetailWithDate {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<GetOffice365GroupsActivityDetailWithDateRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<GetOffice365GroupsActivityDetailWithDateRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -90,28 +80,13 @@ namespace ApiSdk.Reports.GetOffice365GroupsActivityDetailWithDate {
                 PathParameters = PathParameters,
             };
             if (requestConfiguration != null) {
-                var requestConfig = new GetOffice365GroupsActivityDetailWithDateRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
             return requestInfo;
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class GetOffice365GroupsActivityDetailWithDateRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new getOffice365GroupsActivityDetailWithDateRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public GetOffice365GroupsActivityDetailWithDateRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

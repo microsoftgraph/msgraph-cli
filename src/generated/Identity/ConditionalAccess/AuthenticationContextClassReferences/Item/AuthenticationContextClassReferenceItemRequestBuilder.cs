@@ -1,9 +1,8 @@
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -18,18 +17,13 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
     /// <summary>
     /// Provides operations to manage the authenticationContextClassReferences property of the microsoft.graph.conditionalAccessRoot entity.
     /// </summary>
-    public class AuthenticationContextClassReferenceItemRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class AuthenticationContextClassReferenceItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Delete navigation property authenticationContextClassReferences for identity
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property authenticationContextClassReferences for identity";
-            // Create options for all the parameters
             var authenticationContextClassReferenceIdOption = new Option<string>("--authentication-context-class-reference-id", description: "The unique identifier of authenticationContextClassReference") {
             };
             authenticationContextClassReferenceIdOption.IsRequired = true;
@@ -63,7 +57,6 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Read-only. Nullable. Returns a collection of the specified authentication context class references.";
-            // Create options for all the parameters
             var authenticationContextClassReferenceIdOption = new Option<string>("--authentication-context-class-reference-id", description: "The unique identifier of authenticationContextClassReference") {
             };
             authenticationContextClassReferenceIdOption.IsRequired = true;
@@ -98,8 +91,8 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -125,7 +118,6 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property authenticationContextClassReferences in identity";
-            // Create options for all the parameters
             var authenticationContextClassReferenceIdOption = new Option<string>("--authentication-context-class-reference-id", description: "The unique identifier of authenticationContextClassReference") {
             };
             authenticationContextClassReferenceIdOption.IsRequired = true;
@@ -153,8 +145,8 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -181,11 +173,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
         /// Instantiates a new AuthenticationContextClassReferenceItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AuthenticationContextClassReferenceItemRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/identity/conditionalAccess/authenticationContextClassReferences/{authenticationContextClassReference%2Did}{?%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public AuthenticationContextClassReferenceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/conditionalAccess/authenticationContextClassReferences/{authenticationContextClassReference%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Delete navigation property authenticationContextClassReferences for identity
@@ -193,10 +181,10 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<AuthenticationContextClassReferenceItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<AuthenticationContextClassReferenceItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
@@ -204,8 +192,9 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
                 PathParameters = PathParameters,
             };
             if (requestConfiguration != null) {
-                var requestConfig = new AuthenticationContextClassReferenceItemRequestBuilderDeleteRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
@@ -217,10 +206,10 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<AuthenticationContextClassReferenceItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AuthenticationContextClassReferenceItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<AuthenticationContextClassReferenceItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<AuthenticationContextClassReferenceItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -229,7 +218,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new AuthenticationContextClassReferenceItemRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<AuthenticationContextClassReferenceItemRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -244,10 +233,10 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(AuthenticationContextClassReference body, Action<AuthenticationContextClassReferenceItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(AuthenticationContextClassReference body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(AuthenticationContextClassReference body, Action<AuthenticationContextClassReferenceItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(AuthenticationContextClassReference body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
@@ -257,28 +246,13 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new AuthenticationContextClassReferenceItemRequestBuilderPatchRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
             return requestInfo;
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class AuthenticationContextClassReferenceItemRequestBuilderDeleteRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new AuthenticationContextClassReferenceItemRequestBuilderDeleteRequestConfiguration and sets the default values.
-            /// </summary>
-            public AuthenticationContextClassReferenceItemRequestBuilderDeleteRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
         /// <summary>
         /// Read-only. Nullable. Returns a collection of the specified authentication context class references.
@@ -304,40 +278,6 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
 #endif
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class AuthenticationContextClassReferenceItemRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public AuthenticationContextClassReferenceItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new AuthenticationContextClassReferenceItemRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new AuthenticationContextClassReferenceItemRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public AuthenticationContextClassReferenceItemRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class AuthenticationContextClassReferenceItemRequestBuilderPatchRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new AuthenticationContextClassReferenceItemRequestBuilderPatchRequestConfiguration and sets the default values.
-            /// </summary>
-            public AuthenticationContextClassReferenceItemRequestBuilderPatchRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

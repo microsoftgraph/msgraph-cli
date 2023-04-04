@@ -4,10 +4,9 @@ using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Count;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.SecurityApplyHold;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.SecurityRemoveHold;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -22,39 +21,39 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
     /// <summary>
     /// Provides operations to manage the custodians property of the microsoft.graph.security.ediscoveryCase entity.
     /// </summary>
-    public class CustodiansRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class CustodiansRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Provides operations to manage the custodians property of the microsoft.graph.security.ediscoveryCase entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public Tuple<List<Command>, List<Command>> BuildCommand() {
+            var executables = new List<Command>();
+            var commands = new List<Command>();
             var builder = new EdiscoveryCustodianItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildLastIndexOperationCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildSecurityActivateCommand());
-            command.AddCommand(builder.BuildSecurityApplyHoldCommand());
-            command.AddCommand(builder.BuildSecurityReleaseCommand());
-            command.AddCommand(builder.BuildSecurityRemoveHoldCommand());
-            command.AddCommand(builder.BuildSecurityUpdateIndexCommand());
-            command.AddCommand(builder.BuildSiteSourcesCommand());
-            command.AddCommand(builder.BuildUnifiedGroupSourcesCommand());
-            command.AddCommand(builder.BuildUserSourcesCommand());
-            return command;
+            executables.Add(builder.BuildDeleteCommand());
+            executables.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildLastIndexOperationNavCommand());
+            executables.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildSecurityActivateNavCommand());
+            commands.Add(builder.BuildSecurityReleaseNavCommand());
+            commands.Add(builder.BuildSecurityUpdateIndexNavCommand());
+            commands.Add(builder.BuildSiteSourcesNavCommand());
+            commands.Add(builder.BuildUnifiedGroupSourcesNavCommand());
+            commands.Add(builder.BuildUserSourcesNavCommand());
+            return new(executables, commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -64,7 +63,6 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create a new ediscoveryCustodian object.After the custodian object is created, you will need to create the custodian's userSource to reference their mailbox and OneDrive for Business site.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-post-custodians?view=graph-rest-1.0";
-            // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -92,8 +90,8 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -123,7 +121,6 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get a list of the custodian objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-list-custodians?view=graph-rest-1.0";
-            // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -192,9 +189,9 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
+                IPagingService pagingService = invocationContext.BindingContext.GetService(typeof(IPagingService)) as IPagingService ?? throw new ArgumentNullException("pagingService");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -231,32 +228,40 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
         /// <summary>
         /// Provides operations to call the applyHold method.
         /// </summary>
-        public Command BuildSecurityApplyHoldCommand() {
-            var command = new Command("security-apply-hold");
+        public Command BuildSecurityApplyHoldNavCommand() {
+            var ediscoveryCustodianIndexer = new EdiscoveryCustodianItemRequestBuilder(PathParameters);
+            var command = ediscoveryCustodianIndexer.BuildSecurityApplyHoldNavCommand();
             command.Description = "Provides operations to call the applyHold method.";
             var builder = new SecurityApplyHoldRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to call the removeHold method.
         /// </summary>
-        public Command BuildSecurityRemoveHoldCommand() {
-            var command = new Command("security-remove-hold");
+        public Command BuildSecurityRemoveHoldNavCommand() {
+            var ediscoveryCustodianIndexer = new EdiscoveryCustodianItemRequestBuilder(PathParameters);
+            var command = ediscoveryCustodianIndexer.BuildSecurityRemoveHoldNavCommand();
             command.Description = "Provides operations to call the removeHold method.";
             var builder = new SecurityRemoveHoldRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Instantiates a new CustodiansRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CustodiansRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/custodians{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public CustodiansRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/custodians{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Get a list of the custodian objects and their properties.
@@ -264,10 +269,10 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<CustodiansRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CustodiansRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<CustodiansRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CustodiansRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -276,7 +281,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new CustodiansRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<CustodiansRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -291,10 +296,10 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(EdiscoveryCustodian body, Action<CustodiansRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(EdiscoveryCustodian body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(EdiscoveryCustodian body, Action<CustodiansRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(EdiscoveryCustodian body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
@@ -304,8 +309,9 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new CustodiansRequestBuilderPostRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
@@ -374,40 +380,6 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class CustodiansRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public CustodiansRequestBuilderGetQueryParameters QueryParameters { get; set; } = new CustodiansRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new custodiansRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public CustodiansRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class CustodiansRequestBuilderPostRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new custodiansRequestBuilderPostRequestConfiguration and sets the default values.
-            /// </summary>
-            public CustodiansRequestBuilderPostRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

@@ -8,10 +8,9 @@ using ApiSdk.Groups.Item.TransitiveMembers.GraphUser;
 using ApiSdk.Groups.Item.TransitiveMembers.Item;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -26,100 +25,161 @@ namespace ApiSdk.Groups.Item.TransitiveMembers {
     /// <summary>
     /// Provides operations to manage the transitiveMembers property of the microsoft.graph.group entity.
     /// </summary>
-    public class TransitiveMembersRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class TransitiveMembersRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Provides operations to manage the transitiveMembers property of the microsoft.graph.group entity.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public Tuple<List<Command>, List<Command>> BuildCommand() {
+            var executables = new List<Command>();
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildGraphApplicationCommand());
-            command.AddCommand(builder.BuildGraphDeviceCommand());
-            command.AddCommand(builder.BuildGraphGroupCommand());
-            command.AddCommand(builder.BuildGraphOrgContactCommand());
-            command.AddCommand(builder.BuildGraphServicePrincipalCommand());
-            command.AddCommand(builder.BuildGraphUserCommand());
-            return command;
+            executables.Add(builder.BuildGetCommand());
+            return new(executables, new(0));
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Casts the previous resource to application.
         /// </summary>
-        public Command BuildGraphApplicationCommand() {
-            var command = new Command("graph-application");
+        public Command BuildGraphApplicationNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildGraphApplicationNavCommand();
             command.Description = "Casts the previous resource to application.";
             var builder = new GraphApplicationRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Casts the previous resource to device.
         /// </summary>
-        public Command BuildGraphDeviceCommand() {
-            var command = new Command("graph-device");
+        public Command BuildGraphDeviceNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildGraphDeviceNavCommand();
             command.Description = "Casts the previous resource to device.";
             var builder = new GraphDeviceRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
-        public Command BuildGraphGroupCommand() {
-            var command = new Command("graph-group");
+        public Command BuildGraphGroupNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildGraphGroupNavCommand();
             command.Description = "Casts the previous resource to group.";
             var builder = new GraphGroupRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Casts the previous resource to orgContact.
         /// </summary>
-        public Command BuildGraphOrgContactCommand() {
-            var command = new Command("graph-org-contact");
+        public Command BuildGraphOrgContactNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildGraphOrgContactNavCommand();
             command.Description = "Casts the previous resource to orgContact.";
             var builder = new GraphOrgContactRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        public Command BuildGraphServicePrincipalCommand() {
-            var command = new Command("graph-service-principal");
+        public Command BuildGraphServicePrincipalNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildGraphServicePrincipalNavCommand();
             command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
-        public Command BuildGraphUserCommand() {
-            var command = new Command("graph-user");
+        public Command BuildGraphUserNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildGraphUserNavCommand();
             command.Description = "Casts the previous resource to user.";
             var builder = new GraphUserRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildCountCommand());
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -129,7 +189,6 @@ namespace ApiSdk.Groups.Item.TransitiveMembers {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "The direct and transitive members of a group. Nullable.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-list-transitivemembers?view=graph-rest-1.0";
-            // Create options for all the parameters
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -204,9 +263,9 @@ namespace ApiSdk.Groups.Item.TransitiveMembers {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
+                IPagingService pagingService = invocationContext.BindingContext.GetService(typeof(IPagingService)) as IPagingService ?? throw new ArgumentNullException("pagingService");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -245,11 +304,7 @@ namespace ApiSdk.Groups.Item.TransitiveMembers {
         /// Instantiates a new TransitiveMembersRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TransitiveMembersRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/groups/{group%2Did}/transitiveMembers{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public TransitiveMembersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/transitiveMembers{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// The direct and transitive members of a group. Nullable.
@@ -257,10 +312,10 @@ namespace ApiSdk.Groups.Item.TransitiveMembers {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<TransitiveMembersRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TransitiveMembersRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<TransitiveMembersRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TransitiveMembersRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -269,7 +324,7 @@ namespace ApiSdk.Groups.Item.TransitiveMembers {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new TransitiveMembersRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<TransitiveMembersRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -340,24 +395,6 @@ namespace ApiSdk.Groups.Item.TransitiveMembers {
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class TransitiveMembersRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public TransitiveMembersRequestBuilderGetQueryParameters QueryParameters { get; set; } = new TransitiveMembersRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new transitiveMembersRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public TransitiveMembersRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

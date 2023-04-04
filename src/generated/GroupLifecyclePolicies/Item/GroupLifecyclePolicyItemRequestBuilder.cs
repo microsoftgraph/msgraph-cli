@@ -2,10 +2,9 @@ using ApiSdk.GroupLifecyclePolicies.Item.AddGroup;
 using ApiSdk.GroupLifecyclePolicies.Item.RemoveGroup;
 using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -20,19 +19,20 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
     /// <summary>
     /// Provides operations to manage the collection of groupLifecyclePolicy entities.
     /// </summary>
-    public class GroupLifecyclePolicyItemRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class GroupLifecyclePolicyItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Provides operations to call the addGroup method.
         /// </summary>
-        public Command BuildAddGroupCommand() {
+        public Command BuildAddGroupNavCommand() {
             var command = new Command("add-group");
             command.Description = "Provides operations to call the addGroup method.";
             var builder = new AddGroupRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -42,7 +42,6 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete a groupLifecyclePolicy.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/grouplifecyclepolicy-delete?view=graph-rest-1.0";
-            // Create options for all the parameters
             var groupLifecyclePolicyIdOption = new Option<string>("--group-lifecycle-policy-id", description: "The unique identifier of groupLifecyclePolicy") {
             };
             groupLifecyclePolicyIdOption.IsRequired = true;
@@ -77,7 +76,6 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the properties and relationships of a groupLifecyclePolicies object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/grouplifecyclepolicy-get?view=graph-rest-1.0";
-            // Create options for all the parameters
             var groupLifecyclePolicyIdOption = new Option<string>("--group-lifecycle-policy-id", description: "The unique identifier of groupLifecyclePolicy") {
             };
             groupLifecyclePolicyIdOption.IsRequired = true;
@@ -112,8 +110,8 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -140,7 +138,6 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the properties of a groupLifecyclePolicygroupLifecyclePolicy resource type object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/grouplifecyclepolicy-update?view=graph-rest-1.0";
-            // Create options for all the parameters
             var groupLifecyclePolicyIdOption = new Option<string>("--group-lifecycle-policy-id", description: "The unique identifier of groupLifecyclePolicy") {
             };
             groupLifecyclePolicyIdOption.IsRequired = true;
@@ -168,8 +165,8 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -195,22 +192,23 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
         /// <summary>
         /// Provides operations to call the removeGroup method.
         /// </summary>
-        public Command BuildRemoveGroupCommand() {
+        public Command BuildRemoveGroupNavCommand() {
             var command = new Command("remove-group");
             command.Description = "Provides operations to call the removeGroup method.";
             var builder = new RemoveGroupRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Instantiates a new GroupLifecyclePolicyItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GroupLifecyclePolicyItemRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/groupLifecyclePolicies/{groupLifecyclePolicy%2Did}{?%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public GroupLifecyclePolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groupLifecyclePolicies/{groupLifecyclePolicy%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Delete a groupLifecyclePolicy.
@@ -218,10 +216,10 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToDeleteRequestInformation(Action<GroupLifecyclePolicyItemRequestBuilderDeleteRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToDeleteRequestInformation(Action<GroupLifecyclePolicyItemRequestBuilderDeleteRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.DELETE,
@@ -229,8 +227,9 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
                 PathParameters = PathParameters,
             };
             if (requestConfiguration != null) {
-                var requestConfig = new GroupLifecyclePolicyItemRequestBuilderDeleteRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
@@ -242,10 +241,10 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<GroupLifecyclePolicyItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GroupLifecyclePolicyItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<GroupLifecyclePolicyItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GroupLifecyclePolicyItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -254,7 +253,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new GroupLifecyclePolicyItemRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<GroupLifecyclePolicyItemRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -269,10 +268,10 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(GroupLifecyclePolicy body, Action<GroupLifecyclePolicyItemRequestBuilderPatchRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(GroupLifecyclePolicy body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(GroupLifecyclePolicy body, Action<GroupLifecyclePolicyItemRequestBuilderPatchRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(GroupLifecyclePolicy body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
@@ -282,28 +281,13 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new GroupLifecyclePolicyItemRequestBuilderPatchRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
             return requestInfo;
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class GroupLifecyclePolicyItemRequestBuilderDeleteRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new GroupLifecyclePolicyItemRequestBuilderDeleteRequestConfiguration and sets the default values.
-            /// </summary>
-            public GroupLifecyclePolicyItemRequestBuilderDeleteRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
         /// <summary>
         /// Retrieve the properties and relationships of a groupLifecyclePolicies object.
@@ -329,40 +313,6 @@ namespace ApiSdk.GroupLifecyclePolicies.Item {
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
 #endif
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class GroupLifecyclePolicyItemRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public GroupLifecyclePolicyItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new GroupLifecyclePolicyItemRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new GroupLifecyclePolicyItemRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public GroupLifecyclePolicyItemRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class GroupLifecyclePolicyItemRequestBuilderPatchRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new GroupLifecyclePolicyItemRequestBuilderPatchRequestConfiguration and sets the default values.
-            /// </summary>
-            public GroupLifecyclePolicyItemRequestBuilderPatchRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

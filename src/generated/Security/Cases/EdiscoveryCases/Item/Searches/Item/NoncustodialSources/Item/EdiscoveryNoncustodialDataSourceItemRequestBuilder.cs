@@ -1,9 +1,8 @@
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.Security;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -18,18 +17,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.NoncustodialS
     /// <summary>
     /// Provides operations to manage the noncustodialSources property of the microsoft.graph.security.ediscoverySearch entity.
     /// </summary>
-    public class EdiscoveryNoncustodialDataSourceItemRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class EdiscoveryNoncustodialDataSourceItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// noncustodialDataSource sources that are included in the eDiscovery search
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "noncustodialDataSource sources that are included in the eDiscovery search";
-            // Create options for all the parameters
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -74,8 +68,8 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.NoncustodialS
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -101,11 +95,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.NoncustodialS
         /// Instantiates a new EdiscoveryNoncustodialDataSourceItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public EdiscoveryNoncustodialDataSourceItemRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/searches/{ediscoverySearch%2Did}/noncustodialSources/{ediscoveryNoncustodialDataSource%2Did}{?%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public EdiscoveryNoncustodialDataSourceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/searches/{ediscoverySearch%2Did}/noncustodialSources/{ediscoveryNoncustodialDataSource%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// noncustodialDataSource sources that are included in the eDiscovery search
@@ -113,10 +103,10 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.NoncustodialS
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<EdiscoveryNoncustodialDataSourceItemRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EdiscoveryNoncustodialDataSourceItemRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<EdiscoveryNoncustodialDataSourceItemRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EdiscoveryNoncustodialDataSourceItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -125,7 +115,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.NoncustodialS
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new EdiscoveryNoncustodialDataSourceItemRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<EdiscoveryNoncustodialDataSourceItemRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -157,24 +147,6 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.NoncustodialS
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
 #endif
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class EdiscoveryNoncustodialDataSourceItemRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public EdiscoveryNoncustodialDataSourceItemRequestBuilderGetQueryParameters QueryParameters { get; set; } = new EdiscoveryNoncustodialDataSourceItemRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new EdiscoveryNoncustodialDataSourceItemRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public EdiscoveryNoncustodialDataSourceItemRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

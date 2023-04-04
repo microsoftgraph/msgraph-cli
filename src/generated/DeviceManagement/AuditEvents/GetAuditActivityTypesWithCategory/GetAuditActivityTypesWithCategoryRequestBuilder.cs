@@ -1,8 +1,7 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -17,18 +16,13 @@ namespace ApiSdk.DeviceManagement.AuditEvents.GetAuditActivityTypesWithCategory 
     /// <summary>
     /// Provides operations to call the getAuditActivityTypes method.
     /// </summary>
-    public class GetAuditActivityTypesWithCategoryRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class GetAuditActivityTypesWithCategoryRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Invoke function getAuditActivityTypes
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function getAuditActivityTypes";
-            // Create options for all the parameters
             var categoryOption = new Option<string>("--category", description: "Usage: category='{category}'") {
             };
             categoryOption.IsRequired = true;
@@ -79,9 +73,9 @@ namespace ApiSdk.DeviceManagement.AuditEvents.GetAuditActivityTypesWithCategory 
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
+                IPagingService pagingService = invocationContext.BindingContext.GetService(typeof(IPagingService)) as IPagingService ?? throw new ArgumentNullException("pagingService");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -117,12 +111,8 @@ namespace ApiSdk.DeviceManagement.AuditEvents.GetAuditActivityTypesWithCategory 
         /// </summary>
         /// <param name="category">Usage: category=&apos;{category}&apos;</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetAuditActivityTypesWithCategoryRequestBuilder(Dictionary<string, object> pathParameters, string category = "") {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/deviceManagement/auditEvents/getAuditActivityTypes(category='{category}'){?%24top,%24skip,%24search,%24filter,%24count}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            if (!string.IsNullOrWhiteSpace(category)) urlTplParams.Add("category", category);
-            PathParameters = urlTplParams;
+        public GetAuditActivityTypesWithCategoryRequestBuilder(Dictionary<string, object> pathParameters, string category = "") : base("{+baseurl}/deviceManagement/auditEvents/getAuditActivityTypes(category='{category}'){?%24top,%24skip,%24search,%24filter,%24count}", pathParameters) {
+            if (!string.IsNullOrWhiteSpace(category)) PathParameters.Add("category", category);
         }
         /// <summary>
         /// Invoke function getAuditActivityTypes
@@ -130,10 +120,10 @@ namespace ApiSdk.DeviceManagement.AuditEvents.GetAuditActivityTypesWithCategory 
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<GetAuditActivityTypesWithCategoryRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetAuditActivityTypesWithCategoryRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<GetAuditActivityTypesWithCategoryRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GetAuditActivityTypesWithCategoryRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -142,7 +132,7 @@ namespace ApiSdk.DeviceManagement.AuditEvents.GetAuditActivityTypesWithCategory 
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new GetAuditActivityTypesWithCategoryRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<GetAuditActivityTypesWithCategoryRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -183,24 +173,6 @@ namespace ApiSdk.DeviceManagement.AuditEvents.GetAuditActivityTypesWithCategory 
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class GetAuditActivityTypesWithCategoryRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public GetAuditActivityTypesWithCategoryRequestBuilderGetQueryParameters QueryParameters { get; set; } = new GetAuditActivityTypesWithCategoryRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new getAuditActivityTypesWithCategoryRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public GetAuditActivityTypesWithCategoryRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }

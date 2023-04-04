@@ -6,10 +6,9 @@ using ApiSdk.Users.GetAvailableExtensionProperties;
 using ApiSdk.Users.GetByIds;
 using ApiSdk.Users.Item;
 using ApiSdk.Users.ValidateProperties;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
 using System;
@@ -24,96 +23,98 @@ namespace ApiSdk.Users {
     /// <summary>
     /// Provides operations to manage the collection of user entities.
     /// </summary>
-    public class UsersRequestBuilder {
-        /// <summary>Path parameters for the request</summary>
-        private Dictionary<string, object> PathParameters { get; set; }
-        /// <summary>Url template to use to build the URL for the current request builder</summary>
-        private string UrlTemplate { get; set; }
+    public class UsersRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Provides operations to manage the collection of user entities.
         /// </summary>
-        public Command BuildCommand() {
-            var command = new Command("item");
+        public Tuple<List<Command>, List<Command>> BuildCommand() {
+            var executables = new List<Command>();
+            var commands = new List<Command>();
             var builder = new UserItemRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildActivitiesCommand());
-            command.AddCommand(builder.BuildAgreementAcceptancesCommand());
-            command.AddCommand(builder.BuildAppRoleAssignmentsCommand());
-            command.AddCommand(builder.BuildAssignLicenseCommand());
-            command.AddCommand(builder.BuildAuthenticationCommand());
-            command.AddCommand(builder.BuildCalendarCommand());
-            command.AddCommand(builder.BuildCalendarGroupsCommand());
-            command.AddCommand(builder.BuildCalendarsCommand());
-            command.AddCommand(builder.BuildCalendarViewCommand());
-            command.AddCommand(builder.BuildChangePasswordCommand());
-            command.AddCommand(builder.BuildChatsCommand());
-            command.AddCommand(builder.BuildCheckMemberGroupsCommand());
-            command.AddCommand(builder.BuildCheckMemberObjectsCommand());
-            command.AddCommand(builder.BuildContactFoldersCommand());
-            command.AddCommand(builder.BuildContactsCommand());
-            command.AddCommand(builder.BuildCreatedObjectsCommand());
-            command.AddCommand(builder.BuildDeleteCommand());
-            command.AddCommand(builder.BuildDeviceManagementTroubleshootingEventsCommand());
-            command.AddCommand(builder.BuildDirectReportsCommand());
-            command.AddCommand(builder.BuildDriveCommand());
-            command.AddCommand(builder.BuildDrivesCommand());
-            command.AddCommand(builder.BuildEventsCommand());
-            command.AddCommand(builder.BuildExportDeviceAndAppManagementDataCommand());
-            command.AddCommand(builder.BuildExportPersonalDataCommand());
-            command.AddCommand(builder.BuildExtensionsCommand());
-            command.AddCommand(builder.BuildFindMeetingTimesCommand());
-            command.AddCommand(builder.BuildFollowedSitesCommand());
-            command.AddCommand(builder.BuildGetCommand());
-            command.AddCommand(builder.BuildGetMailTipsCommand());
-            command.AddCommand(builder.BuildGetManagedAppDiagnosticStatusesCommand());
-            command.AddCommand(builder.BuildGetManagedAppPoliciesCommand());
-            command.AddCommand(builder.BuildGetManagedDevicesWithAppFailuresCommand());
-            command.AddCommand(builder.BuildGetMemberGroupsCommand());
-            command.AddCommand(builder.BuildGetMemberObjectsCommand());
-            command.AddCommand(builder.BuildInferenceClassificationCommand());
-            command.AddCommand(builder.BuildInsightsCommand());
-            command.AddCommand(builder.BuildJoinedTeamsCommand());
-            command.AddCommand(builder.BuildLicenseDetailsCommand());
-            command.AddCommand(builder.BuildMailFoldersCommand());
-            command.AddCommand(builder.BuildManagedAppRegistrationsCommand());
-            command.AddCommand(builder.BuildManagedDevicesCommand());
-            command.AddCommand(builder.BuildManagerCommand());
-            command.AddCommand(builder.BuildMemberOfCommand());
-            command.AddCommand(builder.BuildMessagesCommand());
-            command.AddCommand(builder.BuildOauth2PermissionGrantsCommand());
-            command.AddCommand(builder.BuildOnenoteCommand());
-            command.AddCommand(builder.BuildOnlineMeetingsCommand());
-            command.AddCommand(builder.BuildOutlookCommand());
-            command.AddCommand(builder.BuildOwnedDevicesCommand());
-            command.AddCommand(builder.BuildOwnedObjectsCommand());
-            command.AddCommand(builder.BuildPatchCommand());
-            command.AddCommand(builder.BuildPeopleCommand());
-            command.AddCommand(builder.BuildPhotoCommand());
-            command.AddCommand(builder.BuildPhotosCommand());
-            command.AddCommand(builder.BuildPlannerCommand());
-            command.AddCommand(builder.BuildPresenceCommand());
-            command.AddCommand(builder.BuildRegisteredDevicesCommand());
-            command.AddCommand(builder.BuildRemoveAllDevicesFromManagementCommand());
-            command.AddCommand(builder.BuildReprocessLicenseAssignmentCommand());
-            command.AddCommand(builder.BuildRestoreCommand());
-            command.AddCommand(builder.BuildRevokeSignInSessionsCommand());
-            command.AddCommand(builder.BuildScopedRoleMemberOfCommand());
-            command.AddCommand(builder.BuildSendMailCommand());
-            command.AddCommand(builder.BuildSettingsCommand());
-            command.AddCommand(builder.BuildTeamworkCommand());
-            command.AddCommand(builder.BuildTodoCommand());
-            command.AddCommand(builder.BuildTransitiveMemberOfCommand());
-            command.AddCommand(builder.BuildTranslateExchangeIdsCommand());
-            command.AddCommand(builder.BuildWipeManagedAppRegistrationsByDeviceTagCommand());
-            return command;
+            commands.Add(builder.BuildActivitiesNavCommand());
+            commands.Add(builder.BuildAgreementAcceptancesNavCommand());
+            commands.Add(builder.BuildAppRoleAssignmentsNavCommand());
+            commands.Add(builder.BuildAssignLicenseNavCommand());
+            commands.Add(builder.BuildAuthenticationNavCommand());
+            commands.Add(builder.BuildCalendarGroupsNavCommand());
+            commands.Add(builder.BuildCalendarNavCommand());
+            commands.Add(builder.BuildCalendarsNavCommand());
+            commands.Add(builder.BuildCalendarViewNavCommand());
+            commands.Add(builder.BuildChangePasswordNavCommand());
+            commands.Add(builder.BuildChatsNavCommand());
+            commands.Add(builder.BuildCheckMemberGroupsNavCommand());
+            commands.Add(builder.BuildCheckMemberObjectsNavCommand());
+            commands.Add(builder.BuildContactFoldersNavCommand());
+            commands.Add(builder.BuildContactsNavCommand());
+            commands.Add(builder.BuildCreatedObjectsNavCommand());
+            executables.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildDeviceManagementTroubleshootingEventsNavCommand());
+            commands.Add(builder.BuildDirectReportsNavCommand());
+            commands.Add(builder.BuildDriveNavCommand());
+            commands.Add(builder.BuildDrivesNavCommand());
+            commands.Add(builder.BuildEventsNavCommand());
+            commands.Add(builder.BuildExportDeviceAndAppManagementDataNavCommand());
+            commands.Add(builder.BuildExportPersonalDataNavCommand());
+            commands.Add(builder.BuildExtensionsNavCommand());
+            commands.Add(builder.BuildFindMeetingTimesNavCommand());
+            commands.Add(builder.BuildFollowedSitesNavCommand());
+            executables.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildGetMailTipsNavCommand());
+            commands.Add(builder.BuildGetManagedAppDiagnosticStatusesNavCommand());
+            commands.Add(builder.BuildGetManagedAppPoliciesNavCommand());
+            commands.Add(builder.BuildGetManagedDevicesWithAppFailuresNavCommand());
+            commands.Add(builder.BuildGetMemberGroupsNavCommand());
+            commands.Add(builder.BuildGetMemberObjectsNavCommand());
+            commands.Add(builder.BuildInferenceClassificationNavCommand());
+            commands.Add(builder.BuildInsightsNavCommand());
+            commands.Add(builder.BuildJoinedTeamsNavCommand());
+            commands.Add(builder.BuildLicenseDetailsNavCommand());
+            commands.Add(builder.BuildMailFoldersNavCommand());
+            commands.Add(builder.BuildManagedAppRegistrationsNavCommand());
+            commands.Add(builder.BuildManagedDevicesNavCommand());
+            commands.Add(builder.BuildManagerNavCommand());
+            commands.Add(builder.BuildMemberOfNavCommand());
+            commands.Add(builder.BuildMessagesNavCommand());
+            commands.Add(builder.BuildOauth2PermissionGrantsNavCommand());
+            commands.Add(builder.BuildOnenoteNavCommand());
+            commands.Add(builder.BuildOnlineMeetingsNavCommand());
+            commands.Add(builder.BuildOutlookNavCommand());
+            commands.Add(builder.BuildOwnedDevicesNavCommand());
+            commands.Add(builder.BuildOwnedObjectsNavCommand());
+            executables.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildPeopleNavCommand());
+            commands.Add(builder.BuildPhotoNavCommand());
+            commands.Add(builder.BuildPhotosNavCommand());
+            commands.Add(builder.BuildPlannerNavCommand());
+            commands.Add(builder.BuildPresenceNavCommand());
+            commands.Add(builder.BuildRegisteredDevicesNavCommand());
+            commands.Add(builder.BuildRemoveAllDevicesFromManagementNavCommand());
+            commands.Add(builder.BuildReprocessLicenseAssignmentNavCommand());
+            commands.Add(builder.BuildRestoreNavCommand());
+            commands.Add(builder.BuildRevokeSignInSessionsNavCommand());
+            commands.Add(builder.BuildScopedRoleMemberOfNavCommand());
+            commands.Add(builder.BuildSendMailNavCommand());
+            commands.Add(builder.BuildSettingsNavCommand());
+            commands.Add(builder.BuildTeamworkNavCommand());
+            commands.Add(builder.BuildTodoNavCommand());
+            commands.Add(builder.BuildTransitiveMemberOfNavCommand());
+            commands.Add(builder.BuildTranslateExchangeIdsNavCommand());
+            commands.Add(builder.BuildWipeManagedAppRegistrationsByDeviceTagNavCommand());
+            return new(executables, commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
         /// </summary>
-        public Command BuildCountCommand() {
+        public Command BuildCountNavCommand() {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -123,7 +124,6 @@ namespace ApiSdk.Users {
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create a new user.The request body contains the user to create. At a minimum, you must specify the required properties for the user. You can optionally specify any other writable properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-post-users?view=graph-rest-1.0";
-            // Create options for all the parameters
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -146,8 +146,8 @@ namespace ApiSdk.Users {
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -172,31 +172,46 @@ namespace ApiSdk.Users {
         /// <summary>
         /// Provides operations to call the delta method.
         /// </summary>
-        public Command BuildDeltaCommand() {
+        public Command BuildDeltaNavCommand() {
             var command = new Command("delta");
             command.Description = "Provides operations to call the delta method.";
             var builder = new DeltaRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildGetCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to call the getAvailableExtensionProperties method.
         /// </summary>
-        public Command BuildGetAvailableExtensionPropertiesCommand() {
+        public Command BuildGetAvailableExtensionPropertiesNavCommand() {
             var command = new Command("get-available-extension-properties");
             command.Description = "Provides operations to call the getAvailableExtensionProperties method.";
             var builder = new GetAvailableExtensionPropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Provides operations to call the getByIds method.
         /// </summary>
-        public Command BuildGetByIdsCommand() {
+        public Command BuildGetByIdsNavCommand() {
             var command = new Command("get-by-ids");
             command.Description = "Provides operations to call the getByIds method.";
             var builder = new GetByIdsRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -206,7 +221,6 @@ namespace ApiSdk.Users {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Retrieve a list of user objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list?view=graph-rest-1.0";
-            // Create options for all the parameters
             var consistencyLevelOption = new Option<string[]>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -271,9 +285,9 @@ namespace ApiSdk.Users {
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetRequiredService<IOutputFilter>();
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetRequiredService<IOutputFormatterFactory>();
-                IPagingService pagingService = invocationContext.BindingContext.GetRequiredService<IPagingService>();
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
+                IPagingService pagingService = invocationContext.BindingContext.GetService(typeof(IPagingService)) as IPagingService ?? throw new ArgumentNullException("pagingService");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -309,22 +323,23 @@ namespace ApiSdk.Users {
         /// <summary>
         /// Provides operations to call the validateProperties method.
         /// </summary>
-        public Command BuildValidatePropertiesCommand() {
+        public Command BuildValidatePropertiesNavCommand() {
             var command = new Command("validate-properties");
             command.Description = "Provides operations to call the validateProperties method.";
             var builder = new ValidatePropertiesRequestBuilder(PathParameters);
-            command.AddCommand(builder.BuildPostCommand());
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
         /// Instantiates a new UsersRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public UsersRequestBuilder(Dictionary<string, object> pathParameters) {
-            _ = pathParameters ?? throw new ArgumentNullException(nameof(pathParameters));
-            UrlTemplate = "{+baseurl}/users{?%24top,%24search,%24filter,%24count,%24orderby,%24select,%24expand}";
-            var urlTplParams = new Dictionary<string, object>(pathParameters);
-            PathParameters = urlTplParams;
+        public UsersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users{?%24top,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Retrieve a list of user objects.
@@ -332,10 +347,10 @@ namespace ApiSdk.Users {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<UsersRequestBuilderGetRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UsersRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<UsersRequestBuilderGetRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<UsersRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -344,7 +359,7 @@ namespace ApiSdk.Users {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new UsersRequestBuilderGetRequestConfiguration();
+                var requestConfig = new RequestConfiguration<UsersRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -359,10 +374,10 @@ namespace ApiSdk.Users {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(ApiSdk.Models.User body, Action<UsersRequestBuilderPostRequestConfiguration>? requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.User body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(ApiSdk.Models.User body, Action<UsersRequestBuilderPostRequestConfiguration> requestConfiguration = default) {
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.User body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
@@ -372,8 +387,9 @@ namespace ApiSdk.Users {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new UsersRequestBuilderPostRequestConfiguration();
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
@@ -439,40 +455,6 @@ namespace ApiSdk.Users {
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class UsersRequestBuilderGetRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>Request query parameters</summary>
-            public UsersRequestBuilderGetQueryParameters QueryParameters { get; set; } = new UsersRequestBuilderGetQueryParameters();
-            /// <summary>
-            /// Instantiates a new usersRequestBuilderGetRequestConfiguration and sets the default values.
-            /// </summary>
-            public UsersRequestBuilderGetRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
-        }
-        /// <summary>
-        /// Configuration for the request such as headers, query parameters, and middleware options.
-        /// </summary>
-        public class UsersRequestBuilderPostRequestConfiguration {
-            /// <summary>Request headers</summary>
-            public RequestHeaders Headers { get; set; }
-            /// <summary>Request options</summary>
-            public IList<IRequestOption> Options { get; set; }
-            /// <summary>
-            /// Instantiates a new usersRequestBuilderPostRequestConfiguration and sets the default values.
-            /// </summary>
-            public UsersRequestBuilderPostRequestConfiguration() {
-                Options = new List<IRequestOption>();
-                Headers = new RequestHeaders();
-            }
         }
     }
 }
