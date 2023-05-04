@@ -1,5 +1,5 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.MailFolders.Item.ChildFolders;
 using ApiSdk.Users.Item.MailFolders.Item.Copy;
 using ApiSdk.Users.Item.MailFolders.Item.MessageRules;
@@ -7,19 +7,19 @@ using ApiSdk.Users.Item.MailFolders.Item.Messages;
 using ApiSdk.Users.Item.MailFolders.Item.Move;
 using ApiSdk.Users.Item.MailFolders.Item.MultiValueExtendedProperties;
 using ApiSdk.Users.Item.MailFolders.Item.SingleValueExtendedProperties;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.MailFolders.Item {
     /// <summary>
     /// Provides operations to manage the mailFolders property of the microsoft.graph.user entity.
@@ -119,11 +119,20 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
+            var includeHiddenFoldersOption = new Option<string>("--include-hidden-folders", description: "Include Hidden Folders") {
+            };
+            includeHiddenFoldersOption.IsRequired = false;
+            command.AddOption(includeHiddenFoldersOption);
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
             selectOption.IsRequired = false;
             command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
             var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
                 IsRequired = true
             };
@@ -140,7 +149,9 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
             command.SetHandler(async (invocationContext) => {
                 var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
                 var mailFolderId = invocationContext.ParseResult.GetValueForOption(mailFolderIdOption);
+                var includeHiddenFolders = invocationContext.ParseResult.GetValueForOption(includeHiddenFoldersOption);
                 var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
@@ -149,7 +160,9 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
+                    if (!string.IsNullOrEmpty(includeHiddenFolders)) q.QueryParameters.IncludeHiddenFolders = includeHiddenFolders;
                     q.QueryParameters.Select = select;
+                    q.QueryParameters.Expand = expand;
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (mailFolderId is not null) requestInfo.PathParameters.Add("mailFolder%2Did", mailFolderId);
@@ -348,7 +361,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
         /// Instantiates a new MailFolderItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public MailFolderItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}{?%24select}", pathParameters) {
+        public MailFolderItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}{?includeHiddenFolders*,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Delete navigation property mailFolders for users
@@ -433,6 +446,24 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
         /// The user&apos;s mail folders. Read-only. Nullable.
         /// </summary>
         public class MailFolderItemRequestBuilderGetQueryParameters {
+            /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
+            [QueryParameter("%24expand")]
+            public string[] Expand { get; set; }
+#endif
+            /// <summary>Include Hidden Folders</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public string? IncludeHiddenFolders { get; set; }
+#nullable restore
+#else
+            public string IncludeHiddenFolders { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -1,20 +1,20 @@
 using ApiSdk.EmployeeExperience.LearningProviders.Item.LearningContents.Count;
 using ApiSdk.EmployeeExperience.LearningProviders.Item.LearningContents.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningContents {
     /// <summary>
     /// Provides operations to manage the learningContents property of the microsoft.graph.learningProvider entity.
@@ -104,12 +104,11 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningContents {
             return command;
         }
         /// <summary>
-        /// Get a list of the learningContent resources and their properties. This list represents the metadata of the specified provider&apos;s content in Viva Learning.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/learningprovider-list-learningcontents?view=graph-rest-1.0" />
+        /// Learning catalog items for the provider.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the learningContent resources and their properties. This list represents the metadata of the specified provider's content in Viva Learning.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/learningprovider-list-learningcontents?view=graph-rest-1.0";
+            command.Description = "Learning catalog items for the provider.";
             var learningProviderIdOption = new Option<string>("--learning-provider-id", description: "The unique identifier of learningProvider") {
             };
             learningProviderIdOption.IsRequired = true;
@@ -221,7 +220,7 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningContents {
         public LearningContentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/employeeExperience/learningProviders/{learningProvider%2Did}/learningContents{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get a list of the learningContent resources and their properties. This list represents the metadata of the specified provider&apos;s content in Viva Learning.
+        /// Learning catalog items for the provider.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -275,7 +274,7 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningContents {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the learningContent resources and their properties. This list represents the metadata of the specified provider&apos;s content in Viva Learning.
+        /// Learning catalog items for the provider.
         /// </summary>
         public class LearningContentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

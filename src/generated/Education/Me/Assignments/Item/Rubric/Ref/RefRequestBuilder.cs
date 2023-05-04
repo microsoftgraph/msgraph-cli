@@ -1,18 +1,18 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Education.Me.Assignments.Item.Rubric.Ref {
     /// <summary>
     /// Provides operations to manage the collection of educationRoot entities.
@@ -52,12 +52,11 @@ namespace ApiSdk.Education.Me.Assignments.Item.Rubric.Ref {
             return command;
         }
         /// <summary>
-        /// Get the educationRubric object attached to an educationAssignment, if one exists. Only teachers, students, and applications with application permissions can perform this operation.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationassignment-get-rubric?view=graph-rest-1.0" />
+        /// When set, the grading rubric attached to this assignment.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the educationRubric object attached to an educationAssignment, if one exists. Only teachers, students, and applications with application permissions can perform this operation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationassignment-get-rubric?view=graph-rest-1.0";
+            command.Description = "When set, the grading rubric attached to this assignment.";
             var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
@@ -148,7 +147,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Rubric.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Get the educationRubric object attached to an educationAssignment, if one exists. Only teachers, students, and applications with application permissions can perform this operation.
+        /// When set, the grading rubric attached to this assignment.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

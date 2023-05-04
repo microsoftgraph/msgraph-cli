@@ -1,13 +1,13 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class AppManagementConfiguration : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The keyCredentials property</summary>
+        /// <summary>Collection of keyCredential restrictions settings to be applied to an application or service principal.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<KeyCredentialConfiguration>? KeyCredentials { get; set; }
@@ -23,7 +23,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The passwordCredentials property</summary>
+        /// <summary>Collection of password restrictions settings to be applied to an application or service principal.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<PasswordCredentialConfiguration>? PasswordCredentials { get; set; }

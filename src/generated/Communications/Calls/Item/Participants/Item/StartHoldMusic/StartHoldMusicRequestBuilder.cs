@@ -1,30 +1,29 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic {
     /// <summary>
     /// Provides operations to call the startHoldMusic method.
     /// </summary>
     public class StartHoldMusicRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Put a participant on hold and play music in the background.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/participant-startholdmusic?view=graph-rest-1.0" />
+        /// Invoke action startHoldMusic
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Put a participant on hold and play music in the background.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/participant-startholdmusic?view=graph-rest-1.0";
+            command.Description = "Invoke action startHoldMusic";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -89,7 +88,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic {
         public StartHoldMusicRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/participants/{participant%2Did}/startHoldMusic", pathParameters) {
         }
         /// <summary>
-        /// Put a participant on hold and play music in the background.
+        /// Invoke action startHoldMusic
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

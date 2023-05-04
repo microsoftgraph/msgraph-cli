@@ -1,9 +1,12 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// This topic provides descriptions of the declared methods, properties and relationships exposed by the secureAssessment resource.
+    /// </summary>
     public class Windows10SecureAssessmentConfiguration : DeviceConfiguration, IParsable {
         /// <summary>Indicates whether or not to allow the app from printing during the test.</summary>
         public bool? AllowPrinting { get; set; }
@@ -28,7 +31,7 @@ namespace ApiSdk.Models {
         public string LaunchUri { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new Windows10SecureAssessmentConfiguration and sets the default values.
+        /// Instantiates a new windows10SecureAssessmentConfiguration and sets the default values.
         /// </summary>
         public Windows10SecureAssessmentConfiguration() : base() {
             OdataType = "#microsoft.graph.windows10SecureAssessmentConfiguration";

@@ -4,21 +4,21 @@ using ApiSdk.Groups.Item.PermissionGrants.GetAvailableExtensionProperties;
 using ApiSdk.Groups.Item.PermissionGrants.GetByIds;
 using ApiSdk.Groups.Item.PermissionGrants.Item;
 using ApiSdk.Groups.Item.PermissionGrants.ValidateProperties;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups.Item.PermissionGrants {
     /// <summary>
     /// Provides operations to manage the permissionGrants property of the microsoft.graph.group entity.
@@ -159,12 +159,11 @@ namespace ApiSdk.Groups.Item.PermissionGrants {
             return command;
         }
         /// <summary>
-        /// List all resource-specific permission grants on the group. This list specifies the Azure AD apps that have access to the **group**, along with the corresponding kind of resource-specific access that each app has.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/group-list-permissiongrants?view=graph-rest-1.0" />
+        /// The permission that has been granted for a group to a specific application. Supports $expand.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List all resource-specific permission grants on the group. This list specifies the Azure AD apps that have access to the **group**, along with the corresponding kind of resource-specific access that each app has.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-list-permissiongrants?view=graph-rest-1.0";
+            command.Description = "The permission that has been granted for a group to a specific application. Supports $expand.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -291,7 +290,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants {
         public PermissionGrantsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/permissionGrants{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// List all resource-specific permission grants on the group. This list specifies the Azure AD apps that have access to the **group**, along with the corresponding kind of resource-specific access that each app has.
+        /// The permission that has been granted for a group to a specific application. Supports $expand.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -345,7 +344,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants {
             return requestInfo;
         }
         /// <summary>
-        /// List all resource-specific permission grants on the group. This list specifies the Azure AD apps that have access to the **group**, along with the corresponding kind of resource-specific access that each app has.
+        /// The permission that has been granted for a group to a specific application. Supports $expand.
         /// </summary>
         public class PermissionGrantsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

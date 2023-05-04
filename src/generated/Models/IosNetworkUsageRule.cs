@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     /// <summary>
     /// Network Usage Rules allow enterprises to specify how managed apps use networks, such as cellular data networks.

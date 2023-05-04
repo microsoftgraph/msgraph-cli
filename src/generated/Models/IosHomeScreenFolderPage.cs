@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     /// <summary>
     /// A page for a folder containing apps and web clips on the Home Screen.

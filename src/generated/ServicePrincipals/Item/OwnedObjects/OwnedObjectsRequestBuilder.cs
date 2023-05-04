@@ -1,25 +1,25 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.ServicePrincipals.Item.OwnedObjects.Count;
-using ApiSdk.ServicePrincipals.Item.OwnedObjects.GraphApplication;
 using ApiSdk.ServicePrincipals.Item.OwnedObjects.GraphAppRoleAssignment;
+using ApiSdk.ServicePrincipals.Item.OwnedObjects.GraphApplication;
 using ApiSdk.ServicePrincipals.Item.OwnedObjects.GraphEndpoint;
 using ApiSdk.ServicePrincipals.Item.OwnedObjects.GraphGroup;
 using ApiSdk.ServicePrincipals.Item.OwnedObjects.GraphServicePrincipal;
 using ApiSdk.ServicePrincipals.Item.OwnedObjects.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.ServicePrincipals.Item.OwnedObjects {
     /// <summary>
     /// Provides operations to manage the ownedObjects property of the microsoft.graph.servicePrincipal entity.
@@ -30,9 +30,15 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects {
         /// </summary>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
+            var commands = new List<Command>();
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildGetCommand());
-            return new(executables, new(0));
+            commands.Add(builder.BuildGraphApplicationByIdNavCommand());
+            commands.Add(builder.BuildGraphAppRoleAssignmentByIdNavCommand());
+            commands.Add(builder.BuildGraphEndpointByIdNavCommand());
+            commands.Add(builder.BuildGraphGroupByIdNavCommand());
+            commands.Add(builder.BuildGraphServicePrincipalByIdNavCommand());
+            return new(executables, commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -53,8 +59,7 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects {
         /// Casts the previous resource to application.
         /// </summary>
         public Command BuildGraphApplicationNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphApplicationNavCommand();
+            var command = new Command("graph-application");
             command.Description = "Casts the previous resource to application.";
             var builder = new GraphApplicationRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -75,8 +80,7 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects {
         /// Casts the previous resource to appRoleAssignment.
         /// </summary>
         public Command BuildGraphAppRoleAssignmentNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphAppRoleAssignmentNavCommand();
+            var command = new Command("graph-app-role-assignment");
             command.Description = "Casts the previous resource to appRoleAssignment.";
             var builder = new GraphAppRoleAssignmentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -97,8 +101,7 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects {
         /// Casts the previous resource to endpoint.
         /// </summary>
         public Command BuildGraphEndpointNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphEndpointNavCommand();
+            var command = new Command("graph-endpoint");
             command.Description = "Casts the previous resource to endpoint.";
             var builder = new GraphEndpointRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -119,8 +122,7 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects {
         /// Casts the previous resource to group.
         /// </summary>
         public Command BuildGraphGroupNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphGroupNavCommand();
+            var command = new Command("graph-group");
             command.Description = "Casts the previous resource to group.";
             var builder = new GraphGroupRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -141,8 +143,7 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects {
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
         public Command BuildGraphServicePrincipalNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphServicePrincipalNavCommand();
+            var command = new Command("graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
             var execCommands = new List<Command>();

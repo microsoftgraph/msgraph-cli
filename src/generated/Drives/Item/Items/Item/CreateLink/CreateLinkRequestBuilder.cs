@@ -1,30 +1,29 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Drives.Item.Items.Item.CreateLink {
     /// <summary>
     /// Provides operations to call the createLink method.
     /// </summary>
     public class CreateLinkRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// You can use **createLink** action to share a DriveItem via a sharing link. The **createLink** action will create a new sharing link if the specified link type doesn&apos;t already exist for the calling application.If a sharing link of the specified type already exists for the app, the existing sharing link will be returned. DriveItem resources inherit sharing permissions from their ancestors.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/driveitem-createlink?view=graph-rest-1.0" />
+        /// Invoke action createLink
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "You can use **createLink** action to share a DriveItem via a sharing link. The **createLink** action will create a new sharing link if the specified link type doesn't already exist for the calling application.If a sharing link of the specified type already exists for the app, the existing sharing link will be returned. DriveItem resources inherit sharing permissions from their ancestors.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitem-createlink?view=graph-rest-1.0";
+            command.Description = "Invoke action createLink";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -89,7 +88,7 @@ namespace ApiSdk.Drives.Item.Items.Item.CreateLink {
         public CreateLinkRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/createLink", pathParameters) {
         }
         /// <summary>
-        /// You can use **createLink** action to share a DriveItem via a sharing link. The **createLink** action will create a new sharing link if the specified link type doesn&apos;t already exist for the calling application.If a sharing link of the specified type already exists for the app, the existing sharing link will be returned. DriveItem resources inherit sharing permissions from their ancestors.
+        /// Invoke action createLink
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

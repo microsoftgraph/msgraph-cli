@@ -4,21 +4,21 @@ using ApiSdk.Groups.GetAvailableExtensionProperties;
 using ApiSdk.Groups.GetByIds;
 using ApiSdk.Groups.Item;
 using ApiSdk.Groups.ValidateProperties;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups {
     /// <summary>
     /// Provides operations to manage the collection of group entities.
@@ -74,6 +74,7 @@ namespace ApiSdk.Groups {
             commands.Add(builder.BuildTransitiveMemberOfNavCommand());
             commands.Add(builder.BuildTransitiveMembersNavCommand());
             commands.Add(builder.BuildUnsubscribeByMailNavCommand());
+            commands.Add(builder.BuildValidatePropertiesByIdNavCommand());
             return new(executables, commands);
         }
         /// <summary>
@@ -304,8 +305,7 @@ namespace ApiSdk.Groups {
         /// Provides operations to call the validateProperties method.
         /// </summary>
         public Command BuildValidatePropertiesNavCommand() {
-            var groupIndexer = new GroupItemRequestBuilder(PathParameters);
-            var command = groupIndexer.BuildValidatePropertiesNavCommand();
+            var command = new Command("validate-properties");
             command.Description = "Provides operations to call the validateProperties method.";
             var builder = new ValidatePropertiesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();

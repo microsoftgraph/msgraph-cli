@@ -1,23 +1,51 @@
-using ApiSdk.Models;
+using ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item.Assignments;
+using ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item.ExemptAppLockerFiles;
+using ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item.ProtectedAppLockerFiles;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item {
     /// <summary>
     /// Provides operations to manage the windowsInformationProtectionPolicies property of the microsoft.graph.deviceAppManagement entity.
     /// </summary>
     public class WindowsInformationProtectionPolicyItemRequestBuilder : BaseCliRequestBuilder {
+        /// <summary>
+        /// Provides operations to manage the assignments property of the microsoft.graph.windowsInformationProtection entity.
+        /// </summary>
+        public Command BuildAssignmentsNavCommand() {
+            var command = new Command("assignments");
+            command.Description = "Provides operations to manage the assignments property of the microsoft.graph.windowsInformationProtection entity.";
+            var builder = new AssignmentsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
         /// <summary>
         /// Delete navigation property windowsInformationProtectionPolicies for deviceAppManagement
         /// </summary>
@@ -49,6 +77,31 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item {
                 await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the exemptAppLockerFiles property of the microsoft.graph.windowsInformationProtection entity.
+        /// </summary>
+        public Command BuildExemptAppLockerFilesNavCommand() {
+            var command = new Command("exempt-app-locker-files");
+            command.Description = "Provides operations to manage the exemptAppLockerFiles property of the microsoft.graph.windowsInformationProtection entity.";
+            var builder = new ExemptAppLockerFilesRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -167,6 +220,31 @@ namespace ApiSdk.DeviceAppManagement.WindowsInformationProtectionPolicies.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the protectedAppLockerFiles property of the microsoft.graph.windowsInformationProtection entity.
+        /// </summary>
+        public Command BuildProtectedAppLockerFilesNavCommand() {
+            var command = new Command("protected-app-locker-files");
+            command.Description = "Provides operations to manage the protectedAppLockerFiles property of the microsoft.graph.windowsInformationProtection entity.";
+            var builder = new ProtectedAppLockerFilesRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>

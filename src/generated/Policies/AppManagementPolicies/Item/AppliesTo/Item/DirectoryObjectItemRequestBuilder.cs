@@ -1,29 +1,29 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Policies.AppManagementPolicies.Item.AppliesTo.Item {
     /// <summary>
     /// Provides operations to manage the appliesTo property of the microsoft.graph.appManagementPolicy entity.
     /// </summary>
     public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Get appliesTo from policies
+        /// Collection of applications and service principals to which the policy is applied.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get appliesTo from policies";
+            command.Description = "Collection of applications and service principals to which the policy is applied.";
             var appManagementPolicyIdOption = new Option<string>("--app-management-policy-id", description: "The unique identifier of appManagementPolicy") {
             };
             appManagementPolicyIdOption.IsRequired = true;
@@ -92,7 +92,7 @@ namespace ApiSdk.Policies.AppManagementPolicies.Item.AppliesTo.Item {
         public DirectoryObjectItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/appManagementPolicies/{appManagementPolicy%2Did}/appliesTo/{directoryObject%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get appliesTo from policies
+        /// Collection of applications and service principals to which the policy is applied.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -118,7 +118,7 @@ namespace ApiSdk.Policies.AppManagementPolicies.Item.AppliesTo.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get appliesTo from policies
+        /// Collection of applications and service principals to which the policy is applied.
         /// </summary>
         public class DirectoryObjectItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

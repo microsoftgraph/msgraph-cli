@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Teams.Item.PrimaryChannel.SharedWithTeams.Item.AllowedMembers.Count;
 using ApiSdk.Teams.Item.PrimaryChannel.SharedWithTeams.Item.AllowedMembers.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Teams.Item.PrimaryChannel.SharedWithTeams.Item.AllowedMembers {
     /// <summary>
     /// Provides operations to manage the allowedMembers property of the microsoft.graph.sharedWithChannelTeamInfo entity.
@@ -45,12 +45,11 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.SharedWithTeams.Item.AllowedMembers {
             return command;
         }
         /// <summary>
-        /// Get the list of conversationMembers who can access a shared channel. This method does not return the following conversationMembers from the team:- Users with `Guest` role- Users who are externally authenticated in the tenant
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/sharedwithchannelteaminfo-list-allowedmembers?view=graph-rest-1.0" />
+        /// A collection of team members who have access to the shared channel.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the list of conversationMembers who can access a shared channel. This method does not return the following conversationMembers from the team:- Users with `Guest` role- Users who are externally authenticated in the tenant\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/sharedwithchannelteaminfo-list-allowedmembers?view=graph-rest-1.0";
+            command.Description = "A collection of team members who have access to the shared channel.";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -168,7 +167,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.SharedWithTeams.Item.AllowedMembers {
         public AllowedMembersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/primaryChannel/sharedWithTeams/{sharedWithChannelTeamInfo%2Did}/allowedMembers{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get the list of conversationMembers who can access a shared channel. This method does not return the following conversationMembers from the team:- Users with `Guest` role- Users who are externally authenticated in the tenant
+        /// A collection of team members who have access to the shared channel.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -194,7 +193,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.SharedWithTeams.Item.AllowedMembers {
             return requestInfo;
         }
         /// <summary>
-        /// Get the list of conversationMembers who can access a shared channel. This method does not return the following conversationMembers from the team:- Users with `Guest` role- Users who are externally authenticated in the tenant
+        /// A collection of team members who have access to the shared channel.
         /// </summary>
         public class AllowedMembersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

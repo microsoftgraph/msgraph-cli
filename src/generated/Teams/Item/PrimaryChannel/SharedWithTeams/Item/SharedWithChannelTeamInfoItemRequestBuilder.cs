@@ -1,19 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Teams.Item.PrimaryChannel.SharedWithTeams.Item.AllowedMembers;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Teams.Item.PrimaryChannel.SharedWithTeams.Item.Team;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Teams.Item.PrimaryChannel.SharedWithTeams.Item {
     /// <summary>
     /// Provides operations to manage the sharedWithTeams property of the microsoft.graph.channel entity.
@@ -210,6 +211,21 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.SharedWithTeams.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the team property of the microsoft.graph.teamInfo entity.
+        /// </summary>
+        public Command BuildTeamNavCommand() {
+            var command = new Command("team");
+            command.Description = "Provides operations to manage the team property of the microsoft.graph.teamInfo entity.";
+            var builder = new TeamRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>

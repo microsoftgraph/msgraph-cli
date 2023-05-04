@@ -2,21 +2,21 @@ using ApiSdk.Groups.Item.Sites.Add;
 using ApiSdk.Groups.Item.Sites.Count;
 using ApiSdk.Groups.Item.Sites.Item;
 using ApiSdk.Groups.Item.Sites.Remove;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups.Item.Sites {
     /// <summary>
     /// Provides operations to manage the sites property of the microsoft.graph.group entity.
@@ -47,12 +47,14 @@ namespace ApiSdk.Groups.Item.Sites {
             commands.Add(builder.BuildAnalyticsNavCommand());
             commands.Add(builder.BuildColumnsNavCommand());
             commands.Add(builder.BuildContentTypesNavCommand());
+            commands.Add(builder.BuildCreatedByUserNavCommand());
             commands.Add(builder.BuildDriveNavCommand());
             commands.Add(builder.BuildDrivesNavCommand());
             commands.Add(builder.BuildExternalColumnsNavCommand());
             commands.Add(builder.BuildGetActivitiesByIntervalNavCommand());
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildItemsNavCommand());
+            commands.Add(builder.BuildLastModifiedByUserNavCommand());
             commands.Add(builder.BuildListsNavCommand());
             commands.Add(builder.BuildOnenoteNavCommand());
             commands.Add(builder.BuildOperationsNavCommand());

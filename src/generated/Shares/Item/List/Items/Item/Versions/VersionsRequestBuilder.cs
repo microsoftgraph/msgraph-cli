@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Shares.Item.List.Items.Item.Versions.Count;
 using ApiSdk.Shares.Item.List.Items.Item.Versions.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Shares.Item.List.Items.Item.Versions {
     /// <summary>
     /// Provides operations to manage the versions property of the microsoft.graph.listItem entity.
@@ -113,12 +113,11 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Versions {
             return command;
         }
         /// <summary>
-        /// SharePoint can be configured to retain the history for list items. Previous versions may be retained for a finite period of time depending on admin settings which may be unique per user or location.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/listitem-list-versions?view=graph-rest-1.0" />
+        /// The list of previous versions of the list item.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "SharePoint can be configured to retain the history for list items. Previous versions may be retained for a finite period of time depending on admin settings which may be unique per user or location.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/listitem-list-versions?view=graph-rest-1.0";
+            command.Description = "The list of previous versions of the list item.";
             var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
@@ -236,7 +235,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Versions {
         public VersionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/list/items/{listItem%2Did}/versions{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// SharePoint can be configured to retain the history for list items. Previous versions may be retained for a finite period of time depending on admin settings which may be unique per user or location.
+        /// The list of previous versions of the list item.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -290,7 +289,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.Versions {
             return requestInfo;
         }
         /// <summary>
-        /// SharePoint can be configured to retain the history for list items. Previous versions may be retained for a finite period of time depending on admin settings which may be unique per user or location.
+        /// The list of previous versions of the list item.
         /// </summary>
         public class VersionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

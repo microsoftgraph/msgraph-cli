@@ -2,19 +2,19 @@ using ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Sets.I
 using ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Sets.Item.Relations.Item;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.TermStore;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Sets.Item.Relations {
     /// <summary>
     /// Provides operations to manage the relations property of the microsoft.graph.termStore.set entity.
@@ -132,12 +132,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Se
             return command;
         }
         /// <summary>
-        /// Get the different relation of a [term] or [set] from the relations navigation property.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/termstore-term-list-relations?view=graph-rest-1.0" />
+        /// Indicates which terms have been pinned or reused directly under the set.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the different relation of a [term] or [set] from the relations navigation property.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/termstore-term-list-relations?view=graph-rest-1.0";
+            command.Description = "Indicates which terms have been pinned or reused directly under the set.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -273,7 +272,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Se
         public RelationsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}/parentGroup/sets/{set%2Did1}/relations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get the different relation of a [term] or [set] from the relations navigation property.
+        /// Indicates which terms have been pinned or reused directly under the set.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -327,7 +326,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Se
             return requestInfo;
         }
         /// <summary>
-        /// Get the different relation of a [term] or [set] from the relations navigation property.
+        /// Indicates which terms have been pinned or reused directly under the set.
         /// </summary>
         public class RelationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

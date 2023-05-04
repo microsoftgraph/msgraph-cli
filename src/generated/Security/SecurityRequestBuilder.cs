@@ -1,26 +1,28 @@
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.Security;
-using ApiSdk.Security.Alerts_v2;
 using ApiSdk.Security.Alerts;
+using ApiSdk.Security.Alerts_v2;
 using ApiSdk.Security.AttackSimulation;
 using ApiSdk.Security.Cases;
 using ApiSdk.Security.Incidents;
+using ApiSdk.Security.MicrosoftGraphSecurityRunHuntingQuery;
 using ApiSdk.Security.SecureScoreControlProfiles;
 using ApiSdk.Security.SecureScores;
-using ApiSdk.Security.SecurityRunHuntingQuery;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Security.TriggerTypes;
+using ApiSdk.Security.Triggers;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Security {
     /// <summary>
     /// Provides operations to manage the security singleton.
@@ -204,6 +206,21 @@ namespace ApiSdk.Security {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the runHuntingQuery method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSecurityRunHuntingQueryNavCommand() {
+            var command = new Command("microsoft-graph-security-run-hunting-query");
+            command.Description = "Provides operations to call the runHuntingQuery method.";
+            var builder = new MicrosoftGraphSecurityRunHuntingQueryRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Update security
         /// </summary>
         public Command BuildPatchCommand() {
@@ -305,15 +322,46 @@ namespace ApiSdk.Security {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the runHuntingQuery method.
+        /// Provides operations to manage the triggers property of the microsoft.graph.security entity.
         /// </summary>
-        public Command BuildSecurityRunHuntingQueryNavCommand() {
-            var command = new Command("security-run-hunting-query");
-            command.Description = "Provides operations to call the runHuntingQuery method.";
-            var builder = new SecurityRunHuntingQueryRequestBuilder(PathParameters);
+        public Command BuildTriggersNavCommand() {
+            var command = new Command("triggers");
+            command.Description = "Provides operations to manage the triggers property of the microsoft.graph.security entity.";
+            var builder = new TriggersRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
-            execCommands.Add(builder.BuildPostCommand());
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildRetentionEventsNavCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the triggerTypes property of the microsoft.graph.security entity.
+        /// </summary>
+        public Command BuildTriggerTypesNavCommand() {
+            var command = new Command("trigger-types");
+            command.Description = "Provides operations to manage the triggerTypes property of the microsoft.graph.security entity.";
+            var builder = new TriggerTypesRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildRetentionEventTypesNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }

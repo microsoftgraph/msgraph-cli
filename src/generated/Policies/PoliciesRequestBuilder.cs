@@ -1,10 +1,11 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Policies.ActivityBasedTimeoutPolicies;
 using ApiSdk.Policies.AdminConsentRequestPolicy;
 using ApiSdk.Policies.AppManagementPolicies;
 using ApiSdk.Policies.AuthenticationFlowsPolicy;
 using ApiSdk.Policies.AuthenticationMethodsPolicy;
+using ApiSdk.Policies.AuthenticationStrengthPolicies;
 using ApiSdk.Policies.AuthorizationPolicy;
 using ApiSdk.Policies.ClaimsMappingPolicies;
 using ApiSdk.Policies.ConditionalAccessPolicies;
@@ -18,19 +19,19 @@ using ApiSdk.Policies.RoleManagementPolicies;
 using ApiSdk.Policies.RoleManagementPolicyAssignments;
 using ApiSdk.Policies.TokenIssuancePolicies;
 using ApiSdk.Policies.TokenLifetimePolicies;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Policies {
     /// <summary>
     /// Provides operations to manage the policyRoot singleton.
@@ -138,6 +139,31 @@ namespace ApiSdk.Policies {
                 command.AddCommand(cmd);
             }
             foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the authenticationStrengthPolicies property of the microsoft.graph.policyRoot entity.
+        /// </summary>
+        public Command BuildAuthenticationStrengthPoliciesNavCommand() {
+            var command = new Command("authentication-strength-policies");
+            command.Description = "Provides operations to manage the authenticationStrengthPolicies property of the microsoft.graph.policyRoot entity.";
+            var builder = new AuthenticationStrengthPoliciesRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
             {
                 command.AddCommand(cmd);
             }

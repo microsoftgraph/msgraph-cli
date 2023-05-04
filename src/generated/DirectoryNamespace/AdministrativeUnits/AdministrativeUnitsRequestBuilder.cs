@@ -1,21 +1,21 @@
 using ApiSdk.DirectoryNamespace.AdministrativeUnits.Count;
 using ApiSdk.DirectoryNamespace.AdministrativeUnits.Delta;
 using ApiSdk.DirectoryNamespace.AdministrativeUnits.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.DirectoryNamespace.AdministrativeUnits {
     /// <summary>
     /// Provides operations to manage the administrativeUnits property of the microsoft.graph.directory entity.
@@ -52,12 +52,11 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits {
             return command;
         }
         /// <summary>
-        /// Use this API to create a new administrativeUnit.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/directory-post-administrativeunits?view=graph-rest-1.0" />
+        /// Create new navigation property to administrativeUnits for directory
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to create a new administrativeUnit.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directory-post-administrativeunits?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to administrativeUnits for directory";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -119,12 +118,11 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of administrativeUnit objects.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/directory-list-administrativeunits?view=graph-rest-1.0" />
+        /// Conceptual container for user and group directory objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of administrativeUnit objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directory-list-administrativeunits?view=graph-rest-1.0";
+            command.Description = "Conceptual container for user and group directory objects.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -230,7 +228,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits {
         public AdministrativeUnitsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/administrativeUnits{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve a list of administrativeUnit objects.
+        /// Conceptual container for user and group directory objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -256,7 +254,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to create a new administrativeUnit.
+        /// Create new navigation property to administrativeUnits for directory
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -284,7 +282,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of administrativeUnit objects.
+        /// Conceptual container for user and group directory objects.
         /// </summary>
         public class AdministrativeUnitsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

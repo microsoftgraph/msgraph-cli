@@ -5,21 +5,21 @@ using ApiSdk.Devices.Item.RegisteredOwners.GraphServicePrincipal;
 using ApiSdk.Devices.Item.RegisteredOwners.GraphUser;
 using ApiSdk.Devices.Item.RegisteredOwners.Item;
 using ApiSdk.Devices.Item.RegisteredOwners.Ref;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Devices.Item.RegisteredOwners {
     /// <summary>
     /// Provides operations to manage the registeredOwners property of the microsoft.graph.device entity.
@@ -29,7 +29,13 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
         /// Gets an item from the ApiSdk.devices.item.registeredOwners.item collection
         /// </summary>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
-            return new(new(0), new(0));
+            var commands = new List<Command>();
+            var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
+            commands.Add(builder.BuildGraphAppRoleAssignmentByIdNavCommand());
+            commands.Add(builder.BuildGraphEndpointByIdNavCommand());
+            commands.Add(builder.BuildGraphServicePrincipalByIdNavCommand());
+            commands.Add(builder.BuildGraphUserByIdNavCommand());
+            return new(new(0), commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -50,8 +56,7 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
         /// Casts the previous resource to appRoleAssignment.
         /// </summary>
         public Command BuildGraphAppRoleAssignmentNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphAppRoleAssignmentNavCommand();
+            var command = new Command("graph-app-role-assignment");
             command.Description = "Casts the previous resource to appRoleAssignment.";
             var builder = new GraphAppRoleAssignmentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -72,8 +77,7 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
         /// Casts the previous resource to endpoint.
         /// </summary>
         public Command BuildGraphEndpointNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphEndpointNavCommand();
+            var command = new Command("graph-endpoint");
             command.Description = "Casts the previous resource to endpoint.";
             var builder = new GraphEndpointRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -94,8 +98,7 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
         public Command BuildGraphServicePrincipalNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphServicePrincipalNavCommand();
+            var command = new Command("graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -116,8 +119,7 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
         /// Casts the previous resource to user.
         /// </summary>
         public Command BuildGraphUserNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphUserNavCommand();
+            var command = new Command("graph-user");
             command.Description = "Casts the previous resource to user.";
             var builder = new GraphUserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -135,12 +137,11 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
             return command;
         }
         /// <summary>
-        /// The user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Currently, there can be only one owner. Read-only. Nullable. Supports $expand.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/device-list-registeredowners?view=graph-rest-1.0" />
+        /// The user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Read-only. Nullable. Supports $expand.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Currently, there can be only one owner. Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/device-list-registeredowners?view=graph-rest-1.0";
+            command.Description = "The user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Read-only. Nullable. Supports $expand.";
             var deviceIdOption = new Option<string>("--device-id", description: "The unique identifier of device") {
             };
             deviceIdOption.IsRequired = true;
@@ -276,7 +277,7 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
         public RegisteredOwnersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/devices/{device%2Did}/registeredOwners{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Currently, there can be only one owner. Read-only. Nullable. Supports $expand.
+        /// The user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Read-only. Nullable. Supports $expand.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -302,7 +303,7 @@ namespace ApiSdk.Devices.Item.RegisteredOwners {
             return requestInfo;
         }
         /// <summary>
-        /// The user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Currently, there can be only one owner. Read-only. Nullable. Supports $expand.
+        /// The user that cloud joined the device or registered their personal device. The registered owner is set at the time of registration. Read-only. Nullable. Supports $expand.
         /// </summary>
         public class RegisteredOwnersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

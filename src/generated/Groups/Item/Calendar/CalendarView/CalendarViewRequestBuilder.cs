@@ -1,21 +1,21 @@
 using ApiSdk.Groups.Item.Calendar.CalendarView.Count;
 using ApiSdk.Groups.Item.Calendar.CalendarView.Delta;
 using ApiSdk.Groups.Item.Calendar.CalendarView.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups.Item.Calendar.CalendarView {
     /// <summary>
     /// Provides operations to manage the calendarView property of the microsoft.graph.calendar entity.
@@ -76,11 +76,10 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarView {
         }
         /// <summary>
         /// The calendar view for the calendar. Navigation property. Read-only.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/calendar-list-calendarview?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The calendar view for the calendar. Navigation property. Read-only.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/calendar-list-calendarview?view=graph-rest-1.0";
+            command.Description = "The calendar view for the calendar. Navigation property. Read-only.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;

@@ -3,21 +3,21 @@ using ApiSdk.DeviceAppManagement.MobileApps.Item.Assignments;
 using ApiSdk.DeviceAppManagement.MobileApps.Item.Categories;
 using ApiSdk.DeviceAppManagement.MobileApps.Item.GraphManagedMobileLobApp;
 using ApiSdk.DeviceAppManagement.MobileApps.Item.GraphMobileLobApp;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
     /// <summary>
     /// Provides operations to manage the mobileApps property of the microsoft.graph.deviceAppManagement entity.
@@ -184,8 +184,8 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// <summary>
         /// Casts the previous resource to managedMobileLobApp.
         /// </summary>
-        public Command BuildGraphManagedMobileLobAppNavCommand() {
-            var command = new Command("graph-managed-mobile-lob-app");
+        public Command BuildGraphManagedMobileLobAppByIdNavCommand() {
+            var command = new Command("graph-managed-mobile-lob-app-by-id");
             command.Description = "Casts the previous resource to managedMobileLobApp.";
             var builder = new GraphManagedMobileLobAppRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -199,8 +199,8 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         /// <summary>
         /// Casts the previous resource to mobileLobApp.
         /// </summary>
-        public Command BuildGraphMobileLobAppNavCommand() {
-            var command = new Command("graph-mobile-lob-app");
+        public Command BuildGraphMobileLobAppByIdNavCommand() {
+            var command = new Command("graph-mobile-lob-app-by-id");
             command.Description = "Casts the previous resource to mobileLobApp.";
             var builder = new GraphMobileLobAppRequestBuilder(PathParameters);
             var execCommands = new List<Command>();

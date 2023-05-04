@@ -2,21 +2,21 @@ using ApiSdk.Education.Classes.Item.Assignments.Item.Categories.Count;
 using ApiSdk.Education.Classes.Item.Assignments.Item.Categories.Delta;
 using ApiSdk.Education.Classes.Item.Assignments.Item.Categories.Item;
 using ApiSdk.Education.Classes.Item.Assignments.Item.Categories.Ref;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Education.Classes.Item.Assignments.Item.Categories {
     /// <summary>
     /// Provides operations to manage the categories property of the microsoft.graph.educationAssignment entity.
@@ -122,12 +122,11 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Categories {
             return command;
         }
         /// <summary>
-        /// List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationassignment-list-categories?view=graph-rest-1.0" />
+        /// When set, enables users to easily find assignments of a given type.  Read-only. Nullable.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationassignment-list-categories?view=graph-rest-1.0";
+            command.Description = "When set, enables users to easily find assignments of a given type.  Read-only. Nullable.";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -262,7 +261,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Categories {
         public CategoriesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignments/{educationAssignment%2Did}/categories{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
+        /// When set, enables users to easily find assignments of a given type.  Read-only. Nullable.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -316,7 +315,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Categories {
             return requestInfo;
         }
         /// <summary>
-        /// List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
+        /// When set, enables users to easily find assignments of a given type.  Read-only. Nullable.
         /// </summary>
         public class CategoriesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

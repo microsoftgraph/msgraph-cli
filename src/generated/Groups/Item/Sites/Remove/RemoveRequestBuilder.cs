@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups.Item.Sites.Remove {
     /// <summary>
     /// Provides operations to call the remove method.
     /// </summary>
     public class RemoveRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Unfollow a user&apos;s site or multiple sites.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/site-unfollow?view=graph-rest-1.0" />
+        /// Invoke action remove
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Unfollow a user's site or multiple sites.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/site-unfollow?view=graph-rest-1.0";
+            command.Description = "Invoke action remove";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -94,7 +93,7 @@ namespace ApiSdk.Groups.Item.Sites.Remove {
         public RemoveRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/remove", pathParameters) {
         }
         /// <summary>
-        /// Unfollow a user&apos;s site or multiple sites.
+        /// Invoke action remove
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

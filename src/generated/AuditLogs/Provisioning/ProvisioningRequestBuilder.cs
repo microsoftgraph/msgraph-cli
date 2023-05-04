@@ -1,20 +1,20 @@
 using ApiSdk.AuditLogs.Provisioning.Count;
 using ApiSdk.AuditLogs.Provisioning.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.AuditLogs.Provisioning {
     /// <summary>
     /// Provides operations to manage the provisioning property of the microsoft.graph.auditLogRoot entity.
@@ -98,12 +98,11 @@ namespace ApiSdk.AuditLogs.Provisioning {
             return command;
         }
         /// <summary>
-        /// Get all provisioning events that occurred in your tenant, such as the deletion of a group in a target application or the creation of a user when provisioning user accounts from your HR system. 
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0" />
+        /// Get provisioning from auditLogs
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get all provisioning events that occurred in your tenant, such as the deletion of a group in a target application or the creation of a user when provisioning user accounts from your HR system. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0";
+            command.Description = "Get provisioning from auditLogs";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -209,7 +208,7 @@ namespace ApiSdk.AuditLogs.Provisioning {
         public ProvisioningRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/auditLogs/provisioning{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get all provisioning events that occurred in your tenant, such as the deletion of a group in a target application or the creation of a user when provisioning user accounts from your HR system. 
+        /// Get provisioning from auditLogs
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -263,7 +262,7 @@ namespace ApiSdk.AuditLogs.Provisioning {
             return requestInfo;
         }
         /// <summary>
-        /// Get all provisioning events that occurred in your tenant, such as the deletion of a group in a target application or the creation of a user when provisioning user accounts from your HR system. 
+        /// Get provisioning from auditLogs
         /// </summary>
         public class ProvisioningRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

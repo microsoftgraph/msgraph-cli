@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Print.Printers.Create {
     /// <summary>
     /// Provides operations to call the create method.
     /// </summary>
     public class CreateRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Create (register) a printer with the Universal Print service. This is a long-running operation and as such, it returns a printerCreateOperation that can be used to track and verify the registration of the printer. For help creating the required Certificate Signing Request (CSR) for creating printer, see the CSR generation code sample.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/printer-create?view=graph-rest-1.0" />
+        /// Invoke action create
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Create (register) a printer with the Universal Print service. This is a long-running operation and as such, it returns a printerCreateOperation that can be used to track and verify the registration of the printer. For help creating the required Certificate Signing Request (CSR) for creating printer, see the CSR generation code sample.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printer-create?view=graph-rest-1.0";
+            command.Description = "Invoke action create";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -55,7 +54,7 @@ namespace ApiSdk.Print.Printers.Create {
         public CreateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/printers/create", pathParameters) {
         }
         /// <summary>
-        /// Create (register) a printer with the Universal Print service. This is a long-running operation and as such, it returns a printerCreateOperation that can be used to track and verify the registration of the printer. For help creating the required Certificate Signing Request (CSR) for creating printer, see the CSR generation code sample.
+        /// Invoke action create
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class Message : OutlookItem, IParsable {
         /// <summary>The fileAttachment and itemAttachment attachments for the message.</summary>

@@ -5,21 +5,21 @@ using ApiSdk.Applications.Item.Owners.GraphServicePrincipal;
 using ApiSdk.Applications.Item.Owners.GraphUser;
 using ApiSdk.Applications.Item.Owners.Item;
 using ApiSdk.Applications.Item.Owners.Ref;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Applications.Item.Owners {
     /// <summary>
     /// Provides operations to manage the owners property of the microsoft.graph.application entity.
@@ -29,7 +29,13 @@ namespace ApiSdk.Applications.Item.Owners {
         /// Gets an item from the ApiSdk.applications.item.owners.item collection
         /// </summary>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
-            return new(new(0), new(0));
+            var commands = new List<Command>();
+            var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
+            commands.Add(builder.BuildGraphAppRoleAssignmentByIdNavCommand());
+            commands.Add(builder.BuildGraphEndpointByIdNavCommand());
+            commands.Add(builder.BuildGraphServicePrincipalByIdNavCommand());
+            commands.Add(builder.BuildGraphUserByIdNavCommand());
+            return new(new(0), commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -50,8 +56,7 @@ namespace ApiSdk.Applications.Item.Owners {
         /// Casts the previous resource to appRoleAssignment.
         /// </summary>
         public Command BuildGraphAppRoleAssignmentNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphAppRoleAssignmentNavCommand();
+            var command = new Command("graph-app-role-assignment");
             command.Description = "Casts the previous resource to appRoleAssignment.";
             var builder = new GraphAppRoleAssignmentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -72,8 +77,7 @@ namespace ApiSdk.Applications.Item.Owners {
         /// Casts the previous resource to endpoint.
         /// </summary>
         public Command BuildGraphEndpointNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphEndpointNavCommand();
+            var command = new Command("graph-endpoint");
             command.Description = "Casts the previous resource to endpoint.";
             var builder = new GraphEndpointRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -94,8 +98,7 @@ namespace ApiSdk.Applications.Item.Owners {
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
         public Command BuildGraphServicePrincipalNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphServicePrincipalNavCommand();
+            var command = new Command("graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -116,8 +119,7 @@ namespace ApiSdk.Applications.Item.Owners {
         /// Casts the previous resource to user.
         /// </summary>
         public Command BuildGraphUserNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphUserNavCommand();
+            var command = new Command("graph-user");
             command.Description = "Casts the previous resource to user.";
             var builder = new GraphUserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -136,11 +138,10 @@ namespace ApiSdk.Applications.Item.Owners {
         }
         /// <summary>
         /// Directory objects that are owners of the application. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/application-list-owners?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Directory objects that are owners of the application. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-list-owners?view=graph-rest-1.0";
+            command.Description = "Directory objects that are owners of the application. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;

@@ -1,22 +1,23 @@
 using ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences;
+using ApiSdk.Identity.ConditionalAccess.AuthenticationStrength;
 using ApiSdk.Identity.ConditionalAccess.NamedLocations;
 using ApiSdk.Identity.ConditionalAccess.Policies;
 using ApiSdk.Identity.ConditionalAccess.Templates;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Identity.ConditionalAccess {
     /// <summary>
     /// Provides operations to manage the conditionalAccess property of the microsoft.graph.identityContainer entity.
@@ -42,6 +43,30 @@ namespace ApiSdk.Identity.ConditionalAccess {
                 command.AddCommand(cmd);
             }
             foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the authenticationStrength property of the microsoft.graph.conditionalAccessRoot entity.
+        /// </summary>
+        public Command BuildAuthenticationStrengthNavCommand() {
+            var command = new Command("authentication-strength");
+            command.Description = "Provides operations to manage the authenticationStrength property of the microsoft.graph.conditionalAccessRoot entity.";
+            var builder = new AuthenticationStrengthRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAuthenticationMethodModesNavCommand());
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildPoliciesNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }

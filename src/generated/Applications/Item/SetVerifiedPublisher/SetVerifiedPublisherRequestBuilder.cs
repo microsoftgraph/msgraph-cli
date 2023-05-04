@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Applications.Item.SetVerifiedPublisher {
     /// <summary>
     /// Provides operations to call the setVerifiedPublisher method.
     /// </summary>
     public class SetVerifiedPublisherRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Set the verifiedPublisher on an application. For more information, including prerequisites to setting a verified publisher, see Publisher verification.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/application-setverifiedpublisher?view=graph-rest-1.0" />
+        /// Invoke action setVerifiedPublisher
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Set the verifiedPublisher on an application. For more information, including prerequisites to setting a verified publisher, see Publisher verification.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-setverifiedpublisher?view=graph-rest-1.0";
+            command.Description = "Invoke action setVerifiedPublisher";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -61,7 +60,7 @@ namespace ApiSdk.Applications.Item.SetVerifiedPublisher {
         public SetVerifiedPublisherRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/setVerifiedPublisher", pathParameters) {
         }
         /// <summary>
-        /// Set the verifiedPublisher on an application. For more information, including prerequisites to setting a verified publisher, see Publisher verification.
+        /// Invoke action setVerifiedPublisher
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

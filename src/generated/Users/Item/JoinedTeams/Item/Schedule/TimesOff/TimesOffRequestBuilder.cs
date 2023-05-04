@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimesOff.Count;
 using ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimesOff.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimesOff {
     /// <summary>
     /// Provides operations to manage the timesOff property of the microsoft.graph.schedule entity.
@@ -47,12 +47,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimesOff {
             return command;
         }
         /// <summary>
-        /// Create a new timeOff instance in a schedule.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/schedule-post-timesoff?view=graph-rest-1.0" />
+        /// Create new navigation property to timesOff for users
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new timeOff instance in a schedule.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/schedule-post-timesoff?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to timesOff for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -111,12 +110,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimesOff {
             return command;
         }
         /// <summary>
-        /// Get the list of timeOff instances in a schedule.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/schedule-list-timesoff?view=graph-rest-1.0" />
+        /// The instances of times off in the schedule.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the list of timeOff instances in a schedule.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/schedule-list-timesoff?view=graph-rest-1.0";
+            command.Description = "The instances of times off in the schedule.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -227,7 +225,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimesOff {
         public TimesOffRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/schedule/timesOff{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Get the list of timeOff instances in a schedule.
+        /// The instances of times off in the schedule.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -253,7 +251,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimesOff {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new timeOff instance in a schedule.
+        /// Create new navigation property to timesOff for users
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -281,7 +279,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimesOff {
             return requestInfo;
         }
         /// <summary>
-        /// Get the list of timeOff instances in a schedule.
+        /// The instances of times off in the schedule.
         /// </summary>
         public class TimesOffRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

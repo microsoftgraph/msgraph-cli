@@ -1,24 +1,24 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Count;
 using ApiSdk.Users.Delta;
 using ApiSdk.Users.GetAvailableExtensionProperties;
 using ApiSdk.Users.GetByIds;
 using ApiSdk.Users.Item;
 using ApiSdk.Users.ValidateProperties;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users {
     /// <summary>
     /// Provides operations to manage the collection of user entities.
@@ -69,6 +69,7 @@ namespace ApiSdk.Users {
             commands.Add(builder.BuildInsightsNavCommand());
             commands.Add(builder.BuildJoinedTeamsNavCommand());
             commands.Add(builder.BuildLicenseDetailsNavCommand());
+            commands.Add(builder.BuildMailboxSettingsNavCommand());
             commands.Add(builder.BuildMailFoldersNavCommand());
             commands.Add(builder.BuildManagedAppRegistrationsNavCommand());
             commands.Add(builder.BuildManagedDevicesNavCommand());

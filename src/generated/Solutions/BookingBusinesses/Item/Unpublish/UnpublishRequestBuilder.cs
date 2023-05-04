@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Solutions.BookingBusinesses.Item.Unpublish {
     /// <summary>
     /// Provides operations to call the unpublish method.
     /// </summary>
     public class UnpublishRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Make the scheduling page of this business not available to external customers. Set the **isPublished** property to `false`, and the **publicUrl** property to `null`.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/bookingbusiness-unpublish?view=graph-rest-1.0" />
+        /// Prevents the general public from seeing the scheduling page of this business.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Make the scheduling page of this business not available to external customers. Set the **isPublished** property to `false`, and the **publicUrl** property to `null`.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bookingbusiness-unpublish?view=graph-rest-1.0";
+            command.Description = "Prevents the general public from seeing the scheduling page of this business.";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -51,7 +50,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Unpublish {
         public UnpublishRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/unpublish", pathParameters) {
         }
         /// <summary>
-        /// Make the scheduling page of this business not available to external customers. Set the **isPublished** property to `false`, and the **publicUrl** property to `null`.
+        /// Prevents the general public from seeing the scheduling page of this business.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

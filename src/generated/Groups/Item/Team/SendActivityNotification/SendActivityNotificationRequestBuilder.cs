@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups.Item.Team.SendActivityNotification {
     /// <summary>
     /// Provides operations to call the sendActivityNotification method.
     /// </summary>
     public class SendActivityNotificationRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Send an activity feed notification in the scope of a team. For more details about sending notifications and the requirements for doing so, seesending Teams activity notifications.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/team-sendactivitynotification?view=graph-rest-1.0" />
+        /// Invoke action sendActivityNotification
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Send an activity feed notification in the scope of a team. For more details about sending notifications and the requirements for doing so, seesending Teams activity notifications.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-sendactivitynotification?view=graph-rest-1.0";
+            command.Description = "Invoke action sendActivityNotification";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -61,7 +60,7 @@ namespace ApiSdk.Groups.Item.Team.SendActivityNotification {
         public SendActivityNotificationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/sendActivityNotification", pathParameters) {
         }
         /// <summary>
-        /// Send an activity feed notification in the scope of a team. For more details about sending notifications and the requirements for doing so, seesending Teams activity notifications.
+        /// Invoke action sendActivityNotification
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

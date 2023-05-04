@@ -1,20 +1,20 @@
 using ApiSdk.Groups.Item.Onenote.Notebooks.Item.SectionGroups.Item.SectionGroups.Count;
 using ApiSdk.Groups.Item.Onenote.Notebooks.Item.SectionGroups.Item.SectionGroups.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.SectionGroups.Item.SectionGroups {
     /// <summary>
     /// Provides operations to manage the sectionGroups property of the microsoft.graph.sectionGroup entity.
@@ -45,12 +45,11 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.SectionGroups.Item.SectionGr
             return command;
         }
         /// <summary>
-        /// Retrieve a list of section groups from the specified section group.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/sectiongroup-list-sectiongroups?view=graph-rest-1.0" />
+        /// The section groups in the section. Read-only. Nullable.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of section groups from the specified section group.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/sectiongroup-list-sectiongroups?view=graph-rest-1.0";
+            command.Description = "The section groups in the section. Read-only. Nullable.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -174,7 +173,7 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.SectionGroups.Item.SectionGr
         public SectionGroupsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/onenote/notebooks/{notebook%2Did}/sectionGroups/{sectionGroup%2Did}/sectionGroups{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve a list of section groups from the specified section group.
+        /// The section groups in the section. Read-only. Nullable.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -200,7 +199,7 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.Item.SectionGroups.Item.SectionGr
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of section groups from the specified section group.
+        /// The section groups in the section. Read-only. Nullable.
         /// </summary>
         public class SectionGroupsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

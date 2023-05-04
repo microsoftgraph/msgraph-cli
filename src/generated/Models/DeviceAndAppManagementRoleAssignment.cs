@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class DeviceAndAppManagementRoleAssignment : RoleAssignment, IParsable {
         /// <summary>The list of ids of role member security groups. These are IDs from Azure Active Directory.</summary>

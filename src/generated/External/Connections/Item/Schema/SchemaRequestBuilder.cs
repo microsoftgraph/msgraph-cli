@@ -1,18 +1,18 @@
 using ApiSdk.Models.ExternalConnectors;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.External.Connections.Item.Schema {
     /// <summary>
     /// Provides operations to manage the schema property of the microsoft.graph.externalConnectors.externalConnection entity.
@@ -52,12 +52,11 @@ namespace ApiSdk.External.Connections.Item.Schema {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a schema object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/externalconnectors-schema-get?view=graph-rest-1.0" />
+        /// Get schema from external
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a schema object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/externalconnectors-schema-get?view=graph-rest-1.0";
+            command.Description = "Get schema from external";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -202,7 +201,7 @@ namespace ApiSdk.External.Connections.Item.Schema {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a schema object.
+        /// Get schema from external
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -256,7 +255,7 @@ namespace ApiSdk.External.Connections.Item.Schema {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a schema object.
+        /// Get schema from external
         /// </summary>
         public class SchemaRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

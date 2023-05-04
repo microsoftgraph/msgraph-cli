@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class Subscription : Entity, IParsable {
         /// <summary>Optional. Identifier of the application used to create the subscription. Read-only.</summary>
@@ -81,7 +81,7 @@ namespace ApiSdk.Models {
 #else
         public string NotificationQueryOptions { get; set; }
 #endif
-        /// <summary>Required. The URL of the endpoint that will receive the change notifications. This URL must make use of the HTTPS protocol.</summary>
+        /// <summary>Required. The URL of the endpoint that will receive the change notifications. This URL must make use of the HTTPS protocol. Any query string parameter included in the notificationUrl property will be included in the HTTP POST request when Microsoft Graph sends the change notifications.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? NotificationUrl { get; set; }

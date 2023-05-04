@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class ConditionalAccessTemplate : Entity, IParsable {
         /// <summary>The user-friendly name of the template.</summary>

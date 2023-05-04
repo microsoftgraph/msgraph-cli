@@ -1,30 +1,29 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.ApplicationTemplates.Item.Instantiate {
     /// <summary>
     /// Provides operations to call the instantiate method.
     /// </summary>
     public class InstantiateRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Add an instance of an application from the Azure AD application gallery into your directory. You can also use this API to instantiate non-gallery apps. Use the following ID for the **applicationTemplate** object: `8adf8e6e-67b2-4cf2-a259-e3dc5476c621`.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/applicationtemplate-instantiate?view=graph-rest-1.0" />
+        /// Invoke action instantiate
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Add an instance of an application from the Azure AD application gallery into your directory. You can also use this API to instantiate non-gallery apps. Use the following ID for the **applicationTemplate** object: `8adf8e6e-67b2-4cf2-a259-e3dc5476c621`.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/applicationtemplate-instantiate?view=graph-rest-1.0";
+            command.Description = "Invoke action instantiate";
             var applicationTemplateIdOption = new Option<string>("--application-template-id", description: "The unique identifier of applicationTemplate") {
             };
             applicationTemplateIdOption.IsRequired = true;
@@ -83,7 +82,7 @@ namespace ApiSdk.ApplicationTemplates.Item.Instantiate {
         public InstantiateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applicationTemplates/{applicationTemplate%2Did}/instantiate", pathParameters) {
         }
         /// <summary>
-        /// Add an instance of an application from the Azure AD application gallery into your directory. You can also use this API to instantiate non-gallery apps. Use the following ID for the **applicationTemplate** object: `8adf8e6e-67b2-4cf2-a259-e3dc5476c621`.
+        /// Invoke action instantiate
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

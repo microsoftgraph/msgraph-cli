@@ -1,5 +1,5 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.AssociateWithHubSites;
 using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Base;
 using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.BaseTypes;
@@ -10,19 +10,19 @@ using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.CopyToDefaultContentLocatio
 using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.IsPublished;
 using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Publish;
 using ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Unpublish;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item {
     /// <summary>
     /// Provides operations to manage the contentTypes property of the microsoft.graph.list entity.

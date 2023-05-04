@@ -1,30 +1,29 @@
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.Security;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.LastEstimateStatisticsOperation {
     /// <summary>
     /// Provides operations to manage the lastEstimateStatisticsOperation property of the microsoft.graph.security.ediscoverySearch entity.
     /// </summary>
     public class LastEstimateStatisticsOperationRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Get the last  ediscoveryEstimateOperation objects and their properties.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoverysearch-list-lastestimatestatisticsoperation?view=graph-rest-1.0" />
+        /// The last estimate operation associated with the eDiscovery search.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the last  ediscoveryEstimateOperation objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverysearch-list-lastestimatestatisticsoperation?view=graph-rest-1.0";
+            command.Description = "The last estimate operation associated with the eDiscovery search.";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -93,7 +92,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.LastEstimateS
         public LastEstimateStatisticsOperationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/searches/{ediscoverySearch%2Did}/lastEstimateStatisticsOperation{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get the last  ediscoveryEstimateOperation objects and their properties.
+        /// The last estimate operation associated with the eDiscovery search.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -119,7 +118,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.LastEstimateS
             return requestInfo;
         }
         /// <summary>
-        /// Get the last  ediscoveryEstimateOperation objects and their properties.
+        /// The last estimate operation associated with the eDiscovery search.
         /// </summary>
         public class LastEstimateStatisticsOperationRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -1,14 +1,14 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class TeamworkConversationIdentity : Identity, IParsable {
         /// <summary>Type of conversation. Possible values are: team, channel, chat, and unknownFutureValue.</summary>
         public TeamworkConversationIdentityType? ConversationIdentityType { get; set; }
         /// <summary>
-        /// Instantiates a new teamworkConversationIdentity and sets the default values.
+        /// Instantiates a new TeamworkConversationIdentity and sets the default values.
         /// </summary>
         public TeamworkConversationIdentity() : base() {
             OdataType = "#microsoft.graph.teamworkConversationIdentity";

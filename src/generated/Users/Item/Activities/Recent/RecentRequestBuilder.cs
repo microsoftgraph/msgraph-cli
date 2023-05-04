@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.Activities.Recent {
     /// <summary>
     /// Provides operations to call the recent method.
     /// </summary>
     public class RecentRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Get recent activities for a given user. This OData function has some default behaviors included to make it operate like a &apos;most recently used&apos; API. The service will query for the most recent historyItems, and then pull those related activities. Activities will be sorted according to the most recent **lastModified** on the **historyItem**. This means that activities without **historyItems** will not be included in the response. The UserActivity.ReadWrite.CreatedByApp permission will also apply extra filtering to the response, so that only activities created by your application are returned. This server-side filtering might result in empty pages if the user is particularly active and other applications have created more recent activities. To get your application&apos;s activities, use the **nextLink** property to paginate.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/projectrome-get-recent-activities?view=graph-rest-1.0" />
+        /// Invoke function recent
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get recent activities for a given user. This OData function has some default behaviors included to make it operate like a 'most recently used' API. The service will query for the most recent historyItems, and then pull those related activities. Activities will be sorted according to the most recent **lastModified** on the **historyItem**. This means that activities without **historyItems** will not be included in the response. The UserActivity.ReadWrite.CreatedByApp permission will also apply extra filtering to the response, so that only activities created by your application are returned. This server-side filtering might result in empty pages if the user is particularly active and other applications have created more recent activities. To get your application's activities, use the **nextLink** property to paginate.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/projectrome-get-recent-activities?view=graph-rest-1.0";
+            command.Description = "Invoke function recent";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -128,7 +127,7 @@ namespace ApiSdk.Users.Item.Activities.Recent {
         public RecentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/activities/recent(){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", pathParameters) {
         }
         /// <summary>
-        /// Get recent activities for a given user. This OData function has some default behaviors included to make it operate like a &apos;most recently used&apos; API. The service will query for the most recent historyItems, and then pull those related activities. Activities will be sorted according to the most recent **lastModified** on the **historyItem**. This means that activities without **historyItems** will not be included in the response. The UserActivity.ReadWrite.CreatedByApp permission will also apply extra filtering to the response, so that only activities created by your application are returned. This server-side filtering might result in empty pages if the user is particularly active and other applications have created more recent activities. To get your application&apos;s activities, use the **nextLink** property to paginate.
+        /// Invoke function recent
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -154,7 +153,7 @@ namespace ApiSdk.Users.Item.Activities.Recent {
             return requestInfo;
         }
         /// <summary>
-        /// Get recent activities for a given user. This OData function has some default behaviors included to make it operate like a &apos;most recently used&apos; API. The service will query for the most recent historyItems, and then pull those related activities. Activities will be sorted according to the most recent **lastModified** on the **historyItem**. This means that activities without **historyItems** will not be included in the response. The UserActivity.ReadWrite.CreatedByApp permission will also apply extra filtering to the response, so that only activities created by your application are returned. This server-side filtering might result in empty pages if the user is particularly active and other applications have created more recent activities. To get your application&apos;s activities, use the **nextLink** property to paginate.
+        /// Invoke function recent
         /// </summary>
         public class RecentRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

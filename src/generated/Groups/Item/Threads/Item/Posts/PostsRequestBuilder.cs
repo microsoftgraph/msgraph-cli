@@ -1,20 +1,20 @@
 using ApiSdk.Groups.Item.Threads.Item.Posts.Count;
 using ApiSdk.Groups.Item.Threads.Item.Posts.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups.Item.Threads.Item.Posts {
     /// <summary>
     /// Provides operations to manage the posts property of the microsoft.graph.conversationThread entity.
@@ -53,12 +53,11 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts {
             return command;
         }
         /// <summary>
-        /// Get the properties and relationships of a post in a specified thread. You can specify both the parent conversation and the thread, or, you can specify the thread without referencing the parent conversation. Since the **post** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **post** instance.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/post-get?view=graph-rest-1.0" />
+        /// Get posts from groups
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the properties and relationships of a post in a specified thread. You can specify both the parent conversation and the thread, or, you can specify the thread without referencing the parent conversation. Since the **post** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **post** instance.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/post-get?view=graph-rest-1.0";
+            command.Description = "Get posts from groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -170,7 +169,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts {
         public PostsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/threads/{conversationThread%2Did}/posts{?%24top,%24skip,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get the properties and relationships of a post in a specified thread. You can specify both the parent conversation and the thread, or, you can specify the thread without referencing the parent conversation. Since the **post** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **post** instance.
+        /// Get posts from groups
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -196,7 +195,7 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts {
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of a post in a specified thread. You can specify both the parent conversation and the thread, or, you can specify the thread without referencing the parent conversation. Since the **post** resource supports extensions, you can also use the `GET` operation to get custom properties and extension data in a **post** instance.
+        /// Get posts from groups
         /// </summary>
         public class PostsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -1,5 +1,5 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.Calendars.Item.Events.Item.Accept;
 using ApiSdk.Users.Item.Calendars.Item.Events.Item.Attachments;
 using ApiSdk.Users.Item.Calendars.Item.Events.Item.Calendar;
@@ -13,19 +13,19 @@ using ApiSdk.Users.Item.Calendars.Item.Events.Item.MultiValueExtendedProperties;
 using ApiSdk.Users.Item.Calendars.Item.Events.Item.SingleValueExtendedProperties;
 using ApiSdk.Users.Item.Calendars.Item.Events.Item.SnoozeReminder;
 using ApiSdk.Users.Item.Calendars.Item.Events.Item.TentativelyAccept;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.Calendars.Item.Events.Item {
     /// <summary>
     /// Provides operations to manage the events property of the microsoft.graph.calendar entity.
@@ -240,6 +240,11 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item {
             };
             selectOption.IsRequired = false;
             command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
             var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
                 IsRequired = true
             };
@@ -258,6 +263,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item {
                 var calendarId = invocationContext.ParseResult.GetValueForOption(calendarIdOption);
                 var eventId = invocationContext.ParseResult.GetValueForOption(eventIdOption);
                 var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
@@ -267,6 +273,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item {
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
+                    q.QueryParameters.Expand = expand;
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (calendarId is not null) requestInfo.PathParameters.Add("calendar%2Did", calendarId);
@@ -461,7 +468,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item {
         /// Instantiates a new EventItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public EventItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendars/{calendar%2Did}/events/{event%2Did}{?%24select}", pathParameters) {
+        public EventItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendars/{calendar%2Did}/events/{event%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Delete navigation property events for users
@@ -546,6 +553,16 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item {
         /// The events in the calendar. Navigation property. Read-only.
         /// </summary>
         public class EventItemRequestBuilderGetQueryParameters {
+            /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
+            [QueryParameter("%24expand")]
+            public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -1,20 +1,20 @@
 using ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Count;
 using ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections {
     /// <summary>
     /// Provides operations to manage the androidManagedAppProtections property of the microsoft.graph.deviceAppManagement entity.
@@ -28,6 +28,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections {
             var commands = new List<Command>();
             var builder = new AndroidManagedAppProtectionItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildAppsNavCommand());
+            commands.Add(builder.BuildAssignmentsNavCommand());
             executables.Add(builder.BuildDeleteCommand());
             commands.Add(builder.BuildDeploymentSummaryNavCommand());
             executables.Add(builder.BuildGetCommand());

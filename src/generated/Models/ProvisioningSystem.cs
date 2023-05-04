@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class ProvisioningSystem : Identity, IParsable {
         /// <summary>Details of the system.</summary>
@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         public DetailsInfo Details { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new ProvisioningSystem and sets the default values.
+        /// Instantiates a new provisioningSystem and sets the default values.
         /// </summary>
         public ProvisioningSystem() : base() {
             OdataType = "#microsoft.graph.provisioningSystem";

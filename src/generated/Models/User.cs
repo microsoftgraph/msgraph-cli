@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class User : DirectoryObject, IParsable {
         /// <summary>A freeform text entry field for the user to describe themselves. Returned only on $select.</summary>
@@ -791,6 +791,14 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Do not use in Microsoft Graph. Manage this property through the Microsoft 365 admin center instead. Represents whether the user should be included in the Outlook global address list. See Known issue.</summary>
         public bool? ShowInAddressList { get; set; }
+        /// <summary>Get the last signed-in date and request ID of the sign-in for a given user. Read-only.Returned only on $select. Supports $filter (eq, ne, not, ge, le) but not with any other filterable properties. Note: Details for this property require an Azure AD Premium P1/P2 license and the AuditLog.Read.All permission.When you specify $select=signInActivity or $filter=signInActivity while listing users, the maximum page size is 120 users. Requests with $top set higher than 120 will return pages with up to 120 users. This property is not returned for a user who has never signed in or last signed in before April 2020.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.SignInActivity? SignInActivity { get; set; }
+#nullable restore
+#else
+        public ApiSdk.Models.SignInActivity SignInActivity { get; set; }
+#endif
         /// <summary>Any refresh tokens or sessions tokens (session cookies) issued before this time are invalid, and applications will get an error when using an invalid refresh or sessions token to acquire a delegated access token (to access APIs such as Microsoft Graph).  If this happens, the application will need to acquire a new refresh token by making a request to the authorize endpoint. Read-only. Use revokeSignInSessions to reset. Returned only on $select.</summary>
         public DateTimeOffset? SignInSessionsValidFromDateTime { get; set; }
         /// <summary>A list for the user to enumerate their skills. Returned only on $select.</summary>
@@ -1000,6 +1008,7 @@ namespace ApiSdk.Models {
                 {"securityIdentifier", n => { SecurityIdentifier = n.GetStringValue(); } },
                 {"settings", n => { Settings = n.GetObjectValue<UserSettings>(UserSettings.CreateFromDiscriminatorValue); } },
                 {"showInAddressList", n => { ShowInAddressList = n.GetBoolValue(); } },
+                {"signInActivity", n => { SignInActivity = n.GetObjectValue<ApiSdk.Models.SignInActivity>(ApiSdk.Models.SignInActivity.CreateFromDiscriminatorValue); } },
                 {"signInSessionsValidFromDateTime", n => { SignInSessionsValidFromDateTime = n.GetDateTimeOffsetValue(); } },
                 {"skills", n => { Skills = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"state", n => { State = n.GetStringValue(); } },
@@ -1128,6 +1137,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("securityIdentifier", SecurityIdentifier);
             writer.WriteObjectValue<UserSettings>("settings", Settings);
             writer.WriteBoolValue("showInAddressList", ShowInAddressList);
+            writer.WriteObjectValue<ApiSdk.Models.SignInActivity>("signInActivity", SignInActivity);
             writer.WriteDateTimeOffsetValue("signInSessionsValidFromDateTime", SignInSessionsValidFromDateTime);
             writer.WriteCollectionOfPrimitiveValues<string>("skills", Skills);
             writer.WriteStringValue("state", State);

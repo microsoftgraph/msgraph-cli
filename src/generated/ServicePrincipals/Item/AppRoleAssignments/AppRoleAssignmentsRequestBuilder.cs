@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.ServicePrincipals.Item.AppRoleAssignments.Count;
 using ApiSdk.ServicePrincipals.Item.AppRoleAssignments.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments {
     /// <summary>
     /// Provides operations to manage the appRoleAssignments property of the microsoft.graph.servicePrincipal entity.
@@ -47,12 +47,11 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments {
             return command;
         }
         /// <summary>
-        /// Assign an app role to a client service principal. App roles that are assigned to service principals are also known as application permissions. Application permissions can be granted directly with app role assignments, or through a consent experience. To grant an app role assignment to a client service principal, you need three identifiers:
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/serviceprincipal-post-approleassignments?view=graph-rest-1.0" />
+        /// Create new navigation property to appRoleAssignments for servicePrincipals
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Assign an app role to a client service principal. App roles that are assigned to service principals are also known as application permissions. Application permissions can be granted directly with app role assignments, or through a consent experience. To grant an app role assignment to a client service principal, you need three identifiers:\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-post-approleassignments?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to appRoleAssignments for servicePrincipals";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -106,11 +105,10 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments {
         }
         /// <summary>
         /// App role assignment for another app or service, granted to this service principal. Supports $expand.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "App role assignment for another app or service, granted to this service principal. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0";
+            command.Description = "App role assignment for another app or service, granted to this service principal. Supports $expand.";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -255,7 +253,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments {
             return requestInfo;
         }
         /// <summary>
-        /// Assign an app role to a client service principal. App roles that are assigned to service principals are also known as application permissions. Application permissions can be granted directly with app role assignments, or through a consent experience. To grant an app role assignment to a client service principal, you need three identifiers:
+        /// Create new navigation property to appRoleAssignments for servicePrincipals
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

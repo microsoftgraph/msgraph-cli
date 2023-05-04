@@ -2,21 +2,21 @@ using ApiSdk.DeviceAppManagement.MobileApps.Count;
 using ApiSdk.DeviceAppManagement.MobileApps.GraphManagedMobileLobApp;
 using ApiSdk.DeviceAppManagement.MobileApps.GraphMobileLobApp;
 using ApiSdk.DeviceAppManagement.MobileApps.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.DeviceAppManagement.MobileApps {
     /// <summary>
     /// Provides operations to manage the mobileApps property of the microsoft.graph.deviceAppManagement entity.
@@ -34,6 +34,8 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
             commands.Add(builder.BuildCategoriesNavCommand());
             executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildGraphManagedMobileLobAppByIdNavCommand());
+            commands.Add(builder.BuildGraphMobileLobAppByIdNavCommand());
             executables.Add(builder.BuildPatchCommand());
             return new(executables, commands);
         }
@@ -107,8 +109,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
         /// Casts the previous resource to managedMobileLobApp.
         /// </summary>
         public Command BuildGraphManagedMobileLobAppNavCommand() {
-            var mobileAppIndexer = new MobileAppItemRequestBuilder(PathParameters);
-            var command = mobileAppIndexer.BuildGraphManagedMobileLobAppNavCommand();
+            var command = new Command("graph-managed-mobile-lob-app");
             command.Description = "Casts the previous resource to managedMobileLobApp.";
             var builder = new GraphManagedMobileLobAppRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -129,8 +130,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
         /// Casts the previous resource to mobileLobApp.
         /// </summary>
         public Command BuildGraphMobileLobAppNavCommand() {
-            var mobileAppIndexer = new MobileAppItemRequestBuilder(PathParameters);
-            var command = mobileAppIndexer.BuildGraphMobileLobAppNavCommand();
+            var command = new Command("graph-mobile-lob-app");
             command.Description = "Casts the previous resource to mobileLobApp.";
             var builder = new GraphMobileLobAppRequestBuilder(PathParameters);
             var execCommands = new List<Command>();

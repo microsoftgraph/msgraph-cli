@@ -1,20 +1,20 @@
 using ApiSdk.Identity.ApiConnectors.Count;
 using ApiSdk.Identity.ApiConnectors.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Identity.ApiConnectors {
     /// <summary>
     /// Provides operations to manage the apiConnectors property of the microsoft.graph.identityContainer entity.
@@ -49,12 +49,11 @@ namespace ApiSdk.Identity.ApiConnectors {
             return command;
         }
         /// <summary>
-        /// Create a new identityApiConnector object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/identityapiconnector-create?view=graph-rest-1.0" />
+        /// Create new navigation property to apiConnectors for identity
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new identityApiConnector object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/identityapiconnector-create?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to apiConnectors for identity";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -101,12 +100,11 @@ namespace ApiSdk.Identity.ApiConnectors {
             return command;
         }
         /// <summary>
-        /// Read the properties of an identityApiConnector object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/identityapiconnector-list?view=graph-rest-1.0" />
+        /// Represents entry point for API connectors.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read the properties of an identityApiConnector object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/identityapiconnector-list?view=graph-rest-1.0";
+            command.Description = "Represents entry point for API connectors.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -212,7 +210,7 @@ namespace ApiSdk.Identity.ApiConnectors {
         public ApiConnectorsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/apiConnectors{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Read the properties of an identityApiConnector object.
+        /// Represents entry point for API connectors.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -238,7 +236,7 @@ namespace ApiSdk.Identity.ApiConnectors {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new identityApiConnector object.
+        /// Create new navigation property to apiConnectors for identity
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -266,7 +264,7 @@ namespace ApiSdk.Identity.ApiConnectors {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties of an identityApiConnector object.
+        /// Represents entry point for API connectors.
         /// </summary>
         public class ApiConnectorsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -1,21 +1,21 @@
 using ApiSdk.Applications.Item.AppManagementPolicies.Count;
 using ApiSdk.Applications.Item.AppManagementPolicies.Item;
 using ApiSdk.Applications.Item.AppManagementPolicies.Ref;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Applications.Item.AppManagementPolicies {
     /// <summary>
     /// Provides operations to manage the appManagementPolicies property of the microsoft.graph.application entity.
@@ -43,11 +43,11 @@ namespace ApiSdk.Applications.Item.AppManagementPolicies {
             return command;
         }
         /// <summary>
-        /// Get appManagementPolicies from applications
+        /// The appManagementPolicy applied to this application.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get appManagementPolicies from applications";
+            command.Description = "The appManagementPolicy applied to this application.";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -176,7 +176,7 @@ namespace ApiSdk.Applications.Item.AppManagementPolicies {
         public AppManagementPoliciesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/appManagementPolicies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get appManagementPolicies from applications
+        /// The appManagementPolicy applied to this application.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -202,7 +202,7 @@ namespace ApiSdk.Applications.Item.AppManagementPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Get appManagementPolicies from applications
+        /// The appManagementPolicy applied to this application.
         /// </summary>
         public class AppManagementPoliciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

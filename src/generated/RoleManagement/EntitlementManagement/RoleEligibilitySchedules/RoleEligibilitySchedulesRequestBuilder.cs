@@ -1,21 +1,21 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.Count;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.FilterByCurrentUserWithOn;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules {
     /// <summary>
     /// Provides operations to manage the roleEligibilitySchedules property of the microsoft.graph.rbacApplication entity.
@@ -26,11 +26,16 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules {
         /// </summary>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
+            var commands = new List<Command>();
             var builder = new UnifiedRoleEligibilityScheduleItemRequestBuilder(PathParameters);
+            commands.Add(builder.BuildAppScopeNavCommand());
             executables.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildDirectoryScopeNavCommand());
             executables.Add(builder.BuildGetCommand());
             executables.Add(builder.BuildPatchCommand());
-            return new(executables, new(0));
+            commands.Add(builder.BuildPrincipalNavCommand());
+            commands.Add(builder.BuildRoleDefinitionNavCommand());
+            return new(executables, commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -99,12 +104,11 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules {
             return command;
         }
         /// <summary>
-        /// Get the unifiedRoleEligibilitySchedule resources from the roleEligibilitySchedules navigation property.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/rbacapplication-list-roleeligibilityschedules?view=graph-rest-1.0" />
+        /// Schedules for role eligibility operations.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the unifiedRoleEligibilitySchedule resources from the roleEligibilitySchedules navigation property.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/rbacapplication-list-roleeligibilityschedules?view=graph-rest-1.0";
+            command.Description = "Schedules for role eligibility operations.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -210,7 +214,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules {
         public RoleEligibilitySchedulesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/entitlementManagement/roleEligibilitySchedules{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get the unifiedRoleEligibilitySchedule resources from the roleEligibilitySchedules navigation property.
+        /// Schedules for role eligibility operations.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -264,7 +268,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules {
             return requestInfo;
         }
         /// <summary>
-        /// Get the unifiedRoleEligibilitySchedule resources from the roleEligibilitySchedules navigation property.
+        /// Schedules for role eligibility operations.
         /// </summary>
         public class RoleEligibilitySchedulesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

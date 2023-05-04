@@ -7,21 +7,21 @@ using ApiSdk.Contacts.Item.Manager;
 using ApiSdk.Contacts.Item.MemberOf;
 using ApiSdk.Contacts.Item.Restore;
 using ApiSdk.Contacts.Item.TransitiveMemberOf;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Contacts.Item {
     /// <summary>
     /// Provides operations to manage the collection of orgContact entities.
@@ -233,6 +233,7 @@ namespace ApiSdk.Contacts.Item {
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
+            nonExecCommands.Add(builder.BuildGraphAdministrativeUnitNavCommand());
             nonExecCommands.Add(builder.BuildGraphGroupNavCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
@@ -330,6 +331,7 @@ namespace ApiSdk.Contacts.Item {
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
+            nonExecCommands.Add(builder.BuildGraphAdministrativeUnitNavCommand());
             nonExecCommands.Add(builder.BuildGraphGroupNavCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();

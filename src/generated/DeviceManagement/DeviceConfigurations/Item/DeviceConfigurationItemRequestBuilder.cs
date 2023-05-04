@@ -1,26 +1,26 @@
 using ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assign;
 using ApiSdk.DeviceManagement.DeviceConfigurations.Item.Assignments;
 using ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceSettingStateSummaries;
-using ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses;
 using ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatusOverview;
+using ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses;
 using ApiSdk.DeviceManagement.DeviceConfigurations.Item.GetOmaSettingPlainTextValueWithSecretReferenceValueId;
-using ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatuses;
 using ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatusOverview;
-using ApiSdk.Models;
+using ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatuses;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
     /// <summary>
     /// Provides operations to manage the deviceConfigurations property of the microsoft.graph.deviceManagement entity.

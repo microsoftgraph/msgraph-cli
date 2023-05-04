@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class SearchQuery : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -22,6 +22,14 @@ namespace ApiSdk.Models {
 #nullable restore
 #else
         public string QueryString { get; set; }
+#endif
+        /// <summary>Provides a way to decorate the query string. Supports both KQL and query variables. Optional.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? QueryTemplate { get; set; }
+#nullable restore
+#else
+        public string QueryTemplate { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new searchQuery and sets the default values.
@@ -44,6 +52,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"queryString", n => { QueryString = n.GetStringValue(); } },
+                {"queryTemplate", n => { QueryTemplate = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -54,6 +63,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteStringValue("queryString", QueryString);
+            writer.WriteStringValue("queryTemplate", QueryTemplate);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

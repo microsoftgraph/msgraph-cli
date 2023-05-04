@@ -1,21 +1,21 @@
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.Count;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.Item;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.RefreshAll;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables {
     /// <summary>
     /// Provides operations to manage the pivotTables property of the microsoft.graph.workbookWorksheet entity.
@@ -120,12 +120,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of workbookpivottable objects.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/workbookworksheet-list-pivottables?view=graph-rest-1.0" />
+        /// Collection of PivotTables that are part of the worksheet.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of workbookpivottable objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/workbookworksheet-list-pivottables?view=graph-rest-1.0";
+            command.Description = "Collection of PivotTables that are part of the worksheet.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -264,7 +263,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables {
         public PivotTablesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/pivotTables{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve a list of workbookpivottable objects.
+        /// Collection of PivotTables that are part of the worksheet.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -318,7 +317,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of workbookpivottable objects.
+        /// Collection of PivotTables that are part of the worksheet.
         /// </summary>
         public class PivotTablesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

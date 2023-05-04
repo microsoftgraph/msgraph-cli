@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.Calendars.Count;
 using ApiSdk.Users.Item.Calendars.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.Calendars {
     /// <summary>
     /// Provides operations to manage the calendars property of the microsoft.graph.user entity.
@@ -54,12 +54,11 @@ namespace ApiSdk.Users.Item.Calendars {
             return command;
         }
         /// <summary>
-        /// Create a new calendar for a user.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-post-calendars?view=graph-rest-1.0" />
+        /// Create new navigation property to calendars for users
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new calendar for a user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-post-calendars?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to calendars for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -112,12 +111,11 @@ namespace ApiSdk.Users.Item.Calendars {
             return command;
         }
         /// <summary>
-        /// Get all the user&apos;s calendars (`/calendars` navigation property), get the calendars from the default calendar group or from a specific calendar group. 
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-list-calendars?view=graph-rest-1.0" />
+        /// The user&apos;s calendars. Read-only. Nullable.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get all the user's calendars (`/calendars` navigation property), get the calendars from the default calendar group or from a specific calendar group. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-calendars?view=graph-rest-1.0";
+            command.Description = "The user's calendars. Read-only. Nullable.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -148,6 +146,11 @@ namespace ApiSdk.Users.Item.Calendars {
             };
             selectOption.IsRequired = false;
             command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
             var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
                 IsRequired = true
             };
@@ -171,6 +174,7 @@ namespace ApiSdk.Users.Item.Calendars {
                 var count = invocationContext.ParseResult.GetValueForOption(countOption);
                 var orderby = invocationContext.ParseResult.GetValueForOption(orderbyOption);
                 var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
@@ -187,6 +191,7 @@ namespace ApiSdk.Users.Item.Calendars {
                     q.QueryParameters.Count = count;
                     q.QueryParameters.Orderby = orderby;
                     q.QueryParameters.Select = select;
+                    q.QueryParameters.Expand = expand;
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -213,10 +218,10 @@ namespace ApiSdk.Users.Item.Calendars {
         /// Instantiates a new CalendarsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CalendarsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendars{?%24top,%24skip,%24filter,%24count,%24orderby,%24select}", pathParameters) {
+        public CalendarsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendars{?%24top,%24skip,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get all the user&apos;s calendars (`/calendars` navigation property), get the calendars from the default calendar group or from a specific calendar group. 
+        /// The user&apos;s calendars. Read-only. Nullable.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -242,7 +247,7 @@ namespace ApiSdk.Users.Item.Calendars {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new calendar for a user.
+        /// Create new navigation property to calendars for users
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -270,12 +275,22 @@ namespace ApiSdk.Users.Item.Calendars {
             return requestInfo;
         }
         /// <summary>
-        /// Get all the user&apos;s calendars (`/calendars` navigation property), get the calendars from the default calendar group or from a specific calendar group. 
+        /// The user&apos;s calendars. Read-only. Nullable.
         /// </summary>
         public class CalendarsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }
+            /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
+            [QueryParameter("%24expand")]
+            public string[] Expand { get; set; }
+#endif
             /// <summary>Filter items by property values</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

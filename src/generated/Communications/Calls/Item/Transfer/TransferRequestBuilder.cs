@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Communications.Calls.Item.Transfer {
     /// <summary>
     /// Provides operations to call the transfer method.
     /// </summary>
     public class TransferRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Transfer an active peer-to-peer call or group call. A consultative transfer means that the transferor can inform the person they want to transfer the call to (the transferee), before the transfer is made. This is opposed to transfering the call directly.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/call-transfer?view=graph-rest-1.0" />
+        /// Invoke action transfer
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Transfer an active peer-to-peer call or group call. A consultative transfer means that the transferor can inform the person they want to transfer the call to (the transferee), before the transfer is made. This is opposed to transfering the call directly.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/call-transfer?view=graph-rest-1.0";
+            command.Description = "Invoke action transfer";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -61,7 +60,7 @@ namespace ApiSdk.Communications.Calls.Item.Transfer {
         public TransferRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/transfer", pathParameters) {
         }
         /// <summary>
-        /// Transfer an active peer-to-peer call or group call. A consultative transfer means that the transferor can inform the person they want to transfer the call to (the transferee), before the transfer is made. This is opposed to transfering the call directly.
+        /// Invoke action transfer
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

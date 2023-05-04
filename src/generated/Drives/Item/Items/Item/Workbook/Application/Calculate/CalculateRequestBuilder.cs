@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Drives.Item.Items.Item.Workbook.Application.Calculate {
     /// <summary>
     /// Provides operations to call the calculate method.
     /// </summary>
     public class CalculateRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Recalculate all currently opened workbooks in Excel.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/workbookapplication-calculate?view=graph-rest-1.0" />
+        /// Invoke action calculate
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Recalculate all currently opened workbooks in Excel.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/workbookapplication-calculate?view=graph-rest-1.0";
+            command.Description = "Invoke action calculate";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -67,7 +66,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Application.Calculate {
         public CalculateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/application/calculate", pathParameters) {
         }
         /// <summary>
-        /// Recalculate all currently opened workbooks in Excel.
+        /// Invoke action calculate
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -1,30 +1,53 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
+using ApiSdk.Shares.Item.CreatedByUser;
 using ApiSdk.Shares.Item.DriveItem;
 using ApiSdk.Shares.Item.Items;
+using ApiSdk.Shares.Item.LastModifiedByUser;
 using ApiSdk.Shares.Item.List;
 using ApiSdk.Shares.Item.ListItem;
 using ApiSdk.Shares.Item.Permission;
 using ApiSdk.Shares.Item.Root;
 using ApiSdk.Shares.Item.Site;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Shares.Item {
     /// <summary>
     /// Provides operations to manage the collection of sharedDriveItem entities.
     /// </summary>
     public class SharedDriveItemItemRequestBuilder : BaseCliRequestBuilder {
+        /// <summary>
+        /// Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.
+        /// </summary>
+        public Command BuildCreatedByUserNavCommand() {
+            var command = new Command("created-by-user");
+            command.Description = "Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.";
+            var builder = new CreatedByUserRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildMailboxSettingsNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
         /// <summary>
         /// Delete entity from shares
         /// </summary>
@@ -166,6 +189,27 @@ namespace ApiSdk.Shares.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.
+        /// </summary>
+        public Command BuildLastModifiedByUserNavCommand() {
+            var command = new Command("last-modified-by-user");
+            command.Description = "Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.";
+            var builder = new LastModifiedByUserRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildMailboxSettingsNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the listItem property of the microsoft.graph.sharedDriveItem entity.
         /// </summary>
         public Command BuildListItemNavCommand() {
@@ -191,10 +235,12 @@ namespace ApiSdk.Shares.Item {
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildColumnsNavCommand());
             nonExecCommands.Add(builder.BuildContentTypesNavCommand());
+            nonExecCommands.Add(builder.BuildCreatedByUserNavCommand());
             execCommands.Add(builder.BuildDeleteCommand());
             nonExecCommands.Add(builder.BuildDriveNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             nonExecCommands.Add(builder.BuildItemsNavCommand());
+            nonExecCommands.Add(builder.BuildLastModifiedByUserNavCommand());
             nonExecCommands.Add(builder.BuildOperationsNavCommand());
             execCommands.Add(builder.BuildPatchCommand());
             nonExecCommands.Add(builder.BuildSubscriptionsNavCommand());

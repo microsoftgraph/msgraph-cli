@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Chats.Item.MarkChatReadForUser {
     /// <summary>
     /// Provides operations to call the markChatReadForUser method.
     /// </summary>
     public class MarkChatReadForUserRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Mark a chat as read for a user.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chat-markchatreadforuser?view=graph-rest-1.0" />
+        /// Invoke action markChatReadForUser
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Mark a chat as read for a user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-markchatreadforuser?view=graph-rest-1.0";
+            command.Description = "Invoke action markChatReadForUser";
             var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
@@ -61,7 +60,7 @@ namespace ApiSdk.Chats.Item.MarkChatReadForUser {
         public MarkChatReadForUserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/chats/{chat%2Did}/markChatReadForUser", pathParameters) {
         }
         /// <summary>
-        /// Mark a chat as read for a user.
+        /// Invoke action markChatReadForUser
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

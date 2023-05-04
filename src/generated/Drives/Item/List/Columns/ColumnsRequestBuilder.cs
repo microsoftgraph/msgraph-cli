@@ -1,20 +1,20 @@
 using ApiSdk.Drives.Item.List.Columns.Count;
 using ApiSdk.Drives.Item.List.Columns.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Drives.Item.List.Columns {
     /// <summary>
     /// Provides operations to manage the columns property of the microsoft.graph.list entity.
@@ -49,12 +49,11 @@ namespace ApiSdk.Drives.Item.List.Columns {
             return command;
         }
         /// <summary>
-        /// Create a column for a [list][list] with a request that specifies a [columnDefinition][columnDefinition].
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/list-post-columns?view=graph-rest-1.0" />
+        /// Create new navigation property to columns for drives
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a column for a [list][list] with a request that specifies a [columnDefinition][columnDefinition].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/list-post-columns?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to columns for drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -107,12 +106,11 @@ namespace ApiSdk.Drives.Item.List.Columns {
             return command;
         }
         /// <summary>
-        /// Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [list][list].
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/list-list-columns?view=graph-rest-1.0" />
+        /// The collection of field definitions for this list.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [list][list].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/list-list-columns?view=graph-rest-1.0";
+            command.Description = "The collection of field definitions for this list.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -224,7 +222,7 @@ namespace ApiSdk.Drives.Item.List.Columns {
         public ColumnsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/list/columns{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [list][list].
+        /// The collection of field definitions for this list.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -250,7 +248,7 @@ namespace ApiSdk.Drives.Item.List.Columns {
             return requestInfo;
         }
         /// <summary>
-        /// Create a column for a [list][list] with a request that specifies a [columnDefinition][columnDefinition].
+        /// Create new navigation property to columns for drives
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -278,7 +276,7 @@ namespace ApiSdk.Drives.Item.List.Columns {
             return requestInfo;
         }
         /// <summary>
-        /// Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [list][list].
+        /// The collection of field definitions for this list.
         /// </summary>
         public class ColumnsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

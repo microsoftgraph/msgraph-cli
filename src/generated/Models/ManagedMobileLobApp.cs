@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class ManagedMobileLobApp : ManagedApp, IParsable {
         /// <summary>The internal committed content version.</summary>

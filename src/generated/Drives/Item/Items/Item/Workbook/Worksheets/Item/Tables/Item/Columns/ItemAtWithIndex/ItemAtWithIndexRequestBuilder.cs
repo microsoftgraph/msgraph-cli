@@ -1,18 +1,18 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Columns.ItemAtWithIndex {
     /// <summary>
     /// Provides operations to call the itemAt method.
@@ -20,11 +20,10 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
     public class ItemAtWithIndexRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Invoke function itemAt
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/tablecolumncollection-itemat?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Invoke function itemAt\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/tablecolumncollection-itemat?view=graph-rest-1.0";
+            command.Description = "Invoke function itemAt";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;

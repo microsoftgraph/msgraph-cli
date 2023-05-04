@@ -1,30 +1,29 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Return {
     /// <summary>
     /// Provides operations to call the return method.
     /// </summary>
     public class ReturnRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Make the grade and feedback associated with this submission available to the student.  This action changes the status of the submission from &apos;submitted&apos; to &apos;returned&apos; and indicates that feedback is provided or grading is done. This action can only be done by the teacher.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationsubmission-return?view=graph-rest-1.0" />
+        /// Invoke action return
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Make the grade and feedback associated with this submission available to the student.  This action changes the status of the submission from 'submitted' to 'returned' and indicates that feedback is provided or grading is done. This action can only be done by the teacher.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationsubmission-return?view=graph-rest-1.0";
+            command.Description = "Invoke action return";
             var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
@@ -85,7 +84,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Return {
         public ReturnRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/users/{educationUser%2Did}/assignments/{educationAssignment%2Did}/submissions/{educationSubmission%2Did}/return", pathParameters) {
         }
         /// <summary>
-        /// Make the grade and feedback associated with this submission available to the student.  This action changes the status of the submission from &apos;submitted&apos; to &apos;returned&apos; and indicates that feedback is provided or grading is done. This action can only be done by the teacher.
+        /// Invoke action return
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

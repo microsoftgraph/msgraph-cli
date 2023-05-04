@@ -1,21 +1,21 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Teamwork.DeletedTeams.Item.Channels.Count;
 using ApiSdk.Teamwork.DeletedTeams.Item.Channels.GetAllMessages;
 using ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels {
     /// <summary>
     /// Provides operations to manage the channels property of the microsoft.graph.deletedTeam entity.
@@ -130,11 +130,11 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels {
             return command;
         }
         /// <summary>
-        /// Get channels from teamwork
+        /// The channels that are either shared with this deleted team or created in this deleted team.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get channels from teamwork";
+            command.Description = "The channels that are either shared with this deleted team or created in this deleted team.";
             var deletedTeamIdOption = new Option<string>("--deleted-team-id", description: "The unique identifier of deletedTeam") {
             };
             deletedTeamIdOption.IsRequired = true;
@@ -246,7 +246,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels {
         public ChannelsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teamwork/deletedTeams/{deletedTeam%2Did}/channels{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get channels from teamwork
+        /// The channels that are either shared with this deleted team or created in this deleted team.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -300,7 +300,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels {
             return requestInfo;
         }
         /// <summary>
-        /// Get channels from teamwork
+        /// The channels that are either shared with this deleted team or created in this deleted team.
         /// </summary>
         public class ChannelsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

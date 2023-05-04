@@ -1,5 +1,5 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.Authentication.EmailMethods;
 using ApiSdk.Users.Item.Authentication.Fido2Methods;
 using ApiSdk.Users.Item.Authentication.Methods;
@@ -10,19 +10,19 @@ using ApiSdk.Users.Item.Authentication.PhoneMethods;
 using ApiSdk.Users.Item.Authentication.SoftwareOathMethods;
 using ApiSdk.Users.Item.Authentication.TemporaryAccessPassMethods;
 using ApiSdk.Users.Item.Authentication.WindowsHelloForBusinessMethods;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.Authentication {
     /// <summary>
     /// Provides operations to manage the authentication property of the microsoft.graph.user entity.

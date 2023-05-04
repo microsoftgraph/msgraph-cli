@@ -1,5 +1,5 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instances.Item.Accept;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instances.Item.Attachments;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instances.Item.Calendar;
@@ -12,19 +12,19 @@ using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Ins
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instances.Item.SingleValueExtendedProperties;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instances.Item.SnoozeReminder;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instances.Item.TentativelyAccept;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Instances.Item {
     /// <summary>
     /// Provides operations to manage the instances property of the microsoft.graph.event entity.
@@ -197,6 +197,14 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
             };
             eventId1Option.IsRequired = true;
             command.AddOption(eventId1Option);
+            var startDateTimeOption = new Option<string>("--start-date-time", description: "The start date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T19:00:00-08:00") {
+            };
+            startDateTimeOption.IsRequired = true;
+            command.AddOption(startDateTimeOption);
+            var endDateTimeOption = new Option<string>("--end-date-time", description: "The end date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T20:00:00-08:00") {
+            };
+            endDateTimeOption.IsRequired = true;
+            command.AddOption(endDateTimeOption);
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -221,6 +229,8 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
                 var calendarId = invocationContext.ParseResult.GetValueForOption(calendarIdOption);
                 var eventId = invocationContext.ParseResult.GetValueForOption(eventIdOption);
                 var eventId1 = invocationContext.ParseResult.GetValueForOption(eventId1Option);
+                var startDateTime = invocationContext.ParseResult.GetValueForOption(startDateTimeOption);
+                var endDateTime = invocationContext.ParseResult.GetValueForOption(endDateTimeOption);
                 var select = invocationContext.ParseResult.GetValueForOption(selectOption);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
@@ -230,6 +240,8 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
+                    if (!string.IsNullOrEmpty(startDateTime)) q.QueryParameters.StartDateTime = startDateTime;
+                    if (!string.IsNullOrEmpty(endDateTime)) q.QueryParameters.EndDateTime = endDateTime;
                     q.QueryParameters.Select = select;
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
@@ -333,7 +345,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
         /// Instantiates a new EventItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public EventItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendarGroups/{calendarGroup%2Did}/calendars/{calendar%2Did}/calendarView/{event%2Did}/instances/{event%2Did1}{?%24select}", pathParameters) {
+        public EventItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendarGroups/{calendarGroup%2Did}/calendars/{calendar%2Did}/calendarView/{event%2Did}/instances/{event%2Did1}{?startDateTime*,endDateTime*,%24select}", pathParameters) {
         }
         /// <summary>
         /// The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.
@@ -365,6 +377,14 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
         /// The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.
         /// </summary>
         public class EventItemRequestBuilderGetQueryParameters {
+            /// <summary>The end date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T20:00:00-08:00</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public string? EndDateTime { get; set; }
+#nullable restore
+#else
+            public string EndDateTime { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -374,6 +394,14 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
 #else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
+            /// <summary>The start date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T19:00:00-08:00</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public string? StartDateTime { get; set; }
+#nullable restore
+#else
+            public string StartDateTime { get; set; }
 #endif
         }
     }

@@ -1,27 +1,29 @@
 using ApiSdk.Drives.Item.Bundles;
+using ApiSdk.Drives.Item.CreatedByUser;
 using ApiSdk.Drives.Item.Following;
 using ApiSdk.Drives.Item.Items;
+using ApiSdk.Drives.Item.LastModifiedByUser;
 using ApiSdk.Drives.Item.List;
 using ApiSdk.Drives.Item.Recent;
 using ApiSdk.Drives.Item.Root;
 using ApiSdk.Drives.Item.SearchWithQ;
 using ApiSdk.Drives.Item.SharedWithMe;
 using ApiSdk.Drives.Item.Special;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Drives.Item {
     /// <summary>
     /// Provides operations to manage the collection of drive entities.
@@ -47,6 +49,27 @@ namespace ApiSdk.Drives.Item {
                 command.AddCommand(cmd);
             }
             foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.
+        /// </summary>
+        public Command BuildCreatedByUserNavCommand() {
+            var command = new Command("created-by-user");
+            command.Description = "Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.";
+            var builder = new CreatedByUserRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildMailboxSettingsNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }
@@ -110,12 +133,11 @@ namespace ApiSdk.Drives.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/drive-get?view=graph-rest-1.0" />
+        /// Get entity from drives by key
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/drive-get?view=graph-rest-1.0";
+            command.Description = "Get entity from drives by key";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -197,6 +219,27 @@ namespace ApiSdk.Drives.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.
+        /// </summary>
+        public Command BuildLastModifiedByUserNavCommand() {
+            var command = new Command("last-modified-by-user");
+            command.Description = "Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.";
+            var builder = new LastModifiedByUserRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildMailboxSettingsNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the list property of the microsoft.graph.drive entity.
         /// </summary>
         public Command BuildListNavCommand() {
@@ -207,10 +250,12 @@ namespace ApiSdk.Drives.Item {
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildColumnsNavCommand());
             nonExecCommands.Add(builder.BuildContentTypesNavCommand());
+            nonExecCommands.Add(builder.BuildCreatedByUserNavCommand());
             execCommands.Add(builder.BuildDeleteCommand());
             nonExecCommands.Add(builder.BuildDriveNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             nonExecCommands.Add(builder.BuildItemsNavCommand());
+            nonExecCommands.Add(builder.BuildLastModifiedByUserNavCommand());
             nonExecCommands.Add(builder.BuildOperationsNavCommand());
             execCommands.Add(builder.BuildPatchCommand());
             nonExecCommands.Add(builder.BuildSubscriptionsNavCommand());
@@ -388,7 +433,7 @@ namespace ApiSdk.Drives.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.
+        /// Get entity from drives by key
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -442,7 +487,7 @@ namespace ApiSdk.Drives.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.
+        /// Get entity from drives by key
         /// </summary>
         public class DriveItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

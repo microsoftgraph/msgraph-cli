@@ -1,19 +1,21 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Users.Item.Teamwork.InstalledApps.Item.TeamsApp;
+using ApiSdk.Users.Item.Teamwork.InstalledApps.Item.TeamsAppDefinition;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item {
     /// <summary>
     /// Provides operations to manage the installedApps property of the microsoft.graph.userTeamwork entity.
@@ -201,6 +203,36 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the teamsAppDefinition property of the microsoft.graph.teamsAppInstallation entity.
+        /// </summary>
+        public Command BuildTeamsAppDefinitionNavCommand() {
+            var command = new Command("teams-app-definition");
+            command.Description = "Provides operations to manage the teamsAppDefinition property of the microsoft.graph.teamsAppInstallation entity.";
+            var builder = new TeamsAppDefinitionRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the teamsApp property of the microsoft.graph.teamsAppInstallation entity.
+        /// </summary>
+        public Command BuildTeamsAppNavCommand() {
+            var command = new Command("teams-app");
+            command.Description = "Provides operations to manage the teamsApp property of the microsoft.graph.teamsAppInstallation entity.";
+            var builder = new TeamsAppRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>

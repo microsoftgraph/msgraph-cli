@@ -1,20 +1,20 @@
 using ApiSdk.Identity.ConditionalAccess.Policies.Count;
 using ApiSdk.Identity.ConditionalAccess.Policies.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Identity.ConditionalAccess.Policies {
     /// <summary>
     /// Provides operations to manage the policies property of the microsoft.graph.conditionalAccessRoot entity.
@@ -47,12 +47,11 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies {
             return command;
         }
         /// <summary>
-        /// Create a new conditionalAccessPolicy.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/conditionalaccessroot-post-policies?view=graph-rest-1.0" />
+        /// Create new navigation property to policies for identity
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new conditionalAccessPolicy.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/conditionalaccessroot-post-policies?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to policies for identity";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -99,12 +98,11 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of conditionalAccessPolicy objects.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/conditionalaccessroot-list-policies?view=graph-rest-1.0" />
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of conditionalAccessPolicy objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/conditionalaccessroot-list-policies?view=graph-rest-1.0";
+            command.Description = "Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -210,7 +208,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies {
         public PoliciesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/conditionalAccess/policies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve a list of conditionalAccessPolicy objects.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -236,7 +234,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new conditionalAccessPolicy.
+        /// Create new navigation property to policies for identity
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -264,7 +262,7 @@ namespace ApiSdk.Identity.ConditionalAccess.Policies {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of conditionalAccessPolicy objects.
+        /// Read-only. Nullable. Returns a collection of the specified Conditional Access (CA) policies.
         /// </summary>
         public class PoliciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -1,30 +1,29 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
     /// <summary>
     /// Provides operations to call the uploadClientCertificate method.
     /// </summary>
     public class UploadClientCertificateRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Upload a PKCS 12 format key (.pfx) to an API connector&apos;s authentication configuration. The input is a base-64 encoded value of the PKCS 12 certificate contents. This method returns an apiConnector.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/identityapiconnector-uploadclientcertificate?view=graph-rest-1.0" />
+        /// Invoke action uploadClientCertificate
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Upload a PKCS 12 format key (.pfx) to an API connector's authentication configuration. The input is a base-64 encoded value of the PKCS 12 certificate contents. This method returns an apiConnector.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/identityapiconnector-uploadclientcertificate?view=graph-rest-1.0";
+            command.Description = "Invoke action uploadClientCertificate";
             var identityApiConnectorIdOption = new Option<string>("--identity-api-connector-id", description: "The unique identifier of identityApiConnector") {
             };
             identityApiConnectorIdOption.IsRequired = true;
@@ -83,7 +82,7 @@ namespace ApiSdk.Identity.ApiConnectors.Item.UploadClientCertificate {
         public UploadClientCertificateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/apiConnectors/{identityApiConnector%2Did}/uploadClientCertificate", pathParameters) {
         }
         /// <summary>
-        /// Upload a PKCS 12 format key (.pfx) to an API connector&apos;s authentication configuration. The input is a base-64 encoded value of the PKCS 12 certificate contents. This method returns an apiConnector.
+        /// Invoke action uploadClientCertificate
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

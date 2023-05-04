@@ -2,19 +2,19 @@ using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.Security;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.CustodianSources.Count;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.CustodianSources.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.CustodianSources {
     /// <summary>
     /// Provides operations to manage the custodianSources property of the microsoft.graph.security.ediscoverySearch entity.
@@ -45,12 +45,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.CustodianSour
             return command;
         }
         /// <summary>
-        /// Get the list of custodial data sources associated with an eDiscovery search.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoverysearch-list-custodiansources?view=graph-rest-1.0" />
+        /// Custodian sources that are included in the eDiscovery search.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the list of custodial data sources associated with an eDiscovery search.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverysearch-list-custodiansources?view=graph-rest-1.0";
+            command.Description = "Custodian sources that are included in the eDiscovery search.";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -168,7 +167,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.CustodianSour
         public CustodianSourcesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/searches/{ediscoverySearch%2Did}/custodianSources{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get the list of custodial data sources associated with an eDiscovery search.
+        /// Custodian sources that are included in the eDiscovery search.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -194,7 +193,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.CustodianSour
             return requestInfo;
         }
         /// <summary>
-        /// Get the list of custodial data sources associated with an eDiscovery search.
+        /// Custodian sources that are included in the eDiscovery search.
         /// </summary>
         public class CustodianSourcesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

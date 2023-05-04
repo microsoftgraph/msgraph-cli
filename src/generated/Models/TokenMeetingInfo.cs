@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class TokenMeetingInfo : MeetingInfo, IParsable {
         /// <summary>The token used to join the call.</summary>

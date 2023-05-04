@@ -1,21 +1,21 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.ContactFolders.Item.Contacts.Count;
 using ApiSdk.Users.Item.ContactFolders.Item.Contacts.Delta;
 using ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
     /// <summary>
     /// Provides operations to manage the contacts property of the microsoft.graph.contactFolder entity.
@@ -53,12 +53,11 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
             return command;
         }
         /// <summary>
-        /// Add a contact to the root Contacts folder or to the `contacts` endpoint of another contact folder.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/contactfolder-post-contacts?view=graph-rest-1.0" />
+        /// Create new navigation property to contacts for users
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Add a contact to the root Contacts folder or to the `contacts` endpoint of another contact folder.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contactfolder-post-contacts?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to contacts for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -132,12 +131,11 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
             return command;
         }
         /// <summary>
-        /// Get a contact collection from the default Contacts folder of the signed-in user (`.../me/contacts`), or from the specified contact folder.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/contactfolder-list-contacts?view=graph-rest-1.0" />
+        /// The contacts in the folder. Navigation property. Read-only. Nullable.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a contact collection from the default Contacts folder of the signed-in user (`.../me/contacts`), or from the specified contact folder.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contactfolder-list-contacts?view=graph-rest-1.0";
+            command.Description = "The contacts in the folder. Navigation property. Read-only. Nullable.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -249,7 +247,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
         public ContactsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}/contacts{?%24top,%24skip,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get a contact collection from the default Contacts folder of the signed-in user (`.../me/contacts`), or from the specified contact folder.
+        /// The contacts in the folder. Navigation property. Read-only. Nullable.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -275,7 +273,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
             return requestInfo;
         }
         /// <summary>
-        /// Add a contact to the root Contacts folder or to the `contacts` endpoint of another contact folder.
+        /// Create new navigation property to contacts for users
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -303,7 +301,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
             return requestInfo;
         }
         /// <summary>
-        /// Get a contact collection from the default Contacts folder of the signed-in user (`.../me/contacts`), or from the specified contact folder.
+        /// The contacts in the folder. Navigation property. Read-only. Nullable.
         /// </summary>
         public class ContactsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -1,15 +1,15 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class RequestSignatureVerification : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The allowedWeakAlgorithms property</summary>
+        /// <summary>Specifies which weak algorithms are allowed.  The possible values are: rsaSha1, unknownFutureValue.</summary>
         public WeakAlgorithms? AllowedWeakAlgorithms { get; set; }
-        /// <summary>The isSignedRequestRequired property</summary>
+        /// <summary>Specifies whether signed authentication requests for this application should be required.</summary>
         public bool? IsSignedRequestRequired { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -1,20 +1,20 @@
 using ApiSdk.Chats.Item.InstalledApps.Count;
 using ApiSdk.Chats.Item.InstalledApps.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Chats.Item.InstalledApps {
     /// <summary>
     /// Provides operations to manage the installedApps property of the microsoft.graph.chat entity.
@@ -51,12 +51,11 @@ namespace ApiSdk.Chats.Item.InstalledApps {
             return command;
         }
         /// <summary>
-        /// Install a teamsApp to the specified chat.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chat-post-installedapps?view=graph-rest-1.0" />
+        /// Create new navigation property to installedApps for chats
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Install a teamsApp to the specified chat.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-post-installedapps?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to installedApps for chats";
             var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
@@ -109,12 +108,11 @@ namespace ApiSdk.Chats.Item.InstalledApps {
             return command;
         }
         /// <summary>
-        /// List all app installations within a chat.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chat-list-installedapps?view=graph-rest-1.0" />
+        /// A collection of all the apps in the chat. Nullable.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List all app installations within a chat.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-list-installedapps?view=graph-rest-1.0";
+            command.Description = "A collection of all the apps in the chat. Nullable.";
             var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
@@ -226,7 +224,7 @@ namespace ApiSdk.Chats.Item.InstalledApps {
         public InstalledAppsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/chats/{chat%2Did}/installedApps{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// List all app installations within a chat.
+        /// A collection of all the apps in the chat. Nullable.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -252,7 +250,7 @@ namespace ApiSdk.Chats.Item.InstalledApps {
             return requestInfo;
         }
         /// <summary>
-        /// Install a teamsApp to the specified chat.
+        /// Create new navigation property to installedApps for chats
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -280,7 +278,7 @@ namespace ApiSdk.Chats.Item.InstalledApps {
             return requestInfo;
         }
         /// <summary>
-        /// List all app installations within a chat.
+        /// A collection of all the apps in the chat. Nullable.
         /// </summary>
         public class InstalledAppsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

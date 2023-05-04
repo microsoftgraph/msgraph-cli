@@ -1,20 +1,20 @@
 using ApiSdk.IdentityProtection.RiskyUsers.Item.History.Count;
 using ApiSdk.IdentityProtection.RiskyUsers.Item.History.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
     /// <summary>
     /// Provides operations to manage the history property of the microsoft.graph.riskyUser entity.
@@ -104,12 +104,11 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
             return command;
         }
         /// <summary>
-        /// Get the riskyUserHistoryItems from the history navigation property.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/riskyuser-list-history?view=graph-rest-1.0" />
+        /// The activity related to user risk level change
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the riskyUserHistoryItems from the history navigation property.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/riskyuser-list-history?view=graph-rest-1.0";
+            command.Description = "The activity related to user risk level change";
             var riskyUserIdOption = new Option<string>("--risky-user-id", description: "The unique identifier of riskyUser") {
             };
             riskyUserIdOption.IsRequired = true;
@@ -221,7 +220,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
         public HistoryRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProtection/riskyUsers/{riskyUser%2Did}/history{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get the riskyUserHistoryItems from the history navigation property.
+        /// The activity related to user risk level change
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -275,7 +274,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
             return requestInfo;
         }
         /// <summary>
-        /// Get the riskyUserHistoryItems from the history navigation property.
+        /// The activity related to user risk level change
         /// </summary>
         public class HistoryRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -1,21 +1,21 @@
 using ApiSdk.Communications.Calls.Item.Participants.Count;
 using ApiSdk.Communications.Calls.Item.Participants.Invite;
 using ApiSdk.Communications.Calls.Item.Participants.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Communications.Calls.Item.Participants {
     /// <summary>
     /// Provides operations to manage the participants property of the microsoft.graph.call entity.
@@ -124,12 +124,11 @@ namespace ApiSdk.Communications.Calls.Item.Participants {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of participant objects in the call.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/call-list-participants?view=graph-rest-1.0" />
+        /// Get participants from communications
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of participant objects in the call.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/call-list-participants?view=graph-rest-1.0";
+            command.Description = "Get participants from communications";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -241,7 +240,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants {
         public ParticipantsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/participants{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve a list of participant objects in the call.
+        /// Get participants from communications
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -295,7 +294,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of participant objects in the call.
+        /// Get participants from communications
         /// </summary>
         public class ParticipantsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

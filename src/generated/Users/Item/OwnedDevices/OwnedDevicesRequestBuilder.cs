@@ -1,23 +1,23 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.OwnedDevices.Count;
 using ApiSdk.Users.Item.OwnedDevices.GraphAppRoleAssignment;
 using ApiSdk.Users.Item.OwnedDevices.GraphDevice;
 using ApiSdk.Users.Item.OwnedDevices.GraphEndpoint;
 using ApiSdk.Users.Item.OwnedDevices.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.OwnedDevices {
     /// <summary>
     /// Provides operations to manage the ownedDevices property of the microsoft.graph.user entity.
@@ -28,9 +28,13 @@ namespace ApiSdk.Users.Item.OwnedDevices {
         /// </summary>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
+            var commands = new List<Command>();
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildGetCommand());
-            return new(executables, new(0));
+            commands.Add(builder.BuildGraphAppRoleAssignmentByIdNavCommand());
+            commands.Add(builder.BuildGraphDeviceByIdNavCommand());
+            commands.Add(builder.BuildGraphEndpointByIdNavCommand());
+            return new(executables, commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -51,8 +55,7 @@ namespace ApiSdk.Users.Item.OwnedDevices {
         /// Casts the previous resource to appRoleAssignment.
         /// </summary>
         public Command BuildGraphAppRoleAssignmentNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphAppRoleAssignmentNavCommand();
+            var command = new Command("graph-app-role-assignment");
             command.Description = "Casts the previous resource to appRoleAssignment.";
             var builder = new GraphAppRoleAssignmentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -73,8 +76,7 @@ namespace ApiSdk.Users.Item.OwnedDevices {
         /// Casts the previous resource to device.
         /// </summary>
         public Command BuildGraphDeviceNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphDeviceNavCommand();
+            var command = new Command("graph-device");
             command.Description = "Casts the previous resource to device.";
             var builder = new GraphDeviceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -95,8 +97,7 @@ namespace ApiSdk.Users.Item.OwnedDevices {
         /// Casts the previous resource to endpoint.
         /// </summary>
         public Command BuildGraphEndpointNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphEndpointNavCommand();
+            var command = new Command("graph-endpoint");
             command.Description = "Casts the previous resource to endpoint.";
             var builder = new GraphEndpointRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -115,11 +116,10 @@ namespace ApiSdk.Users.Item.OwnedDevices {
         }
         /// <summary>
         /// Devices that are owned by the user. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-list-owneddevices?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Devices that are owned by the user. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-owneddevices?view=graph-rest-1.0";
+            command.Description = "Devices that are owned by the user. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;

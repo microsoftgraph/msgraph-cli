@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups.Item.Team.InstalledApps.Item.Upgrade {
     /// <summary>
     /// Provides operations to call the upgrade method.
     /// </summary>
     public class UpgradeRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Upgrade an app installation within a chat.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chat-teamsappinstallation-upgrade?view=graph-rest-1.0" />
+        /// Invoke action upgrade
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Upgrade an app installation within a chat.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-teamsappinstallation-upgrade?view=graph-rest-1.0";
+            command.Description = "Invoke action upgrade";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -57,7 +56,7 @@ namespace ApiSdk.Groups.Item.Team.InstalledApps.Item.Upgrade {
         public UpgradeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/installedApps/{teamsAppInstallation%2Did}/upgrade", pathParameters) {
         }
         /// <summary>
-        /// Upgrade an app installation within a chat.
+        /// Invoke action upgrade
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

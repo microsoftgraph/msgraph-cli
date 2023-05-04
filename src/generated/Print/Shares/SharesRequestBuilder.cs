@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Print.Shares.Count;
 using ApiSdk.Print.Shares.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Print.Shares {
     /// <summary>
     /// Provides operations to manage the shares property of the microsoft.graph.print entity.
@@ -31,6 +31,7 @@ namespace ApiSdk.Print.Shares {
             commands.Add(builder.BuildAllowedUsersNavCommand());
             executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildJobsNavCommand());
             executables.Add(builder.BuildPatchCommand());
             commands.Add(builder.BuildPrinterNavCommand());
             return new(executables, commands);
@@ -51,12 +52,11 @@ namespace ApiSdk.Print.Shares {
             return command;
         }
         /// <summary>
-        /// Create a new **printerShare** for the specified printer.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/print-post-shares?view=graph-rest-1.0" />
+        /// Create new navigation property to shares for print
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new **printerShare** for the specified printer.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/print-post-shares?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to shares for print";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -103,12 +103,11 @@ namespace ApiSdk.Print.Shares {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of **printerShares**.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/print-list-shares?view=graph-rest-1.0" />
+        /// The list of printer shares registered in the tenant.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of **printerShares**.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/print-list-shares?view=graph-rest-1.0";
+            command.Description = "The list of printer shares registered in the tenant.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -214,7 +213,7 @@ namespace ApiSdk.Print.Shares {
         public SharesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/shares{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve a list of **printerShares**.
+        /// The list of printer shares registered in the tenant.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -240,7 +239,7 @@ namespace ApiSdk.Print.Shares {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new **printerShare** for the specified printer.
+        /// Create new navigation property to shares for print
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -268,7 +267,7 @@ namespace ApiSdk.Print.Shares {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of **printerShares**.
+        /// The list of printer shares registered in the tenant.
         /// </summary>
         public class SharesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

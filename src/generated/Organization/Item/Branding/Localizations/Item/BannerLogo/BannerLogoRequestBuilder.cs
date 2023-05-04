@@ -1,17 +1,17 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Organization.Item.Branding.Localizations.Item.BannerLogo {
     /// <summary>
     /// Provides operations to manage the media for the organization entity.
@@ -19,11 +19,10 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.BannerLogo {
     public class BannerLogoRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// A banner version of your company logo that appears on the sign-in page. The allowed types are PNG or JPEG no larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/organizationalbranding-list-localizations?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "A banner version of your company logo that appears on the sign-in page. The allowed types are PNG or JPEG no larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/organizationalbranding-list-localizations?view=graph-rest-1.0";
+            command.Description = "A banner version of your company logo that appears on the sign-in page. The allowed types are PNG or JPEG no larger than 36 × 245 pixels. We recommend using a transparent image with no padding around the logo.";
             var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
             };
             organizationIdOption.IsRequired = true;
@@ -32,12 +31,12 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.BannerLogo {
             };
             organizationalBrandingLocalizationIdOption.IsRequired = true;
             command.AddOption(organizationalBrandingLocalizationIdOption);
-            var fileOption = new Option<FileInfo>("--file");
-            command.AddOption(fileOption);
+            var outputFileOption = new Option<FileInfo>("--output-file");
+            command.AddOption(outputFileOption);
             command.SetHandler(async (invocationContext) => {
                 var organizationId = invocationContext.ParseResult.GetValueForOption(organizationIdOption);
                 var organizationalBrandingLocalizationId = invocationContext.ParseResult.GetValueForOption(organizationalBrandingLocalizationIdOption);
-                var file = invocationContext.ParseResult.GetValueForOption(fileOption);
+                var outputFile = invocationContext.ParseResult.GetValueForOption(outputFileOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -49,15 +48,15 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.BannerLogo {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                if (file == null) {
+                if (outputFile == null) {
                     using var reader = new StreamReader(response);
                     var strContent = reader.ReadToEnd();
                     Console.Write(strContent);
                 }
                 else {
-                    using var writeStream = file.OpenWrite();
+                    using var writeStream = outputFile.OpenWrite();
                     await response.CopyToAsync(writeStream);
-                    Console.WriteLine($"Content written to {file.FullName}.");
+                    Console.WriteLine($"Content written to {outputFile.FullName}.");
                 }
             });
             return command;
@@ -76,18 +75,21 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.BannerLogo {
             };
             organizationalBrandingLocalizationIdOption.IsRequired = true;
             command.AddOption(organizationalBrandingLocalizationIdOption);
-            var fileOption = new Option<FileInfo>("--file", description: "Binary request body") {
+            var inputFileOption = new Option<FileInfo>("--input-file", description: "Binary request body") {
             };
-            fileOption.IsRequired = true;
-            command.AddOption(fileOption);
+            inputFileOption.IsRequired = true;
+            command.AddOption(inputFileOption);
+            var outputFileOption = new Option<FileInfo>("--output-file");
+            command.AddOption(outputFileOption);
             command.SetHandler(async (invocationContext) => {
                 var organizationId = invocationContext.ParseResult.GetValueForOption(organizationIdOption);
                 var organizationalBrandingLocalizationId = invocationContext.ParseResult.GetValueForOption(organizationalBrandingLocalizationIdOption);
-                var file = invocationContext.ParseResult.GetValueForOption(fileOption);
+                var inputFile = invocationContext.ParseResult.GetValueForOption(inputFileOption);
+                var outputFile = invocationContext.ParseResult.GetValueForOption(outputFileOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
-                if (file is null || !file.Exists) return;
-                using var stream = file.OpenRead();
+                if (inputFile is null || !inputFile.Exists) return;
+                using var stream = inputFile.OpenRead();
                 var requestInfo = ToPutRequestInformation(stream, q => {
                 });
                 if (organizationId is not null) requestInfo.PathParameters.Add("organization%2Did", organizationId);
@@ -96,8 +98,17 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.BannerLogo {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                if (outputFile == null) {
+                    using var reader = new StreamReader(response);
+                    var strContent = reader.ReadToEnd();
+                    Console.Write(strContent);
+                }
+                else {
+                    using var writeStream = outputFile.OpenWrite();
+                    await response.CopyToAsync(writeStream);
+                    Console.WriteLine($"Content written to {outputFile.FullName}.");
+                }
             });
             return command;
         }

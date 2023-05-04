@@ -1,19 +1,19 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Policies.AppManagementPolicies.Item.AppliesTo;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Policies.AppManagementPolicies.Item {
     /// <summary>
     /// Provides operations to manage the appManagementPolicies property of the microsoft.graph.policyRoot entity.
@@ -77,11 +77,11 @@ namespace ApiSdk.Policies.AppManagementPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Get appManagementPolicies from policies
+        /// The policies that enforce app management restrictions for specific applications and service principals, overriding the defaultAppManagementPolicy.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get appManagementPolicies from policies";
+            command.Description = "The policies that enforce app management restrictions for specific applications and service principals, overriding the defaultAppManagementPolicy.";
             var appManagementPolicyIdOption = new Option<string>("--app-management-policy-id", description: "The unique identifier of appManagementPolicy") {
             };
             appManagementPolicyIdOption.IsRequired = true;
@@ -226,7 +226,7 @@ namespace ApiSdk.Policies.AppManagementPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get appManagementPolicies from policies
+        /// The policies that enforce app management restrictions for specific applications and service principals, overriding the defaultAppManagementPolicy.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -280,7 +280,7 @@ namespace ApiSdk.Policies.AppManagementPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get appManagementPolicies from policies
+        /// The policies that enforce app management restrictions for specific applications and service principals, overriding the defaultAppManagementPolicy.
         /// </summary>
         public class AppManagementPolicyItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

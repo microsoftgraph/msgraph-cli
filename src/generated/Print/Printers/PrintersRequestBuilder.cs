@@ -1,21 +1,21 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Print.Printers.Count;
 using ApiSdk.Print.Printers.Create;
 using ApiSdk.Print.Printers.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Print.Printers {
     /// <summary>
     /// Provides operations to manage the printers property of the microsoft.graph.print entity.
@@ -31,6 +31,7 @@ namespace ApiSdk.Print.Printers {
             commands.Add(builder.BuildConnectorsNavCommand());
             executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildJobsNavCommand());
             executables.Add(builder.BuildPatchCommand());
             commands.Add(builder.BuildRestoreFactoryDefaultsNavCommand());
             commands.Add(builder.BuildSharesNavCommand());
@@ -119,12 +120,11 @@ namespace ApiSdk.Print.Printers {
             return command;
         }
         /// <summary>
-        /// Retrieve the list of **printers** that are registered in the tenant.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/print-list-printers?view=graph-rest-1.0" />
+        /// The list of printers registered in the tenant.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the list of **printers** that are registered in the tenant.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/print-list-printers?view=graph-rest-1.0";
+            command.Description = "The list of printers registered in the tenant.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -230,7 +230,7 @@ namespace ApiSdk.Print.Printers {
         public PrintersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/printers{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve the list of **printers** that are registered in the tenant.
+        /// The list of printers registered in the tenant.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -284,7 +284,7 @@ namespace ApiSdk.Print.Printers {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the list of **printers** that are registered in the tenant.
+        /// The list of printers registered in the tenant.
         /// </summary>
         public class PrintersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

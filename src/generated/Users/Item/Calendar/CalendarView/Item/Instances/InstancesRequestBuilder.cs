@@ -1,21 +1,21 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances.Count;
 using ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances.Delta;
 using ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances {
     /// <summary>
     /// Provides operations to manage the instances property of the microsoft.graph.event entity.
@@ -74,12 +74,11 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances {
             return command;
         }
         /// <summary>
-        /// Get the instances (occurrences) of an event for a specified time range.  If the event is a `seriesMaster` type, this returns the occurrences and exceptions of the event in the specified time range.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/event-list-instances?view=graph-rest-1.0" />
+        /// The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the instances (occurrences) of an event for a specified time range.  If the event is a `seriesMaster` type, this returns the occurrences and exceptions of the event in the specified time range.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/event-list-instances?view=graph-rest-1.0";
+            command.Description = "The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -88,6 +87,14 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances {
             };
             eventIdOption.IsRequired = true;
             command.AddOption(eventIdOption);
+            var startDateTimeOption = new Option<string>("--start-date-time", description: "The start date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T19:00:00-08:00") {
+            };
+            startDateTimeOption.IsRequired = true;
+            command.AddOption(startDateTimeOption);
+            var endDateTimeOption = new Option<string>("--end-date-time", description: "The end date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T20:00:00-08:00") {
+            };
+            endDateTimeOption.IsRequired = true;
+            command.AddOption(endDateTimeOption);
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -132,6 +139,8 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances {
             command.SetHandler(async (invocationContext) => {
                 var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
                 var eventId = invocationContext.ParseResult.GetValueForOption(eventIdOption);
+                var startDateTime = invocationContext.ParseResult.GetValueForOption(startDateTimeOption);
+                var endDateTime = invocationContext.ParseResult.GetValueForOption(endDateTimeOption);
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
                 var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
@@ -148,6 +157,8 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
+                    if (!string.IsNullOrEmpty(startDateTime)) q.QueryParameters.StartDateTime = startDateTime;
+                    if (!string.IsNullOrEmpty(endDateTime)) q.QueryParameters.EndDateTime = endDateTime;
                     q.QueryParameters.Top = top;
                     q.QueryParameters.Skip = skip;
                     if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
@@ -181,10 +192,10 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances {
         /// Instantiates a new InstancesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public InstancesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendar/calendarView/{event%2Did}/instances{?%24top,%24skip,%24filter,%24count,%24orderby,%24select}", pathParameters) {
+        public InstancesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendar/calendarView/{event%2Did}/instances{?startDateTime*,endDateTime*,%24top,%24skip,%24filter,%24count,%24orderby,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Get the instances (occurrences) of an event for a specified time range.  If the event is a `seriesMaster` type, this returns the occurrences and exceptions of the event in the specified time range.
+        /// The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -210,12 +221,20 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances {
             return requestInfo;
         }
         /// <summary>
-        /// Get the instances (occurrences) of an event for a specified time range.  If the event is a `seriesMaster` type, this returns the occurrences and exceptions of the event in the specified time range.
+        /// The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.
         /// </summary>
         public class InstancesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }
+            /// <summary>The end date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T20:00:00-08:00</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public string? EndDateTime { get; set; }
+#nullable restore
+#else
+            public string EndDateTime { get; set; }
+#endif
             /// <summary>Filter items by property values</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -249,6 +268,14 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances {
             /// <summary>Skip the first n items</summary>
             [QueryParameter("%24skip")]
             public int? Skip { get; set; }
+            /// <summary>The start date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T19:00:00-08:00</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public string? StartDateTime { get; set; }
+#nullable restore
+#else
+            public string StartDateTime { get; set; }
+#endif
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }

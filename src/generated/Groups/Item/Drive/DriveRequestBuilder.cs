@@ -1,30 +1,29 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups.Item.Drive {
     /// <summary>
     /// Provides operations to manage the drive property of the microsoft.graph.group entity.
     /// </summary>
     public class DriveRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/drive-get?view=graph-rest-1.0" />
+        /// The group&apos;s default drive. Read-only.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/drive-get?view=graph-rest-1.0";
+            command.Description = "The group's default drive. Read-only.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -87,7 +86,7 @@ namespace ApiSdk.Groups.Item.Drive {
         public DriveRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/drive{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.
+        /// The group&apos;s default drive. Read-only.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -113,7 +112,7 @@ namespace ApiSdk.Groups.Item.Drive {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.
+        /// The group&apos;s default drive. Read-only.
         /// </summary>
         public class DriveRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

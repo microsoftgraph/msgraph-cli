@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models.Security {
     public class LoggedOnUser : IAdditionalDataHolder, IParsable {
         /// <summary>User account name of the logged-on user.</summary>

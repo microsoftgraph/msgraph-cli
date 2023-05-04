@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Policies.RoleManagementPolicyAssignments.Count;
 using ApiSdk.Policies.RoleManagementPolicyAssignments.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Policies.RoleManagementPolicyAssignments {
     /// <summary>
     /// Provides operations to manage the roleManagementPolicyAssignments property of the microsoft.graph.policyRoot entity.
@@ -100,12 +100,11 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments {
             return command;
         }
         /// <summary>
-        /// Get the details of all role management policy assignments including the policies and rules associated with the Azure AD roles.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/policyroot-list-rolemanagementpolicyassignments?view=graph-rest-1.0" />
+        /// The assignment of a role management policy to a role definition object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the details of all role management policy assignments including the policies and rules associated with the Azure AD roles.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/policyroot-list-rolemanagementpolicyassignments?view=graph-rest-1.0";
+            command.Description = "The assignment of a role management policy to a role definition object.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -211,7 +210,7 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments {
         public RoleManagementPolicyAssignmentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/roleManagementPolicyAssignments{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get the details of all role management policy assignments including the policies and rules associated with the Azure AD roles.
+        /// The assignment of a role management policy to a role definition object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -265,7 +264,7 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments {
             return requestInfo;
         }
         /// <summary>
-        /// Get the details of all role management policy assignments including the policies and rules associated with the Azure AD roles.
+        /// The assignment of a role management policy to a role definition object.
         /// </summary>
         public class RoleManagementPolicyAssignmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -1,18 +1,18 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShifts.Item {
     /// <summary>
     /// Provides operations to manage the openShifts property of the microsoft.graph.schedule entity.
@@ -64,11 +64,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShifts.Item {
             return command;
         }
         /// <summary>
-        /// Get openShifts from users
+        /// The set of open shifts in a scheduling group in the schedule.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get openShifts from users";
+            command.Description = "The set of open shifts in a scheduling group in the schedule.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -237,7 +237,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShifts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get openShifts from users
+        /// The set of open shifts in a scheduling group in the schedule.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -291,7 +291,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShifts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get openShifts from users
+        /// The set of open shifts in a scheduling group in the schedule.
         /// </summary>
         public class OpenShiftItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

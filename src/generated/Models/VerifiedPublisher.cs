@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class VerifiedPublisher : IAdditionalDataHolder, IParsable {
         /// <summary>The timestamp when the verified publisher was first added or most recently updated.</summary>

@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class Contact : OutlookItem, IParsable {
         /// <summary>The name of the contact&apos;s assistant.</summary>
@@ -296,7 +296,7 @@ namespace ApiSdk.Models {
         public string YomiSurname { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new Contact and sets the default values.
+        /// Instantiates a new contact and sets the default values.
         /// </summary>
         public Contact() : base() {
             OdataType = "#microsoft.graph.contact";

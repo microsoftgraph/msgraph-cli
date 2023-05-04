@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.ExportPersonalData {
     /// <summary>
     /// Provides operations to call the exportPersonalData method.
     /// </summary>
     public class ExportPersonalDataRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Submit a data policy operation request from a company administrator or an application to export an organizational user&apos;s data. This data includes the user&apos;s data stored in OneDrive and their activity reports. For more guidance about exporting data while complying with regulations, see Data Subject Requests and the GDPR and CCPA.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-exportpersonaldata?view=graph-rest-1.0" />
+        /// Invoke action exportPersonalData
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Submit a data policy operation request from a company administrator or an application to export an organizational user's data. This data includes the user's data stored in OneDrive and their activity reports. For more guidance about exporting data while complying with regulations, see Data Subject Requests and the GDPR and CCPA.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-exportpersonaldata?view=graph-rest-1.0";
+            command.Description = "Invoke action exportPersonalData";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -61,7 +60,7 @@ namespace ApiSdk.Users.Item.ExportPersonalData {
         public ExportPersonalDataRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/exportPersonalData", pathParameters) {
         }
         /// <summary>
-        /// Submit a data policy operation request from a company administrator or an application to export an organizational user&apos;s data. This data includes the user&apos;s data stored in OneDrive and their activity reports. For more guidance about exporting data while complying with regulations, see Data Subject Requests and the GDPR and CCPA.
+        /// Invoke action exportPersonalData
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

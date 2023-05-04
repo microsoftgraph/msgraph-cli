@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class ConditionalAccessUsers : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -39,7 +39,7 @@ namespace ApiSdk.Models {
 #else
         public List<string> ExcludeUsers { get; set; }
 #endif
-        /// <summary>Group IDs in scope of policy unless explicitly excluded, or All.</summary>
+        /// <summary>Group IDs in scope of policy unless explicitly excluded.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? IncludeGroups { get; set; }
@@ -55,7 +55,7 @@ namespace ApiSdk.Models {
 #else
         public ConditionalAccessGuestsOrExternalUsers IncludeGuestsOrExternalUsers { get; set; }
 #endif
-        /// <summary>Role IDs in scope of policy unless explicitly excluded, or All.</summary>
+        /// <summary>Role IDs in scope of policy unless explicitly excluded.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? IncludeRoles { get; set; }
@@ -63,7 +63,7 @@ namespace ApiSdk.Models {
 #else
         public List<string> IncludeRoles { get; set; }
 #endif
-        /// <summary>User IDs in scope of policy unless explicitly excluded, or None or All or GuestsOrExternalUsers.</summary>
+        /// <summary>User IDs in scope of policy unless explicitly excluded, None, All, or GuestsOrExternalUsers.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? IncludeUsers { get; set; }

@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class Endpoint : DirectoryObject, IParsable {
         /// <summary>The capability property</summary>
@@ -46,7 +46,7 @@ namespace ApiSdk.Models {
         public string Uri { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new Endpoint and sets the default values.
+        /// Instantiates a new endpoint and sets the default values.
         /// </summary>
         public Endpoint() : base() {
             OdataType = "#microsoft.graph.endpoint";

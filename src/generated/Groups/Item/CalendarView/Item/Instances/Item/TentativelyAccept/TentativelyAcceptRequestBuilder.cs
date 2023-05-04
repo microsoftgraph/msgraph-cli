@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups.Item.CalendarView.Item.Instances.Item.TentativelyAccept {
     /// <summary>
     /// Provides operations to call the tentativelyAccept method.
     /// </summary>
     public class TentativelyAcceptRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Tentatively accept the specified event in a user calendar. If the event allows proposals for new times, on responding tentative to the event, an invitee can choose to suggest an alternative time by including the **proposedNewTime** parameter. For more information on how to propose a time, and how to receive and accept a new time proposal, see Propose new meeting times.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/event-tentativelyaccept?view=graph-rest-1.0" />
+        /// Invoke action tentativelyAccept
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Tentatively accept the specified event in a user calendar. If the event allows proposals for new times, on responding tentative to the event, an invitee can choose to suggest an alternative time by including the **proposedNewTime** parameter. For more information on how to propose a time, and how to receive and accept a new time proposal, see Propose new meeting times.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/event-tentativelyaccept?view=graph-rest-1.0";
+            command.Description = "Invoke action tentativelyAccept";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -73,7 +72,7 @@ namespace ApiSdk.Groups.Item.CalendarView.Item.Instances.Item.TentativelyAccept 
         public TentativelyAcceptRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/calendarView/{event%2Did}/instances/{event%2Did1}/tentativelyAccept", pathParameters) {
         }
         /// <summary>
-        /// Tentatively accept the specified event in a user calendar. If the event allows proposals for new times, on responding tentative to the event, an invitee can choose to suggest an alternative time by including the **proposedNewTime** parameter. For more information on how to propose a time, and how to receive and accept a new time proposal, see Propose new meeting times.
+        /// Invoke action tentativelyAccept
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class PasswordCredentialConfiguration : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -17,9 +17,9 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The restrictForAppsCreatedAfterDateTime property</summary>
+        /// <summary>Enforces the policy for an app created on or after the enforcement date. For existing applications, the enforcement date would be back dated. To apply to all applications, enforcement datetime would be null.</summary>
         public DateTimeOffset? RestrictForAppsCreatedAfterDateTime { get; set; }
-        /// <summary>The restrictionType property</summary>
+        /// <summary>The type of restriction being applied. The possible values are: passwordAddition, passwordLifetime, symmetricKeyAddition, symmetricKeyLifetime,customPasswordAddition, unknownFutureValue. Each value of restrictionType can be used only once per policy.</summary>
         public AppCredentialRestrictionType? RestrictionType { get; set; }
         /// <summary>
         /// Instantiates a new passwordCredentialConfiguration and sets the default values.

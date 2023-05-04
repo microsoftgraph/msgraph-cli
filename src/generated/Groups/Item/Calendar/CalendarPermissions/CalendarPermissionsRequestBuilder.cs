@@ -1,20 +1,20 @@
 using ApiSdk.Groups.Item.Calendar.CalendarPermissions.Count;
 using ApiSdk.Groups.Item.Calendar.CalendarPermissions.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups.Item.Calendar.CalendarPermissions {
     /// <summary>
     /// Provides operations to manage the calendarPermissions property of the microsoft.graph.calendar entity.
@@ -47,12 +47,11 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarPermissions {
             return command;
         }
         /// <summary>
-        /// Create a calendarPermission resource to specify the identity and role of the user with whom the specified calendar is being shared or delegated.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/calendar-post-calendarpermissions?view=graph-rest-1.0" />
+        /// Create new navigation property to calendarPermissions for groups
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a calendarPermission resource to specify the identity and role of the user with whom the specified calendar is being shared or delegated.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/calendar-post-calendarpermissions?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to calendarPermissions for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -234,7 +233,7 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarPermissions {
             return requestInfo;
         }
         /// <summary>
-        /// Create a calendarPermission resource to specify the identity and role of the user with whom the specified calendar is being shared or delegated.
+        /// Create new navigation property to calendarPermissions for groups
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

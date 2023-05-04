@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Teams.Item.Schedule.SwapShiftsChangeRequests.Count;
 using ApiSdk.Teams.Item.Schedule.SwapShiftsChangeRequests.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Teams.Item.Schedule.SwapShiftsChangeRequests {
     /// <summary>
     /// Provides operations to manage the swapShiftsChangeRequests property of the microsoft.graph.schedule entity.
@@ -47,12 +47,11 @@ namespace ApiSdk.Teams.Item.Schedule.SwapShiftsChangeRequests {
             return command;
         }
         /// <summary>
-        /// Create an instance of a swapShiftsChangeRequest object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/swapshiftschangerequest-post?view=graph-rest-1.0" />
+        /// Create new navigation property to swapShiftsChangeRequests for teams
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create an instance of a swapShiftsChangeRequest object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/swapshiftschangerequest-post?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to swapShiftsChangeRequests for teams";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -105,12 +104,11 @@ namespace ApiSdk.Teams.Item.Schedule.SwapShiftsChangeRequests {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of swapShiftsChangeRequest objects in the team.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/swapshiftschangerequest-list?view=graph-rest-1.0" />
+        /// Get swapShiftsChangeRequests from teams
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of swapShiftsChangeRequest objects in the team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/swapshiftschangerequest-list?view=graph-rest-1.0";
+            command.Description = "Get swapShiftsChangeRequests from teams";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -222,7 +220,7 @@ namespace ApiSdk.Teams.Item.Schedule.SwapShiftsChangeRequests {
         public SwapShiftsChangeRequestsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/schedule/swapShiftsChangeRequests{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve a list of swapShiftsChangeRequest objects in the team.
+        /// Get swapShiftsChangeRequests from teams
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -248,7 +246,7 @@ namespace ApiSdk.Teams.Item.Schedule.SwapShiftsChangeRequests {
             return requestInfo;
         }
         /// <summary>
-        /// Create an instance of a swapShiftsChangeRequest object.
+        /// Create new navigation property to swapShiftsChangeRequests for teams
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -276,7 +274,7 @@ namespace ApiSdk.Teams.Item.Schedule.SwapShiftsChangeRequests {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of swapShiftsChangeRequest objects in the team.
+        /// Get swapShiftsChangeRequests from teams
         /// </summary>
         public class SwapShiftsChangeRequestsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

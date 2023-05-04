@@ -1,5 +1,5 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Teams.Item.PrimaryChannel.CompleteMigration;
 using ApiSdk.Teams.Item.PrimaryChannel.DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalName;
 using ApiSdk.Teams.Item.PrimaryChannel.FilesFolder;
@@ -9,19 +9,19 @@ using ApiSdk.Teams.Item.PrimaryChannel.ProvisionEmail;
 using ApiSdk.Teams.Item.PrimaryChannel.RemoveEmail;
 using ApiSdk.Teams.Item.PrimaryChannel.SharedWithTeams;
 using ApiSdk.Teams.Item.PrimaryChannel.Tabs;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Teams.Item.PrimaryChannel {
     /// <summary>
     /// Provides operations to manage the primaryChannel property of the microsoft.graph.team entity.
@@ -112,12 +112,11 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
             return command;
         }
         /// <summary>
-        /// Get the default channel, **General**, of a team.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/team-get-primarychannel?view=graph-rest-1.0" />
+        /// The general channel for the team.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the default channel, **General**, of a team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-get-primarychannel?view=graph-rest-1.0";
+            command.Description = "The general channel for the team.";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -394,7 +393,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
             return requestInfo;
         }
         /// <summary>
-        /// Get the default channel, **General**, of a team.
+        /// The general channel for the team.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -448,7 +447,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
             return requestInfo;
         }
         /// <summary>
-        /// Get the default channel, **General**, of a team.
+        /// The general channel for the team.
         /// </summary>
         public class PrimaryChannelRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -6,21 +6,21 @@ using ApiSdk.Groups.Item.MembersWithLicenseErrors.GraphOrgContact;
 using ApiSdk.Groups.Item.MembersWithLicenseErrors.GraphServicePrincipal;
 using ApiSdk.Groups.Item.MembersWithLicenseErrors.GraphUser;
 using ApiSdk.Groups.Item.MembersWithLicenseErrors.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups.Item.MembersWithLicenseErrors {
     /// <summary>
     /// Provides operations to manage the membersWithLicenseErrors property of the microsoft.graph.group entity.
@@ -31,9 +31,16 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors {
         /// </summary>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
+            var commands = new List<Command>();
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildGetCommand());
-            return new(executables, new(0));
+            commands.Add(builder.BuildGraphApplicationByIdNavCommand());
+            commands.Add(builder.BuildGraphDeviceByIdNavCommand());
+            commands.Add(builder.BuildGraphGroupByIdNavCommand());
+            commands.Add(builder.BuildGraphOrgContactByIdNavCommand());
+            commands.Add(builder.BuildGraphServicePrincipalByIdNavCommand());
+            commands.Add(builder.BuildGraphUserByIdNavCommand());
+            return new(executables, commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -54,8 +61,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors {
         /// Casts the previous resource to application.
         /// </summary>
         public Command BuildGraphApplicationNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphApplicationNavCommand();
+            var command = new Command("graph-application");
             command.Description = "Casts the previous resource to application.";
             var builder = new GraphApplicationRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -76,8 +82,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors {
         /// Casts the previous resource to device.
         /// </summary>
         public Command BuildGraphDeviceNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphDeviceNavCommand();
+            var command = new Command("graph-device");
             command.Description = "Casts the previous resource to device.";
             var builder = new GraphDeviceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -98,8 +103,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors {
         /// Casts the previous resource to group.
         /// </summary>
         public Command BuildGraphGroupNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphGroupNavCommand();
+            var command = new Command("graph-group");
             command.Description = "Casts the previous resource to group.";
             var builder = new GraphGroupRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -120,8 +124,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors {
         /// Casts the previous resource to orgContact.
         /// </summary>
         public Command BuildGraphOrgContactNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphOrgContactNavCommand();
+            var command = new Command("graph-org-contact");
             command.Description = "Casts the previous resource to orgContact.";
             var builder = new GraphOrgContactRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -142,8 +145,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors {
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
         public Command BuildGraphServicePrincipalNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphServicePrincipalNavCommand();
+            var command = new Command("graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -164,8 +166,7 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors {
         /// Casts the previous resource to user.
         /// </summary>
         public Command BuildGraphUserNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphUserNavCommand();
+            var command = new Command("graph-user");
             command.Description = "Casts the previous resource to user.";
             var builder = new GraphUserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();

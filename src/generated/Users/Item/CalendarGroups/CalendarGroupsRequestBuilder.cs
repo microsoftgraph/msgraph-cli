@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.CalendarGroups.Count;
 using ApiSdk.Users.Item.CalendarGroups.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.CalendarGroups {
     /// <summary>
     /// Provides operations to manage the calendarGroups property of the microsoft.graph.user entity.
@@ -49,12 +49,11 @@ namespace ApiSdk.Users.Item.CalendarGroups {
             return command;
         }
         /// <summary>
-        /// Use this API to create a new CalendarGroup.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-post-calendargroups?view=graph-rest-1.0" />
+        /// Create new navigation property to calendarGroups for users
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to create a new CalendarGroup.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-post-calendargroups?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to calendarGroups for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -107,12 +106,11 @@ namespace ApiSdk.Users.Item.CalendarGroups {
             return command;
         }
         /// <summary>
-        /// Get the user&apos;s calendar groups.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-list-calendargroups?view=graph-rest-1.0" />
+        /// The user&apos;s calendar groups. Read-only. Nullable.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the user's calendar groups.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-calendargroups?view=graph-rest-1.0";
+            command.Description = "The user's calendar groups. Read-only. Nullable.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -211,7 +209,7 @@ namespace ApiSdk.Users.Item.CalendarGroups {
         public CalendarGroupsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendarGroups{?%24top,%24skip,%24filter,%24count,%24orderby,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Get the user&apos;s calendar groups.
+        /// The user&apos;s calendar groups. Read-only. Nullable.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -237,7 +235,7 @@ namespace ApiSdk.Users.Item.CalendarGroups {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to create a new CalendarGroup.
+        /// Create new navigation property to calendarGroups for users
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -265,7 +263,7 @@ namespace ApiSdk.Users.Item.CalendarGroups {
             return requestInfo;
         }
         /// <summary>
-        /// Get the user&apos;s calendar groups.
+        /// The user&apos;s calendar groups. Read-only. Nullable.
         /// </summary>
         public class CalendarGroupsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

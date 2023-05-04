@@ -1,21 +1,21 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentSchedules.Count;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentSchedules.FilterByCurrentUserWithOn;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentSchedules.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentSchedules {
     /// <summary>
     /// Provides operations to manage the roleAssignmentSchedules property of the microsoft.graph.rbacApplication entity.
@@ -29,9 +29,13 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentSchedules {
             var commands = new List<Command>();
             var builder = new UnifiedRoleAssignmentScheduleItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildActivatedUsingNavCommand());
+            commands.Add(builder.BuildAppScopeNavCommand());
             executables.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildDirectoryScopeNavCommand());
             executables.Add(builder.BuildGetCommand());
             executables.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildPrincipalNavCommand());
+            commands.Add(builder.BuildRoleDefinitionNavCommand());
             return new(executables, commands);
         }
         /// <summary>
@@ -101,12 +105,11 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentSchedules {
             return command;
         }
         /// <summary>
-        /// Get the schedules for active role assignment operations.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/rbacapplication-list-roleassignmentschedules?view=graph-rest-1.0" />
+        /// Schedules for active role assignment operations.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the schedules for active role assignment operations.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/rbacapplication-list-roleassignmentschedules?view=graph-rest-1.0";
+            command.Description = "Schedules for active role assignment operations.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -212,7 +215,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentSchedules {
         public RoleAssignmentSchedulesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/entitlementManagement/roleAssignmentSchedules{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get the schedules for active role assignment operations.
+        /// Schedules for active role assignment operations.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -266,7 +269,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentSchedules {
             return requestInfo;
         }
         /// <summary>
-        /// Get the schedules for active role assignment operations.
+        /// Schedules for active role assignment operations.
         /// </summary>
         public class RoleAssignmentSchedulesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

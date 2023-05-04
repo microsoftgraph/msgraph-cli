@@ -1,25 +1,25 @@
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.Security;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AdditionalSources;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AddToReviewSetOperation;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.AdditionalSources;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.CustodianSources;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.LastEstimateStatisticsOperation;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.MicrosoftGraphSecurityEstimateStatistics;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.MicrosoftGraphSecurityPurgeData;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.NoncustodialSources;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.SecurityEstimateStatistics;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.SecurityPurgeData;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
     /// <summary>
     /// Provides operations to manage the searches property of the microsoft.graph.security.ediscoveryCase entity.
@@ -211,6 +211,36 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the estimateStatistics method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSecurityEstimateStatisticsNavCommand() {
+            var command = new Command("microsoft-graph-security-estimate-statistics");
+            command.Description = "Provides operations to call the estimateStatistics method.";
+            var builder = new MicrosoftGraphSecurityEstimateStatisticsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the purgeData method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSecurityPurgeDataNavCommand() {
+            var command = new Command("microsoft-graph-security-purge-data");
+            command.Description = "Provides operations to call the purgeData method.";
+            var builder = new MicrosoftGraphSecurityPurgeDataRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the noncustodialSources property of the microsoft.graph.security.ediscoverySearch entity.
         /// </summary>
         public Command BuildNoncustodialSourcesNavCommand() {
@@ -295,36 +325,6 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the estimateStatistics method.
-        /// </summary>
-        public Command BuildSecurityEstimateStatisticsNavCommand() {
-            var command = new Command("security-estimate-statistics");
-            command.Description = "Provides operations to call the estimateStatistics method.";
-            var builder = new SecurityEstimateStatisticsRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            execCommands.Add(builder.BuildPostCommand());
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the purgeData method.
-        /// </summary>
-        public Command BuildSecurityPurgeDataNavCommand() {
-            var command = new Command("security-purge-data");
-            command.Description = "Provides operations to call the purgeData method.";
-            var builder = new SecurityPurgeDataRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            execCommands.Add(builder.BuildPostCommand());
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
             return command;
         }
         /// <summary>

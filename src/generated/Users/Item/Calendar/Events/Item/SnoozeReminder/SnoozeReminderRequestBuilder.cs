@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.Calendar.Events.Item.SnoozeReminder {
     /// <summary>
     /// Provides operations to call the snoozeReminder method.
     /// </summary>
     public class SnoozeReminderRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Postpone a reminder for an event in a user calendar until a new time.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/event-snoozereminder?view=graph-rest-1.0" />
+        /// Invoke action snoozeReminder
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Postpone a reminder for an event in a user calendar until a new time.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/event-snoozereminder?view=graph-rest-1.0";
+            command.Description = "Invoke action snoozeReminder";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -67,7 +66,7 @@ namespace ApiSdk.Users.Item.Calendar.Events.Item.SnoozeReminder {
         public SnoozeReminderRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendar/events/{event%2Did}/snoozeReminder", pathParameters) {
         }
         /// <summary>
-        /// Postpone a reminder for an event in a user calendar until a new time.
+        /// Invoke action snoozeReminder
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

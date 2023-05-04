@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default.ResetToSystemDefault {
     /// <summary>
     /// Provides operations to call the resetToSystemDefault method.
     /// </summary>
     public class ResetToSystemDefaultRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Reset any changes made to the default configuration in a cross-tenant access policy back to the system default.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationdefault-resettosystemdefault?view=graph-rest-1.0" />
+        /// Invoke action resetToSystemDefault
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Reset any changes made to the default configuration in a cross-tenant access policy back to the system default.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationdefault-resettosystemdefault?view=graph-rest-1.0";
+            command.Description = "Invoke action resetToSystemDefault";
             command.SetHandler(async (invocationContext) => {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
@@ -45,7 +44,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Default.ResetToSystemDefault {
         public ResetToSystemDefaultRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/crossTenantAccessPolicy/default/resetToSystemDefault", pathParameters) {
         }
         /// <summary>
-        /// Reset any changes made to the default configuration in a cross-tenant access policy back to the system default.
+        /// Invoke action resetToSystemDefault
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

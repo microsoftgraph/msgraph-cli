@@ -2,19 +2,19 @@ using ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Childr
 using ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Children.Item.Children.Item;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.TermStore;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Groups.Item.Sets.Item.Children.Item.Children {
     /// <summary>
     /// Provides operations to manage the children property of the microsoft.graph.termStore.term entity.

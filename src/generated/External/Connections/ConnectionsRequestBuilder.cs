@@ -2,19 +2,19 @@ using ApiSdk.External.Connections.Count;
 using ApiSdk.External.Connections.Item;
 using ApiSdk.Models.ExternalConnectors;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.External.Connections {
     /// <summary>
     /// Provides operations to manage the connections property of the microsoft.graph.externalConnectors.external entity.
@@ -52,12 +52,11 @@ namespace ApiSdk.External.Connections {
             return command;
         }
         /// <summary>
-        /// Create a new externalConnection object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/externalconnectors-external-post-connections?view=graph-rest-1.0" />
+        /// Create new navigation property to connections for external
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new externalConnection object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/externalconnectors-external-post-connections?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to connections for external";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -104,12 +103,11 @@ namespace ApiSdk.External.Connections {
             return command;
         }
         /// <summary>
-        /// Get a list of the externalConnection objects and their properties.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/externalconnectors-externalconnection-list?view=graph-rest-1.0" />
+        /// Get connections from external
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the externalConnection objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/externalconnectors-externalconnection-list?view=graph-rest-1.0";
+            command.Description = "Get connections from external";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -215,7 +213,7 @@ namespace ApiSdk.External.Connections {
         public ConnectionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/external/connections{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get a list of the externalConnection objects and their properties.
+        /// Get connections from external
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -241,7 +239,7 @@ namespace ApiSdk.External.Connections {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new externalConnection object.
+        /// Create new navigation property to connections for external
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -269,7 +267,7 @@ namespace ApiSdk.External.Connections {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the externalConnection objects and their properties.
+        /// Get connections from external
         /// </summary>
         public class ConnectionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -1,26 +1,27 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments;
+using ApiSdk.Models;
+using ApiSdk.RoleManagement.EntitlementManagement.ResourceNamespaces;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInstances;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleRequests;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentSchedules;
+using ApiSdk.RoleManagement.EntitlementManagement.RoleAssignments;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleDefinitions;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleInstances;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleRequests;
 using ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilitySchedules;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.RoleManagement.EntitlementManagement {
     /// <summary>
     /// Provides operations to manage the entitlementManagement property of the microsoft.graph.roleManagement entity.
@@ -157,6 +158,31 @@ namespace ApiSdk.RoleManagement.EntitlementManagement {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the resourceNamespaces property of the microsoft.graph.rbacApplication entity.
+        /// </summary>
+        public Command BuildResourceNamespacesNavCommand() {
+            var command = new Command("resource-namespaces");
+            command.Description = "Provides operations to manage the resourceNamespaces property of the microsoft.graph.rbacApplication entity.";
+            var builder = new ResourceNamespacesRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>

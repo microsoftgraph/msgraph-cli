@@ -1,30 +1,29 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Communications.Calls.Item.Participants.Item.StopHoldMusic {
     /// <summary>
     /// Provides operations to call the stopHoldMusic method.
     /// </summary>
     public class StopHoldMusicRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Reincorporate a participant previously put on hold to the call.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/participant-stopholdmusic?view=graph-rest-1.0" />
+        /// Invoke action stopHoldMusic
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Reincorporate a participant previously put on hold to the call.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/participant-stopholdmusic?view=graph-rest-1.0";
+            command.Description = "Invoke action stopHoldMusic";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -89,7 +88,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StopHoldMusic {
         public StopHoldMusicRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/participants/{participant%2Did}/stopHoldMusic", pathParameters) {
         }
         /// <summary>
-        /// Reincorporate a participant previously put on hold to the call.
+        /// Invoke action stopHoldMusic
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

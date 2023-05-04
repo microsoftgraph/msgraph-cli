@@ -1,19 +1,19 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item.Cancel;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item {
     /// <summary>
     /// Provides operations to manage the calendarView property of the microsoft.graph.bookingBusiness entity.
@@ -87,6 +87,14 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item {
             };
             bookingAppointmentIdOption.IsRequired = true;
             command.AddOption(bookingAppointmentIdOption);
+            var startOption = new Option<string>("--start", description: "The start date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T19:00:00-08:00") {
+            };
+            startOption.IsRequired = true;
+            command.AddOption(startOption);
+            var endOption = new Option<string>("--end", description: "The end date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T20:00:00-08:00") {
+            };
+            endOption.IsRequired = true;
+            command.AddOption(endOption);
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -113,6 +121,8 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item {
             command.SetHandler(async (invocationContext) => {
                 var bookingBusinessId = invocationContext.ParseResult.GetValueForOption(bookingBusinessIdOption);
                 var bookingAppointmentId = invocationContext.ParseResult.GetValueForOption(bookingAppointmentIdOption);
+                var start = invocationContext.ParseResult.GetValueForOption(startOption);
+                var end = invocationContext.ParseResult.GetValueForOption(endOption);
                 var select = invocationContext.ParseResult.GetValueForOption(selectOption);
                 var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
@@ -123,6 +133,8 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
+                    if (!string.IsNullOrEmpty(start)) q.QueryParameters.Start = start;
+                    if (!string.IsNullOrEmpty(end)) q.QueryParameters.End = end;
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
                 });
@@ -207,7 +219,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item {
         /// Instantiates a new BookingAppointmentItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public BookingAppointmentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/calendarView/{bookingAppointment%2Did}{?%24select,%24expand}", pathParameters) {
+        public BookingAppointmentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/calendarView/{bookingAppointment%2Did}{?start*,end*,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Delete navigation property calendarView for solutions
@@ -292,6 +304,14 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item {
         /// The set of appointments of this business in a specified date range. Read-only. Nullable.
         /// </summary>
         public class BookingAppointmentItemRequestBuilderGetQueryParameters {
+            /// <summary>The end date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T20:00:00-08:00</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public string? End { get; set; }
+#nullable restore
+#else
+            public string End { get; set; }
+#endif
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -311,6 +331,14 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item {
 #else
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
+#endif
+            /// <summary>The start date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T19:00:00-08:00</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public string? Start { get; set; }
+#nullable restore
+#else
+            public string Start { get; set; }
 #endif
         }
     }

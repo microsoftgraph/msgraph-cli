@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class IosVppAppAssignmentSettings : MobileAppAssignmentSettings, IParsable {
         /// <summary>Whether or not to use device licensing.</summary>

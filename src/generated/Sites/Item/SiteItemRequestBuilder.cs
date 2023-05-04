@@ -1,8 +1,9 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Sites.Item.Analytics;
 using ApiSdk.Sites.Item.Columns;
 using ApiSdk.Sites.Item.ContentTypes;
+using ApiSdk.Sites.Item.CreatedByUser;
 using ApiSdk.Sites.Item.Drive;
 using ApiSdk.Sites.Item.Drives;
 using ApiSdk.Sites.Item.ExternalColumns;
@@ -11,6 +12,7 @@ using ApiSdk.Sites.Item.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeW
 using ApiSdk.Sites.Item.GetApplicableContentTypesForListWithListId;
 using ApiSdk.Sites.Item.GetByPathWithPath;
 using ApiSdk.Sites.Item.Items;
+using ApiSdk.Sites.Item.LastModifiedByUser;
 using ApiSdk.Sites.Item.Lists;
 using ApiSdk.Sites.Item.Onenote;
 using ApiSdk.Sites.Item.Operations;
@@ -18,19 +20,19 @@ using ApiSdk.Sites.Item.Permissions;
 using ApiSdk.Sites.Item.Sites;
 using ApiSdk.Sites.Item.TermStore;
 using ApiSdk.Sites.Item.TermStores;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Sites.Item {
     /// <summary>
     /// Provides operations to manage the collection of site entities.
@@ -44,8 +46,18 @@ namespace ApiSdk.Sites.Item {
             command.Description = "Provides operations to manage the analytics property of the microsoft.graph.site entity.";
             var builder = new AnalyticsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAllTimeNavCommand());
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildItemActivityStatsNavCommand());
+            nonExecCommands.Add(builder.BuildLastSevenDaysNavCommand());
+            execCommands.Add(builder.BuildPatchCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }
@@ -99,6 +111,27 @@ namespace ApiSdk.Sites.Item {
                 command.AddCommand(cmd);
             }
             foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.
+        /// </summary>
+        public Command BuildCreatedByUserNavCommand() {
+            var command = new Command("created-by-user");
+            command.Description = "Provides operations to manage the createdByUser property of the microsoft.graph.baseItem entity.";
+            var builder = new CreatedByUserRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildMailboxSettingsNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }
@@ -263,6 +296,27 @@ namespace ApiSdk.Sites.Item {
                 command.AddCommand(cmd);
             }
             foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.
+        /// </summary>
+        public Command BuildLastModifiedByUserNavCommand() {
+            var command = new Command("last-modified-by-user");
+            command.Description = "Provides operations to manage the lastModifiedByUser property of the microsoft.graph.baseItem entity.";
+            var builder = new LastModifiedByUserRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildMailboxSettingsNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }

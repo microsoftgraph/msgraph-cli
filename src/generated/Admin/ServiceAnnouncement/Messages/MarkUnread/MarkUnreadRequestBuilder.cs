@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Admin.ServiceAnnouncement.Messages.MarkUnread {
     /// <summary>
     /// Provides operations to call the markUnread method.
     /// </summary>
     public class MarkUnreadRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Mark a list of serviceUpdateMessages as **unread** for the signed in user.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/serviceupdatemessage-markunread?view=graph-rest-1.0" />
+        /// Invoke action markUnread
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Mark a list of serviceUpdateMessages as **unread** for the signed in user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceupdatemessage-markunread?view=graph-rest-1.0";
+            command.Description = "Invoke action markUnread";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -76,7 +75,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.MarkUnread {
         public MarkUnreadRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/serviceAnnouncement/messages/markUnread", pathParameters) {
         }
         /// <summary>
-        /// Mark a list of serviceUpdateMessages as **unread** for the signed in user.
+        /// Invoke action markUnread
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -1,20 +1,20 @@
 using ApiSdk.Drives.Item.Items.Count;
 using ApiSdk.Drives.Item.Items.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Drives.Item.Items {
     /// <summary>
     /// Provides operations to manage the items property of the microsoft.graph.drive entity.
@@ -33,6 +33,7 @@ namespace ApiSdk.Drives.Item.Items {
             commands.Add(builder.BuildChildrenNavCommand());
             commands.Add(builder.BuildContentNavCommand());
             commands.Add(builder.BuildCopyNavCommand());
+            commands.Add(builder.BuildCreatedByUserNavCommand());
             commands.Add(builder.BuildCreateLinkNavCommand());
             commands.Add(builder.BuildCreateUploadSessionNavCommand());
             executables.Add(builder.BuildDeleteCommand());
@@ -41,6 +42,7 @@ namespace ApiSdk.Drives.Item.Items {
             commands.Add(builder.BuildGetActivitiesByIntervalNavCommand());
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildInviteNavCommand());
+            commands.Add(builder.BuildLastModifiedByUserNavCommand());
             commands.Add(builder.BuildListItemNavCommand());
             executables.Add(builder.BuildPatchCommand());
             commands.Add(builder.BuildPermissionsNavCommand());

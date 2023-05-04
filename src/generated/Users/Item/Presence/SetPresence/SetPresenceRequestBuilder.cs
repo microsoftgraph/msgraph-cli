@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.Presence.SetPresence {
     /// <summary>
     /// Provides operations to call the setPresence method.
     /// </summary>
     public class SetPresenceRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Set the state of a user&apos;s presence session as an application.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/presence-setpresence?view=graph-rest-1.0" />
+        /// Invoke action setPresence
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Set the state of a user's presence session as an application.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/presence-setpresence?view=graph-rest-1.0";
+            command.Description = "Invoke action setPresence";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -61,7 +60,7 @@ namespace ApiSdk.Users.Item.Presence.SetPresence {
         public SetPresenceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/presence/setPresence", pathParameters) {
         }
         /// <summary>
-        /// Set the state of a user&apos;s presence session as an application.
+        /// Invoke action setPresence
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite {
     /// <summary>
     /// Provides operations to call the favorite method.
     /// </summary>
     public class FavoriteRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Change the status of a list of serviceUpdateMessages to favorite for the signed in user.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/serviceupdatemessage-favorite?view=graph-rest-1.0" />
+        /// Invoke action favorite
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Change the status of a list of serviceUpdateMessages to favorite for the signed in user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceupdatemessage-favorite?view=graph-rest-1.0";
+            command.Description = "Invoke action favorite";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -76,7 +75,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite {
         public FavoriteRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/serviceAnnouncement/messages/favorite", pathParameters) {
         }
         /// <summary>
-        /// Change the status of a list of serviceUpdateMessages to favorite for the signed in user.
+        /// Invoke action favorite
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

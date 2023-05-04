@@ -4,21 +4,21 @@ using ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.GraphGroup;
 using ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.GraphOrgContact;
 using ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.GraphServicePrincipal;
 using ApiSdk.Groups.Item.MembersWithLicenseErrors.Item.GraphUser;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item {
     /// <summary>
     /// Provides operations to manage the membersWithLicenseErrors property of the microsoft.graph.group entity.
@@ -101,8 +101,8 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item {
         /// <summary>
         /// Casts the previous resource to application.
         /// </summary>
-        public Command BuildGraphApplicationNavCommand() {
-            var command = new Command("graph-application");
+        public Command BuildGraphApplicationByIdNavCommand() {
+            var command = new Command("graph-application-by-id");
             command.Description = "Casts the previous resource to application.";
             var builder = new GraphApplicationRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -116,8 +116,8 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item {
         /// <summary>
         /// Casts the previous resource to device.
         /// </summary>
-        public Command BuildGraphDeviceNavCommand() {
-            var command = new Command("graph-device");
+        public Command BuildGraphDeviceByIdNavCommand() {
+            var command = new Command("graph-device-by-id");
             command.Description = "Casts the previous resource to device.";
             var builder = new GraphDeviceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -131,8 +131,8 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item {
         /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
-        public Command BuildGraphGroupNavCommand() {
-            var command = new Command("graph-group");
+        public Command BuildGraphGroupByIdNavCommand() {
+            var command = new Command("graph-group-by-id");
             command.Description = "Casts the previous resource to group.";
             var builder = new GraphGroupRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -146,8 +146,8 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item {
         /// <summary>
         /// Casts the previous resource to orgContact.
         /// </summary>
-        public Command BuildGraphOrgContactNavCommand() {
-            var command = new Command("graph-org-contact");
+        public Command BuildGraphOrgContactByIdNavCommand() {
+            var command = new Command("graph-org-contact-by-id");
             command.Description = "Casts the previous resource to orgContact.";
             var builder = new GraphOrgContactRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -161,8 +161,8 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item {
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        public Command BuildGraphServicePrincipalNavCommand() {
-            var command = new Command("graph-service-principal");
+        public Command BuildGraphServicePrincipalByIdNavCommand() {
+            var command = new Command("graph-service-principal-by-id");
             command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -176,8 +176,8 @@ namespace ApiSdk.Groups.Item.MembersWithLicenseErrors.Item {
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
-        public Command BuildGraphUserNavCommand() {
-            var command = new Command("graph-user");
+        public Command BuildGraphUserByIdNavCommand() {
+            var command = new Command("graph-user-by-id");
             command.Description = "Casts the previous resource to user.";
             var builder = new GraphUserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();

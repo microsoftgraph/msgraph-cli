@@ -1,5 +1,5 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.AllowedCalendarSharingRolesWithUser;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissions;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView;
@@ -7,19 +7,19 @@ using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.GetSchedule;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.MultiValueExtendedProperties;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.SingleValueExtendedProperties;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item {
     /// <summary>
     /// Provides operations to manage the calendars property of the microsoft.graph.calendarGroup entity.

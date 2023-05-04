@@ -2,19 +2,19 @@ using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.TermStore;
 using ApiSdk.Sites.Item.TermStore.Groups;
 using ApiSdk.Sites.Item.TermStore.Sets;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Sites.Item.TermStore {
     /// <summary>
     /// Provides operations to manage the termStore property of the microsoft.graph.site entity.
@@ -54,12 +54,11 @@ namespace ApiSdk.Sites.Item.TermStore {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a store object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/termstore-store-get?view=graph-rest-1.0" />
+        /// The default termStore under this site.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a store object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/termstore-store-get?view=graph-rest-1.0";
+            command.Description = "The default termStore under this site.";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -141,12 +140,11 @@ namespace ApiSdk.Sites.Item.TermStore {
             return command;
         }
         /// <summary>
-        /// Update the properties of a store object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/termstore-store-update?view=graph-rest-1.0" />
+        /// Update the navigation property termStore in sites
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a store object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/termstore-store-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property termStore in sites";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -255,7 +253,7 @@ namespace ApiSdk.Sites.Item.TermStore {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a store object.
+        /// The default termStore under this site.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -281,7 +279,7 @@ namespace ApiSdk.Sites.Item.TermStore {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a store object.
+        /// Update the navigation property termStore in sites
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -309,7 +307,7 @@ namespace ApiSdk.Sites.Item.TermStore {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a store object.
+        /// The default termStore under this site.
         /// </summary>
         public class TermStoreRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

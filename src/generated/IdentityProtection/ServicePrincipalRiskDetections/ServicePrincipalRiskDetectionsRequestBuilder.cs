@@ -1,20 +1,20 @@
 using ApiSdk.IdentityProtection.ServicePrincipalRiskDetections.Count;
 using ApiSdk.IdentityProtection.ServicePrincipalRiskDetections.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.IdentityProtection.ServicePrincipalRiskDetections {
     /// <summary>
     /// Provides operations to manage the servicePrincipalRiskDetections property of the microsoft.graph.identityProtectionRoot entity.
@@ -98,12 +98,11 @@ namespace ApiSdk.IdentityProtection.ServicePrincipalRiskDetections {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties of a collection of servicePrincipalRiskDetection objects.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/identityprotectionroot-list-serviceprincipalriskdetections?view=graph-rest-1.0" />
+        /// Represents information about detected at-risk service principals in an Azure AD tenant.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the properties of a collection of servicePrincipalRiskDetection objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/identityprotectionroot-list-serviceprincipalriskdetections?view=graph-rest-1.0";
+            command.Description = "Represents information about detected at-risk service principals in an Azure AD tenant.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -209,7 +208,7 @@ namespace ApiSdk.IdentityProtection.ServicePrincipalRiskDetections {
         public ServicePrincipalRiskDetectionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProtection/servicePrincipalRiskDetections{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve the properties of a collection of servicePrincipalRiskDetection objects.
+        /// Represents information about detected at-risk service principals in an Azure AD tenant.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -263,7 +262,7 @@ namespace ApiSdk.IdentityProtection.ServicePrincipalRiskDetections {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties of a collection of servicePrincipalRiskDetection objects.
+        /// Represents information about detected at-risk service principals in an Azure AD tenant.
         /// </summary>
         public class ServicePrincipalRiskDetectionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

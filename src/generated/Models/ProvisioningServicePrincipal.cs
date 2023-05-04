@@ -1,12 +1,12 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class ProvisioningServicePrincipal : Identity, IParsable {
         /// <summary>
-        /// Instantiates a new ProvisioningServicePrincipal and sets the default values.
+        /// Instantiates a new provisioningServicePrincipal and sets the default values.
         /// </summary>
         public ProvisioningServicePrincipal() : base() {
             OdataType = "#microsoft.graph.provisioningServicePrincipal";

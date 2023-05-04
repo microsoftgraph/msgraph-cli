@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class OptionalClaims : IAdditionalDataHolder, IParsable {
         /// <summary>The optional claims returned in the JWT access token.</summary>

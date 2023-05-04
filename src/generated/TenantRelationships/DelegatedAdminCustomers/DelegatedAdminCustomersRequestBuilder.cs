@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.TenantRelationships.DelegatedAdminCustomers.Count;
 using ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers {
     /// <summary>
     /// Provides operations to manage the delegatedAdminCustomers property of the microsoft.graph.tenantRelationship entity.
@@ -100,12 +100,11 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers {
             return command;
         }
         /// <summary>
-        /// Get a list of the delegatedAdminCustomer objects and their properties.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/tenantrelationship-list-delegatedadmincustomers?view=graph-rest-1.0" />
+        /// The customer who has a delegated admin relationship with a Microsoft partner.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the delegatedAdminCustomer objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/tenantrelationship-list-delegatedadmincustomers?view=graph-rest-1.0";
+            command.Description = "The customer who has a delegated admin relationship with a Microsoft partner.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -211,7 +210,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers {
         public DelegatedAdminCustomersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/tenantRelationships/delegatedAdminCustomers{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get a list of the delegatedAdminCustomer objects and their properties.
+        /// The customer who has a delegated admin relationship with a Microsoft partner.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -265,7 +264,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the delegatedAdminCustomer objects and their properties.
+        /// The customer who has a delegated admin relationship with a Microsoft partner.
         /// </summary>
         public class DelegatedAdminCustomersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

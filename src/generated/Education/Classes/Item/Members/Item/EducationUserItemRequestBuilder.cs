@@ -1,14 +1,14 @@
 using ApiSdk.Education.Classes.Item.Members.Item.Ref;
 using Microsoft.Kiota.Abstractions;
-using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System;
 namespace ApiSdk.Education.Classes.Item.Members.Item {
     /// <summary>
     /// Builds and executes requests for operations under \education\classes\{educationClass-id}\members\{educationUser-id}

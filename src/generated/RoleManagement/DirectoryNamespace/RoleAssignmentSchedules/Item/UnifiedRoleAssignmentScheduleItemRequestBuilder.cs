@@ -1,19 +1,23 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item.ActivatedUsing;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item.AppScope;
+using ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item.DirectoryScope;
+using ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item.Principal;
+using ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item.RoleDefinition;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item {
     /// <summary>
     /// Provides operations to manage the roleAssignmentSchedules property of the microsoft.graph.rbacApplication entity.
@@ -26,6 +30,21 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item 
             var command = new Command("activated-using");
             command.Description = "Provides operations to manage the activatedUsing property of the microsoft.graph.unifiedRoleAssignmentSchedule entity.";
             var builder = new ActivatedUsingRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the appScope property of the microsoft.graph.unifiedRoleScheduleBase entity.
+        /// </summary>
+        public Command BuildAppScopeNavCommand() {
+            var command = new Command("app-scope");
+            command.Description = "Provides operations to manage the appScope property of the microsoft.graph.unifiedRoleScheduleBase entity.";
+            var builder = new AppScopeRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -65,6 +84,21 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item 
                 await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the directoryScope property of the microsoft.graph.unifiedRoleScheduleBase entity.
+        /// </summary>
+        public Command BuildDirectoryScopeNavCommand() {
+            var command = new Command("directory-scope");
+            command.Description = "Provides operations to manage the directoryScope property of the microsoft.graph.unifiedRoleScheduleBase entity.";
+            var builder = new DirectoryScopeRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -183,6 +217,36 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules.Item 
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the principal property of the microsoft.graph.unifiedRoleScheduleBase entity.
+        /// </summary>
+        public Command BuildPrincipalNavCommand() {
+            var command = new Command("principal");
+            command.Description = "Provides operations to manage the principal property of the microsoft.graph.unifiedRoleScheduleBase entity.";
+            var builder = new PrincipalRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the roleDefinition property of the microsoft.graph.unifiedRoleScheduleBase entity.
+        /// </summary>
+        public Command BuildRoleDefinitionNavCommand() {
+            var command = new Command("role-definition");
+            command.Description = "Provides operations to manage the roleDefinition property of the microsoft.graph.unifiedRoleScheduleBase entity.";
+            var builder = new RoleDefinitionRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>

@@ -1,20 +1,20 @@
 using ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Resources.Count;
 using ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Resources.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Resources {
     /// <summary>
     /// Provides operations to manage the resources property of the microsoft.graph.educationSubmission entity.
@@ -47,12 +47,11 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Resources {
             return command;
         }
         /// <summary>
-        /// Add an educationSubmissionResource to a submission resource list. Only teachers and students can perform this operation. The operation will not succeed if the **allowStudentsToAddResources** flag is not set to `true`. To create a new file-based resource, upload the file to the resources folder associated with the submission. If the file doesn&apos;t exist or is not in that folder, the POST request will fail.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationsubmission-post-resources?view=graph-rest-1.0" />
+        /// Create new navigation property to resources for education
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Add an educationSubmissionResource to a submission resource list. Only teachers and students can perform this operation. The operation will not succeed if the **allowStudentsToAddResources** flag is not set to `true`. To create a new file-based resource, upload the file to the resources folder associated with the submission. If the file doesn't exist or is not in that folder, the POST request will fail.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationsubmission-post-resources?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to resources for education";
             var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
@@ -111,12 +110,11 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Resources {
             return command;
         }
         /// <summary>
-        /// List the resources associated with a submission. Only teachers, students, and applications with application permissions can perform this operation. The educationSubmissionResource object is a wrapper around the actual resource object the student is working on. The wrapper also includes a pointer to the resources on the assignment if this was copied from the assignment during the assign process. These resources are the working copy of the assignment. The **submittedResources** are the resources that have officially been submitted to be graded.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationsubmission-list-resources?view=graph-rest-1.0" />
+        /// Get resources from education
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List the resources associated with a submission. Only teachers, students, and applications with application permissions can perform this operation. The educationSubmissionResource object is a wrapper around the actual resource object the student is working on. The wrapper also includes a pointer to the resources on the assignment if this was copied from the assignment during the assign process. These resources are the working copy of the assignment. The **submittedResources** are the resources that have officially been submitted to be graded.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationsubmission-list-resources?view=graph-rest-1.0";
+            command.Description = "Get resources from education";
             var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
@@ -234,7 +232,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Resources {
         public ResourcesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/me/assignments/{educationAssignment%2Did}/submissions/{educationSubmission%2Did}/resources{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// List the resources associated with a submission. Only teachers, students, and applications with application permissions can perform this operation. The educationSubmissionResource object is a wrapper around the actual resource object the student is working on. The wrapper also includes a pointer to the resources on the assignment if this was copied from the assignment during the assign process. These resources are the working copy of the assignment. The **submittedResources** are the resources that have officially been submitted to be graded.
+        /// Get resources from education
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -260,7 +258,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Resources {
             return requestInfo;
         }
         /// <summary>
-        /// Add an educationSubmissionResource to a submission resource list. Only teachers and students can perform this operation. The operation will not succeed if the **allowStudentsToAddResources** flag is not set to `true`. To create a new file-based resource, upload the file to the resources folder associated with the submission. If the file doesn&apos;t exist or is not in that folder, the POST request will fail.
+        /// Create new navigation property to resources for education
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -288,7 +286,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Submissions.Item.Resources {
             return requestInfo;
         }
         /// <summary>
-        /// List the resources associated with a submission. Only teachers, students, and applications with application permissions can perform this operation. The educationSubmissionResource object is a wrapper around the actual resource object the student is working on. The wrapper also includes a pointer to the resources on the assignment if this was copied from the assignment during the assign process. These resources are the working copy of the assignment. The **submittedResources** are the resources that have officially been submitted to be graded.
+        /// Get resources from education
         /// </summary>
         public class ResourcesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

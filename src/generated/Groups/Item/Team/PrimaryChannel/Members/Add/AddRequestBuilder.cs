@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups.Item.Team.PrimaryChannel.Members.Add {
     /// <summary>
     /// Provides operations to call the add method.
     /// </summary>
     public class AddRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Add multiple members in a single request to a team. The response provides details about which memberships could and couldn&apos;t be created.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/conversationmembers-add?view=graph-rest-1.0" />
+        /// Invoke action add
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Add multiple members in a single request to a team. The response provides details about which memberships could and couldn't be created.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/conversationmembers-add?view=graph-rest-1.0";
+            command.Description = "Invoke action add";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -94,7 +93,7 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.Members.Add {
         public AddRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/primaryChannel/members/add", pathParameters) {
         }
         /// <summary>
-        /// Add multiple members in a single request to a team. The response provides details about which memberships could and couldn&apos;t be created.
+        /// Invoke action add
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

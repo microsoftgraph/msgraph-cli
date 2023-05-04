@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class OnlineMeeting : Entity, IParsable {
         /// <summary>Indicates whether attendees can turn on their camera.</summary>
@@ -131,6 +131,14 @@ namespace ApiSdk.Models {
 #else
         public string VideoTeleconferenceId { get; set; }
 #endif
+        /// <summary>Specifies whether a watermark should be applied to a content type by the client application.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public WatermarkProtectionValues? WatermarkProtection { get; set; }
+#nullable restore
+#else
+        public WatermarkProtectionValues WatermarkProtection { get; set; }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -168,6 +176,7 @@ namespace ApiSdk.Models {
                 {"startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
                 {"subject", n => { Subject = n.GetStringValue(); } },
                 {"videoTeleconferenceId", n => { VideoTeleconferenceId = n.GetStringValue(); } },
+                {"watermarkProtection", n => { WatermarkProtection = n.GetObjectValue<WatermarkProtectionValues>(WatermarkProtectionValues.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -201,6 +210,7 @@ namespace ApiSdk.Models {
             writer.WriteDateTimeOffsetValue("startDateTime", StartDateTime);
             writer.WriteStringValue("subject", Subject);
             writer.WriteStringValue("videoTeleconferenceId", VideoTeleconferenceId);
+            writer.WriteObjectValue<WatermarkProtectionValues>("watermarkProtection", WatermarkProtection);
         }
     }
 }

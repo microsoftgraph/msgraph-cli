@@ -1,22 +1,22 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item.AppScope;
 using ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item.DirectoryScope;
 using ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item.Principal;
 using ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item.RoleDefinition;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignments.Item {
     /// <summary>
     /// Provides operations to manage the roleAssignments property of the microsoft.graph.rbacApplication entity.

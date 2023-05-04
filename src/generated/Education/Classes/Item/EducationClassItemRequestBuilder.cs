@@ -1,26 +1,26 @@
 using ApiSdk.Education.Classes.Item.AssignmentCategories;
 using ApiSdk.Education.Classes.Item.AssignmentDefaults;
-using ApiSdk.Education.Classes.Item.Assignments;
 using ApiSdk.Education.Classes.Item.AssignmentSettings;
+using ApiSdk.Education.Classes.Item.Assignments;
 using ApiSdk.Education.Classes.Item.Group;
 using ApiSdk.Education.Classes.Item.Members;
 using ApiSdk.Education.Classes.Item.Schools;
 using ApiSdk.Education.Classes.Item.Teachers;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Education.Classes.Item {
     /// <summary>
     /// Provides operations to manage the classes property of the microsoft.graph.educationRoot entity.

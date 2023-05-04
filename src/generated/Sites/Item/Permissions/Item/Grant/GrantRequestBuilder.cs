@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Sites.Item.Permissions.Item.Grant {
     /// <summary>
     /// Provides operations to call the grant method.
     /// </summary>
     public class GrantRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Grant users access to a link represented by a [permission][].
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/permission-grant?view=graph-rest-1.0" />
+        /// Invoke action grant
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Grant users access to a link represented by a [permission][].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/permission-grant?view=graph-rest-1.0";
+            command.Description = "Invoke action grant";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -100,7 +99,7 @@ namespace ApiSdk.Sites.Item.Permissions.Item.Grant {
         public GrantRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/permissions/{permission%2Did}/grant", pathParameters) {
         }
         /// <summary>
-        /// Grant users access to a link represented by a [permission][].
+        /// Invoke action grant
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -1,18 +1,19 @@
-using ApiSdk.Models;
+using ApiSdk.DeviceManagement.RoleAssignments.Item.RoleDefinition;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.DeviceManagement.RoleAssignments.Item {
     /// <summary>
     /// Provides operations to manage the roleAssignments property of the microsoft.graph.deviceManagement entity.
@@ -167,6 +168,21 @@ namespace ApiSdk.DeviceManagement.RoleAssignments.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the roleDefinition property of the microsoft.graph.roleAssignment entity.
+        /// </summary>
+        public Command BuildRoleDefinitionNavCommand() {
+            var command = new Command("role-definition");
+            command.Description = "Provides operations to manage the roleDefinition property of the microsoft.graph.roleAssignment entity.";
+            var builder = new RoleDefinitionRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>

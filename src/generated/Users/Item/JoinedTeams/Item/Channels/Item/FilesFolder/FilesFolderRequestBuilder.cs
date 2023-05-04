@@ -1,19 +1,19 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.FilesFolder.Content;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.FilesFolder {
     /// <summary>
     /// Provides operations to manage the filesFolder property of the microsoft.graph.channel entity.
@@ -36,12 +36,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.FilesFolder {
             return command;
         }
         /// <summary>
-        /// Get the metadata for the location where the files of a channel are stored. 
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/channel-get-filesfolder?view=graph-rest-1.0" />
+        /// Metadata for the location where the channel&apos;s files are stored.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the metadata for the location where the files of a channel are stored. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-get-filesfolder?view=graph-rest-1.0";
+            command.Description = "Metadata for the location where the channel's files are stored.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -116,7 +115,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.FilesFolder {
         public FilesFolderRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/channels/{channel%2Did}/filesFolder{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get the metadata for the location where the files of a channel are stored. 
+        /// Metadata for the location where the channel&apos;s files are stored.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -142,7 +141,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.FilesFolder {
             return requestInfo;
         }
         /// <summary>
-        /// Get the metadata for the location where the files of a channel are stored. 
+        /// Metadata for the location where the channel&apos;s files are stored.
         /// </summary>
         public class FilesFolderRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

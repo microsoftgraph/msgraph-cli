@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Teams.Item.Schedule.OfferShiftRequests.Count;
 using ApiSdk.Teams.Item.Schedule.OfferShiftRequests.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Teams.Item.Schedule.OfferShiftRequests {
     /// <summary>
     /// Provides operations to manage the offerShiftRequests property of the microsoft.graph.schedule entity.
@@ -104,12 +104,11 @@ namespace ApiSdk.Teams.Item.Schedule.OfferShiftRequests {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of all offerShiftRequest objects in a team.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/offershiftrequest-list?view=graph-rest-1.0" />
+        /// Get offerShiftRequests from teams
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the properties and relationships of all offerShiftRequest objects in a team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/offershiftrequest-list?view=graph-rest-1.0";
+            command.Description = "Get offerShiftRequests from teams";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -221,7 +220,7 @@ namespace ApiSdk.Teams.Item.Schedule.OfferShiftRequests {
         public OfferShiftRequestsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/schedule/offerShiftRequests{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve the properties and relationships of all offerShiftRequest objects in a team.
+        /// Get offerShiftRequests from teams
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -275,7 +274,7 @@ namespace ApiSdk.Teams.Item.Schedule.OfferShiftRequests {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of all offerShiftRequest objects in a team.
+        /// Get offerShiftRequests from teams
         /// </summary>
         public class OfferShiftRequestsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

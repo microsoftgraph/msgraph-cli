@@ -1,18 +1,18 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.ProgressTaskBoardFormat {
     /// <summary>
     /// Provides operations to manage the progressTaskBoardFormat property of the microsoft.graph.plannerTask entity.
@@ -70,12 +70,11 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.ProgressT
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of **plannerProgressTaskBoardTaskFormat** object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/plannerprogresstaskboardtaskformat-get?view=graph-rest-1.0" />
+        /// Read-only. Nullable. Used to render the task correctly in the task board view when grouped by progress.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of **plannerProgressTaskBoardTaskFormat** object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerprogresstaskboardtaskformat-get?view=graph-rest-1.0";
+            command.Description = "Read-only. Nullable. Used to render the task correctly in the task board view when grouped by progress.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -151,11 +150,10 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.ProgressT
         }
         /// <summary>
         /// Update the navigation property progressTaskBoardFormat in users
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/plannerprogresstaskboardtaskformat-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property progressTaskBoardFormat in users\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerprogresstaskboardtaskformat-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property progressTaskBoardFormat in users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -264,7 +262,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.ProgressT
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of **plannerProgressTaskBoardTaskFormat** object.
+        /// Read-only. Nullable. Used to render the task correctly in the task board view when grouped by progress.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -318,7 +316,7 @@ namespace ApiSdk.Users.Item.Planner.Plans.Item.Buckets.Item.Tasks.Item.ProgressT
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of **plannerProgressTaskBoardTaskFormat** object.
+        /// Read-only. Nullable. Used to render the task correctly in the task board view when grouped by progress.
         /// </summary>
         public class ProgressTaskBoardFormatRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

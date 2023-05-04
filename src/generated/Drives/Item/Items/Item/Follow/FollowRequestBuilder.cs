@@ -1,30 +1,29 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Drives.Item.Items.Item.Follow {
     /// <summary>
     /// Provides operations to call the follow method.
     /// </summary>
     public class FollowRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Follow a driveItem.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/driveitem-follow?view=graph-rest-1.0" />
+        /// Invoke action follow
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Follow a driveItem.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitem-follow?view=graph-rest-1.0";
+            command.Description = "Invoke action follow";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -79,7 +78,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Follow {
         public FollowRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/follow", pathParameters) {
         }
         /// <summary>
-        /// Follow a driveItem.
+        /// Invoke action follow
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

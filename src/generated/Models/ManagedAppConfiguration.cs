@@ -1,9 +1,12 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// Configuration used to deliver a set of custom settings as-is to apps for users to whom the configuration is scoped
+    /// </summary>
     public class ManagedAppConfiguration : ManagedAppPolicy, IParsable {
         /// <summary>A set of string key and string value pairs to be sent to apps for users to whom the configuration is scoped, unalterned by this service</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -14,7 +17,7 @@ namespace ApiSdk.Models {
         public List<KeyValuePair> CustomSettings { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new ManagedAppConfiguration and sets the default values.
+        /// Instantiates a new managedAppConfiguration and sets the default values.
         /// </summary>
         public ManagedAppConfiguration() : base() {
             OdataType = "#microsoft.graph.managedAppConfiguration";

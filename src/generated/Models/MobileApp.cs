@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     /// <summary>
     /// An abstract class containing the base properties for Intune mobile apps.
@@ -131,6 +131,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.mobileLobApp" => new MobileLobApp(),
                 "#microsoft.graph.webApp" => new WebApp(),
                 "#microsoft.graph.win32LobApp" => new Win32LobApp(),
+                "#microsoft.graph.windowsAppX" => new WindowsAppX(),
                 "#microsoft.graph.windowsMicrosoftEdgeApp" => new WindowsMicrosoftEdgeApp(),
                 "#microsoft.graph.windowsMobileMSI" => new WindowsMobileMSI(),
                 "#microsoft.graph.windowsUniversalAppX" => new WindowsUniversalAppX(),

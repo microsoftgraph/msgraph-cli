@@ -2,20 +2,20 @@ using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.Security;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Count;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.SecurityAsHierarchy;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.MicrosoftGraphSecurityAsHierarchy;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags {
     /// <summary>
     /// Provides operations to manage the tags property of the microsoft.graph.security.ediscoveryCase entity.
@@ -51,12 +51,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags {
             return command;
         }
         /// <summary>
-        /// Create a new ediscoveryReviewTag object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoverycase-post-tags?view=graph-rest-1.0" />
+        /// Create new navigation property to tags for security
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new ediscoveryReviewTag object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-post-tags?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to tags for security";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -109,12 +108,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags {
             return command;
         }
         /// <summary>
-        /// Get a list of eDiscoveryReviewTag objects and their properties.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoverycase-list-tags?view=graph-rest-1.0" />
+        /// Returns a list of ediscoveryReviewTag objects associated to this case.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of eDiscoveryReviewTag objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-list-tags?view=graph-rest-1.0";
+            command.Description = "Returns a list of ediscoveryReviewTag objects associated to this case.";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -222,10 +220,10 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags {
         /// <summary>
         /// Provides operations to call the asHierarchy method.
         /// </summary>
-        public Command BuildSecurityAsHierarchyNavCommand() {
-            var command = new Command("security-as-hierarchy");
+        public Command BuildMicrosoftGraphSecurityAsHierarchyNavCommand() {
+            var command = new Command("microsoft-graph-security-as-hierarchy");
             command.Description = "Provides operations to call the asHierarchy method.";
-            var builder = new SecurityAsHierarchyRequestBuilder(PathParameters);
+            var builder = new MicrosoftGraphSecurityAsHierarchyRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -241,7 +239,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags {
         public TagsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/tags{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get a list of eDiscoveryReviewTag objects and their properties.
+        /// Returns a list of ediscoveryReviewTag objects associated to this case.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -267,7 +265,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new ediscoveryReviewTag object.
+        /// Create new navigation property to tags for security
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -295,7 +293,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of eDiscoveryReviewTag objects and their properties.
+        /// Returns a list of ediscoveryReviewTag objects associated to this case.
         /// </summary>
         public class TagsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

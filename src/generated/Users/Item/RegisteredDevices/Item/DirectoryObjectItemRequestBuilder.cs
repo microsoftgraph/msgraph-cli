@@ -1,21 +1,21 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.RegisteredDevices.Item.GraphAppRoleAssignment;
 using ApiSdk.Users.Item.RegisteredDevices.Item.GraphDevice;
 using ApiSdk.Users.Item.RegisteredDevices.Item.GraphEndpoint;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.RegisteredDevices.Item {
     /// <summary>
     /// Provides operations to manage the registeredDevices property of the microsoft.graph.user entity.
@@ -98,8 +98,8 @@ namespace ApiSdk.Users.Item.RegisteredDevices.Item {
         /// <summary>
         /// Casts the previous resource to appRoleAssignment.
         /// </summary>
-        public Command BuildGraphAppRoleAssignmentNavCommand() {
-            var command = new Command("graph-app-role-assignment");
+        public Command BuildGraphAppRoleAssignmentByIdNavCommand() {
+            var command = new Command("graph-app-role-assignment-by-id");
             command.Description = "Casts the previous resource to appRoleAssignment.";
             var builder = new GraphAppRoleAssignmentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -113,8 +113,8 @@ namespace ApiSdk.Users.Item.RegisteredDevices.Item {
         /// <summary>
         /// Casts the previous resource to device.
         /// </summary>
-        public Command BuildGraphDeviceNavCommand() {
-            var command = new Command("graph-device");
+        public Command BuildGraphDeviceByIdNavCommand() {
+            var command = new Command("graph-device-by-id");
             command.Description = "Casts the previous resource to device.";
             var builder = new GraphDeviceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -128,8 +128,8 @@ namespace ApiSdk.Users.Item.RegisteredDevices.Item {
         /// <summary>
         /// Casts the previous resource to endpoint.
         /// </summary>
-        public Command BuildGraphEndpointNavCommand() {
-            var command = new Command("graph-endpoint");
+        public Command BuildGraphEndpointByIdNavCommand() {
+            var command = new Command("graph-endpoint-by-id");
             command.Description = "Casts the previous resource to endpoint.";
             var builder = new GraphEndpointRequestBuilder(PathParameters);
             var execCommands = new List<Command>();

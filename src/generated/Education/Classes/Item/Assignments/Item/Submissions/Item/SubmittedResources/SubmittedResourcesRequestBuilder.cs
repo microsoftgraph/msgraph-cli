@@ -1,20 +1,20 @@
 using ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.SubmittedResources.Count;
 using ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.SubmittedResources.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.SubmittedResources {
     /// <summary>
     /// Provides operations to manage the submittedResources property of the microsoft.graph.educationSubmission entity.
@@ -116,12 +116,11 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Submit
             return command;
         }
         /// <summary>
-        /// List the educationSubmissionResource objects that have officially been submitted for grading. Only teachers, students, and applications with application permissions can perform this operation. The student who owns the submission cannot change the submitted list without resubmitting the assignment. This is a wrapper around the real resource and can contain a pointer back to the actual assignment resource if this resource was copied from the assignment.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationsubmission-list-submittedresources?view=graph-rest-1.0" />
+        /// Get submittedResources from education
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List the educationSubmissionResource objects that have officially been submitted for grading. Only teachers, students, and applications with application permissions can perform this operation. The student who owns the submission cannot change the submitted list without resubmitting the assignment. This is a wrapper around the real resource and can contain a pointer back to the actual assignment resource if this resource was copied from the assignment.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationsubmission-list-submittedresources?view=graph-rest-1.0";
+            command.Description = "Get submittedResources from education";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -245,7 +244,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Submit
         public SubmittedResourcesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignments/{educationAssignment%2Did}/submissions/{educationSubmission%2Did}/submittedResources{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// List the educationSubmissionResource objects that have officially been submitted for grading. Only teachers, students, and applications with application permissions can perform this operation. The student who owns the submission cannot change the submitted list without resubmitting the assignment. This is a wrapper around the real resource and can contain a pointer back to the actual assignment resource if this resource was copied from the assignment.
+        /// Get submittedResources from education
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -299,7 +298,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Submit
             return requestInfo;
         }
         /// <summary>
-        /// List the educationSubmissionResource objects that have officially been submitted for grading. Only teachers, students, and applications with application permissions can perform this operation. The student who owns the submission cannot change the submitted list without resubmitting the assignment. This is a wrapper around the real resource and can contain a pointer back to the actual assignment resource if this resource was copied from the assignment.
+        /// Get submittedResources from education
         /// </summary>
         public class SubmittedResourcesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

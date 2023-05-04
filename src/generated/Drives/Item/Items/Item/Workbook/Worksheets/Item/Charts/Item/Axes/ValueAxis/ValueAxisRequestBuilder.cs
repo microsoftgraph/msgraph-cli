@@ -2,21 +2,21 @@ using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axes.Va
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axes.ValueAxis.MajorGridlines;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axes.ValueAxis.MinorGridlines;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axes.ValueAxis.Title;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axes.ValueAxis {
     /// <summary>
     /// Provides operations to manage the valueAxis property of the microsoft.graph.workbookChartAxes entity.
@@ -98,12 +98,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of chartaxis object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chartaxis-get?view=graph-rest-1.0" />
+        /// Represents the value axis in an axis. Read-only.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of chartaxis object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chartaxis-get?view=graph-rest-1.0";
+            command.Description = "Represents the value axis in an axis. Read-only.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -224,12 +223,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
             return command;
         }
         /// <summary>
-        /// Update the properties of chartaxis object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chartaxis-update?view=graph-rest-1.0" />
+        /// Update the navigation property valueAxis in drives
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of chartaxis object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chartaxis-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property valueAxis in drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -354,7 +352,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of chartaxis object.
+        /// Represents the value axis in an axis. Read-only.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -380,7 +378,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of chartaxis object.
+        /// Update the navigation property valueAxis in drives
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -408,7 +406,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of chartaxis object.
+        /// Represents the value axis in an axis. Read-only.
         /// </summary>
         public class ValueAxisRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

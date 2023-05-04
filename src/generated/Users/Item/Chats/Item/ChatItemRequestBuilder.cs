@@ -1,5 +1,5 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.Chats.Item.HideForUser;
 using ApiSdk.Users.Item.Chats.Item.InstalledApps;
 using ApiSdk.Users.Item.Chats.Item.LastMessagePreview;
@@ -11,19 +11,19 @@ using ApiSdk.Users.Item.Chats.Item.PinnedMessages;
 using ApiSdk.Users.Item.Chats.Item.SendActivityNotification;
 using ApiSdk.Users.Item.Chats.Item.Tabs;
 using ApiSdk.Users.Item.Chats.Item.UnhideForUser;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.Chats.Item {
     /// <summary>
     /// Provides operations to manage the chats property of the microsoft.graph.user entity.

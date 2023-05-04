@@ -1,21 +1,21 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.MailFolders.Item.Messages.Count;
 using ApiSdk.Users.Item.MailFolders.Item.Messages.Delta;
 using ApiSdk.Users.Item.MailFolders.Item.Messages.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.MailFolders.Item.Messages {
     /// <summary>
     /// Provides operations to manage the messages property of the microsoft.graph.mailFolder entity.
@@ -63,12 +63,11 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages {
             return command;
         }
         /// <summary>
-        /// Use this API to create a new Message in a mailfolder.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/mailfolder-post-messages?view=graph-rest-1.0" />
+        /// Create new navigation property to messages for users
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to create a new Message in a mailfolder.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/mailfolder-post-messages?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to messages for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -142,12 +141,11 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages {
             return command;
         }
         /// <summary>
-        /// Get all the messages in the specified user&apos;s mailbox, or those messages in a specified folder in the mailbox.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/mailfolder-list-messages?view=graph-rest-1.0" />
+        /// The collection of messages in the mailFolder.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get all the messages in the specified user's mailbox, or those messages in a specified folder in the mailbox.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/mailfolder-list-messages?view=graph-rest-1.0";
+            command.Description = "The collection of messages in the mailFolder.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -265,7 +263,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages {
         public MessagesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/messages{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get all the messages in the specified user&apos;s mailbox, or those messages in a specified folder in the mailbox.
+        /// The collection of messages in the mailFolder.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -291,7 +289,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to create a new Message in a mailfolder.
+        /// Create new navigation property to messages for users
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -319,7 +317,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages {
             return requestInfo;
         }
         /// <summary>
-        /// Get all the messages in the specified user&apos;s mailbox, or those messages in a specified folder in the mailbox.
+        /// The collection of messages in the mailFolder.
         /// </summary>
         public class MessagesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

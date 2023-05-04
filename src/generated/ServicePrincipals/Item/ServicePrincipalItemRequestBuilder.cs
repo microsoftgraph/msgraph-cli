@@ -1,5 +1,5 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.ServicePrincipals.Item.AddKey;
 using ApiSdk.ServicePrincipals.Item.AddPassword;
 using ApiSdk.ServicePrincipals.Item.AddTokenSigningCertificate;
@@ -26,19 +26,19 @@ using ApiSdk.ServicePrincipals.Item.Restore;
 using ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies;
 using ApiSdk.ServicePrincipals.Item.TokenLifetimePolicies;
 using ApiSdk.ServicePrincipals.Item.TransitiveMemberOf;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.ServicePrincipals.Item {
     /// <summary>
     /// Provides operations to manage the collection of servicePrincipal entities.
@@ -479,6 +479,7 @@ namespace ApiSdk.ServicePrincipals.Item {
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
+            nonExecCommands.Add(builder.BuildGraphAdministrativeUnitNavCommand());
             nonExecCommands.Add(builder.BuildGraphGroupNavCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
@@ -736,6 +737,7 @@ namespace ApiSdk.ServicePrincipals.Item {
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
+            nonExecCommands.Add(builder.BuildGraphAdministrativeUnitNavCommand());
             nonExecCommands.Add(builder.BuildGraphGroupNavCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();

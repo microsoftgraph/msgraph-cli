@@ -2,19 +2,19 @@ using ApiSdk.External.Connections.Item.Groups.Item.Members.Count;
 using ApiSdk.External.Connections.Item.Groups.Item.Members.Item;
 using ApiSdk.Models.ExternalConnectors;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.External.Connections.Item.Groups.Item.Members {
     /// <summary>
     /// Provides operations to manage the members property of the microsoft.graph.externalConnectors.externalGroup entity.
@@ -47,12 +47,11 @@ namespace ApiSdk.External.Connections.Item.Groups.Item.Members {
             return command;
         }
         /// <summary>
-        /// Create an identity resource for a new member in an externalGroup.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/externalconnectors-externalgroup-post-members?view=graph-rest-1.0" />
+        /// Create new navigation property to members for external
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create an identity resource for a new member in an externalGroup.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/externalconnectors-externalgroup-post-members?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to members for external";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -259,7 +258,7 @@ namespace ApiSdk.External.Connections.Item.Groups.Item.Members {
             return requestInfo;
         }
         /// <summary>
-        /// Create an identity resource for a new member in an externalGroup.
+        /// Create new navigation property to members for external
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

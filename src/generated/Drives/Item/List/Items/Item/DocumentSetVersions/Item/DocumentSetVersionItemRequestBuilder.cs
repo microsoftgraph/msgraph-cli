@@ -1,19 +1,20 @@
+using ApiSdk.Drives.Item.List.Items.Item.DocumentSetVersions.Item.Fields;
 using ApiSdk.Drives.Item.List.Items.Item.DocumentSetVersions.Item.Restore;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Drives.Item.List.Items.Item.DocumentSetVersions.Item {
     /// <summary>
     /// Provides operations to manage the documentSetVersions property of the microsoft.graph.listItem entity.
@@ -62,6 +63,23 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DocumentSetVersions.Item {
                 await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the fields property of the microsoft.graph.listItemVersion entity.
+        /// </summary>
+        public Command BuildFieldsNavCommand() {
+            var command = new Command("fields");
+            command.Description = "Provides operations to manage the fields property of the microsoft.graph.listItemVersion entity.";
+            var builder = new FieldsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>

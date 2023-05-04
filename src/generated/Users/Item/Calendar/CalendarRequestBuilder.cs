@@ -1,5 +1,5 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.Calendar.AllowedCalendarSharingRolesWithUser;
 using ApiSdk.Users.Item.Calendar.CalendarPermissions;
 using ApiSdk.Users.Item.Calendar.CalendarView;
@@ -7,19 +7,19 @@ using ApiSdk.Users.Item.Calendar.Events;
 using ApiSdk.Users.Item.Calendar.GetSchedule;
 using ApiSdk.Users.Item.Calendar.MultiValueExtendedProperties;
 using ApiSdk.Users.Item.Calendar.SingleValueExtendedProperties;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.Calendar {
     /// <summary>
     /// Provides operations to manage the calendar property of the microsoft.graph.user entity.
@@ -102,12 +102,11 @@ namespace ApiSdk.Users.Item.Calendar {
             return command;
         }
         /// <summary>
-        /// Get the properties and relationships of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user&apos;s calendar:
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/calendar-get?view=graph-rest-1.0" />
+        /// The user&apos;s primary calendar. Read-only.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the properties and relationships of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user's calendar:\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/calendar-get?view=graph-rest-1.0";
+            command.Description = "The user's primary calendar. Read-only.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -197,12 +196,11 @@ namespace ApiSdk.Users.Item.Calendar {
             return command;
         }
         /// <summary>
-        /// Update the properties of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/calendar-update?view=graph-rest-1.0" />
+        /// Update the navigation property calendar in users
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/calendar-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property calendar in users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -286,7 +284,7 @@ namespace ApiSdk.Users.Item.Calendar {
         public CalendarRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendar{?%24select}", pathParameters) {
         }
         /// <summary>
-        /// Get the properties and relationships of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user&apos;s calendar:
+        /// The user&apos;s primary calendar. Read-only.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -312,7 +310,7 @@ namespace ApiSdk.Users.Item.Calendar {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group.
+        /// Update the navigation property calendar in users
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -340,7 +338,7 @@ namespace ApiSdk.Users.Item.Calendar {
             return requestInfo;
         }
         /// <summary>
-        /// Get the properties and relationships of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user&apos;s calendar:
+        /// The user&apos;s primary calendar. Read-only.
         /// </summary>
         public class CalendarRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>
