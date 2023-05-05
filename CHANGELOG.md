@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0-preview.1] - 2023-05-05
+
+### Added
+
+### Changed
+- Set console encoding to utf-8
+- Remove `item` place-holder from commands with url path parameters
+- Update samples.
+
 ## [0.3.0-preview.1] - 2023-03-16
 
 ### Added
