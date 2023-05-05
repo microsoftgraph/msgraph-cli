@@ -2,21 +2,21 @@ using ApiSdk.Contacts.Item.DirectReports.Count;
 using ApiSdk.Contacts.Item.DirectReports.GraphOrgContact;
 using ApiSdk.Contacts.Item.DirectReports.GraphUser;
 using ApiSdk.Contacts.Item.DirectReports.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Contacts.Item.DirectReports {
     /// <summary>
     /// Provides operations to manage the directReports property of the microsoft.graph.orgContact entity.
@@ -27,9 +27,12 @@ namespace ApiSdk.Contacts.Item.DirectReports {
         /// </summary>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
+            var commands = new List<Command>();
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildGetCommand());
-            return new(executables, new(0));
+            commands.Add(builder.BuildGraphOrgContactByIdNavCommand());
+            commands.Add(builder.BuildGraphUserByIdNavCommand());
+            return new(executables, commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -50,8 +53,7 @@ namespace ApiSdk.Contacts.Item.DirectReports {
         /// Casts the previous resource to orgContact.
         /// </summary>
         public Command BuildGraphOrgContactNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphOrgContactNavCommand();
+            var command = new Command("graph-org-contact");
             command.Description = "Casts the previous resource to orgContact.";
             var builder = new GraphOrgContactRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -72,8 +74,7 @@ namespace ApiSdk.Contacts.Item.DirectReports {
         /// Casts the previous resource to user.
         /// </summary>
         public Command BuildGraphUserNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphUserNavCommand();
+            var command = new Command("graph-user");
             command.Description = "Casts the previous resource to user.";
             var builder = new GraphUserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -92,11 +93,10 @@ namespace ApiSdk.Contacts.Item.DirectReports {
         }
         /// <summary>
         /// Get directReports from contacts
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/orgcontact-list-directreports?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get directReports from contacts\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/orgcontact-list-directreports?view=graph-rest-1.0";
+            command.Description = "Get directReports from contacts";
             var orgContactIdOption = new Option<string>("--org-contact-id", description: "The unique identifier of orgContact") {
             };
             orgContactIdOption.IsRequired = true;

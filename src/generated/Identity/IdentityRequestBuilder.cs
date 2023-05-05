@@ -3,21 +3,21 @@ using ApiSdk.Identity.B2xUserFlows;
 using ApiSdk.Identity.ConditionalAccess;
 using ApiSdk.Identity.IdentityProviders;
 using ApiSdk.Identity.UserFlowAttributes;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Identity {
     /// <summary>
     /// Provides operations to manage the identityContainer singleton.
@@ -83,6 +83,7 @@ namespace ApiSdk.Identity {
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildAuthenticationContextClassReferencesNavCommand());
+            nonExecCommands.Add(builder.BuildAuthenticationStrengthNavCommand());
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             nonExecCommands.Add(builder.BuildNamedLocationsNavCommand());

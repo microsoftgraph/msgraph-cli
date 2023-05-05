@@ -1,19 +1,19 @@
 using ApiSdk.Drives.Item.Items.Item.Workbook.Application.Calculate;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Drives.Item.Items.Item.Workbook.Application {
     /// <summary>
     /// Provides operations to manage the application property of the microsoft.graph.workbook entity.
@@ -74,12 +74,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Application {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a workbookApplication object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/workbookapplication-get?view=graph-rest-1.0" />
+        /// Get application from drives
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a workbookApplication object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/workbookapplication-get?view=graph-rest-1.0";
+            command.Description = "Get application from drives";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -236,7 +235,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Application {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a workbookApplication object.
+        /// Get application from drives
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -290,7 +289,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Application {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a workbookApplication object.
+        /// Get application from drives
         /// </summary>
         public class ApplicationRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

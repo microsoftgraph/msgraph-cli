@@ -1,21 +1,21 @@
 using ApiSdk.Chats.Item.Members.Add;
 using ApiSdk.Chats.Item.Members.Count;
 using ApiSdk.Chats.Item.Members.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Chats.Item.Members {
     /// <summary>
     /// Provides operations to manage the members property of the microsoft.graph.chat entity.
@@ -63,12 +63,11 @@ namespace ApiSdk.Chats.Item.Members {
             return command;
         }
         /// <summary>
-        /// Add a conversationMember to a chat.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chat-post-members?view=graph-rest-1.0" />
+        /// Create new navigation property to members for chats
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Add a conversationMember to a chat.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-post-members?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to members for chats";
             var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
@@ -121,12 +120,11 @@ namespace ApiSdk.Chats.Item.Members {
             return command;
         }
         /// <summary>
-        /// List all conversation members in a chat. This method supports federation. For one-on-one chats, at least one chat member must belong to the tenant the request initiates from. For group chats, the chat must be initiated by a user in the tenant the request initiates from.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chat-list-members?view=graph-rest-1.0" />
+        /// A collection of all the members in the chat. Nullable.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List all conversation members in a chat. This method supports federation. For one-on-one chats, at least one chat member must belong to the tenant the request initiates from. For group chats, the chat must be initiated by a user in the tenant the request initiates from.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-list-members?view=graph-rest-1.0";
+            command.Description = "A collection of all the members in the chat. Nullable.";
             var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
@@ -238,7 +236,7 @@ namespace ApiSdk.Chats.Item.Members {
         public MembersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/chats/{chat%2Did}/members{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// List all conversation members in a chat. This method supports federation. For one-on-one chats, at least one chat member must belong to the tenant the request initiates from. For group chats, the chat must be initiated by a user in the tenant the request initiates from.
+        /// A collection of all the members in the chat. Nullable.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -264,7 +262,7 @@ namespace ApiSdk.Chats.Item.Members {
             return requestInfo;
         }
         /// <summary>
-        /// Add a conversationMember to a chat.
+        /// Create new navigation property to members for chats
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -292,7 +290,7 @@ namespace ApiSdk.Chats.Item.Members {
             return requestInfo;
         }
         /// <summary>
-        /// List all conversation members in a chat. This method supports federation. For one-on-one chats, at least one chat member must belong to the tenant the request initiates from. For group chats, the chat must be initiated by a user in the tenant the request initiates from.
+        /// A collection of all the members in the chat. Nullable.
         /// </summary>
         public class MembersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

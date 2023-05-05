@@ -1,17 +1,18 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Drives.Item.Items.Item.Versions.Item.Content {
     /// <summary>
     /// Provides operations to manage the media for the drive entity.
@@ -19,11 +20,10 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item.Content {
     public class ContentRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// The content stream for this version of the item.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/driveitem-list-versions?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The content stream for this version of the item.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitem-list-versions?view=graph-rest-1.0";
+            command.Description = "The content stream for this version of the item.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -36,13 +36,13 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item.Content {
             };
             driveItemVersionIdOption.IsRequired = true;
             command.AddOption(driveItemVersionIdOption);
-            var fileOption = new Option<FileInfo>("--file");
-            command.AddOption(fileOption);
+            var outputFileOption = new Option<FileInfo>("--output-file");
+            command.AddOption(outputFileOption);
             command.SetHandler(async (invocationContext) => {
                 var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
                 var driveItemId = invocationContext.ParseResult.GetValueForOption(driveItemIdOption);
                 var driveItemVersionId = invocationContext.ParseResult.GetValueForOption(driveItemVersionIdOption);
-                var file = invocationContext.ParseResult.GetValueForOption(fileOption);
+                var outputFile = invocationContext.ParseResult.GetValueForOption(outputFileOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -55,15 +55,15 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item.Content {
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                if (file == null) {
+                if (outputFile == null) {
                     using var reader = new StreamReader(response);
                     var strContent = reader.ReadToEnd();
                     Console.Write(strContent);
                 }
                 else {
-                    using var writeStream = file.OpenWrite();
+                    using var writeStream = outputFile.OpenWrite();
                     await response.CopyToAsync(writeStream);
-                    Console.WriteLine($"Content written to {file.FullName}.");
+                    Console.WriteLine($"Content written to {outputFile.FullName}.");
                 }
             });
             return command;
@@ -86,19 +86,37 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item.Content {
             };
             driveItemVersionIdOption.IsRequired = true;
             command.AddOption(driveItemVersionIdOption);
-            var fileOption = new Option<FileInfo>("--file", description: "Binary request body") {
+            var inputFileOption = new Option<FileInfo>("--input-file", description: "Binary request body") {
             };
-            fileOption.IsRequired = true;
-            command.AddOption(fileOption);
+            inputFileOption.IsRequired = true;
+            command.AddOption(inputFileOption);
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var driveId = invocationContext.ParseResult.GetValueForOption(driveIdOption);
                 var driveItemId = invocationContext.ParseResult.GetValueForOption(driveItemIdOption);
                 var driveItemVersionId = invocationContext.ParseResult.GetValueForOption(driveItemVersionIdOption);
-                var file = invocationContext.ParseResult.GetValueForOption(fileOption);
+                var inputFile = invocationContext.ParseResult.GetValueForOption(inputFileOption);
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
-                if (file is null || !file.Exists) return;
-                using var stream = file.OpenRead();
+                if (inputFile is null || !inputFile.Exists) return;
+                using var stream = inputFile.OpenRead();
                 var requestInfo = ToPutRequestInformation(stream, q => {
                 });
                 if (driveId is not null) requestInfo.PathParameters.Add("drive%2Did", driveId);
@@ -108,8 +126,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item.Content {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
-                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
-                Console.WriteLine("Success");
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
             return command;
         }
@@ -162,6 +183,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item.Content {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
+            requestInfo.Headers.Add("Accept", "application/json");
             requestInfo.SetStreamContent(body);
             if (requestConfiguration != null) {
                 var requestConfig = new RequestConfiguration<DefaultQueryParameters>();

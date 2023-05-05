@@ -2,21 +2,21 @@ using ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Count;
 using ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.GetOrder;
 using ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.Item;
 using ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.SetOrder;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
     /// <summary>
     /// Provides operations to manage the userAttributeAssignments property of the microsoft.graph.b2xIdentityUserFlow entity.
@@ -51,12 +51,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
             return command;
         }
         /// <summary>
-        /// Create a new identityUserFlowAttributeAssignment object in a b2xIdentityUserFlow.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/b2xidentityuserflow-post-userattributeassignments?view=graph-rest-1.0" />
+        /// Create new navigation property to userAttributeAssignments for identity
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new identityUserFlowAttributeAssignment object in a b2xIdentityUserFlow.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/b2xidentityuserflow-post-userattributeassignments?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to userAttributeAssignments for identity";
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
@@ -124,12 +123,11 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
             return command;
         }
         /// <summary>
-        /// Get the identityUserFlowAttributeAssignment resources from the userAttributeAssignments navigation property in a b2xIdentityUserFlow.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/b2xidentityuserflow-list-userattributeassignments?view=graph-rest-1.0" />
+        /// The user attribute assignments included in the user flow.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the identityUserFlowAttributeAssignment resources from the userAttributeAssignments navigation property in a b2xIdentityUserFlow.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/b2xidentityuserflow-list-userattributeassignments?view=graph-rest-1.0";
+            command.Description = "The user attribute assignments included in the user flow.";
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
@@ -256,7 +254,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
         public UserAttributeAssignmentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/userAttributeAssignments{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get the identityUserFlowAttributeAssignment resources from the userAttributeAssignments navigation property in a b2xIdentityUserFlow.
+        /// The user attribute assignments included in the user flow.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -282,7 +280,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new identityUserFlowAttributeAssignment object in a b2xIdentityUserFlow.
+        /// Create new navigation property to userAttributeAssignments for identity
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -310,7 +308,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments {
             return requestInfo;
         }
         /// <summary>
-        /// Get the identityUserFlowAttributeAssignment resources from the userAttributeAssignments navigation property in a b2xIdentityUserFlow.
+        /// The user attribute assignments included in the user flow.
         /// </summary>
         public class UserAttributeAssignmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

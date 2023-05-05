@@ -1,11 +1,11 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class AppManagementPolicy : PolicyBase, IParsable {
-        /// <summary>The appliesTo property</summary>
+        /// <summary>Collection of applications and service principals to which the policy is applied.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<DirectoryObject>? AppliesTo { get; set; }
@@ -13,9 +13,9 @@ namespace ApiSdk.Models {
 #else
         public List<DirectoryObject> AppliesTo { get; set; }
 #endif
-        /// <summary>The isEnabled property</summary>
+        /// <summary>Denotes whether the policy is enabled.</summary>
         public bool? IsEnabled { get; set; }
-        /// <summary>The restrictions property</summary>
+        /// <summary>Restrictions that apply to an application or service principal object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public AppManagementConfiguration? Restrictions { get; set; }

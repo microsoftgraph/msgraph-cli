@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Count;
 using ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView {
     /// <summary>
     /// Provides operations to manage the calendarView property of the microsoft.graph.bookingBusiness entity.
@@ -106,16 +106,23 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView {
             return command;
         }
         /// <summary>
-        /// Get the collection of bookingAppointment objects for a bookingBusiness that occurs in the specified date range.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/bookingbusiness-list-calendarview?view=graph-rest-1.0" />
+        /// The set of appointments of this business in a specified date range. Read-only. Nullable.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the collection of bookingAppointment objects for a bookingBusiness that occurs in the specified date range.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bookingbusiness-list-calendarview?view=graph-rest-1.0";
+            command.Description = "The set of appointments of this business in a specified date range. Read-only. Nullable.";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
             command.AddOption(bookingBusinessIdOption);
+            var startOption = new Option<string>("--start", description: "The start date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T19:00:00-08:00") {
+            };
+            startOption.IsRequired = true;
+            command.AddOption(startOption);
+            var endOption = new Option<string>("--end", description: "The end date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T20:00:00-08:00") {
+            };
+            endOption.IsRequired = true;
+            command.AddOption(endOption);
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -168,6 +175,8 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView {
             command.AddOption(allOption);
             command.SetHandler(async (invocationContext) => {
                 var bookingBusinessId = invocationContext.ParseResult.GetValueForOption(bookingBusinessIdOption);
+                var start = invocationContext.ParseResult.GetValueForOption(startOption);
+                var end = invocationContext.ParseResult.GetValueForOption(endOption);
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
                 var search = invocationContext.ParseResult.GetValueForOption(searchOption);
@@ -186,6 +195,8 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
+                    if (!string.IsNullOrEmpty(start)) q.QueryParameters.Start = start;
+                    if (!string.IsNullOrEmpty(end)) q.QueryParameters.End = end;
                     q.QueryParameters.Top = top;
                     q.QueryParameters.Skip = skip;
                     if (!string.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
@@ -220,10 +231,10 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView {
         /// Instantiates a new CalendarViewRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CalendarViewRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/calendarView{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public CalendarViewRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/calendarView{?start*,end*,%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get the collection of bookingAppointment objects for a bookingBusiness that occurs in the specified date range.
+        /// The set of appointments of this business in a specified date range. Read-only. Nullable.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -277,12 +288,20 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView {
             return requestInfo;
         }
         /// <summary>
-        /// Get the collection of bookingAppointment objects for a bookingBusiness that occurs in the specified date range.
+        /// The set of appointments of this business in a specified date range. Read-only. Nullable.
         /// </summary>
         public class CalendarViewRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }
+            /// <summary>The end date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T20:00:00-08:00</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public string? End { get; set; }
+#nullable restore
+#else
+            public string End { get; set; }
+#endif
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -336,6 +355,14 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView {
             /// <summary>Skip the first n items</summary>
             [QueryParameter("%24skip")]
             public int? Skip { get; set; }
+            /// <summary>The start date and time of the time range, represented in ISO 8601 format. For example, 2019-11-08T19:00:00-08:00</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public string? Start { get; set; }
+#nullable restore
+#else
+            public string Start { get; set; }
+#endif
             /// <summary>Show only the first n items</summary>
             [QueryParameter("%24top")]
             public int? Top { get; set; }

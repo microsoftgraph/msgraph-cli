@@ -1,20 +1,20 @@
 using ApiSdk.Groups.Item.Team.PrimaryChannel.Messages.Item.Replies.Item.HostedContents.Count;
 using ApiSdk.Groups.Item.Team.PrimaryChannel.Messages.Item.Replies.Item.HostedContents.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups.Item.Team.PrimaryChannel.Messages.Item.Replies.Item.HostedContents {
     /// <summary>
     /// Provides operations to manage the hostedContents property of the microsoft.graph.chatMessage entity.
@@ -25,11 +25,13 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.Messages.Item.Replies.Item.Host
         /// </summary>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
+            var commands = new List<Command>();
             var builder = new ChatMessageHostedContentItemRequestBuilder(PathParameters);
+            commands.Add(builder.BuildContentNavCommand());
             executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
             executables.Add(builder.BuildPatchCommand());
-            return new(executables, new(0));
+            return new(executables, commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -116,12 +118,11 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.Messages.Item.Replies.Item.Host
             return command;
         }
         /// <summary>
-        /// Retrieve the list of chatMessageHostedContent objects from a message. This API only lists the hosted content objects. To get the content bytes, see get chatmessage hosted content
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chatmessage-list-hostedcontents?view=graph-rest-1.0" />
+        /// Content in a message hosted by Microsoft Teams - for example, images or code snippets.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the list of chatMessageHostedContent objects from a message. This API only lists the hosted content objects. To get the content bytes, see get chatmessage hosted content\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chatmessage-list-hostedcontents?view=graph-rest-1.0";
+            command.Description = "Content in a message hosted by Microsoft Teams - for example, images or code snippets.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -245,7 +246,7 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.Messages.Item.Replies.Item.Host
         public HostedContentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/primaryChannel/messages/{chatMessage%2Did}/replies/{chatMessage%2Did1}/hostedContents{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve the list of chatMessageHostedContent objects from a message. This API only lists the hosted content objects. To get the content bytes, see get chatmessage hosted content
+        /// Content in a message hosted by Microsoft Teams - for example, images or code snippets.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -299,7 +300,7 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.Messages.Item.Replies.Item.Host
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the list of chatMessageHostedContent objects from a message. This API only lists the hosted content objects. To get the content bytes, see get chatmessage hosted content
+        /// Content in a message hosted by Microsoft Teams - for example, images or code snippets.
         /// </summary>
         public class HostedContentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

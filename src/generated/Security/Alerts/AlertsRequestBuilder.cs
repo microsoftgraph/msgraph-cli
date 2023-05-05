@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Security.Alerts.Count;
 using ApiSdk.Security.Alerts.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Security.Alerts {
     /// <summary>
     /// Provides operations to manage the alerts property of the microsoft.graph.security entity.
@@ -97,12 +97,11 @@ namespace ApiSdk.Security.Alerts {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of alert objects.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/alert-list?view=graph-rest-1.0" />
+        /// Get alerts from security
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of alert objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/alert-list?view=graph-rest-1.0";
+            command.Description = "Get alerts from security";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -208,7 +207,7 @@ namespace ApiSdk.Security.Alerts {
         public AlertsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/alerts{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve a list of alert objects.
+        /// Get alerts from security
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -262,7 +261,7 @@ namespace ApiSdk.Security.Alerts {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of alert objects.
+        /// Get alerts from security
         /// </summary>
         public class AlertsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

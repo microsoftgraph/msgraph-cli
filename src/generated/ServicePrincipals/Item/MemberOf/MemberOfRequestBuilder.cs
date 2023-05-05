@@ -1,21 +1,22 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.ServicePrincipals.Item.MemberOf.Count;
+using ApiSdk.ServicePrincipals.Item.MemberOf.GraphAdministrativeUnit;
 using ApiSdk.ServicePrincipals.Item.MemberOf.GraphGroup;
 using ApiSdk.ServicePrincipals.Item.MemberOf.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.ServicePrincipals.Item.MemberOf {
     /// <summary>
     /// Provides operations to manage the memberOf property of the microsoft.graph.servicePrincipal entity.
@@ -26,9 +27,12 @@ namespace ApiSdk.ServicePrincipals.Item.MemberOf {
         /// </summary>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
+            var commands = new List<Command>();
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildGetCommand());
-            return new(executables, new(0));
+            commands.Add(builder.BuildGraphAdministrativeUnitByIdNavCommand());
+            commands.Add(builder.BuildGraphGroupByIdNavCommand());
+            return new(executables, commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -46,11 +50,31 @@ namespace ApiSdk.ServicePrincipals.Item.MemberOf {
             return command;
         }
         /// <summary>
+        /// Casts the previous resource to administrativeUnit.
+        /// </summary>
+        public Command BuildGraphAdministrativeUnitNavCommand() {
+            var command = new Command("graph-administrative-unit");
+            command.Description = "Casts the previous resource to administrativeUnit.";
+            var builder = new GraphAdministrativeUnitRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
         public Command BuildGraphGroupNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphGroupNavCommand();
+            var command = new Command("graph-group");
             command.Description = "Casts the previous resource to group.";
             var builder = new GraphGroupRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -69,11 +93,10 @@ namespace ApiSdk.ServicePrincipals.Item.MemberOf {
         }
         /// <summary>
         /// Roles that this service principal is a member of. HTTP Methods: GET Read-only. Nullable. Supports $expand.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/serviceprincipal-list-memberof?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Roles that this service principal is a member of. HTTP Methods: GET Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-list-memberof?view=graph-rest-1.0";
+            command.Description = "Roles that this service principal is a member of. HTTP Methods: GET Read-only. Nullable. Supports $expand.";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;

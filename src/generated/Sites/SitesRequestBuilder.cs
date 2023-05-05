@@ -1,22 +1,22 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Sites.Add;
 using ApiSdk.Sites.Count;
 using ApiSdk.Sites.Item;
 using ApiSdk.Sites.Remove;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Sites {
     /// <summary>
     /// Provides operations to manage the collection of site entities.
@@ -47,12 +47,14 @@ namespace ApiSdk.Sites {
             commands.Add(builder.BuildAnalyticsNavCommand());
             commands.Add(builder.BuildColumnsNavCommand());
             commands.Add(builder.BuildContentTypesNavCommand());
+            commands.Add(builder.BuildCreatedByUserNavCommand());
             commands.Add(builder.BuildDriveNavCommand());
             commands.Add(builder.BuildDrivesNavCommand());
             commands.Add(builder.BuildExternalColumnsNavCommand());
             commands.Add(builder.BuildGetActivitiesByIntervalNavCommand());
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildItemsNavCommand());
+            commands.Add(builder.BuildLastModifiedByUserNavCommand());
             commands.Add(builder.BuildListsNavCommand());
             commands.Add(builder.BuildOnenoteNavCommand());
             commands.Add(builder.BuildOperationsNavCommand());
@@ -79,12 +81,12 @@ namespace ApiSdk.Sites {
             return command;
         }
         /// <summary>
-        /// Search across a SharePoint tenant for [sites][] that match keywords provided. The only property that works for sorting is **createdDateTime**. The search filter is a free text search that uses multiple properties when retrieving the search results.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/site-search?view=graph-rest-1.0" />
+        /// List all available sites][] in an organization. Specific filter criteria and query options are also supported and described below: In addition, you can use a **[$search][]** query against the `/sites` collection to find sites matching given keywords. For more guidance about building applications that use site discovery for scanning purposes, see [Best practices for discovering files and detecting changes at scale.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/site-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Search across a SharePoint tenant for [sites][] that match keywords provided. The only property that works for sorting is **createdDateTime**. The search filter is a free text search that uses multiple properties when retrieving the search results.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/site-search?view=graph-rest-1.0";
+            command.Description = "List all available sites][] in an organization. Specific filter criteria and query options are also supported and described below: In addition, you can use a **[$search][]** query against the `/sites` collection to find sites matching given keywords. For more guidance about building applications that use site discovery for scanning purposes, see [Best practices for discovering files and detecting changes at scale.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/site-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -205,7 +207,7 @@ namespace ApiSdk.Sites {
         public SitesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Search across a SharePoint tenant for [sites][] that match keywords provided. The only property that works for sorting is **createdDateTime**. The search filter is a free text search that uses multiple properties when retrieving the search results.
+        /// List all available sites][] in an organization. Specific filter criteria and query options are also supported and described below: In addition, you can use a **[$search][]** query against the `/sites` collection to find sites matching given keywords. For more guidance about building applications that use site discovery for scanning purposes, see [Best practices for discovering files and detecting changes at scale.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -231,7 +233,7 @@ namespace ApiSdk.Sites {
             return requestInfo;
         }
         /// <summary>
-        /// Search across a SharePoint tenant for [sites][] that match keywords provided. The only property that works for sorting is **createdDateTime**. The search filter is a free text search that uses multiple properties when retrieving the search results.
+        /// List all available sites][] in an organization. Specific filter criteria and query options are also supported and described below: In addition, you can use a **[$search][]** query against the `/sites` collection to find sites matching given keywords. For more guidance about building applications that use site discovery for scanning purposes, see [Best practices for discovering files and detecting changes at scale.
         /// </summary>
         public class SitesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

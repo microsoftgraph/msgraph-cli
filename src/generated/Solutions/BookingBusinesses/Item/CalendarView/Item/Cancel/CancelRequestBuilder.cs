@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item.Cancel {
     /// <summary>
     /// Provides operations to call the cancel method.
     /// </summary>
     public class CancelRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Cancel the specified bookingAppointment in the specified bookingBusiness and send a message to the involved customer and staff members.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/bookingappointment-cancel?view=graph-rest-1.0" />
+        /// Cancels the giving booking appointment, sending a message to the involved parties.
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Cancel the specified bookingAppointment in the specified bookingBusiness and send a message to the involved customer and staff members.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bookingappointment-cancel?view=graph-rest-1.0";
+            command.Description = "Cancels the giving booking appointment, sending a message to the involved parties.";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -67,7 +66,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView.Item.Cancel {
         public CancelRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/calendarView/{bookingAppointment%2Did}/cancel", pathParameters) {
         }
         /// <summary>
-        /// Cancel the specified bookingAppointment in the specified bookingBusiness and send a message to the involved customer and staff members.
+        /// Cancels the giving booking appointment, sending a message to the involved parties.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Item.ApplyDecisions {
     /// <summary>
     /// Provides operations to call the applyDecisions method.
     /// </summary>
     public class ApplyDecisionsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Apply review decisions on an accessReviewInstance if the decisions were not applied automatically because the autoApplyDecisionsEnabled property is `false` in the review&apos;s accessReviewScheduleSettings. The status of the accessReviewInstance must be `Completed` to call this method.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/accessreviewinstance-applydecisions?view=graph-rest-1.0" />
+        /// Invoke action applyDecisions
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Apply review decisions on an accessReviewInstance if the decisions were not applied automatically because the autoApplyDecisionsEnabled property is `false` in the review's accessReviewScheduleSettings. The status of the accessReviewInstance must be `Completed` to call this method.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/accessreviewinstance-applydecisions?view=graph-rest-1.0";
+            command.Description = "Invoke action applyDecisions";
             var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "The unique identifier of accessReviewScheduleDefinition") {
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
@@ -57,7 +56,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         public ApplyDecisionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/accessReviews/definitions/{accessReviewScheduleDefinition%2Did}/instances/{accessReviewInstance%2Did}/applyDecisions", pathParameters) {
         }
         /// <summary>
-        /// Apply review decisions on an accessReviewInstance if the decisions were not applied automatically because the autoApplyDecisionsEnabled property is `false` in the review&apos;s accessReviewScheduleSettings. The status of the accessReviewInstance must be `Completed` to call this method.
+        /// Invoke action applyDecisions
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -1,11 +1,11 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class DeletedTeam : Entity, IParsable {
-        /// <summary>The channels property</summary>
+        /// <summary>The channels that are either shared with this deleted team or created in this deleted team.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<Channel>? Channels { get; set; }

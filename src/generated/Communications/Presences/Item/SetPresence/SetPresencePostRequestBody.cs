@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Communications.Presences.Item.SetPresence {
     public class SetPresencePostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>The activity property</summary>

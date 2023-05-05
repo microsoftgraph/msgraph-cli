@@ -2,19 +2,19 @@ using ApiSdk.Communications.CallRecords.Item.Sessions.Count;
 using ApiSdk.Communications.CallRecords.Item.Sessions.Item;
 using ApiSdk.Models.CallRecords;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Communications.CallRecords.Item.Sessions {
     /// <summary>
     /// Provides operations to manage the sessions property of the microsoft.graph.callRecords.callRecord entity.
@@ -106,12 +106,11 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions {
             return command;
         }
         /// <summary>
-        /// Retrieve the list of sessions associated with a callRecord object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/callrecords-session-list?view=graph-rest-1.0" />
+        /// List of sessions involved in the call. Peer-to-peer calls typically only have one session, whereas group calls typically have at least one session per participant. Read-only. Nullable.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the list of sessions associated with a callRecord object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/callrecords-session-list?view=graph-rest-1.0";
+            command.Description = "List of sessions involved in the call. Peer-to-peer calls typically only have one session, whereas group calls typically have at least one session per participant. Read-only. Nullable.";
             var callRecordIdOption = new Option<string>("--call-record-id", description: "The unique identifier of callRecord") {
             };
             callRecordIdOption.IsRequired = true;
@@ -223,7 +222,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions {
         public SessionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/callRecords/{callRecord%2Did}/sessions{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve the list of sessions associated with a callRecord object.
+        /// List of sessions involved in the call. Peer-to-peer calls typically only have one session, whereas group calls typically have at least one session per participant. Read-only. Nullable.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -277,7 +276,7 @@ namespace ApiSdk.Communications.CallRecords.Item.Sessions {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the list of sessions associated with a callRecord object.
+        /// List of sessions involved in the call. Peer-to-peer calls typically only have one session, whereas group calls typically have at least one session per participant. Read-only. Nullable.
         /// </summary>
         public class SessionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

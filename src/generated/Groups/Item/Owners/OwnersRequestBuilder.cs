@@ -7,21 +7,21 @@ using ApiSdk.Groups.Item.Owners.GraphServicePrincipal;
 using ApiSdk.Groups.Item.Owners.GraphUser;
 using ApiSdk.Groups.Item.Owners.Item;
 using ApiSdk.Groups.Item.Owners.Ref;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups.Item.Owners {
     /// <summary>
     /// Provides operations to manage the owners property of the microsoft.graph.group entity.
@@ -31,7 +31,15 @@ namespace ApiSdk.Groups.Item.Owners {
         /// Gets an item from the ApiSdk.groups.item.owners.item collection
         /// </summary>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
-            return new(new(0), new(0));
+            var commands = new List<Command>();
+            var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
+            commands.Add(builder.BuildGraphApplicationByIdNavCommand());
+            commands.Add(builder.BuildGraphDeviceByIdNavCommand());
+            commands.Add(builder.BuildGraphGroupByIdNavCommand());
+            commands.Add(builder.BuildGraphOrgContactByIdNavCommand());
+            commands.Add(builder.BuildGraphServicePrincipalByIdNavCommand());
+            commands.Add(builder.BuildGraphUserByIdNavCommand());
+            return new(new(0), commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -52,8 +60,7 @@ namespace ApiSdk.Groups.Item.Owners {
         /// Casts the previous resource to application.
         /// </summary>
         public Command BuildGraphApplicationNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphApplicationNavCommand();
+            var command = new Command("graph-application");
             command.Description = "Casts the previous resource to application.";
             var builder = new GraphApplicationRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -74,8 +81,7 @@ namespace ApiSdk.Groups.Item.Owners {
         /// Casts the previous resource to device.
         /// </summary>
         public Command BuildGraphDeviceNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphDeviceNavCommand();
+            var command = new Command("graph-device");
             command.Description = "Casts the previous resource to device.";
             var builder = new GraphDeviceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -96,8 +102,7 @@ namespace ApiSdk.Groups.Item.Owners {
         /// Casts the previous resource to group.
         /// </summary>
         public Command BuildGraphGroupNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphGroupNavCommand();
+            var command = new Command("graph-group");
             command.Description = "Casts the previous resource to group.";
             var builder = new GraphGroupRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -118,8 +123,7 @@ namespace ApiSdk.Groups.Item.Owners {
         /// Casts the previous resource to orgContact.
         /// </summary>
         public Command BuildGraphOrgContactNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphOrgContactNavCommand();
+            var command = new Command("graph-org-contact");
             command.Description = "Casts the previous resource to orgContact.";
             var builder = new GraphOrgContactRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -140,8 +144,7 @@ namespace ApiSdk.Groups.Item.Owners {
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
         public Command BuildGraphServicePrincipalNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphServicePrincipalNavCommand();
+            var command = new Command("graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -162,8 +165,7 @@ namespace ApiSdk.Groups.Item.Owners {
         /// Casts the previous resource to user.
         /// </summary>
         public Command BuildGraphUserNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphUserNavCommand();
+            var command = new Command("graph-user");
             command.Description = "Casts the previous resource to user.";
             var builder = new GraphUserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -182,11 +184,10 @@ namespace ApiSdk.Groups.Item.Owners {
         }
         /// <summary>
         /// The owners of the group. Limited to 100 owners. Nullable. If this property is not specified when creating a Microsoft 365 group, the calling user is automatically assigned as the group owner.  Supports $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1). Supports $expand including nested $select. For example, /groups?$filter=startsWith(displayName,&apos;Role&apos;)&amp;$select=id,displayName&amp;$expand=owners($select=id,userPrincipalName,displayName).
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/group-list-owners?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The owners of the group. Limited to 100 owners. Nullable. If this property is not specified when creating a Microsoft 365 group, the calling user is automatically assigned as the group owner.  Supports $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1). Supports $expand including nested $select. For example, /groups?$filter=startsWith(displayName,'Role')&$select=id,displayName&$expand=owners($select=id,userPrincipalName,displayName).\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-list-owners?view=graph-rest-1.0";
+            command.Description = "The owners of the group. Limited to 100 owners. Nullable. If this property is not specified when creating a Microsoft 365 group, the calling user is automatically assigned as the group owner.  Supports $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1). Supports $expand including nested $select. For example, /groups?$filter=startsWith(displayName,'Role')&$select=id,displayName&$expand=owners($select=id,userPrincipalName,displayName).";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;

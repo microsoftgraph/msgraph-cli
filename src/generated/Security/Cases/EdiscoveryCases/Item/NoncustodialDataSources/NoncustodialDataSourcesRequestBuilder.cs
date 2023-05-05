@@ -2,21 +2,21 @@ using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.Security;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Count;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.SecurityApplyHold;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.SecurityRemoveHold;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.MicrosoftGraphSecurityApplyHold;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.MicrosoftGraphSecurityRemoveHold;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources {
     /// <summary>
     /// Provides operations to manage the noncustodialDataSources property of the microsoft.graph.security.ediscoveryCase entity.
@@ -33,9 +33,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources {
             executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildLastIndexOperationNavCommand());
+            commands.Add(builder.BuildMicrosoftGraphSecurityApplyHoldByIdNavCommand());
+            commands.Add(builder.BuildMicrosoftGraphSecurityReleaseNavCommand());
+            commands.Add(builder.BuildMicrosoftGraphSecurityRemoveHoldByIdNavCommand());
+            commands.Add(builder.BuildMicrosoftGraphSecurityUpdateIndexNavCommand());
             executables.Add(builder.BuildPatchCommand());
-            commands.Add(builder.BuildSecurityReleaseNavCommand());
-            commands.Add(builder.BuildSecurityUpdateIndexNavCommand());
             return new(executables, commands);
         }
         /// <summary>
@@ -54,12 +56,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources {
             return command;
         }
         /// <summary>
-        /// Create a new ediscoveryNoncustodialDataSource object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoverycase-post-noncustodialdatasources?view=graph-rest-1.0" />
+        /// Create new navigation property to noncustodialDataSources for security
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new ediscoveryNoncustodialDataSource object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-post-noncustodialdatasources?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to noncustodialDataSources for security";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -224,11 +225,10 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources {
         /// <summary>
         /// Provides operations to call the applyHold method.
         /// </summary>
-        public Command BuildSecurityApplyHoldNavCommand() {
-            var ediscoveryNoncustodialDataSourceIndexer = new EdiscoveryNoncustodialDataSourceItemRequestBuilder(PathParameters);
-            var command = ediscoveryNoncustodialDataSourceIndexer.BuildSecurityApplyHoldNavCommand();
+        public Command BuildMicrosoftGraphSecurityApplyHoldNavCommand() {
+            var command = new Command("microsoft-graph-security-apply-hold");
             command.Description = "Provides operations to call the applyHold method.";
-            var builder = new SecurityApplyHoldRequestBuilder(PathParameters);
+            var builder = new MicrosoftGraphSecurityApplyHoldRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -240,11 +240,10 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources {
         /// <summary>
         /// Provides operations to call the removeHold method.
         /// </summary>
-        public Command BuildSecurityRemoveHoldNavCommand() {
-            var ediscoveryNoncustodialDataSourceIndexer = new EdiscoveryNoncustodialDataSourceItemRequestBuilder(PathParameters);
-            var command = ediscoveryNoncustodialDataSourceIndexer.BuildSecurityRemoveHoldNavCommand();
+        public Command BuildMicrosoftGraphSecurityRemoveHoldNavCommand() {
+            var command = new Command("microsoft-graph-security-remove-hold");
             command.Description = "Provides operations to call the removeHold method.";
-            var builder = new SecurityRemoveHoldRequestBuilder(PathParameters);
+            var builder = new MicrosoftGraphSecurityRemoveHoldRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -286,7 +285,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new ediscoveryNoncustodialDataSource object.
+        /// Create new navigation property to noncustodialDataSources for security
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

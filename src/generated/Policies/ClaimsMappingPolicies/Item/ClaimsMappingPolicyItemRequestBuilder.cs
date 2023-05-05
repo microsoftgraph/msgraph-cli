@@ -1,23 +1,48 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
+using ApiSdk.Policies.ClaimsMappingPolicies.Item.AppliesTo;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Policies.ClaimsMappingPolicies.Item {
     /// <summary>
     /// Provides operations to manage the claimsMappingPolicies property of the microsoft.graph.policyRoot entity.
     /// </summary>
     public class ClaimsMappingPolicyItemRequestBuilder : BaseCliRequestBuilder {
+        /// <summary>
+        /// Provides operations to manage the appliesTo property of the microsoft.graph.stsPolicy entity.
+        /// </summary>
+        public Command BuildAppliesToNavCommand() {
+            var command = new Command("applies-to");
+            command.Description = "Provides operations to manage the appliesTo property of the microsoft.graph.stsPolicy entity.";
+            var builder = new AppliesToRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
         /// <summary>
         /// Delete navigation property claimsMappingPolicies for policies
         /// </summary>

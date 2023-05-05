@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Count;
 using ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports {
     /// <summary>
     /// Provides operations to manage the attendanceReports property of the microsoft.graph.onlineMeeting entity.
@@ -112,12 +112,11 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports {
             return command;
         }
         /// <summary>
-        /// Get a list of meetingAttendanceReport objects for an onlineMeeting. Each time an online meeting ends, an attendance report is generated for that session.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/meetingattendancereport-list?view=graph-rest-1.0" />
+        /// The attendance reports of an online meeting. Read-only.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of meetingAttendanceReport objects for an onlineMeeting. Each time an online meeting ends, an attendance report is generated for that session.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/meetingattendancereport-list?view=graph-rest-1.0";
+            command.Description = "The attendance reports of an online meeting. Read-only.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -235,7 +234,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports {
         public AttendanceReportsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/onlineMeetings/{onlineMeeting%2Did}/attendanceReports{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get a list of meetingAttendanceReport objects for an onlineMeeting. Each time an online meeting ends, an attendance report is generated for that session.
+        /// The attendance reports of an online meeting. Read-only.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -289,7 +288,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of meetingAttendanceReport objects for an onlineMeeting. Each time an online meeting ends, an attendance report is generated for that session.
+        /// The attendance reports of an online meeting. Read-only.
         /// </summary>
         public class AttendanceReportsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

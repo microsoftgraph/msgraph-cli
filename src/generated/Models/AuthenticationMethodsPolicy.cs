@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class AuthenticationMethodsPolicy : Entity, IParsable {
         /// <summary>Represents the settings for each authentication method. Automatically expanded on GET /policies/authenticationMethodsPolicy.</summary>
@@ -31,6 +31,8 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>The date and time of the last update to the policy. Read-only.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
+        /// <summary>The state of migration of the authentication methods policy from the legacy multifactor authentication and self-service password reset (SSPR) policies. The possible values are: premigration - means the authentication methods policy is used for authentication only, legacy policies are respected. migrationInProgress - means the authentication methods policy is used for both authentication and SSPR, legacy policies are respected. migrationComplete - means the authentication methods policy is used for authentication and SSPR, legacy policies are ignored. unknownFutureValue - Evolvable enumeration sentinel value. Do not use.</summary>
+        public AuthenticationMethodsPolicyMigrationState? PolicyMigrationState { get; set; }
         /// <summary>The version of the policy in use. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -66,6 +68,7 @@ namespace ApiSdk.Models {
                 {"description", n => { Description = n.GetStringValue(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
+                {"policyMigrationState", n => { PolicyMigrationState = n.GetEnumValue<AuthenticationMethodsPolicyMigrationState>(); } },
                 {"policyVersion", n => { PolicyVersion = n.GetStringValue(); } },
                 {"reconfirmationInDays", n => { ReconfirmationInDays = n.GetIntValue(); } },
                 {"registrationEnforcement", n => { RegistrationEnforcement = n.GetObjectValue<ApiSdk.Models.RegistrationEnforcement>(ApiSdk.Models.RegistrationEnforcement.CreateFromDiscriminatorValue); } },
@@ -82,6 +85,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
+            writer.WriteEnumValue<AuthenticationMethodsPolicyMigrationState>("policyMigrationState", PolicyMigrationState);
             writer.WriteStringValue("policyVersion", PolicyVersion);
             writer.WriteIntValue("reconfirmationInDays", ReconfirmationInDays);
             writer.WriteObjectValue<ApiSdk.Models.RegistrationEnforcement>("registrationEnforcement", RegistrationEnforcement);

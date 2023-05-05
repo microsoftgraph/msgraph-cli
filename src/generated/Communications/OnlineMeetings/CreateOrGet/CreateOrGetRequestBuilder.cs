@@ -1,30 +1,29 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Communications.OnlineMeetings.CreateOrGet {
     /// <summary>
     /// Provides operations to call the createOrGet method.
     /// </summary>
     public class CreateOrGetRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Create an onlineMeeting object with a custom specified external ID. If the external ID already exists, this API will return the onlineMeeting object with that external ID. 
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/onlinemeeting-createorget?view=graph-rest-1.0" />
+        /// Invoke action createOrGet
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Create an onlineMeeting object with a custom specified external ID. If the external ID already exists, this API will return the onlineMeeting object with that external ID. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/onlinemeeting-createorget?view=graph-rest-1.0";
+            command.Description = "Invoke action createOrGet";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -77,7 +76,7 @@ namespace ApiSdk.Communications.OnlineMeetings.CreateOrGet {
         public CreateOrGetRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/onlineMeetings/createOrGet", pathParameters) {
         }
         /// <summary>
-        /// Create an onlineMeeting object with a custom specified external ID. If the external ID already exists, this API will return the onlineMeeting object with that external ID. 
+        /// Invoke action createOrGet
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

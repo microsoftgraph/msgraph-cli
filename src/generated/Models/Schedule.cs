@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class Schedule : Entity, IParsable {
         /// <summary>Indicates whether the schedule is enabled for the team. Required.</summary>
@@ -17,7 +17,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Indicates whether offer shift requests are enabled for the schedule.</summary>
         public bool? OfferShiftRequestsEnabled { get; set; }
-        /// <summary>The openShiftChangeRequests property</summary>
+        /// <summary>The open shift requests in the schedule.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<OpenShiftChangeRequest>? OpenShiftChangeRequests { get; set; }
@@ -25,7 +25,7 @@ namespace ApiSdk.Models {
 #else
         public List<OpenShiftChangeRequest> OpenShiftChangeRequests { get; set; }
 #endif
-        /// <summary>The openShifts property</summary>
+        /// <summary>The set of open shifts in a scheduling group in the schedule.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<OpenShift>? OpenShifts { get; set; }

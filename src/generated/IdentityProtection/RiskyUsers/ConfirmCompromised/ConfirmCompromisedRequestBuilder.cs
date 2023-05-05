@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.IdentityProtection.RiskyUsers.ConfirmCompromised {
     /// <summary>
     /// Provides operations to call the confirmCompromised method.
     /// </summary>
     public class ConfirmCompromisedRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Confirm one or more riskyUser objects as compromised. This action sets the targeted user&apos;s risk level to high.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/riskyuser-confirmcompromised?view=graph-rest-1.0" />
+        /// Invoke action confirmCompromised
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Confirm one or more riskyUser objects as compromised. This action sets the targeted user's risk level to high.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/riskyuser-confirmcompromised?view=graph-rest-1.0";
+            command.Description = "Invoke action confirmCompromised";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -55,7 +54,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.ConfirmCompromised {
         public ConfirmCompromisedRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProtection/riskyUsers/confirmCompromised", pathParameters) {
         }
         /// <summary>
-        /// Confirm one or more riskyUser objects as compromised. This action sets the targeted user&apos;s risk level to high.
+        /// Invoke action confirmCompromised
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

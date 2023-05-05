@@ -1,11 +1,11 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class Teamwork : Entity, IParsable {
-        /// <summary>The deletedTeams property</summary>
+        /// <summary>The deleted team.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<DeletedTeam>? DeletedTeams { get; set; }

@@ -1,20 +1,20 @@
 using ApiSdk.Admin.ServiceAnnouncement.Issues.Count;
 using ApiSdk.Admin.ServiceAnnouncement.Issues.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Admin.ServiceAnnouncement.Issues {
     /// <summary>
     /// Provides operations to manage the issues property of the microsoft.graph.serviceAnnouncement entity.
@@ -100,12 +100,11 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Issues {
             return command;
         }
         /// <summary>
-        /// Retrieve serviceHealthIssue resources from the **issues** navigation property. This operation retrieves information about all service health issues that exist for the tenant.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/serviceannouncement-list-issues?view=graph-rest-1.0" />
+        /// A collection of service issues for tenant. This property is a contained navigation property, it is nullable and readonly.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve serviceHealthIssue resources from the **issues** navigation property. This operation retrieves information about all service health issues that exist for the tenant.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceannouncement-list-issues?view=graph-rest-1.0";
+            command.Description = "A collection of service issues for tenant. This property is a contained navigation property, it is nullable and readonly.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -211,7 +210,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Issues {
         public IssuesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/serviceAnnouncement/issues{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve serviceHealthIssue resources from the **issues** navigation property. This operation retrieves information about all service health issues that exist for the tenant.
+        /// A collection of service issues for tenant. This property is a contained navigation property, it is nullable and readonly.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -265,7 +264,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Issues {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve serviceHealthIssue resources from the **issues** navigation property. This operation retrieves information about all service health issues that exist for the tenant.
+        /// A collection of service issues for tenant. This property is a contained navigation property, it is nullable and readonly.
         /// </summary>
         public class IssuesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

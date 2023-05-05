@@ -1,5 +1,5 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Count;
 using ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Delta;
 using ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.GetAvailableExtensionProperties;
@@ -7,19 +7,19 @@ using ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.GetByIds;
 using ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Item;
 using ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Ref;
 using ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.ValidateProperties;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo {
     /// <summary>
     /// Provides operations to manage the appliesTo property of the microsoft.graph.featureRolloutPolicy entity.

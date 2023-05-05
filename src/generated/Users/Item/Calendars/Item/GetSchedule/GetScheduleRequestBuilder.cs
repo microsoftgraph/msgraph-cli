@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.Calendars.Item.GetSchedule {
     /// <summary>
     /// Provides operations to call the getSchedule method.
     /// </summary>
     public class GetScheduleRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Get the free/busy availability information for a collection of users, distributions lists, or resources (rooms or equipment) for a specified time period.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/calendar-getschedule?view=graph-rest-1.0" />
+        /// Invoke action getSchedule
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Get the free/busy availability information for a collection of users, distributions lists, or resources (rooms or equipment) for a specified time period.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/calendar-getschedule?view=graph-rest-1.0";
+            command.Description = "Invoke action getSchedule";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -100,7 +99,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.GetSchedule {
         public GetScheduleRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendars/{calendar%2Did}/getSchedule", pathParameters) {
         }
         /// <summary>
-        /// Get the free/busy availability information for a collection of users, distributions lists, or resources (rooms or equipment) for a specified time period.
+        /// Invoke action getSchedule
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

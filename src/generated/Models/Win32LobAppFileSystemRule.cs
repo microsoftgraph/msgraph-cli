@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class Win32LobAppFileSystemRule : Win32LobAppRule, IParsable {
         /// <summary>A value indicating whether to expand environment variables in the 32-bit context on 64-bit systems.</summary>

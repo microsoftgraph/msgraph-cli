@@ -3,21 +3,21 @@ using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.AdditionalAcce
 using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Count;
 using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.FilterByCurrentUserWithOn;
 using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
     /// <summary>
     /// Provides operations to manage the assignments property of the microsoft.graph.entitlementManagement entity.
@@ -121,12 +121,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
             return command;
         }
         /// <summary>
-        /// In Azure AD entitlement management, retrieve a list of accessPackageAssignment objects. For directory-wide administrators, the resulting list includes all the assignments, current and well as expired, that the caller has access to read, across all catalogs and access packages.  If the caller is on behalf of a delegated user who is assigned only to catalog-specific delegated administrative roles, the request must supply a filter to indicate a specific access package, such as: `$filter=accessPackage/id eq &apos;a914b616-e04e-476b-aa37-91038f0b165b&apos;`.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/entitlementmanagement-list-assignments?view=graph-rest-1.0" />
+        /// The assignment of an access package to a subject for a period of time.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "In Azure AD entitlement management, retrieve a list of accessPackageAssignment objects. For directory-wide administrators, the resulting list includes all the assignments, current and well as expired, that the caller has access to read, across all catalogs and access packages.  If the caller is on behalf of a delegated user who is assigned only to catalog-specific delegated administrative roles, the request must supply a filter to indicate a specific access package, such as: `$filter=accessPackage/id eq 'a914b616-e04e-476b-aa37-91038f0b165b'`.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/entitlementmanagement-list-assignments?view=graph-rest-1.0";
+            command.Description = "The assignment of an access package to a subject for a period of time.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -232,7 +231,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
         public AssignmentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/assignments{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// In Azure AD entitlement management, retrieve a list of accessPackageAssignment objects. For directory-wide administrators, the resulting list includes all the assignments, current and well as expired, that the caller has access to read, across all catalogs and access packages.  If the caller is on behalf of a delegated user who is assigned only to catalog-specific delegated administrative roles, the request must supply a filter to indicate a specific access package, such as: `$filter=accessPackage/id eq &apos;a914b616-e04e-476b-aa37-91038f0b165b&apos;`.
+        /// The assignment of an access package to a subject for a period of time.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -286,7 +285,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
             return requestInfo;
         }
         /// <summary>
-        /// In Azure AD entitlement management, retrieve a list of accessPackageAssignment objects. For directory-wide administrators, the resulting list includes all the assignments, current and well as expired, that the caller has access to read, across all catalogs and access packages.  If the caller is on behalf of a delegated user who is assigned only to catalog-specific delegated administrative roles, the request must supply a filter to indicate a specific access package, such as: `$filter=accessPackage/id eq &apos;a914b616-e04e-476b-aa37-91038f0b165b&apos;`.
+        /// The assignment of an access package to a subject for a period of time.
         /// </summary>
         public class AssignmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

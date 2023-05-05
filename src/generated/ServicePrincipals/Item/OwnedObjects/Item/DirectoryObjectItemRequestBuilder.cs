@@ -1,23 +1,23 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.GraphApplication;
+using ApiSdk.Models;
 using ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.GraphAppRoleAssignment;
+using ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.GraphApplication;
 using ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.GraphEndpoint;
 using ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.GraphGroup;
 using ApiSdk.ServicePrincipals.Item.OwnedObjects.Item.GraphServicePrincipal;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item {
     /// <summary>
     /// Provides operations to manage the ownedObjects property of the microsoft.graph.servicePrincipal entity.
@@ -93,8 +93,8 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item {
         /// <summary>
         /// Casts the previous resource to application.
         /// </summary>
-        public Command BuildGraphApplicationNavCommand() {
-            var command = new Command("graph-application");
+        public Command BuildGraphApplicationByIdNavCommand() {
+            var command = new Command("graph-application-by-id");
             command.Description = "Casts the previous resource to application.";
             var builder = new GraphApplicationRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -108,8 +108,8 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item {
         /// <summary>
         /// Casts the previous resource to appRoleAssignment.
         /// </summary>
-        public Command BuildGraphAppRoleAssignmentNavCommand() {
-            var command = new Command("graph-app-role-assignment");
+        public Command BuildGraphAppRoleAssignmentByIdNavCommand() {
+            var command = new Command("graph-app-role-assignment-by-id");
             command.Description = "Casts the previous resource to appRoleAssignment.";
             var builder = new GraphAppRoleAssignmentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -123,8 +123,8 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item {
         /// <summary>
         /// Casts the previous resource to endpoint.
         /// </summary>
-        public Command BuildGraphEndpointNavCommand() {
-            var command = new Command("graph-endpoint");
+        public Command BuildGraphEndpointByIdNavCommand() {
+            var command = new Command("graph-endpoint-by-id");
             command.Description = "Casts the previous resource to endpoint.";
             var builder = new GraphEndpointRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -138,8 +138,8 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item {
         /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
-        public Command BuildGraphGroupNavCommand() {
-            var command = new Command("graph-group");
+        public Command BuildGraphGroupByIdNavCommand() {
+            var command = new Command("graph-group-by-id");
             command.Description = "Casts the previous resource to group.";
             var builder = new GraphGroupRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -153,8 +153,8 @@ namespace ApiSdk.ServicePrincipals.Item.OwnedObjects.Item {
         /// <summary>
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
-        public Command BuildGraphServicePrincipalNavCommand() {
-            var command = new Command("graph-service-principal");
+        public Command BuildGraphServicePrincipalByIdNavCommand() {
+            var command = new Command("graph-service-principal-by-id");
             command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
             var execCommands = new List<Command>();

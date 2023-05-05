@@ -1,30 +1,29 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.ReprocessLicenseAssignment {
     /// <summary>
     /// Provides operations to call the reprocessLicenseAssignment method.
     /// </summary>
     public class ReprocessLicenseAssignmentRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Reprocess all group-based license assignments for the user. To learn more about group-based licensing, see What is group-based licensing in Azure Active Directory. Also see Identify and resolve license assignment problems for a group in Azure Active Directory for more details.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-reprocesslicenseassignment?view=graph-rest-1.0" />
+        /// Invoke action reprocessLicenseAssignment
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Reprocess all group-based license assignments for the user. To learn more about group-based licensing, see What is group-based licensing in Azure Active Directory. Also see Identify and resolve license assignment problems for a group in Azure Active Directory for more details.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-reprocesslicenseassignment?view=graph-rest-1.0";
+            command.Description = "Invoke action reprocessLicenseAssignment";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -73,7 +72,7 @@ namespace ApiSdk.Users.Item.ReprocessLicenseAssignment {
         public ReprocessLicenseAssignmentRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/reprocessLicenseAssignment", pathParameters) {
         }
         /// <summary>
-        /// Reprocess all group-based license assignments for the user. To learn more about group-based licensing, see What is group-based licensing in Azure Active Directory. Also see Identify and resolve license assignment problems for a group in Azure Active Directory for more details.
+        /// Invoke action reprocessLicenseAssignment
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -1,30 +1,29 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Copy {
     /// <summary>
     /// Provides operations to call the copy method.
     /// </summary>
     public class CopyRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Copy a message to a folder within the user&apos;s mailbox.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/message-copy?view=graph-rest-1.0" />
+        /// Invoke action copy
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Copy a message to a folder within the user's mailbox.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/message-copy?view=graph-rest-1.0";
+            command.Description = "Invoke action copy";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -95,7 +94,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Copy {
         public CopyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/messages/{message%2Did}/copy", pathParameters) {
         }
         /// <summary>
-        /// Copy a message to a folder within the user&apos;s mailbox.
+        /// Invoke action copy
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

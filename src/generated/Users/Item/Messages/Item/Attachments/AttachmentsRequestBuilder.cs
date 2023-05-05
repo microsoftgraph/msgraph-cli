@@ -1,21 +1,21 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.Messages.Item.Attachments.Count;
 using ApiSdk.Users.Item.Messages.Item.Attachments.CreateUploadSession;
 using ApiSdk.Users.Item.Messages.Item.Attachments.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.Messages.Item.Attachments {
     /// <summary>
     /// Provides operations to manage the attachments property of the microsoft.graph.message entity.
@@ -47,12 +47,11 @@ namespace ApiSdk.Users.Item.Messages.Item.Attachments {
             return command;
         }
         /// <summary>
-        /// Use this API to add an attachment to a message.  An attachment can be one of the following types: All these types of attachment resources are derived from the attachmentresource.  You can add an attachment to an existing message by posting to its attachments collection, or you can add an attachment to a message that is being created and sent on the fly. This operation limits the size of the attachment you can add to under 3 MB.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/message-post-attachments?view=graph-rest-1.0" />
+        /// Create new navigation property to attachments for users
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to add an attachment to a message.  An attachment can be one of the following types: All these types of attachment resources are derived from the attachmentresource.  You can add an attachment to an existing message by posting to its attachments collection, or you can add an attachment to a message that is being created and sent on the fly. This operation limits the size of the attachment you can add to under 3 MB.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/message-post-attachments?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to attachments for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -126,12 +125,11 @@ namespace ApiSdk.Users.Item.Messages.Item.Attachments {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of attachment objects attached to a message.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/message-list-attachments?view=graph-rest-1.0" />
+        /// The fileAttachment and itemAttachment attachments for the message.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of attachment objects attached to a message.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/message-list-attachments?view=graph-rest-1.0";
+            command.Description = "The fileAttachment and itemAttachment attachments for the message.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -243,7 +241,7 @@ namespace ApiSdk.Users.Item.Messages.Item.Attachments {
         public AttachmentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/messages/{message%2Did}/attachments{?%24top,%24skip,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve a list of attachment objects attached to a message.
+        /// The fileAttachment and itemAttachment attachments for the message.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -269,7 +267,7 @@ namespace ApiSdk.Users.Item.Messages.Item.Attachments {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to add an attachment to a message.  An attachment can be one of the following types: All these types of attachment resources are derived from the attachmentresource.  You can add an attachment to an existing message by posting to its attachments collection, or you can add an attachment to a message that is being created and sent on the fly. This operation limits the size of the attachment you can add to under 3 MB.
+        /// Create new navigation property to attachments for users
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -297,7 +295,7 @@ namespace ApiSdk.Users.Item.Messages.Item.Attachments {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of attachment objects attached to a message.
+        /// The fileAttachment and itemAttachment attachments for the message.
         /// </summary>
         public class AttachmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

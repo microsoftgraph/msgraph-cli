@@ -1,20 +1,19 @@
-using ApiSdk.Drives.Item.Items.Item.Workbook.Operations.Count;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Operations.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Drives.Item.Items.Item.Workbook.Operations {
     /// <summary>
     /// Provides operations to manage the operations property of the microsoft.graph.workbook entity.
@@ -30,21 +29,6 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Operations {
             executables.Add(builder.BuildGetCommand());
             executables.Add(builder.BuildPatchCommand());
             return new(executables, new(0));
-        }
-        /// <summary>
-        /// Provides operations to count the resources in the collection.
-        /// </summary>
-        public Command BuildCountNavCommand() {
-            var command = new Command("count");
-            command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            execCommands.Add(builder.BuildGetCommand());
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
         }
         /// <summary>
         /// Create new navigation property to operations for drives

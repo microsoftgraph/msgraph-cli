@@ -1,19 +1,19 @@
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.Security;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Item.SecurityApplyTags;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Item.MicrosoftGraphSecurityApplyTags;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Item {
     /// <summary>
     /// Provides operations to manage the queries property of the microsoft.graph.security.ediscoveryReviewSet entity.
@@ -138,6 +138,21 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Ite
             return command;
         }
         /// <summary>
+        /// Provides operations to call the applyTags method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSecurityApplyTagsNavCommand() {
+            var command = new Command("microsoft-graph-security-apply-tags");
+            command.Description = "Provides operations to call the applyTags method.";
+            var builder = new MicrosoftGraphSecurityApplyTagsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Update the navigation property queries in security
         /// </summary>
         public Command BuildPatchCommand() {
@@ -204,21 +219,6 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Ite
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the applyTags method.
-        /// </summary>
-        public Command BuildSecurityApplyTagsNavCommand() {
-            var command = new Command("security-apply-tags");
-            command.Description = "Provides operations to call the applyTags method.";
-            var builder = new SecurityApplyTagsRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            execCommands.Add(builder.BuildPostCommand());
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
             return command;
         }
         /// <summary>

@@ -1,27 +1,27 @@
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.Security;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.MicrosoftGraphSecurityClose;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.MicrosoftGraphSecurityReopen;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Operations;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.SecurityClose;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.SecurityReopen;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
     /// <summary>
     /// Provides operations to manage the ediscoveryCases property of the microsoft.graph.security.casesRoot entity.
@@ -39,8 +39,8 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             nonExecCommands.Add(builder.BuildCountNavCommand());
             execCommands.Add(builder.BuildCreateCommand());
             execCommands.Add(builder.BuildListCommand());
-            nonExecCommands.Add(builder.BuildSecurityApplyHoldNavCommand());
-            nonExecCommands.Add(builder.BuildSecurityRemoveHoldNavCommand());
+            nonExecCommands.Add(builder.BuildMicrosoftGraphSecurityApplyHoldNavCommand());
+            nonExecCommands.Add(builder.BuildMicrosoftGraphSecurityRemoveHoldNavCommand());
             var cmds = builder.BuildCommand();
             execCommands.AddRange(cmds.Item1);
             nonExecCommands.AddRange(cmds.Item2);
@@ -149,6 +149,36 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the close method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSecurityCloseNavCommand() {
+            var command = new Command("microsoft-graph-security-close");
+            command.Description = "Provides operations to call the close method.";
+            var builder = new MicrosoftGraphSecurityCloseRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the reopen method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSecurityReopenNavCommand() {
+            var command = new Command("microsoft-graph-security-reopen");
+            command.Description = "Provides operations to call the reopen method.";
+            var builder = new MicrosoftGraphSecurityReopenRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the noncustodialDataSources property of the microsoft.graph.security.ediscoveryCase entity.
         /// </summary>
         public Command BuildNoncustodialDataSourcesNavCommand() {
@@ -160,8 +190,8 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             nonExecCommands.Add(builder.BuildCountNavCommand());
             execCommands.Add(builder.BuildCreateCommand());
             execCommands.Add(builder.BuildListCommand());
-            nonExecCommands.Add(builder.BuildSecurityApplyHoldNavCommand());
-            nonExecCommands.Add(builder.BuildSecurityRemoveHoldNavCommand());
+            nonExecCommands.Add(builder.BuildMicrosoftGraphSecurityApplyHoldNavCommand());
+            nonExecCommands.Add(builder.BuildMicrosoftGraphSecurityRemoveHoldNavCommand());
             var cmds = builder.BuildCommand();
             execCommands.AddRange(cmds.Item1);
             nonExecCommands.AddRange(cmds.Item2);
@@ -308,36 +338,6 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to call the close method.
-        /// </summary>
-        public Command BuildSecurityCloseNavCommand() {
-            var command = new Command("security-close");
-            command.Description = "Provides operations to call the close method.";
-            var builder = new SecurityCloseRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            execCommands.Add(builder.BuildPostCommand());
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the reopen method.
-        /// </summary>
-        public Command BuildSecurityReopenNavCommand() {
-            var command = new Command("security-reopen");
-            command.Description = "Provides operations to call the reopen method.";
-            var builder = new SecurityReopenRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            execCommands.Add(builder.BuildPostCommand());
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the settings property of the microsoft.graph.security.ediscoveryCase entity.
         /// </summary>
         public Command BuildSettingsNavCommand() {
@@ -348,8 +348,8 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildMicrosoftGraphSecurityResetToDefaultNavCommand());
             execCommands.Add(builder.BuildPatchCommand());
-            nonExecCommands.Add(builder.BuildSecurityResetToDefaultNavCommand());
             foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
@@ -372,7 +372,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             nonExecCommands.Add(builder.BuildCountNavCommand());
             execCommands.Add(builder.BuildCreateCommand());
             execCommands.Add(builder.BuildListCommand());
-            nonExecCommands.Add(builder.BuildSecurityAsHierarchyNavCommand());
+            nonExecCommands.Add(builder.BuildMicrosoftGraphSecurityAsHierarchyNavCommand());
             var cmds = builder.BuildCommand();
             execCommands.AddRange(cmds.Item1);
             nonExecCommands.AddRange(cmds.Item2);

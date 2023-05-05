@@ -2,19 +2,19 @@ using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.Security;
 using ApiSdk.Security.Cases.EdiscoveryCases.Count;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Security.Cases.EdiscoveryCases {
     /// <summary>
     /// Provides operations to manage the ediscoveryCases property of the microsoft.graph.security.casesRoot entity.
@@ -30,13 +30,13 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases {
             commands.Add(builder.BuildCustodiansNavCommand());
             executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildMicrosoftGraphSecurityCloseNavCommand());
+            commands.Add(builder.BuildMicrosoftGraphSecurityReopenNavCommand());
             commands.Add(builder.BuildNoncustodialDataSourcesNavCommand());
             commands.Add(builder.BuildOperationsNavCommand());
             executables.Add(builder.BuildPatchCommand());
             commands.Add(builder.BuildReviewSetsNavCommand());
             commands.Add(builder.BuildSearchesNavCommand());
-            commands.Add(builder.BuildSecurityCloseNavCommand());
-            commands.Add(builder.BuildSecurityReopenNavCommand());
             commands.Add(builder.BuildSettingsNavCommand());
             commands.Add(builder.BuildTagsNavCommand());
             return new(executables, commands);
@@ -57,12 +57,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases {
             return command;
         }
         /// <summary>
-        /// Create a new ediscoveryCase object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-casesroot-post-ediscoverycases?view=graph-rest-1.0" />
+        /// Create new navigation property to ediscoveryCases for security
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new ediscoveryCase object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-casesroot-post-ediscoverycases?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to ediscoveryCases for security";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -109,12 +108,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases {
             return command;
         }
         /// <summary>
-        /// Get a list of the ediscoveryCase objects and their properties.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-casesroot-list-ediscoverycases?view=graph-rest-1.0" />
+        /// Get ediscoveryCases from security
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the ediscoveryCase objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-casesroot-list-ediscoverycases?view=graph-rest-1.0";
+            command.Description = "Get ediscoveryCases from security";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -220,7 +218,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases {
         public EdiscoveryCasesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get a list of the ediscoveryCase objects and their properties.
+        /// Get ediscoveryCases from security
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -246,7 +244,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new ediscoveryCase object.
+        /// Create new navigation property to ediscoveryCases for security
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -274,7 +272,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the ediscoveryCase objects and their properties.
+        /// Get ediscoveryCases from security
         /// </summary>
         public class EdiscoveryCasesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -2,15 +2,15 @@ using ApiSdk.Places.Count;
 using ApiSdk.Places.GraphRoom;
 using ApiSdk.Places.Item;
 using Microsoft.Kiota.Abstractions;
-using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System;
 namespace ApiSdk.Places {
     /// <summary>
     /// Builds and executes requests for operations under \places
@@ -21,10 +21,12 @@ namespace ApiSdk.Places {
         /// </summary>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
+            var commands = new List<Command>();
             var builder = new PlaceItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildGraphRoomByIdNavCommand());
             executables.Add(builder.BuildPatchCommand());
-            return new(executables, new(0));
+            return new(executables, commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -45,8 +47,7 @@ namespace ApiSdk.Places {
         /// Casts the previous resource to room.
         /// </summary>
         public Command BuildGraphRoomNavCommand() {
-            var placeIndexer = new PlaceItemRequestBuilder(PathParameters);
-            var command = placeIndexer.BuildGraphRoomNavCommand();
+            var command = new Command("graph-room");
             command.Description = "Casts the previous resource to room.";
             var builder = new GraphRoomRequestBuilder(PathParameters);
             var execCommands = new List<Command>();

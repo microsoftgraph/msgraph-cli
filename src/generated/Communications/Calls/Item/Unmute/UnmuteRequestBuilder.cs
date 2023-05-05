@@ -1,30 +1,29 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Communications.Calls.Item.Unmute {
     /// <summary>
     /// Provides operations to call the unmute method.
     /// </summary>
     public class UnmuteRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Allow the application to unmute itself. This is a server unmute, meaning that the server will start sending audio packets for this participant to other participants again. For more information about how to handle unmute operations, see unmuteParticipantOperation.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/call-unmute?view=graph-rest-1.0" />
+        /// Invoke action unmute
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Allow the application to unmute itself. This is a server unmute, meaning that the server will start sending audio packets for this participant to other participants again. For more information about how to handle unmute operations, see unmuteParticipantOperation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/call-unmute?view=graph-rest-1.0";
+            command.Description = "Invoke action unmute";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -83,7 +82,7 @@ namespace ApiSdk.Communications.Calls.Item.Unmute {
         public UnmuteRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/unmute", pathParameters) {
         }
         /// <summary>
-        /// Allow the application to unmute itself. This is a server unmute, meaning that the server will start sending audio packets for this participant to other participants again. For more information about how to handle unmute operations, see unmuteParticipantOperation.
+        /// Invoke action unmute
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

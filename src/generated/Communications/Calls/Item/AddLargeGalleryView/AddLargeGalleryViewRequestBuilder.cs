@@ -1,30 +1,29 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Communications.Calls.Item.AddLargeGalleryView {
     /// <summary>
     /// Provides operations to call the addLargeGalleryView method.
     /// </summary>
     public class AddLargeGalleryViewRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Add the large gallery view to a call.  For details about how to identify a large gallery view participant in a roster so that you can retrieve the relevant data to subscribe to the video feed, see Identify large gallery view participants in a roster.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/call-addlargegalleryview?view=graph-rest-1.0" />
+        /// Invoke action addLargeGalleryView
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Add the large gallery view to a call.  For details about how to identify a large gallery view participant in a roster so that you can retrieve the relevant data to subscribe to the video feed, see Identify large gallery view participants in a roster.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/call-addlargegalleryview?view=graph-rest-1.0";
+            command.Description = "Invoke action addLargeGalleryView";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -83,7 +82,7 @@ namespace ApiSdk.Communications.Calls.Item.AddLargeGalleryView {
         public AddLargeGalleryViewRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/addLargeGalleryView", pathParameters) {
         }
         /// <summary>
-        /// Add the large gallery view to a call.  For details about how to identify a large gallery view participant in a roster so that you can retrieve the relevant data to subscribe to the video feed, see Identify large gallery view participants in a roster.
+        /// Invoke action addLargeGalleryView
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

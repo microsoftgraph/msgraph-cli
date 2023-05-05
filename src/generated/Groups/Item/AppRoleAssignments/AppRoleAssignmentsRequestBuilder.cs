@@ -1,20 +1,20 @@
 using ApiSdk.Groups.Item.AppRoleAssignments.Count;
 using ApiSdk.Groups.Item.AppRoleAssignments.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups.Item.AppRoleAssignments {
     /// <summary>
     /// Provides operations to manage the appRoleAssignments property of the microsoft.graph.group entity.
@@ -47,12 +47,11 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments {
             return command;
         }
         /// <summary>
-        /// Use this API to assign an app role to a security group. All direct members of the group will be considered assigned. Security groups with dynamic memberships are supported. To grant an app role assignment to a group, you need three identifiers: Additional licenses might be required to use a group to manage access to applications.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/group-post-approleassignments?view=graph-rest-1.0" />
+        /// Create new navigation property to appRoleAssignments for groups
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to assign an app role to a security group. All direct members of the group will be considered assigned. Security groups with dynamic memberships are supported. To grant an app role assignment to a group, you need three identifiers: Additional licenses might be required to use a group to manage access to applications.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-post-approleassignments?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to appRoleAssignments for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -106,11 +105,10 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments {
         }
         /// <summary>
         /// Represents the app roles a group has been granted for an application. Supports $expand.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/group-list-approleassignments?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Represents the app roles a group has been granted for an application. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-list-approleassignments?view=graph-rest-1.0";
+            command.Description = "Represents the app roles a group has been granted for an application. Supports $expand.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -255,7 +253,7 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to assign an app role to a security group. All direct members of the group will be considered assigned. Security groups with dynamic memberships are supported. To grant an app role assignment to a group, you need three identifiers: Additional licenses might be required to use a group to manage access to applications.
+        /// Create new navigation property to appRoleAssignments for groups
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

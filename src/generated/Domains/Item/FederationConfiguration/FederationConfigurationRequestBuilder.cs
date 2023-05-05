@@ -1,20 +1,20 @@
 using ApiSdk.Domains.Item.FederationConfiguration.Count;
 using ApiSdk.Domains.Item.FederationConfiguration.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Domains.Item.FederationConfiguration {
     /// <summary>
     /// Provides operations to manage the federationConfiguration property of the microsoft.graph.domain entity.
@@ -47,12 +47,11 @@ namespace ApiSdk.Domains.Item.FederationConfiguration {
             return command;
         }
         /// <summary>
-        /// Create a new internalDomainFederation object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/domain-post-federationconfiguration?view=graph-rest-1.0" />
+        /// Create new navigation property to federationConfiguration for domains
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new internalDomainFederation object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/domain-post-federationconfiguration?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to federationConfiguration for domains";
             var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
@@ -247,7 +246,7 @@ namespace ApiSdk.Domains.Item.FederationConfiguration {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new internalDomainFederation object.
+        /// Create new navigation property to federationConfiguration for domains
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

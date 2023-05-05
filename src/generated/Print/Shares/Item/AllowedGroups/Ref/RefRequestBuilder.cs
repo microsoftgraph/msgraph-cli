@@ -1,30 +1,29 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Print.Shares.Item.AllowedGroups.Ref {
     /// <summary>
     /// Provides operations to manage the collection of print entities.
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Retrieve a list of groups that have been granted access to submit print jobs to the associated printerShare.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/printershare-list-allowedgroups?view=graph-rest-1.0" />
+        /// The groups whose users have access to print using the printer.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve a list of groups that have been granted access to submit print jobs to the associated printerShare.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printershare-list-allowedgroups?view=graph-rest-1.0";
+            command.Description = "The groups whose users have access to print using the printer.";
             var printerShareIdOption = new Option<string>("--printer-share-id", description: "The unique identifier of printerShare") {
             };
             printerShareIdOption.IsRequired = true;
@@ -158,7 +157,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups.Ref {
         public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/shares/{printerShare%2Did}/allowedGroups/$ref{?%24top,%24skip,%24search,%24filter,%24count,%24orderby}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve a list of groups that have been granted access to submit print jobs to the associated printerShare.
+        /// The groups whose users have access to print using the printer.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -211,7 +210,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedGroups.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of groups that have been granted access to submit print jobs to the associated printerShare.
+        /// The groups whose users have access to print using the printer.
         /// </summary>
         public class RefRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

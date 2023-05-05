@@ -1,23 +1,23 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.OwnedObjects.Count;
 using ApiSdk.Users.Item.OwnedObjects.GraphApplication;
 using ApiSdk.Users.Item.OwnedObjects.GraphGroup;
 using ApiSdk.Users.Item.OwnedObjects.GraphServicePrincipal;
 using ApiSdk.Users.Item.OwnedObjects.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.OwnedObjects {
     /// <summary>
     /// Provides operations to manage the ownedObjects property of the microsoft.graph.user entity.
@@ -28,9 +28,13 @@ namespace ApiSdk.Users.Item.OwnedObjects {
         /// </summary>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
+            var commands = new List<Command>();
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildGetCommand());
-            return new(executables, new(0));
+            commands.Add(builder.BuildGraphApplicationByIdNavCommand());
+            commands.Add(builder.BuildGraphGroupByIdNavCommand());
+            commands.Add(builder.BuildGraphServicePrincipalByIdNavCommand());
+            return new(executables, commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -51,8 +55,7 @@ namespace ApiSdk.Users.Item.OwnedObjects {
         /// Casts the previous resource to application.
         /// </summary>
         public Command BuildGraphApplicationNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphApplicationNavCommand();
+            var command = new Command("graph-application");
             command.Description = "Casts the previous resource to application.";
             var builder = new GraphApplicationRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -73,8 +76,7 @@ namespace ApiSdk.Users.Item.OwnedObjects {
         /// Casts the previous resource to group.
         /// </summary>
         public Command BuildGraphGroupNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphGroupNavCommand();
+            var command = new Command("graph-group");
             command.Description = "Casts the previous resource to group.";
             var builder = new GraphGroupRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -95,8 +97,7 @@ namespace ApiSdk.Users.Item.OwnedObjects {
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
         public Command BuildGraphServicePrincipalNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphServicePrincipalNavCommand();
+            var command = new Command("graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -115,11 +116,10 @@ namespace ApiSdk.Users.Item.OwnedObjects {
         }
         /// <summary>
         /// Directory objects that are owned by the user. Read-only. Nullable. Supports $expand.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-list-ownedobjects?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Directory objects that are owned by the user. Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-ownedobjects?view=graph-rest-1.0";
+            command.Description = "Directory objects that are owned by the user. Read-only. Nullable. Supports $expand.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;

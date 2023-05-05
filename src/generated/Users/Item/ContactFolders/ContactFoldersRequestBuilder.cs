@@ -1,21 +1,21 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.ContactFolders.Count;
 using ApiSdk.Users.Item.ContactFolders.Delta;
 using ApiSdk.Users.Item.ContactFolders.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.ContactFolders {
     /// <summary>
     /// Provides operations to manage the contactFolders property of the microsoft.graph.user entity.
@@ -53,12 +53,11 @@ namespace ApiSdk.Users.Item.ContactFolders {
             return command;
         }
         /// <summary>
-        /// Create a new contactFolder under the user&apos;s default contacts folder. You can also create a new contactfolder as a child of any specified contact folder.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-post-contactfolders?view=graph-rest-1.0" />
+        /// Create new navigation property to contactFolders for users
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new contactFolder under the user's default contacts folder. You can also create a new contactfolder as a child of any specified contact folder.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-post-contactfolders?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to contactFolders for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -126,12 +125,11 @@ namespace ApiSdk.Users.Item.ContactFolders {
             return command;
         }
         /// <summary>
-        /// Get the contact folder collection in the default Contacts folder of the signed-in user.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-list-contactfolders?view=graph-rest-1.0" />
+        /// The user&apos;s contacts folders. Read-only. Nullable.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the contact folder collection in the default Contacts folder of the signed-in user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-contactfolders?view=graph-rest-1.0";
+            command.Description = "The user's contacts folders. Read-only. Nullable.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -162,6 +160,11 @@ namespace ApiSdk.Users.Item.ContactFolders {
             };
             selectOption.IsRequired = false;
             command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
             var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
                 IsRequired = true
             };
@@ -185,6 +188,7 @@ namespace ApiSdk.Users.Item.ContactFolders {
                 var count = invocationContext.ParseResult.GetValueForOption(countOption);
                 var orderby = invocationContext.ParseResult.GetValueForOption(orderbyOption);
                 var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
@@ -201,6 +205,7 @@ namespace ApiSdk.Users.Item.ContactFolders {
                     q.QueryParameters.Count = count;
                     q.QueryParameters.Orderby = orderby;
                     q.QueryParameters.Select = select;
+                    q.QueryParameters.Expand = expand;
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
@@ -227,10 +232,10 @@ namespace ApiSdk.Users.Item.ContactFolders {
         /// Instantiates a new ContactFoldersRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ContactFoldersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/contactFolders{?%24top,%24skip,%24filter,%24count,%24orderby,%24select}", pathParameters) {
+        public ContactFoldersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/contactFolders{?%24top,%24skip,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get the contact folder collection in the default Contacts folder of the signed-in user.
+        /// The user&apos;s contacts folders. Read-only. Nullable.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -256,7 +261,7 @@ namespace ApiSdk.Users.Item.ContactFolders {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new contactFolder under the user&apos;s default contacts folder. You can also create a new contactfolder as a child of any specified contact folder.
+        /// Create new navigation property to contactFolders for users
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -284,12 +289,22 @@ namespace ApiSdk.Users.Item.ContactFolders {
             return requestInfo;
         }
         /// <summary>
-        /// Get the contact folder collection in the default Contacts folder of the signed-in user.
+        /// The user&apos;s contacts folders. Read-only. Nullable.
         /// </summary>
         public class ContactFoldersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
             [QueryParameter("%24count")]
             public bool? Count { get; set; }
+            /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
+            [QueryParameter("%24expand")]
+            public string[] Expand { get; set; }
+#endif
             /// <summary>Filter items by property values</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

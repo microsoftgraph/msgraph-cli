@@ -1,18 +1,18 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Fields {
     /// <summary>
     /// Provides operations to manage the fields property of the microsoft.graph.listItem entity.
@@ -137,12 +137,11 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Fields {
             return command;
         }
         /// <summary>
-        /// Update the properties on a **[listItem][]**.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/listitem-update?view=graph-rest-1.0" />
+        /// Update the navigation property fields in sites
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties on a **[listItem][]**.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/listitem-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property fields in sites";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -264,7 +263,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Fields {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties on a **[listItem][]**.
+        /// Update the navigation property fields in sites
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

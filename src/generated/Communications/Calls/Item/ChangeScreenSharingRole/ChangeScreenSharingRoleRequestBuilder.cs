@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Communications.Calls.Item.ChangeScreenSharingRole {
     /// <summary>
     /// Provides operations to call the changeScreenSharingRole method.
     /// </summary>
     public class ChangeScreenSharingRoleRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Allow applications to share screen content with the participants of a group call.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/call-changescreensharingrole?view=graph-rest-1.0" />
+        /// Invoke action changeScreenSharingRole
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Allow applications to share screen content with the participants of a group call.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/call-changescreensharingrole?view=graph-rest-1.0";
+            command.Description = "Invoke action changeScreenSharingRole";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -61,7 +60,7 @@ namespace ApiSdk.Communications.Calls.Item.ChangeScreenSharingRole {
         public ChangeScreenSharingRoleRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/changeScreenSharingRole", pathParameters) {
         }
         /// <summary>
-        /// Allow applications to share screen content with the participants of a group call.
+        /// Invoke action changeScreenSharingRole
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.Count;
 using ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications {
     /// <summary>
     /// Provides operations to manage the delegatedPermissionClassifications property of the microsoft.graph.servicePrincipal entity.
@@ -47,12 +47,11 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications {
             return command;
         }
         /// <summary>
-        /// Classify a delegated permission by adding a delegatedPermissionClassification to the servicePrincipal representing the API.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/serviceprincipal-post-delegatedpermissionclassifications?view=graph-rest-1.0" />
+        /// Create new navigation property to delegatedPermissionClassifications for servicePrincipals
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Classify a delegated permission by adding a delegatedPermissionClassification to the servicePrincipal representing the API.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-post-delegatedpermissionclassifications?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to delegatedPermissionClassifications for servicePrincipals";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -105,12 +104,11 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications {
             return command;
         }
         /// <summary>
-        /// Retrieve the list of delegatedPermissionClassification currently configured for the delegated permissions exposed by an API.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/serviceprincipal-list-delegatedpermissionclassifications?view=graph-rest-1.0" />
+        /// Get delegatedPermissionClassifications from servicePrincipals
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the list of delegatedPermissionClassification currently configured for the delegated permissions exposed by an API.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-list-delegatedpermissionclassifications?view=graph-rest-1.0";
+            command.Description = "Get delegatedPermissionClassifications from servicePrincipals";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -222,7 +220,7 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications {
         public DelegatedPermissionClassificationsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/delegatedPermissionClassifications{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve the list of delegatedPermissionClassification currently configured for the delegated permissions exposed by an API.
+        /// Get delegatedPermissionClassifications from servicePrincipals
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -248,7 +246,7 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications {
             return requestInfo;
         }
         /// <summary>
-        /// Classify a delegated permission by adding a delegatedPermissionClassification to the servicePrincipal representing the API.
+        /// Create new navigation property to delegatedPermissionClassifications for servicePrincipals
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -276,7 +274,7 @@ namespace ApiSdk.ServicePrincipals.Item.DelegatedPermissionClassifications {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the list of delegatedPermissionClassification currently configured for the delegated permissions exposed by an API.
+        /// Get delegatedPermissionClassifications from servicePrincipals
         /// </summary>
         public class DelegatedPermissionClassificationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

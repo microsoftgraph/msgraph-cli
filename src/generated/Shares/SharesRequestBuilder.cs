@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Shares.Count;
 using ApiSdk.Shares.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Shares {
     /// <summary>
     /// Provides operations to manage the collection of sharedDriveItem entities.
@@ -27,10 +27,12 @@ namespace ApiSdk.Shares {
             var executables = new List<Command>();
             var commands = new List<Command>();
             var builder = new SharedDriveItemItemRequestBuilder(PathParameters);
+            commands.Add(builder.BuildCreatedByUserNavCommand());
             executables.Add(builder.BuildDeleteCommand());
             commands.Add(builder.BuildDriveItemNavCommand());
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildItemsNavCommand());
+            commands.Add(builder.BuildLastModifiedByUserNavCommand());
             commands.Add(builder.BuildListItemNavCommand());
             executables.Add(builder.BuildPatchCommand());
             commands.Add(builder.BuildPermissionNavCommand());

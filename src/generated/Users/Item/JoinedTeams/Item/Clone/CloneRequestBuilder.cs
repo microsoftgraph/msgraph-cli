@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.JoinedTeams.Item.Clone {
     /// <summary>
     /// Provides operations to call the clone method.
     /// </summary>
     public class CloneRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Create a copy of a team. This operation also creates a copy of the corresponding group.You can specify which parts of the team to clone: When tabs are cloned, they are put into an unconfigured state -- they are displayed on the tab bar in Microsoft Teams, and the first time you open them, you&apos;ll go through the configuration screen. (If the person opening the tab does not have permission to configure apps, they will see a message explaining that the tab hasn&apos;t been configured.) Cloning is a long-running operation.After the POST clone returns, you need to GET the operation to see if it&apos;s &apos;running&apos; or &apos;succeeded&apos; or &apos;failed&apos;. You should continue to GET until the status is not &apos;running&apos;. The recommended delay between GETs is 5 seconds.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/team-clone?view=graph-rest-1.0" />
+        /// Invoke action clone
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Create a copy of a team. This operation also creates a copy of the corresponding group.You can specify which parts of the team to clone: When tabs are cloned, they are put into an unconfigured state -- they are displayed on the tab bar in Microsoft Teams, and the first time you open them, you'll go through the configuration screen. (If the person opening the tab does not have permission to configure apps, they will see a message explaining that the tab hasn't been configured.) Cloning is a long-running operation.After the POST clone returns, you need to GET the operation to see if it's 'running' or 'succeeded' or 'failed'. You should continue to GET until the status is not 'running'. The recommended delay between GETs is 5 seconds.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-clone?view=graph-rest-1.0";
+            command.Description = "Invoke action clone";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -67,7 +66,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Clone {
         public CloneRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/clone", pathParameters) {
         }
         /// <summary>
-        /// Create a copy of a team. This operation also creates a copy of the corresponding group.You can specify which parts of the team to clone: When tabs are cloned, they are put into an unconfigured state -- they are displayed on the tab bar in Microsoft Teams, and the first time you open them, you&apos;ll go through the configuration screen. (If the person opening the tab does not have permission to configure apps, they will see a message explaining that the tab hasn&apos;t been configured.) Cloning is a long-running operation.After the POST clone returns, you need to GET the operation to see if it&apos;s &apos;running&apos; or &apos;succeeded&apos; or &apos;failed&apos;. You should continue to GET until the status is not &apos;running&apos;. The recommended delay between GETs is 5 seconds.
+        /// Invoke action clone
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

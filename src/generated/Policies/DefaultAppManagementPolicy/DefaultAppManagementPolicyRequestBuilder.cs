@@ -1,18 +1,18 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Policies.DefaultAppManagementPolicy {
     /// <summary>
     /// Provides operations to manage the defaultAppManagementPolicy property of the microsoft.graph.policyRoot entity.
@@ -46,11 +46,11 @@ namespace ApiSdk.Policies.DefaultAppManagementPolicy {
             return command;
         }
         /// <summary>
-        /// Get defaultAppManagementPolicy from policies
+        /// The tenant-wide policy that enforces app management restrictions for all applications and service principals.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get defaultAppManagementPolicy from policies";
+            command.Description = "The tenant-wide policy that enforces app management restrictions for all applications and service principals.";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -183,7 +183,7 @@ namespace ApiSdk.Policies.DefaultAppManagementPolicy {
             return requestInfo;
         }
         /// <summary>
-        /// Get defaultAppManagementPolicy from policies
+        /// The tenant-wide policy that enforces app management restrictions for all applications and service principals.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -237,7 +237,7 @@ namespace ApiSdk.Policies.DefaultAppManagementPolicy {
             return requestInfo;
         }
         /// <summary>
-        /// Get defaultAppManagementPolicy from policies
+        /// The tenant-wide policy that enforces app management restrictions for all applications and service principals.
         /// </summary>
         public class DefaultAppManagementPolicyRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

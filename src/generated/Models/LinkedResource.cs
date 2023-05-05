@@ -1,11 +1,11 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class LinkedResource : Entity, IParsable {
-        /// <summary>Field indicating the app name of the source that is sending the linkedResource.</summary>
+        /// <summary>The app name of the source that sends the linkedResource.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ApplicationName { get; set; }
@@ -13,7 +13,7 @@ namespace ApiSdk.Models {
 #else
         public string ApplicationName { get; set; }
 #endif
-        /// <summary>Field indicating the title of the linkedResource.</summary>
+        /// <summary>The title of the linkedResource.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }
@@ -21,7 +21,7 @@ namespace ApiSdk.Models {
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>Id of the object that is associated with this task on the third-party/partner system.</summary>
+        /// <summary>ID of the object that is associated with this task on the third-party/partner system.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ExternalId { get; set; }

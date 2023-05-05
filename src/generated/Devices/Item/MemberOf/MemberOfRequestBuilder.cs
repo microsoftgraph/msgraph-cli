@@ -1,21 +1,22 @@
 using ApiSdk.Devices.Item.MemberOf.Count;
+using ApiSdk.Devices.Item.MemberOf.GraphAdministrativeUnit;
 using ApiSdk.Devices.Item.MemberOf.GraphGroup;
 using ApiSdk.Devices.Item.MemberOf.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Devices.Item.MemberOf {
     /// <summary>
     /// Provides operations to manage the memberOf property of the microsoft.graph.device entity.
@@ -26,9 +27,12 @@ namespace ApiSdk.Devices.Item.MemberOf {
         /// </summary>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
+            var commands = new List<Command>();
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildGetCommand());
-            return new(executables, new(0));
+            commands.Add(builder.BuildGraphAdministrativeUnitByIdNavCommand());
+            commands.Add(builder.BuildGraphGroupByIdNavCommand());
+            return new(executables, commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -46,11 +50,31 @@ namespace ApiSdk.Devices.Item.MemberOf {
             return command;
         }
         /// <summary>
+        /// Casts the previous resource to administrativeUnit.
+        /// </summary>
+        public Command BuildGraphAdministrativeUnitNavCommand() {
+            var command = new Command("graph-administrative-unit");
+            command.Description = "Casts the previous resource to administrativeUnit.";
+            var builder = new GraphAdministrativeUnitRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
         public Command BuildGraphGroupNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphGroupNavCommand();
+            var command = new Command("graph-group");
             command.Description = "Casts the previous resource to group.";
             var builder = new GraphGroupRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -69,11 +93,10 @@ namespace ApiSdk.Devices.Item.MemberOf {
         }
         /// <summary>
         /// Groups and administrative units that this device is a member of. Read-only. Nullable. Supports $expand.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/device-list-memberof?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Groups and administrative units that this device is a member of. Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/device-list-memberof?view=graph-rest-1.0";
+            command.Description = "Groups and administrative units that this device is a member of. Read-only. Nullable. Supports $expand.";
             var deviceIdOption = new Option<string>("--device-id", description: "The unique identifier of device") {
             };
             deviceIdOption.IsRequired = true;

@@ -1,5 +1,5 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Accept;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Attachments;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Calendar;
@@ -13,19 +13,19 @@ using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.Mul
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.SingleValueExtendedProperties;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.SnoozeReminder;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item.TentativelyAccept;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item {
     /// <summary>
     /// Provides operations to manage the calendarView property of the microsoft.graph.calendar entity.

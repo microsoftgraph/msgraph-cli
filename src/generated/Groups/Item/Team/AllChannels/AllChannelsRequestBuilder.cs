@@ -1,20 +1,20 @@
 using ApiSdk.Groups.Item.Team.AllChannels.Count;
 using ApiSdk.Groups.Item.Team.AllChannels.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups.Item.Team.AllChannels {
     /// <summary>
     /// Provides operations to manage the allChannels property of the microsoft.graph.team entity.
@@ -45,12 +45,11 @@ namespace ApiSdk.Groups.Item.Team.AllChannels {
             return command;
         }
         /// <summary>
-        /// Get the list of channels either in this team or shared with this team (incoming channels).
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/team-list-allchannels?view=graph-rest-1.0" />
+        /// List of channels either hosted in or shared with the team (incoming channels).
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the list of channels either in this team or shared with this team (incoming channels).\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-list-allchannels?view=graph-rest-1.0";
+            command.Description = "List of channels either hosted in or shared with the team (incoming channels).";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -162,7 +161,7 @@ namespace ApiSdk.Groups.Item.Team.AllChannels {
         public AllChannelsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/allChannels{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get the list of channels either in this team or shared with this team (incoming channels).
+        /// List of channels either hosted in or shared with the team (incoming channels).
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -188,7 +187,7 @@ namespace ApiSdk.Groups.Item.Team.AllChannels {
             return requestInfo;
         }
         /// <summary>
-        /// Get the list of channels either in this team or shared with this team (incoming channels).
+        /// List of channels either hosted in or shared with the team (incoming channels).
         /// </summary>
         public class AllChannelsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

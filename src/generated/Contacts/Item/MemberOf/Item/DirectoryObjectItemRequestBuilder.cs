@@ -1,19 +1,20 @@
+using ApiSdk.Contacts.Item.MemberOf.Item.GraphAdministrativeUnit;
 using ApiSdk.Contacts.Item.MemberOf.Item.GraphGroup;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Contacts.Item.MemberOf.Item {
     /// <summary>
     /// Provides operations to manage the memberOf property of the microsoft.graph.orgContact entity.
@@ -94,10 +95,25 @@ namespace ApiSdk.Contacts.Item.MemberOf.Item {
             return command;
         }
         /// <summary>
+        /// Casts the previous resource to administrativeUnit.
+        /// </summary>
+        public Command BuildGraphAdministrativeUnitByIdNavCommand() {
+            var command = new Command("graph-administrative-unit-by-id");
+            command.Description = "Casts the previous resource to administrativeUnit.";
+            var builder = new GraphAdministrativeUnitRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
-        public Command BuildGraphGroupNavCommand() {
-            var command = new Command("graph-group");
+        public Command BuildGraphGroupByIdNavCommand() {
+            var command = new Command("graph-group-by-id");
             command.Description = "Casts the previous resource to group.";
             var builder = new GraphGroupRequestBuilder(PathParameters);
             var execCommands = new List<Command>();

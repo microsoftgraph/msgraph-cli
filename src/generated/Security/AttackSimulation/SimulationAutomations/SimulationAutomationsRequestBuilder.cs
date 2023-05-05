@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Security.AttackSimulation.SimulationAutomations.Count;
 using ApiSdk.Security.AttackSimulation.SimulationAutomations.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Security.AttackSimulation.SimulationAutomations {
     /// <summary>
     /// Provides operations to manage the simulationAutomations property of the microsoft.graph.attackSimulationRoot entity.
@@ -100,12 +100,11 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations {
             return command;
         }
         /// <summary>
-        /// Get a list of attack simulation automations for a tenant.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/attacksimulationroot-list-simulationautomations?view=graph-rest-1.0" />
+        /// Represents simulation automation created to run on a tenant.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of attack simulation automations for a tenant.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/attacksimulationroot-list-simulationautomations?view=graph-rest-1.0";
+            command.Description = "Represents simulation automation created to run on a tenant.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -211,7 +210,7 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations {
         public SimulationAutomationsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation/simulationAutomations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get a list of attack simulation automations for a tenant.
+        /// Represents simulation automation created to run on a tenant.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -265,7 +264,7 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of attack simulation automations for a tenant.
+        /// Represents simulation automation created to run on a tenant.
         /// </summary>
         public class SimulationAutomationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

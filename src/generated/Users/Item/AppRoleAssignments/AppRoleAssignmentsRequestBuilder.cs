@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.AppRoleAssignments.Count;
 using ApiSdk.Users.Item.AppRoleAssignments.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.AppRoleAssignments {
     /// <summary>
     /// Provides operations to manage the appRoleAssignments property of the microsoft.graph.user entity.
@@ -47,12 +47,11 @@ namespace ApiSdk.Users.Item.AppRoleAssignments {
             return command;
         }
         /// <summary>
-        /// Use this API to assign an app role to a user. To grant an app role assignment to a user, you need three identifiers:
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-post-approleassignments?view=graph-rest-1.0" />
+        /// Create new navigation property to appRoleAssignments for users
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to assign an app role to a user. To grant an app role assignment to a user, you need three identifiers:\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-post-approleassignments?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to appRoleAssignments for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -106,11 +105,10 @@ namespace ApiSdk.Users.Item.AppRoleAssignments {
         }
         /// <summary>
         /// Represents the app roles a user has been granted for an application. Supports $expand.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-list-approleassignments?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Represents the app roles a user has been granted for an application. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-approleassignments?view=graph-rest-1.0";
+            command.Description = "Represents the app roles a user has been granted for an application. Supports $expand.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -255,7 +253,7 @@ namespace ApiSdk.Users.Item.AppRoleAssignments {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to assign an app role to a user. To grant an app role assignment to a user, you need three identifiers:
+        /// Create new navigation property to appRoleAssignments for users
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

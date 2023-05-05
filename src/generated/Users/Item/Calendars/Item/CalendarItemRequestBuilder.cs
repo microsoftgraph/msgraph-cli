@@ -1,5 +1,5 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.Calendars.Item.AllowedCalendarSharingRolesWithUser;
 using ApiSdk.Users.Item.Calendars.Item.CalendarPermissions;
 using ApiSdk.Users.Item.Calendars.Item.CalendarView;
@@ -7,19 +7,19 @@ using ApiSdk.Users.Item.Calendars.Item.Events;
 using ApiSdk.Users.Item.Calendars.Item.GetSchedule;
 using ApiSdk.Users.Item.Calendars.Item.MultiValueExtendedProperties;
 using ApiSdk.Users.Item.Calendars.Item.SingleValueExtendedProperties;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.Calendars.Item {
     /// <summary>
     /// Provides operations to manage the calendars property of the microsoft.graph.user entity.
@@ -159,6 +159,11 @@ namespace ApiSdk.Users.Item.Calendars.Item {
             };
             selectOption.IsRequired = false;
             command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
             var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
                 IsRequired = true
             };
@@ -176,6 +181,7 @@ namespace ApiSdk.Users.Item.Calendars.Item {
                 var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
                 var calendarId = invocationContext.ParseResult.GetValueForOption(calendarIdOption);
                 var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
@@ -185,6 +191,7 @@ namespace ApiSdk.Users.Item.Calendars.Item {
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
                     q.QueryParameters.Select = select;
+                    q.QueryParameters.Expand = expand;
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (calendarId is not null) requestInfo.PathParameters.Add("calendar%2Did", calendarId);
@@ -332,7 +339,7 @@ namespace ApiSdk.Users.Item.Calendars.Item {
         /// Instantiates a new CalendarItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CalendarItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendars/{calendar%2Did}{?%24select}", pathParameters) {
+        public CalendarItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendars/{calendar%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Delete navigation property calendars for users
@@ -417,6 +424,16 @@ namespace ApiSdk.Users.Item.Calendars.Item {
         /// The user&apos;s calendars. Read-only. Nullable.
         /// </summary>
         public class CalendarItemRequestBuilderGetQueryParameters {
+            /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
+            [QueryParameter("%24expand")]
+            public string[] Expand { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

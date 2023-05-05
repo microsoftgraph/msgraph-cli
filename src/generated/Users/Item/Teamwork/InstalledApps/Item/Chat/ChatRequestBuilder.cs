@@ -1,30 +1,29 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat {
     /// <summary>
     /// Provides operations to manage the chat property of the microsoft.graph.userScopeTeamsAppInstallation entity.
     /// </summary>
     public class ChatRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Retrieve the chat of the specified user and Teams app.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/userscopeteamsappinstallation-get-chat?view=graph-rest-1.0" />
+        /// The chat between the user and Teams app.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the chat of the specified user and Teams app.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/userscopeteamsappinstallation-get-chat?view=graph-rest-1.0";
+            command.Description = "The chat between the user and Teams app.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -93,7 +92,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat {
         public ChatRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/teamwork/installedApps/{userScopeTeamsAppInstallation%2Did}/chat{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve the chat of the specified user and Teams app.
+        /// The chat between the user and Teams app.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -119,7 +118,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the chat of the specified user and Teams app.
+        /// The chat between the user and Teams app.
         /// </summary>
         public class ChatRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -1,21 +1,21 @@
 using ApiSdk.Groups.Item.Events.Count;
 using ApiSdk.Groups.Item.Events.Delta;
 using ApiSdk.Groups.Item.Events.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups.Item.Events {
     /// <summary>
     /// Provides operations to manage the events property of the microsoft.graph.group entity.
@@ -62,12 +62,11 @@ namespace ApiSdk.Groups.Item.Events {
             return command;
         }
         /// <summary>
-        /// Use this API to create a new event.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/group-post-events?view=graph-rest-1.0" />
+        /// Create new navigation property to events for groups
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to create a new event.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-post-events?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to events for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -135,12 +134,11 @@ namespace ApiSdk.Groups.Item.Events {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of event objects.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/group-list-events?view=graph-rest-1.0" />
+        /// The group&apos;s calendar events.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of event objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-list-events?view=graph-rest-1.0";
+            command.Description = "The group's calendar events.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -239,7 +237,7 @@ namespace ApiSdk.Groups.Item.Events {
         public EventsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/events{?%24top,%24skip,%24filter,%24count,%24orderby,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve a list of event objects.
+        /// The group&apos;s calendar events.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -265,7 +263,7 @@ namespace ApiSdk.Groups.Item.Events {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to create a new event.
+        /// Create new navigation property to events for groups
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -293,7 +291,7 @@ namespace ApiSdk.Groups.Item.Events {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of event objects.
+        /// The group&apos;s calendar events.
         /// </summary>
         public class EventsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

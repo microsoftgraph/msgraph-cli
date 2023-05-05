@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class TargetManager : SubjectSet, IParsable {
         /// <summary>Manager level, between 1 and 4. The direct manager is 1.</summary>

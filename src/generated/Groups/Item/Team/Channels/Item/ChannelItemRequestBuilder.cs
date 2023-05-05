@@ -7,21 +7,21 @@ using ApiSdk.Groups.Item.Team.Channels.Item.ProvisionEmail;
 using ApiSdk.Groups.Item.Team.Channels.Item.RemoveEmail;
 using ApiSdk.Groups.Item.Team.Channels.Item.SharedWithTeams;
 using ApiSdk.Groups.Item.Team.Channels.Item.Tabs;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups.Item.Team.Channels.Item {
     /// <summary>
     /// Provides operations to manage the channels property of the microsoft.graph.team entity.

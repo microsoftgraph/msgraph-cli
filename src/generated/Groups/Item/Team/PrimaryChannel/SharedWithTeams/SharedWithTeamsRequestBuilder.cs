@@ -1,20 +1,20 @@
 using ApiSdk.Groups.Item.Team.PrimaryChannel.SharedWithTeams.Count;
 using ApiSdk.Groups.Item.Team.PrimaryChannel.SharedWithTeams.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups.Item.Team.PrimaryChannel.SharedWithTeams {
     /// <summary>
     /// Provides operations to manage the sharedWithTeams property of the microsoft.graph.channel entity.
@@ -31,6 +31,7 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.SharedWithTeams {
             executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
             executables.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildTeamNavCommand());
             return new(executables, commands);
         }
         /// <summary>
@@ -106,12 +107,11 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.SharedWithTeams {
             return command;
         }
         /// <summary>
-        /// Get the list of teams that has been shared a specified channel. This operation is allowed only for channels with a **membershipType** value of `shared`.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/sharedwithchannelteaminfo-list?view=graph-rest-1.0" />
+        /// A collection of teams with which a channel is shared.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the list of teams that has been shared a specified channel. This operation is allowed only for channels with a **membershipType** value of `shared`.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/sharedwithchannelteaminfo-list?view=graph-rest-1.0";
+            command.Description = "A collection of teams with which a channel is shared.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -223,7 +223,7 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.SharedWithTeams {
         public SharedWithTeamsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/primaryChannel/sharedWithTeams{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get the list of teams that has been shared a specified channel. This operation is allowed only for channels with a **membershipType** value of `shared`.
+        /// A collection of teams with which a channel is shared.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -277,7 +277,7 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.SharedWithTeams {
             return requestInfo;
         }
         /// <summary>
-        /// Get the list of teams that has been shared a specified channel. This operation is allowed only for channels with a **membershipType** value of `shared`.
+        /// A collection of teams with which a channel is shared.
         /// </summary>
         public class SharedWithTeamsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

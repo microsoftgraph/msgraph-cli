@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Organization.Item.CertificateBasedAuthConfiguration.Count;
 using ApiSdk.Organization.Item.CertificateBasedAuthConfiguration.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Organization.Item.CertificateBasedAuthConfiguration {
     /// <summary>
     /// Provides operations to manage the certificateBasedAuthConfiguration property of the microsoft.graph.organization entity.
@@ -26,6 +26,7 @@ namespace ApiSdk.Organization.Item.CertificateBasedAuthConfiguration {
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new CertificateBasedAuthConfigurationItemRequestBuilder(PathParameters);
+            executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
             return new(executables, new(0));
         }
@@ -45,12 +46,68 @@ namespace ApiSdk.Organization.Item.CertificateBasedAuthConfiguration {
             return command;
         }
         /// <summary>
-        /// Get a list of certificateBasedAuthConfiguration objects.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/certificatebasedauthconfiguration-list?view=graph-rest-1.0" />
+        /// Create new navigation property to certificateBasedAuthConfiguration for organization
+        /// </summary>
+        public Command BuildCreateCommand() {
+            var command = new Command("create");
+            command.Description = "Create new navigation property to certificateBasedAuthConfiguration for organization";
+            var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
+            };
+            organizationIdOption.IsRequired = true;
+            command.AddOption(organizationIdOption);
+            var bodyOption = new Option<string>("--body", description: "The request body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
+            command.SetHandler(async (invocationContext) => {
+                var organizationId = invocationContext.ParseResult.GetValueForOption(organizationIdOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
+                var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
+                using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
+                var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.CertificateBasedAuthConfiguration>(ApiSdk.Models.CertificateBasedAuthConfiguration.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
+                var requestInfo = ToPostRequestInformation(model, q => {
+                });
+                if (organizationId is not null) requestInfo.PathParameters.Add("organization%2Did", organizationId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+            });
+            return command;
+        }
+        /// <summary>
+        /// Navigation property to manage certificate-based authentication configuration. Only a single instance of certificateBasedAuthConfiguration can be created in the collection.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of certificateBasedAuthConfiguration objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/certificatebasedauthconfiguration-list?view=graph-rest-1.0";
+            command.Description = "Navigation property to manage certificate-based authentication configuration. Only a single instance of certificateBasedAuthConfiguration can be created in the collection.";
             var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
             };
             organizationIdOption.IsRequired = true;
@@ -162,7 +219,7 @@ namespace ApiSdk.Organization.Item.CertificateBasedAuthConfiguration {
         public CertificateBasedAuthConfigurationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/organization/{organization%2Did}/certificateBasedAuthConfiguration{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get a list of certificateBasedAuthConfiguration objects.
+        /// Navigation property to manage certificate-based authentication configuration. Only a single instance of certificateBasedAuthConfiguration can be created in the collection.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -188,7 +245,35 @@ namespace ApiSdk.Organization.Item.CertificateBasedAuthConfiguration {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of certificateBasedAuthConfiguration objects.
+        /// Create new navigation property to certificateBasedAuthConfiguration for organization
+        /// </summary>
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.CertificateBasedAuthConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPostRequestInformation(ApiSdk.Models.CertificateBasedAuthConfiguration body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+#endif
+            _ = body ?? throw new ArgumentNullException(nameof(body));
+            var requestInfo = new RequestInformation {
+                HttpMethod = Method.POST,
+                UrlTemplate = UrlTemplate,
+                PathParameters = PathParameters,
+            };
+            requestInfo.Headers.Add("Accept", "application/json");
+            if (requestConfiguration != null) {
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
+                requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
+                requestInfo.AddRequestOptions(requestConfig.Options);
+                requestInfo.AddHeaders(requestConfig.Headers);
+            }
+            return requestInfo;
+        }
+        /// <summary>
+        /// Navigation property to manage certificate-based authentication configuration. Only a single instance of certificateBasedAuthConfiguration can be created in the collection.
         /// </summary>
         public class CertificateBasedAuthConfigurationRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -1,18 +1,18 @@
 using ApiSdk.Models.ExternalConnectors;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.External.Connections.Item.Items.Item {
     /// <summary>
     /// Provides operations to manage the items property of the microsoft.graph.externalConnectors.externalConnection entity.
@@ -127,8 +127,8 @@ namespace ApiSdk.External.Connections.Item.Items.Item {
         /// <summary>
         /// Update the navigation property items in external
         /// </summary>
-        public Command BuildPatchCommand() {
-            var command = new Command("patch");
+        public Command BuildPutCommand() {
+            var command = new Command("put");
             command.Description = "Update the navigation property items in external";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
@@ -170,7 +170,7 @@ namespace ApiSdk.External.Connections.Item.Items.Item {
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ExternalItem>(ExternalItem.CreateFromDiscriminatorValue);
                 if (model is null) return; // Cannot create a POST request from a null model.
-                var requestInfo = ToPatchRequestInformation(model, q => {
+                var requestInfo = ToPutRequestInformation(model, q => {
                 });
                 if (externalConnectionId is not null) requestInfo.PathParameters.Add("externalConnection%2Did", externalConnectionId);
                 if (externalItemId is not null) requestInfo.PathParameters.Add("externalItem%2Did", externalItemId);
@@ -251,14 +251,14 @@ namespace ApiSdk.External.Connections.Item.Items.Item {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ExternalItem body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPutRequestInformation(ExternalItem body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ExternalItem body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPutRequestInformation(ExternalItem body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = Method.PATCH,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

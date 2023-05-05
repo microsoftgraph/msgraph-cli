@@ -1,20 +1,20 @@
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.Security;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.MicrosoftGraphSecurityAddToReviewSet;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.SecurityAddToReviewSet;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item {
     /// <summary>
     /// Provides operations to manage the reviewSets property of the microsoft.graph.security.ediscoveryCase entity.
@@ -127,6 +127,21 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the addToReviewSet method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSecurityAddToReviewSetNavCommand() {
+            var command = new Command("microsoft-graph-security-add-to-review-set");
+            command.Description = "Provides operations to call the addToReviewSet method.";
+            var builder = new MicrosoftGraphSecurityAddToReviewSetRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Update the navigation property reviewSets in security
         /// </summary>
         public Command BuildPatchCommand() {
@@ -209,21 +224,6 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item {
                 command.AddCommand(cmd);
             }
             foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the addToReviewSet method.
-        /// </summary>
-        public Command BuildSecurityAddToReviewSetNavCommand() {
-            var command = new Command("security-add-to-review-set");
-            command.Description = "Provides operations to call the addToReviewSet method.";
-            var builder = new SecurityAddToReviewSetRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            execCommands.Add(builder.BuildPostCommand());
-            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }

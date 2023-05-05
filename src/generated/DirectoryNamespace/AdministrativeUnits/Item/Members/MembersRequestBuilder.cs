@@ -7,21 +7,21 @@ using ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.GraphServicePri
 using ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.GraphUser;
 using ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item;
 using ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Ref;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
     /// <summary>
     /// Provides operations to manage the members property of the microsoft.graph.administrativeUnit entity.
@@ -31,7 +31,15 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
         /// Gets an item from the ApiSdk.directory.administrativeUnits.item.members.item collection
         /// </summary>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
-            return new(new(0), new(0));
+            var commands = new List<Command>();
+            var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
+            commands.Add(builder.BuildGraphApplicationByIdNavCommand());
+            commands.Add(builder.BuildGraphDeviceByIdNavCommand());
+            commands.Add(builder.BuildGraphGroupByIdNavCommand());
+            commands.Add(builder.BuildGraphOrgContactByIdNavCommand());
+            commands.Add(builder.BuildGraphServicePrincipalByIdNavCommand());
+            commands.Add(builder.BuildGraphUserByIdNavCommand());
+            return new(new(0), commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -52,8 +60,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
         /// Casts the previous resource to application.
         /// </summary>
         public Command BuildGraphApplicationNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphApplicationNavCommand();
+            var command = new Command("graph-application");
             command.Description = "Casts the previous resource to application.";
             var builder = new GraphApplicationRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -74,8 +81,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
         /// Casts the previous resource to device.
         /// </summary>
         public Command BuildGraphDeviceNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphDeviceNavCommand();
+            var command = new Command("graph-device");
             command.Description = "Casts the previous resource to device.";
             var builder = new GraphDeviceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -96,8 +102,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
         /// Casts the previous resource to group.
         /// </summary>
         public Command BuildGraphGroupNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphGroupNavCommand();
+            var command = new Command("graph-group");
             command.Description = "Casts the previous resource to group.";
             var builder = new GraphGroupRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -118,8 +123,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
         /// Casts the previous resource to orgContact.
         /// </summary>
         public Command BuildGraphOrgContactNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphOrgContactNavCommand();
+            var command = new Command("graph-org-contact");
             command.Description = "Casts the previous resource to orgContact.";
             var builder = new GraphOrgContactRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -140,8 +144,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
         public Command BuildGraphServicePrincipalNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphServicePrincipalNavCommand();
+            var command = new Command("graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -162,8 +165,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
         /// Casts the previous resource to user.
         /// </summary>
         public Command BuildGraphUserNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphUserNavCommand();
+            var command = new Command("graph-user");
             command.Description = "Casts the previous resource to user.";
             var builder = new GraphUserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -182,11 +184,10 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
         }
         /// <summary>
         /// Users and groups that are members of this administrative unit. Supports $expand.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/administrativeunit-list-members?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Users and groups that are members of this administrative unit. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/administrativeunit-list-members?view=graph-rest-1.0";
+            command.Description = "Users and groups that are members of this administrative unit. Supports $expand.";
             var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;

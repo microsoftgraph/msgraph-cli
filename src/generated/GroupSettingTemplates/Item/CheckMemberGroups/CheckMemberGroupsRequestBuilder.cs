@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.GroupSettingTemplates.Item.CheckMemberGroups {
     /// <summary>
     /// Provides operations to call the checkMemberGroups method.
     /// </summary>
     public class CheckMemberGroupsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Check for membership in a specified list of group IDs, and return from that list those groups (identified by IDs) of which the specified user, group, service principal, organizational contact, device, or directory object is a member. This function is transitive. You can check up to a maximum of 20 groups per request. This function supports all groups provisioned in Azure AD. Because Microsoft 365 groups cannot contain other groups, membership in a Microsoft 365 group is always direct.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/directoryobject-checkmembergroups?view=graph-rest-1.0" />
+        /// Invoke action checkMemberGroups
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Check for membership in a specified list of group IDs, and return from that list those groups (identified by IDs) of which the specified user, group, service principal, organizational contact, device, or directory object is a member. This function is transitive. You can check up to a maximum of 20 groups per request. This function supports all groups provisioned in Azure AD. Because Microsoft 365 groups cannot contain other groups, membership in a Microsoft 365 group is always direct.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directoryobject-checkmembergroups?view=graph-rest-1.0";
+            command.Description = "Invoke action checkMemberGroups";
             var groupSettingTemplateIdOption = new Option<string>("--group-setting-template-id", description: "The unique identifier of groupSettingTemplate") {
             };
             groupSettingTemplateIdOption.IsRequired = true;
@@ -94,7 +93,7 @@ namespace ApiSdk.GroupSettingTemplates.Item.CheckMemberGroups {
         public CheckMemberGroupsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groupSettingTemplates/{groupSettingTemplate%2Did}/checkMemberGroups", pathParameters) {
         }
         /// <summary>
-        /// Check for membership in a specified list of group IDs, and return from that list those groups (identified by IDs) of which the specified user, group, service principal, organizational contact, device, or directory object is a member. This function is transitive. You can check up to a maximum of 20 groups per request. This function supports all groups provisioned in Azure AD. Because Microsoft 365 groups cannot contain other groups, membership in a Microsoft 365 group is always direct.
+        /// Invoke action checkMemberGroups
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

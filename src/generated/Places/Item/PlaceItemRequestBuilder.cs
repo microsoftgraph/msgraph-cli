@@ -1,19 +1,19 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Places.Item.GraphRoom;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Places.Item {
     /// <summary>
     /// Provides operations to manage the collection of place entities.
@@ -55,8 +55,8 @@ namespace ApiSdk.Places.Item {
         /// <summary>
         /// Casts the previous resource to room.
         /// </summary>
-        public Command BuildGraphRoomNavCommand() {
-            var command = new Command("graph-room");
+        public Command BuildGraphRoomByIdNavCommand() {
+            var command = new Command("graph-room-by-id");
             command.Description = "Casts the previous resource to room.";
             var builder = new GraphRoomRequestBuilder(PathParameters);
             var execCommands = new List<Command>();

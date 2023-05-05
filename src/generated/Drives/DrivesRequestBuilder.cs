@@ -1,20 +1,20 @@
 using ApiSdk.Drives.Count;
 using ApiSdk.Drives.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Drives {
     /// <summary>
     /// Provides operations to manage the collection of drive entities.
@@ -28,10 +28,12 @@ namespace ApiSdk.Drives {
             var commands = new List<Command>();
             var builder = new DriveItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildBundlesNavCommand());
+            commands.Add(builder.BuildCreatedByUserNavCommand());
             executables.Add(builder.BuildDeleteCommand());
             commands.Add(builder.BuildFollowingNavCommand());
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildItemsNavCommand());
+            commands.Add(builder.BuildLastModifiedByUserNavCommand());
             executables.Add(builder.BuildPatchCommand());
             commands.Add(builder.BuildRecentNavCommand());
             commands.Add(builder.BuildRootNavCommand());
@@ -106,12 +108,12 @@ namespace ApiSdk.Drives {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.
+        /// Get entities from drives
         /// </summary>
         public Command BuildListCommand() {
             var driveIndexer = new DriveItemRequestBuilder(PathParameters);
             var command = driveIndexer.BuildListNavCommand();
-            command.Description = "Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.";
+            command.Description = "Get entities from drives";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -217,7 +219,7 @@ namespace ApiSdk.Drives {
         public DrivesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.
+        /// Get entities from drives
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -271,7 +273,7 @@ namespace ApiSdk.Drives {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a Drive resource. A Drive is the top-level container for a file system, such as OneDrive or SharePoint document libraries.
+        /// Get entities from drives
         /// </summary>
         public class DrivesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

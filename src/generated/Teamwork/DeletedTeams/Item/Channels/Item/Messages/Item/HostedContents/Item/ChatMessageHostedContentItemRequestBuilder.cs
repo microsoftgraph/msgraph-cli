@@ -1,23 +1,40 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
+using ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.Messages.Item.HostedContents.Item.Value;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.Messages.Item.HostedContents.Item {
     /// <summary>
     /// Provides operations to manage the hostedContents property of the microsoft.graph.chatMessage entity.
     /// </summary>
     public class ChatMessageHostedContentItemRequestBuilder : BaseCliRequestBuilder {
+        /// <summary>
+        /// Provides operations to manage the media for the teamwork entity.
+        /// </summary>
+        public Command BuildContentNavCommand() {
+            var command = new Command("content");
+            command.Description = "Provides operations to manage the media for the teamwork entity.";
+            var builder = new ContentRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPutCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
         /// <summary>
         /// Delete navigation property hostedContents for teamwork
         /// </summary>

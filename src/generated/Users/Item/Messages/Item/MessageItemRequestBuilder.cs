@@ -1,5 +1,5 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.Messages.Item.Attachments;
 using ApiSdk.Users.Item.Messages.Item.Copy;
 using ApiSdk.Users.Item.Messages.Item.CreateForward;
@@ -14,19 +14,19 @@ using ApiSdk.Users.Item.Messages.Item.ReplyAll;
 using ApiSdk.Users.Item.Messages.Item.Send;
 using ApiSdk.Users.Item.Messages.Item.SingleValueExtendedProperties;
 using ApiSdk.Users.Item.Messages.Item.Value;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.Messages.Item {
     /// <summary>
     /// Provides operations to manage the messages property of the microsoft.graph.user entity.
@@ -227,11 +227,20 @@ namespace ApiSdk.Users.Item.Messages.Item {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
+            var includeHiddenMessagesOption = new Option<string>("--include-hidden-messages", description: "Include Hidden Messages") {
+            };
+            includeHiddenMessagesOption.IsRequired = false;
+            command.AddOption(includeHiddenMessagesOption);
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
             selectOption.IsRequired = false;
             command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
             var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
                 IsRequired = true
             };
@@ -248,7 +257,9 @@ namespace ApiSdk.Users.Item.Messages.Item {
             command.SetHandler(async (invocationContext) => {
                 var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
                 var messageId = invocationContext.ParseResult.GetValueForOption(messageIdOption);
+                var includeHiddenMessages = invocationContext.ParseResult.GetValueForOption(includeHiddenMessagesOption);
                 var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
@@ -257,7 +268,9 @@ namespace ApiSdk.Users.Item.Messages.Item {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
+                    if (!string.IsNullOrEmpty(includeHiddenMessages)) q.QueryParameters.IncludeHiddenMessages = includeHiddenMessages;
                     q.QueryParameters.Select = select;
+                    q.QueryParameters.Expand = expand;
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (messageId is not null) requestInfo.PathParameters.Add("message%2Did", messageId);
@@ -450,7 +463,7 @@ namespace ApiSdk.Users.Item.Messages.Item {
         /// Instantiates a new MessageItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public MessageItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/messages/{message%2Did}{?%24select}", pathParameters) {
+        public MessageItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/messages/{message%2Did}{?includeHiddenMessages*,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Delete navigation property messages for users
@@ -535,6 +548,24 @@ namespace ApiSdk.Users.Item.Messages.Item {
         /// The messages in a mailbox or folder. Read-only. Nullable.
         /// </summary>
         public class MessageItemRequestBuilderGetQueryParameters {
+            /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
+            [QueryParameter("%24expand")]
+            public string[] Expand { get; set; }
+#endif
+            /// <summary>Include Hidden Messages</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public string? IncludeHiddenMessages { get; set; }
+#nullable restore
+#else
+            public string IncludeHiddenMessages { get; set; }
+#endif
             /// <summary>Select properties to be returned</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class Onenote : Entity, IParsable {
         /// <summary>The collection of OneNote notebooks that are owned by the user or group. Read-only. Nullable.</summary>

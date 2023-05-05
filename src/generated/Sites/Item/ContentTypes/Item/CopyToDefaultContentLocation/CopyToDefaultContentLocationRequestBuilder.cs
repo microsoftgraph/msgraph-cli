@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Sites.Item.ContentTypes.Item.CopyToDefaultContentLocation {
     /// <summary>
     /// Provides operations to call the copyToDefaultContentLocation method.
     /// </summary>
     public class CopyToDefaultContentLocationRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Copy a file to a default content location in a [content type][contentType]. The file can then be added as a default file or template via a POST operation.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/contenttype-copytodefaultcontentlocation?view=graph-rest-1.0" />
+        /// Invoke action copyToDefaultContentLocation
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Copy a file to a default content location in a [content type][contentType]. The file can then be added as a default file or template via a POST operation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contenttype-copytodefaultcontentlocation?view=graph-rest-1.0";
+            command.Description = "Invoke action copyToDefaultContentLocation";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -67,7 +66,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.CopyToDefaultContentLocation {
         public CopyToDefaultContentLocationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/contentTypes/{contentType%2Did}/copyToDefaultContentLocation", pathParameters) {
         }
         /// <summary>
-        /// Copy a file to a default content location in a [content type][contentType]. The file can then be added as a default file or template via a POST operation.
+        /// Invoke action copyToDefaultContentLocation
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

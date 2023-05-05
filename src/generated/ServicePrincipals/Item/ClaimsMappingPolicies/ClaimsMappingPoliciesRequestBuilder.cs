@@ -1,21 +1,21 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.ServicePrincipals.Item.ClaimsMappingPolicies.Count;
 using ApiSdk.ServicePrincipals.Item.ClaimsMappingPolicies.Item;
 using ApiSdk.ServicePrincipals.Item.ClaimsMappingPolicies.Ref;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.ServicePrincipals.Item.ClaimsMappingPolicies {
     /// <summary>
     /// Provides operations to manage the claimsMappingPolicies property of the microsoft.graph.servicePrincipal entity.
@@ -43,12 +43,11 @@ namespace ApiSdk.ServicePrincipals.Item.ClaimsMappingPolicies {
             return command;
         }
         /// <summary>
-        /// List the claimsMappingPolicy objects that are assigned to a servicePrincipal.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/serviceprincipal-list-claimsmappingpolicies?view=graph-rest-1.0" />
+        /// The claimsMappingPolicies assigned to this service principal. Supports $expand.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List the claimsMappingPolicy objects that are assigned to a servicePrincipal.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-list-claimsmappingpolicies?view=graph-rest-1.0";
+            command.Description = "The claimsMappingPolicies assigned to this service principal. Supports $expand.";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -177,7 +176,7 @@ namespace ApiSdk.ServicePrincipals.Item.ClaimsMappingPolicies {
         public ClaimsMappingPoliciesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/claimsMappingPolicies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// List the claimsMappingPolicy objects that are assigned to a servicePrincipal.
+        /// The claimsMappingPolicies assigned to this service principal. Supports $expand.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -203,7 +202,7 @@ namespace ApiSdk.ServicePrincipals.Item.ClaimsMappingPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// List the claimsMappingPolicy objects that are assigned to a servicePrincipal.
+        /// The claimsMappingPolicies assigned to this service principal. Supports $expand.
         /// </summary>
         public class ClaimsMappingPoliciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

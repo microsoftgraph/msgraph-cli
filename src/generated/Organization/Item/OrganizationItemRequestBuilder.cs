@@ -1,5 +1,5 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Organization.Item.Branding;
 using ApiSdk.Organization.Item.CertificateBasedAuthConfiguration;
 using ApiSdk.Organization.Item.CheckMemberGroups;
@@ -9,19 +9,19 @@ using ApiSdk.Organization.Item.GetMemberGroups;
 using ApiSdk.Organization.Item.GetMemberObjects;
 using ApiSdk.Organization.Item.Restore;
 using ApiSdk.Organization.Item.SetMobileDeviceManagementAuthority;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Organization.Item {
     /// <summary>
     /// Provides operations to manage the collection of organization entities.
@@ -63,6 +63,7 @@ namespace ApiSdk.Organization.Item {
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
             execCommands.AddRange(cmds.Item1);

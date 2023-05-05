@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.DirectReports.Item.GraphOrgContact;
 using ApiSdk.Users.Item.DirectReports.Item.GraphUser;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.DirectReports.Item {
     /// <summary>
     /// Provides operations to manage the directReports property of the microsoft.graph.user entity.
@@ -97,8 +97,8 @@ namespace ApiSdk.Users.Item.DirectReports.Item {
         /// <summary>
         /// Casts the previous resource to orgContact.
         /// </summary>
-        public Command BuildGraphOrgContactNavCommand() {
-            var command = new Command("graph-org-contact");
+        public Command BuildGraphOrgContactByIdNavCommand() {
+            var command = new Command("graph-org-contact-by-id");
             command.Description = "Casts the previous resource to orgContact.";
             var builder = new GraphOrgContactRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -112,8 +112,8 @@ namespace ApiSdk.Users.Item.DirectReports.Item {
         /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
-        public Command BuildGraphUserNavCommand() {
-            var command = new Command("graph-user");
+        public Command BuildGraphUserByIdNavCommand() {
+            var command = new Command("graph-user-by-id");
             command.Description = "Casts the previous resource to user.";
             var builder = new GraphUserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();

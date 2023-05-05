@@ -1,19 +1,19 @@
 using ApiSdk.Groups.Item.Team.PrimaryChannel.FilesFolder.Content;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups.Item.Team.PrimaryChannel.FilesFolder {
     /// <summary>
     /// Provides operations to manage the filesFolder property of the microsoft.graph.channel entity.
@@ -36,12 +36,11 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.FilesFolder {
             return command;
         }
         /// <summary>
-        /// Get the metadata for the location where the files of a channel are stored. 
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/channel-get-filesfolder?view=graph-rest-1.0" />
+        /// Metadata for the location where the channel&apos;s files are stored.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the metadata for the location where the files of a channel are stored. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-get-filesfolder?view=graph-rest-1.0";
+            command.Description = "Metadata for the location where the channel's files are stored.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -104,7 +103,7 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.FilesFolder {
         public FilesFolderRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/primaryChannel/filesFolder{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get the metadata for the location where the files of a channel are stored. 
+        /// Metadata for the location where the channel&apos;s files are stored.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -130,7 +129,7 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.FilesFolder {
             return requestInfo;
         }
         /// <summary>
-        /// Get the metadata for the location where the files of a channel are stored. 
+        /// Metadata for the location where the channel&apos;s files are stored.
         /// </summary>
         public class FilesFolderRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

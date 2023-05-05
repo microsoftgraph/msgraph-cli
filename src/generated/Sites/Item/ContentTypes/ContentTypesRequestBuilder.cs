@@ -1,23 +1,23 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Sites.Item.ContentTypes.AddCopy;
 using ApiSdk.Sites.Item.ContentTypes.AddCopyFromContentTypeHub;
 using ApiSdk.Sites.Item.ContentTypes.Count;
 using ApiSdk.Sites.Item.ContentTypes.GetCompatibleHubContentTypes;
 using ApiSdk.Sites.Item.ContentTypes.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Sites.Item.ContentTypes {
     /// <summary>
     /// Provides operations to manage the contentTypes property of the microsoft.graph.site entity.
@@ -91,12 +91,11 @@ namespace ApiSdk.Sites.Item.ContentTypes {
             return command;
         }
         /// <summary>
-        /// Create a new [contentType][] in a [site][].
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/site-post-contenttypes?view=graph-rest-1.0" />
+        /// Create new navigation property to contentTypes for sites
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new [contentType][] in a [site][].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/site-post-contenttypes?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to contentTypes for sites";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -164,12 +163,11 @@ namespace ApiSdk.Sites.Item.ContentTypes {
             return command;
         }
         /// <summary>
-        /// Get the collection of [contentType][contentType] resources in a [site][].
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/site-list-contenttypes?view=graph-rest-1.0" />
+        /// The collection of content types defined for this site.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the collection of [contentType][contentType] resources in a [site][].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/site-list-contenttypes?view=graph-rest-1.0";
+            command.Description = "The collection of content types defined for this site.";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -281,7 +279,7 @@ namespace ApiSdk.Sites.Item.ContentTypes {
         public ContentTypesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/contentTypes{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get the collection of [contentType][contentType] resources in a [site][].
+        /// The collection of content types defined for this site.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -307,7 +305,7 @@ namespace ApiSdk.Sites.Item.ContentTypes {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new [contentType][] in a [site][].
+        /// Create new navigation property to contentTypes for sites
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -335,7 +333,7 @@ namespace ApiSdk.Sites.Item.ContentTypes {
             return requestInfo;
         }
         /// <summary>
-        /// Get the collection of [contentType][contentType] resources in a [site][].
+        /// The collection of content types defined for this site.
         /// </summary>
         public class ContentTypesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

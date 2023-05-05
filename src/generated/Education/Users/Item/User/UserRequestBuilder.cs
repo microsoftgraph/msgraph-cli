@@ -1,30 +1,30 @@
-using ApiSdk.Models;
+using ApiSdk.Education.Users.Item.User.MailboxSettings;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Education.Users.Item.User {
     /// <summary>
     /// Provides operations to manage the user property of the microsoft.graph.educationUser entity.
     /// </summary>
     public class UserRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Retrieve the simple directory **user** that corresponds to this **educationUser**.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationuser-get-user?view=graph-rest-1.0" />
+        /// The directory user that corresponds to this user.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the simple directory **user** that corresponds to this **educationUser**.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationuser-get-user?view=graph-rest-1.0";
+            command.Description = "The directory user that corresponds to this user.";
             var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
@@ -81,13 +81,29 @@ namespace ApiSdk.Education.Users.Item.User {
             return command;
         }
         /// <summary>
+        /// The mailboxSettings property
+        /// </summary>
+        public Command BuildMailboxSettingsNavCommand() {
+            var command = new Command("mailbox-settings");
+            command.Description = "The mailboxSettings property";
+            var builder = new MailboxSettingsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Instantiates a new UserRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public UserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/users/{educationUser%2Did}/user{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve the simple directory **user** that corresponds to this **educationUser**.
+        /// The directory user that corresponds to this user.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -113,7 +129,7 @@ namespace ApiSdk.Education.Users.Item.User {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the simple directory **user** that corresponds to this **educationUser**.
+        /// The directory user that corresponds to this user.
         /// </summary>
         public class UserRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

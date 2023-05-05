@@ -2,8 +2,8 @@ using ApiSdk.Admin;
 using ApiSdk.AgreementAcceptances;
 using ApiSdk.Agreements;
 using ApiSdk.AppCatalogs;
-using ApiSdk.Applications;
 using ApiSdk.ApplicationTemplates;
+using ApiSdk.Applications;
 using ApiSdk.AuditLogs;
 using ApiSdk.AuthenticationMethodConfigurations;
 using ApiSdk.AuthenticationMethodsPolicy;
@@ -21,8 +21,8 @@ using ApiSdk.DeviceManagement;
 using ApiSdk.Devices;
 using ApiSdk.DirectoryNamespace;
 using ApiSdk.DirectoryObjects;
-using ApiSdk.DirectoryRoles;
 using ApiSdk.DirectoryRoleTemplates;
+using ApiSdk.DirectoryRoles;
 using ApiSdk.DomainDnsRecords;
 using ApiSdk.Domains;
 using ApiSdk.Drives;
@@ -30,9 +30,9 @@ using ApiSdk.Education;
 using ApiSdk.EmployeeExperience;
 using ApiSdk.External;
 using ApiSdk.GroupLifecyclePolicies;
-using ApiSdk.Groups;
-using ApiSdk.GroupSettings;
 using ApiSdk.GroupSettingTemplates;
+using ApiSdk.GroupSettings;
+using ApiSdk.Groups;
 using ApiSdk.Identity;
 using ApiSdk.IdentityGovernance;
 using ApiSdk.IdentityProtection;
@@ -65,20 +65,20 @@ using ApiSdk.TeamsTemplates;
 using ApiSdk.Teamwork;
 using ApiSdk.TenantRelationships;
 using ApiSdk.Users;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Extensions;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.IO;
+using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Serialization.Form;
 using Microsoft.Kiota.Serialization.Json;
 using Microsoft.Kiota.Serialization.Text;
-using System;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System;
 namespace ApiSdk {
     /// <summary>
     /// The main entry point of the SDK, exposes the configuration and the fluent API.
@@ -93,9 +93,11 @@ namespace ApiSdk {
             var builder = new AdminRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildEdgeNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPatchCommand());
             nonExecCommands.Add(builder.BuildServiceAnnouncementNavCommand());
+            nonExecCommands.Add(builder.BuildSharepointNavCommand());
             foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
@@ -654,6 +656,8 @@ namespace ApiSdk {
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildAdministrativeUnitsNavCommand());
+            nonExecCommands.Add(builder.BuildAttributeSetsNavCommand());
+            nonExecCommands.Add(builder.BuildCustomSecurityAttributeDefinitionsNavCommand());
             nonExecCommands.Add(builder.BuildDeletedItemsNavCommand());
             nonExecCommands.Add(builder.BuildFederationConfigurationsNavCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -1322,6 +1326,7 @@ namespace ApiSdk {
             nonExecCommands.Add(builder.BuildAppManagementPoliciesNavCommand());
             nonExecCommands.Add(builder.BuildAuthenticationFlowsPolicyNavCommand());
             nonExecCommands.Add(builder.BuildAuthenticationMethodsPolicyNavCommand());
+            nonExecCommands.Add(builder.BuildAuthenticationStrengthPoliciesNavCommand());
             nonExecCommands.Add(builder.BuildAuthorizationPolicyNavCommand());
             nonExecCommands.Add(builder.BuildClaimsMappingPoliciesNavCommand());
             nonExecCommands.Add(builder.BuildConditionalAccessPoliciesNavCommand());
@@ -1614,10 +1619,12 @@ namespace ApiSdk {
             nonExecCommands.Add(builder.BuildCasesNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             nonExecCommands.Add(builder.BuildIncidentsNavCommand());
+            nonExecCommands.Add(builder.BuildMicrosoftGraphSecurityRunHuntingQueryNavCommand());
             execCommands.Add(builder.BuildPatchCommand());
             nonExecCommands.Add(builder.BuildSecureScoreControlProfilesNavCommand());
             nonExecCommands.Add(builder.BuildSecureScoresNavCommand());
-            nonExecCommands.Add(builder.BuildSecurityRunHuntingQueryNavCommand());
+            nonExecCommands.Add(builder.BuildTriggersNavCommand());
+            nonExecCommands.Add(builder.BuildTriggerTypesNavCommand());
             foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);

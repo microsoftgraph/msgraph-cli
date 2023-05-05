@@ -1,30 +1,29 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Education.Schools.Item.Classes.Ref {
     /// <summary>
     /// Provides operations to manage the collection of educationRoot entities.
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Get the educationClass resources owned by an educationSchool.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationschool-list-classes?view=graph-rest-1.0" />
+        /// Classes taught at the school. Nullable.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the educationClass resources owned by an educationSchool.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationschool-list-classes?view=graph-rest-1.0";
+            command.Description = "Classes taught at the school. Nullable.";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -158,7 +157,7 @@ namespace ApiSdk.Education.Schools.Item.Classes.Ref {
         public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/schools/{educationSchool%2Did}/classes/$ref{?%24top,%24skip,%24search,%24filter,%24count,%24orderby}", pathParameters) {
         }
         /// <summary>
-        /// Get the educationClass resources owned by an educationSchool.
+        /// Classes taught at the school. Nullable.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -211,7 +210,7 @@ namespace ApiSdk.Education.Schools.Item.Classes.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Get the educationClass resources owned by an educationSchool.
+        /// Classes taught at the school. Nullable.
         /// </summary>
         public class RefRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

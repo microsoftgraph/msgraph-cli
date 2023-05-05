@@ -1,17 +1,17 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item.IncidentReport {
     /// <summary>
     /// Provides operations to call the incidentReport method.
@@ -31,12 +31,12 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item.Inci
             };
             serviceHealthIssueIdOption.IsRequired = true;
             command.AddOption(serviceHealthIssueIdOption);
-            var fileOption = new Option<FileInfo>("--file");
-            command.AddOption(fileOption);
+            var outputFileOption = new Option<FileInfo>("--output-file");
+            command.AddOption(outputFileOption);
             command.SetHandler(async (invocationContext) => {
                 var serviceHealthId = invocationContext.ParseResult.GetValueForOption(serviceHealthIdOption);
                 var serviceHealthIssueId = invocationContext.ParseResult.GetValueForOption(serviceHealthIssueIdOption);
-                var file = invocationContext.ParseResult.GetValueForOption(fileOption);
+                var outputFile = invocationContext.ParseResult.GetValueForOption(outputFileOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
@@ -48,15 +48,15 @@ namespace ApiSdk.Admin.ServiceAnnouncement.HealthOverviews.Item.Issues.Item.Inci
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                if (file == null) {
+                if (outputFile == null) {
                     using var reader = new StreamReader(response);
                     var strContent = reader.ReadToEnd();
                     Console.Write(strContent);
                 }
                 else {
-                    using var writeStream = file.OpenWrite();
+                    using var writeStream = outputFile.OpenWrite();
                     await response.CopyToAsync(writeStream);
-                    Console.WriteLine($"Content written to {file.FullName}.");
+                    Console.WriteLine($"Content written to {outputFile.FullName}.");
                 }
             });
             return command;

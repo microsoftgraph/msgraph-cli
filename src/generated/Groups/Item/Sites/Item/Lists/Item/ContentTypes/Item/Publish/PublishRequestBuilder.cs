@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.Publish {
     /// <summary>
     /// Provides operations to call the publish method.
     /// </summary>
     public class PublishRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Publishes a [contentType][] present in the content type hub site.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/contenttype-publish?view=graph-rest-1.0" />
+        /// Invoke action publish
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Publishes a [contentType][] present in the content type hub site.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contenttype-publish?view=graph-rest-1.0";
+            command.Description = "Invoke action publish";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -69,7 +68,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.ContentTypes.Item.Publish {
         public PublishRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}/contentTypes/{contentType%2Did}/publish", pathParameters) {
         }
         /// <summary>
-        /// Publishes a [contentType][] present in the content type hub site.
+        /// Invoke action publish
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

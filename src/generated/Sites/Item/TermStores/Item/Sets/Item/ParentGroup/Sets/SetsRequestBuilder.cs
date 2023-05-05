@@ -2,19 +2,19 @@ using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.TermStore;
 using ApiSdk.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Sets.Count;
 using ApiSdk.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Sets.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Sets {
     /// <summary>
     /// Provides operations to manage the sets property of the microsoft.graph.termStore.group entity.
@@ -120,12 +120,11 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Sets {
             return command;
         }
         /// <summary>
-        /// Get a list of the set objects and their properties.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/termstore-group-list-sets?view=graph-rest-1.0" />
+        /// All sets under the group in a term [store].
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the set objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/termstore-group-list-sets?view=graph-rest-1.0";
+            command.Description = "All sets under the group in a term [store].";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -249,7 +248,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Sets {
         public SetsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}/parentGroup/sets{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get a list of the set objects and their properties.
+        /// All sets under the group in a term [store].
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -303,7 +302,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Sets {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the set objects and their properties.
+        /// All sets under the group in a term [store].
         /// </summary>
         public class SetsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -1,9 +1,9 @@
 using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability {
     public class GetStaffAvailabilityPostRequestBody : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>

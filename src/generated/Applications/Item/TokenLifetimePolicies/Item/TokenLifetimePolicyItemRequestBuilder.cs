@@ -1,14 +1,14 @@
 using ApiSdk.Applications.Item.TokenLifetimePolicies.Item.Ref;
 using Microsoft.Kiota.Abstractions;
-using Microsoft.Kiota.Cli.Commons;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System;
 namespace ApiSdk.Applications.Item.TokenLifetimePolicies.Item {
     /// <summary>
     /// Builds and executes requests for operations under \applications\{application-id}\tokenLifetimePolicies\{tokenLifetimePolicy-id}

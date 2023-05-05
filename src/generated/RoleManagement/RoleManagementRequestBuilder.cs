@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.RoleManagement.DirectoryNamespace;
 using ApiSdk.RoleManagement.EntitlementManagement;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.RoleManagement {
     /// <summary>
     /// Provides operations to manage the roleManagement singleton.
@@ -32,6 +32,7 @@ namespace ApiSdk.RoleManagement {
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildResourceNamespacesNavCommand());
             nonExecCommands.Add(builder.BuildRoleAssignmentScheduleInstancesNavCommand());
             nonExecCommands.Add(builder.BuildRoleAssignmentScheduleRequestsNavCommand());
             nonExecCommands.Add(builder.BuildRoleAssignmentSchedulesNavCommand());
@@ -62,6 +63,7 @@ namespace ApiSdk.RoleManagement {
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildResourceNamespacesNavCommand());
             nonExecCommands.Add(builder.BuildRoleAssignmentScheduleInstancesNavCommand());
             nonExecCommands.Add(builder.BuildRoleAssignmentScheduleRequestsNavCommand());
             nonExecCommands.Add(builder.BuildRoleAssignmentSchedulesNavCommand());

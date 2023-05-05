@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class ChatMessage : Entity, IParsable {
         /// <summary>References to attached objects like files, tabs, meetings etc.</summary>
@@ -95,6 +95,14 @@ namespace ApiSdk.Models {
 #else
         public List<ChatMessageMention> Mentions { get; set; }
 #endif
+        /// <summary>The messageHistory property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ChatMessageHistoryItem>? MessageHistory { get; set; }
+#nullable restore
+#else
+        public List<ChatMessageHistoryItem> MessageHistory { get; set; }
+#endif
         /// <summary>The messageType property</summary>
         public ChatMessageType? MessageType { get; set; }
         /// <summary>Defines the properties of a policy violation set by a data loss prevention (DLP) application.</summary>
@@ -181,6 +189,7 @@ namespace ApiSdk.Models {
                 {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"locale", n => { Locale = n.GetStringValue(); } },
                 {"mentions", n => { Mentions = n.GetCollectionOfObjectValues<ChatMessageMention>(ChatMessageMention.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"messageHistory", n => { MessageHistory = n.GetCollectionOfObjectValues<ChatMessageHistoryItem>(ChatMessageHistoryItem.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"messageType", n => { MessageType = n.GetEnumValue<ChatMessageType>(); } },
                 {"policyViolation", n => { PolicyViolation = n.GetObjectValue<ChatMessagePolicyViolation>(ChatMessagePolicyViolation.CreateFromDiscriminatorValue); } },
                 {"reactions", n => { Reactions = n.GetCollectionOfObjectValues<ChatMessageReaction>(ChatMessageReaction.CreateFromDiscriminatorValue)?.ToList(); } },
@@ -213,6 +222,7 @@ namespace ApiSdk.Models {
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteStringValue("locale", Locale);
             writer.WriteCollectionOfObjectValues<ChatMessageMention>("mentions", Mentions);
+            writer.WriteCollectionOfObjectValues<ChatMessageHistoryItem>("messageHistory", MessageHistory);
             writer.WriteEnumValue<ChatMessageType>("messageType", MessageType);
             writer.WriteObjectValue<ChatMessagePolicyViolation>("policyViolation", PolicyViolation);
             writer.WriteCollectionOfObjectValues<ChatMessageReaction>("reactions", Reactions);

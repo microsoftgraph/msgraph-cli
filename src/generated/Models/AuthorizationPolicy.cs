@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class AuthorizationPolicy : PolicyBase, IParsable {
         /// <summary>Indicates whether users can sign up for email based subscriptions.</summary>
@@ -13,6 +13,8 @@ namespace ApiSdk.Models {
         public bool? AllowEmailVerifiedUsersToJoinOrganization { get; set; }
         /// <summary>Indicates who can invite external users to the organization. Possible values are: none, adminsAndGuestInviters, adminsGuestInvitersAndAllMembers, everyone.  everyone is the default setting for all cloud environments except US Government. See more in the table below.</summary>
         public ApiSdk.Models.AllowInvitesFrom? AllowInvitesFrom { get; set; }
+        /// <summary>The allowUserConsentForRiskyApps property</summary>
+        public bool? AllowUserConsentForRiskyApps { get; set; }
         /// <summary>To disable the use of MSOL PowerShell set this property to true. This will also disable user-based access to the legacy service endpoint used by MSOL PowerShell. This does not affect Azure AD Connect or Microsoft Graph.</summary>
         public bool? BlockMsolPowerShell { get; set; }
         /// <summary>The defaultUserRolePermissions property</summary>
@@ -48,6 +50,7 @@ namespace ApiSdk.Models {
                 {"allowedToUseSSPR", n => { AllowedToUseSSPR = n.GetBoolValue(); } },
                 {"allowEmailVerifiedUsersToJoinOrganization", n => { AllowEmailVerifiedUsersToJoinOrganization = n.GetBoolValue(); } },
                 {"allowInvitesFrom", n => { AllowInvitesFrom = n.GetEnumValue<AllowInvitesFrom>(); } },
+                {"allowUserConsentForRiskyApps", n => { AllowUserConsentForRiskyApps = n.GetBoolValue(); } },
                 {"blockMsolPowerShell", n => { BlockMsolPowerShell = n.GetBoolValue(); } },
                 {"defaultUserRolePermissions", n => { DefaultUserRolePermissions = n.GetObjectValue<ApiSdk.Models.DefaultUserRolePermissions>(ApiSdk.Models.DefaultUserRolePermissions.CreateFromDiscriminatorValue); } },
                 {"guestUserRoleId", n => { GuestUserRoleId = n.GetGuidValue(); } },
@@ -64,6 +67,7 @@ namespace ApiSdk.Models {
             writer.WriteBoolValue("allowedToUseSSPR", AllowedToUseSSPR);
             writer.WriteBoolValue("allowEmailVerifiedUsersToJoinOrganization", AllowEmailVerifiedUsersToJoinOrganization);
             writer.WriteEnumValue<AllowInvitesFrom>("allowInvitesFrom", AllowInvitesFrom);
+            writer.WriteBoolValue("allowUserConsentForRiskyApps", AllowUserConsentForRiskyApps);
             writer.WriteBoolValue("blockMsolPowerShell", BlockMsolPowerShell);
             writer.WriteObjectValue<ApiSdk.Models.DefaultUserRolePermissions>("defaultUserRolePermissions", DefaultUserRolePermissions);
             writer.WriteGuidValue("guestUserRoleId", GuestUserRoleId);

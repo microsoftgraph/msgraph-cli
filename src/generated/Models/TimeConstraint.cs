@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class TimeConstraint : IAdditionalDataHolder, IParsable {
         /// <summary>The nature of the activity, optional. The possible values are: work, personal, unrestricted, or unknown.</summary>

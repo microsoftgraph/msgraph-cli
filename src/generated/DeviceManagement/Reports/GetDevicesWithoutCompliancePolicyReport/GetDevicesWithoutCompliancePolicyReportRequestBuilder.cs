@@ -1,17 +1,17 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.DeviceManagement.Reports.GetDevicesWithoutCompliancePolicyReport {
     /// <summary>
     /// Provides operations to call the getDevicesWithoutCompliancePolicyReport method.
@@ -27,11 +27,11 @@ namespace ApiSdk.DeviceManagement.Reports.GetDevicesWithoutCompliancePolicyRepor
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            var fileOption = new Option<FileInfo>("--file");
-            command.AddOption(fileOption);
+            var outputFileOption = new Option<FileInfo>("--output-file");
+            command.AddOption(outputFileOption);
             command.SetHandler(async (invocationContext) => {
                 var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
-                var file = invocationContext.ParseResult.GetValueForOption(fileOption);
+                var outputFile = invocationContext.ParseResult.GetValueForOption(outputFileOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
@@ -46,15 +46,15 @@ namespace ApiSdk.DeviceManagement.Reports.GetDevicesWithoutCompliancePolicyRepor
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
                 };
                 var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                if (file == null) {
+                if (outputFile == null) {
                     using var reader = new StreamReader(response);
                     var strContent = reader.ReadToEnd();
                     Console.Write(strContent);
                 }
                 else {
-                    using var writeStream = file.OpenWrite();
+                    using var writeStream = outputFile.OpenWrite();
                     await response.CopyToAsync(writeStream);
-                    Console.WriteLine($"Content written to {file.FullName}.");
+                    Console.WriteLine($"Content written to {outputFile.FullName}.");
                 }
             });
             return command;

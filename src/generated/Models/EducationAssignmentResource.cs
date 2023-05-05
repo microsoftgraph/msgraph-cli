@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class EducationAssignmentResource : Entity, IParsable {
         /// <summary>Indicates whether this resource should be copied to each student submission for modification and submission. Required</summary>

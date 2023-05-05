@@ -2,21 +2,21 @@ using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.Security;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Count;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.SecurityApplyHold;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.SecurityRemoveHold;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.MicrosoftGraphSecurityApplyHold;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.MicrosoftGraphSecurityRemoveHold;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
     /// <summary>
     /// Provides operations to manage the custodians property of the microsoft.graph.security.ediscoveryCase entity.
@@ -32,10 +32,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
             executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildLastIndexOperationNavCommand());
+            commands.Add(builder.BuildMicrosoftGraphSecurityActivateNavCommand());
+            commands.Add(builder.BuildMicrosoftGraphSecurityApplyHoldByIdNavCommand());
+            commands.Add(builder.BuildMicrosoftGraphSecurityReleaseNavCommand());
+            commands.Add(builder.BuildMicrosoftGraphSecurityRemoveHoldByIdNavCommand());
+            commands.Add(builder.BuildMicrosoftGraphSecurityUpdateIndexNavCommand());
             executables.Add(builder.BuildPatchCommand());
-            commands.Add(builder.BuildSecurityActivateNavCommand());
-            commands.Add(builder.BuildSecurityReleaseNavCommand());
-            commands.Add(builder.BuildSecurityUpdateIndexNavCommand());
             commands.Add(builder.BuildSiteSourcesNavCommand());
             commands.Add(builder.BuildUnifiedGroupSourcesNavCommand());
             commands.Add(builder.BuildUserSourcesNavCommand());
@@ -57,12 +59,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
             return command;
         }
         /// <summary>
-        /// Create a new ediscoveryCustodian object.After the custodian object is created, you will need to create the custodian&apos;s userSource to reference their mailbox and OneDrive for Business site.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoverycase-post-custodians?view=graph-rest-1.0" />
+        /// Create new navigation property to custodians for security
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new ediscoveryCustodian object.After the custodian object is created, you will need to create the custodian's userSource to reference their mailbox and OneDrive for Business site.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-post-custodians?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to custodians for security";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -115,12 +116,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
             return command;
         }
         /// <summary>
-        /// Get a list of the custodian objects and their properties.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoverycase-list-custodians?view=graph-rest-1.0" />
+        /// Returns a list of case ediscoveryCustodian objects for this case.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the custodian objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-list-custodians?view=graph-rest-1.0";
+            command.Description = "Returns a list of case ediscoveryCustodian objects for this case.";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -228,11 +228,10 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
         /// <summary>
         /// Provides operations to call the applyHold method.
         /// </summary>
-        public Command BuildSecurityApplyHoldNavCommand() {
-            var ediscoveryCustodianIndexer = new EdiscoveryCustodianItemRequestBuilder(PathParameters);
-            var command = ediscoveryCustodianIndexer.BuildSecurityApplyHoldNavCommand();
+        public Command BuildMicrosoftGraphSecurityApplyHoldNavCommand() {
+            var command = new Command("microsoft-graph-security-apply-hold");
             command.Description = "Provides operations to call the applyHold method.";
-            var builder = new SecurityApplyHoldRequestBuilder(PathParameters);
+            var builder = new MicrosoftGraphSecurityApplyHoldRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -244,11 +243,10 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
         /// <summary>
         /// Provides operations to call the removeHold method.
         /// </summary>
-        public Command BuildSecurityRemoveHoldNavCommand() {
-            var ediscoveryCustodianIndexer = new EdiscoveryCustodianItemRequestBuilder(PathParameters);
-            var command = ediscoveryCustodianIndexer.BuildSecurityRemoveHoldNavCommand();
+        public Command BuildMicrosoftGraphSecurityRemoveHoldNavCommand() {
+            var command = new Command("microsoft-graph-security-remove-hold");
             command.Description = "Provides operations to call the removeHold method.";
-            var builder = new SecurityRemoveHoldRequestBuilder(PathParameters);
+            var builder = new MicrosoftGraphSecurityRemoveHoldRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
@@ -264,7 +262,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
         public CustodiansRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/custodians{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get a list of the custodian objects and their properties.
+        /// Returns a list of case ediscoveryCustodian objects for this case.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -290,7 +288,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new ediscoveryCustodian object.After the custodian object is created, you will need to create the custodian&apos;s userSource to reference their mailbox and OneDrive for Business site.
+        /// Create new navigation property to custodians for security
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -318,7 +316,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the custodian objects and their properties.
+        /// Returns a list of case ediscoveryCustodian objects for this case.
         /// </summary>
         public class CustodiansRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

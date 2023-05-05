@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.Authentication.EmailMethods.Count;
 using ApiSdk.Users.Item.Authentication.EmailMethods.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.Authentication.EmailMethods {
     /// <summary>
     /// Provides operations to manage the emailMethods property of the microsoft.graph.authentication entity.
@@ -47,12 +47,11 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods {
             return command;
         }
         /// <summary>
-        /// Set a user&apos;s emailAuthenticationMethod object. Email authentication is a self-service password reset method. A user may only have one email authentication method.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/authentication-post-emailmethods?view=graph-rest-1.0" />
+        /// Create new navigation property to emailMethods for users
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Set a user's emailAuthenticationMethod object. Email authentication is a self-service password reset method. A user may only have one email authentication method.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/authentication-post-emailmethods?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to emailMethods for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -105,12 +104,11 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of a user&apos;s emailAuthenticationMethod objects and their properties. This API will return only a single object in the collection as only one email method can be set for a user.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/authentication-list-emailmethods?view=graph-rest-1.0" />
+        /// The email address registered to a user for authentication.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of a user's emailAuthenticationMethod objects and their properties. This API will return only a single object in the collection as only one email method can be set for a user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/authentication-list-emailmethods?view=graph-rest-1.0";
+            command.Description = "The email address registered to a user for authentication.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -222,7 +220,7 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods {
         public EmailMethodsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/authentication/emailMethods{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve a list of a user&apos;s emailAuthenticationMethod objects and their properties. This API will return only a single object in the collection as only one email method can be set for a user.
+        /// The email address registered to a user for authentication.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -248,7 +246,7 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods {
             return requestInfo;
         }
         /// <summary>
-        /// Set a user&apos;s emailAuthenticationMethod object. Email authentication is a self-service password reset method. A user may only have one email authentication method.
+        /// Create new navigation property to emailMethods for users
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -276,7 +274,7 @@ namespace ApiSdk.Users.Item.Authentication.EmailMethods {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of a user&apos;s emailAuthenticationMethod objects and their properties. This API will return only a single object in the collection as only one email method can be set for a user.
+        /// The email address registered to a user for authentication.
         /// </summary>
         public class EmailMethodsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

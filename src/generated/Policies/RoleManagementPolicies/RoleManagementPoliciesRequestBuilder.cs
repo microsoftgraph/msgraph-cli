@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Policies.RoleManagementPolicies.Count;
 using ApiSdk.Policies.RoleManagementPolicies.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Policies.RoleManagementPolicies {
     /// <summary>
     /// Provides operations to manage the roleManagementPolicies property of the microsoft.graph.policyRoot entity.
@@ -101,12 +101,11 @@ namespace ApiSdk.Policies.RoleManagementPolicies {
             return command;
         }
         /// <summary>
-        /// Get role management policies and their details.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/policyroot-list-rolemanagementpolicies?view=graph-rest-1.0" />
+        /// Specifies the various policies associated with scopes and roles.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get role management policies and their details.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/policyroot-list-rolemanagementpolicies?view=graph-rest-1.0";
+            command.Description = "Specifies the various policies associated with scopes and roles.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -212,7 +211,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies {
         public RoleManagementPoliciesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/roleManagementPolicies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get role management policies and their details.
+        /// Specifies the various policies associated with scopes and roles.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -266,7 +265,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Get role management policies and their details.
+        /// Specifies the various policies associated with scopes and roles.
         /// </summary>
         public class RoleManagementPoliciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

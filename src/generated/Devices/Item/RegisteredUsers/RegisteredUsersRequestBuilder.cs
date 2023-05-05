@@ -4,34 +4,38 @@ using ApiSdk.Devices.Item.RegisteredUsers.GraphEndpoint;
 using ApiSdk.Devices.Item.RegisteredUsers.GraphServicePrincipal;
 using ApiSdk.Devices.Item.RegisteredUsers.GraphUser;
 using ApiSdk.Devices.Item.RegisteredUsers.Item;
-using ApiSdk.Models;
+using ApiSdk.Devices.Item.RegisteredUsers.Ref;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Devices.Item.RegisteredUsers {
     /// <summary>
     /// Provides operations to manage the registeredUsers property of the microsoft.graph.device entity.
     /// </summary>
     public class RegisteredUsersRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Provides operations to manage the registeredUsers property of the microsoft.graph.device entity.
+        /// Gets an item from the ApiSdk.devices.item.registeredUsers.item collection
         /// </summary>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
-            var executables = new List<Command>();
+            var commands = new List<Command>();
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
-            executables.Add(builder.BuildGetCommand());
-            return new(executables, new(0));
+            commands.Add(builder.BuildGraphAppRoleAssignmentByIdNavCommand());
+            commands.Add(builder.BuildGraphEndpointByIdNavCommand());
+            commands.Add(builder.BuildGraphServicePrincipalByIdNavCommand());
+            commands.Add(builder.BuildGraphUserByIdNavCommand());
+            return new(new(0), commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -52,8 +56,7 @@ namespace ApiSdk.Devices.Item.RegisteredUsers {
         /// Casts the previous resource to appRoleAssignment.
         /// </summary>
         public Command BuildGraphAppRoleAssignmentNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphAppRoleAssignmentNavCommand();
+            var command = new Command("graph-app-role-assignment");
             command.Description = "Casts the previous resource to appRoleAssignment.";
             var builder = new GraphAppRoleAssignmentRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -74,8 +77,7 @@ namespace ApiSdk.Devices.Item.RegisteredUsers {
         /// Casts the previous resource to endpoint.
         /// </summary>
         public Command BuildGraphEndpointNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphEndpointNavCommand();
+            var command = new Command("graph-endpoint");
             command.Description = "Casts the previous resource to endpoint.";
             var builder = new GraphEndpointRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -96,8 +98,7 @@ namespace ApiSdk.Devices.Item.RegisteredUsers {
         /// Casts the previous resource to servicePrincipal.
         /// </summary>
         public Command BuildGraphServicePrincipalNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphServicePrincipalNavCommand();
+            var command = new Command("graph-service-principal");
             command.Description = "Casts the previous resource to servicePrincipal.";
             var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -118,8 +119,7 @@ namespace ApiSdk.Devices.Item.RegisteredUsers {
         /// Casts the previous resource to user.
         /// </summary>
         public Command BuildGraphUserNavCommand() {
-            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
-            var command = directoryObjectIndexer.BuildGraphUserNavCommand();
+            var command = new Command("graph-user");
             command.Description = "Casts the previous resource to user.";
             var builder = new GraphUserRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
@@ -138,11 +138,10 @@ namespace ApiSdk.Devices.Item.RegisteredUsers {
         }
         /// <summary>
         /// Collection of registered users of the device. For cloud joined devices and registered personal devices, registered users are set to the same value as registered owners at the time of registration. Read-only. Nullable. Supports $expand.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/device-list-registeredusers?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Collection of registered users of the device. For cloud joined devices and registered personal devices, registered users are set to the same value as registered owners at the time of registration. Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/device-list-registeredusers?view=graph-rest-1.0";
+            command.Description = "Collection of registered users of the device. For cloud joined devices and registered personal devices, registered users are set to the same value as registered owners at the time of registration. Read-only. Nullable. Supports $expand.";
             var deviceIdOption = new Option<string>("--device-id", description: "The unique identifier of device") {
             };
             deviceIdOption.IsRequired = true;
@@ -252,6 +251,23 @@ namespace ApiSdk.Devices.Item.RegisteredUsers {
                 }
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the collection of device entities.
+        /// </summary>
+        public Command BuildRefNavCommand() {
+            var directoryObjectIndexer = new DirectoryObjectItemRequestBuilder(PathParameters);
+            var command = directoryObjectIndexer.BuildRefNavCommand();
+            command.Description = "Provides operations to manage the collection of device entities.";
+            var builder = new RefRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>

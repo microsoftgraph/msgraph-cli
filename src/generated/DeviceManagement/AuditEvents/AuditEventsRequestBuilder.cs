@@ -2,21 +2,21 @@ using ApiSdk.DeviceManagement.AuditEvents.Count;
 using ApiSdk.DeviceManagement.AuditEvents.GetAuditActivityTypesWithCategory;
 using ApiSdk.DeviceManagement.AuditEvents.GetAuditCategories;
 using ApiSdk.DeviceManagement.AuditEvents.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.DeviceManagement.AuditEvents {
     /// <summary>
     /// Provides operations to manage the auditEvents property of the microsoft.graph.deviceManagement entity.

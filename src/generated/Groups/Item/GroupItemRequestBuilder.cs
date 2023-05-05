@@ -39,21 +39,21 @@ using ApiSdk.Groups.Item.TransitiveMemberOf;
 using ApiSdk.Groups.Item.TransitiveMembers;
 using ApiSdk.Groups.Item.UnsubscribeByMail;
 using ApiSdk.Groups.Item.ValidateProperties;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups.Item {
     /// <summary>
     /// Provides operations to manage the collection of group entities.
@@ -526,6 +526,7 @@ namespace ApiSdk.Groups.Item {
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
+            nonExecCommands.Add(builder.BuildGraphAdministrativeUnitNavCommand());
             nonExecCommands.Add(builder.BuildGraphGroupNavCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
@@ -758,6 +759,7 @@ namespace ApiSdk.Groups.Item {
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildContentNavCommand());
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPatchCommand());
             foreach (var cmd in execCommands)
@@ -989,9 +991,9 @@ namespace ApiSdk.Groups.Item {
             nonExecCommands.Add(builder.BuildInstalledAppsNavCommand());
             nonExecCommands.Add(builder.BuildMembersNavCommand());
             nonExecCommands.Add(builder.BuildOperationsNavCommand());
-            execCommands.Add(builder.BuildPatchCommand());
             nonExecCommands.Add(builder.BuildPhotoNavCommand());
             nonExecCommands.Add(builder.BuildPrimaryChannelNavCommand());
+            execCommands.Add(builder.BuildPutCommand());
             nonExecCommands.Add(builder.BuildScheduleNavCommand());
             nonExecCommands.Add(builder.BuildSendActivityNotificationNavCommand());
             nonExecCommands.Add(builder.BuildTagsNavCommand());
@@ -1042,6 +1044,7 @@ namespace ApiSdk.Groups.Item {
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
+            nonExecCommands.Add(builder.BuildGraphAdministrativeUnitNavCommand());
             nonExecCommands.Add(builder.BuildGraphGroupNavCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
@@ -1105,8 +1108,8 @@ namespace ApiSdk.Groups.Item {
         /// <summary>
         /// Provides operations to call the validateProperties method.
         /// </summary>
-        public Command BuildValidatePropertiesNavCommand() {
-            var command = new Command("validate-properties");
+        public Command BuildValidatePropertiesByIdNavCommand() {
+            var command = new Command("validate-properties-by-id");
             command.Description = "Provides operations to call the validateProperties method.";
             var builder = new ValidatePropertiesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();

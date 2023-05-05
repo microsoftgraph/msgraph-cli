@@ -1,5 +1,5 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Reports.DailyPrintUsageByPrinter;
 using ApiSdk.Reports.DailyPrintUsageByUser;
 using ApiSdk.Reports.DeviceConfigurationDeviceActivity;
@@ -77,6 +77,11 @@ using ApiSdk.Reports.GetTeamsDeviceUsageDistributionUserCountsWithPeriod;
 using ApiSdk.Reports.GetTeamsDeviceUsageUserCountsWithPeriod;
 using ApiSdk.Reports.GetTeamsDeviceUsageUserDetailWithDate;
 using ApiSdk.Reports.GetTeamsDeviceUsageUserDetailWithPeriod;
+using ApiSdk.Reports.GetTeamsTeamActivityCountsWithPeriod;
+using ApiSdk.Reports.GetTeamsTeamActivityDetailWithDate;
+using ApiSdk.Reports.GetTeamsTeamActivityDetailWithPeriod;
+using ApiSdk.Reports.GetTeamsTeamActivityDistributionCountsWithPeriod;
+using ApiSdk.Reports.GetTeamsTeamCountsWithPeriod;
 using ApiSdk.Reports.GetTeamsUserActivityCountsWithPeriod;
 using ApiSdk.Reports.GetTeamsUserActivityUserCountsWithPeriod;
 using ApiSdk.Reports.GetTeamsUserActivityUserDetailWithDate;
@@ -101,19 +106,19 @@ using ApiSdk.Reports.ManagedDeviceEnrollmentTopFailuresWithPeriod;
 using ApiSdk.Reports.MonthlyPrintUsageByPrinter;
 using ApiSdk.Reports.MonthlyPrintUsageByUser;
 using ApiSdk.Reports.Security;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Reports {
     /// <summary>
     /// Provides operations to manage the reportRoot singleton.

@@ -2,21 +2,21 @@ using ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Count;
 using ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.GetNotebookFromWebUrl;
 using ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePersonalNotebooks;
 using ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks {
     /// <summary>
     /// Provides operations to manage the notebooks property of the microsoft.graph.onenote entity.
@@ -53,12 +53,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks {
             return command;
         }
         /// <summary>
-        /// Create a new OneNote notebook.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/onenote-post-notebooks?view=graph-rest-1.0" />
+        /// Create new navigation property to notebooks for groups
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new OneNote notebook.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/onenote-post-notebooks?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to notebooks for groups";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -132,12 +131,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of notebook objects.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/onenote-list-notebooks?view=graph-rest-1.0" />
+        /// The collection of OneNote notebooks that are owned by the user or group. Read-only. Nullable.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of notebook objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/onenote-list-notebooks?view=graph-rest-1.0";
+            command.Description = "The collection of OneNote notebooks that are owned by the user or group. Read-only. Nullable.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -255,7 +253,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks {
         public NotebooksRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote/notebooks{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve a list of notebook objects.
+        /// The collection of OneNote notebooks that are owned by the user or group. Read-only. Nullable.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -281,7 +279,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new OneNote notebook.
+        /// Create new navigation property to notebooks for groups
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -309,7 +307,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of notebook objects.
+        /// The collection of OneNote notebooks that are owned by the user or group. Read-only. Nullable.
         /// </summary>
         public class NotebooksRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

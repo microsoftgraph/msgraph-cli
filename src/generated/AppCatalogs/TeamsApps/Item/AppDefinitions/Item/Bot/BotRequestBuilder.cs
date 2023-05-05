@@ -1,18 +1,18 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
     /// <summary>
     /// Provides operations to manage the bot property of the microsoft.graph.teamsAppDefinition entity.
@@ -58,12 +58,11 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
             return command;
         }
         /// <summary>
-        /// Get the bot associated with a specific definition of the  TeamsApp.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/teamworkbot-get?view=graph-rest-1.0" />
+        /// The details of the bot specified in the Teams app manifest.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the bot associated with a specific definition of the  TeamsApp.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/teamworkbot-get?view=graph-rest-1.0";
+            command.Description = "The details of the bot specified in the Teams app manifest.";
             var teamsAppIdOption = new Option<string>("--teams-app-id", description: "The unique identifier of teamsApp") {
             };
             teamsAppIdOption.IsRequired = true;
@@ -220,7 +219,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
             return requestInfo;
         }
         /// <summary>
-        /// Get the bot associated with a specific definition of the  TeamsApp.
+        /// The details of the bot specified in the Teams app manifest.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -274,7 +273,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item.Bot {
             return requestInfo;
         }
         /// <summary>
-        /// Get the bot associated with a specific definition of the  TeamsApp.
+        /// The details of the bot specified in the Teams app manifest.
         /// </summary>
         public class BotRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

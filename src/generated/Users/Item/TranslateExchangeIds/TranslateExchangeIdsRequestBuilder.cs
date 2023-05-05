@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.TranslateExchangeIds {
     /// <summary>
     /// Provides operations to call the translateExchangeIds method.
     /// </summary>
     public class TranslateExchangeIdsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Translate identifiers of Outlook-related resources between formats.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-translateexchangeids?view=graph-rest-1.0" />
+        /// Invoke action translateExchangeIds
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Translate identifiers of Outlook-related resources between formats.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-translateexchangeids?view=graph-rest-1.0";
+            command.Description = "Invoke action translateExchangeIds";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -94,7 +93,7 @@ namespace ApiSdk.Users.Item.TranslateExchangeIds {
         public TranslateExchangeIdsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/translateExchangeIds", pathParameters) {
         }
         /// <summary>
-        /// Translate identifiers of Outlook-related resources between formats.
+        /// Invoke action translateExchangeIds
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

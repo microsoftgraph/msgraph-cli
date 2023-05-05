@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Teamwork.WorkforceIntegrations.Count;
 using ApiSdk.Teamwork.WorkforceIntegrations.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Teamwork.WorkforceIntegrations {
     /// <summary>
     /// Provides operations to manage the workforceIntegrations property of the microsoft.graph.teamwork entity.
@@ -47,12 +47,11 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations {
             return command;
         }
         /// <summary>
-        /// Create a new workforceIntegration object.You can set up which entities you want to receive Shifts synchronous change notifications on and set entities to configure filtering by WFM rules eligibility for, including swap requests.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/workforceintegration-post?view=graph-rest-1.0" />
+        /// Create new navigation property to workforceIntegrations for teamwork
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new workforceIntegration object.You can set up which entities you want to receive Shifts synchronous change notifications on and set entities to configure filtering by WFM rules eligibility for, including swap requests.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/workforceintegration-post?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to workforceIntegrations for teamwork";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -99,12 +98,11 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of workforceIntegration objects.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/workforceintegration-list?view=graph-rest-1.0" />
+        /// Get workforceIntegrations from teamwork
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of workforceIntegration objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/workforceintegration-list?view=graph-rest-1.0";
+            command.Description = "Get workforceIntegrations from teamwork";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -210,7 +208,7 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations {
         public WorkforceIntegrationsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teamwork/workforceIntegrations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve a list of workforceIntegration objects.
+        /// Get workforceIntegrations from teamwork
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -236,7 +234,7 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new workforceIntegration object.You can set up which entities you want to receive Shifts synchronous change notifications on and set entities to configure filtering by WFM rules eligibility for, including swap requests.
+        /// Create new navigation property to workforceIntegrations for teamwork
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -264,7 +262,7 @@ namespace ApiSdk.Teamwork.WorkforceIntegrations {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of workforceIntegration objects.
+        /// Get workforceIntegrations from teamwork
         /// </summary>
         public class WorkforceIntegrationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

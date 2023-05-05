@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Privacy.SubjectRightsRequests.Count;
 using ApiSdk.Privacy.SubjectRightsRequests.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Privacy.SubjectRightsRequests {
     /// <summary>
     /// Provides operations to manage the subjectRightsRequests property of the microsoft.graph.privacy entity.
@@ -52,12 +52,11 @@ namespace ApiSdk.Privacy.SubjectRightsRequests {
             return command;
         }
         /// <summary>
-        /// Create a new subjectRightsRequest object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/subjectrightsrequest-post?view=graph-rest-1.0" />
+        /// Create new navigation property to subjectRightsRequests for privacy
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new subjectRightsRequest object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/subjectrightsrequest-post?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to subjectRightsRequests for privacy";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -104,12 +103,11 @@ namespace ApiSdk.Privacy.SubjectRightsRequests {
             return command;
         }
         /// <summary>
-        /// Get a list of subjectRightsRequest objects and their properties.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/subjectrightsrequest-list?view=graph-rest-1.0" />
+        /// Get subjectRightsRequests from privacy
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of subjectRightsRequest objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/subjectrightsrequest-list?view=graph-rest-1.0";
+            command.Description = "Get subjectRightsRequests from privacy";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -215,7 +213,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests {
         public SubjectRightsRequestsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/privacy/subjectRightsRequests{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get a list of subjectRightsRequest objects and their properties.
+        /// Get subjectRightsRequests from privacy
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -241,7 +239,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new subjectRightsRequest object.
+        /// Create new navigation property to subjectRightsRequests for privacy
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -269,7 +267,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of subjectRightsRequest objects and their properties.
+        /// Get subjectRightsRequests from privacy
         /// </summary>
         public class SubjectRightsRequestsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

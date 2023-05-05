@@ -1,30 +1,29 @@
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.Security;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.LastIndexOperation {
     /// <summary>
     /// Provides operations to manage the lastIndexOperation property of the microsoft.graph.security.ediscoveryCustodian entity.
     /// </summary>
     public class LastIndexOperationRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Get a list of the ediscoveryIndexOperations associated with an ediscoveryCustodian.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoverycustodian-list-lastindexoperation?view=graph-rest-1.0" />
+        /// Operation entity that represents the latest indexing for the custodian.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get a list of the ediscoveryIndexOperations associated with an ediscoveryCustodian.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycustodian-list-lastindexoperation?view=graph-rest-1.0";
+            command.Description = "Operation entity that represents the latest indexing for the custodian.";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -93,7 +92,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.LastIndexOp
         public LastIndexOperationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/custodians/{ediscoveryCustodian%2Did}/lastIndexOperation{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get a list of the ediscoveryIndexOperations associated with an ediscoveryCustodian.
+        /// Operation entity that represents the latest indexing for the custodian.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -119,7 +118,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.LastIndexOp
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the ediscoveryIndexOperations associated with an ediscoveryCustodian.
+        /// Operation entity that represents the latest indexing for the custodian.
         /// </summary>
         public class LastIndexOperationRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

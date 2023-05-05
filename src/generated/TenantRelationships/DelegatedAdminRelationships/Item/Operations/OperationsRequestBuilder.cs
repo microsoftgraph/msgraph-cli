@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Operations.Count;
 using ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Operations.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Operations {
     /// <summary>
     /// Provides operations to manage the operations property of the microsoft.graph.delegatedAdminRelationship entity.
@@ -104,12 +104,11 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Operations
             return command;
         }
         /// <summary>
-        /// Get a list of the delegatedAdminRelationshipOperation objects and their properties.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/delegatedadminrelationship-list-operations?view=graph-rest-1.0" />
+        /// The long running operations associated with the delegated admin relationship.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the delegatedAdminRelationshipOperation objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/delegatedadminrelationship-list-operations?view=graph-rest-1.0";
+            command.Description = "The long running operations associated with the delegated admin relationship.";
             var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "The unique identifier of delegatedAdminRelationship") {
             };
             delegatedAdminRelationshipIdOption.IsRequired = true;
@@ -221,7 +220,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Operations
         public OperationsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/tenantRelationships/delegatedAdminRelationships/{delegatedAdminRelationship%2Did}/operations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get a list of the delegatedAdminRelationshipOperation objects and their properties.
+        /// The long running operations associated with the delegated admin relationship.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -275,7 +274,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Operations
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the delegatedAdminRelationshipOperation objects and their properties.
+        /// The long running operations associated with the delegated admin relationship.
         /// </summary>
         public class OperationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

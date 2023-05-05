@@ -1,5 +1,5 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.CompleteMigration;
 using ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.DoesUserHaveAccessuserIdUserIdTenantIdTenantIdUserPrincipalNameUserPrincipalName;
 using ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.FilesFolder;
@@ -9,19 +9,19 @@ using ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.ProvisionEmail;
 using ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.RemoveEmail;
 using ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.SharedWithTeams;
 using ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Tabs;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item {
     /// <summary>
     /// Provides operations to manage the channels property of the microsoft.graph.team entity.

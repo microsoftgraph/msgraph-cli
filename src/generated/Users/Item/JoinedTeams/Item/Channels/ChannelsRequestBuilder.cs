@@ -1,21 +1,21 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.JoinedTeams.Item.Channels.Count;
 using ApiSdk.Users.Item.JoinedTeams.Item.Channels.GetAllMessages;
 using ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels {
     /// <summary>
     /// Provides operations to manage the channels property of the microsoft.graph.team entity.
@@ -58,12 +58,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels {
             return command;
         }
         /// <summary>
-        /// Create a new channel in a team, as specified in the request body.  When you create a channel, the maximum length of the channel&apos;s `displayName` is 50 characters. This is the name that appears to the user in Microsoft Teams. If you&apos;re creating a private channel, you can add a maximum of 200 members.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/channel-post?view=graph-rest-1.0" />
+        /// Create new navigation property to channels for users
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new channel in a team, as specified in the request body.  When you create a channel, the maximum length of the channel's `displayName` is 50 characters. This is the name that appears to the user in Microsoft Teams. If you're creating a private channel, you can add a maximum of 200 members.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-post?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to channels for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -137,12 +136,11 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels {
             return command;
         }
         /// <summary>
-        /// Retrieve the list of channels in this team.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/channel-list?view=graph-rest-1.0" />
+        /// The collection of channels and messages associated with the team.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the list of channels in this team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-list?view=graph-rest-1.0";
+            command.Description = "The collection of channels and messages associated with the team.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -260,7 +258,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels {
         public ChannelsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/channels{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve the list of channels in this team.
+        /// The collection of channels and messages associated with the team.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -286,7 +284,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new channel in a team, as specified in the request body.  When you create a channel, the maximum length of the channel&apos;s `displayName` is 50 characters. This is the name that appears to the user in Microsoft Teams. If you&apos;re creating a private channel, you can add a maximum of 200 members.
+        /// Create new navigation property to channels for users
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -314,7 +312,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the list of channels in this team.
+        /// The collection of channels and messages associated with the team.
         /// </summary>
         public class ChannelsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

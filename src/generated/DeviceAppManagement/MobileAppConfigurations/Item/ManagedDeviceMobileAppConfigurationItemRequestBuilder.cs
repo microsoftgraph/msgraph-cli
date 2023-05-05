@@ -1,24 +1,24 @@
 using ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assign;
 using ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.Assignments;
-using ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses;
 using ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatusSummary;
-using ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatuses;
+using ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatuses;
 using ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatusSummary;
-using ApiSdk.Models;
+using ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatuses;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item {
     /// <summary>
     /// Provides operations to manage the mobileAppConfigurations property of the microsoft.graph.deviceAppManagement entity.

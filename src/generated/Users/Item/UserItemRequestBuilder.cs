@@ -1,5 +1,5 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.Activities;
 using ApiSdk.Users.Item.AgreementAcceptances;
 using ApiSdk.Users.Item.AppRoleAssignments;
@@ -7,8 +7,8 @@ using ApiSdk.Users.Item.AssignLicense;
 using ApiSdk.Users.Item.Authentication;
 using ApiSdk.Users.Item.Calendar;
 using ApiSdk.Users.Item.CalendarGroups;
-using ApiSdk.Users.Item.Calendars;
 using ApiSdk.Users.Item.CalendarView;
+using ApiSdk.Users.Item.Calendars;
 using ApiSdk.Users.Item.ChangePassword;
 using ApiSdk.Users.Item.Chats;
 using ApiSdk.Users.Item.CheckMemberGroups;
@@ -38,6 +38,7 @@ using ApiSdk.Users.Item.Insights;
 using ApiSdk.Users.Item.JoinedTeams;
 using ApiSdk.Users.Item.LicenseDetails;
 using ApiSdk.Users.Item.MailFolders;
+using ApiSdk.Users.Item.MailboxSettings;
 using ApiSdk.Users.Item.ManagedAppRegistrations;
 using ApiSdk.Users.Item.ManagedDevices;
 using ApiSdk.Users.Item.Manager;
@@ -68,19 +69,19 @@ using ApiSdk.Users.Item.Todo;
 using ApiSdk.Users.Item.TransitiveMemberOf;
 using ApiSdk.Users.Item.TranslateExchangeIds;
 using ApiSdk.Users.Item.WipeManagedAppRegistrationsByDeviceTag;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item {
     /// <summary>
     /// Provides operations to manage the collection of user entities.
@@ -953,6 +954,22 @@ namespace ApiSdk.Users.Item {
             return command;
         }
         /// <summary>
+        /// The mailboxSettings property
+        /// </summary>
+        public Command BuildMailboxSettingsNavCommand() {
+            var command = new Command("mailbox-settings");
+            command.Description = "The mailboxSettings property";
+            var builder = new MailboxSettingsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the mailFolders property of the microsoft.graph.user entity.
         /// </summary>
         public Command BuildMailFoldersNavCommand() {
@@ -1058,6 +1075,7 @@ namespace ApiSdk.Users.Item {
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
+            nonExecCommands.Add(builder.BuildGraphAdministrativeUnitNavCommand());
             nonExecCommands.Add(builder.BuildGraphGroupNavCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
@@ -1346,6 +1364,7 @@ namespace ApiSdk.Users.Item {
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildContentNavCommand());
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPatchCommand());
             foreach (var cmd in execCommands)
@@ -1640,6 +1659,7 @@ namespace ApiSdk.Users.Item {
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
+            nonExecCommands.Add(builder.BuildGraphAdministrativeUnitNavCommand());
             nonExecCommands.Add(builder.BuildGraphGroupNavCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();

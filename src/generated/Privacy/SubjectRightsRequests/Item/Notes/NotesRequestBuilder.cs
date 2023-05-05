@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Count;
 using ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
     /// <summary>
     /// Provides operations to manage the notes property of the microsoft.graph.subjectRightsRequest entity.
@@ -47,12 +47,11 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
             return command;
         }
         /// <summary>
-        /// Create a new authoredNote object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/subjectrightsrequest-post-notes?view=graph-rest-1.0" />
+        /// Create new navigation property to notes for privacy
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new authoredNote object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/subjectrightsrequest-post-notes?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to notes for privacy";
             var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "The unique identifier of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
@@ -105,12 +104,11 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
             return command;
         }
         /// <summary>
-        /// Get the list of authored notes assoicated with a subject rights request. 
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/subjectrightsrequest-list-notes?view=graph-rest-1.0" />
+        /// List of notes associcated with the request.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the list of authored notes assoicated with a subject rights request. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/subjectrightsrequest-list-notes?view=graph-rest-1.0";
+            command.Description = "List of notes associcated with the request.";
             var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "The unique identifier of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
@@ -222,7 +220,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
         public NotesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/privacy/subjectRightsRequests/{subjectRightsRequest%2Did}/notes{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get the list of authored notes assoicated with a subject rights request. 
+        /// List of notes associcated with the request.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -248,7 +246,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new authoredNote object.
+        /// Create new navigation property to notes for privacy
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -276,7 +274,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
             return requestInfo;
         }
         /// <summary>
-        /// Get the list of authored notes assoicated with a subject rights request. 
+        /// List of notes associcated with the request.
         /// </summary>
         public class NotesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

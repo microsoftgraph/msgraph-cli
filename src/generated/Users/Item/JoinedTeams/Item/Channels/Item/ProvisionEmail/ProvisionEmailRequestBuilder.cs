@@ -1,30 +1,29 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.ProvisionEmail {
     /// <summary>
     /// Provides operations to call the provisionEmail method.
     /// </summary>
     public class ProvisionEmailRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Provision an email address for a channel. Microsoft Teams doesn&apos;t automatically provision an email address for a **channel** by default. To have Teams provision an email address, you can call **provisionEmail**, or through the Teams user interface, select **Get email address**, which triggers Teams to generate an email address if it has not already provisioned one. To remove the email address of a **channel**, use the removeEmail method.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/channel-provisionemail?view=graph-rest-1.0" />
+        /// Invoke action provisionEmail
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Provision an email address for a channel. Microsoft Teams doesn't automatically provision an email address for a **channel** by default. To have Teams provision an email address, you can call **provisionEmail**, or through the Teams user interface, select **Get email address**, which triggers Teams to generate an email address if it has not already provisioned one. To remove the email address of a **channel**, use the removeEmail method.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-provisionemail?view=graph-rest-1.0";
+            command.Description = "Invoke action provisionEmail";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -85,7 +84,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.ProvisionEmail {
         public ProvisionEmailRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/channels/{channel%2Did}/provisionEmail", pathParameters) {
         }
         /// <summary>
-        /// Provision an email address for a channel. Microsoft Teams doesn&apos;t automatically provision an email address for a **channel** by default. To have Teams provision an email address, you can call **provisionEmail**, or through the Teams user interface, select **Get email address**, which triggers Teams to generate an email address if it has not already provisioned one. To remove the email address of a **channel**, use the removeEmail method.
+        /// Invoke action provisionEmail
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

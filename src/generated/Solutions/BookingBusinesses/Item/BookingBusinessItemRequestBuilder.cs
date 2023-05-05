@@ -1,27 +1,27 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Solutions.BookingBusinesses.Item.Appointments;
 using ApiSdk.Solutions.BookingBusinesses.Item.CalendarView;
-using ApiSdk.Solutions.BookingBusinesses.Item.Customers;
 using ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions;
+using ApiSdk.Solutions.BookingBusinesses.Item.Customers;
 using ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability;
 using ApiSdk.Solutions.BookingBusinesses.Item.Publish;
 using ApiSdk.Solutions.BookingBusinesses.Item.Services;
 using ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers;
 using ApiSdk.Solutions.BookingBusinesses.Item.Unpublish;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Solutions.BookingBusinesses.Item {
     /// <summary>
     /// Provides operations to manage the bookingBusinesses property of the microsoft.graph.solutionsRoot entity.

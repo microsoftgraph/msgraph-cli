@@ -1,21 +1,21 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Teamwork.DeletedTeams.Count;
 using ApiSdk.Teamwork.DeletedTeams.GetAllMessages;
 using ApiSdk.Teamwork.DeletedTeams.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Teamwork.DeletedTeams {
     /// <summary>
     /// Provides operations to manage the deletedTeams property of the microsoft.graph.teamwork entity.
@@ -116,11 +116,11 @@ namespace ApiSdk.Teamwork.DeletedTeams {
             return command;
         }
         /// <summary>
-        /// Get deletedTeams from teamwork
+        /// The deleted team.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get deletedTeams from teamwork";
+            command.Description = "The deleted team.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -226,7 +226,7 @@ namespace ApiSdk.Teamwork.DeletedTeams {
         public DeletedTeamsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teamwork/deletedTeams{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get deletedTeams from teamwork
+        /// The deleted team.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -280,7 +280,7 @@ namespace ApiSdk.Teamwork.DeletedTeams {
             return requestInfo;
         }
         /// <summary>
-        /// Get deletedTeams from teamwork
+        /// The deleted team.
         /// </summary>
         public class DeletedTeamsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

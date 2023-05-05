@@ -1,22 +1,22 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Privacy.SubjectRightsRequests.Item.GetFinalAttachment;
 using ApiSdk.Privacy.SubjectRightsRequests.Item.GetFinalReport;
 using ApiSdk.Privacy.SubjectRightsRequests.Item.Notes;
 using ApiSdk.Privacy.SubjectRightsRequests.Item.Team;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
     /// <summary>
     /// Provides operations to manage the subjectRightsRequests property of the microsoft.graph.privacy entity.

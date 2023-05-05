@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.Outlook.MasterCategories.Count;
 using ApiSdk.Users.Item.Outlook.MasterCategories.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.Outlook.MasterCategories {
     /// <summary>
     /// Provides operations to manage the masterCategories property of the microsoft.graph.outlookUser entity.
@@ -47,12 +47,11 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories {
             return command;
         }
         /// <summary>
-        /// Create an outlookCategory object in the user&apos;s master list of categories.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/outlookuser-post-mastercategories?view=graph-rest-1.0" />
+        /// Create new navigation property to masterCategories for users
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create an outlookCategory object in the user's master list of categories.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/outlookuser-post-mastercategories?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to masterCategories for users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -105,12 +104,11 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories {
             return command;
         }
         /// <summary>
-        /// Get all the categories that have been defined for the user.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/outlookuser-list-mastercategories?view=graph-rest-1.0" />
+        /// A list of categories defined for the user.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get all the categories that have been defined for the user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/outlookuser-list-mastercategories?view=graph-rest-1.0";
+            command.Description = "A list of categories defined for the user.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -209,7 +207,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories {
         public MasterCategoriesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/outlook/masterCategories{?%24top,%24skip,%24filter,%24count,%24orderby,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Get all the categories that have been defined for the user.
+        /// A list of categories defined for the user.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -235,7 +233,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories {
             return requestInfo;
         }
         /// <summary>
-        /// Create an outlookCategory object in the user&apos;s master list of categories.
+        /// Create new navigation property to masterCategories for users
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -263,7 +261,7 @@ namespace ApiSdk.Users.Item.Outlook.MasterCategories {
             return requestInfo;
         }
         /// <summary>
-        /// Get all the categories that have been defined for the user.
+        /// A list of categories defined for the user.
         /// </summary>
         public class MasterCategoriesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

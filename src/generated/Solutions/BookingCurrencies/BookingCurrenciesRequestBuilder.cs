@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Solutions.BookingCurrencies.Count;
 using ApiSdk.Solutions.BookingCurrencies.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Solutions.BookingCurrencies {
     /// <summary>
     /// Provides operations to manage the bookingCurrencies property of the microsoft.graph.solutionsRoot entity.
@@ -98,12 +98,11 @@ namespace ApiSdk.Solutions.BookingCurrencies {
             return command;
         }
         /// <summary>
-        /// Get a list of bookingCurrency objects available to a Microsoft Bookings business.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/bookingcurrency-list?view=graph-rest-1.0" />
+        /// Get bookingCurrencies from solutions
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of bookingCurrency objects available to a Microsoft Bookings business.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bookingcurrency-list?view=graph-rest-1.0";
+            command.Description = "Get bookingCurrencies from solutions";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -209,7 +208,7 @@ namespace ApiSdk.Solutions.BookingCurrencies {
         public BookingCurrenciesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/bookingCurrencies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get a list of bookingCurrency objects available to a Microsoft Bookings business.
+        /// Get bookingCurrencies from solutions
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -263,7 +262,7 @@ namespace ApiSdk.Solutions.BookingCurrencies {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of bookingCurrency objects available to a Microsoft Bookings business.
+        /// Get bookingCurrencies from solutions
         /// </summary>
         public class BookingCurrenciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

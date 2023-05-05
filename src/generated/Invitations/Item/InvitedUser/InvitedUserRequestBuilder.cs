@@ -1,18 +1,19 @@
-using ApiSdk.Models;
+using ApiSdk.Invitations.Item.InvitedUser.MailboxSettings;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Invitations.Item.InvitedUser {
     /// <summary>
     /// Provides operations to manage the invitedUser property of the microsoft.graph.invitation entity.
@@ -77,6 +78,22 @@ namespace ApiSdk.Invitations.Item.InvitedUser {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// The mailboxSettings property
+        /// </summary>
+        public Command BuildMailboxSettingsNavCommand() {
+            var command = new Command("mailbox-settings");
+            command.Description = "The mailboxSettings property";
+            var builder = new MailboxSettingsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>

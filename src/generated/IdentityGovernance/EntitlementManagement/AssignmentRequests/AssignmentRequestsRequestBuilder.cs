@@ -1,21 +1,21 @@
 using ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Count;
 using ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.FilterByCurrentUserWithOn;
 using ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests {
     /// <summary>
     /// Provides operations to manage the assignmentRequests property of the microsoft.graph.entitlementManagement entity.
@@ -54,12 +54,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests {
             return command;
         }
         /// <summary>
-        /// In Azure AD Entitlement Management, create a new accessPackageAssignmentRequest object.  This operation is used to assign a user to an access package, update the assignment, or to remove an access package assignment.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/entitlementmanagement-post-assignmentrequests?view=graph-rest-1.0" />
+        /// Create new navigation property to assignmentRequests for identityGovernance
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "In Azure AD Entitlement Management, create a new accessPackageAssignmentRequest object.  This operation is used to assign a user to an access package, update the assignment, or to remove an access package assignment.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/entitlementmanagement-post-assignmentrequests?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to assignmentRequests for identityGovernance";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -106,12 +105,11 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests {
             return command;
         }
         /// <summary>
-        /// In Azure AD entitlement management, retrieve a list of accessPackageAssignmentRequest objects.  The resulting list includes all the assignment requests, current and well as expired, that the caller has access to read, across all catalogs and access packages.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/entitlementmanagement-list-assignmentrequests?view=graph-rest-1.0" />
+        /// Access package assignment requests created by or on behalf of a subject.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "In Azure AD entitlement management, retrieve a list of accessPackageAssignmentRequest objects.  The resulting list includes all the assignment requests, current and well as expired, that the caller has access to read, across all catalogs and access packages.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/entitlementmanagement-list-assignmentrequests?view=graph-rest-1.0";
+            command.Description = "Access package assignment requests created by or on behalf of a subject.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -217,7 +215,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests {
         public AssignmentRequestsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/assignmentRequests{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// In Azure AD entitlement management, retrieve a list of accessPackageAssignmentRequest objects.  The resulting list includes all the assignment requests, current and well as expired, that the caller has access to read, across all catalogs and access packages.
+        /// Access package assignment requests created by or on behalf of a subject.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -243,7 +241,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests {
             return requestInfo;
         }
         /// <summary>
-        /// In Azure AD Entitlement Management, create a new accessPackageAssignmentRequest object.  This operation is used to assign a user to an access package, update the assignment, or to remove an access package assignment.
+        /// Create new navigation property to assignmentRequests for identityGovernance
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -271,7 +269,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests {
             return requestInfo;
         }
         /// <summary>
-        /// In Azure AD entitlement management, retrieve a list of accessPackageAssignmentRequest objects.  The resulting list includes all the assignment requests, current and well as expired, that the caller has access to read, across all catalogs and access packages.
+        /// Access package assignment requests created by or on behalf of a subject.
         /// </summary>
         public class AssignmentRequestsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

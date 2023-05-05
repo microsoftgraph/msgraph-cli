@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class PolicyRoot : Entity, IParsable {
         /// <summary>The policy that controls the idle time out for web sessions for applications.</summary>
@@ -21,7 +21,7 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.AdminConsentRequestPolicy AdminConsentRequestPolicy { get; set; }
 #endif
-        /// <summary>The appManagementPolicies property</summary>
+        /// <summary>The policies that enforce app management restrictions for specific applications and service principals, overriding the defaultAppManagementPolicy.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<AppManagementPolicy>? AppManagementPolicies { get; set; }
@@ -37,13 +37,21 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.AuthenticationFlowsPolicy AuthenticationFlowsPolicy { get; set; }
 #endif
-        /// <summary>The authentication methods and the users that are allowed to use them to sign in and perform multi-factor authentication (MFA) in Azure Active Directory (Azure AD).</summary>
+        /// <summary>The authentication methods and the users that are allowed to use them to sign in and perform multifactor authentication (MFA) in Azure Active Directory (Azure AD).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.AuthenticationMethodsPolicy? AuthenticationMethodsPolicy { get; set; }
 #nullable restore
 #else
         public ApiSdk.Models.AuthenticationMethodsPolicy AuthenticationMethodsPolicy { get; set; }
+#endif
+        /// <summary>The authentication method combinations that are to be used in scenarios defined by Azure AD Conditional Access.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AuthenticationStrengthPolicy>? AuthenticationStrengthPolicies { get; set; }
+#nullable restore
+#else
+        public List<AuthenticationStrengthPolicy> AuthenticationStrengthPolicies { get; set; }
 #endif
         /// <summary>The policy that controls Azure AD authorization settings.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -77,7 +85,7 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.CrossTenantAccessPolicy CrossTenantAccessPolicy { get; set; }
 #endif
-        /// <summary>The defaultAppManagementPolicy property</summary>
+        /// <summary>The tenant-wide policy that enforces app management restrictions for all applications and service principals.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public TenantAppManagementPolicy? DefaultAppManagementPolicy { get; set; }
@@ -167,6 +175,7 @@ namespace ApiSdk.Models {
                 {"appManagementPolicies", n => { AppManagementPolicies = n.GetCollectionOfObjectValues<AppManagementPolicy>(AppManagementPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"authenticationFlowsPolicy", n => { AuthenticationFlowsPolicy = n.GetObjectValue<ApiSdk.Models.AuthenticationFlowsPolicy>(ApiSdk.Models.AuthenticationFlowsPolicy.CreateFromDiscriminatorValue); } },
                 {"authenticationMethodsPolicy", n => { AuthenticationMethodsPolicy = n.GetObjectValue<ApiSdk.Models.AuthenticationMethodsPolicy>(ApiSdk.Models.AuthenticationMethodsPolicy.CreateFromDiscriminatorValue); } },
+                {"authenticationStrengthPolicies", n => { AuthenticationStrengthPolicies = n.GetCollectionOfObjectValues<AuthenticationStrengthPolicy>(AuthenticationStrengthPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"authorizationPolicy", n => { AuthorizationPolicy = n.GetObjectValue<ApiSdk.Models.AuthorizationPolicy>(ApiSdk.Models.AuthorizationPolicy.CreateFromDiscriminatorValue); } },
                 {"claimsMappingPolicies", n => { ClaimsMappingPolicies = n.GetCollectionOfObjectValues<ClaimsMappingPolicy>(ClaimsMappingPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"conditionalAccessPolicies", n => { ConditionalAccessPolicies = n.GetCollectionOfObjectValues<ConditionalAccessPolicy>(ConditionalAccessPolicy.CreateFromDiscriminatorValue)?.ToList(); } },
@@ -194,6 +203,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<AppManagementPolicy>("appManagementPolicies", AppManagementPolicies);
             writer.WriteObjectValue<ApiSdk.Models.AuthenticationFlowsPolicy>("authenticationFlowsPolicy", AuthenticationFlowsPolicy);
             writer.WriteObjectValue<ApiSdk.Models.AuthenticationMethodsPolicy>("authenticationMethodsPolicy", AuthenticationMethodsPolicy);
+            writer.WriteCollectionOfObjectValues<AuthenticationStrengthPolicy>("authenticationStrengthPolicies", AuthenticationStrengthPolicies);
             writer.WriteObjectValue<ApiSdk.Models.AuthorizationPolicy>("authorizationPolicy", AuthorizationPolicy);
             writer.WriteCollectionOfObjectValues<ClaimsMappingPolicy>("claimsMappingPolicies", ClaimsMappingPolicies);
             writer.WriteCollectionOfObjectValues<ConditionalAccessPolicy>("conditionalAccessPolicies", ConditionalAccessPolicies);

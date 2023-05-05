@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Print.TaskDefinitions.Item.Tasks.Count;
 using ApiSdk.Print.TaskDefinitions.Item.Tasks.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Print.TaskDefinitions.Item.Tasks {
     /// <summary>
     /// Provides operations to manage the tasks property of the microsoft.graph.printTaskDefinition entity.
@@ -107,12 +107,11 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of tasks associated with a task definition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/printtaskdefinition-list-tasks?view=graph-rest-1.0" />
+        /// A list of tasks that have been created based on this definition. The list includes currently running tasks and recently completed tasks. Read-only.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of tasks associated with a task definition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printtaskdefinition-list-tasks?view=graph-rest-1.0";
+            command.Description = "A list of tasks that have been created based on this definition. The list includes currently running tasks and recently completed tasks. Read-only.";
             var printTaskDefinitionIdOption = new Option<string>("--print-task-definition-id", description: "The unique identifier of printTaskDefinition") {
             };
             printTaskDefinitionIdOption.IsRequired = true;
@@ -224,7 +223,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks {
         public TasksRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/taskDefinitions/{printTaskDefinition%2Did}/tasks{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve a list of tasks associated with a task definition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
+        /// A list of tasks that have been created based on this definition. The list includes currently running tasks and recently completed tasks. Read-only.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -278,7 +277,7 @@ namespace ApiSdk.Print.TaskDefinitions.Item.Tasks {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of tasks associated with a task definition. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
+        /// A list of tasks that have been created based on this definition. The list includes currently running tasks and recently completed tasks. Read-only.
         /// </summary>
         public class TasksRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

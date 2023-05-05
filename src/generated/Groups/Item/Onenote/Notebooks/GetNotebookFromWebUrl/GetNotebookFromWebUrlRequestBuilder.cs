@@ -1,30 +1,29 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Groups.Item.Onenote.Notebooks.GetNotebookFromWebUrl {
     /// <summary>
     /// Provides operations to call the getNotebookFromWebUrl method.
     /// </summary>
     public class GetNotebookFromWebUrlRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Retrieve the properties and relationships of a notebook object by using its URL path. The location can be user notebooks on Microsoft 365, group notebooks, or SharePoint site-hosted team notebooks on Microsoft 365.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/notebook-getnotebookfromweburl?view=graph-rest-1.0" />
+        /// Invoke action getNotebookFromWebUrl
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Retrieve the properties and relationships of a notebook object by using its URL path. The location can be user notebooks on Microsoft 365, group notebooks, or SharePoint site-hosted team notebooks on Microsoft 365.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/notebook-getnotebookfromweburl?view=graph-rest-1.0";
+            command.Description = "Invoke action getNotebookFromWebUrl";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -83,7 +82,7 @@ namespace ApiSdk.Groups.Item.Onenote.Notebooks.GetNotebookFromWebUrl {
         public GetNotebookFromWebUrlRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/onenote/notebooks/getNotebookFromWebUrl", pathParameters) {
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a notebook object by using its URL path. The location can be user notebooks on Microsoft 365, group notebooks, or SharePoint site-hosted team notebooks on Microsoft 365.
+        /// Invoke action getNotebookFromWebUrl
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

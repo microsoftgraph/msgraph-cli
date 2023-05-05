@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.Chats.Item.HideForUser {
     /// <summary>
     /// Provides operations to call the hideForUser method.
     /// </summary>
     public class HideForUserRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Hide a chat for a user.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chat-hideforuser?view=graph-rest-1.0" />
+        /// Invoke action hideForUser
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Hide a chat for a user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-hideforuser?view=graph-rest-1.0";
+            command.Description = "Invoke action hideForUser";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -67,7 +66,7 @@ namespace ApiSdk.Users.Item.Chats.Item.HideForUser {
         public HideForUserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/hideForUser", pathParameters) {
         }
         /// <summary>
-        /// Hide a chat for a user.
+        /// Invoke action hideForUser
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

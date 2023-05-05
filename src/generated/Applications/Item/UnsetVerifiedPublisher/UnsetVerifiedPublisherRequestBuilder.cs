@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Applications.Item.UnsetVerifiedPublisher {
     /// <summary>
     /// Provides operations to call the unsetVerifiedPublisher method.
     /// </summary>
     public class UnsetVerifiedPublisherRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Unset the verifiedPublisher previously set on an application, removing all verified publisher properties. For more information, see Publisher verification.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/application-unsetverifiedpublisher?view=graph-rest-1.0" />
+        /// Invoke action unsetVerifiedPublisher
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Unset the verifiedPublisher previously set on an application, removing all verified publisher properties. For more information, see Publisher verification.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-unsetverifiedpublisher?view=graph-rest-1.0";
+            command.Description = "Invoke action unsetVerifiedPublisher";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -51,7 +50,7 @@ namespace ApiSdk.Applications.Item.UnsetVerifiedPublisher {
         public UnsetVerifiedPublisherRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/unsetVerifiedPublisher", pathParameters) {
         }
         /// <summary>
-        /// Unset the verifiedPublisher previously set on an application, removing all verified publisher properties. For more information, see Publisher verification.
+        /// Invoke action unsetVerifiedPublisher
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

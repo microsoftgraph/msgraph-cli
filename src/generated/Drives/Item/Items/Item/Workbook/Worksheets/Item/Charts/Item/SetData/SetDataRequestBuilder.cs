@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.SetData {
     /// <summary>
     /// Provides operations to call the setData method.
     /// </summary>
     public class SetDataRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Resets the source data for the chart.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chart-setdata?view=graph-rest-1.0" />
+        /// Invoke action setData
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Resets the source data for the chart.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chart-setdata?view=graph-rest-1.0";
+            command.Description = "Invoke action setData";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -79,7 +78,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Set
         public SetDataRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/{workbookChart%2Did}/setData", pathParameters) {
         }
         /// <summary>
-        /// Resets the source data for the chart.
+        /// Invoke action setData
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

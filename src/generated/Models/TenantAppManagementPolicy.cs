@@ -1,11 +1,11 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class TenantAppManagementPolicy : PolicyBase, IParsable {
-        /// <summary>The applicationRestrictions property</summary>
+        /// <summary>Restrictions that apply as default to all application objects in the tenant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public AppManagementConfiguration? ApplicationRestrictions { get; set; }
@@ -13,9 +13,9 @@ namespace ApiSdk.Models {
 #else
         public AppManagementConfiguration ApplicationRestrictions { get; set; }
 #endif
-        /// <summary>The isEnabled property</summary>
+        /// <summary>Denotes whether the policy is enabled. Default value is false.</summary>
         public bool? IsEnabled { get; set; }
-        /// <summary>The servicePrincipalRestrictions property</summary>
+        /// <summary>Restrictions that apply as default to all service principal objects in the tenant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public AppManagementConfiguration? ServicePrincipalRestrictions { get; set; }

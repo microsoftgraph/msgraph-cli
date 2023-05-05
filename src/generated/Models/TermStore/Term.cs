@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models.TermStore {
     public class Term : Entity, IParsable {
         /// <summary>Children of current term.</summary>

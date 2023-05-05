@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class AppleManagedIdentityProvider : IdentityProviderBase, IParsable {
         /// <summary>The certificate data, which is a long string of text from the certificate. Can be null.</summary>

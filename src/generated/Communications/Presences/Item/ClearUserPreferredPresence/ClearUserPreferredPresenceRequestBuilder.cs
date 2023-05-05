@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Communications.Presences.Item.ClearUserPreferredPresence {
     /// <summary>
     /// Provides operations to call the clearUserPreferredPresence method.
     /// </summary>
     public class ClearUserPreferredPresenceRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Clear the preferred availability and activity status for a user.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/presence-clearuserpreferredpresence?view=graph-rest-1.0" />
+        /// Invoke action clearUserPreferredPresence
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Clear the preferred availability and activity status for a user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/presence-clearuserpreferredpresence?view=graph-rest-1.0";
+            command.Description = "Invoke action clearUserPreferredPresence";
             var presenceIdOption = new Option<string>("--presence-id", description: "The unique identifier of presence") {
             };
             presenceIdOption.IsRequired = true;
@@ -51,7 +50,7 @@ namespace ApiSdk.Communications.Presences.Item.ClearUserPreferredPresence {
         public ClearUserPreferredPresenceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/presences/{presence%2Did}/clearUserPreferredPresence", pathParameters) {
         }
         /// <summary>
-        /// Clear the preferred availability and activity status for a user.
+        /// Invoke action clearUserPreferredPresence
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

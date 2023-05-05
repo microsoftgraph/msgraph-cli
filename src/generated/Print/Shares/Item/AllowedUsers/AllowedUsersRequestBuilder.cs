@@ -1,21 +1,21 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Print.Shares.Item.AllowedUsers.Count;
 using ApiSdk.Print.Shares.Item.AllowedUsers.Item;
 using ApiSdk.Print.Shares.Item.AllowedUsers.Ref;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Print.Shares.Item.AllowedUsers {
     /// <summary>
     /// Provides operations to manage the allowedUsers property of the microsoft.graph.printerShare entity.
@@ -25,7 +25,10 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers {
         /// Gets an item from the ApiSdk.print.shares.item.allowedUsers.item collection
         /// </summary>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
-            return new(new(0), new(0));
+            var commands = new List<Command>();
+            var builder = new UserItemRequestBuilder(PathParameters);
+            commands.Add(builder.BuildMailboxSettingsNavCommand());
+            return new(new(0), commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -43,12 +46,11 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of users who have been granted access to submit print jobs to the associated printerShare.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/printershare-list-allowedusers?view=graph-rest-1.0" />
+        /// The users who have access to print using the printer.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of users who have been granted access to submit print jobs to the associated printerShare.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printershare-list-allowedusers?view=graph-rest-1.0";
+            command.Description = "The users who have access to print using the printer.";
             var printerShareIdOption = new Option<string>("--printer-share-id", description: "The unique identifier of printerShare") {
             };
             printerShareIdOption.IsRequired = true;
@@ -177,7 +179,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers {
         public AllowedUsersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/shares/{printerShare%2Did}/allowedUsers{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve a list of users who have been granted access to submit print jobs to the associated printerShare.
+        /// The users who have access to print using the printer.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -203,7 +205,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of users who have been granted access to submit print jobs to the associated printerShare.
+        /// The users who have access to print using the printer.
         /// </summary>
         public class AllowedUsersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -1,25 +1,25 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class AccessPackageAssignmentRequestorSettings : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>If false, the requestor is not permitted to include a schedule in their request.</summary>
+        /// <summary>False indicates that the requestor is not permitted to include a schedule in their request.</summary>
         public bool? AllowCustomAssignmentSchedule { get; set; }
-        /// <summary>If true, allows on-behalf-of requestors to create a request to add access for another principal.</summary>
+        /// <summary>True allows on-behalf-of requestors to create a request to add access for another principal.</summary>
         public bool? EnableOnBehalfRequestorsToAddAccess { get; set; }
-        /// <summary>If true, allows on-behalf-of requestors to create a request to remove access for another principal.</summary>
+        /// <summary>True allows on-behalf-of requestors to create a request to remove access for another principal.</summary>
         public bool? EnableOnBehalfRequestorsToRemoveAccess { get; set; }
-        /// <summary>If true, allows on-behalf-of requestors to create a request to update access for another principal.</summary>
+        /// <summary>True allows on-behalf-of requestors to create a request to update access for another principal.</summary>
         public bool? EnableOnBehalfRequestorsToUpdateAccess { get; set; }
-        /// <summary>If true, allows requestors to create a request to add access for themselves.</summary>
+        /// <summary>True allows requestors to create a request to add access for themselves.</summary>
         public bool? EnableTargetsToSelfAddAccess { get; set; }
-        /// <summary>If true, allows requestors to create a request to remove their access.</summary>
+        /// <summary>True allows requestors to create a request to remove their access.</summary>
         public bool? EnableTargetsToSelfRemoveAccess { get; set; }
-        /// <summary>If true, allows requestors to create a request to update their access.</summary>
+        /// <summary>True allows requestors to create a request to update their access.</summary>
         public bool? EnableTargetsToSelfUpdateAccess { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

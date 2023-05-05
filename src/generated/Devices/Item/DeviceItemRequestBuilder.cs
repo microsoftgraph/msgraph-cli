@@ -8,21 +8,21 @@ using ApiSdk.Devices.Item.RegisteredOwners;
 using ApiSdk.Devices.Item.RegisteredUsers;
 using ApiSdk.Devices.Item.Restore;
 using ApiSdk.Devices.Item.TransitiveMemberOf;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Devices.Item {
     /// <summary>
     /// Provides operations to manage the collection of device entities.
@@ -219,6 +219,7 @@ namespace ApiSdk.Devices.Item {
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
+            nonExecCommands.Add(builder.BuildGraphAdministrativeUnitNavCommand());
             nonExecCommands.Add(builder.BuildGraphGroupNavCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
@@ -336,6 +337,7 @@ namespace ApiSdk.Devices.Item {
             nonExecCommands.Add(builder.BuildGraphServicePrincipalNavCommand());
             nonExecCommands.Add(builder.BuildGraphUserNavCommand());
             execCommands.Add(builder.BuildListCommand());
+            nonExecCommands.Add(builder.BuildRefNavCommand());
             var cmds = builder.BuildCommand();
             execCommands.AddRange(cmds.Item1);
             nonExecCommands.AddRange(cmds.Item2);
@@ -374,6 +376,7 @@ namespace ApiSdk.Devices.Item {
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
+            nonExecCommands.Add(builder.BuildGraphAdministrativeUnitNavCommand());
             nonExecCommands.Add(builder.BuildGraphGroupNavCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();

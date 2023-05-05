@@ -2,23 +2,23 @@ using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.Security;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item.DataSource;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item.LastIndexOperation;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item.SecurityApplyHold;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item.SecurityRelease;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item.SecurityRemoveHold;
-using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item.SecurityUpdateIndex;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item.MicrosoftGraphSecurityApplyHold;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item.MicrosoftGraphSecurityRelease;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item.MicrosoftGraphSecurityRemoveHold;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item.MicrosoftGraphSecurityUpdateIndex;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Item {
     /// <summary>
     /// Provides operations to manage the noncustodialDataSources property of the microsoft.graph.security.ediscoveryCase entity.
@@ -163,6 +163,66 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Ite
             return command;
         }
         /// <summary>
+        /// Provides operations to call the applyHold method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSecurityApplyHoldByIdNavCommand() {
+            var command = new Command("microsoft-graph-security-apply-hold-by-id");
+            command.Description = "Provides operations to call the applyHold method.";
+            var builder = new MicrosoftGraphSecurityApplyHoldRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the release method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSecurityReleaseNavCommand() {
+            var command = new Command("microsoft-graph-security-release");
+            command.Description = "Provides operations to call the release method.";
+            var builder = new MicrosoftGraphSecurityReleaseRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the removeHold method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSecurityRemoveHoldByIdNavCommand() {
+            var command = new Command("microsoft-graph-security-remove-hold-by-id");
+            command.Description = "Provides operations to call the removeHold method.";
+            var builder = new MicrosoftGraphSecurityRemoveHoldRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the updateIndex method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSecurityUpdateIndexNavCommand() {
+            var command = new Command("microsoft-graph-security-update-index");
+            command.Description = "Provides operations to call the updateIndex method.";
+            var builder = new MicrosoftGraphSecurityUpdateIndexRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Update the navigation property noncustodialDataSources in security
         /// </summary>
         public Command BuildPatchCommand() {
@@ -223,66 +283,6 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Ite
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the applyHold method.
-        /// </summary>
-        public Command BuildSecurityApplyHoldNavCommand() {
-            var command = new Command("security-apply-hold");
-            command.Description = "Provides operations to call the applyHold method.";
-            var builder = new SecurityApplyHoldRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            execCommands.Add(builder.BuildPostCommand());
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the release method.
-        /// </summary>
-        public Command BuildSecurityReleaseNavCommand() {
-            var command = new Command("security-release");
-            command.Description = "Provides operations to call the release method.";
-            var builder = new SecurityReleaseRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            execCommands.Add(builder.BuildPostCommand());
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the removeHold method.
-        /// </summary>
-        public Command BuildSecurityRemoveHoldNavCommand() {
-            var command = new Command("security-remove-hold");
-            command.Description = "Provides operations to call the removeHold method.";
-            var builder = new SecurityRemoveHoldRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            execCommands.Add(builder.BuildPostCommand());
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to call the updateIndex method.
-        /// </summary>
-        public Command BuildSecurityUpdateIndexNavCommand() {
-            var command = new Command("security-update-index");
-            command.Description = "Provides operations to call the updateIndex method.";
-            var builder = new SecurityUpdateIndexRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            execCommands.Add(builder.BuildPostCommand());
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
             return command;
         }
         /// <summary>

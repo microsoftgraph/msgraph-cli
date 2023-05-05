@@ -4,21 +4,21 @@ using ApiSdk.DirectoryObjects.GetAvailableExtensionProperties;
 using ApiSdk.DirectoryObjects.GetByIds;
 using ApiSdk.DirectoryObjects.Item;
 using ApiSdk.DirectoryObjects.ValidateProperties;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.DirectoryObjects {
     /// <summary>
     /// Provides operations to manage the collection of directoryObject entities.

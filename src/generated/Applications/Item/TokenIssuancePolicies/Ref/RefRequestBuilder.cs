@@ -1,30 +1,29 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Applications.Item.TokenIssuancePolicies.Ref {
     /// <summary>
     /// Provides operations to manage the collection of application entities.
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// List the tokenIssuancePolicy objects that are assigned to an application.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/application-list-tokenissuancepolicies?view=graph-rest-1.0" />
+        /// Get ref of tokenIssuancePolicies from applications
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "List the tokenIssuancePolicy objects that are assigned to an application.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-list-tokenissuancepolicies?view=graph-rest-1.0";
+            command.Description = "Get ref of tokenIssuancePolicies from applications";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -158,7 +157,7 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies.Ref {
         public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/tokenIssuancePolicies/$ref{?%24top,%24skip,%24search,%24filter,%24count,%24orderby}", pathParameters) {
         }
         /// <summary>
-        /// List the tokenIssuancePolicy objects that are assigned to an application.
+        /// Get ref of tokenIssuancePolicies from applications
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -211,7 +210,7 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// List the tokenIssuancePolicy objects that are assigned to an application.
+        /// Get ref of tokenIssuancePolicies from applications
         /// </summary>
         public class RefRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

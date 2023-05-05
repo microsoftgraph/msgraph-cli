@@ -1,23 +1,74 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
+using ApiSdk.Sites.Item.Analytics.AllTime;
+using ApiSdk.Sites.Item.Analytics.ItemActivityStats;
+using ApiSdk.Sites.Item.Analytics.LastSevenDays;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Sites.Item.Analytics {
     /// <summary>
     /// Provides operations to manage the analytics property of the microsoft.graph.site entity.
     /// </summary>
     public class AnalyticsRequestBuilder : BaseCliRequestBuilder {
+        /// <summary>
+        /// Provides operations to manage the allTime property of the microsoft.graph.itemAnalytics entity.
+        /// </summary>
+        public Command BuildAllTimeNavCommand() {
+            var command = new Command("all-time");
+            command.Description = "Provides operations to manage the allTime property of the microsoft.graph.itemAnalytics entity.";
+            var builder = new AllTimeRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Delete navigation property analytics for sites
+        /// </summary>
+        public Command BuildDeleteCommand() {
+            var command = new Command("delete");
+            command.Description = "Delete navigation property analytics for sites";
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
+            };
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
+            command.SetHandler(async (invocationContext) => {
+                var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
+                var requestInfo = ToDeleteRequestInformation(q => {
+                });
+                if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
+            });
+            return command;
+        }
         /// <summary>
         /// Analytics about the view activities that took place in this site.
         /// </summary>
@@ -80,10 +131,132 @@ namespace ApiSdk.Sites.Item.Analytics {
             return command;
         }
         /// <summary>
+        /// Provides operations to manage the itemActivityStats property of the microsoft.graph.itemAnalytics entity.
+        /// </summary>
+        public Command BuildItemActivityStatsNavCommand() {
+            var command = new Command("item-activity-stats");
+            command.Description = "Provides operations to manage the itemActivityStats property of the microsoft.graph.itemAnalytics entity.";
+            var builder = new ItemActivityStatsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the lastSevenDays property of the microsoft.graph.itemAnalytics entity.
+        /// </summary>
+        public Command BuildLastSevenDaysNavCommand() {
+            var command = new Command("last-seven-days");
+            command.Description = "Provides operations to manage the lastSevenDays property of the microsoft.graph.itemAnalytics entity.";
+            var builder = new LastSevenDaysRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Update the navigation property analytics in sites
+        /// </summary>
+        public Command BuildPatchCommand() {
+            var command = new Command("patch");
+            command.Description = "Update the navigation property analytics in sites";
+            var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
+            };
+            siteIdOption.IsRequired = true;
+            command.AddOption(siteIdOption);
+            var bodyOption = new Option<string>("--body", description: "The request body") {
+            };
+            bodyOption.IsRequired = true;
+            command.AddOption(bodyOption);
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
+                IsRequired = true
+            };
+            command.AddOption(outputOption);
+            var queryOption = new Option<string>("--query");
+            command.AddOption(queryOption);
+            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
+                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
+                    return value;
+                }
+                return true;
+            }, description: "Disable indentation for the JSON output formatter.");
+            command.AddOption(jsonNoIndentOption);
+            command.SetHandler(async (invocationContext) => {
+                var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
+                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
+                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
+                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
+                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
+                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
+                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
+                var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
+                using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
+                var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
+                var model = parseNode.GetObjectValue<ItemAnalytics>(ItemAnalytics.CreateFromDiscriminatorValue);
+                if (model is null) return; // Cannot create a POST request from a null model.
+                var requestInfo = ToPatchRequestInformation(model, q => {
+                });
+                if (siteId is not null) requestInfo.PathParameters.Add("site%2Did", siteId);
+                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
+                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
+                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
+                var formatter = outputFormatterFactory.GetFormatter(output);
+                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+            });
+            return command;
+        }
+        /// <summary>
         /// Instantiates a new AnalyticsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AnalyticsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/analytics{?%24select,%24expand}", pathParameters) {
+        }
+        /// <summary>
+        /// Delete navigation property analytics for sites
+        /// </summary>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+#endif
+            var requestInfo = new RequestInformation {
+                HttpMethod = Method.DELETE,
+                UrlTemplate = UrlTemplate,
+                PathParameters = PathParameters,
+            };
+            if (requestConfiguration != null) {
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
+                requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
+                requestInfo.AddRequestOptions(requestConfig.Options);
+                requestInfo.AddHeaders(requestConfig.Headers);
+            }
+            return requestInfo;
         }
         /// <summary>
         /// Analytics about the view activities that took place in this site.
@@ -104,6 +277,34 @@ namespace ApiSdk.Sites.Item.Analytics {
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new RequestConfiguration<AnalyticsRequestBuilderGetQueryParameters>();
+                requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
+                requestInfo.AddRequestOptions(requestConfig.Options);
+                requestInfo.AddHeaders(requestConfig.Headers);
+            }
+            return requestInfo;
+        }
+        /// <summary>
+        /// Update the navigation property analytics in sites
+        /// </summary>
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPatchRequestInformation(ItemAnalytics body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToPatchRequestInformation(ItemAnalytics body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+#endif
+            _ = body ?? throw new ArgumentNullException(nameof(body));
+            var requestInfo = new RequestInformation {
+                HttpMethod = Method.PATCH,
+                UrlTemplate = UrlTemplate,
+                PathParameters = PathParameters,
+            };
+            requestInfo.Headers.Add("Accept", "application/json");
+            if (requestConfiguration != null) {
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);

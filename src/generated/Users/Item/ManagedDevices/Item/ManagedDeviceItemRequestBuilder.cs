@@ -1,5 +1,5 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.ManagedDevices.Item.BypassActivationLock;
 using ApiSdk.Users.Item.ManagedDevices.Item.CleanWindowsDevice;
 using ApiSdk.Users.Item.ManagedDevices.Item.DeleteUserFromSharedAppleDevice;
@@ -22,19 +22,19 @@ using ApiSdk.Users.Item.ManagedDevices.Item.Users;
 using ApiSdk.Users.Item.ManagedDevices.Item.WindowsDefenderScan;
 using ApiSdk.Users.Item.ManagedDevices.Item.WindowsDefenderUpdateSignatures;
 using ApiSdk.Users.Item.ManagedDevices.Item.Wipe;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.ManagedDevices.Item {
     /// <summary>
     /// Provides operations to manage the managedDevices property of the microsoft.graph.user entity.

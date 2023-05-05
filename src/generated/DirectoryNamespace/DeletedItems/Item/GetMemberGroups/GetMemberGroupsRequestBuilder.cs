@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.DirectoryNamespace.DeletedItems.Item.GetMemberGroups {
     /// <summary>
     /// Provides operations to call the getMemberGroups method.
     /// </summary>
     public class GetMemberGroupsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Return all the group IDs for the groups that the specified user, group, service principal, organizational contact, device, or directory object is a member of. This function is transitive.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/directoryobject-getmembergroups?view=graph-rest-1.0" />
+        /// Invoke action getMemberGroups
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Return all the group IDs for the groups that the specified user, group, service principal, organizational contact, device, or directory object is a member of. This function is transitive.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directoryobject-getmembergroups?view=graph-rest-1.0";
+            command.Description = "Invoke action getMemberGroups";
             var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "The unique identifier of directoryObject") {
             };
             directoryObjectIdOption.IsRequired = true;
@@ -94,7 +93,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item.GetMemberGroups {
         public GetMemberGroupsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/deletedItems/{directoryObject%2Did}/getMemberGroups", pathParameters) {
         }
         /// <summary>
-        /// Return all the group IDs for the groups that the specified user, group, service principal, organizational contact, device, or directory object is a member of. This function is transitive.
+        /// Invoke action getMemberGroups
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

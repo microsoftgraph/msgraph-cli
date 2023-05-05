@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Teams.Item.Tags.Item.Members.Count;
 using ApiSdk.Teams.Item.Tags.Item.Members.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Teams.Item.Tags.Item.Members {
     /// <summary>
     /// Provides operations to manage the members property of the microsoft.graph.teamworkTag entity.
@@ -47,12 +47,11 @@ namespace ApiSdk.Teams.Item.Tags.Item.Members {
             return command;
         }
         /// <summary>
-        /// Create a new teamworkTagMember object in a team.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/teamworktagmember-post?view=graph-rest-1.0" />
+        /// Create new navigation property to members for teams
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new teamworkTagMember object in a team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/teamworktagmember-post?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to members for teams";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -111,12 +110,11 @@ namespace ApiSdk.Teams.Item.Tags.Item.Members {
             return command;
         }
         /// <summary>
-        /// Get a list of the members of a standard tag in a team and their properties.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/teamworktagmember-list?view=graph-rest-1.0" />
+        /// Users assigned to the tag.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the members of a standard tag in a team and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/teamworktagmember-list?view=graph-rest-1.0";
+            command.Description = "Users assigned to the tag.";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -234,7 +232,7 @@ namespace ApiSdk.Teams.Item.Tags.Item.Members {
         public MembersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/tags/{teamworkTag%2Did}/members{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get a list of the members of a standard tag in a team and their properties.
+        /// Users assigned to the tag.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -260,7 +258,7 @@ namespace ApiSdk.Teams.Item.Tags.Item.Members {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new teamworkTagMember object in a team.
+        /// Create new navigation property to members for teams
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -288,7 +286,7 @@ namespace ApiSdk.Teams.Item.Tags.Item.Members {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the members of a standard tag in a team and their properties.
+        /// Users assigned to the tag.
         /// </summary>
         public class MembersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

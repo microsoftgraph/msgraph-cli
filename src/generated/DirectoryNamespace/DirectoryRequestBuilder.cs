@@ -1,22 +1,24 @@
 using ApiSdk.DirectoryNamespace.AdministrativeUnits;
+using ApiSdk.DirectoryNamespace.AttributeSets;
+using ApiSdk.DirectoryNamespace.CustomSecurityAttributeDefinitions;
 using ApiSdk.DirectoryNamespace.DeletedItems;
 using ApiSdk.DirectoryNamespace.FederationConfigurations;
 using ApiSdk.DirectoryNamespace.OnPremisesSynchronization;
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.DirectoryNamespace {
     /// <summary>
     /// Provides operations to manage the directory singleton.
@@ -34,6 +36,56 @@ namespace ApiSdk.DirectoryNamespace {
             nonExecCommands.Add(builder.BuildCountNavCommand());
             execCommands.Add(builder.BuildCreateCommand());
             nonExecCommands.Add(builder.BuildDeltaNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the attributeSets property of the microsoft.graph.directory entity.
+        /// </summary>
+        public Command BuildAttributeSetsNavCommand() {
+            var command = new Command("attribute-sets");
+            command.Description = "Provides operations to manage the attributeSets property of the microsoft.graph.directory entity.";
+            var builder = new AttributeSetsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the customSecurityAttributeDefinitions property of the microsoft.graph.directory entity.
+        /// </summary>
+        public Command BuildCustomSecurityAttributeDefinitionsNavCommand() {
+            var command = new Command("custom-security-attribute-definitions");
+            command.Description = "Provides operations to manage the customSecurityAttributeDefinitions property of the microsoft.graph.directory entity.";
+            var builder = new CustomSecurityAttributeDefinitionsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
             execCommands.AddRange(cmds.Item1);

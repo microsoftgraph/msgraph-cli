@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class SharePointIdentity : Identity, IParsable {
         /// <summary>The sign in name of the SharePoint identity.</summary>
@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         public string LoginName { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new sharePointIdentity and sets the default values.
+        /// Instantiates a new SharePointIdentity and sets the default values.
         /// </summary>
         public SharePointIdentity() : base() {
             OdataType = "#microsoft.graph.sharePointIdentity";

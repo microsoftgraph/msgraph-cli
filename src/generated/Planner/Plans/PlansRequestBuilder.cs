@@ -1,20 +1,20 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Planner.Plans.Count;
 using ApiSdk.Planner.Plans.Item;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Planner.Plans {
     /// <summary>
     /// Provides operations to manage the plans property of the microsoft.graph.planner entity.
@@ -51,12 +51,11 @@ namespace ApiSdk.Planner.Plans {
             return command;
         }
         /// <summary>
-        /// Use this API to create a new **plannerPlan**.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/planner-post-plans?view=graph-rest-1.0" />
+        /// Create new navigation property to plans for planner
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to create a new **plannerPlan**.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/planner-post-plans?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to plans for planner";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -103,12 +102,11 @@ namespace ApiSdk.Planner.Plans {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of **plannerplan** objects.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/planner-list-plans?view=graph-rest-1.0" />
+        /// Read-only. Nullable. Returns a collection of the specified plans
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of **plannerplan** objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/planner-list-plans?view=graph-rest-1.0";
+            command.Description = "Read-only. Nullable. Returns a collection of the specified plans";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -214,7 +212,7 @@ namespace ApiSdk.Planner.Plans {
         public PlansRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/planner/plans{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve a list of **plannerplan** objects.
+        /// Read-only. Nullable. Returns a collection of the specified plans
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -240,7 +238,7 @@ namespace ApiSdk.Planner.Plans {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to create a new **plannerPlan**.
+        /// Create new navigation property to plans for planner
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -268,7 +266,7 @@ namespace ApiSdk.Planner.Plans {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of **plannerplan** objects.
+        /// Read-only. Nullable. Returns a collection of the specified plans
         /// </summary>
         public class PlansRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

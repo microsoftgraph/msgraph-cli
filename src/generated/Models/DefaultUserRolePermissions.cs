@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class DefaultUserRolePermissions : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -11,6 +11,8 @@ namespace ApiSdk.Models {
         public bool? AllowedToCreateApps { get; set; }
         /// <summary>Indicates whether the default user role can create security groups.</summary>
         public bool? AllowedToCreateSecurityGroups { get; set; }
+        /// <summary>Indicates whether the registered owners of a device can read their own BitLocker recovery keys with default user role.</summary>
+        public bool? AllowedToReadBitlockerKeysForOwnedDevice { get; set; }
         /// <summary>Indicates whether the default user role can read other users.</summary>
         public bool? AllowedToReadOtherUsers { get; set; }
         /// <summary>The OdataType property</summary>
@@ -50,6 +52,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"allowedToCreateApps", n => { AllowedToCreateApps = n.GetBoolValue(); } },
                 {"allowedToCreateSecurityGroups", n => { AllowedToCreateSecurityGroups = n.GetBoolValue(); } },
+                {"allowedToReadBitlockerKeysForOwnedDevice", n => { AllowedToReadBitlockerKeysForOwnedDevice = n.GetBoolValue(); } },
                 {"allowedToReadOtherUsers", n => { AllowedToReadOtherUsers = n.GetBoolValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"permissionGrantPoliciesAssigned", n => { PermissionGrantPoliciesAssigned = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
@@ -63,6 +66,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("allowedToCreateApps", AllowedToCreateApps);
             writer.WriteBoolValue("allowedToCreateSecurityGroups", AllowedToCreateSecurityGroups);
+            writer.WriteBoolValue("allowedToReadBitlockerKeysForOwnedDevice", AllowedToReadBitlockerKeysForOwnedDevice);
             writer.WriteBoolValue("allowedToReadOtherUsers", AllowedToReadOtherUsers);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteCollectionOfPrimitiveValues<string>("permissionGrantPoliciesAssigned", PermissionGrantPoliciesAssigned);

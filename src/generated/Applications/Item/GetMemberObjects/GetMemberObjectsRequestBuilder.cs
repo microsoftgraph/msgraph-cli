@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Applications.Item.GetMemberObjects {
     /// <summary>
     /// Provides operations to call the getMemberObjects method.
     /// </summary>
     public class GetMemberObjectsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Return all IDs for the groups, administrative units, and directory roles that a user, group, service principal, organizational contact, device, or directory object is a member of. This function is transitive. **Note:** Only users and role-enabled groups can be members of directory roles.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/directoryobject-getmemberobjects?view=graph-rest-1.0" />
+        /// Invoke action getMemberObjects
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Return all IDs for the groups, administrative units, and directory roles that a user, group, service principal, organizational contact, device, or directory object is a member of. This function is transitive. **Note:** Only users and role-enabled groups can be members of directory roles.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directoryobject-getmemberobjects?view=graph-rest-1.0";
+            command.Description = "Invoke action getMemberObjects";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -94,7 +93,7 @@ namespace ApiSdk.Applications.Item.GetMemberObjects {
         public GetMemberObjectsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/getMemberObjects", pathParameters) {
         }
         /// <summary>
-        /// Return all IDs for the groups, administrative units, and directory roles that a user, group, service principal, organizational contact, device, or directory object is a member of. This function is transitive. **Note:** Only users and role-enabled groups can be members of directory roles.
+        /// Invoke action getMemberObjects
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -1,23 +1,62 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Organization.Item.CertificateBasedAuthConfiguration.Item {
     /// <summary>
     /// Provides operations to manage the certificateBasedAuthConfiguration property of the microsoft.graph.organization entity.
     /// </summary>
     public class CertificateBasedAuthConfigurationItemRequestBuilder : BaseCliRequestBuilder {
+        /// <summary>
+        /// Delete navigation property certificateBasedAuthConfiguration for organization
+        /// </summary>
+        public Command BuildDeleteCommand() {
+            var command = new Command("delete");
+            command.Description = "Delete navigation property certificateBasedAuthConfiguration for organization";
+            var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
+            };
+            organizationIdOption.IsRequired = true;
+            command.AddOption(organizationIdOption);
+            var certificateBasedAuthConfigurationIdOption = new Option<string>("--certificate-based-auth-configuration-id", description: "The unique identifier of certificateBasedAuthConfiguration") {
+            };
+            certificateBasedAuthConfigurationIdOption.IsRequired = true;
+            command.AddOption(certificateBasedAuthConfigurationIdOption);
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
+            command.SetHandler(async (invocationContext) => {
+                var organizationId = invocationContext.ParseResult.GetValueForOption(organizationIdOption);
+                var certificateBasedAuthConfigurationId = invocationContext.ParseResult.GetValueForOption(certificateBasedAuthConfigurationIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
+                var requestInfo = ToDeleteRequestInformation(q => {
+                });
+                if (organizationId is not null) requestInfo.PathParameters.Add("organization%2Did", organizationId);
+                if (certificateBasedAuthConfigurationId is not null) requestInfo.PathParameters.Add("certificateBasedAuthConfiguration%2Did", certificateBasedAuthConfigurationId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
+            });
+            return command;
+        }
         /// <summary>
         /// Navigation property to manage certificate-based authentication configuration. Only a single instance of certificateBasedAuthConfiguration can be created in the collection.
         /// </summary>
@@ -90,6 +129,31 @@ namespace ApiSdk.Organization.Item.CertificateBasedAuthConfiguration.Item {
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CertificateBasedAuthConfigurationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/organization/{organization%2Did}/certificateBasedAuthConfiguration/{certificateBasedAuthConfiguration%2Did}{?%24select,%24expand}", pathParameters) {
+        }
+        /// <summary>
+        /// Delete navigation property certificateBasedAuthConfiguration for organization
+        /// </summary>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+#endif
+            var requestInfo = new RequestInformation {
+                HttpMethod = Method.DELETE,
+                UrlTemplate = UrlTemplate,
+                PathParameters = PathParameters,
+            };
+            if (requestConfiguration != null) {
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
+                requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
+                requestInfo.AddRequestOptions(requestConfig.Options);
+                requestInfo.AddHeaders(requestConfig.Headers);
+            }
+            return requestInfo;
         }
         /// <summary>
         /// Navigation property to manage certificate-based authentication configuration. Only a single instance of certificateBasedAuthConfiguration can be created in the collection.

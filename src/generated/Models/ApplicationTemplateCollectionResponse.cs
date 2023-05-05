@@ -1,10 +1,10 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
-    public class ApplicationTemplateCollectionResponse : BaseCollectionPaginationCountResponse, IAdditionalDataHolder, IParsable {
+    public class ApplicationTemplateCollectionResponse : BaseCollectionPaginationCountResponse, IParsable {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -13,12 +13,6 @@ namespace ApiSdk.Models {
 #else
         public List<ApplicationTemplate> Value { get; set; }
 #endif
-        /// <summary>
-        /// Instantiates a new ApplicationTemplateCollectionResponse and sets the default values.
-        /// </summary>
-        public ApplicationTemplateCollectionResponse() : base() {
-            AdditionalData = new Dictionary<string, object>();
-        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -43,7 +37,6 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteCollectionOfObjectValues<ApplicationTemplate>("value", Value);
-            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

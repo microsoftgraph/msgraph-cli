@@ -1,24 +1,49 @@
+using ApiSdk.Admin.Edge;
 using ApiSdk.Admin.ServiceAnnouncement;
-using ApiSdk.Models;
+using ApiSdk.Admin.Sharepoint;
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
+using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Admin {
     /// <summary>
     /// Provides operations to manage the admin singleton.
     /// </summary>
     public class AdminRequestBuilder : BaseCliRequestBuilder {
+        /// <summary>
+        /// Provides operations to manage the edge property of the microsoft.graph.admin entity.
+        /// </summary>
+        public Command BuildEdgeNavCommand() {
+            var command = new Command("edge");
+            command.Description = "Provides operations to manage the edge property of the microsoft.graph.admin entity.";
+            var builder = new EdgeRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildInternetExplorerModeNavCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
         /// <summary>
         /// Get admin
         /// </summary>
@@ -140,6 +165,29 @@ namespace ApiSdk.Admin {
             nonExecCommands.Add(builder.BuildIssuesNavCommand());
             nonExecCommands.Add(builder.BuildMessagesNavCommand());
             execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the sharepoint property of the microsoft.graph.admin entity.
+        /// </summary>
+        public Command BuildSharepointNavCommand() {
+            var command = new Command("sharepoint");
+            command.Description = "Provides operations to manage the sharepoint property of the microsoft.graph.admin entity.";
+            var builder = new SharepointRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildSettingsNavCommand());
             foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);

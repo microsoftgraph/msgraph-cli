@@ -1,8 +1,8 @@
 using Microsoft.Kiota.Abstractions.Serialization;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 namespace ApiSdk.Models {
     public class MicrosoftAuthenticatorAuthenticationMethodConfiguration : AuthenticationMethodConfiguration, IParsable {
         /// <summary>A collection of Microsoft Authenticator settings such as application context and location context, and whether they are enabled for all users or specific users only.</summary>
@@ -21,6 +21,8 @@ namespace ApiSdk.Models {
 #else
         public List<MicrosoftAuthenticatorAuthenticationMethodTarget> IncludeTargets { get; set; }
 #endif
+        /// <summary>The isSoftwareOathEnabled property</summary>
+        public bool? IsSoftwareOathEnabled { get; set; }
         /// <summary>
         /// Instantiates a new MicrosoftAuthenticatorAuthenticationMethodConfiguration and sets the default values.
         /// </summary>
@@ -42,6 +44,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"featureSettings", n => { FeatureSettings = n.GetObjectValue<MicrosoftAuthenticatorFeatureSettings>(MicrosoftAuthenticatorFeatureSettings.CreateFromDiscriminatorValue); } },
                 {"includeTargets", n => { IncludeTargets = n.GetCollectionOfObjectValues<MicrosoftAuthenticatorAuthenticationMethodTarget>(MicrosoftAuthenticatorAuthenticationMethodTarget.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"isSoftwareOathEnabled", n => { IsSoftwareOathEnabled = n.GetBoolValue(); } },
             };
         }
         /// <summary>
@@ -53,6 +56,7 @@ namespace ApiSdk.Models {
             base.Serialize(writer);
             writer.WriteObjectValue<MicrosoftAuthenticatorFeatureSettings>("featureSettings", FeatureSettings);
             writer.WriteCollectionOfObjectValues<MicrosoftAuthenticatorAuthenticationMethodTarget>("includeTargets", IncludeTargets);
+            writer.WriteBoolValue("isSoftwareOathEnabled", IsSoftwareOathEnabled);
         }
     }
 }

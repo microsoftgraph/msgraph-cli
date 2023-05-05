@@ -1,5 +1,5 @@
-using ApiSdk.Models;
 using ApiSdk.Models.ODataErrors;
+using ApiSdk.Models;
 using ApiSdk.Users.Item.CalendarView.Item.Accept;
 using ApiSdk.Users.Item.CalendarView.Item.Attachments;
 using ApiSdk.Users.Item.CalendarView.Item.Calendar;
@@ -13,19 +13,19 @@ using ApiSdk.Users.Item.CalendarView.Item.MultiValueExtendedProperties;
 using ApiSdk.Users.Item.CalendarView.Item.SingleValueExtendedProperties;
 using ApiSdk.Users.Item.CalendarView.Item.SnoozeReminder;
 using ApiSdk.Users.Item.CalendarView.Item.TentativelyAccept;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Users.Item.CalendarView.Item {
     /// <summary>
     /// Provides operations to manage the calendarView property of the microsoft.graph.user entity.
@@ -199,6 +199,11 @@ namespace ApiSdk.Users.Item.CalendarView.Item {
             };
             selectOption.IsRequired = false;
             command.AddOption(selectOption);
+            var expandOption = new Option<string[]>("--expand", description: "Expand related entities") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            expandOption.IsRequired = false;
+            command.AddOption(expandOption);
             var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
                 IsRequired = true
             };
@@ -218,6 +223,7 @@ namespace ApiSdk.Users.Item.CalendarView.Item {
                 var startDateTime = invocationContext.ParseResult.GetValueForOption(startDateTimeOption);
                 var endDateTime = invocationContext.ParseResult.GetValueForOption(endDateTimeOption);
                 var select = invocationContext.ParseResult.GetValueForOption(selectOption);
+                var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
                 var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
@@ -229,6 +235,7 @@ namespace ApiSdk.Users.Item.CalendarView.Item {
                     if (!string.IsNullOrEmpty(startDateTime)) q.QueryParameters.StartDateTime = startDateTime;
                     if (!string.IsNullOrEmpty(endDateTime)) q.QueryParameters.EndDateTime = endDateTime;
                     q.QueryParameters.Select = select;
+                    q.QueryParameters.Expand = expand;
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
                 if (eventId is not null) requestInfo.PathParameters.Add("event%2Did", eventId);
@@ -353,7 +360,7 @@ namespace ApiSdk.Users.Item.CalendarView.Item {
         /// Instantiates a new EventItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public EventItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendarView/{event%2Did}{?startDateTime*,endDateTime*,%24select}", pathParameters) {
+        public EventItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendarView/{event%2Did}{?startDateTime*,endDateTime*,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// The calendar view for the calendar. Read-only. Nullable.
@@ -392,6 +399,16 @@ namespace ApiSdk.Users.Item.CalendarView.Item {
 #nullable restore
 #else
             public string EndDateTime { get; set; }
+#endif
+            /// <summary>Expand related entities</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24expand")]
+            public string[]? Expand { get; set; }
+#nullable restore
+#else
+            [QueryParameter("%24expand")]
+            public string[] Expand { get; set; }
 #endif
             /// <summary>Select properties to be returned</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

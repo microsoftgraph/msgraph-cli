@@ -1,29 +1,28 @@
 using ApiSdk.Models.ODataErrors;
-using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Microsoft.Kiota.Cli.Commons;
+using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Cli.Commons.IO;
-using System;
+using Microsoft.Kiota.Cli.Commons;
 using System.Collections.Generic;
 using System.CommandLine;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Threading;
+using System;
 namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection.Unprotect {
     /// <summary>
     /// Provides operations to call the unprotect method.
     /// </summary>
     public class UnprotectRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Unprotect a worksheet
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/worksheetprotection-unprotect?view=graph-rest-1.0" />
+        /// Invoke action unprotect
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Unprotect a worksheet\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/worksheetprotection-unprotect?view=graph-rest-1.0";
+            command.Description = "Invoke action unprotect";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -63,7 +62,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Protection.Unpr
         public UnprotectRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/protection/unprotect", pathParameters) {
         }
         /// <summary>
-        /// Unprotect a worksheet
+        /// Invoke action unprotect
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
