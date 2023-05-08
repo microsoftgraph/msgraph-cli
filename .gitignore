@@ -583,3 +583,6 @@ tmp/
 
 # Exclude azure pipelines nuget config
 !.azure-pipelines/nuget.config
+
+# Exclude kiota logs
+.kiota.log
