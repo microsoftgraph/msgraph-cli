@@ -40,6 +40,7 @@ steps:
       inputs:
         scanFolder: '$(Build.SourcesDirectory)\src'
         debugMode: false
+        suppressionsFile: $(System.DefaultWorkingDirectory)/.azure-pipelines/config/CredScanSuppressions.json
         verboseOutput: true
 
   - ${{ if eq(parameters.scanBinary, true) }}:
