@@ -19,11 +19,12 @@ namespace ApiSdk.Education.Schools.Item.Classes.Ref {
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Classes taught at the school. Nullable.
+        /// Get the educationClass resources owned by an educationSchool.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationschool-list-classes?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Classes taught at the school. Nullable.";
+            command.Description = "Get the educationClass resources owned by an educationSchool.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationschool-list-classes?view=graph-rest-1.0";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -115,11 +116,12 @@ namespace ApiSdk.Education.Schools.Item.Classes.Ref {
             return command;
         }
         /// <summary>
-        /// Create new navigation property ref to classes for education
+        /// Add a class to a school.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationschool-post-classes?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Create new navigation property ref to classes for education";
+            command.Description = "Add a class to a school.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationschool-post-classes?view=graph-rest-1.0";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -157,7 +159,7 @@ namespace ApiSdk.Education.Schools.Item.Classes.Ref {
         public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/schools/{educationSchool%2Did}/classes/$ref{?%24top,%24skip,%24search,%24filter,%24count,%24orderby}", pathParameters) {
         }
         /// <summary>
-        /// Classes taught at the school. Nullable.
+        /// Get the educationClass resources owned by an educationSchool.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -183,7 +185,7 @@ namespace ApiSdk.Education.Schools.Item.Classes.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property ref to classes for education
+        /// Add a class to a school.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -210,7 +212,7 @@ namespace ApiSdk.Education.Schools.Item.Classes.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Classes taught at the school. Nullable.
+        /// Get the educationClass resources owned by an educationSchool.
         /// </summary>
         public class RefRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

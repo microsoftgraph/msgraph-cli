@@ -18,11 +18,12 @@ namespace ApiSdk.Groups.Item.Members.Item.Ref {
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete ref of navigation property members for groups
+        /// Remove a member from a group via the **members** navigation property. You can&apos;t remove a member from groups with dynamic memberships.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/group-delete-members?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete ref of navigation property members for groups";
+            command.Description = "Remove a member from a group via the **members** navigation property. You can't remove a member from groups with dynamic memberships.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-delete-members?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -69,7 +70,7 @@ namespace ApiSdk.Groups.Item.Members.Item.Ref {
         public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/members/{directoryObject%2Did}/$ref{?%40id*}", pathParameters) {
         }
         /// <summary>
-        /// Delete ref of navigation property members for groups
+        /// Remove a member from a group via the **members** navigation property. You can&apos;t remove a member from groups with dynamic memberships.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -94,7 +95,7 @@ namespace ApiSdk.Groups.Item.Members.Item.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Delete ref of navigation property members for groups
+        /// Remove a member from a group via the **members** navigation property. You can&apos;t remove a member from groups with dynamic memberships.
         /// </summary>
         public class RefRequestBuilderDeleteQueryParameters {
             /// <summary>Delete Uri</summary>

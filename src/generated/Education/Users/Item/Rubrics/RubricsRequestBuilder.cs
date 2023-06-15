@@ -47,11 +47,12 @@ namespace ApiSdk.Education.Users.Item.Rubrics {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to rubrics for education
+        /// Create a new educationRubric object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationuser-post-rubrics?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to rubrics for education";
+            command.Description = "Create a new educationRubric object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationuser-post-rubrics?view=graph-rest-1.0";
             var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
@@ -104,11 +105,12 @@ namespace ApiSdk.Education.Users.Item.Rubrics {
             return command;
         }
         /// <summary>
-        /// When set, the grading rubric attached to the assignment.
+        /// Retrieve a list of educationRubric objects.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationuser-list-rubrics?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "When set, the grading rubric attached to the assignment.";
+            command.Description = "Retrieve a list of educationRubric objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationuser-list-rubrics?view=graph-rest-1.0";
             var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
@@ -220,7 +222,7 @@ namespace ApiSdk.Education.Users.Item.Rubrics {
         public RubricsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/users/{educationUser%2Did}/rubrics{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// When set, the grading rubric attached to the assignment.
+        /// Retrieve a list of educationRubric objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -246,7 +248,7 @@ namespace ApiSdk.Education.Users.Item.Rubrics {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to rubrics for education
+        /// Create a new educationRubric object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -274,7 +276,7 @@ namespace ApiSdk.Education.Users.Item.Rubrics {
             return requestInfo;
         }
         /// <summary>
-        /// When set, the grading rubric attached to the assignment.
+        /// Retrieve a list of educationRubric objects.
         /// </summary>
         public class RubricsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

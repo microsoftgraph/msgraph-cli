@@ -18,11 +18,12 @@ namespace ApiSdk.Applications.Item.GetMemberGroups {
     /// </summary>
     public class GetMemberGroupsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action getMemberGroups
+        /// Return all the group IDs for the groups that the specified user, group, service principal, organizational contact, device, or directory object is a member of. This function is transitive.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/directoryobject-getmembergroups?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action getMemberGroups";
+            command.Description = "Return all the group IDs for the groups that the specified user, group, service principal, organizational contact, device, or directory object is a member of. This function is transitive.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directoryobject-getmembergroups?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -93,7 +94,7 @@ namespace ApiSdk.Applications.Item.GetMemberGroups {
         public GetMemberGroupsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/getMemberGroups", pathParameters) {
         }
         /// <summary>
-        /// Invoke action getMemberGroups
+        /// Return all the group IDs for the groups that the specified user, group, service principal, organizational contact, device, or directory object is a member of. This function is transitive.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

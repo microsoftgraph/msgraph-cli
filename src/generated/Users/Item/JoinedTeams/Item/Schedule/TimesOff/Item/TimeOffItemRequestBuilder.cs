@@ -19,11 +19,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimesOff.Item {
     /// </summary>
     public class TimeOffItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property timesOff for users
+        /// Delete a timeOff instance from a schedule.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/timeoff-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property timesOff for users";
+            command.Description = "Delete a timeOff instance from a schedule.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/timeoff-delete?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -64,11 +65,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimesOff.Item {
             return command;
         }
         /// <summary>
-        /// The instances of times off in the schedule.
+        /// Retrieve the properties and relationships of a timeOff object by ID.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/timeoff-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The instances of times off in the schedule.";
+            command.Description = "Retrieve the properties and relationships of a timeOff object by ID.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/timeoff-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -130,11 +132,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimesOff.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property timesOff in users
+        /// Replace an existing timeOff object. If the specified timeOff object doesn&apos;t exist, this method returns `404 Not found`.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/timeoff-put?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property timesOff in users";
+            command.Description = "Replace an existing timeOff object. If the specified timeOff object doesn't exist, this method returns `404 Not found`.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/timeoff-put?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -205,7 +208,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimesOff.Item {
         public TimeOffItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/schedule/timesOff/{timeOff%2Did}{?%24select}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property timesOff for users
+        /// Delete a timeOff instance from a schedule.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -230,7 +233,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimesOff.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The instances of times off in the schedule.
+        /// Retrieve the properties and relationships of a timeOff object by ID.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -256,7 +259,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimesOff.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property timesOff in users
+        /// Replace an existing timeOff object. If the specified timeOff object doesn&apos;t exist, this method returns `404 Not found`.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -284,7 +287,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimesOff.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The instances of times off in the schedule.
+        /// Retrieve the properties and relationships of a timeOff object by ID.
         /// </summary>
         public class TimeOffItemRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>

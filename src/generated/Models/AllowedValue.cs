@@ -5,7 +5,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class AllowedValue : Entity, IParsable {
-        /// <summary>The isActive property</summary>
+        /// <summary>Indicates whether the predefined value is active or deactivated. If set to false, this predefined value cannot be assigned to any additional supported directory objects.</summary>
         public bool? IsActive { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

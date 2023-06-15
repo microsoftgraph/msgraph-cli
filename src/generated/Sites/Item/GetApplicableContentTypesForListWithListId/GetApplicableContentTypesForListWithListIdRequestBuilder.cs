@@ -129,10 +129,8 @@ namespace ApiSdk.Sites.Item.GetApplicableContentTypesForListWithListId {
         /// <summary>
         /// Instantiates a new GetApplicableContentTypesForListWithListIdRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="listId">Usage: listId=&apos;{listId}&apos;</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetApplicableContentTypesForListWithListIdRequestBuilder(Dictionary<string, object> pathParameters, string listId = "") : base("{+baseurl}/sites/{site%2Did}/getApplicableContentTypesForList(listId='{listId}'){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(listId)) PathParameters.Add("listId", listId);
+        public GetApplicableContentTypesForListWithListIdRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/getApplicableContentTypesForList(listId='{listId}'){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", pathParameters) {
         }
         /// <summary>
         /// Invoke function getApplicableContentTypesForList

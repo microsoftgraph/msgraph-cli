@@ -18,11 +18,12 @@ namespace ApiSdk.ServicePrincipals.Item.RemovePassword {
     /// </summary>
     public class RemovePasswordRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action removePassword
+        /// Remove a password from a servicePrincipal object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/serviceprincipal-removepassword?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action removePassword";
+            command.Description = "Remove a password from a servicePrincipal object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-removepassword?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -60,7 +61,7 @@ namespace ApiSdk.ServicePrincipals.Item.RemovePassword {
         public RemovePasswordRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/removePassword", pathParameters) {
         }
         /// <summary>
-        /// Invoke action removePassword
+        /// Remove a password from a servicePrincipal object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

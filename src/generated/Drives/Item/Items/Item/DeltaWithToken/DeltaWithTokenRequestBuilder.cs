@@ -136,9 +136,7 @@ namespace ApiSdk.Drives.Item.Items.Item.DeltaWithToken {
         /// Instantiates a new DeltaWithTokenRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="token">Usage: token=&apos;{token}&apos;</param>
-        public DeltaWithTokenRequestBuilder(Dictionary<string, object> pathParameters, string token = "") : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/delta(token='{token}'){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(token)) PathParameters.Add("token", token);
+        public DeltaWithTokenRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/delta(token='{token}'){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", pathParameters) {
         }
         /// <summary>
         /// Invoke function delta

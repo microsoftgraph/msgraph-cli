@@ -98,11 +98,12 @@ namespace ApiSdk.Reports.DailyPrintUsageByPrinter {
             return command;
         }
         /// <summary>
-        /// Get dailyPrintUsageByPrinter from reports
+        /// Retrieve a list of daily print usage summaries, grouped by printer.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/reportroot-list-dailyprintusagebyprinter?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get dailyPrintUsageByPrinter from reports";
+            command.Description = "Retrieve a list of daily print usage summaries, grouped by printer.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/reportroot-list-dailyprintusagebyprinter?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -208,7 +209,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByPrinter {
         public DailyPrintUsageByPrinterRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/dailyPrintUsageByPrinter{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get dailyPrintUsageByPrinter from reports
+        /// Retrieve a list of daily print usage summaries, grouped by printer.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -262,7 +263,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByPrinter {
             return requestInfo;
         }
         /// <summary>
-        /// Get dailyPrintUsageByPrinter from reports
+        /// Retrieve a list of daily print usage summaries, grouped by printer.
         /// </summary>
         public class DailyPrintUsageByPrinterRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

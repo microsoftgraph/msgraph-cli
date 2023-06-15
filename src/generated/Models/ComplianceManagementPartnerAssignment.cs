@@ -27,7 +27,7 @@ namespace ApiSdk.Models {
         public DeviceAndAppManagementAssignmentTarget Target { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new complianceManagementPartnerAssignment and sets the default values.
+        /// Instantiates a new ComplianceManagementPartnerAssignment and sets the default values.
         /// </summary>
         public ComplianceManagementPartnerAssignment() {
             AdditionalData = new Dictionary<string, object>();

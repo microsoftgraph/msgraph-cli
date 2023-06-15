@@ -45,11 +45,12 @@ namespace ApiSdk.Users.Item.Drives {
             return command;
         }
         /// <summary>
-        /// A collection of drives available for this user. Read-only.
+        /// Retrieve the list of Drive resources available for a target User, Group, or Site.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/drive-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A collection of drives available for this user. Read-only.";
+            command.Description = "Retrieve the list of Drive resources available for a target User, Group, or Site.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/drive-list?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -161,7 +162,7 @@ namespace ApiSdk.Users.Item.Drives {
         public DrivesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/drives{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// A collection of drives available for this user. Read-only.
+        /// Retrieve the list of Drive resources available for a target User, Group, or Site.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -187,7 +188,7 @@ namespace ApiSdk.Users.Item.Drives {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of drives available for this user. Read-only.
+        /// Retrieve the list of Drive resources available for a target User, Group, or Site.
         /// </summary>
         public class DrivesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

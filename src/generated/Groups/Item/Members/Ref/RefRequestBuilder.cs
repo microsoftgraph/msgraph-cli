@@ -20,10 +20,11 @@ namespace ApiSdk.Groups.Item.Members.Ref {
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// The members of this group, who can be users, devices, other groups, or service principals. Supports the List members, Add member, and Remove member operations. Nullable. Supports $expand including nested $select. For example, /groups?$filter=startsWith(displayName,&apos;Role&apos;)&amp;$select=id,displayName&amp;$expand=members($select=id,userPrincipalName,displayName).
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/group-list-members?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The members of this group, who can be users, devices, other groups, or service principals. Supports the List members, Add member, and Remove member operations. Nullable. Supports $expand including nested $select. For example, /groups?$filter=startsWith(displayName,'Role')&$select=id,displayName&$expand=members($select=id,userPrincipalName,displayName).";
+            command.Description = "The members of this group, who can be users, devices, other groups, or service principals. Supports the List members, Add member, and Remove member operations. Nullable. Supports $expand including nested $select. For example, /groups?$filter=startsWith(displayName,'Role')&$select=id,displayName&$expand=members($select=id,userPrincipalName,displayName).\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-list-members?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -122,11 +123,12 @@ namespace ApiSdk.Groups.Item.Members.Ref {
             return command;
         }
         /// <summary>
-        /// Create new navigation property ref to members for groups
+        /// Add a member to a security or Microsoft 365 group through the **members** navigation property. The following table shows the types of members that can be added to either security groups or Microsoft 365 groups.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/group-post-members?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Create new navigation property ref to members for groups";
+            command.Description = "Add a member to a security or Microsoft 365 group through the **members** navigation property. The following table shows the types of members that can be added to either security groups or Microsoft 365 groups.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-post-members?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -190,7 +192,7 @@ namespace ApiSdk.Groups.Item.Members.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property ref to members for groups
+        /// Add a member to a security or Microsoft 365 group through the **members** navigation property. The following table shows the types of members that can be added to either security groups or Microsoft 365 groups.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

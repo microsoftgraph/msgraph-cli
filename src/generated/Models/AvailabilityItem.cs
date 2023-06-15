@@ -42,7 +42,7 @@ namespace ApiSdk.Models {
         /// <summary>The status of the staff member. Possible values are: available, busy, slotsAvailable, outOfOffice, unknownFutureValue.</summary>
         public BookingsAvailabilityStatus? Status { get; set; }
         /// <summary>
-        /// Instantiates a new availabilityItem and sets the default values.
+        /// Instantiates a new AvailabilityItem and sets the default values.
         /// </summary>
         public AvailabilityItem() {
             AdditionalData = new Dictionary<string, object>();

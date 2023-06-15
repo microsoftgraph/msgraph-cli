@@ -121,14 +121,8 @@ namespace ApiSdk.Reports.GetUserArchivedPrintJobsWithUserIdWithStartDateTimeWith
         /// <summary>
         /// Instantiates a new GetUserArchivedPrintJobsWithUserIdWithStartDateTimeWithEndDateTimeRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="endDateTime">Usage: endDateTime={endDateTime}</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="startDateTime">Usage: startDateTime={startDateTime}</param>
-        /// <param name="userId">Usage: userId=&apos;{userId}&apos;</param>
-        public GetUserArchivedPrintJobsWithUserIdWithStartDateTimeWithEndDateTimeRequestBuilder(Dictionary<string, object> pathParameters, DateTimeOffset? endDateTime = default, DateTimeOffset? startDateTime = default, string userId = "") : base("{+baseurl}/reports/getUserArchivedPrintJobs(userId='{userId}',startDateTime={startDateTime},endDateTime={endDateTime}){?%24top,%24skip,%24search,%24filter,%24count}", pathParameters) {
-            if (endDateTime is not null) PathParameters.Add("endDateTime", endDateTime);
-            if (startDateTime is not null) PathParameters.Add("startDateTime", startDateTime);
-            if (!string.IsNullOrWhiteSpace(userId)) PathParameters.Add("userId", userId);
+        public GetUserArchivedPrintJobsWithUserIdWithStartDateTimeWithEndDateTimeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getUserArchivedPrintJobs(userId='{userId}',startDateTime={startDateTime},endDateTime={endDateTime}){?%24top,%24skip,%24search,%24filter,%24count}", pathParameters) {
         }
         /// <summary>
         /// Invoke function getUserArchivedPrintJobs

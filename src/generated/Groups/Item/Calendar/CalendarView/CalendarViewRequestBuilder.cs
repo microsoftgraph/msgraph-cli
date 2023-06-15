@@ -38,8 +38,6 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarView {
             commands.Add(builder.BuildForwardNavCommand());
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildInstancesNavCommand());
-            commands.Add(builder.BuildMultiValueExtendedPropertiesNavCommand());
-            commands.Add(builder.BuildSingleValueExtendedPropertiesNavCommand());
             commands.Add(builder.BuildSnoozeReminderNavCommand());
             commands.Add(builder.BuildTentativelyAcceptNavCommand());
             return new(executables, commands);
@@ -76,10 +74,11 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarView {
         }
         /// <summary>
         /// The calendar view for the calendar. Navigation property. Read-only.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/calendar-list-calendarview?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The calendar view for the calendar. Navigation property. Read-only.";
+            command.Description = "The calendar view for the calendar. Navigation property. Read-only.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/calendar-list-calendarview?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;

@@ -52,11 +52,12 @@ namespace ApiSdk.Privacy.SubjectRightsRequests {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to subjectRightsRequests for privacy
+        /// Create a new subjectRightsRequest object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/subjectrightsrequest-post?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to subjectRightsRequests for privacy";
+            command.Description = "Create a new subjectRightsRequest object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/subjectrightsrequest-post?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -103,11 +104,12 @@ namespace ApiSdk.Privacy.SubjectRightsRequests {
             return command;
         }
         /// <summary>
-        /// Get subjectRightsRequests from privacy
+        /// Get a list of subjectRightsRequest objects and their properties.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/subjectrightsrequest-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get subjectRightsRequests from privacy";
+            command.Description = "Get a list of subjectRightsRequest objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/subjectrightsrequest-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -213,7 +215,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests {
         public SubjectRightsRequestsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/privacy/subjectRightsRequests{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get subjectRightsRequests from privacy
+        /// Get a list of subjectRightsRequest objects and their properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -239,7 +241,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to subjectRightsRequests for privacy
+        /// Create a new subjectRightsRequest object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -267,7 +269,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests {
             return requestInfo;
         }
         /// <summary>
-        /// Get subjectRightsRequests from privacy
+        /// Get a list of subjectRightsRequest objects and their properties.
         /// </summary>
         public class SubjectRightsRequestsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

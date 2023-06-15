@@ -20,10 +20,11 @@ namespace ApiSdk.Devices.Item.RegisteredUsers.Ref {
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Collection of registered users of the device. For cloud joined devices and registered personal devices, registered users are set to the same value as registered owners at the time of registration. Read-only. Nullable. Supports $expand.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/device-list-registeredusers?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Collection of registered users of the device. For cloud joined devices and registered personal devices, registered users are set to the same value as registered owners at the time of registration. Read-only. Nullable. Supports $expand.";
+            command.Description = "Collection of registered users of the device. For cloud joined devices and registered personal devices, registered users are set to the same value as registered owners at the time of registration. Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/device-list-registeredusers?view=graph-rest-1.0";
             var deviceIdOption = new Option<string>("--device-id", description: "The unique identifier of device") {
             };
             deviceIdOption.IsRequired = true;
@@ -122,11 +123,12 @@ namespace ApiSdk.Devices.Item.RegisteredUsers.Ref {
             return command;
         }
         /// <summary>
-        /// Create new navigation property ref to registeredUsers for devices
+        /// Add a registered user for the device.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/device-post-registeredusers?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Create new navigation property ref to registeredUsers for devices";
+            command.Description = "Add a registered user for the device.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/device-post-registeredusers?view=graph-rest-1.0";
             var deviceIdOption = new Option<string>("--device-id", description: "The unique identifier of device") {
             };
             deviceIdOption.IsRequired = true;
@@ -190,7 +192,7 @@ namespace ApiSdk.Devices.Item.RegisteredUsers.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property ref to registeredUsers for devices
+        /// Add a registered user for the device.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

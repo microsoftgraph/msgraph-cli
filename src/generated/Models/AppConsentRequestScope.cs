@@ -24,7 +24,7 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new appConsentRequestScope and sets the default values.
+        /// Instantiates a new AppConsentRequestScope and sets the default values.
         /// </summary>
         public AppConsentRequestScope() {
             AdditionalData = new Dictionary<string, object>();

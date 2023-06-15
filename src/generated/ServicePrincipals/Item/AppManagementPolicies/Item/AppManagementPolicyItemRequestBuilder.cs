@@ -19,6 +19,46 @@ namespace ApiSdk.ServicePrincipals.Item.AppManagementPolicies.Item {
     /// </summary>
     public class AppManagementPolicyItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
+        /// Remove an appManagementPolicy policy object from an application or service principal object. When you remove the appManagementPolicy, the application or service principal adopts the tenant-wide tenantAppManagementPolicy setting. 
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/appmanagementpolicy-delete-appliesto?view=graph-rest-1.0" />
+        /// </summary>
+        public Command BuildDeleteCommand() {
+            var command = new Command("delete");
+            command.Description = "Remove an appManagementPolicy policy object from an application or service principal object. When you remove the appManagementPolicy, the application or service principal adopts the tenant-wide tenantAppManagementPolicy setting. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/appmanagementpolicy-delete-appliesto?view=graph-rest-1.0";
+            var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
+            };
+            servicePrincipalIdOption.IsRequired = true;
+            command.AddOption(servicePrincipalIdOption);
+            var appManagementPolicyIdOption = new Option<string>("--app-management-policy-id", description: "The unique identifier of appManagementPolicy") {
+            };
+            appManagementPolicyIdOption.IsRequired = true;
+            command.AddOption(appManagementPolicyIdOption);
+            var ifMatchOption = new Option<string[]>("--if-match", description: "ETag") {
+                Arity = ArgumentArity.ZeroOrMore
+            };
+            ifMatchOption.IsRequired = false;
+            command.AddOption(ifMatchOption);
+            command.SetHandler(async (invocationContext) => {
+                var servicePrincipalId = invocationContext.ParseResult.GetValueForOption(servicePrincipalIdOption);
+                var appManagementPolicyId = invocationContext.ParseResult.GetValueForOption(appManagementPolicyIdOption);
+                var ifMatch = invocationContext.ParseResult.GetValueForOption(ifMatchOption);
+                var cancellationToken = invocationContext.GetCancellationToken();
+                var reqAdapter = invocationContext.GetRequestAdapter();
+                var requestInfo = ToDeleteRequestInformation(q => {
+                });
+                if (servicePrincipalId is not null) requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
+                if (appManagementPolicyId is not null) requestInfo.PathParameters.Add("appManagementPolicy%2Did", appManagementPolicyId);
+                if (ifMatch is not null) requestInfo.Headers.Add("If-Match", ifMatch);
+                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
+                    {"4XX", ODataError.CreateFromDiscriminatorValue},
+                    {"5XX", ODataError.CreateFromDiscriminatorValue},
+                };
+                await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
+                Console.WriteLine("Success");
+            });
+            return command;
+        }
+        /// <summary>
         /// The appManagementPolicy applied to this application.
         /// </summary>
         public Command BuildGetCommand() {
@@ -90,6 +130,31 @@ namespace ApiSdk.ServicePrincipals.Item.AppManagementPolicies.Item {
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public AppManagementPolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/appManagementPolicies/{appManagementPolicy%2Did}{?%24select,%24expand}", pathParameters) {
+        }
+        /// <summary>
+        /// Remove an appManagementPolicy policy object from an application or service principal object. When you remove the appManagementPolicy, the application or service principal adopts the tenant-wide tenantAppManagementPolicy setting. 
+        /// </summary>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+#endif
+            var requestInfo = new RequestInformation {
+                HttpMethod = Method.DELETE,
+                UrlTemplate = UrlTemplate,
+                PathParameters = PathParameters,
+            };
+            if (requestConfiguration != null) {
+                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
+                requestConfiguration.Invoke(requestConfig);
+                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
+                requestInfo.AddRequestOptions(requestConfig.Options);
+                requestInfo.AddHeaders(requestConfig.Headers);
+            }
+            return requestInfo;
         }
         /// <summary>
         /// The appManagementPolicy applied to this application.

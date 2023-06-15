@@ -111,11 +111,27 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             return command;
         }
         /// <summary>
-        /// Each user reviewed in an accessReviewInstance has a decision item representing if they were approved, denied, or not yet reviewed.
+        /// Provides operations to call the filterByCurrentUser method.
+        /// </summary>
+        public Command BuildFilterByCurrentUserWithOnRbCommand() {
+            var command = new Command("filter-by-current-user-with-on");
+            command.Description = "Provides operations to call the filterByCurrentUser method.";
+            var builder = new FilterByCurrentUserWithOnRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Get the accessReviewInstanceDecisionItem resources from the decisions navigation property on a given accessReviewInstance. A list of zero or more accessReviewInstanceDecisionItem objects are returned, including all of their nested properties.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/accessreviewinstance-list-decisions?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Each user reviewed in an accessReviewInstance has a decision item representing if they were approved, denied, or not yet reviewed.";
+            command.Description = "Get the accessReviewInstanceDecisionItem resources from the decisions navigation property on a given accessReviewInstance. A list of zero or more accessReviewInstanceDecisionItem objects are returned, including all of their nested properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/accessreviewinstance-list-decisions?view=graph-rest-1.0";
             var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "The unique identifier of accessReviewScheduleDefinition") {
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
@@ -233,7 +249,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         public DecisionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/accessReviews/definitions/{accessReviewScheduleDefinition%2Did}/instances/{accessReviewInstance%2Did}/decisions{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Each user reviewed in an accessReviewInstance has a decision item representing if they were approved, denied, or not yet reviewed.
+        /// Get the accessReviewInstanceDecisionItem resources from the decisions navigation property on a given accessReviewInstance. A list of zero or more accessReviewInstanceDecisionItem objects are returned, including all of their nested properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -287,7 +303,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Each user reviewed in an accessReviewInstance has a decision item representing if they were approved, denied, or not yet reviewed.
+        /// Get the accessReviewInstanceDecisionItem resources from the decisions navigation property on a given accessReviewInstance. A list of zero or more accessReviewInstanceDecisionItem objects are returned, including all of their nested properties.
         /// </summary>
         public class DecisionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

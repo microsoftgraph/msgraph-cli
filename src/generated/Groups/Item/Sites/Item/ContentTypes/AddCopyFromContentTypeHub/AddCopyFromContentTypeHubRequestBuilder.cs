@@ -19,11 +19,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.AddCopyFromContentTypeHub {
     /// </summary>
     public class AddCopyFromContentTypeHubRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action addCopyFromContentTypeHub
+        /// Add or sync a copy of a published content type from the content type hub to a target site or a list. This method is part of the content type publishing changes to optimize the syncing of published content types to sites and lists, effectively switching from a &apos;push everywhere&apos; to &apos;pull as needed&apos; approach. The method allows users to pull content types directly from the content type hub to a site or list. For more information, see contentType: getCompatibleHubContentTypes and the blog post Syntex Product Updates – August 2021.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/contenttype-addcopyfromcontenttypehub?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action addCopyFromContentTypeHub";
+            command.Description = "Add or sync a copy of a published content type from the content type hub to a target site or a list. This method is part of the content type publishing changes to optimize the syncing of published content types to sites and lists, effectively switching from a 'push everywhere' to 'pull as needed' approach. The method allows users to pull content types directly from the content type hub to a site or list. For more information, see contentType: getCompatibleHubContentTypes and the blog post Syntex Product Updates – August 2021.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contenttype-addcopyfromcontenttypehub?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -88,7 +89,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.AddCopyFromContentTypeHub {
         public AddCopyFromContentTypeHubRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/contentTypes/addCopyFromContentTypeHub", pathParameters) {
         }
         /// <summary>
-        /// Invoke action addCopyFromContentTypeHub
+        /// Add or sync a copy of a published content type from the content type hub to a target site or a list. This method is part of the content type publishing changes to optimize the syncing of published content types to sites and lists, effectively switching from a &apos;push everywhere&apos; to &apos;pull as needed&apos; approach. The method allows users to pull content types directly from the content type hub to a site or list. For more information, see contentType: getCompatibleHubContentTypes and the blog post Syntex Product Updates – August 2021.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

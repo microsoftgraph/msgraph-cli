@@ -19,11 +19,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Copy {
     /// </summary>
     public class CopyRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action copy
+        /// Asynchronously creates a copy of an [driveItem][item-resource] (including any children), under a new parent item or with a new name.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/driveitem-copy?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action copy";
+            command.Description = "Asynchronously creates a copy of an [driveItem][item-resource] (including any children), under a new parent item or with a new name.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitem-copy?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -88,7 +89,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Copy {
         public CopyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/copy", pathParameters) {
         }
         /// <summary>
-        /// Invoke action copy
+        /// Asynchronously creates a copy of an [driveItem][item-resource] (including any children), under a new parent item or with a new name.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

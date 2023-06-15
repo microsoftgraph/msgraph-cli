@@ -47,11 +47,12 @@ namespace ApiSdk.Users.Item.AppRoleAssignments {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to appRoleAssignments for users
+        /// Use this API to assign an app role to a user. To grant an app role assignment to a user, you need three identifiers:
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-post-approleassignments?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to appRoleAssignments for users";
+            command.Description = "Use this API to assign an app role to a user. To grant an app role assignment to a user, you need three identifiers:\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-post-approleassignments?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -105,10 +106,11 @@ namespace ApiSdk.Users.Item.AppRoleAssignments {
         }
         /// <summary>
         /// Represents the app roles a user has been granted for an application. Supports $expand.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-list-approleassignments?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Represents the app roles a user has been granted for an application. Supports $expand.";
+            command.Description = "Represents the app roles a user has been granted for an application. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-approleassignments?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -253,7 +255,7 @@ namespace ApiSdk.Users.Item.AppRoleAssignments {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to appRoleAssignments for users
+        /// Use this API to assign an app role to a user. To grant an app role assignment to a user, you need three identifiers:
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

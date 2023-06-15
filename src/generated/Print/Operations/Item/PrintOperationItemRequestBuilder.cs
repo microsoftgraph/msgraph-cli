@@ -52,11 +52,12 @@ namespace ApiSdk.Print.Operations.Item {
             return command;
         }
         /// <summary>
-        /// The list of print long running operations.
+        /// Retrieve the properties and relationships of a printOperation object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/printoperation-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The list of print long running operations.";
+            command.Description = "Retrieve the properties and relationships of a printOperation object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printoperation-get?view=graph-rest-1.0";
             var printOperationIdOption = new Option<string>("--print-operation-id", description: "The unique identifier of printOperation") {
             };
             printOperationIdOption.IsRequired = true;
@@ -201,7 +202,7 @@ namespace ApiSdk.Print.Operations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The list of print long running operations.
+        /// Retrieve the properties and relationships of a printOperation object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -255,7 +256,7 @@ namespace ApiSdk.Print.Operations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The list of print long running operations.
+        /// Retrieve the properties and relationships of a printOperation object.
         /// </summary>
         public class PrintOperationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

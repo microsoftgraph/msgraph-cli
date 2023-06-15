@@ -18,11 +18,12 @@ namespace ApiSdk.Communications.Calls.LogTeleconferenceDeviceQuality {
     /// </summary>
     public class LogTeleconferenceDeviceQualityRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action logTeleconferenceDeviceQuality
+        /// Log video teleconferencing device quality data. The Cloud Video Interop (CVI) bot represents video teleconferencing (VTC) devices and acts as a back-to-back agent for a VTC device in a conference call. Because a CVI bot is in the middle of the VTC and Microsoft Teams infrastructure as a VTC proxy, it has two media legs. One media leg is between the CVI bot and Teams infrastructure, such as Teams conference server or a Teams client. The other media leg is between the CVI bot and the VTC device.  The third-party partners own the VTC media leg and the Teams infrastructure cannot access the quality data of the third-party call leg.  This method is only for the CVI partners to provide their media quality data.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/call-logteleconferencedevicequality?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action logTeleconferenceDeviceQuality";
+            command.Description = "Log video teleconferencing device quality data. The Cloud Video Interop (CVI) bot represents video teleconferencing (VTC) devices and acts as a back-to-back agent for a VTC device in a conference call. Because a CVI bot is in the middle of the VTC and Microsoft Teams infrastructure as a VTC proxy, it has two media legs. One media leg is between the CVI bot and Teams infrastructure, such as Teams conference server or a Teams client. The other media leg is between the CVI bot and the VTC device.  The third-party partners own the VTC media leg and the Teams infrastructure cannot access the quality data of the third-party call leg.  This method is only for the CVI partners to provide their media quality data.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/call-logteleconferencedevicequality?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -54,7 +55,7 @@ namespace ApiSdk.Communications.Calls.LogTeleconferenceDeviceQuality {
         public LogTeleconferenceDeviceQualityRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/logTeleconferenceDeviceQuality", pathParameters) {
         }
         /// <summary>
-        /// Invoke action logTeleconferenceDeviceQuality
+        /// Log video teleconferencing device quality data. The Cloud Video Interop (CVI) bot represents video teleconferencing (VTC) devices and acts as a back-to-back agent for a VTC device in a conference call. Because a CVI bot is in the middle of the VTC and Microsoft Teams infrastructure as a VTC proxy, it has two media legs. One media leg is between the CVI bot and Teams infrastructure, such as Teams conference server or a Teams client. The other media leg is between the CVI bot and the VTC device.  The third-party partners own the VTC media leg and the Teams infrastructure cannot access the quality data of the third-party call leg.  This method is only for the CVI partners to provide their media quality data.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

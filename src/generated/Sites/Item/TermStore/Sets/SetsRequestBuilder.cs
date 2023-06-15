@@ -109,11 +109,11 @@ namespace ApiSdk.Sites.Item.TermStore.Sets {
             return command;
         }
         /// <summary>
-        /// Collection of all sets available in the term store. This relationship can only be used to load a specific term set.
+        /// Read the properties and relationships of a set object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Collection of all sets available in the term store. This relationship can only be used to load a specific term set.";
+            command.Description = "Read the properties and relationships of a set object.";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -225,7 +225,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets {
         public SetsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/termStore/sets{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Collection of all sets available in the term store. This relationship can only be used to load a specific term set.
+        /// Read the properties and relationships of a set object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -279,7 +279,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets {
             return requestInfo;
         }
         /// <summary>
-        /// Collection of all sets available in the term store. This relationship can only be used to load a specific term set.
+        /// Read the properties and relationships of a set object.
         /// </summary>
         public class SetsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

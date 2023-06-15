@@ -104,11 +104,12 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
             return command;
         }
         /// <summary>
-        /// The activity related to user risk level change
+        /// Read the properties and relationships of a riskyUserHistoryItem object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/riskyuser-get-riskyuserhistoryitem?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The activity related to user risk level change";
+            command.Description = "Read the properties and relationships of a riskyUserHistoryItem object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/riskyuser-get-riskyuserhistoryitem?view=graph-rest-1.0";
             var riskyUserIdOption = new Option<string>("--risky-user-id", description: "The unique identifier of riskyUser") {
             };
             riskyUserIdOption.IsRequired = true;
@@ -220,7 +221,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
         public HistoryRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProtection/riskyUsers/{riskyUser%2Did}/history{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The activity related to user risk level change
+        /// Read the properties and relationships of a riskyUserHistoryItem object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -274,7 +275,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item.History {
             return requestInfo;
         }
         /// <summary>
-        /// The activity related to user risk level change
+        /// Read the properties and relationships of a riskyUserHistoryItem object.
         /// </summary>
         public class HistoryRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

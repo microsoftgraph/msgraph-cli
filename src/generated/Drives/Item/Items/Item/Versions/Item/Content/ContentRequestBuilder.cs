@@ -20,10 +20,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item.Content {
     public class ContentRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// The content stream for this version of the item.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/driveitem-list-versions?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The content stream for this version of the item.";
+            command.Description = "The content stream for this version of the item.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitem-list-versions?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;

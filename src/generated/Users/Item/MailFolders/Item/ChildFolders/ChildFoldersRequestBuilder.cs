@@ -34,9 +34,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders {
             commands.Add(builder.BuildMessageRulesNavCommand());
             commands.Add(builder.BuildMessagesNavCommand());
             commands.Add(builder.BuildMoveNavCommand());
-            commands.Add(builder.BuildMultiValueExtendedPropertiesNavCommand());
             executables.Add(builder.BuildPatchCommand());
-            commands.Add(builder.BuildSingleValueExtendedPropertiesNavCommand());
             return new(executables, commands);
         }
         /// <summary>
@@ -55,11 +53,12 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to childFolders for users
+        /// Use this API to create a new child mailFolder. If you intend a new folder to be hidden, you must set the **isHidden** property to `true` on creation.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/mailfolder-post-childfolders?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to childFolders for users";
+            command.Description = "Use this API to create a new child mailFolder. If you intend a new folder to be hidden, you must set the **isHidden** property to `true` on creation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/mailfolder-post-childfolders?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -133,11 +132,12 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders {
             return command;
         }
         /// <summary>
-        /// The collection of child folders in the mailFolder.
+        /// Get the folder collection under the specified folder. You can use the `.../me/mailFolders` shortcut to get the top-level folder collection and navigate to another folder. By default, this operation does not return hidden folders. Use a query parameter _includeHiddenFolders_ to include them in the response.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/mailfolder-list-childfolders?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The collection of child folders in the mailFolder.";
+            command.Description = "Get the folder collection under the specified folder. You can use the `.../me/mailFolders` shortcut to get the top-level folder collection and navigate to another folder. By default, this operation does not return hidden folders. Use a query parameter _includeHiddenFolders_ to include them in the response.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/mailfolder-list-childfolders?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -249,7 +249,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders {
         public ChildFoldersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/childFolders{?%24top,%24skip,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The collection of child folders in the mailFolder.
+        /// Get the folder collection under the specified folder. You can use the `.../me/mailFolders` shortcut to get the top-level folder collection and navigate to another folder. By default, this operation does not return hidden folders. Use a query parameter _includeHiddenFolders_ to include them in the response.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -275,7 +275,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to childFolders for users
+        /// Use this API to create a new child mailFolder. If you intend a new folder to be hidden, you must set the **isHidden** property to `true` on creation.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -303,7 +303,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of child folders in the mailFolder.
+        /// Get the folder collection under the specified folder. You can use the `.../me/mailFolders` shortcut to get the top-level folder collection and navigate to another folder. By default, this operation does not return hidden folders. Use a query parameter _includeHiddenFolders_ to include them in the response.
         /// </summary>
         public class ChildFoldersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

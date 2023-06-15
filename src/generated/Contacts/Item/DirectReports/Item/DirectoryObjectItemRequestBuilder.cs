@@ -21,11 +21,11 @@ namespace ApiSdk.Contacts.Item.DirectReports.Item {
     /// </summary>
     public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Get directReports from contacts
+        /// The contact&apos;s direct reports. (The users and contacts that have their manager property set to this contact.)  Read-only. Nullable. Supports $expand.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get directReports from contacts";
+            command.Description = "The contact's direct reports. (The users and contacts that have their manager property set to this contact.)  Read-only. Nullable. Supports $expand.";
             var orgContactIdOption = new Option<string>("--org-contact-id", description: "The unique identifier of orgContact") {
             };
             orgContactIdOption.IsRequired = true;
@@ -131,7 +131,7 @@ namespace ApiSdk.Contacts.Item.DirectReports.Item {
         public DirectoryObjectItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/contacts/{orgContact%2Did}/directReports/{directoryObject%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get directReports from contacts
+        /// The contact&apos;s direct reports. (The users and contacts that have their manager property set to this contact.)  Read-only. Nullable. Supports $expand.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -157,7 +157,7 @@ namespace ApiSdk.Contacts.Item.DirectReports.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get directReports from contacts
+        /// The contact&apos;s direct reports. (The users and contacts that have their manager property set to this contact.)  Read-only. Nullable. Supports $expand.
         /// </summary>
         public class DirectoryObjectItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

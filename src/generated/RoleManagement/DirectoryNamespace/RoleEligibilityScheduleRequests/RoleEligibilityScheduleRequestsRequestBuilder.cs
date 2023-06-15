@@ -55,11 +55,12 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilityScheduleReques
             return command;
         }
         /// <summary>
-        /// Create new navigation property to roleEligibilityScheduleRequests for roleManagement
+        /// In PIM, request for a role eligibility for a principal through the unifiedRoleEligibilityScheduleRequest object. This operation allows both admins and eligible users to add, revoke, or extend eligible assignments.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/rbacapplication-post-roleeligibilityschedulerequests?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to roleEligibilityScheduleRequests for roleManagement";
+            command.Description = "In PIM, request for a role eligibility for a principal through the unifiedRoleEligibilityScheduleRequest object. This operation allows both admins and eligible users to add, revoke, or extend eligible assignments.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/rbacapplication-post-roleeligibilityschedulerequests?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -106,11 +107,27 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilityScheduleReques
             return command;
         }
         /// <summary>
-        /// Requests for role eligibilities for principals through PIM.
+        /// Provides operations to call the filterByCurrentUser method.
+        /// </summary>
+        public Command BuildFilterByCurrentUserWithOnRbCommand() {
+            var command = new Command("filter-by-current-user-with-on");
+            command.Description = "Provides operations to call the filterByCurrentUser method.";
+            var builder = new FilterByCurrentUserWithOnRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// In PIM, retrieve the requests for role eligibilities for principals made through the unifiedRoleEligibilityScheduleRequest object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/rbacapplication-list-roleeligibilityschedulerequests?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Requests for role eligibilities for principals through PIM.";
+            command.Description = "In PIM, retrieve the requests for role eligibilities for principals made through the unifiedRoleEligibilityScheduleRequest object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/rbacapplication-list-roleeligibilityschedulerequests?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -216,7 +233,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilityScheduleReques
         public RoleEligibilityScheduleRequestsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/directory/roleEligibilityScheduleRequests{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Requests for role eligibilities for principals through PIM.
+        /// In PIM, retrieve the requests for role eligibilities for principals made through the unifiedRoleEligibilityScheduleRequest object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -242,7 +259,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilityScheduleReques
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to roleEligibilityScheduleRequests for roleManagement
+        /// In PIM, request for a role eligibility for a principal through the unifiedRoleEligibilityScheduleRequest object. This operation allows both admins and eligible users to add, revoke, or extend eligible assignments.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -270,7 +287,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleEligibilityScheduleReques
             return requestInfo;
         }
         /// <summary>
-        /// Requests for role eligibilities for principals through PIM.
+        /// In PIM, retrieve the requests for role eligibilities for principals made through the unifiedRoleEligibilityScheduleRequest object.
         /// </summary>
         public class RoleEligibilityScheduleRequestsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -64,11 +64,12 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property items for sites
+        /// Removes an item from a [list][].
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/listitem-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property items for sites";
+            command.Description = "Removes an item from a [list][].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/listitem-delete?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -187,11 +188,27 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item {
             return command;
         }
         /// <summary>
-        /// All items contained in the list.
+        /// Provides operations to call the getActivitiesByInterval method.
+        /// </summary>
+        public Command BuildGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRbCommand() {
+            var command = new Command("get-activities-by-interval-with-start-date-time-with-end-date-time-with-interval");
+            command.Description = "Provides operations to call the getActivitiesByInterval method.";
+            var builder = new GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Returns the metadata for an [item][] in a [list][].
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/listitem-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "All items contained in the list.";
+            command.Description = "Returns the metadata for an [item][] in a [list][].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/listitem-get?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -381,7 +398,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item {
         public ListItemItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property items for sites
+        /// Removes an item from a [list][].
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -406,7 +423,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item {
             return requestInfo;
         }
         /// <summary>
-        /// All items contained in the list.
+        /// Returns the metadata for an [item][] in a [list][].
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -460,7 +477,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item {
             return requestInfo;
         }
         /// <summary>
-        /// All items contained in the list.
+        /// Returns the metadata for an [item][] in a [list][].
         /// </summary>
         public class ListItemItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

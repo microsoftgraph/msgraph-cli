@@ -47,11 +47,12 @@ namespace ApiSdk.Groups.Item.Settings {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to settings for groups
+        /// Create a new setting based on the templates available in groupSettingTemplates. These settings can be at the tenant-level or at the group level. Group settings apply to only Microsoft 365 groups. The template named `Group.Unified` can be used to configure tenant-wide Microsoft 365 group settings, while the template named `Group.Unified.Guest` can be used to configure group-specific settings.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/group-post-settings?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to settings for groups";
+            command.Description = "Create a new setting based on the templates available in groupSettingTemplates. These settings can be at the tenant-level or at the group level. Group settings apply to only Microsoft 365 groups. The template named `Group.Unified` can be used to configure tenant-wide Microsoft 365 group settings, while the template named `Group.Unified.Guest` can be used to configure group-specific settings.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-post-settings?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -104,11 +105,12 @@ namespace ApiSdk.Groups.Item.Settings {
             return command;
         }
         /// <summary>
-        /// Settings that can govern this group&apos;s behavior, like whether members can invite guest users to the group. Nullable.
+        /// Retrieve a list of tenant-level or group-specific group settings objects.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/group-list-settings?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Settings that can govern this group's behavior, like whether members can invite guest users to the group. Nullable.";
+            command.Description = "Retrieve a list of tenant-level or group-specific group settings objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-list-settings?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -220,7 +222,7 @@ namespace ApiSdk.Groups.Item.Settings {
         public SettingsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/settings{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Settings that can govern this group&apos;s behavior, like whether members can invite guest users to the group. Nullable.
+        /// Retrieve a list of tenant-level or group-specific group settings objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -246,7 +248,7 @@ namespace ApiSdk.Groups.Item.Settings {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to settings for groups
+        /// Create a new setting based on the templates available in groupSettingTemplates. These settings can be at the tenant-level or at the group level. Group settings apply to only Microsoft 365 groups. The template named `Group.Unified` can be used to configure tenant-wide Microsoft 365 group settings, while the template named `Group.Unified.Guest` can be used to configure group-specific settings.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -274,7 +276,7 @@ namespace ApiSdk.Groups.Item.Settings {
             return requestInfo;
         }
         /// <summary>
-        /// Settings that can govern this group&apos;s behavior, like whether members can invite guest users to the group. Nullable.
+        /// Retrieve a list of tenant-level or group-specific group settings objects.
         /// </summary>
         public class SettingsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

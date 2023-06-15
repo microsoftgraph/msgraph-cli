@@ -116,11 +116,12 @@ namespace ApiSdk.Teamwork.DeletedTeams {
             return command;
         }
         /// <summary>
-        /// The deleted team.
+        /// Get a list of the deletedTeam objects and their properties.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/teamwork-list-deletedteams?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The deleted team.";
+            command.Description = "Get a list of the deletedTeam objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/teamwork-list-deletedteams?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -226,7 +227,7 @@ namespace ApiSdk.Teamwork.DeletedTeams {
         public DeletedTeamsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teamwork/deletedTeams{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The deleted team.
+        /// Get a list of the deletedTeam objects and their properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -280,7 +281,7 @@ namespace ApiSdk.Teamwork.DeletedTeams {
             return requestInfo;
         }
         /// <summary>
-        /// The deleted team.
+        /// Get a list of the deletedTeam objects and their properties.
         /// </summary>
         public class DeletedTeamsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

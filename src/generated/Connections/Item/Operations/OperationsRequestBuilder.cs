@@ -104,11 +104,11 @@ namespace ApiSdk.Connections.Item.Operations {
             return command;
         }
         /// <summary>
-        /// Get operations from connections
+        /// Read the properties and relationships of a connectionOperation object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get operations from connections";
+            command.Description = "Read the properties and relationships of a connectionOperation object.";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -220,7 +220,7 @@ namespace ApiSdk.Connections.Item.Operations {
         public OperationsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/connections/{externalConnection%2Did}/operations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get operations from connections
+        /// Read the properties and relationships of a connectionOperation object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -274,7 +274,7 @@ namespace ApiSdk.Connections.Item.Operations {
             return requestInfo;
         }
         /// <summary>
-        /// Get operations from connections
+        /// Read the properties and relationships of a connectionOperation object.
         /// </summary>
         public class OperationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

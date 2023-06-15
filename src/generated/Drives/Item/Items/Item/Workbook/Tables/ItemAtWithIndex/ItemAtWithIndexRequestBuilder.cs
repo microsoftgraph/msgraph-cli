@@ -80,10 +80,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.ItemAtWithIndex {
         /// <summary>
         /// Instantiates a new ItemAtWithIndexRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="index">Usage: index={index}</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ItemAtWithIndexRequestBuilder(Dictionary<string, object> pathParameters, int? index = default) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/itemAt(index={index})", pathParameters) {
-            if (index is not null) PathParameters.Add("index", index);
+        public ItemAtWithIndexRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/itemAt(index={index})", pathParameters) {
         }
         /// <summary>
         /// Invoke function itemAt

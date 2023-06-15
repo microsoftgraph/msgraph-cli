@@ -53,11 +53,12 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to notebooks for users
+        /// Create a new OneNote notebook.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/onenote-post-notebooks?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to notebooks for users";
+            command.Description = "Create a new OneNote notebook.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/onenote-post-notebooks?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -125,11 +126,27 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks {
             return command;
         }
         /// <summary>
-        /// The collection of OneNote notebooks that are owned by the user or group. Read-only. Nullable.
+        /// Provides operations to call the getRecentNotebooks method.
+        /// </summary>
+        public Command BuildGetRecentNotebooksWithIncludePersonalNotebooksRbCommand() {
+            var command = new Command("get-recent-notebooks-with-include-personal-notebooks");
+            command.Description = "Provides operations to call the getRecentNotebooks method.";
+            var builder = new GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Retrieve a list of notebook objects.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/onenote-list-notebooks?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The collection of OneNote notebooks that are owned by the user or group. Read-only. Nullable.";
+            command.Description = "Retrieve a list of notebook objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/onenote-list-notebooks?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -241,7 +258,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks {
         public NotebooksRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/onenote/notebooks{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The collection of OneNote notebooks that are owned by the user or group. Read-only. Nullable.
+        /// Retrieve a list of notebook objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -267,7 +284,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to notebooks for users
+        /// Create a new OneNote notebook.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -295,7 +312,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of OneNote notebooks that are owned by the user or group. Read-only. Nullable.
+        /// Retrieve a list of notebook objects.
         /// </summary>
         public class NotebooksRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

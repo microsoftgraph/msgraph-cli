@@ -35,11 +35,12 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property taskTriggers for print
+        /// Delete the task trigger of a printer to prevent related print events from triggering tasks on the specified printer.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/printer-delete-tasktrigger?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property taskTriggers for print";
+            command.Description = "Delete the task trigger of a printer to prevent related print events from triggering tasks on the specified printer.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printer-delete-tasktrigger?view=graph-rest-1.0";
             var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
             };
             printerIdOption.IsRequired = true;
@@ -74,11 +75,12 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item {
             return command;
         }
         /// <summary>
-        /// A list of task triggers that are associated with the printer.
+        /// Get a task trigger from a printer. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/printtasktrigger-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "A list of task triggers that are associated with the printer.";
+            command.Description = "Get a task trigger from a printer. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printtasktrigger-get?view=graph-rest-1.0";
             var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
             };
             printerIdOption.IsRequired = true;
@@ -210,7 +212,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item {
         public PrintTaskTriggerItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/printers/{printer%2Did}/taskTriggers/{printTaskTrigger%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property taskTriggers for print
+        /// Delete the task trigger of a printer to prevent related print events from triggering tasks on the specified printer.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -235,7 +237,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item {
             return requestInfo;
         }
         /// <summary>
-        /// A list of task triggers that are associated with the printer.
+        /// Get a task trigger from a printer. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -289,7 +291,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item {
             return requestInfo;
         }
         /// <summary>
-        /// A list of task triggers that are associated with the printer.
+        /// Get a task trigger from a printer. For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
         /// </summary>
         public class PrintTaskTriggerItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -53,11 +53,12 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property assignments for education
+        /// Delete an existing assignment. Only teachers within a class can delete assignments.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationassignment-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property assignments for education";
+            command.Description = "Delete an existing assignment. Only teachers within a class can delete assignments.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationassignment-delete?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -92,11 +93,12 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
             return command;
         }
         /// <summary>
-        /// All assignments associated with this class. Nullable.
+        /// Get the properties and relationships of an assignment. Only teachers, students, and applications with application permissions can perform this operation. Students can only see assignments assigned to them; teachers and applications with application permissions can see all assignments in a class.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationassignment-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "All assignments associated with this class. Nullable.";
+            command.Description = "Get the properties and relationships of an assignment. Only teachers, students, and applications with application permissions can perform this operation. Students can only see assignments assigned to them; teachers and applications with application permissions can see all assignments in a class.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationassignment-get?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -159,11 +161,12 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property assignments in education
+        /// Update an educationAssignment object.  Only teachers can perform this action.  Alternatively, request to change the status of an **assignment** with publish action. Don&apos;t use a PATCH operation for this purpose.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationassignment-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property assignments in education";
+            command.Description = "Update an educationAssignment object.  Only teachers can perform this action.  Alternatively, request to change the status of an **assignment** with publish action. Don't use a PATCH operation for this purpose.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationassignment-update?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -346,7 +349,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
         public EducationAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignments/{educationAssignment%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property assignments for education
+        /// Delete an existing assignment. Only teachers within a class can delete assignments.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -371,7 +374,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// All assignments associated with this class. Nullable.
+        /// Get the properties and relationships of an assignment. Only teachers, students, and applications with application permissions can perform this operation. Students can only see assignments assigned to them; teachers and applications with application permissions can see all assignments in a class.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -397,7 +400,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property assignments in education
+        /// Update an educationAssignment object.  Only teachers can perform this action.  Alternatively, request to change the status of an **assignment** with publish action. Don&apos;t use a PATCH operation for this purpose.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -425,7 +428,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// All assignments associated with this class. Nullable.
+        /// Get the properties and relationships of an assignment. Only teachers, students, and applications with application permissions can perform this operation. Students can only see assignments assigned to them; teachers and applications with application permissions can see all assignments in a class.
         /// </summary>
         public class EducationAssignmentItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

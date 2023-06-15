@@ -101,11 +101,26 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
             return command;
         }
         /// <summary>
-        /// Approval stages for decisions associated with access package assignment requests.
+        /// Provides operations to call the filterByCurrentUser method.
+        /// </summary>
+        public Command BuildFilterByCurrentUserWithOnRbCommand() {
+            var command = new Command("filter-by-current-user-with-on");
+            command.Description = "Provides operations to call the filterByCurrentUser method.";
+            var builder = new FilterByCurrentUserWithOnRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// In Azure AD entitlement management, retrieve the properties of an approval object.  This call can be made by an approver, providing the identifier of the access package assignment request.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Approval stages for decisions associated with access package assignment requests.";
+            command.Description = "In Azure AD entitlement management, retrieve the properties of an approval object.  This call can be made by an approver, providing the identifier of the access package assignment request.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -211,7 +226,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
         public AccessPackageAssignmentApprovalsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Approval stages for decisions associated with access package assignment requests.
+        /// In Azure AD entitlement management, retrieve the properties of an approval object.  This call can be made by an approver, providing the identifier of the access package assignment request.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -265,7 +280,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackageAssignmen
             return requestInfo;
         }
         /// <summary>
-        /// Approval stages for decisions associated with access package assignment requests.
+        /// In Azure AD entitlement management, retrieve the properties of an approval object.  This call can be made by an approver, providing the identifier of the access package assignment request.
         /// </summary>
         public class AccessPackageAssignmentApprovalsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

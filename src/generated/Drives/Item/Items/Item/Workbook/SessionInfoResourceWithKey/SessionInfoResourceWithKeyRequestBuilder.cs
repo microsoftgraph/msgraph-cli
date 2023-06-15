@@ -80,10 +80,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.SessionInfoResourceWithKey {
         /// <summary>
         /// Instantiates a new SessionInfoResourceWithKeyRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="key">Usage: key=&apos;{key}&apos;</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public SessionInfoResourceWithKeyRequestBuilder(Dictionary<string, object> pathParameters, string key = "") : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/sessionInfoResource(key='{key}')", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(key)) PathParameters.Add("key", key);
+        public SessionInfoResourceWithKeyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/sessionInfoResource(key='{key}')", pathParameters) {
         }
         /// <summary>
         /// Invoke function sessionInfoResource

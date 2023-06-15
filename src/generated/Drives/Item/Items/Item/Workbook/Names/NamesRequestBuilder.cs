@@ -145,11 +145,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names {
             return command;
         }
         /// <summary>
-        /// Represents a collection of workbooks scoped named items (named ranges and constants). Read-only.
+        /// Retrieve a list of nameditem objects.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/workbook-list-names?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Represents a collection of workbooks scoped named items (named ranges and constants). Read-only.";
+            command.Description = "Retrieve a list of nameditem objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/workbook-list-names?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -267,7 +268,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names {
         public NamesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/names{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Represents a collection of workbooks scoped named items (named ranges and constants). Read-only.
+        /// Retrieve a list of nameditem objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -321,7 +322,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names {
             return requestInfo;
         }
         /// <summary>
-        /// Represents a collection of workbooks scoped named items (named ranges and constants). Read-only.
+        /// Retrieve a list of nameditem objects.
         /// </summary>
         public class NamesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

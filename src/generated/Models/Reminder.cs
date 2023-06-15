@@ -80,7 +80,7 @@ namespace ApiSdk.Models {
         public DateTimeTimeZone ReminderFireTime { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new reminder and sets the default values.
+        /// Instantiates a new Reminder and sets the default values.
         /// </summary>
         public Reminder() {
             AdditionalData = new Dictionary<string, object>();

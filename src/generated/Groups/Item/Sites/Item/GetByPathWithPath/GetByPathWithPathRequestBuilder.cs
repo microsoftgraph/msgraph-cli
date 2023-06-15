@@ -80,10 +80,8 @@ namespace ApiSdk.Groups.Item.Sites.Item.GetByPathWithPath {
         /// <summary>
         /// Instantiates a new GetByPathWithPathRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="path">Usage: path=&apos;{path}&apos;</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetByPathWithPathRequestBuilder(Dictionary<string, object> pathParameters, string path = "") : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/getByPath(path='{path}')", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(path)) PathParameters.Add("path", path);
+        public GetByPathWithPathRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/getByPath(path='{path}')", pathParameters) {
         }
         /// <summary>
         /// Invoke function getByPath

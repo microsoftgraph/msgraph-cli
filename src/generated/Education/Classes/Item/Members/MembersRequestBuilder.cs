@@ -43,11 +43,12 @@ namespace ApiSdk.Education.Classes.Item.Members {
             return command;
         }
         /// <summary>
-        /// All users in the class. Nullable.
+        /// Retrieves the educationUser members of an educationClass.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationclass-list-members?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "All users in the class. Nullable.";
+            command.Description = "Retrieves the educationUser members of an educationClass.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationclass-list-members?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -176,7 +177,7 @@ namespace ApiSdk.Education.Classes.Item.Members {
         public MembersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/members{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// All users in the class. Nullable.
+        /// Retrieves the educationUser members of an educationClass.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -202,7 +203,7 @@ namespace ApiSdk.Education.Classes.Item.Members {
             return requestInfo;
         }
         /// <summary>
-        /// All users in the class. Nullable.
+        /// Retrieves the educationUser members of an educationClass.
         /// </summary>
         public class MembersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

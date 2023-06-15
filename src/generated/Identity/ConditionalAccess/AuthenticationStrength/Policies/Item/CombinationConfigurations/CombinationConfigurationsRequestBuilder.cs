@@ -47,11 +47,12 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength.Policies.Item
             return command;
         }
         /// <summary>
-        /// Create new navigation property to combinationConfigurations for identity
+        /// Create a new authenticationCombinationConfiguration object. In use, only fido2combinationConfigurations may be created, and these may only be created for custom authentication strength policies.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/authenticationstrengthpolicy-post-combinationconfigurations?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to combinationConfigurations for identity";
+            command.Description = "Create a new authenticationCombinationConfiguration object. In use, only fido2combinationConfigurations may be created, and these may only be created for custom authentication strength policies.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/authenticationstrengthpolicy-post-combinationconfigurations?view=graph-rest-1.0";
             var authenticationStrengthPolicyIdOption = new Option<string>("--authentication-strength-policy-id", description: "The unique identifier of authenticationStrengthPolicy") {
             };
             authenticationStrengthPolicyIdOption.IsRequired = true;
@@ -104,11 +105,12 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength.Policies.Item
             return command;
         }
         /// <summary>
-        /// Settings that may be used to require specific types or instances of an authentication method to be used when authenticating with a specified combination of authentication methods.
+        /// Get the authenticationCombinationConfiguration objects for an authentication strength policy. authenticationCombinationConfiguration represents requirements placed on specific authentication method combinations that require specified variants of those authentication methods to be used when authenticating. Currently, only fido2combinationConfigurations objects are supported. authenticationCombinationConfiguration objects are supported only for custom authentication strengths.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/authenticationstrengthpolicy-list-combinationconfigurations?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Settings that may be used to require specific types or instances of an authentication method to be used when authenticating with a specified combination of authentication methods.";
+            command.Description = "Get the authenticationCombinationConfiguration objects for an authentication strength policy. authenticationCombinationConfiguration represents requirements placed on specific authentication method combinations that require specified variants of those authentication methods to be used when authenticating. Currently, only fido2combinationConfigurations objects are supported. authenticationCombinationConfiguration objects are supported only for custom authentication strengths.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/authenticationstrengthpolicy-list-combinationconfigurations?view=graph-rest-1.0";
             var authenticationStrengthPolicyIdOption = new Option<string>("--authentication-strength-policy-id", description: "The unique identifier of authenticationStrengthPolicy") {
             };
             authenticationStrengthPolicyIdOption.IsRequired = true;
@@ -220,7 +222,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength.Policies.Item
         public CombinationConfigurationsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/conditionalAccess/authenticationStrength/policies/{authenticationStrengthPolicy%2Did}/combinationConfigurations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Settings that may be used to require specific types or instances of an authentication method to be used when authenticating with a specified combination of authentication methods.
+        /// Get the authenticationCombinationConfiguration objects for an authentication strength policy. authenticationCombinationConfiguration represents requirements placed on specific authentication method combinations that require specified variants of those authentication methods to be used when authenticating. Currently, only fido2combinationConfigurations objects are supported. authenticationCombinationConfiguration objects are supported only for custom authentication strengths.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -246,7 +248,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength.Policies.Item
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to combinationConfigurations for identity
+        /// Create a new authenticationCombinationConfiguration object. In use, only fido2combinationConfigurations may be created, and these may only be created for custom authentication strength policies.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -274,7 +276,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength.Policies.Item
             return requestInfo;
         }
         /// <summary>
-        /// Settings that may be used to require specific types or instances of an authentication method to be used when authenticating with a specified combination of authentication methods.
+        /// Get the authenticationCombinationConfiguration objects for an authentication strength policy. authenticationCombinationConfiguration represents requirements placed on specific authentication method combinations that require specified variants of those authentication methods to be used when authenticating. Currently, only fido2combinationConfigurations objects are supported. authenticationCombinationConfiguration objects are supported only for custom authentication strengths.
         /// </summary>
         public class CombinationConfigurationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

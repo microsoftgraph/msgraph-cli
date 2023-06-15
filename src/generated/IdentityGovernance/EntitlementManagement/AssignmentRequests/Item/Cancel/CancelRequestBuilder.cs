@@ -18,11 +18,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
     /// </summary>
     public class CancelRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action cancel
+        /// In Azure AD Entitlement Management, cancel accessPackageAssignmentRequest objects that are in a cancellable state: `accepted`, `pendingApproval`, `pendingNotBefore`, `pendingApprovalEscalated`.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/accesspackageassignmentrequest-cancel?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action cancel";
+            command.Description = "In Azure AD Entitlement Management, cancel accessPackageAssignmentRequest objects that are in a cancellable state: `accepted`, `pendingApproval`, `pendingNotBefore`, `pendingApprovalEscalated`.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/accesspackageassignmentrequest-cancel?view=graph-rest-1.0";
             var accessPackageAssignmentRequestIdOption = new Option<string>("--access-package-assignment-request-id", description: "The unique identifier of accessPackageAssignmentRequest") {
             };
             accessPackageAssignmentRequestIdOption.IsRequired = true;
@@ -50,7 +51,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
         public CancelRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/assignmentRequests/{accessPackageAssignmentRequest%2Did}/cancel", pathParameters) {
         }
         /// <summary>
-        /// Invoke action cancel
+        /// In Azure AD Entitlement Management, cancel accessPackageAssignmentRequest objects that are in a cancellable state: `accepted`, `pendingApproval`, `pendingNotBefore`, `pendingApprovalEscalated`.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

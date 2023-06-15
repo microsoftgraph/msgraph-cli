@@ -18,11 +18,12 @@ namespace ApiSdk.Groups.Item.Owners.Item.Ref {
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete ref of navigation property owners for groups
+        /// Remove an owner from a Microsoft 365 group or a security group through the **owners** navigation property. Once owners are assigned to a group, the last owner (a user object) of the group cannot be removed.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/group-delete-owners?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete ref of navigation property owners for groups";
+            command.Description = "Remove an owner from a Microsoft 365 group or a security group through the **owners** navigation property. Once owners are assigned to a group, the last owner (a user object) of the group cannot be removed.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-delete-owners?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -69,7 +70,7 @@ namespace ApiSdk.Groups.Item.Owners.Item.Ref {
         public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/owners/{directoryObject%2Did}/$ref{?%40id*}", pathParameters) {
         }
         /// <summary>
-        /// Delete ref of navigation property owners for groups
+        /// Remove an owner from a Microsoft 365 group or a security group through the **owners** navigation property. Once owners are assigned to a group, the last owner (a user object) of the group cannot be removed.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -94,7 +95,7 @@ namespace ApiSdk.Groups.Item.Owners.Item.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Delete ref of navigation property owners for groups
+        /// Remove an owner from a Microsoft 365 group or a security group through the **owners** navigation property. Once owners are assigned to a group, the last owner (a user object) of the group cannot be removed.
         /// </summary>
         public class RefRequestBuilderDeleteQueryParameters {
             /// <summary>Delete Uri</summary>

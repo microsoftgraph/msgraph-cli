@@ -18,11 +18,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.SendActivityNotification {
     /// </summary>
     public class SendActivityNotificationRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action sendActivityNotification
+        /// Send an activity feed notification in the scope of a team. For more details about sending notifications and the requirements for doing so, seesending Teams activity notifications.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/team-sendactivitynotification?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action sendActivityNotification";
+            command.Description = "Send an activity feed notification in the scope of a team. For more details about sending notifications and the requirements for doing so, seesending Teams activity notifications.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-sendactivitynotification?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -66,7 +67,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.SendActivityNotification {
         public SendActivityNotificationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/sendActivityNotification", pathParameters) {
         }
         /// <summary>
-        /// Invoke action sendActivityNotification
+        /// Send an activity feed notification in the scope of a team. For more details about sending notifications and the requirements for doing so, seesending Teams activity notifications.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

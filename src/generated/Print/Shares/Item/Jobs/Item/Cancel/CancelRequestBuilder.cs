@@ -18,11 +18,12 @@ namespace ApiSdk.Print.Shares.Item.Jobs.Item.Cancel {
     /// </summary>
     public class CancelRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action cancel
+        /// Cancel a print job. Print jobs can be canceled only on behalf of a user, using delegated permissions.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/printjob-cancel?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action cancel";
+            command.Description = "Cancel a print job. Print jobs can be canceled only on behalf of a user, using delegated permissions.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printjob-cancel?view=graph-rest-1.0";
             var printerShareIdOption = new Option<string>("--printer-share-id", description: "The unique identifier of printerShare") {
             };
             printerShareIdOption.IsRequired = true;
@@ -56,7 +57,7 @@ namespace ApiSdk.Print.Shares.Item.Jobs.Item.Cancel {
         public CancelRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/shares/{printerShare%2Did}/jobs/{printJob%2Did}/cancel", pathParameters) {
         }
         /// <summary>
-        /// Invoke action cancel
+        /// Cancel a print job. Print jobs can be canceled only on behalf of a user, using delegated permissions.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -18,11 +18,12 @@ namespace ApiSdk.Education.Schools.Item.Users.Item.Ref {
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete ref of navigation property users for education
+        /// Delete a user from a school.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationschool-delete-users?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete ref of navigation property users for education";
+            command.Description = "Delete a user from a school.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationschool-delete-users?view=graph-rest-1.0";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -69,7 +70,7 @@ namespace ApiSdk.Education.Schools.Item.Users.Item.Ref {
         public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/schools/{educationSchool%2Did}/users/{educationUser%2Did}/$ref{?%40id*}", pathParameters) {
         }
         /// <summary>
-        /// Delete ref of navigation property users for education
+        /// Delete a user from a school.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -94,7 +95,7 @@ namespace ApiSdk.Education.Schools.Item.Users.Item.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Delete ref of navigation property users for education
+        /// Delete a user from a school.
         /// </summary>
         public class RefRequestBuilderDeleteQueryParameters {
             /// <summary>Delete Uri</summary>

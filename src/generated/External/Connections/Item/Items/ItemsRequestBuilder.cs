@@ -25,11 +25,14 @@ namespace ApiSdk.External.Connections.Item.Items {
         /// </summary>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
+            var commands = new List<Command>();
             var builder = new ExternalItemItemRequestBuilder(PathParameters);
+            commands.Add(builder.BuildActivitiesNavCommand());
             executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildMicrosoftGraphExternalConnectorsAddActivitiesNavCommand());
             executables.Add(builder.BuildPutCommand());
-            return new(executables, new(0));
+            return new(executables, commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -104,11 +107,11 @@ namespace ApiSdk.External.Connections.Item.Items {
             return command;
         }
         /// <summary>
-        /// Get items from external
+        /// Read the properties and relationships of an externalItem object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get items from external";
+            command.Description = "Read the properties and relationships of an externalItem object.";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -220,7 +223,7 @@ namespace ApiSdk.External.Connections.Item.Items {
         public ItemsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/external/connections/{externalConnection%2Did}/items{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get items from external
+        /// Read the properties and relationships of an externalItem object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -274,7 +277,7 @@ namespace ApiSdk.External.Connections.Item.Items {
             return requestInfo;
         }
         /// <summary>
-        /// Get items from external
+        /// Read the properties and relationships of an externalItem object.
         /// </summary>
         public class ItemsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

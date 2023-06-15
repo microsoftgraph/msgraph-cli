@@ -13,7 +13,7 @@ namespace ApiSdk.Models {
 #else
         public List<AttendanceInterval> AttendanceIntervals { get; set; }
 #endif
-        /// <summary>Email address of the user associated with this atttendance record.</summary>
+        /// <summary>Email address of the user associated with this attendance record.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? EmailAddress { get; set; }
@@ -21,7 +21,7 @@ namespace ApiSdk.Models {
 #else
         public string EmailAddress { get; set; }
 #endif
-        /// <summary>Identity of the user associated with this atttendance record.</summary>
+        /// <summary>Identity of the user associated with this attendance record.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.Identity? Identity { get; set; }

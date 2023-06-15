@@ -1,5 +1,6 @@
 using ApiSdk.Communications.OnlineMeetings.Item.AttendanceReports;
 using ApiSdk.Communications.OnlineMeetings.Item.AttendeeReport;
+using ApiSdk.Communications.OnlineMeetings.Item.GetVirtualAppointmentJoinWebUrl;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -153,6 +154,21 @@ namespace ApiSdk.Communications.OnlineMeetings.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getVirtualAppointmentJoinWebUrl method.
+        /// </summary>
+        public Command BuildGetVirtualAppointmentJoinWebUrlNavCommand() {
+            var command = new Command("get-virtual-appointment-join-web-url");
+            command.Description = "Provides operations to call the getVirtualAppointmentJoinWebUrl method.";
+            var builder = new GetVirtualAppointmentJoinWebUrlRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>

@@ -47,11 +47,12 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property agreements for identityGovernance
+        /// Delete an agreement object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/agreement-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property agreements for identityGovernance";
+            command.Description = "Delete an agreement object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/agreement-delete?view=graph-rest-1.0";
             var agreementIdOption = new Option<string>("--agreement-id", description: "The unique identifier of agreement") {
             };
             agreementIdOption.IsRequired = true;
@@ -128,11 +129,12 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item {
             return command;
         }
         /// <summary>
-        /// Represents a tenant&apos;s customizable terms of use agreement that&apos;s created and managed with Azure Active Directory (Azure AD).
+        /// Retrieve the properties and relationships of an agreement object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/agreement-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Represents a tenant's customizable terms of use agreement that's created and managed with Azure Active Directory (Azure AD).";
+            command.Description = "Retrieve the properties and relationships of an agreement object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/agreement-get?view=graph-rest-1.0";
             var agreementIdOption = new Option<string>("--agreement-id", description: "The unique identifier of agreement") {
             };
             agreementIdOption.IsRequired = true;
@@ -189,11 +191,12 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property agreements in identityGovernance
+        /// Update the properties of an agreement object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/agreement-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property agreements in identityGovernance";
+            command.Description = "Update the properties of an agreement object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/agreement-update?view=graph-rest-1.0";
             var agreementIdOption = new Option<string>("--agreement-id", description: "The unique identifier of agreement") {
             };
             agreementIdOption.IsRequired = true;
@@ -252,7 +255,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item {
         public AgreementItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/termsOfUse/agreements/{agreement%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property agreements for identityGovernance
+        /// Delete an agreement object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -277,7 +280,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Represents a tenant&apos;s customizable terms of use agreement that&apos;s created and managed with Azure Active Directory (Azure AD).
+        /// Retrieve the properties and relationships of an agreement object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -303,7 +306,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property agreements in identityGovernance
+        /// Update the properties of an agreement object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -331,7 +334,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Represents a tenant&apos;s customizable terms of use agreement that&apos;s created and managed with Azure Active Directory (Azure AD).
+        /// Retrieve the properties and relationships of an agreement object.
         /// </summary>
         public class AgreementItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

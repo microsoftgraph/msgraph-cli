@@ -105,11 +105,27 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
             return command;
         }
         /// <summary>
-        /// Instances for active role assignments.
+        /// Provides operations to call the filterByCurrentUser method.
+        /// </summary>
+        public Command BuildFilterByCurrentUserWithOnRbCommand() {
+            var command = new Command("filter-by-current-user-with-on");
+            command.Description = "Provides operations to call the filterByCurrentUser method.";
+            var builder = new FilterByCurrentUserWithOnRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Get the instances of active role assignments in your tenant. The active assignments include those made through assignments and activation requests, and directly through the role assignments API.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/rbacapplication-list-roleassignmentscheduleinstances?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Instances for active role assignments.";
+            command.Description = "Get the instances of active role assignments in your tenant. The active assignments include those made through assignments and activation requests, and directly through the role assignments API.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/rbacapplication-list-roleassignmentscheduleinstances?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -215,7 +231,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
         public RoleAssignmentScheduleInstancesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/entitlementManagement/roleAssignmentScheduleInstances{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Instances for active role assignments.
+        /// Get the instances of active role assignments in your tenant. The active assignments include those made through assignments and activation requests, and directly through the role assignments API.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -269,7 +285,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
             return requestInfo;
         }
         /// <summary>
-        /// Instances for active role assignments.
+        /// Get the instances of active role assignments in your tenant. The active assignments include those made through assignments and activation requests, and directly through the role assignments API.
         /// </summary>
         public class RoleAssignmentScheduleInstancesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

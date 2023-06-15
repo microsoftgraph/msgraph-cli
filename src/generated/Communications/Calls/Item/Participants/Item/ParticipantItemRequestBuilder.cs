@@ -22,11 +22,12 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item {
     /// </summary>
     public class ParticipantItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property participants for communications
+        /// Delete a specific participant in a call. In some situations, it is appropriate for an application to remove a participant from an active call. This action can be done before or after the participant answers the call. When an active caller is removed, they are immediately dropped from the call with no pre- or post-removal notification. When an invited participant is removed, any outstanding add participant request is canceled. 
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/participant-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property participants for communications";
+            command.Description = "Delete a specific participant in a call. In some situations, it is appropriate for an application to remove a participant from an active call. This action can be done before or after the participant answers the call. When an active caller is removed, they are immediately dropped from the call with no pre- or post-removal notification. When an invited participant is removed, any outstanding add participant request is canceled. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/participant-delete?view=graph-rest-1.0";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -61,11 +62,12 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item {
             return command;
         }
         /// <summary>
-        /// Get participants from communications
+        /// Retrieve the properties and relationships of a **participant** object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/participant-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get participants from communications";
+            command.Description = "Retrieve the properties and relationships of a **participant** object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/participant-get?view=graph-rest-1.0";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -242,7 +244,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item {
         public ParticipantItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/participants/{participant%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property participants for communications
+        /// Delete a specific participant in a call. In some situations, it is appropriate for an application to remove a participant from an active call. This action can be done before or after the participant answers the call. When an active caller is removed, they are immediately dropped from the call with no pre- or post-removal notification. When an invited participant is removed, any outstanding add participant request is canceled. 
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -267,7 +269,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get participants from communications
+        /// Retrieve the properties and relationships of a **participant** object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -321,7 +323,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get participants from communications
+        /// Retrieve the properties and relationships of a **participant** object.
         /// </summary>
         public class ParticipantItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

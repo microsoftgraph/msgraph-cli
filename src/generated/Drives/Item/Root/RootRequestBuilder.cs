@@ -36,11 +36,12 @@ namespace ApiSdk.Drives.Item.Root {
             return command;
         }
         /// <summary>
-        /// The root folder of the drive. Read-only.
+        /// Retrieve the metadata for a driveItem in a drive by file system path or ID.`item-id` is the ID of a driveItem. It may also be the unique ID of a SharePoint list item.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/driveitem-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The root folder of the drive. Read-only.";
+            command.Description = "Retrieve the metadata for a driveItem in a drive by file system path or ID.`item-id` is the ID of a driveItem. It may also be the unique ID of a SharePoint list item.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitem-get?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -103,7 +104,7 @@ namespace ApiSdk.Drives.Item.Root {
         public RootRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/root{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The root folder of the drive. Read-only.
+        /// Retrieve the metadata for a driveItem in a drive by file system path or ID.`item-id` is the ID of a driveItem. It may also be the unique ID of a SharePoint list item.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -129,7 +130,7 @@ namespace ApiSdk.Drives.Item.Root {
             return requestInfo;
         }
         /// <summary>
-        /// The root folder of the drive. Read-only.
+        /// Retrieve the metadata for a driveItem in a drive by file system path or ID.`item-id` is the ID of a driveItem. It may also be the unique ID of a SharePoint list item.
         /// </summary>
         public class RootRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -104,11 +104,12 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item.Rules {
             return command;
         }
         /// <summary>
-        /// The collection of rules like approval rules and expiration rules. Supports $expand.
+        /// Get the rules or settings defined for a role management policy. The rules are a collection of following types that are derived from the unifiedRoleManagementPolicyRule object:+ unifiedRoleManagementPolicyApprovalRule+ unifiedRoleManagementPolicyAuthenticationContextRule+ unifiedRoleManagementPolicyEnablementRule+ unifiedRoleManagementPolicyExpirationRule+ unifiedRoleManagementPolicyNotificationRule
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/unifiedrolemanagementpolicy-list-rules?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The collection of rules like approval rules and expiration rules. Supports $expand.";
+            command.Description = "Get the rules or settings defined for a role management policy. The rules are a collection of following types that are derived from the unifiedRoleManagementPolicyRule object:+ unifiedRoleManagementPolicyApprovalRule+ unifiedRoleManagementPolicyAuthenticationContextRule+ unifiedRoleManagementPolicyEnablementRule+ unifiedRoleManagementPolicyExpirationRule+ unifiedRoleManagementPolicyNotificationRule\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/unifiedrolemanagementpolicy-list-rules?view=graph-rest-1.0";
             var unifiedRoleManagementPolicyIdOption = new Option<string>("--unified-role-management-policy-id", description: "The unique identifier of unifiedRoleManagementPolicy") {
             };
             unifiedRoleManagementPolicyIdOption.IsRequired = true;
@@ -220,7 +221,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item.Rules {
         public RulesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/roleManagementPolicies/{unifiedRoleManagementPolicy%2Did}/rules{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The collection of rules like approval rules and expiration rules. Supports $expand.
+        /// Get the rules or settings defined for a role management policy. The rules are a collection of following types that are derived from the unifiedRoleManagementPolicyRule object:+ unifiedRoleManagementPolicyApprovalRule+ unifiedRoleManagementPolicyAuthenticationContextRule+ unifiedRoleManagementPolicyEnablementRule+ unifiedRoleManagementPolicyExpirationRule+ unifiedRoleManagementPolicyNotificationRule
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -274,7 +275,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item.Rules {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of rules like approval rules and expiration rules. Supports $expand.
+        /// Get the rules or settings defined for a role management policy. The rules are a collection of following types that are derived from the unifiedRoleManagementPolicyRule object:+ unifiedRoleManagementPolicyApprovalRule+ unifiedRoleManagementPolicyAuthenticationContextRule+ unifiedRoleManagementPolicyEnablementRule+ unifiedRoleManagementPolicyExpirationRule+ unifiedRoleManagementPolicyNotificationRule
         /// </summary>
         public class RulesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

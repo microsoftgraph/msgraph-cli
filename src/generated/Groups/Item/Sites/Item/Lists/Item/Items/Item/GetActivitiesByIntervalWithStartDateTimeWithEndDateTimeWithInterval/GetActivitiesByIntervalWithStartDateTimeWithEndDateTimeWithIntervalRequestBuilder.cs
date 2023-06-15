@@ -159,14 +159,8 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.GetActivitiesByInt
         /// <summary>
         /// Instantiates a new GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="endDateTime">Usage: endDateTime=&apos;{endDateTime}&apos;</param>
-        /// <param name="interval">Usage: interval=&apos;{interval}&apos;</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="startDateTime">Usage: startDateTime=&apos;{startDateTime}&apos;</param>
-        public GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder(Dictionary<string, object> pathParameters, string endDateTime = "", string interval = "", string startDateTime = "") : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/getActivitiesByInterval(startDateTime='{startDateTime}',endDateTime='{endDateTime}',interval='{interval}'){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(endDateTime)) PathParameters.Add("endDateTime", endDateTime);
-            if (!string.IsNullOrWhiteSpace(interval)) PathParameters.Add("interval", interval);
-            if (!string.IsNullOrWhiteSpace(startDateTime)) PathParameters.Add("startDateTime", startDateTime);
+        public GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/getActivitiesByInterval(startDateTime='{startDateTime}',endDateTime='{endDateTime}',interval='{interval}'){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", pathParameters) {
         }
         /// <summary>
         /// Invoke function getActivitiesByInterval

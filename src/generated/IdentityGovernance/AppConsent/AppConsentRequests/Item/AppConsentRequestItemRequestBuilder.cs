@@ -53,11 +53,12 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item {
             return command;
         }
         /// <summary>
-        /// A collection of userConsentRequest objects for a specific application.
+        /// Read the properties and relationships of an appConsentRequest object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/appconsentrequest-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "A collection of userConsentRequest objects for a specific application.";
+            command.Description = "Read the properties and relationships of an appConsentRequest object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/appconsentrequest-get?view=graph-rest-1.0";
             var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "The unique identifier of appConsentRequest") {
             };
             appConsentRequestIdOption.IsRequired = true;
@@ -181,6 +182,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item {
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
             execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildFilterByCurrentUserWithOnRbCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
             execCommands.AddRange(cmds.Item1);
@@ -227,7 +229,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of userConsentRequest objects for a specific application.
+        /// Read the properties and relationships of an appConsentRequest object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -281,7 +283,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of userConsentRequest objects for a specific application.
+        /// Read the properties and relationships of an appConsentRequest object.
         /// </summary>
         public class AppConsentRequestItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -52,11 +52,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
             return command;
         }
         /// <summary>
-        /// Create new navigation property to replies for users
+        /// Create a new reply to a chatMessage in a specified channel.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/channel-post-messagereply?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to replies for users";
+            command.Description = "Create a new reply to a chatMessage in a specified channel.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-post-messagereply?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -142,11 +143,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
             return command;
         }
         /// <summary>
-        /// Replies for a specified message. Supports $expand for channel messages.
+        /// List all the replies to a message in a channel of a team. This method lists only the replies of the specified message, if any. To get the message itself, simply call get channel message.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chatmessage-list-replies?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Replies for a specified message. Supports $expand for channel messages.";
+            command.Description = "List all the replies to a message in a channel of a team. This method lists only the replies of the specified message, if any. To get the message itself, simply call get channel message.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chatmessage-list-replies?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -276,7 +278,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
         public RepliesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/channels/{channel%2Did}/messages/{chatMessage%2Did}/replies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Replies for a specified message. Supports $expand for channel messages.
+        /// List all the replies to a message in a channel of a team. This method lists only the replies of the specified message, if any. To get the message itself, simply call get channel message.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -302,7 +304,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to replies for users
+        /// Create a new reply to a chatMessage in a specified channel.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -330,7 +332,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
             return requestInfo;
         }
         /// <summary>
-        /// Replies for a specified message. Supports $expand for channel messages.
+        /// List all the replies to a message in a channel of a team. This method lists only the replies of the specified message, if any. To get the message itself, simply call get channel message.
         /// </summary>
         public class RepliesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

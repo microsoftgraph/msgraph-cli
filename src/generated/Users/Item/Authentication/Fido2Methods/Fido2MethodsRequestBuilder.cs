@@ -46,11 +46,11 @@ namespace ApiSdk.Users.Item.Authentication.Fido2Methods {
             return command;
         }
         /// <summary>
-        /// Represents the FIDO2 security keys registered to a user for authentication.
+        /// Retrieve a user&apos;s single FIDO2 Security Key Authentication Method object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Represents the FIDO2 security keys registered to a user for authentication.";
+            command.Description = "Retrieve a user's single FIDO2 Security Key Authentication Method object.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -162,7 +162,7 @@ namespace ApiSdk.Users.Item.Authentication.Fido2Methods {
         public Fido2MethodsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/authentication/fido2Methods{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Represents the FIDO2 security keys registered to a user for authentication.
+        /// Retrieve a user&apos;s single FIDO2 Security Key Authentication Method object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -188,7 +188,7 @@ namespace ApiSdk.Users.Item.Authentication.Fido2Methods {
             return requestInfo;
         }
         /// <summary>
-        /// Represents the FIDO2 security keys registered to a user for authentication.
+        /// Retrieve a user&apos;s single FIDO2 Security Key Authentication Method object.
         /// </summary>
         public class Fido2MethodsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

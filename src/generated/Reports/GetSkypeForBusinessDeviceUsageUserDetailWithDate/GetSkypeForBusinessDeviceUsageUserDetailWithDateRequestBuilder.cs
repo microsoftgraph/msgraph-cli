@@ -58,10 +58,8 @@ namespace ApiSdk.Reports.GetSkypeForBusinessDeviceUsageUserDetailWithDate {
         /// <summary>
         /// Instantiates a new GetSkypeForBusinessDeviceUsageUserDetailWithDateRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="date">Usage: date={date}</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetSkypeForBusinessDeviceUsageUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters, Date? date = default) : base("{+baseurl}/reports/getSkypeForBusinessDeviceUsageUserDetail(date={date})", pathParameters) {
-            if (date is not null) PathParameters.Add("date", date);
+        public GetSkypeForBusinessDeviceUsageUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getSkypeForBusinessDeviceUsageUserDetail(date={date})", pathParameters) {
         }
         /// <summary>
         /// Invoke function getSkypeForBusinessDeviceUsageUserDetail

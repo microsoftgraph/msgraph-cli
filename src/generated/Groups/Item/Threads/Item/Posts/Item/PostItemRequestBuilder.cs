@@ -2,9 +2,7 @@ using ApiSdk.Groups.Item.Threads.Item.Posts.Item.Attachments;
 using ApiSdk.Groups.Item.Threads.Item.Posts.Item.Extensions;
 using ApiSdk.Groups.Item.Threads.Item.Posts.Item.Forward;
 using ApiSdk.Groups.Item.Threads.Item.Posts.Item.InReplyTo;
-using ApiSdk.Groups.Item.Threads.Item.Posts.Item.MultiValueExtendedProperties;
 using ApiSdk.Groups.Item.Threads.Item.Posts.Item.Reply;
-using ApiSdk.Groups.Item.Threads.Item.Posts.Item.SingleValueExtendedProperties;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -177,39 +175,12 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
             nonExecCommands.Add(builder.BuildExtensionsNavCommand());
             nonExecCommands.Add(builder.BuildForwardNavCommand());
             execCommands.Add(builder.BuildGetCommand());
-            nonExecCommands.Add(builder.BuildMultiValueExtendedPropertiesNavCommand());
             nonExecCommands.Add(builder.BuildReplyNavCommand());
-            nonExecCommands.Add(builder.BuildSingleValueExtendedPropertiesNavCommand());
             foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
             foreach (var cmd in nonExecCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.post entity.
-        /// </summary>
-        public Command BuildMultiValueExtendedPropertiesNavCommand() {
-            var command = new Command("multi-value-extended-properties");
-            command.Description = "Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.post entity.";
-            var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            var nonExecCommands = new List<Command>();
-            nonExecCommands.Add(builder.BuildCountNavCommand());
-            execCommands.Add(builder.BuildCreateCommand());
-            execCommands.Add(builder.BuildListCommand());
-            var cmds = builder.BuildCommand();
-            execCommands.AddRange(cmds.Item1);
-            nonExecCommands.AddRange(cmds.Item2);
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
             {
                 command.AddCommand(cmd);
             }
@@ -225,31 +196,6 @@ namespace ApiSdk.Groups.Item.Threads.Item.Posts.Item {
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.post entity.
-        /// </summary>
-        public Command BuildSingleValueExtendedPropertiesNavCommand() {
-            var command = new Command("single-value-extended-properties");
-            command.Description = "Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.post entity.";
-            var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            var nonExecCommands = new List<Command>();
-            nonExecCommands.Add(builder.BuildCountNavCommand());
-            execCommands.Add(builder.BuildCreateCommand());
-            execCommands.Add(builder.BuildListCommand());
-            var cmds = builder.BuildCommand();
-            execCommands.AddRange(cmds.Item1);
-            nonExecCommands.AddRange(cmds.Item2);
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
             {
                 command.AddCommand(cmd);
             }

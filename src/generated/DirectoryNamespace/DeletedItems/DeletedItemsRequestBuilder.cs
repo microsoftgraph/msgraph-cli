@@ -2,8 +2,11 @@ using ApiSdk.DirectoryNamespace.DeletedItems.Count;
 using ApiSdk.DirectoryNamespace.DeletedItems.Delta;
 using ApiSdk.DirectoryNamespace.DeletedItems.GetAvailableExtensionProperties;
 using ApiSdk.DirectoryNamespace.DeletedItems.GetByIds;
+using ApiSdk.DirectoryNamespace.DeletedItems.GraphAdministrativeUnit;
 using ApiSdk.DirectoryNamespace.DeletedItems.GraphApplication;
+using ApiSdk.DirectoryNamespace.DeletedItems.GraphDevice;
 using ApiSdk.DirectoryNamespace.DeletedItems.GraphGroup;
+using ApiSdk.DirectoryNamespace.DeletedItems.GraphServicePrincipal;
 using ApiSdk.DirectoryNamespace.DeletedItems.GraphUser;
 using ApiSdk.DirectoryNamespace.DeletedItems.Item;
 using ApiSdk.DirectoryNamespace.DeletedItems.ValidateProperties;
@@ -40,8 +43,11 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildGetMemberGroupsNavCommand());
             commands.Add(builder.BuildGetMemberObjectsNavCommand());
+            commands.Add(builder.BuildGraphAdministrativeUnitByIdNavCommand());
             commands.Add(builder.BuildGraphApplicationByIdNavCommand());
+            commands.Add(builder.BuildGraphDeviceByIdNavCommand());
             commands.Add(builder.BuildGraphGroupByIdNavCommand());
+            commands.Add(builder.BuildGraphServicePrincipalByIdNavCommand());
             commands.Add(builder.BuildGraphUserByIdNavCommand());
             executables.Add(builder.BuildPatchCommand());
             commands.Add(builder.BuildRestoreNavCommand());
@@ -159,12 +165,54 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
             return command;
         }
         /// <summary>
+        /// Casts the previous resource to administrativeUnit.
+        /// </summary>
+        public Command BuildGraphAdministrativeUnitNavCommand() {
+            var command = new Command("graph-administrative-unit");
+            command.Description = "Casts the previous resource to administrativeUnit.";
+            var builder = new GraphAdministrativeUnitRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Casts the previous resource to application.
         /// </summary>
         public Command BuildGraphApplicationNavCommand() {
             var command = new Command("graph-application");
             command.Description = "Casts the previous resource to application.";
             var builder = new GraphApplicationRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to device.
+        /// </summary>
+        public Command BuildGraphDeviceNavCommand() {
+            var command = new Command("graph-device");
+            command.Description = "Casts the previous resource to device.";
+            var builder = new GraphDeviceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
@@ -201,6 +249,27 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
             return command;
         }
         /// <summary>
+        /// Casts the previous resource to servicePrincipal.
+        /// </summary>
+        public Command BuildGraphServicePrincipalNavCommand() {
+            var command = new Command("graph-service-principal");
+            command.Description = "Casts the previous resource to servicePrincipal.";
+            var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Casts the previous resource to user.
         /// </summary>
         public Command BuildGraphUserNavCommand() {
@@ -222,11 +291,11 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
             return command;
         }
         /// <summary>
-        /// Recently deleted items. Read-only. Nullable.
+        /// Retrieve the properties of a recently deleted application, group, servicePrincipal, administrative unit, or user object from deleted items.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Recently deleted items. Read-only. Nullable.";
+            command.Description = "Retrieve the properties of a recently deleted application, group, servicePrincipal, administrative unit, or user object from deleted items.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -347,7 +416,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
         public DeletedItemsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/deletedItems{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Recently deleted items. Read-only. Nullable.
+        /// Retrieve the properties of a recently deleted application, group, servicePrincipal, administrative unit, or user object from deleted items.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -401,7 +470,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems {
             return requestInfo;
         }
         /// <summary>
-        /// Recently deleted items. Read-only. Nullable.
+        /// Retrieve the properties of a recently deleted application, group, servicePrincipal, administrative unit, or user object from deleted items.
         /// </summary>
         public class DeletedItemsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

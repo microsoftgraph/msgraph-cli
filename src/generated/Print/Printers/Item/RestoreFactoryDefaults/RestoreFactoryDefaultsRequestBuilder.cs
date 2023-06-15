@@ -18,11 +18,12 @@ namespace ApiSdk.Print.Printers.Item.RestoreFactoryDefaults {
     /// </summary>
     public class RestoreFactoryDefaultsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action restoreFactoryDefaults
+        /// Restore a printer&apos;s default settings to the values specified by the manufacturer.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/printer-restorefactorydefaults?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action restoreFactoryDefaults";
+            command.Description = "Restore a printer's default settings to the values specified by the manufacturer.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printer-restorefactorydefaults?view=graph-rest-1.0";
             var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
             };
             printerIdOption.IsRequired = true;
@@ -50,7 +51,7 @@ namespace ApiSdk.Print.Printers.Item.RestoreFactoryDefaults {
         public RestoreFactoryDefaultsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/printers/{printer%2Did}/restoreFactoryDefaults", pathParameters) {
         }
         /// <summary>
-        /// Invoke action restoreFactoryDefaults
+        /// Restore a printer&apos;s default settings to the values specified by the manufacturer.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

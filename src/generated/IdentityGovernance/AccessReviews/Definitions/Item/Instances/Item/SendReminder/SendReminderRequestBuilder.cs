@@ -18,11 +18,12 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
     /// </summary>
     public class SendReminderRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action sendReminder
+        /// Send a reminder to the reviewers of an active accessReviewInstance.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/accessreviewinstance-sendreminder?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action sendReminder";
+            command.Description = "Send a reminder to the reviewers of an active accessReviewInstance.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/accessreviewinstance-sendreminder?view=graph-rest-1.0";
             var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "The unique identifier of accessReviewScheduleDefinition") {
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
@@ -56,7 +57,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         public SendReminderRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/accessReviews/definitions/{accessReviewScheduleDefinition%2Did}/instances/{accessReviewInstance%2Did}/sendReminder", pathParameters) {
         }
         /// <summary>
-        /// Invoke action sendReminder
+        /// Send a reminder to the reviewers of an active accessReviewInstance.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

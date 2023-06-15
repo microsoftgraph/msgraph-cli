@@ -104,11 +104,12 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item.Runs {
             return command;
         }
         /// <summary>
-        /// A collection of simulation automation runs.
+        /// Get a list of the attack simulation automation runs for a tenant.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/simulationautomation-list-runs?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A collection of simulation automation runs.";
+            command.Description = "Get a list of the attack simulation automation runs for a tenant.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/simulationautomation-list-runs?view=graph-rest-1.0";
             var simulationAutomationIdOption = new Option<string>("--simulation-automation-id", description: "The unique identifier of simulationAutomation") {
             };
             simulationAutomationIdOption.IsRequired = true;
@@ -220,7 +221,7 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item.Runs {
         public RunsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation/simulationAutomations/{simulationAutomation%2Did}/runs{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// A collection of simulation automation runs.
+        /// Get a list of the attack simulation automation runs for a tenant.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -274,7 +275,7 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item.Runs {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of simulation automation runs.
+        /// Get a list of the attack simulation automation runs for a tenant.
         /// </summary>
         public class RunsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

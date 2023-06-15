@@ -20,11 +20,12 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.Columns.Item {
     /// </summary>
     public class ColumnDefinitionItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property columns for sites
+        /// Remove a [column][columndefinition] from a [site][], a [list][], or a [content type][contentType].
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/columndefinition-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property columns for sites";
+            command.Description = "Remove a [column][columndefinition] from a [site][], a [list][], or a [content type][contentType].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/columndefinition-delete?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -65,11 +66,12 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.Columns.Item {
             return command;
         }
         /// <summary>
-        /// The collection of column definitions for this contentType.
+        /// Retrieve the metadata for a [site][], a [list][], or a [contentType][] [column][columnDefinition].
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/columndefinition-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The collection of column definitions for this contentType.";
+            command.Description = "Retrieve the metadata for a [site][], a [list][], or a [contentType][] [column][columnDefinition].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/columndefinition-get?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -228,7 +230,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.Columns.Item {
         public ColumnDefinitionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/contentTypes/{contentType%2Did}/columns/{columnDefinition%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property columns for sites
+        /// Remove a [column][columndefinition] from a [site][], a [list][], or a [content type][contentType].
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -253,7 +255,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.Columns.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of column definitions for this contentType.
+        /// Retrieve the metadata for a [site][], a [list][], or a [contentType][] [column][columnDefinition].
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -307,7 +309,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item.Columns.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of column definitions for this contentType.
+        /// Retrieve the metadata for a [site][], a [list][], or a [contentType][] [column][columnDefinition].
         /// </summary>
         public class ColumnDefinitionItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

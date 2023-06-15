@@ -100,6 +100,21 @@ namespace ApiSdk.DeviceManagement.AuditEvents {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the getAuditActivityTypes method.
+        /// </summary>
+        public Command BuildGetAuditActivityTypesWithCategoryRbCommand() {
+            var command = new Command("get-audit-activity-types-with-category");
+            command.Description = "Provides operations to call the getAuditActivityTypes method.";
+            var builder = new GetAuditActivityTypesWithCategoryRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the getAuditCategories method.
         /// </summary>
         public Command BuildGetAuditCategoriesNavCommand() {

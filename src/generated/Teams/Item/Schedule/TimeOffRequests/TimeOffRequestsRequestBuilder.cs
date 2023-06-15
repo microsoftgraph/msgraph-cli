@@ -104,11 +104,12 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests {
             return command;
         }
         /// <summary>
-        /// Get timeOffRequests from teams
+        /// Retrieve a list of timeOffRequest objects in the team.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/timeoffrequest-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get timeOffRequests from teams";
+            command.Description = "Retrieve a list of timeOffRequest objects in the team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/timeoffrequest-list?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -213,7 +214,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests {
         public TimeOffRequestsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/schedule/timeOffRequests{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select}", pathParameters) {
         }
         /// <summary>
-        /// Get timeOffRequests from teams
+        /// Retrieve a list of timeOffRequest objects in the team.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -267,7 +268,7 @@ namespace ApiSdk.Teams.Item.Schedule.TimeOffRequests {
             return requestInfo;
         }
         /// <summary>
-        /// Get timeOffRequests from teams
+        /// Retrieve a list of timeOffRequest objects in the team.
         /// </summary>
         public class TimeOffRequestsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

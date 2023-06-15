@@ -49,11 +49,12 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to historyDefinitions for identityGovernance
+        /// Create a new accessReviewHistoryDefinition object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/accessreviewset-post-historydefinitions?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to historyDefinitions for identityGovernance";
+            command.Description = "Create a new accessReviewHistoryDefinition object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/accessreviewset-post-historydefinitions?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -100,11 +101,12 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions {
             return command;
         }
         /// <summary>
-        /// Represents a collection of access review history data and the scopes used to collect that data.
+        /// Retrieve the accessReviewHistoryDefinition objects created in the last 30 days, including all nested properties.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/accessreviewset-list-historydefinitions?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Represents a collection of access review history data and the scopes used to collect that data.";
+            command.Description = "Retrieve the accessReviewHistoryDefinition objects created in the last 30 days, including all nested properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/accessreviewset-list-historydefinitions?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -210,7 +212,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions {
         public HistoryDefinitionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/accessReviews/historyDefinitions{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Represents a collection of access review history data and the scopes used to collect that data.
+        /// Retrieve the accessReviewHistoryDefinition objects created in the last 30 days, including all nested properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -236,7 +238,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to historyDefinitions for identityGovernance
+        /// Create a new accessReviewHistoryDefinition object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -264,7 +266,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.HistoryDefinitions {
             return requestInfo;
         }
         /// <summary>
-        /// Represents a collection of access review history data and the scopes used to collect that data.
+        /// Retrieve the accessReviewHistoryDefinition objects created in the last 30 days, including all nested properties.
         /// </summary>
         public class HistoryDefinitionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

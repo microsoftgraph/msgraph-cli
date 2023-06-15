@@ -18,11 +18,12 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DocumentSetVersions.Item.Resto
     /// </summary>
     public class RestoreRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action restore
+        /// Restore a document set version.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/documentsetversion-restore?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action restore";
+            command.Description = "Restore a document set version.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/documentsetversion-restore?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -68,7 +69,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DocumentSetVersions.Item.Resto
         public RestoreRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/documentSetVersions/{documentSetVersion%2Did}/restore", pathParameters) {
         }
         /// <summary>
-        /// Invoke action restore
+        /// Restore a document set version.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

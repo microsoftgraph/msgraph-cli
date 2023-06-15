@@ -18,11 +18,12 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item.Upgrade {
     /// </summary>
     public class UpgradeRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action upgrade
+        /// Upgrade an app installation within a chat.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chat-teamsappinstallation-upgrade?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action upgrade";
+            command.Description = "Upgrade an app installation within a chat.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-teamsappinstallation-upgrade?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -56,7 +57,7 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item.Upgrade {
         public UpgradeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/installedApps/{teamsAppInstallation%2Did}/upgrade", pathParameters) {
         }
         /// <summary>
-        /// Invoke action upgrade
+        /// Upgrade an app installation within a chat.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

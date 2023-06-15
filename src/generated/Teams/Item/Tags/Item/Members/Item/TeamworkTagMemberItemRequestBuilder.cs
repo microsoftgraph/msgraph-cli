@@ -19,11 +19,12 @@ namespace ApiSdk.Teams.Item.Tags.Item.Members.Item {
     /// </summary>
     public class TeamworkTagMemberItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property members for teams
+        /// Delete a member from a standard tag in a team.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/teamworktagmember-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property members for teams";
+            command.Description = "Delete a member from a standard tag in a team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/teamworktagmember-delete?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -64,11 +65,12 @@ namespace ApiSdk.Teams.Item.Tags.Item.Members.Item {
             return command;
         }
         /// <summary>
-        /// Users assigned to the tag.
+        /// Get the properties and relationships of a member of a standard tag in a team.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/teamworktagmember-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Users assigned to the tag.";
+            command.Description = "Get the properties and relationships of a member of a standard tag in a team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/teamworktagmember-get?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -212,7 +214,7 @@ namespace ApiSdk.Teams.Item.Tags.Item.Members.Item {
         public TeamworkTagMemberItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/tags/{teamworkTag%2Did}/members/{teamworkTagMember%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property members for teams
+        /// Delete a member from a standard tag in a team.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -237,7 +239,7 @@ namespace ApiSdk.Teams.Item.Tags.Item.Members.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Users assigned to the tag.
+        /// Get the properties and relationships of a member of a standard tag in a team.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -291,7 +293,7 @@ namespace ApiSdk.Teams.Item.Tags.Item.Members.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Users assigned to the tag.
+        /// Get the properties and relationships of a member of a standard tag in a team.
         /// </summary>
         public class TeamworkTagMemberItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

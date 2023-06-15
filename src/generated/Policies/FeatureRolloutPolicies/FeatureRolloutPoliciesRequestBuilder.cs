@@ -49,11 +49,12 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to featureRolloutPolicies for policies
+        /// Create a new featureRolloutPolicy object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/featurerolloutpolicies-post?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to featureRolloutPolicies for policies";
+            command.Description = "Create a new featureRolloutPolicy object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/featurerolloutpolicies-post?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -100,11 +101,12 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies {
             return command;
         }
         /// <summary>
-        /// The feature rollout policy associated with a directory object.
+        /// Retrieve a list of featureRolloutPolicy objects.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/featurerolloutpolicies-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The feature rollout policy associated with a directory object.";
+            command.Description = "Retrieve a list of featureRolloutPolicy objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/featurerolloutpolicies-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -210,7 +212,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies {
         public FeatureRolloutPoliciesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/featureRolloutPolicies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The feature rollout policy associated with a directory object.
+        /// Retrieve a list of featureRolloutPolicy objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -236,7 +238,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to featureRolloutPolicies for policies
+        /// Create a new featureRolloutPolicy object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -264,7 +266,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// The feature rollout policy associated with a directory object.
+        /// Retrieve a list of featureRolloutPolicy objects.
         /// </summary>
         public class FeatureRolloutPoliciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

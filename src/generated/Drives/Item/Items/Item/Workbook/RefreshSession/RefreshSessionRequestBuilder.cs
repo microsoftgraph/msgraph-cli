@@ -18,11 +18,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.RefreshSession {
     /// </summary>
     public class RefreshSessionRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action refreshSession
+        /// Use this API to refresh an existing workbook session. 
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/workbook-refreshsession?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action refreshSession";
+            command.Description = "Use this API to refresh an existing workbook session. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/workbook-refreshsession?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -56,7 +57,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.RefreshSession {
         public RefreshSessionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/refreshSession", pathParameters) {
         }
         /// <summary>
-        /// Invoke action refreshSession
+        /// Use this API to refresh an existing workbook session. 
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

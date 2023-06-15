@@ -19,10 +19,11 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.Messages.Item.HostedCo
     public class ContentRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Get media content for the navigation property hostedContents from teamwork
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chatmessage-list-hostedcontents?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get media content for the navigation property hostedContents from teamwork";
+            command.Description = "Get media content for the navigation property hostedContents from teamwork\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chatmessage-list-hostedcontents?view=graph-rest-1.0";
             var deletedTeamIdOption = new Option<string>("--deleted-team-id", description: "The unique identifier of deletedTeam") {
             };
             deletedTeamIdOption.IsRequired = true;

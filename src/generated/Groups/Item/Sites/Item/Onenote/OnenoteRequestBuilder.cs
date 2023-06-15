@@ -142,6 +142,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote {
             nonExecCommands.Add(builder.BuildCountNavCommand());
             execCommands.Add(builder.BuildCreateCommand());
             nonExecCommands.Add(builder.BuildGetNotebookFromWebUrlNavCommand());
+            nonExecCommands.Add(builder.BuildGetRecentNotebooksWithIncludePersonalNotebooksRbCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
             execCommands.AddRange(cmds.Item1);

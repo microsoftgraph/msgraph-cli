@@ -18,11 +18,12 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Unpublish {
     /// </summary>
     public class UnpublishRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action unpublish
+        /// Unpublish a [contentType][] from a content type hub site.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/contenttype-unpublish?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action unpublish";
+            command.Description = "Unpublish a [contentType][] from a content type hub site.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contenttype-unpublish?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -56,7 +57,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Unpublish {
         public UnpublishRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/list/contentTypes/{contentType%2Did}/unpublish", pathParameters) {
         }
         /// <summary>
-        /// Invoke action unpublish
+        /// Unpublish a [contentType][] from a content type hub site.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

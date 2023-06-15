@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
         public string TransportKey { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new printCertificateSigningRequest and sets the default values.
+        /// Instantiates a new PrintCertificateSigningRequest and sets the default values.
         /// </summary>
         public PrintCertificateSigningRequest() {
             AdditionalData = new Dictionary<string, object>();

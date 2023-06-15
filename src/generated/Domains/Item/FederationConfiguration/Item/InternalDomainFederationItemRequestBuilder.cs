@@ -19,11 +19,12 @@ namespace ApiSdk.Domains.Item.FederationConfiguration.Item {
     /// </summary>
     public class InternalDomainFederationItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property federationConfiguration for domains
+        /// Delete an internalDomainFederation object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/internaldomainfederation-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property federationConfiguration for domains";
+            command.Description = "Delete an internalDomainFederation object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/internaldomainfederation-delete?view=graph-rest-1.0";
             var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
@@ -58,11 +59,12 @@ namespace ApiSdk.Domains.Item.FederationConfiguration.Item {
             return command;
         }
         /// <summary>
-        /// Domain settings configured by a customer when federated with Azure AD. Supports $expand.
+        /// Read the properties and relationships of an internalDomainFederation object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/internaldomainfederation-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Domain settings configured by a customer when federated with Azure AD. Supports $expand.";
+            command.Description = "Read the properties and relationships of an internalDomainFederation object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/internaldomainfederation-get?view=graph-rest-1.0";
             var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
@@ -125,11 +127,12 @@ namespace ApiSdk.Domains.Item.FederationConfiguration.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property federationConfiguration in domains
+        /// Update the properties of an internalDomainFederation object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/internaldomainfederation-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property federationConfiguration in domains";
+            command.Description = "Update the properties of an internalDomainFederation object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/internaldomainfederation-update?view=graph-rest-1.0";
             var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
@@ -194,7 +197,7 @@ namespace ApiSdk.Domains.Item.FederationConfiguration.Item {
         public InternalDomainFederationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/domains/{domain%2Did}/federationConfiguration/{internalDomainFederation%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property federationConfiguration for domains
+        /// Delete an internalDomainFederation object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -219,7 +222,7 @@ namespace ApiSdk.Domains.Item.FederationConfiguration.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Domain settings configured by a customer when federated with Azure AD. Supports $expand.
+        /// Read the properties and relationships of an internalDomainFederation object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -245,7 +248,7 @@ namespace ApiSdk.Domains.Item.FederationConfiguration.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property federationConfiguration in domains
+        /// Update the properties of an internalDomainFederation object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -273,7 +276,7 @@ namespace ApiSdk.Domains.Item.FederationConfiguration.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Domain settings configured by a customer when federated with Azure AD. Supports $expand.
+        /// Read the properties and relationships of an internalDomainFederation object.
         /// </summary>
         public class InternalDomainFederationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

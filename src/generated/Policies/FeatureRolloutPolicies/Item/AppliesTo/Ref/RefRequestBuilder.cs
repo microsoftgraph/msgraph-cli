@@ -115,11 +115,12 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Ref {
             return command;
         }
         /// <summary>
-        /// Create new navigation property ref to appliesTo for policies
+        /// Add an appliesTo on a featureRolloutPolicy object to specify the directoryObject to which the featureRolloutPolicy should be applied.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/featurerolloutpolicy-post-appliesto?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Create new navigation property ref to appliesTo for policies";
+            command.Description = "Add an appliesTo on a featureRolloutPolicy object to specify the directoryObject to which the featureRolloutPolicy should be applied.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/featurerolloutpolicy-post-appliesto?view=graph-rest-1.0";
             var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "The unique identifier of featureRolloutPolicy") {
             };
             featureRolloutPolicyIdOption.IsRequired = true;
@@ -183,7 +184,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property ref to appliesTo for policies
+        /// Add an appliesTo on a featureRolloutPolicy object to specify the directoryObject to which the featureRolloutPolicy should be applied.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

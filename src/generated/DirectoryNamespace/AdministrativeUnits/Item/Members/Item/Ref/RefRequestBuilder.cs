@@ -18,11 +18,12 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item.Ref {
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete ref of navigation property members for directory
+        /// Use this API to remove a member (user, group, or device) from an administrative unit.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/administrativeunit-delete-members?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete ref of navigation property members for directory";
+            command.Description = "Use this API to remove a member (user, group, or device) from an administrative unit.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/administrativeunit-delete-members?view=graph-rest-1.0";
             var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
@@ -69,7 +70,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item.Ref {
         public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}/members/{directoryObject%2Did}/$ref{?%40id*}", pathParameters) {
         }
         /// <summary>
-        /// Delete ref of navigation property members for directory
+        /// Use this API to remove a member (user, group, or device) from an administrative unit.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -94,7 +95,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Item.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Delete ref of navigation property members for directory
+        /// Use this API to remove a member (user, group, or device) from an administrative unit.
         /// </summary>
         public class RefRequestBuilderDeleteQueryParameters {
             /// <summary>Delete Uri</summary>

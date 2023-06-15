@@ -90,11 +90,12 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item {
             return command;
         }
         /// <summary>
-        /// The attendance reports of an online meeting. Read-only.
+        /// Get the meetingAttendanceReport for an onlineMeeting. Each time an online meeting ends, an attendance report will be generated for that session.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/meetingattendancereport-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The attendance reports of an online meeting. Read-only.";
+            command.Description = "Get the meetingAttendanceReport for an onlineMeeting. Each time an online meeting ends, an attendance report will be generated for that session.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/meetingattendancereport-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -263,7 +264,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The attendance reports of an online meeting. Read-only.
+        /// Get the meetingAttendanceReport for an onlineMeeting. Each time an online meeting ends, an attendance report will be generated for that session.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -317,7 +318,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The attendance reports of an online meeting. Read-only.
+        /// Get the meetingAttendanceReport for an onlineMeeting. Each time an online meeting ends, an attendance report will be generated for that session.
         /// </summary>
         public class MeetingAttendanceReportItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

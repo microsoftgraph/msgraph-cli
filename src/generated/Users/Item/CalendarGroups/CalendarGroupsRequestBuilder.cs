@@ -49,11 +49,12 @@ namespace ApiSdk.Users.Item.CalendarGroups {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to calendarGroups for users
+        /// Use this API to create a new CalendarGroup.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-post-calendargroups?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to calendarGroups for users";
+            command.Description = "Use this API to create a new CalendarGroup.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-post-calendargroups?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -106,11 +107,12 @@ namespace ApiSdk.Users.Item.CalendarGroups {
             return command;
         }
         /// <summary>
-        /// The user&apos;s calendar groups. Read-only. Nullable.
+        /// Get the user&apos;s calendar groups.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-list-calendargroups?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The user's calendar groups. Read-only. Nullable.";
+            command.Description = "Get the user's calendar groups.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-calendargroups?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -209,7 +211,7 @@ namespace ApiSdk.Users.Item.CalendarGroups {
         public CalendarGroupsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendarGroups{?%24top,%24skip,%24filter,%24count,%24orderby,%24select}", pathParameters) {
         }
         /// <summary>
-        /// The user&apos;s calendar groups. Read-only. Nullable.
+        /// Get the user&apos;s calendar groups.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -235,7 +237,7 @@ namespace ApiSdk.Users.Item.CalendarGroups {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to calendarGroups for users
+        /// Use this API to create a new CalendarGroup.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -263,7 +265,7 @@ namespace ApiSdk.Users.Item.CalendarGroups {
             return requestInfo;
         }
         /// <summary>
-        /// The user&apos;s calendar groups. Read-only. Nullable.
+        /// Get the user&apos;s calendar groups.
         /// </summary>
         public class CalendarGroupsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

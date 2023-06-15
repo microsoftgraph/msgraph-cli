@@ -21,11 +21,12 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item {
     /// </summary>
     public class PermissionGrantPolicyItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property permissionGrantPolicies for policies
+        /// Delete a permissionGrantPolicy object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/permissiongrantpolicy-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property permissionGrantPolicies for policies";
+            command.Description = "Delete a permissionGrantPolicy object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/permissiongrantpolicy-delete?view=graph-rest-1.0";
             var permissionGrantPolicyIdOption = new Option<string>("--permission-grant-policy-id", description: "The unique identifier of permissionGrantPolicy") {
             };
             permissionGrantPolicyIdOption.IsRequired = true;
@@ -79,11 +80,12 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item {
             return command;
         }
         /// <summary>
-        /// The policy that specifies the conditions under which consent can be granted.
+        /// Retrieve a single permissionGrantPolicy object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/permissiongrantpolicy-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The policy that specifies the conditions under which consent can be granted.";
+            command.Description = "Retrieve a single permissionGrantPolicy object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/permissiongrantpolicy-get?view=graph-rest-1.0";
             var permissionGrantPolicyIdOption = new Option<string>("--permission-grant-policy-id", description: "The unique identifier of permissionGrantPolicy") {
             };
             permissionGrantPolicyIdOption.IsRequired = true;
@@ -165,11 +167,12 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property permissionGrantPolicies in policies
+        /// Update properties of a  permissionGrantPolicy.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/permissiongrantpolicy-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property permissionGrantPolicies in policies";
+            command.Description = "Update properties of a  permissionGrantPolicy.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/permissiongrantpolicy-update?view=graph-rest-1.0";
             var permissionGrantPolicyIdOption = new Option<string>("--permission-grant-policy-id", description: "The unique identifier of permissionGrantPolicy") {
             };
             permissionGrantPolicyIdOption.IsRequired = true;
@@ -228,7 +231,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item {
         public PermissionGrantPolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/permissionGrantPolicies/{permissionGrantPolicy%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property permissionGrantPolicies for policies
+        /// Delete a permissionGrantPolicy object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -253,7 +256,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The policy that specifies the conditions under which consent can be granted.
+        /// Retrieve a single permissionGrantPolicy object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -279,7 +282,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property permissionGrantPolicies in policies
+        /// Update properties of a  permissionGrantPolicy.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -307,7 +310,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The policy that specifies the conditions under which consent can be granted.
+        /// Retrieve a single permissionGrantPolicy object.
         /// </summary>
         public class PermissionGrantPolicyItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -26,6 +26,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders {
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
             var builder = new IdentityProviderItemRequestBuilder(PathParameters);
+            executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
             return new(executables, new(0));
         }
@@ -45,11 +46,12 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders {
             return command;
         }
         /// <summary>
-        /// The identity providers included in the user flow.
+        /// Get the identity providers in a b2xIdentityUserFlow object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/b2xidentityuserflow-list-identityproviders?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The identity providers included in the user flow.";
+            command.Description = "Get the identity providers in a b2xIdentityUserFlow object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/b2xidentityuserflow-list-identityproviders?view=graph-rest-1.0";
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
@@ -161,7 +163,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders {
         public IdentityProvidersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/identityProviders{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The identity providers included in the user flow.
+        /// Get the identity providers in a b2xIdentityUserFlow object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -187,7 +189,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders {
             return requestInfo;
         }
         /// <summary>
-        /// The identity providers included in the user flow.
+        /// Get the identity providers in a b2xIdentityUserFlow object.
         /// </summary>
         public class IdentityProvidersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

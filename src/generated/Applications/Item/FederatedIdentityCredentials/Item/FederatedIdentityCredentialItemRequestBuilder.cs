@@ -19,11 +19,12 @@ namespace ApiSdk.Applications.Item.FederatedIdentityCredentials.Item {
     /// </summary>
     public class FederatedIdentityCredentialItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property federatedIdentityCredentials for applications
+        /// Delete a federatedIdentityCredential object from an application.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/federatedidentitycredential-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property federatedIdentityCredentials for applications";
+            command.Description = "Delete a federatedIdentityCredential object from an application.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/federatedidentitycredential-delete?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -58,11 +59,12 @@ namespace ApiSdk.Applications.Item.FederatedIdentityCredentials.Item {
             return command;
         }
         /// <summary>
-        /// Federated identities for applications. Supports $expand and $filter (startsWith, /$count eq 0, /$count ne 0).
+        /// Read the properties and relationships of a federatedIdentityCredential object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/federatedidentitycredential-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Federated identities for applications. Supports $expand and $filter (startsWith, /$count eq 0, /$count ne 0).";
+            command.Description = "Read the properties and relationships of a federatedIdentityCredential object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/federatedidentitycredential-get?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -125,11 +127,12 @@ namespace ApiSdk.Applications.Item.FederatedIdentityCredentials.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property federatedIdentityCredentials in applications
+        /// Update the properties of a federatedIdentityCredential object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/federatedidentitycredential-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property federatedIdentityCredentials in applications";
+            command.Description = "Update the properties of a federatedIdentityCredential object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/federatedidentitycredential-update?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -194,7 +197,7 @@ namespace ApiSdk.Applications.Item.FederatedIdentityCredentials.Item {
         public FederatedIdentityCredentialItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/federatedIdentityCredentials/{federatedIdentityCredential%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property federatedIdentityCredentials for applications
+        /// Delete a federatedIdentityCredential object from an application.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -219,7 +222,7 @@ namespace ApiSdk.Applications.Item.FederatedIdentityCredentials.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Federated identities for applications. Supports $expand and $filter (startsWith, /$count eq 0, /$count ne 0).
+        /// Read the properties and relationships of a federatedIdentityCredential object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -245,7 +248,7 @@ namespace ApiSdk.Applications.Item.FederatedIdentityCredentials.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property federatedIdentityCredentials in applications
+        /// Update the properties of a federatedIdentityCredential object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -273,7 +276,7 @@ namespace ApiSdk.Applications.Item.FederatedIdentityCredentials.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Federated identities for applications. Supports $expand and $filter (startsWith, /$count eq 0, /$count ne 0).
+        /// Read the properties and relationships of a federatedIdentityCredential object.
         /// </summary>
         public class FederatedIdentityCredentialItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

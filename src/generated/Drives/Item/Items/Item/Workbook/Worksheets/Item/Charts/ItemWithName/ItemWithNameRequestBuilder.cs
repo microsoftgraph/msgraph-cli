@@ -86,10 +86,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.ItemWith
         /// <summary>
         /// Instantiates a new ItemWithNameRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="name">Usage: name=&apos;{name}&apos;</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ItemWithNameRequestBuilder(Dictionary<string, object> pathParameters, string name = "") : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/item(name='{name}')", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(name)) PathParameters.Add("name", name);
+        public ItemWithNameRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/item(name='{name}')", pathParameters) {
         }
         /// <summary>
         /// Invoke function item

@@ -112,11 +112,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Permissions {
             return command;
         }
         /// <summary>
-        /// The set of permissions for the item. Read-only. Nullable.
+        /// List the effective sharing permissions on a driveItem.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/driveitem-list-permissions?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The set of permissions for the item. Read-only. Nullable.";
+            command.Description = "List the effective sharing permissions on a driveItem.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitem-list-permissions?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -234,7 +235,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Permissions {
         public PermissionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/permissions{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The set of permissions for the item. Read-only. Nullable.
+        /// List the effective sharing permissions on a driveItem.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -288,7 +289,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Permissions {
             return requestInfo;
         }
         /// <summary>
-        /// The set of permissions for the item. Read-only. Nullable.
+        /// List the effective sharing permissions on a driveItem.
         /// </summary>
         public class PermissionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

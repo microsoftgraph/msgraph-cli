@@ -58,10 +58,8 @@ namespace ApiSdk.Reports.GetEmailAppUsageUserDetailWithDate {
         /// <summary>
         /// Instantiates a new GetEmailAppUsageUserDetailWithDateRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="date">Usage: date={date}</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetEmailAppUsageUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters, Date? date = default) : base("{+baseurl}/reports/getEmailAppUsageUserDetail(date={date})", pathParameters) {
-            if (date is not null) PathParameters.Add("date", date);
+        public GetEmailAppUsageUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getEmailAppUsageUserDetail(date={date})", pathParameters) {
         }
         /// <summary>
         /// Invoke function getEmailAppUsageUserDetail

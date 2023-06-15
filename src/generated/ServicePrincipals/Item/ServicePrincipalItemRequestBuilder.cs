@@ -23,6 +23,7 @@ using ApiSdk.ServicePrincipals.Item.Owners;
 using ApiSdk.ServicePrincipals.Item.RemoveKey;
 using ApiSdk.ServicePrincipals.Item.RemovePassword;
 using ApiSdk.ServicePrincipals.Item.Restore;
+using ApiSdk.ServicePrincipals.Item.Synchronization;
 using ApiSdk.ServicePrincipals.Item.TokenIssuancePolicies;
 using ApiSdk.ServicePrincipals.Item.TokenLifetimePolicies;
 using ApiSdk.ServicePrincipals.Item.TransitiveMemberOf;
@@ -674,6 +675,32 @@ namespace ApiSdk.ServicePrincipals.Item {
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the synchronization property of the microsoft.graph.servicePrincipal entity.
+        /// </summary>
+        public Command BuildSynchronizationNavCommand() {
+            var command = new Command("synchronization");
+            command.Description = "Provides operations to manage the synchronization property of the microsoft.graph.servicePrincipal entity.";
+            var builder = new SynchronizationRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAcquireAccessTokenNavCommand());
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildJobsNavCommand());
+            execCommands.Add(builder.BuildPutCommand());
+            nonExecCommands.Add(builder.BuildSecretsNavCommand());
+            nonExecCommands.Add(builder.BuildTemplatesNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }

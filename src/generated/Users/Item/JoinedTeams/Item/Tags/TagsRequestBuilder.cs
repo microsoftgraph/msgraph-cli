@@ -49,11 +49,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Tags {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to tags for users
+        /// Create a standard tag for members in a team.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/teamworktag-post?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to tags for users";
+            command.Description = "Create a standard tag for members in a team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/teamworktag-post?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -112,11 +113,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Tags {
             return command;
         }
         /// <summary>
-        /// The tags associated with the team.
+        /// Get a list of the tag objects and their properties.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/teamworktag-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The tags associated with the team.";
+            command.Description = "Get a list of the tag objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/teamworktag-list?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -234,7 +236,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Tags {
         public TagsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/tags{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The tags associated with the team.
+        /// Get a list of the tag objects and their properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -260,7 +262,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Tags {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to tags for users
+        /// Create a standard tag for members in a team.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -288,7 +290,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Tags {
             return requestInfo;
         }
         /// <summary>
-        /// The tags associated with the team.
+        /// Get a list of the tag objects and their properties.
         /// </summary>
         public class TagsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -53,11 +53,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Ite
             return command;
         }
         /// <summary>
-        /// Create new navigation property to sections for groups
+        /// Create a new onenoteSection in the specified section group.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/sectiongroup-post-sections?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to sections for groups";
+            command.Description = "Create a new onenoteSection in the specified section group.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/sectiongroup-post-sections?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -128,11 +129,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Ite
             return command;
         }
         /// <summary>
-        /// The sections in the section group. Read-only. Nullable.
+        /// Retrieve a list of onenoteSection objects from the specified section group.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/sectiongroup-list-sections?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The sections in the section group. Read-only. Nullable.";
+            command.Description = "Retrieve a list of onenoteSection objects from the specified section group.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/sectiongroup-list-sections?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -262,7 +264,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Ite
         public SectionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote/notebooks/{notebook%2Did}/sectionGroups/{sectionGroup%2Did}/sections{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The sections in the section group. Read-only. Nullable.
+        /// Retrieve a list of onenoteSection objects from the specified section group.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -288,7 +290,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to sections for groups
+        /// Create a new onenoteSection in the specified section group.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -316,7 +318,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.SectionGroups.Ite
             return requestInfo;
         }
         /// <summary>
-        /// The sections in the section group. Read-only. Nullable.
+        /// Retrieve a list of onenoteSection objects from the specified section group.
         /// </summary>
         public class SectionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

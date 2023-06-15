@@ -32,6 +32,7 @@ namespace ApiSdk.Communications.OnlineMeetings {
             commands.Add(builder.BuildAttendeeReportNavCommand());
             executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildGetVirtualAppointmentJoinWebUrlNavCommand());
             executables.Add(builder.BuildPatchCommand());
             return new(executables, commands);
         }
@@ -117,11 +118,12 @@ namespace ApiSdk.Communications.OnlineMeetings {
             return command;
         }
         /// <summary>
-        /// Get onlineMeetings from communications
+        /// Retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report is an online meeting artifact. For details, see Online meeting artifacts and permissions.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/onlinemeeting-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get onlineMeetings from communications";
+            command.Description = "Retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report is an online meeting artifact. For details, see Online meeting artifacts and permissions.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/onlinemeeting-get?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -227,7 +229,7 @@ namespace ApiSdk.Communications.OnlineMeetings {
         public OnlineMeetingsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/onlineMeetings{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get onlineMeetings from communications
+        /// Retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report is an online meeting artifact. For details, see Online meeting artifacts and permissions.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -281,7 +283,7 @@ namespace ApiSdk.Communications.OnlineMeetings {
             return requestInfo;
         }
         /// <summary>
-        /// Get onlineMeetings from communications
+        /// Retrieve the properties and relationships of an onlineMeeting object. For example, you can: Teams live event attendee report is an online meeting artifact. For details, see Online meeting artifacts and permissions.
         /// </summary>
         public class OnlineMeetingsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -70,11 +70,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item.Replies.Item {
             return command;
         }
         /// <summary>
-        /// Get replies from drives
+        /// Retrieve the properties and relationships of workbookCommentReply object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/workbookcommentreply-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get replies from drives";
+            command.Description = "Retrieve the properties and relationships of workbookCommentReply object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/workbookcommentreply-get?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -255,7 +256,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item.Replies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get replies from drives
+        /// Retrieve the properties and relationships of workbookCommentReply object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -309,7 +310,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item.Replies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get replies from drives
+        /// Retrieve the properties and relationships of workbookCommentReply object.
         /// </summary>
         public class WorkbookCommentReplyItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

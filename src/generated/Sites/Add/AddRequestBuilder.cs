@@ -18,11 +18,12 @@ namespace ApiSdk.Sites.Add {
     /// </summary>
     public class AddRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action add
+        /// Follow a user&apos;s site or multiple sites.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/site-follow?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action add";
+            command.Description = "Follow a user's site or multiple sites.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/site-follow?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -87,7 +88,7 @@ namespace ApiSdk.Sites.Add {
         public AddRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/add", pathParameters) {
         }
         /// <summary>
-        /// Invoke action add
+        /// Follow a user&apos;s site or multiple sites.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

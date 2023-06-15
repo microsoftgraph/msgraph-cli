@@ -18,11 +18,12 @@ namespace ApiSdk.Sites.Remove {
     /// </summary>
     public class RemoveRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action remove
+        /// Unfollow a user&apos;s site or multiple sites.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/site-unfollow?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action remove";
+            command.Description = "Unfollow a user's site or multiple sites.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/site-unfollow?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -87,7 +88,7 @@ namespace ApiSdk.Sites.Remove {
         public RemoveRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/remove", pathParameters) {
         }
         /// <summary>
-        /// Invoke action remove
+        /// Unfollow a user&apos;s site or multiple sites.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

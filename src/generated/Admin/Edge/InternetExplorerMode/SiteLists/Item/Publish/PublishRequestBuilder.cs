@@ -19,11 +19,12 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Publish {
     /// </summary>
     public class PublishRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action publish
+        /// Publish the specified browserSiteList for devices to download.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/browsersitelist-publish?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action publish";
+            command.Description = "Publish the specified browserSiteList for devices to download.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/browsersitelist-publish?view=graph-rest-1.0";
             var browserSiteListIdOption = new Option<string>("--browser-site-list-id", description: "The unique identifier of browserSiteList") {
             };
             browserSiteListIdOption.IsRequired = true;
@@ -82,7 +83,7 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Publish {
         public PublishRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/edge/internetExplorerMode/siteLists/{browserSiteList%2Did}/publish", pathParameters) {
         }
         /// <summary>
-        /// Invoke action publish
+        /// Publish the specified browserSiteList for devices to download.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

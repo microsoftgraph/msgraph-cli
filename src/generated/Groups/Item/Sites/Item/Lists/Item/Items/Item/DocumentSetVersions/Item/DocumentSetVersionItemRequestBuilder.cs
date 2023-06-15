@@ -21,11 +21,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DocumentSetVersion
     /// </summary>
     public class DocumentSetVersionItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property documentSetVersions for groups
+        /// Delete a version of a document set in a list.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/documentsetversion-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property documentSetVersions for groups";
+            command.Description = "Delete a version of a document set in a list.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/documentsetversion-delete?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -95,11 +96,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DocumentSetVersion
             return command;
         }
         /// <summary>
-        /// Version information for a document set version created by a user.
+        /// Read the properties and relationships of a documentSetVersion object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/documentsetversion-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Version information for a document set version created by a user.";
+            command.Description = "Read the properties and relationships of a documentSetVersion object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/documentsetversion-get?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -282,7 +284,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DocumentSetVersion
         public DocumentSetVersionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/documentSetVersions/{documentSetVersion%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property documentSetVersions for groups
+        /// Delete a version of a document set in a list.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -307,7 +309,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DocumentSetVersion
             return requestInfo;
         }
         /// <summary>
-        /// Version information for a document set version created by a user.
+        /// Read the properties and relationships of a documentSetVersion object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -361,7 +363,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Items.Item.DocumentSetVersion
             return requestInfo;
         }
         /// <summary>
-        /// Version information for a document set version created by a user.
+        /// Read the properties and relationships of a documentSetVersion object.
         /// </summary>
         public class DocumentSetVersionItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

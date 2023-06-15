@@ -49,11 +49,12 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to claimsMappingPolicies for policies
+        /// Create a new claimsMappingPolicy object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/claimsmappingpolicy-post-claimsmappingpolicies?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to claimsMappingPolicies for policies";
+            command.Description = "Create a new claimsMappingPolicy object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/claimsmappingpolicy-post-claimsmappingpolicies?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -100,11 +101,12 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies {
             return command;
         }
         /// <summary>
-        /// The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.
+        /// Get a list of claimsMappingPolicy objects.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/claimsmappingpolicy-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.";
+            command.Description = "Get a list of claimsMappingPolicy objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/claimsmappingpolicy-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -210,7 +212,7 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies {
         public ClaimsMappingPoliciesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/claimsMappingPolicies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.
+        /// Get a list of claimsMappingPolicy objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -236,7 +238,7 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to claimsMappingPolicies for policies
+        /// Create a new claimsMappingPolicy object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -264,7 +266,7 @@ namespace ApiSdk.Policies.ClaimsMappingPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// The claim-mapping policies for WS-Fed, SAML, OAuth 2.0, and OpenID Connect protocols, for tokens issued to a specific application.
+        /// Get a list of claimsMappingPolicy objects.
         /// </summary>
         public class ClaimsMappingPoliciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

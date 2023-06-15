@@ -34,7 +34,7 @@ namespace ApiSdk.Models {
         /// <summary>For internal use only</summary>
         public int? Type { get; set; }
         /// <summary>
-        /// Instantiates a new alternativeSecurityId and sets the default values.
+        /// Instantiates a new AlternativeSecurityId and sets the default values.
         /// </summary>
         public AlternativeSecurityId() {
             AdditionalData = new Dictionary<string, object>();

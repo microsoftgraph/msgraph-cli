@@ -218,7 +218,6 @@ namespace ApiSdk.Shares.Item.List {
             var builder = new ItemsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
-            nonExecCommands.Add(builder.BuildCountNavCommand());
             execCommands.Add(builder.BuildCreateCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();

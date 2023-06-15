@@ -56,6 +56,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item {
             nonExecCommands.Add(builder.BuildAddNavCommand());
             nonExecCommands.Add(builder.BuildCountNavCommand());
             execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildItemAtWithIndexRbCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
             execCommands.AddRange(cmds.Item1);
@@ -362,6 +363,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item {
             nonExecCommands.Add(builder.BuildAddNavCommand());
             nonExecCommands.Add(builder.BuildCountNavCommand());
             execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildItemAtWithIndexRbCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
             execCommands.AddRange(cmds.Item1);

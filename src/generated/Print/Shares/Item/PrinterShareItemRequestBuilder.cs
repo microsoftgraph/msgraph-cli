@@ -73,11 +73,12 @@ namespace ApiSdk.Print.Shares.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property shares for print
+        /// Delete a printer share (unshare the associated printer). This action cannot be undone. If the printer is shared again in the future, any Windows users who had previously installed the printer will need to discover and reinstall it.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/printershare-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property shares for print";
+            command.Description = "Delete a printer share (unshare the associated printer). This action cannot be undone. If the printer is shared again in the future, any Windows users who had previously installed the printer will need to discover and reinstall it.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printershare-delete?view=graph-rest-1.0";
             var printerShareIdOption = new Option<string>("--printer-share-id", description: "The unique identifier of printerShare") {
             };
             printerShareIdOption.IsRequired = true;
@@ -106,11 +107,12 @@ namespace ApiSdk.Print.Shares.Item {
             return command;
         }
         /// <summary>
-        /// The list of printer shares registered in the tenant.
+        /// Retrieve the properties and relationships of a printer share.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/printershare-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The list of printer shares registered in the tenant.";
+            command.Description = "Retrieve the properties and relationships of a printer share.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printershare-get?view=graph-rest-1.0";
             var printerShareIdOption = new Option<string>("--printer-share-id", description: "The unique identifier of printerShare") {
             };
             printerShareIdOption.IsRequired = true;
@@ -192,11 +194,12 @@ namespace ApiSdk.Print.Shares.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property shares in print
+        /// Update the properties of a printer share. This method can be used to swap printers. For example, if a physical printer device breaks, an administrator can register a new printer device and update this printerShare to point to the new printer without requiring users to take any action.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/printershare-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property shares in print";
+            command.Description = "Update the properties of a printer share. This method can be used to swap printers. For example, if a physical printer device breaks, an administrator can register a new printer device and update this printerShare to point to the new printer without requiring users to take any action.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printershare-update?view=graph-rest-1.0";
             var printerShareIdOption = new Option<string>("--printer-share-id", description: "The unique identifier of printerShare") {
             };
             printerShareIdOption.IsRequired = true;
@@ -270,7 +273,7 @@ namespace ApiSdk.Print.Shares.Item {
         public PrinterShareItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/shares/{printerShare%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property shares for print
+        /// Delete a printer share (unshare the associated printer). This action cannot be undone. If the printer is shared again in the future, any Windows users who had previously installed the printer will need to discover and reinstall it.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -295,7 +298,7 @@ namespace ApiSdk.Print.Shares.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The list of printer shares registered in the tenant.
+        /// Retrieve the properties and relationships of a printer share.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -321,7 +324,7 @@ namespace ApiSdk.Print.Shares.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property shares in print
+        /// Update the properties of a printer share. This method can be used to swap printers. For example, if a physical printer device breaks, an administrator can register a new printer device and update this printerShare to point to the new printer without requiring users to take any action.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -349,7 +352,7 @@ namespace ApiSdk.Print.Shares.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The list of printer shares registered in the tenant.
+        /// Retrieve the properties and relationships of a printer share.
         /// </summary>
         public class PrinterShareItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

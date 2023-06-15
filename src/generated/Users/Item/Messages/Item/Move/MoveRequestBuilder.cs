@@ -19,11 +19,12 @@ namespace ApiSdk.Users.Item.Messages.Item.Move {
     /// </summary>
     public class MoveRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action move
+        /// Move a message to another folder within the specified user&apos;s mailbox. This creates a new copy of the message in the destination folder and removes the original message.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/message-move?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action move";
+            command.Description = "Move a message to another folder within the specified user's mailbox. This creates a new copy of the message in the destination folder and removes the original message.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/message-move?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -88,7 +89,7 @@ namespace ApiSdk.Users.Item.Messages.Item.Move {
         public MoveRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/messages/{message%2Did}/move", pathParameters) {
         }
         /// <summary>
-        /// Invoke action move
+        /// Move a message to another folder within the specified user&apos;s mailbox. This creates a new copy of the message in the destination folder and removes the original message.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

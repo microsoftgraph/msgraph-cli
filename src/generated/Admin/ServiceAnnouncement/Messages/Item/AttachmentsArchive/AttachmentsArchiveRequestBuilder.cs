@@ -19,10 +19,11 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.AttachmentsArchive {
     public class AttachmentsArchiveRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// The zip file that contains all attachments for a message.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/serviceannouncement-list-messages?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The zip file that contains all attachments for a message.";
+            command.Description = "The zip file that contains all attachments for a message.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceannouncement-list-messages?view=graph-rest-1.0";
             var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "The unique identifier of serviceUpdateMessage") {
             };
             serviceUpdateMessageIdOption.IsRequired = true;

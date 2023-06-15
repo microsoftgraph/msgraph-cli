@@ -19,11 +19,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimeOffRequests.Item {
     /// </summary>
     public class TimeOffRequestItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property timeOffRequests for users
+        /// Delete a timeOffRequest object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/timeoffrequest-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property timeOffRequests for users";
+            command.Description = "Delete a timeOffRequest object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/timeoffrequest-delete?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -64,11 +65,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimeOffRequests.Item {
             return command;
         }
         /// <summary>
-        /// Get timeOffRequests from users
+        /// Retrieve the properties and relationships of a timeoffrequest object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/timeoffrequest-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get timeOffRequests from users";
+            command.Description = "Retrieve the properties and relationships of a timeoffrequest object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/timeoffrequest-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -205,7 +207,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimeOffRequests.Item {
         public TimeOffRequestItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/schedule/timeOffRequests/{timeOffRequest%2Did}{?%24select}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property timeOffRequests for users
+        /// Delete a timeOffRequest object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -230,7 +232,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimeOffRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get timeOffRequests from users
+        /// Retrieve the properties and relationships of a timeoffrequest object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -284,7 +286,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimeOffRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get timeOffRequests from users
+        /// Retrieve the properties and relationships of a timeoffrequest object.
         /// </summary>
         public class TimeOffRequestItemRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>

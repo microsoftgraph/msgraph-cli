@@ -58,11 +58,12 @@ namespace ApiSdk.Groups.Item.Settings.Item {
             return command;
         }
         /// <summary>
-        /// Settings that can govern this group&apos;s behavior, like whether members can invite guest users to the group. Nullable.
+        /// Retrieve the properties of a specific group setting object. The setting can be a tenant-level or group-specific setting.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/groupsetting-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Settings that can govern this group's behavior, like whether members can invite guest users to the group. Nullable.";
+            command.Description = "Retrieve the properties of a specific group setting object. The setting can be a tenant-level or group-specific setting.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/groupsetting-get?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -125,11 +126,12 @@ namespace ApiSdk.Groups.Item.Settings.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property settings in groups
+        /// Update the properties of a groupSetting object for tenant-wide group settings or a specific group setting.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/groupsetting-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property settings in groups";
+            command.Description = "Update the properties of a groupSetting object for tenant-wide group settings or a specific group setting.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/groupsetting-update?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -219,7 +221,7 @@ namespace ApiSdk.Groups.Item.Settings.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Settings that can govern this group&apos;s behavior, like whether members can invite guest users to the group. Nullable.
+        /// Retrieve the properties of a specific group setting object. The setting can be a tenant-level or group-specific setting.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -245,7 +247,7 @@ namespace ApiSdk.Groups.Item.Settings.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property settings in groups
+        /// Update the properties of a groupSetting object for tenant-wide group settings or a specific group setting.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -273,7 +275,7 @@ namespace ApiSdk.Groups.Item.Settings.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Settings that can govern this group&apos;s behavior, like whether members can invite guest users to the group. Nullable.
+        /// Retrieve the properties of a specific group setting object. The setting can be a tenant-level or group-specific setting.
         /// </summary>
         public class GroupSettingItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

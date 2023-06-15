@@ -45,11 +45,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.SharedWithTeams.Item 
             return command;
         }
         /// <summary>
-        /// Delete navigation property sharedWithTeams for users
+        /// Unshare a channel with a team by deleting the corresponding sharedWithChannelTeamInfo resource. This operation is allowed only for channels with a **membershipType** value of `shared`.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/sharedwithchannelteaminfo-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property sharedWithTeams for users";
+            command.Description = "Unshare a channel with a team by deleting the corresponding sharedWithChannelTeamInfo resource. This operation is allowed only for channels with a **membershipType** value of `shared`.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/sharedwithchannelteaminfo-delete?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -96,11 +97,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.SharedWithTeams.Item 
             return command;
         }
         /// <summary>
-        /// A collection of teams with which a channel is shared.
+        /// Get a team that has been shared with a specified channel. This operation is allowed only for channels with a **membershipType** value of `shared`.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/sharedwithchannelteaminfo-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "A collection of teams with which a channel is shared.";
+            command.Description = "Get a team that has been shared with a specified channel. This operation is allowed only for channels with a **membershipType** value of `shared`.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/sharedwithchannelteaminfo-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -271,7 +273,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.SharedWithTeams.Item 
         public SharedWithChannelTeamInfoItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/channels/{channel%2Did}/sharedWithTeams/{sharedWithChannelTeamInfo%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property sharedWithTeams for users
+        /// Unshare a channel with a team by deleting the corresponding sharedWithChannelTeamInfo resource. This operation is allowed only for channels with a **membershipType** value of `shared`.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -296,7 +298,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.SharedWithTeams.Item 
             return requestInfo;
         }
         /// <summary>
-        /// A collection of teams with which a channel is shared.
+        /// Get a team that has been shared with a specified channel. This operation is allowed only for channels with a **membershipType** value of `shared`.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -350,7 +352,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.SharedWithTeams.Item 
             return requestInfo;
         }
         /// <summary>
-        /// A collection of teams with which a channel is shared.
+        /// Get a team that has been shared with a specified channel. This operation is allowed only for channels with a **membershipType** value of `shared`.
         /// </summary>
         public class SharedWithChannelTeamInfoItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -99,11 +99,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Sections.Item {
             return command;
         }
         /// <summary>
-        /// The sections in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
+        /// Retrieve the properties and relationships of a onenoteSection object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/section-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The sections in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.";
+            command.Description = "Retrieve the properties and relationships of a onenoteSection object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/section-get?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -327,7 +328,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Sections.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The sections in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
+        /// Retrieve the properties and relationships of a onenoteSection object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -381,7 +382,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Sections.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The sections in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
+        /// Retrieve the properties and relationships of a onenoteSection object.
         /// </summary>
         public class OnenoteSectionItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

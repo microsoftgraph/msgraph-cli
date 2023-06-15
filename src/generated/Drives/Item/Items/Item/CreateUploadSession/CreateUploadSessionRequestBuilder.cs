@@ -19,11 +19,12 @@ namespace ApiSdk.Drives.Item.Items.Item.CreateUploadSession {
     /// </summary>
     public class CreateUploadSessionRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action createUploadSession
+        /// Create an upload session to allow your app to upload files up to the maximum file size.An upload session allows your app to upload ranges of the file in sequential API requests, which allows the transfer to be resumed if a connection is dropped while the upload is in progress. To upload a file using an upload session, there are two steps:
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/driveitem-createuploadsession?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action createUploadSession";
+            command.Description = "Create an upload session to allow your app to upload files up to the maximum file size.An upload session allows your app to upload ranges of the file in sequential API requests, which allows the transfer to be resumed if a connection is dropped while the upload is in progress. To upload a file using an upload session, there are two steps:\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitem-createuploadsession?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -88,7 +89,7 @@ namespace ApiSdk.Drives.Item.Items.Item.CreateUploadSession {
         public CreateUploadSessionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/createUploadSession", pathParameters) {
         }
         /// <summary>
-        /// Invoke action createUploadSession
+        /// Create an upload session to allow your app to upload files up to the maximum file size.An upload session allows your app to upload ranges of the file in sequential API requests, which allows the transfer to be resumed if a connection is dropped while the upload is in progress. To upload a file using an upload session, there are two steps:
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -35,6 +35,8 @@ namespace ApiSdk.Communications {
             nonExecCommands.Add(builder.BuildCountNavCommand());
             execCommands.Add(builder.BuildCreateCommand());
             execCommands.Add(builder.BuildListCommand());
+            nonExecCommands.Add(builder.BuildMicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTimeRbCommand());
+            nonExecCommands.Add(builder.BuildMicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRbCommand());
             var cmds = builder.BuildCommand();
             execCommands.AddRange(cmds.Item1);
             nonExecCommands.AddRange(cmds.Item2);

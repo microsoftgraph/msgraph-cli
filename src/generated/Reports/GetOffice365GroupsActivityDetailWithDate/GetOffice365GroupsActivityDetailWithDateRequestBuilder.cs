@@ -58,10 +58,8 @@ namespace ApiSdk.Reports.GetOffice365GroupsActivityDetailWithDate {
         /// <summary>
         /// Instantiates a new GetOffice365GroupsActivityDetailWithDateRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="date">Usage: date={date}</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetOffice365GroupsActivityDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters, Date? date = default) : base("{+baseurl}/reports/getOffice365GroupsActivityDetail(date={date})", pathParameters) {
-            if (date is not null) PathParameters.Add("date", date);
+        public GetOffice365GroupsActivityDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getOffice365GroupsActivityDetail(date={date})", pathParameters) {
         }
         /// <summary>
         /// Invoke function getOffice365GroupsActivityDetail

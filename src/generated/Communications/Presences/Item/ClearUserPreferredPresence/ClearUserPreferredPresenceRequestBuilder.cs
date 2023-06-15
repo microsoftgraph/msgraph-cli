@@ -18,11 +18,12 @@ namespace ApiSdk.Communications.Presences.Item.ClearUserPreferredPresence {
     /// </summary>
     public class ClearUserPreferredPresenceRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action clearUserPreferredPresence
+        /// Clear the preferred availability and activity status for a user.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/presence-clearuserpreferredpresence?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action clearUserPreferredPresence";
+            command.Description = "Clear the preferred availability and activity status for a user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/presence-clearuserpreferredpresence?view=graph-rest-1.0";
             var presenceIdOption = new Option<string>("--presence-id", description: "The unique identifier of presence") {
             };
             presenceIdOption.IsRequired = true;
@@ -50,7 +51,7 @@ namespace ApiSdk.Communications.Presences.Item.ClearUserPreferredPresence {
         public ClearUserPreferredPresenceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/presences/{presence%2Did}/clearUserPreferredPresence", pathParameters) {
         }
         /// <summary>
-        /// Invoke action clearUserPreferredPresence
+        /// Clear the preferred availability and activity status for a user.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

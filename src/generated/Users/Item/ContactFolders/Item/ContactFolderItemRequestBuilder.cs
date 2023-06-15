@@ -2,8 +2,6 @@ using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
 using ApiSdk.Users.Item.ContactFolders.Item.ChildFolders;
 using ApiSdk.Users.Item.ContactFolders.Item.Contacts;
-using ApiSdk.Users.Item.ContactFolders.Item.MultiValueExtendedProperties;
-using ApiSdk.Users.Item.ContactFolders.Item.SingleValueExtendedProperties;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
@@ -75,11 +73,12 @@ namespace ApiSdk.Users.Item.ContactFolders.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property contactFolders for users
+        /// Delete contactFolder other than the default contactFolder.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/contactfolder-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property contactFolders for users";
+            command.Description = "Delete contactFolder other than the default contactFolder.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contactfolder-delete?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -114,11 +113,12 @@ namespace ApiSdk.Users.Item.ContactFolders.Item {
             return command;
         }
         /// <summary>
-        /// The user&apos;s contacts folders. Read-only. Nullable.
+        /// Get a contact folder by using the contact folder ID. There are two scenarios where an app can get another user&apos;s contact folder:
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/contactfolder-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The user's contacts folders. Read-only. Nullable.";
+            command.Description = "Get a contact folder by using the contact folder ID. There are two scenarios where an app can get another user's contact folder:\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contactfolder-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -181,36 +181,12 @@ namespace ApiSdk.Users.Item.ContactFolders.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.contactFolder entity.
-        /// </summary>
-        public Command BuildMultiValueExtendedPropertiesNavCommand() {
-            var command = new Command("multi-value-extended-properties");
-            command.Description = "Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.contactFolder entity.";
-            var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            var nonExecCommands = new List<Command>();
-            nonExecCommands.Add(builder.BuildCountNavCommand());
-            execCommands.Add(builder.BuildCreateCommand());
-            execCommands.Add(builder.BuildListCommand());
-            var cmds = builder.BuildCommand();
-            execCommands.AddRange(cmds.Item1);
-            nonExecCommands.AddRange(cmds.Item2);
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
-        }
-        /// <summary>
-        /// Update the navigation property contactFolders in users
+        /// Update the properties of contactfolder object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/contactfolder-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property contactFolders in users";
+            command.Description = "Update the properties of contactfolder object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contactfolder-update?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -269,38 +245,13 @@ namespace ApiSdk.Users.Item.ContactFolders.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.contactFolder entity.
-        /// </summary>
-        public Command BuildSingleValueExtendedPropertiesNavCommand() {
-            var command = new Command("single-value-extended-properties");
-            command.Description = "Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.contactFolder entity.";
-            var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            var nonExecCommands = new List<Command>();
-            nonExecCommands.Add(builder.BuildCountNavCommand());
-            execCommands.Add(builder.BuildCreateCommand());
-            execCommands.Add(builder.BuildListCommand());
-            var cmds = builder.BuildCommand();
-            execCommands.AddRange(cmds.Item1);
-            nonExecCommands.AddRange(cmds.Item2);
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
-        }
-        /// <summary>
         /// Instantiates a new ContactFolderItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ContactFolderItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/contactFolders/{contactFolder%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property contactFolders for users
+        /// Delete contactFolder other than the default contactFolder.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -325,7 +276,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The user&apos;s contacts folders. Read-only. Nullable.
+        /// Get a contact folder by using the contact folder ID. There are two scenarios where an app can get another user&apos;s contact folder:
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -351,7 +302,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property contactFolders in users
+        /// Update the properties of contactfolder object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -379,7 +330,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The user&apos;s contacts folders. Read-only. Nullable.
+        /// Get a contact folder by using the contact folder ID. There are two scenarios where an app can get another user&apos;s contact folder:
         /// </summary>
         public class ContactFolderItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

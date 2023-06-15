@@ -59,9 +59,7 @@ namespace ApiSdk.Reports.GetEmailAppUsageUserDetailWithPeriod {
         /// Instantiates a new GetEmailAppUsageUserDetailWithPeriodRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
-        public GetEmailAppUsageUserDetailWithPeriodRequestBuilder(Dictionary<string, object> pathParameters, string period = "") : base("{+baseurl}/reports/getEmailAppUsageUserDetail(period='{period}')", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(period)) PathParameters.Add("period", period);
+        public GetEmailAppUsageUserDetailWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getEmailAppUsageUserDetail(period='{period}')", pathParameters) {
         }
         /// <summary>
         /// Invoke function getEmailAppUsageUserDetail

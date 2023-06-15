@@ -124,11 +124,12 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.Messages.Item.Replies.
             return command;
         }
         /// <summary>
-        /// Content in a message hosted by Microsoft Teams - for example, images or code snippets.
+        /// Retrieve the list of chatMessageHostedContent objects from a message. This API only lists the hosted content objects. To get the content bytes, see get chatmessage hosted content
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chatmessage-list-hostedcontents?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Content in a message hosted by Microsoft Teams - for example, images or code snippets.";
+            command.Description = "Retrieve the list of chatMessageHostedContent objects from a message. This API only lists the hosted content objects. To get the content bytes, see get chatmessage hosted content\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chatmessage-list-hostedcontents?view=graph-rest-1.0";
             var deletedTeamIdOption = new Option<string>("--deleted-team-id", description: "The unique identifier of deletedTeam") {
             };
             deletedTeamIdOption.IsRequired = true;
@@ -258,7 +259,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.Messages.Item.Replies.
         public HostedContentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teamwork/deletedTeams/{deletedTeam%2Did}/channels/{channel%2Did}/messages/{chatMessage%2Did}/replies/{chatMessage%2Did1}/hostedContents{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Content in a message hosted by Microsoft Teams - for example, images or code snippets.
+        /// Retrieve the list of chatMessageHostedContent objects from a message. This API only lists the hosted content objects. To get the content bytes, see get chatmessage hosted content
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -312,7 +313,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.Messages.Item.Replies.
             return requestInfo;
         }
         /// <summary>
-        /// Content in a message hosted by Microsoft Teams - for example, images or code snippets.
+        /// Retrieve the list of chatMessageHostedContent objects from a message. This API only lists the hosted content objects. To get the content bytes, see get chatmessage hosted content
         /// </summary>
         public class HostedContentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

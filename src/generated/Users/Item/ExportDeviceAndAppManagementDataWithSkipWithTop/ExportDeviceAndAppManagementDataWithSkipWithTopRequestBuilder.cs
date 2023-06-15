@@ -81,11 +81,7 @@ namespace ApiSdk.Users.Item.ExportDeviceAndAppManagementDataWithSkipWithTop {
         /// Instantiates a new ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="skip">Usage: skip={skip}</param>
-        /// <param name="top">Usage: top={top}</param>
-        public ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder(Dictionary<string, object> pathParameters, int? skip = default, int? top = default) : base("{+baseurl}/users/{user%2Did}/exportDeviceAndAppManagementData(skip={skip},top={top})", pathParameters) {
-            if (skip is not null) PathParameters.Add("skip", skip);
-            if (top is not null) PathParameters.Add("top", top);
+        public ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/exportDeviceAndAppManagementData(skip={skip},top={top})", pathParameters) {
         }
         /// <summary>
         /// Invoke function exportDeviceAndAppManagementData

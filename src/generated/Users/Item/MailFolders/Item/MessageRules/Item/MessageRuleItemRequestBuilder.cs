@@ -19,11 +19,12 @@ namespace ApiSdk.Users.Item.MailFolders.Item.MessageRules.Item {
     /// </summary>
     public class MessageRuleItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property messageRules for users
+        /// Delete the specified messageRule object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/messagerule-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property messageRules for users";
+            command.Description = "Delete the specified messageRule object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/messagerule-delete?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -64,11 +65,12 @@ namespace ApiSdk.Users.Item.MailFolders.Item.MessageRules.Item {
             return command;
         }
         /// <summary>
-        /// The collection of rules that apply to the user&apos;s Inbox folder.
+        /// Get the properties and relationships of a messageRule object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/messagerule-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The collection of rules that apply to the user's Inbox folder.";
+            command.Description = "Get the properties and relationships of a messageRule object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/messagerule-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -130,11 +132,12 @@ namespace ApiSdk.Users.Item.MailFolders.Item.MessageRules.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property messageRules in users
+        /// Change writable properties on a messageRule object and save the changes.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/messagerule-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property messageRules in users";
+            command.Description = "Change writable properties on a messageRule object and save the changes.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/messagerule-update?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -205,7 +208,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.MessageRules.Item {
         public MessageRuleItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/messageRules/{messageRule%2Did}{?%24select}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property messageRules for users
+        /// Delete the specified messageRule object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -230,7 +233,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.MessageRules.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of rules that apply to the user&apos;s Inbox folder.
+        /// Get the properties and relationships of a messageRule object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -256,7 +259,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.MessageRules.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property messageRules in users
+        /// Change writable properties on a messageRule object and save the changes.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -284,7 +287,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.MessageRules.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of rules that apply to the user&apos;s Inbox folder.
+        /// Get the properties and relationships of a messageRule object.
         /// </summary>
         public class MessageRuleItemRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>

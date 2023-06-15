@@ -47,11 +47,12 @@ namespace ApiSdk.Planner.Plans.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property plans for planner
+        /// Delete a plannerPlan object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/plannerplan-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property plans for planner";
+            command.Description = "Delete a plannerPlan object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerplan-delete?view=graph-rest-1.0";
             var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
             };
             plannerPlanIdOption.IsRequired = true;
@@ -97,11 +98,12 @@ namespace ApiSdk.Planner.Plans.Item {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified plans
+        /// Retrieve the properties and relationships of a plannerplan object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/plannerplan-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read-only. Nullable. Returns a collection of the specified plans";
+            command.Description = "Retrieve the properties and relationships of a plannerplan object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerplan-get?view=graph-rest-1.0";
             var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
             };
             plannerPlanIdOption.IsRequired = true;
@@ -158,11 +160,12 @@ namespace ApiSdk.Planner.Plans.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property plans in planner
+        /// Update the properties of a **plannerPlan** object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/plannerplan-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property plans in planner";
+            command.Description = "Update the properties of a **plannerPlan** object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerplan-update?view=graph-rest-1.0";
             var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
             };
             plannerPlanIdOption.IsRequired = true;
@@ -246,7 +249,7 @@ namespace ApiSdk.Planner.Plans.Item {
         public PlannerPlanItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/planner/plans/{plannerPlan%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property plans for planner
+        /// Delete a plannerPlan object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -271,7 +274,7 @@ namespace ApiSdk.Planner.Plans.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified plans
+        /// Retrieve the properties and relationships of a plannerplan object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -297,7 +300,7 @@ namespace ApiSdk.Planner.Plans.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property plans in planner
+        /// Update the properties of a **plannerPlan** object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -325,7 +328,7 @@ namespace ApiSdk.Planner.Plans.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified plans
+        /// Retrieve the properties and relationships of a plannerplan object.
         /// </summary>
         public class PlannerPlanItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -19,11 +19,12 @@ namespace ApiSdk.Policies.AuthenticationStrengthPolicies.Item.CombinationConfigu
     /// </summary>
     public class AuthenticationCombinationConfigurationItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property combinationConfigurations for policies
+        /// Delete an authenticationCombinationConfiguration  for a custom authenticationStrengthPolicy object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/authenticationstrengthpolicy-delete-combinationconfigurations?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property combinationConfigurations for policies";
+            command.Description = "Delete an authenticationCombinationConfiguration  for a custom authenticationStrengthPolicy object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/authenticationstrengthpolicy-delete-combinationconfigurations?view=graph-rest-1.0";
             var authenticationStrengthPolicyIdOption = new Option<string>("--authentication-strength-policy-id", description: "The unique identifier of authenticationStrengthPolicy") {
             };
             authenticationStrengthPolicyIdOption.IsRequired = true;
@@ -58,11 +59,12 @@ namespace ApiSdk.Policies.AuthenticationStrengthPolicies.Item.CombinationConfigu
             return command;
         }
         /// <summary>
-        /// Settings that may be used to require specific types or instances of an authentication method to be used when authenticating with a specified combination of authentication methods.
+        /// Read the properties and relationships of an authenticationCombinationConfiguration object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/authenticationcombinationconfiguration-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Settings that may be used to require specific types or instances of an authentication method to be used when authenticating with a specified combination of authentication methods.";
+            command.Description = "Read the properties and relationships of an authenticationCombinationConfiguration object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/authenticationcombinationconfiguration-get?view=graph-rest-1.0";
             var authenticationStrengthPolicyIdOption = new Option<string>("--authentication-strength-policy-id", description: "The unique identifier of authenticationStrengthPolicy") {
             };
             authenticationStrengthPolicyIdOption.IsRequired = true;
@@ -125,11 +127,12 @@ namespace ApiSdk.Policies.AuthenticationStrengthPolicies.Item.CombinationConfigu
             return command;
         }
         /// <summary>
-        /// Update the navigation property combinationConfigurations in policies
+        /// Update the properties of an authenticationCombinationConfiguration object. In use, only fido2combinationConfigurations may be updated as they are the only type of authenticationCombinationConfiguration that may be created.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/authenticationcombinationconfiguration-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property combinationConfigurations in policies";
+            command.Description = "Update the properties of an authenticationCombinationConfiguration object. In use, only fido2combinationConfigurations may be updated as they are the only type of authenticationCombinationConfiguration that may be created.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/authenticationcombinationconfiguration-update?view=graph-rest-1.0";
             var authenticationStrengthPolicyIdOption = new Option<string>("--authentication-strength-policy-id", description: "The unique identifier of authenticationStrengthPolicy") {
             };
             authenticationStrengthPolicyIdOption.IsRequired = true;
@@ -194,7 +197,7 @@ namespace ApiSdk.Policies.AuthenticationStrengthPolicies.Item.CombinationConfigu
         public AuthenticationCombinationConfigurationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/authenticationStrengthPolicies/{authenticationStrengthPolicy%2Did}/combinationConfigurations/{authenticationCombinationConfiguration%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property combinationConfigurations for policies
+        /// Delete an authenticationCombinationConfiguration  for a custom authenticationStrengthPolicy object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -219,7 +222,7 @@ namespace ApiSdk.Policies.AuthenticationStrengthPolicies.Item.CombinationConfigu
             return requestInfo;
         }
         /// <summary>
-        /// Settings that may be used to require specific types or instances of an authentication method to be used when authenticating with a specified combination of authentication methods.
+        /// Read the properties and relationships of an authenticationCombinationConfiguration object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -245,7 +248,7 @@ namespace ApiSdk.Policies.AuthenticationStrengthPolicies.Item.CombinationConfigu
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property combinationConfigurations in policies
+        /// Update the properties of an authenticationCombinationConfiguration object. In use, only fido2combinationConfigurations may be updated as they are the only type of authenticationCombinationConfiguration that may be created.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -273,7 +276,7 @@ namespace ApiSdk.Policies.AuthenticationStrengthPolicies.Item.CombinationConfigu
             return requestInfo;
         }
         /// <summary>
-        /// Settings that may be used to require specific types or instances of an authentication method to be used when authenticating with a specified combination of authentication methods.
+        /// Read the properties and relationships of an authenticationCombinationConfiguration object.
         /// </summary>
         public class AuthenticationCombinationConfigurationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

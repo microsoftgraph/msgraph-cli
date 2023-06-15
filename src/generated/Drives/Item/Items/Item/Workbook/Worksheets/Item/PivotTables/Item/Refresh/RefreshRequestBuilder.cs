@@ -18,11 +18,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.Ite
     /// </summary>
     public class RefreshRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action refresh
+        /// Refreshes the PivotTable.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/workbookpivottable-refresh?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action refresh";
+            command.Description = "Refreshes the PivotTable.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/workbookpivottable-refresh?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -68,7 +69,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.PivotTables.Ite
         public RefreshRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/pivotTables/{workbookPivotTable%2Did}/refresh", pathParameters) {
         }
         /// <summary>
-        /// Invoke action refresh
+        /// Refreshes the PivotTable.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

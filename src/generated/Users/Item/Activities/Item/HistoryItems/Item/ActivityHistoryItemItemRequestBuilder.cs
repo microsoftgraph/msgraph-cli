@@ -153,11 +153,12 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property historyItems in users
+        /// Delete an existing history item for an existing user activity.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/projectrome-delete-historyitem?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property historyItems in users";
+            command.Description = "Delete an existing history item for an existing user activity.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/projectrome-delete-historyitem?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -279,7 +280,7 @@ namespace ApiSdk.Users.Item.Activities.Item.HistoryItems.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property historyItems in users
+        /// Delete an existing history item for an existing user activity.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

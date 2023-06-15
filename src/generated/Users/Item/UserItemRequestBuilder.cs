@@ -243,14 +243,13 @@ namespace ApiSdk.Users.Item {
             var builder = new CalendarRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAllowedCalendarSharingRolesWithUserRbCommand());
             nonExecCommands.Add(builder.BuildCalendarPermissionsNavCommand());
             nonExecCommands.Add(builder.BuildCalendarViewNavCommand());
             nonExecCommands.Add(builder.BuildEventsNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             nonExecCommands.Add(builder.BuildGetScheduleNavCommand());
-            nonExecCommands.Add(builder.BuildMultiValueExtendedPropertiesNavCommand());
             execCommands.Add(builder.BuildPatchCommand());
-            nonExecCommands.Add(builder.BuildSingleValueExtendedPropertiesNavCommand());
             foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
@@ -616,6 +615,21 @@ namespace ApiSdk.Users.Item {
             var command = new Command("export-device-and-app-management-data");
             command.Description = "Provides operations to call the exportDeviceAndAppManagementData method.";
             var builder = new ExportDeviceAndAppManagementDataRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the exportDeviceAndAppManagementData method.
+        /// </summary>
+        public Command BuildExportDeviceAndAppManagementDataWithSkipWithTopRbCommand() {
+            var command = new Command("export-device-and-app-management-data-with-skip-with-top");
+            command.Description = "Provides operations to call the exportDeviceAndAppManagementData method.";
+            var builder = new ExportDeviceAndAppManagementDataWithSkipWithTopRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -1053,6 +1067,7 @@ namespace ApiSdk.Users.Item {
             var builder = new ManagerRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             nonExecCommands.Add(builder.BuildRefNavCommand());
             foreach (var cmd in execCommands)
@@ -1208,6 +1223,7 @@ namespace ApiSdk.Users.Item {
             nonExecCommands.Add(builder.BuildMasterCategoriesNavCommand());
             nonExecCommands.Add(builder.BuildSupportedLanguagesNavCommand());
             nonExecCommands.Add(builder.BuildSupportedTimeZonesNavCommand());
+            nonExecCommands.Add(builder.BuildSupportedTimeZonesWithTimeZoneStandardRbCommand());
             foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
@@ -1473,6 +1489,21 @@ namespace ApiSdk.Users.Item {
                 command.AddCommand(cmd);
             }
             foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the reminderView method.
+        /// </summary>
+        public Command BuildReminderViewWithStartDateTimeWithEndDateTimeRbCommand() {
+            var command = new Command("reminder-view-with-start-date-time-with-end-date-time");
+            command.Description = "Provides operations to call the reminderView method.";
+            var builder = new ReminderViewWithStartDateTimeWithEndDateTimeRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }

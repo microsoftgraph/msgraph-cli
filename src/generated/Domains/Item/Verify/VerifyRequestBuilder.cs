@@ -19,11 +19,12 @@ namespace ApiSdk.Domains.Item.Verify {
     /// </summary>
     public class VerifyRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action verify
+        /// Validates the ownership of the domain.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/domain-verify?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action verify";
+            command.Description = "Validates the ownership of the domain.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/domain-verify?view=graph-rest-1.0";
             var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
@@ -72,7 +73,7 @@ namespace ApiSdk.Domains.Item.Verify {
         public VerifyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/domains/{domain%2Did}/verify", pathParameters) {
         }
         /// <summary>
-        /// Invoke action verify
+        /// Validates the ownership of the domain.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

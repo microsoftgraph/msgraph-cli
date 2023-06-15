@@ -37,8 +37,6 @@ namespace ApiSdk.Groups.Item.Events.Item.Instances {
             commands.Add(builder.BuildExtensionsNavCommand());
             commands.Add(builder.BuildForwardNavCommand());
             executables.Add(builder.BuildGetCommand());
-            commands.Add(builder.BuildMultiValueExtendedPropertiesNavCommand());
-            commands.Add(builder.BuildSingleValueExtendedPropertiesNavCommand());
             commands.Add(builder.BuildSnoozeReminderNavCommand());
             commands.Add(builder.BuildTentativelyAcceptNavCommand());
             return new(executables, commands);
@@ -75,10 +73,11 @@ namespace ApiSdk.Groups.Item.Events.Item.Instances {
         }
         /// <summary>
         /// The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/event-list-instances?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.";
+            command.Description = "The occurrences of a recurring series, if the event is a series master. This property includes occurrences that are part of the recurrence pattern, and exceptions that have been modified, but does not include occurrences that have been cancelled from the series. Navigation property. Read-only. Nullable.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/event-list-instances?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;

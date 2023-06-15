@@ -62,11 +62,12 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item {
             return command;
         }
         /// <summary>
-        /// The section groups in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
+        /// Retrieve the properties and relationships of a sectionGroup object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/sectiongroup-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The section groups in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.";
+            command.Description = "Retrieve the properties and relationships of a sectionGroup object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/sectiongroup-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -302,7 +303,7 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The section groups in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
+        /// Retrieve the properties and relationships of a sectionGroup object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -356,7 +357,7 @@ namespace ApiSdk.Users.Item.Onenote.SectionGroups.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The section groups in all OneNote notebooks that are owned by the user or group.  Read-only. Nullable.
+        /// Retrieve the properties and relationships of a sectionGroup object.
         /// </summary>
         public class SectionGroupItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

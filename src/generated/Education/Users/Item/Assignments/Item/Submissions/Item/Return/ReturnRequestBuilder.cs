@@ -19,11 +19,12 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Return {
     /// </summary>
     public class ReturnRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action return
+        /// Make the grade and feedback associated with this submission available to the student.  This action changes the status of the submission from &apos;submitted&apos; to &apos;returned&apos; and indicates that feedback is provided or grading is done. This action can only be done by the teacher.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationsubmission-return?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action return";
+            command.Description = "Make the grade and feedback associated with this submission available to the student.  This action changes the status of the submission from 'submitted' to 'returned' and indicates that feedback is provided or grading is done. This action can only be done by the teacher.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationsubmission-return?view=graph-rest-1.0";
             var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
@@ -84,7 +85,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Return {
         public ReturnRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/users/{educationUser%2Did}/assignments/{educationAssignment%2Did}/submissions/{educationSubmission%2Did}/return", pathParameters) {
         }
         /// <summary>
-        /// Invoke action return
+        /// Make the grade and feedback associated with this submission available to the student.  This action changes the status of the submission from &apos;submitted&apos; to &apos;returned&apos; and indicates that feedback is provided or grading is done. This action can only be done by the teacher.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

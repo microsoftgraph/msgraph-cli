@@ -44,7 +44,7 @@ namespace ApiSdk.Models {
         public string Value { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new resourceSpecificPermission and sets the default values.
+        /// Instantiates a new ResourceSpecificPermission and sets the default values.
         /// </summary>
         public ResourceSpecificPermission() {
             AdditionalData = new Dictionary<string, object>();

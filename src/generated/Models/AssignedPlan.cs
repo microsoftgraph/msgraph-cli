@@ -36,7 +36,7 @@ namespace ApiSdk.Models {
         /// <summary>A GUID that identifies the service plan. For a complete list of GUIDs and their equivalent friendly service names, see Product names and service plan identifiers for licensing.</summary>
         public Guid? ServicePlanId { get; set; }
         /// <summary>
-        /// Instantiates a new assignedPlan and sets the default values.
+        /// Instantiates a new AssignedPlan and sets the default values.
         /// </summary>
         public AssignedPlan() {
             AdditionalData = new Dictionary<string, object>();

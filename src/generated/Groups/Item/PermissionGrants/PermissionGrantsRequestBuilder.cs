@@ -159,11 +159,12 @@ namespace ApiSdk.Groups.Item.PermissionGrants {
             return command;
         }
         /// <summary>
-        /// The permission that has been granted for a group to a specific application. Supports $expand.
+        /// List all resource-specific permission grants on the group. This list specifies the Azure AD apps that have access to the **group**, along with the corresponding kind of resource-specific access that each app has.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/group-list-permissiongrants?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The permission that has been granted for a group to a specific application. Supports $expand.";
+            command.Description = "List all resource-specific permission grants on the group. This list specifies the Azure AD apps that have access to the **group**, along with the corresponding kind of resource-specific access that each app has.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-list-permissiongrants?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -290,7 +291,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants {
         public PermissionGrantsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/permissionGrants{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The permission that has been granted for a group to a specific application. Supports $expand.
+        /// List all resource-specific permission grants on the group. This list specifies the Azure AD apps that have access to the **group**, along with the corresponding kind of resource-specific access that each app has.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -344,7 +345,7 @@ namespace ApiSdk.Groups.Item.PermissionGrants {
             return requestInfo;
         }
         /// <summary>
-        /// The permission that has been granted for a group to a specific application. Supports $expand.
+        /// List all resource-specific permission grants on the group. This list specifies the Azure AD apps that have access to the **group**, along with the corresponding kind of resource-specific access that each app has.
         /// </summary>
         public class PermissionGrantsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

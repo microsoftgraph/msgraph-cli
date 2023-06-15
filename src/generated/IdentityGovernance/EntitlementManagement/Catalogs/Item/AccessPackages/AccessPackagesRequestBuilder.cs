@@ -1,5 +1,4 @@
 using ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPackages.Count;
-using ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPackages.FilterByCurrentUserWithOn;
 using ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPackages.Item;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
@@ -26,18 +25,9 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
         /// </summary>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
-            var commands = new List<Command>();
             var builder = new AccessPackageItemRequestBuilder(PathParameters);
-            commands.Add(builder.BuildAccessPackagesIncompatibleWithNavCommand());
-            commands.Add(builder.BuildAssignmentPoliciesNavCommand());
-            commands.Add(builder.BuildCatalogNavCommand());
-            executables.Add(builder.BuildDeleteCommand());
-            commands.Add(builder.BuildGetApplicablePolicyRequirementsNavCommand());
             executables.Add(builder.BuildGetCommand());
-            commands.Add(builder.BuildIncompatibleAccessPackagesNavCommand());
-            commands.Add(builder.BuildIncompatibleGroupsNavCommand());
-            executables.Add(builder.BuildPatchCommand());
-            return new(executables, commands);
+            return new(executables, new(0));
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.
@@ -52,63 +42,6 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             {
                 command.AddCommand(cmd);
             }
-            return command;
-        }
-        /// <summary>
-        /// Create new navigation property to accessPackages for identityGovernance
-        /// </summary>
-        public Command BuildCreateCommand() {
-            var command = new Command("create");
-            command.Description = "Create new navigation property to accessPackages for identityGovernance";
-            var accessPackageCatalogIdOption = new Option<string>("--access-package-catalog-id", description: "The unique identifier of accessPackageCatalog") {
-            };
-            accessPackageCatalogIdOption.IsRequired = true;
-            command.AddOption(accessPackageCatalogIdOption);
-            var bodyOption = new Option<string>("--body", description: "The request body") {
-            };
-            bodyOption.IsRequired = true;
-            command.AddOption(bodyOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
-            command.AddOption(outputOption);
-            var queryOption = new Option<string>("--query");
-            command.AddOption(queryOption);
-            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
-                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
-                    return value;
-                }
-                return true;
-            }, description: "Disable indentation for the JSON output formatter.");
-            command.AddOption(jsonNoIndentOption);
-            command.SetHandler(async (invocationContext) => {
-                var accessPackageCatalogId = invocationContext.ParseResult.GetValueForOption(accessPackageCatalogIdOption);
-                var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
-                var output = invocationContext.ParseResult.GetValueForOption(outputOption);
-                var query = invocationContext.ParseResult.GetValueForOption(queryOption);
-                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
-                IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
-                IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
-                var cancellationToken = invocationContext.GetCancellationToken();
-                var reqAdapter = invocationContext.GetRequestAdapter();
-                using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
-                var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Models.AccessPackage>(ApiSdk.Models.AccessPackage.CreateFromDiscriminatorValue);
-                if (model is null) return; // Cannot create a POST request from a null model.
-                var requestInfo = ToPostRequestInformation(model, q => {
-                });
-                if (accessPackageCatalogId is not null) requestInfo.PathParameters.Add("accessPackageCatalog%2Did", accessPackageCatalogId);
-                requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
-                var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
-                    {"4XX", ODataError.CreateFromDiscriminatorValue},
-                    {"5XX", ODataError.CreateFromDiscriminatorValue},
-                };
-                var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
-                response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
-                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
-                var formatter = outputFormatterFactory.GetFormatter(output);
-                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
-            });
             return command;
         }
         /// <summary>
@@ -246,34 +179,6 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPa
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new RequestConfiguration<AccessPackagesRequestBuilderGetQueryParameters>();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            return requestInfo;
-        }
-        /// <summary>
-        /// Create new navigation property to accessPackages for identityGovernance
-        /// </summary>
-        /// <param name="body">The request body</param>
-        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public RequestInformation ToPostRequestInformation(ApiSdk.Models.AccessPackage body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
-#nullable restore
-#else
-        public RequestInformation ToPostRequestInformation(ApiSdk.Models.AccessPackage body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
-#endif
-            _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.POST,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            requestInfo.Headers.Add("Accept", "application/json");
-            if (requestConfiguration != null) {
-                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);

@@ -19,11 +19,12 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.ScopedRoleMembers.I
     /// </summary>
     public class ScopedRoleMembershipItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property scopedRoleMembers for directory
+        /// Remove an Azure Active Directory (Azure AD) role assignment with administrative unit scope.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/administrativeunit-delete-scopedrolemembers?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property scopedRoleMembers for directory";
+            command.Description = "Remove an Azure Active Directory (Azure AD) role assignment with administrative unit scope.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/administrativeunit-delete-scopedrolemembers?view=graph-rest-1.0";
             var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
@@ -58,11 +59,12 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.ScopedRoleMembers.I
             return command;
         }
         /// <summary>
-        /// Scoped-role members of this administrative unit.
+        /// Get an Azure Active Directory (Azure AD) role assignment with administrative unit scope.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/administrativeunit-get-scopedrolemembers?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Scoped-role members of this administrative unit.";
+            command.Description = "Get an Azure Active Directory (Azure AD) role assignment with administrative unit scope.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/administrativeunit-get-scopedrolemembers?view=graph-rest-1.0";
             var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
@@ -194,7 +196,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.ScopedRoleMembers.I
         public ScopedRoleMembershipItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}/scopedRoleMembers/{scopedRoleMembership%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property scopedRoleMembers for directory
+        /// Remove an Azure Active Directory (Azure AD) role assignment with administrative unit scope.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -219,7 +221,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.ScopedRoleMembers.I
             return requestInfo;
         }
         /// <summary>
-        /// Scoped-role members of this administrative unit.
+        /// Get an Azure Active Directory (Azure AD) role assignment with administrative unit scope.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -273,7 +275,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.ScopedRoleMembers.I
             return requestInfo;
         }
         /// <summary>
-        /// Scoped-role members of this administrative unit.
+        /// Get an Azure Active Directory (Azure AD) role assignment with administrative unit scope.
         /// </summary>
         public class ScopedRoleMembershipItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

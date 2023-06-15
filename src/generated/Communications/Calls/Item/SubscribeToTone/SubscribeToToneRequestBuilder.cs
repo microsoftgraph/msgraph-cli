@@ -19,11 +19,12 @@ namespace ApiSdk.Communications.Calls.Item.SubscribeToTone {
     /// </summary>
     public class SubscribeToToneRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action subscribeToTone
+        /// Subscribe to DTMF (dual-tone multi-frequency signaling). This allows you to be notified when the user presses keys on a &apos;dialpad&apos;.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/call-subscribetotone?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action subscribeToTone";
+            command.Description = "Subscribe to DTMF (dual-tone multi-frequency signaling). This allows you to be notified when the user presses keys on a 'dialpad'.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/call-subscribetotone?view=graph-rest-1.0";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -82,7 +83,7 @@ namespace ApiSdk.Communications.Calls.Item.SubscribeToTone {
         public SubscribeToToneRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/subscribeToTone", pathParameters) {
         }
         /// <summary>
-        /// Invoke action subscribeToTone
+        /// Subscribe to DTMF (dual-tone multi-frequency signaling). This allows you to be notified when the user presses keys on a &apos;dialpad&apos;.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

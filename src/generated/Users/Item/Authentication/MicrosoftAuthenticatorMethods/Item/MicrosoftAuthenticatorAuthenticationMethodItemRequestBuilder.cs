@@ -20,11 +20,12 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item {
     /// </summary>
     public class MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property microsoftAuthenticatorMethods for users
+        /// Deletes a microsoftAuthenticatorAuthenticationMethod object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/microsoftauthenticatorauthenticationmethod-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property microsoftAuthenticatorMethods for users";
+            command.Description = "Deletes a microsoftAuthenticatorAuthenticationMethod object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/microsoftauthenticatorauthenticationmethod-delete?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -74,11 +75,12 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item {
             return command;
         }
         /// <summary>
-        /// The details of the Microsoft Authenticator app registered to a user for authentication.
+        /// Read the properties and relationships of a microsoftAuthenticatorAuthenticationMethod object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/microsoftauthenticatorauthenticationmethod-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The details of the Microsoft Authenticator app registered to a user for authentication.";
+            command.Description = "Read the properties and relationships of a microsoftAuthenticatorAuthenticationMethod object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/microsoftauthenticatorauthenticationmethod-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -147,7 +149,7 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item {
         public MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/authentication/microsoftAuthenticatorMethods/{microsoftAuthenticatorAuthenticationMethod%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property microsoftAuthenticatorMethods for users
+        /// Deletes a microsoftAuthenticatorAuthenticationMethod object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -172,7 +174,7 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The details of the Microsoft Authenticator app registered to a user for authentication.
+        /// Read the properties and relationships of a microsoftAuthenticatorAuthenticationMethod object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -198,7 +200,7 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The details of the Microsoft Authenticator app registered to a user for authentication.
+        /// Read the properties and relationships of a microsoftAuthenticatorAuthenticationMethod object.
         /// </summary>
         public class MicrosoftAuthenticatorAuthenticationMethodItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

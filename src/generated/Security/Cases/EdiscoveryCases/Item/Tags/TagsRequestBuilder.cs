@@ -51,11 +51,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to tags for security
+        /// Create a new ediscoveryReviewTag object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoverycase-post-tags?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to tags for security";
+            command.Description = "Create a new ediscoveryReviewTag object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-post-tags?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -108,11 +109,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags {
             return command;
         }
         /// <summary>
-        /// Returns a list of ediscoveryReviewTag objects associated to this case.
+        /// Get a list of eDiscoveryReviewTag objects and their properties.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoverycase-list-tags?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Returns a list of ediscoveryReviewTag objects associated to this case.";
+            command.Description = "Get a list of eDiscoveryReviewTag objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-list-tags?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -239,7 +241,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags {
         public TagsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/tags{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Returns a list of ediscoveryReviewTag objects associated to this case.
+        /// Get a list of eDiscoveryReviewTag objects and their properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -265,7 +267,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to tags for security
+        /// Create a new ediscoveryReviewTag object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -293,7 +295,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags {
             return requestInfo;
         }
         /// <summary>
-        /// Returns a list of ediscoveryReviewTag objects associated to this case.
+        /// Get a list of eDiscoveryReviewTag objects and their properties.
         /// </summary>
         public class TagsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

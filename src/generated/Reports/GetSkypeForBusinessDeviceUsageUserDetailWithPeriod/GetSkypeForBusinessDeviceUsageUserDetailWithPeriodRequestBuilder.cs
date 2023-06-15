@@ -59,9 +59,7 @@ namespace ApiSdk.Reports.GetSkypeForBusinessDeviceUsageUserDetailWithPeriod {
         /// Instantiates a new GetSkypeForBusinessDeviceUsageUserDetailWithPeriodRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
-        public GetSkypeForBusinessDeviceUsageUserDetailWithPeriodRequestBuilder(Dictionary<string, object> pathParameters, string period = "") : base("{+baseurl}/reports/getSkypeForBusinessDeviceUsageUserDetail(period='{period}')", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(period)) PathParameters.Add("period", period);
+        public GetSkypeForBusinessDeviceUsageUserDetailWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getSkypeForBusinessDeviceUsageUserDetail(period='{period}')", pathParameters) {
         }
         /// <summary>
         /// Invoke function getSkypeForBusinessDeviceUsageUserDetail

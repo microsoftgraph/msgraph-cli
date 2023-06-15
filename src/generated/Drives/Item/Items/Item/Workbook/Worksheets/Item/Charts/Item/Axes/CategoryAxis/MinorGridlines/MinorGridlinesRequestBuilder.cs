@@ -94,11 +94,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
             return command;
         }
         /// <summary>
-        /// Returns a Gridlines object that represents the minor gridlines for the specified axis. Read-only.
+        /// Retrieve the properties and relationships of chartgridlines object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chartgridlines-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Returns a Gridlines object that represents the minor gridlines for the specified axis. Read-only.";
+            command.Description = "Retrieve the properties and relationships of chartgridlines object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chartgridlines-get?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -173,11 +174,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
             return command;
         }
         /// <summary>
-        /// Update the navigation property minorGridlines in drives
+        /// Update the properties of chartgridlines object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chartgridlines-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property minorGridlines in drives";
+            command.Description = "Update the properties of chartgridlines object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chartgridlines-update?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -279,7 +281,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
             return requestInfo;
         }
         /// <summary>
-        /// Returns a Gridlines object that represents the minor gridlines for the specified axis. Read-only.
+        /// Retrieve the properties and relationships of chartgridlines object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -305,7 +307,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property minorGridlines in drives
+        /// Update the properties of chartgridlines object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -333,7 +335,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
             return requestInfo;
         }
         /// <summary>
-        /// Returns a Gridlines object that represents the minor gridlines for the specified axis. Read-only.
+        /// Retrieve the properties and relationships of chartgridlines object.
         /// </summary>
         public class MinorGridlinesRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

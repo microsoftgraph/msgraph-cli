@@ -136,9 +136,7 @@ namespace ApiSdk.Drives.Item.Items.Item.SearchWithQ {
         /// Instantiates a new SearchWithQRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="q">Usage: q=&apos;{q}&apos;</param>
-        public SearchWithQRequestBuilder(Dictionary<string, object> pathParameters, string q = "") : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/search(q='{q}'){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(q)) PathParameters.Add("q", q);
+        public SearchWithQRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/search(q='{q}'){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", pathParameters) {
         }
         /// <summary>
         /// Invoke function search

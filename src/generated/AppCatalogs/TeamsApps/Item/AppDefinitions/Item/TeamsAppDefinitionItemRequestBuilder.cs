@@ -143,11 +143,12 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property appDefinitions in appCatalogs
+        /// Publish an app to the Microsoft Teams apps catalog.Specifically, this API publishes the app to your organization&apos;s catalog (the tenant app catalog);the created resource will have a **distributionMethod** property value of `organization`. The **requiresReview** property allows any user to submit an app for review by an administrator. Admins can approve or reject these apps via this API or the Microsoft Teams admin center.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/teamsapp-publish?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property appDefinitions in appCatalogs";
+            command.Description = "Publish an app to the Microsoft Teams apps catalog.Specifically, this API publishes the app to your organization's catalog (the tenant app catalog);the created resource will have a **distributionMethod** property value of `organization`. The **requiresReview** property allows any user to submit an app for review by an administrator. Admins can approve or reject these apps via this API or the Microsoft Teams admin center.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/teamsapp-publish?view=graph-rest-1.0";
             var teamsAppIdOption = new Option<string>("--teams-app-id", description: "The unique identifier of teamsApp") {
             };
             teamsAppIdOption.IsRequired = true;
@@ -263,7 +264,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property appDefinitions in appCatalogs
+        /// Publish an app to the Microsoft Teams apps catalog.Specifically, this API publishes the app to your organization&apos;s catalog (the tenant app catalog);the created resource will have a **distributionMethod** property value of `organization`. The **requiresReview** property allows any user to submit an app for review by an administrator. Admins can approve or reject these apps via this API or the Microsoft Teams admin center.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

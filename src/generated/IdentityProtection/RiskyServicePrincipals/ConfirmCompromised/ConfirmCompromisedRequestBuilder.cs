@@ -18,11 +18,12 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.ConfirmCompromised {
     /// </summary>
     public class ConfirmCompromisedRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action confirmCompromised
+        /// Confirm one or more riskyServicePrincipal objects as compromised. This action sets the targeted service principal account&apos;s risk level to `high`.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/riskyserviceprincipal-confirmcompromised?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action confirmCompromised";
+            command.Description = "Confirm one or more riskyServicePrincipal objects as compromised. This action sets the targeted service principal account's risk level to `high`.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/riskyserviceprincipal-confirmcompromised?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -54,7 +55,7 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.ConfirmCompromised {
         public ConfirmCompromisedRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProtection/riskyServicePrincipals/confirmCompromised", pathParameters) {
         }
         /// <summary>
-        /// Invoke action confirmCompromised
+        /// Confirm one or more riskyServicePrincipal objects as compromised. This action sets the targeted service principal account&apos;s risk level to `high`.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

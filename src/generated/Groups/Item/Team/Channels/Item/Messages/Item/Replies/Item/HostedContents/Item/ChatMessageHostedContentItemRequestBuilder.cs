@@ -93,11 +93,12 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Messages.Item.Replies.Item.Hoste
             return command;
         }
         /// <summary>
-        /// Content in a message hosted by Microsoft Teams - for example, images or code snippets.
+        /// Retrieve the properties and relationships of chatMessageHostedContent object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chatmessagehostedcontent-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Content in a message hosted by Microsoft Teams - for example, images or code snippets.";
+            command.Description = "Retrieve the properties and relationships of chatMessageHostedContent object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chatmessagehostedcontent-get?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -290,7 +291,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Messages.Item.Replies.Item.Hoste
             return requestInfo;
         }
         /// <summary>
-        /// Content in a message hosted by Microsoft Teams - for example, images or code snippets.
+        /// Retrieve the properties and relationships of chatMessageHostedContent object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -344,7 +345,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Messages.Item.Replies.Item.Hoste
             return requestInfo;
         }
         /// <summary>
-        /// Content in a message hosted by Microsoft Teams - for example, images or code snippets.
+        /// Retrieve the properties and relationships of chatMessageHostedContent object.
         /// </summary>
         public class ChatMessageHostedContentItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

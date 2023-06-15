@@ -46,7 +46,7 @@ namespace ApiSdk.Models {
         /// <summary>The length of the attachment in bytes. Required.</summary>
         public long? Size { get; set; }
         /// <summary>
-        /// Instantiates a new attachmentItem and sets the default values.
+        /// Instantiates a new AttachmentItem and sets the default values.
         /// </summary>
         public AttachmentItem() {
             AdditionalData = new Dictionary<string, object>();

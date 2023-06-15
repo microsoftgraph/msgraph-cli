@@ -48,11 +48,12 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to assignmentCategories for education
+        /// Creates a new educationCategory on an educationClass. Only teachers can perform this operation.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationclass-post-category?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to assignmentCategories for education";
+            command.Description = "Creates a new educationCategory on an educationClass. Only teachers can perform this operation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationclass-post-category?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -120,11 +121,12 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories {
             return command;
         }
         /// <summary>
-        /// All categories associated with this class. Nullable.
+        /// Retrieve a list of educationCategory objects. Only teachers can perform this operation.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationclass-list-categories?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "All categories associated with this class. Nullable.";
+            command.Description = "Retrieve a list of educationCategory objects. Only teachers can perform this operation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationclass-list-categories?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -236,7 +238,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories {
         public AssignmentCategoriesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignmentCategories{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// All categories associated with this class. Nullable.
+        /// Retrieve a list of educationCategory objects. Only teachers can perform this operation.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -262,7 +264,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to assignmentCategories for education
+        /// Creates a new educationCategory on an educationClass. Only teachers can perform this operation.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -290,7 +292,7 @@ namespace ApiSdk.Education.Classes.Item.AssignmentCategories {
             return requestInfo;
         }
         /// <summary>
-        /// All categories associated with this class. Nullable.
+        /// Retrieve a list of educationCategory objects. Only teachers can perform this operation.
         /// </summary>
         public class AssignmentCategoriesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

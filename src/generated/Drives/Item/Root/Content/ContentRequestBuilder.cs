@@ -20,10 +20,11 @@ namespace ApiSdk.Drives.Item.Root.Content {
     public class ContentRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// The content stream, if the item represents a file.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/driveitem-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The content stream, if the item represents a file.";
+            command.Description = "The content stream, if the item represents a file.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitem-get?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;

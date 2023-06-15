@@ -132,11 +132,12 @@ namespace ApiSdk.Users.Item.Chats {
             return command;
         }
         /// <summary>
-        /// Get chats from users
+        /// Retrieve the list of chats that the user is part of. This method supports federation. When a user ID is provided, the calling application must belong to the same tenant that the user belongs to.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chat-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get chats from users";
+            command.Description = "Retrieve the list of chats that the user is part of. This method supports federation. When a user ID is provided, the calling application must belong to the same tenant that the user belongs to.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-list?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -248,7 +249,7 @@ namespace ApiSdk.Users.Item.Chats {
         public ChatsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/chats{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get chats from users
+        /// Retrieve the list of chats that the user is part of. This method supports federation. When a user ID is provided, the calling application must belong to the same tenant that the user belongs to.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -302,7 +303,7 @@ namespace ApiSdk.Users.Item.Chats {
             return requestInfo;
         }
         /// <summary>
-        /// Get chats from users
+        /// Retrieve the list of chats that the user is part of. This method supports federation. When a user ID is provided, the calling application must belong to the same tenant that the user belongs to.
         /// </summary>
         public class ChatsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

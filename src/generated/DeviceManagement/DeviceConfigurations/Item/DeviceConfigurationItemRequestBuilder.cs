@@ -228,6 +228,21 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the getOmaSettingPlainTextValue method.
+        /// </summary>
+        public Command BuildGetOmaSettingPlainTextValueWithSecretReferenceValueIdRbCommand() {
+            var command = new Command("get-oma-setting-plain-text-value-with-secret-reference-value-id");
+            command.Description = "Provides operations to call the getOmaSettingPlainTextValue method.";
+            var builder = new GetOmaSettingPlainTextValueWithSecretReferenceValueIdRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Update the navigation property deviceConfigurations in deviceManagement
         /// </summary>
         public Command BuildPatchCommand() {

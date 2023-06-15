@@ -100,11 +100,12 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Issues {
             return command;
         }
         /// <summary>
-        /// A collection of service issues for tenant. This property is a contained navigation property, it is nullable and readonly.
+        /// Retrieve serviceHealthIssue resources from the **issues** navigation property. This operation retrieves information about all service health issues that exist for the tenant.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/serviceannouncement-list-issues?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A collection of service issues for tenant. This property is a contained navigation property, it is nullable and readonly.";
+            command.Description = "Retrieve serviceHealthIssue resources from the **issues** navigation property. This operation retrieves information about all service health issues that exist for the tenant.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceannouncement-list-issues?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -210,7 +211,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Issues {
         public IssuesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/serviceAnnouncement/issues{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// A collection of service issues for tenant. This property is a contained navigation property, it is nullable and readonly.
+        /// Retrieve serviceHealthIssue resources from the **issues** navigation property. This operation retrieves information about all service health issues that exist for the tenant.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -264,7 +265,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Issues {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of service issues for tenant. This property is a contained navigation property, it is nullable and readonly.
+        /// Retrieve serviceHealthIssue resources from the **issues** navigation property. This operation retrieves information about all service health issues that exist for the tenant.
         /// </summary>
         public class IssuesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

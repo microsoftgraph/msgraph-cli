@@ -25,7 +25,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>The date and time at which the credential expires. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? EndDateTime { get; set; }
-        /// <summary>The certificate&apos;s raw data in byte array converted to Base64 string. Returned only on $select for a single object, that is, GET applications/{applicationId}?$select=keyCredentials or GET servicePrincipals/{servicePrincipalId}?$select=keyCredentials; otherwise, it is always null.</summary>
+        /// <summary>The certificate&apos;s raw data in byte array converted to Base64 string. Returned only on $select for a single object, that is, GET applications/{applicationId}?$select=keyCredentials or GET servicePrincipals/{servicePrincipalId}?$select=keyCredentials; otherwise, it is always null.  From a .cer certificate, you can read the key using the Convert.ToBase64String() method. For more information, see Get the certificate key.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public byte[]? Key { get; set; }
@@ -62,7 +62,7 @@ namespace ApiSdk.Models {
         public string Usage { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new keyCredential and sets the default values.
+        /// Instantiates a new KeyCredential and sets the default values.
         /// </summary>
         public KeyCredential() {
             AdditionalData = new Dictionary<string, object>();

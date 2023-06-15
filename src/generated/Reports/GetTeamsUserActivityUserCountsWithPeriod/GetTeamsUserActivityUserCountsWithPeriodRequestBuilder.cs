@@ -59,9 +59,7 @@ namespace ApiSdk.Reports.GetTeamsUserActivityUserCountsWithPeriod {
         /// Instantiates a new GetTeamsUserActivityUserCountsWithPeriodRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
-        public GetTeamsUserActivityUserCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters, string period = "") : base("{+baseurl}/reports/getTeamsUserActivityUserCounts(period='{period}')", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(period)) PathParameters.Add("period", period);
+        public GetTeamsUserActivityUserCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getTeamsUserActivityUserCounts(period='{period}')", pathParameters) {
         }
         /// <summary>
         /// Invoke function getTeamsUserActivityUserCounts

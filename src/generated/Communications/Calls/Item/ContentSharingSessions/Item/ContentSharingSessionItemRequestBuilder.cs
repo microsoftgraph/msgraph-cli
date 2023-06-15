@@ -58,11 +58,12 @@ namespace ApiSdk.Communications.Calls.Item.ContentSharingSessions.Item {
             return command;
         }
         /// <summary>
-        /// Get contentSharingSessions from communications
+        /// Retrieve the properties of a contentSharingSession object in a call.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/contentsharingsession-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get contentSharingSessions from communications";
+            command.Description = "Retrieve the properties of a contentSharingSession object in a call.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contentsharingsession-get?view=graph-rest-1.0";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -219,7 +220,7 @@ namespace ApiSdk.Communications.Calls.Item.ContentSharingSessions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get contentSharingSessions from communications
+        /// Retrieve the properties of a contentSharingSession object in a call.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -273,7 +274,7 @@ namespace ApiSdk.Communications.Calls.Item.ContentSharingSessions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get contentSharingSessions from communications
+        /// Retrieve the properties of a contentSharingSession object in a call.
         /// </summary>
         public class ContentSharingSessionItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

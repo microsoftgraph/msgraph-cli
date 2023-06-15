@@ -216,6 +216,51 @@ namespace ApiSdk.Groups.Item.Sites.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the getActivitiesByInterval method.
+        /// </summary>
+        public Command BuildGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRbCommand() {
+            var command = new Command("get-activities-by-interval-with-start-date-time-with-end-date-time-with-interval");
+            command.Description = "Provides operations to call the getActivitiesByInterval method.";
+            var builder = new GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getApplicableContentTypesForList method.
+        /// </summary>
+        public Command BuildGetApplicableContentTypesForListWithListIdRbCommand() {
+            var command = new Command("get-applicable-content-types-for-list-with-list-id");
+            command.Description = "Provides operations to call the getApplicableContentTypesForList method.";
+            var builder = new GetApplicableContentTypesForListWithListIdRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getByPath method.
+        /// </summary>
+        public Command BuildGetByPathWithPathRbCommand() {
+            var command = new Command("get-by-path-with-path");
+            command.Description = "Provides operations to call the getByPath method.";
+            var builder = new GetByPathWithPathRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// The list of SharePoint sites in this group. Access the default site with /sites/root.
         /// </summary>
         public Command BuildGetCommand() {

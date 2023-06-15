@@ -59,9 +59,7 @@ namespace ApiSdk.Reports.GetMailboxUsageStorageWithPeriod {
         /// Instantiates a new GetMailboxUsageStorageWithPeriodRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
-        public GetMailboxUsageStorageWithPeriodRequestBuilder(Dictionary<string, object> pathParameters, string period = "") : base("{+baseurl}/reports/getMailboxUsageStorage(period='{period}')", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(period)) PathParameters.Add("period", period);
+        public GetMailboxUsageStorageWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getMailboxUsageStorage(period='{period}')", pathParameters) {
         }
         /// <summary>
         /// Invoke function getMailboxUsageStorage

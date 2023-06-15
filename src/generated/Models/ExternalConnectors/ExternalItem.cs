@@ -13,6 +13,14 @@ namespace ApiSdk.Models.ExternalConnectors {
 #else
         public List<ApiSdk.Models.ExternalConnectors.Acl> Acl { get; set; }
 #endif
+        /// <summary>Returns a list of activities performed on the item. Write-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ExternalActivity>? Activities { get; set; }
+#nullable restore
+#else
+        public List<ExternalActivity> Activities { get; set; }
+#endif
         /// <summary>A plain-text  representation of the contents of the item. The text in this property is full-text indexed. Optional.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -43,6 +51,7 @@ namespace ApiSdk.Models.ExternalConnectors {
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"acl", n => { Acl = n.GetCollectionOfObjectValues<ApiSdk.Models.ExternalConnectors.Acl>(ApiSdk.Models.ExternalConnectors.Acl.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"activities", n => { Activities = n.GetCollectionOfObjectValues<ExternalActivity>(ExternalActivity.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"content", n => { Content = n.GetObjectValue<ExternalItemContent>(ExternalItemContent.CreateFromDiscriminatorValue); } },
                 {"properties", n => { Properties = n.GetObjectValue<ApiSdk.Models.ExternalConnectors.Properties>(ApiSdk.Models.ExternalConnectors.Properties.CreateFromDiscriminatorValue); } },
             };
@@ -55,6 +64,7 @@ namespace ApiSdk.Models.ExternalConnectors {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.ExternalConnectors.Acl>("acl", Acl);
+            writer.WriteCollectionOfObjectValues<ExternalActivity>("activities", Activities);
             writer.WriteObjectValue<ExternalItemContent>("content", Content);
             writer.WriteObjectValue<ApiSdk.Models.ExternalConnectors.Properties>("properties", Properties);
         }

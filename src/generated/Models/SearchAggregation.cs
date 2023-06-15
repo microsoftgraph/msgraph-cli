@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new searchAggregation and sets the default values.
+        /// Instantiates a new SearchAggregation and sets the default values.
         /// </summary>
         public SearchAggregation() {
             AdditionalData = new Dictionary<string, object>();

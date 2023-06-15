@@ -18,11 +18,12 @@ namespace ApiSdk.Users.Item.TranslateExchangeIds {
     /// </summary>
     public class TranslateExchangeIdsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action translateExchangeIds
+        /// Translate identifiers of Outlook-related resources between formats.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-translateexchangeids?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action translateExchangeIds";
+            command.Description = "Translate identifiers of Outlook-related resources between formats.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-translateexchangeids?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -93,7 +94,7 @@ namespace ApiSdk.Users.Item.TranslateExchangeIds {
         public TranslateExchangeIdsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/translateExchangeIds", pathParameters) {
         }
         /// <summary>
-        /// Invoke action translateExchangeIds
+        /// Translate identifiers of Outlook-related resources between formats.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

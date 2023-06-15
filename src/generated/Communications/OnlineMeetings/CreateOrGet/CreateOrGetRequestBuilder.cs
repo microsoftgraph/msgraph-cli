@@ -19,11 +19,12 @@ namespace ApiSdk.Communications.OnlineMeetings.CreateOrGet {
     /// </summary>
     public class CreateOrGetRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action createOrGet
+        /// Create an onlineMeeting object with a custom specified external ID. If the external ID already exists, this API will return the onlineMeeting object with that external ID. 
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/onlinemeeting-createorget?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action createOrGet";
+            command.Description = "Create an onlineMeeting object with a custom specified external ID. If the external ID already exists, this API will return the onlineMeeting object with that external ID. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/onlinemeeting-createorget?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -76,7 +77,7 @@ namespace ApiSdk.Communications.OnlineMeetings.CreateOrGet {
         public CreateOrGetRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/onlineMeetings/createOrGet", pathParameters) {
         }
         /// <summary>
-        /// Invoke action createOrGet
+        /// Create an onlineMeeting object with a custom specified external ID. If the external ID already exists, this API will return the onlineMeeting object with that external ID. 
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

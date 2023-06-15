@@ -7,15 +7,15 @@ namespace ApiSdk.Models {
     public class AuthorizationPolicy : PolicyBase, IParsable {
         /// <summary>Indicates whether users can sign up for email based subscriptions.</summary>
         public bool? AllowedToSignUpEmailBasedSubscriptions { get; set; }
-        /// <summary>Indicates whether the Self-Serve Password Reset feature can be used by users on the tenant.</summary>
+        /// <summary>Indicates whether users can use the Self-Serve Password Reset feature on the tenant.</summary>
         public bool? AllowedToUseSSPR { get; set; }
         /// <summary>Indicates whether a user can join the tenant by email validation.</summary>
         public bool? AllowEmailVerifiedUsersToJoinOrganization { get; set; }
-        /// <summary>Indicates who can invite external users to the organization. Possible values are: none, adminsAndGuestInviters, adminsGuestInvitersAndAllMembers, everyone.  everyone is the default setting for all cloud environments except US Government. See more in the table below.</summary>
+        /// <summary>Indicates who can invite external users to the organization. Possible values are: none, adminsAndGuestInviters, adminsGuestInvitersAndAllMembers, everyone.  everyone is the default setting for all cloud environments except US Government. For more details, see allowInvitesFrom values.</summary>
         public ApiSdk.Models.AllowInvitesFrom? AllowInvitesFrom { get; set; }
-        /// <summary>The allowUserConsentForRiskyApps property</summary>
+        /// <summary>Indicates whether user consent for risky apps is allowed. We recommend to keep this as false. Default value is false.</summary>
         public bool? AllowUserConsentForRiskyApps { get; set; }
-        /// <summary>To disable the use of MSOL PowerShell set this property to true. This will also disable user-based access to the legacy service endpoint used by MSOL PowerShell. This does not affect Azure AD Connect or Microsoft Graph.</summary>
+        /// <summary>To disable the use of MSOL PowerShell, set this property to true. This also disables user-based access to the legacy service endpoint used by MSOL PowerShell. This does not affect Azure Active Directory Connect or Microsoft Graph.</summary>
         public bool? BlockMsolPowerShell { get; set; }
         /// <summary>The defaultUserRolePermissions property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

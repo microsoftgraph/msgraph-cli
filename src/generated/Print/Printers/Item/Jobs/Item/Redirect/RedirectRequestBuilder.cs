@@ -19,11 +19,12 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item.Redirect {
     /// </summary>
     public class RedirectRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action redirect
+        /// Redirect a print job to a different printer. Redirecting a print job will only succeed if there is a printTask in a `processing` state on the associated print job, started by a trigger that the requesting app created.  For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/printjob-redirect?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action redirect";
+            command.Description = "Redirect a print job to a different printer. Redirecting a print job will only succeed if there is a printTask in a `processing` state on the associated print job, started by a trigger that the requesting app created.  For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printjob-redirect?view=graph-rest-1.0";
             var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
             };
             printerIdOption.IsRequired = true;
@@ -88,7 +89,7 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item.Redirect {
         public RedirectRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/printers/{printer%2Did}/jobs/{printJob%2Did}/redirect", pathParameters) {
         }
         /// <summary>
-        /// Invoke action redirect
+        /// Redirect a print job to a different printer. Redirecting a print job will only succeed if there is a printTask in a `processing` state on the associated print job, started by a trigger that the requesting app created.  For details about how to use this API to add pull printing support to Universal Print, see Extending Universal Print to support pull printing.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

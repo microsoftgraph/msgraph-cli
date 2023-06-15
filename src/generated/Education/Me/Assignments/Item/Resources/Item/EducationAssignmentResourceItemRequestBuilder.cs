@@ -19,11 +19,12 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources.Item {
     /// </summary>
     public class EducationAssignmentResourceItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property resources for education
+        /// Delete a specific educationAssignmentResource attached to an assignment. In general, only teachers in the class can remove a resource. However, teachers cannot remove resources marked as &apos;distributeToStudents&apos;, after the assignment has been published to students.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationassignmentresource-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property resources for education";
+            command.Description = "Delete a specific educationAssignmentResource attached to an assignment. In general, only teachers in the class can remove a resource. However, teachers cannot remove resources marked as 'distributeToStudents', after the assignment has been published to students.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationassignmentresource-delete?view=graph-rest-1.0";
             var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
@@ -58,11 +59,12 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources.Item {
             return command;
         }
         /// <summary>
-        /// Learning objects that are associated with this assignment.  Only teachers can modify this list. Nullable.
+        /// Get the properties of an education assignment resource associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationassignmentresource-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Learning objects that are associated with this assignment.  Only teachers can modify this list. Nullable.";
+            command.Description = "Get the properties of an education assignment resource associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationassignmentresource-get?view=graph-rest-1.0";
             var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
@@ -194,7 +196,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources.Item {
         public EducationAssignmentResourceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/me/assignments/{educationAssignment%2Did}/resources/{educationAssignmentResource%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property resources for education
+        /// Delete a specific educationAssignmentResource attached to an assignment. In general, only teachers in the class can remove a resource. However, teachers cannot remove resources marked as &apos;distributeToStudents&apos;, after the assignment has been published to students.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -219,7 +221,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Learning objects that are associated with this assignment.  Only teachers can modify this list. Nullable.
+        /// Get the properties of an education assignment resource associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -273,7 +275,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Learning objects that are associated with this assignment.  Only teachers can modify this list. Nullable.
+        /// Get the properties of an education assignment resource associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
         /// </summary>
         public class EducationAssignmentResourceItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

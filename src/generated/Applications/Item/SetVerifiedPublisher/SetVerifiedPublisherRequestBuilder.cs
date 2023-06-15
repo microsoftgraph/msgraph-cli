@@ -18,11 +18,12 @@ namespace ApiSdk.Applications.Item.SetVerifiedPublisher {
     /// </summary>
     public class SetVerifiedPublisherRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action setVerifiedPublisher
+        /// Set the verifiedPublisher on an application. For more information, including prerequisites to setting a verified publisher, see Publisher verification.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/application-setverifiedpublisher?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action setVerifiedPublisher";
+            command.Description = "Set the verifiedPublisher on an application. For more information, including prerequisites to setting a verified publisher, see Publisher verification.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-setverifiedpublisher?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -60,7 +61,7 @@ namespace ApiSdk.Applications.Item.SetVerifiedPublisher {
         public SetVerifiedPublisherRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/setVerifiedPublisher", pathParameters) {
         }
         /// <summary>
-        /// Invoke action setVerifiedPublisher
+        /// Set the verifiedPublisher on an application. For more information, including prerequisites to setting a verified publisher, see Publisher verification.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

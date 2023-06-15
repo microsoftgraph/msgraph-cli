@@ -72,11 +72,12 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item {
             return command;
         }
         /// <summary>
-        /// Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.
+        /// Retrieve a particular submission. Only teachers, students, and applications with application permissions can perform this operation. A **submission** object represents a student&apos;s work for an assignment. Resources associated with the **submission** represent this work. Only the **assignedTo** student can see and modify the **submission**. A teacher or application with application permissions has full access to all **submissions**. The grade and feedback from a teacher are part of the educationOutcome associated with this object. Only teachers or applications with application permissions can add or change grades and feedback. Students will not see the grade or feedback until the **assignment** has been released.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationsubmission-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.";
+            command.Description = "Retrieve a particular submission. Only teachers, students, and applications with application permissions can perform this operation. A **submission** object represents a student's work for an assignment. Resources associated with the **submission** represent this work. Only the **assignedTo** student can see and modify the **submission**. A teacher or application with application permissions has full access to all **submissions**. The grade and feedback from a teacher are part of the educationOutcome associated with this object. Only teachers or applications with application permissions can add or change grades and feedback. Students will not see the grade or feedback until the **assignment** has been released.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationsubmission-get?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -395,7 +396,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.
+        /// Retrieve a particular submission. Only teachers, students, and applications with application permissions can perform this operation. A **submission** object represents a student&apos;s work for an assignment. Resources associated with the **submission** represent this work. Only the **assignedTo** student can see and modify the **submission**. A teacher or application with application permissions has full access to all **submissions**. The grade and feedback from a teacher are part of the educationOutcome associated with this object. Only teachers or applications with application permissions can add or change grades and feedback. Students will not see the grade or feedback until the **assignment** has been released.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -449,7 +450,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.
+        /// Retrieve a particular submission. Only teachers, students, and applications with application permissions can perform this operation. A **submission** object represents a student&apos;s work for an assignment. Resources associated with the **submission** represent this work. Only the **assignedTo** student can see and modify the **submission**. A teacher or application with application permissions has full access to all **submissions**. The grade and feedback from a teacher are part of the educationOutcome associated with this object. Only teachers or applications with application permissions can add or change grades and feedback. Students will not see the grade or feedback until the **assignment** has been released.
         /// </summary>
         public class EducationSubmissionItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

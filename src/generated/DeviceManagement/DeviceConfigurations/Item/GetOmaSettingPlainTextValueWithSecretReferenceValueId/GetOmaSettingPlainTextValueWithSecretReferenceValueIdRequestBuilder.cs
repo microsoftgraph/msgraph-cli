@@ -74,9 +74,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.GetOmaSettingPlainTe
         /// Instantiates a new GetOmaSettingPlainTextValueWithSecretReferenceValueIdRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="secretReferenceValueId">Usage: secretReferenceValueId=&apos;{secretReferenceValueId}&apos;</param>
-        public GetOmaSettingPlainTextValueWithSecretReferenceValueIdRequestBuilder(Dictionary<string, object> pathParameters, string secretReferenceValueId = "") : base("{+baseurl}/deviceManagement/deviceConfigurations/{deviceConfiguration%2Did}/getOmaSettingPlainTextValue(secretReferenceValueId='{secretReferenceValueId}')", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(secretReferenceValueId)) PathParameters.Add("secretReferenceValueId", secretReferenceValueId);
+        public GetOmaSettingPlainTextValueWithSecretReferenceValueIdRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceConfigurations/{deviceConfiguration%2Did}/getOmaSettingPlainTextValue(secretReferenceValueId='{secretReferenceValueId}')", pathParameters) {
         }
         /// <summary>
         /// Invoke function getOmaSettingPlainTextValue

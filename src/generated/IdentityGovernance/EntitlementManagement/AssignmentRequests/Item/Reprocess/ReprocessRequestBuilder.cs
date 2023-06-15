@@ -18,11 +18,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
     /// </summary>
     public class ReprocessRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action reprocess
+        /// In Azure AD entitlement management, callers can automatically retry a user&apos;s request for access to an access package. It is performed on an accessPackageAssignmentRequest object whose **requestState** is in a `DeliveryFailed` or `PartiallyDelivered` state.  You can only reprocess a request within 14 days from the time the original request was completed. For requests completed more than 14 days, you will need to ask the users to cancel the request(s) and make a new request in the MyAccess portal.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/accesspackageassignmentrequest-reprocess?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action reprocess";
+            command.Description = "In Azure AD entitlement management, callers can automatically retry a user's request for access to an access package. It is performed on an accessPackageAssignmentRequest object whose **requestState** is in a `DeliveryFailed` or `PartiallyDelivered` state.  You can only reprocess a request within 14 days from the time the original request was completed. For requests completed more than 14 days, you will need to ask the users to cancel the request(s) and make a new request in the MyAccess portal.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/accesspackageassignmentrequest-reprocess?view=graph-rest-1.0";
             var accessPackageAssignmentRequestIdOption = new Option<string>("--access-package-assignment-request-id", description: "The unique identifier of accessPackageAssignmentRequest") {
             };
             accessPackageAssignmentRequestIdOption.IsRequired = true;
@@ -50,7 +51,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
         public ReprocessRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/assignmentRequests/{accessPackageAssignmentRequest%2Did}/reprocess", pathParameters) {
         }
         /// <summary>
-        /// Invoke action reprocess
+        /// In Azure AD entitlement management, callers can automatically retry a user&apos;s request for access to an access package. It is performed on an accessPackageAssignmentRequest object whose **requestState** is in a `DeliveryFailed` or `PartiallyDelivered` state.  You can only reprocess a request within 14 days from the time the original request was completed. For requests completed more than 14 days, you will need to ask the users to cancel the request(s) and make a new request in the MyAccess portal.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

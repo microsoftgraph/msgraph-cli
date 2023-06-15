@@ -46,11 +46,12 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers {
             return command;
         }
         /// <summary>
-        /// The users who have access to print using the printer.
+        /// Retrieve a list of users who have been granted access to submit print jobs to the associated printerShare.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/printershare-list-allowedusers?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The users who have access to print using the printer.";
+            command.Description = "Retrieve a list of users who have been granted access to submit print jobs to the associated printerShare.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printershare-list-allowedusers?view=graph-rest-1.0";
             var printerShareIdOption = new Option<string>("--printer-share-id", description: "The unique identifier of printerShare") {
             };
             printerShareIdOption.IsRequired = true;
@@ -179,7 +180,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers {
         public AllowedUsersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/shares/{printerShare%2Did}/allowedUsers{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The users who have access to print using the printer.
+        /// Retrieve a list of users who have been granted access to submit print jobs to the associated printerShare.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -205,7 +206,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers {
             return requestInfo;
         }
         /// <summary>
-        /// The users who have access to print using the printer.
+        /// Retrieve a list of users who have been granted access to submit print jobs to the associated printerShare.
         /// </summary>
         public class AllowedUsersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

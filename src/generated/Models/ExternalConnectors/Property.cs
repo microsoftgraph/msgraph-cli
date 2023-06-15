@@ -50,7 +50,7 @@ namespace ApiSdk.Models.ExternalConnectors {
         /// <summary>The type property</summary>
         public PropertyType? Type { get; set; }
         /// <summary>
-        /// Instantiates a new property and sets the default values.
+        /// Instantiates a new Property and sets the default values.
         /// </summary>
         public Property() {
             AdditionalData = new Dictionary<string, object>();

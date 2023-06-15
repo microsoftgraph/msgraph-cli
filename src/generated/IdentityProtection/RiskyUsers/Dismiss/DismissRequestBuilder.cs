@@ -18,11 +18,12 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Dismiss {
     /// </summary>
     public class DismissRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action dismiss
+        /// Dismiss the risk of one or more riskyUser objects. This action sets the targeted user&apos;s risk level to none.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/riskyuser-dismiss?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action dismiss";
+            command.Description = "Dismiss the risk of one or more riskyUser objects. This action sets the targeted user's risk level to none.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/riskyuser-dismiss?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -54,7 +55,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Dismiss {
         public DismissRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProtection/riskyUsers/dismiss", pathParameters) {
         }
         /// <summary>
-        /// Invoke action dismiss
+        /// Dismiss the risk of one or more riskyUser objects. This action sets the targeted user&apos;s risk level to none.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

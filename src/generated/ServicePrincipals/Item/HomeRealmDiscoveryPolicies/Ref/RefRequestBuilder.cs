@@ -19,11 +19,12 @@ namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies.Ref {
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// The homeRealmDiscoveryPolicies assigned to this service principal. Supports $expand.
+        /// List the homeRealmDiscoveryPolicy objects that are assigned to a servicePrincipal.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/serviceprincipal-list-homerealmdiscoverypolicies?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The homeRealmDiscoveryPolicies assigned to this service principal. Supports $expand.";
+            command.Description = "List the homeRealmDiscoveryPolicy objects that are assigned to a servicePrincipal.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-list-homerealmdiscoverypolicies?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -115,11 +116,12 @@ namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies.Ref {
             return command;
         }
         /// <summary>
-        /// Create new navigation property ref to homeRealmDiscoveryPolicies for servicePrincipals
+        /// Assign a homeRealmDiscoveryPolicy to a servicePrincipal.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/serviceprincipal-post-homerealmdiscoverypolicies?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Create new navigation property ref to homeRealmDiscoveryPolicies for servicePrincipals";
+            command.Description = "Assign a homeRealmDiscoveryPolicy to a servicePrincipal.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-post-homerealmdiscoverypolicies?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -157,7 +159,7 @@ namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies.Ref {
         public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/homeRealmDiscoveryPolicies/$ref{?%24top,%24skip,%24search,%24filter,%24count,%24orderby}", pathParameters) {
         }
         /// <summary>
-        /// The homeRealmDiscoveryPolicies assigned to this service principal. Supports $expand.
+        /// List the homeRealmDiscoveryPolicy objects that are assigned to a servicePrincipal.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -183,7 +185,7 @@ namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property ref to homeRealmDiscoveryPolicies for servicePrincipals
+        /// Assign a homeRealmDiscoveryPolicy to a servicePrincipal.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -210,7 +212,7 @@ namespace ApiSdk.ServicePrincipals.Item.HomeRealmDiscoveryPolicies.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// The homeRealmDiscoveryPolicies assigned to this service principal. Supports $expand.
+        /// List the homeRealmDiscoveryPolicy objects that are assigned to a servicePrincipal.
         /// </summary>
         public class RefRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

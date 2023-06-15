@@ -66,11 +66,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Rows {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to rows for drives
+        /// Adds rows to the end of a table.  Note that this API can accept multiple rows of data. Adding one row at a time can affect performance. The recommended approach is to batch the rows together in a single call rather than inserting single rows. For best results, collect the rows to be inserted on the application side and perform a single row add operation. Experiment with the number of rows to determine the ideal number of rows to use in a single API call.  This request might occasionally result in a `504 HTTP` error. The appropriate response to this error is to repeat the request.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/table-post-rows?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to rows for drives";
+            command.Description = "Adds rows to the end of a table.  Note that this API can accept multiple rows of data. Adding one row at a time can affect performance. The recommended approach is to batch the rows together in a single call rather than inserting single rows. For best results, collect the rows to be inserted on the application side and perform a single row add operation. Experiment with the number of rows to determine the ideal number of rows to use in a single API call.  This request might occasionally result in a `504 HTTP` error. The appropriate response to this error is to repeat the request.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/table-post-rows?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -135,11 +136,27 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Rows {
             return command;
         }
         /// <summary>
-        /// Represents a collection of all the rows in the table. Read-only.
+        /// Provides operations to call the itemAt method.
+        /// </summary>
+        public Command BuildItemAtWithIndexRbCommand() {
+            var command = new Command("item-at-with-index");
+            command.Description = "Provides operations to call the itemAt method.";
+            var builder = new ItemAtWithIndexRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Retrieve a list of tablerow objects.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/tablerow-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Represents a collection of all the rows in the table. Read-only.";
+            command.Description = "Retrieve a list of tablerow objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/tablerow-list?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -263,7 +280,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Rows {
         public RowsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/{workbookTable%2Did}/rows{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Represents a collection of all the rows in the table. Read-only.
+        /// Retrieve a list of tablerow objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -289,7 +306,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Rows {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to rows for drives
+        /// Adds rows to the end of a table.  Note that this API can accept multiple rows of data. Adding one row at a time can affect performance. The recommended approach is to batch the rows together in a single call rather than inserting single rows. For best results, collect the rows to be inserted on the application side and perform a single row add operation. Experiment with the number of rows to determine the ideal number of rows to use in a single API call.  This request might occasionally result in a `504 HTTP` error. The appropriate response to this error is to repeat the request.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -317,7 +334,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Rows {
             return requestInfo;
         }
         /// <summary>
-        /// Represents a collection of all the rows in the table. Read-only.
+        /// Retrieve a list of tablerow objects.
         /// </summary>
         public class RowsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

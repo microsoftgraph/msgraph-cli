@@ -12,5 +12,7 @@ namespace ApiSdk.Models.Security {
         Redirected,
         [EnumMember(Value = "unknownFutureValue")]
         UnknownFutureValue,
+        [EnumMember(Value = "awaitingAction")]
+        AwaitingAction,
     }
 }

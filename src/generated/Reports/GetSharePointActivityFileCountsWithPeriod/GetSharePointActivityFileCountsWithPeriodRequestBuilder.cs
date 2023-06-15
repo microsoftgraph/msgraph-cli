@@ -59,9 +59,7 @@ namespace ApiSdk.Reports.GetSharePointActivityFileCountsWithPeriod {
         /// Instantiates a new GetSharePointActivityFileCountsWithPeriodRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
-        public GetSharePointActivityFileCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters, string period = "") : base("{+baseurl}/reports/getSharePointActivityFileCounts(period='{period}')", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(period)) PathParameters.Add("period", period);
+        public GetSharePointActivityFileCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getSharePointActivityFileCounts(period='{period}')", pathParameters) {
         }
         /// <summary>
         /// Invoke function getSharePointActivityFileCounts

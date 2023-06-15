@@ -119,11 +119,12 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions {
             return command;
         }
         /// <summary>
-        /// Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.
+        /// List all the submissions associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can get all the submissions while a student can only get submissions that they are associated with.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationassignment-list-submissions?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.";
+            command.Description = "List all the submissions associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can get all the submissions while a student can only get submissions that they are associated with.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationassignment-list-submissions?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -241,7 +242,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions {
         public SubmissionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignments/{educationAssignment%2Did}/submissions{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.
+        /// List all the submissions associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can get all the submissions while a student can only get submissions that they are associated with.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -295,7 +296,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions {
             return requestInfo;
         }
         /// <summary>
-        /// Once published, there is a submission object for each student representing their work and grade.  Read-only. Nullable.
+        /// List all the submissions associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation. A teacher or an application with application permissions can get all the submissions while a student can only get submissions that they are associated with.
         /// </summary>
         public class SubmissionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -108,6 +108,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
             execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildFilterByCurrentUserWithOnRbCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
             execCommands.AddRange(cmds.Item1);
@@ -162,11 +163,12 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             return command;
         }
         /// <summary>
-        /// If the accessReviewScheduleDefinition is a recurring access review, instances represent each recurrence. A review that does not recur will have exactly one instance. Instances also represent each unique resource under review in the accessReviewScheduleDefinition. If a review has multiple resources and multiple instances, each resource will have a unique instance for each recurrence.
+        /// Read the properties and relationships of an accessReviewInstance object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/accessreviewinstance-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "If the accessReviewScheduleDefinition is a recurring access review, instances represent each recurrence. A review that does not recur will have exactly one instance. Instances also represent each unique resource under review in the accessReviewScheduleDefinition. If a review has multiple resources and multiple instances, each resource will have a unique instance for each recurrence.";
+            command.Description = "Read the properties and relationships of an accessReviewInstance object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/accessreviewinstance-get?view=graph-rest-1.0";
             var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "The unique identifier of accessReviewScheduleDefinition") {
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
@@ -229,11 +231,12 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             return command;
         }
         /// <summary>
-        /// Update the navigation property instances in identityGovernance
+        /// Update the properties of an accessReviewInstance object. Only the **reviewers** and **fallbackReviewers** properties can be updated but the **scope** property is also required in the request body. You can only add reviewers to the **fallbackReviewers** property but can&apos;t remove existing **fallbackReviewers**. To update an **accessReviewInstance**, it&apos;s **status** must be `InProgress`.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/accessreviewinstance-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property instances in identityGovernance";
+            command.Description = "Update the properties of an accessReviewInstance object. Only the **reviewers** and **fallbackReviewers** properties can be updated but the **scope** property is also required in the request body. You can only add reviewers to the **fallbackReviewers** property but can't remove existing **fallbackReviewers**. To update an **accessReviewInstance**, it's **status** must be `InProgress`.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/accessreviewinstance-update?view=graph-rest-1.0";
             var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "The unique identifier of accessReviewScheduleDefinition") {
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
@@ -332,6 +335,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
             execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildFilterByCurrentUserWithOnRbCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
             execCommands.AddRange(cmds.Item1);
@@ -393,7 +397,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             return requestInfo;
         }
         /// <summary>
-        /// If the accessReviewScheduleDefinition is a recurring access review, instances represent each recurrence. A review that does not recur will have exactly one instance. Instances also represent each unique resource under review in the accessReviewScheduleDefinition. If a review has multiple resources and multiple instances, each resource will have a unique instance for each recurrence.
+        /// Read the properties and relationships of an accessReviewInstance object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -419,7 +423,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property instances in identityGovernance
+        /// Update the properties of an accessReviewInstance object. Only the **reviewers** and **fallbackReviewers** properties can be updated but the **scope** property is also required in the request body. You can only add reviewers to the **fallbackReviewers** property but can&apos;t remove existing **fallbackReviewers**. To update an **accessReviewInstance**, it&apos;s **status** must be `InProgress`.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -447,7 +451,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
             return requestInfo;
         }
         /// <summary>
-        /// If the accessReviewScheduleDefinition is a recurring access review, instances represent each recurrence. A review that does not recur will have exactly one instance. Instances also represent each unique resource under review in the accessReviewScheduleDefinition. If a review has multiple resources and multiple instances, each resource will have a unique instance for each recurrence.
+        /// Read the properties and relationships of an accessReviewInstance object.
         /// </summary>
         public class AccessReviewInstanceItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

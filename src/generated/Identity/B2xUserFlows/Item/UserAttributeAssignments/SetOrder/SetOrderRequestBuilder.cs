@@ -18,11 +18,12 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.SetOrder {
     /// </summary>
     public class SetOrderRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action setOrder
+        /// Set the order of identityUserFlowAttributeAssignments being collected within a user flow.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/identityuserflowattributeassignment-setorder?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action setOrder";
+            command.Description = "Set the order of identityUserFlowAttributeAssignments being collected within a user flow.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/identityuserflowattributeassignment-setorder?view=graph-rest-1.0";
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
@@ -60,7 +61,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.UserAttributeAssignments.SetOrder {
         public SetOrderRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}/userAttributeAssignments/setOrder", pathParameters) {
         }
         /// <summary>
-        /// Invoke action setOrder
+        /// Set the order of identityUserFlowAttributeAssignments being collected within a user flow.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

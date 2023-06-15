@@ -53,11 +53,12 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.Sections {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to sections for users
+        /// Create a new onenoteSection in the specified notebook.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/notebook-post-sections?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to sections for users";
+            command.Description = "Create a new onenoteSection in the specified notebook.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/notebook-post-sections?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -116,11 +117,12 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.Sections {
             return command;
         }
         /// <summary>
-        /// The sections in the notebook. Read-only. Nullable.
+        /// Retrieve a list of onenoteSection objects from the specified notebook.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/notebook-list-sections?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The sections in the notebook. Read-only. Nullable.";
+            command.Description = "Retrieve a list of onenoteSection objects from the specified notebook.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/notebook-list-sections?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -238,7 +240,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.Sections {
         public SectionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/onenote/notebooks/{notebook%2Did}/sections{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The sections in the notebook. Read-only. Nullable.
+        /// Retrieve a list of onenoteSection objects from the specified notebook.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -264,7 +266,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.Sections {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to sections for users
+        /// Create a new onenoteSection in the specified notebook.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -292,7 +294,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.Sections {
             return requestInfo;
         }
         /// <summary>
-        /// The sections in the notebook. Read-only. Nullable.
+        /// Retrieve a list of onenoteSection objects from the specified notebook.
         /// </summary>
         public class SectionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

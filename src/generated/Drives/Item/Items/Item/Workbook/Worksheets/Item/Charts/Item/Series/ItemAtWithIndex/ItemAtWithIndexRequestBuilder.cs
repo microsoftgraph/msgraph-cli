@@ -20,10 +20,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
     public class ItemAtWithIndexRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Invoke function itemAt
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chartseriescollection-itemat?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Invoke function itemAt";
+            command.Description = "Invoke function itemAt\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chartseriescollection-itemat?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -92,10 +93,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
         /// <summary>
         /// Instantiates a new ItemAtWithIndexRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="index">Usage: index={index}</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ItemAtWithIndexRequestBuilder(Dictionary<string, object> pathParameters, int? index = default) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/{workbookChart%2Did}/series/itemAt(index={index})", pathParameters) {
-            if (index is not null) PathParameters.Add("index", index);
+        public ItemAtWithIndexRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/{workbookChart%2Did}/series/itemAt(index={index})", pathParameters) {
         }
         /// <summary>
         /// Invoke function itemAt

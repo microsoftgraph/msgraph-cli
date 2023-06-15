@@ -19,11 +19,12 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Invite {
     /// </summary>
     public class InviteRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action invite
+        /// Delete a specific participant in a call. In some situations, it is appropriate for an application to remove a participant from an active call. This action can be done before or after the participant answers the call. When an active caller is removed, they are immediately dropped from the call with no pre- or post-removal notification. When an invited participant is removed, any outstanding add participant request is canceled. 
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/participant-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action invite";
+            command.Description = "Delete a specific participant in a call. In some situations, it is appropriate for an application to remove a participant from an active call. This action can be done before or after the participant answers the call. When an active caller is removed, they are immediately dropped from the call with no pre- or post-removal notification. When an invited participant is removed, any outstanding add participant request is canceled. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/participant-delete?view=graph-rest-1.0";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -82,7 +83,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Invite {
         public InviteRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/participants/invite", pathParameters) {
         }
         /// <summary>
-        /// Invoke action invite
+        /// Delete a specific participant in a call. In some situations, it is appropriate for an application to remove a participant from an active call. This action can be done before or after the participant answers the call. When an active caller is removed, they are immediately dropped from the call with no pre- or post-removal notification. When an invited participant is removed, any outstanding add participant request is canceled. 
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

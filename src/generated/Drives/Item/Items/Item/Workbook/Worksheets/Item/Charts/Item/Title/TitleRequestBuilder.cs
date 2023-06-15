@@ -95,11 +95,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Tit
             return command;
         }
         /// <summary>
-        /// Represents the title of the specified chart, including the text, visibility, position and formating of the title. Read-only.
+        /// Retrieve the properties and relationships of charttitle object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/charttitle-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Represents the title of the specified chart, including the text, visibility, position and formating of the title. Read-only.";
+            command.Description = "Retrieve the properties and relationships of charttitle object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/charttitle-get?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -174,11 +175,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Tit
             return command;
         }
         /// <summary>
-        /// Update the navigation property title in drives
+        /// Update the properties of charttitle object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/charttitle-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property title in drives";
+            command.Description = "Update the properties of charttitle object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/charttitle-update?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -280,7 +282,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Tit
             return requestInfo;
         }
         /// <summary>
-        /// Represents the title of the specified chart, including the text, visibility, position and formating of the title. Read-only.
+        /// Retrieve the properties and relationships of charttitle object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -306,7 +308,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Tit
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property title in drives
+        /// Update the properties of charttitle object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -334,7 +336,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Tit
             return requestInfo;
         }
         /// <summary>
-        /// Represents the title of the specified chart, including the text, visibility, position and formating of the title. Read-only.
+        /// Retrieve the properties and relationships of charttitle object.
         /// </summary>
         public class TitleRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

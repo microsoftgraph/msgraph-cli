@@ -18,11 +18,12 @@ namespace ApiSdk.Groups.Item.SubscribeByMail {
     /// </summary>
     public class SubscribeByMailRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action subscribeByMail
+        /// Calling this method will enable the current user to receive email notifications for this group, about new posts, events, and files in that group. Supported for Microsoft 365 groups only.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/group-subscribebymail?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action subscribeByMail";
+            command.Description = "Calling this method will enable the current user to receive email notifications for this group, about new posts, events, and files in that group. Supported for Microsoft 365 groups only.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-subscribebymail?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -50,7 +51,7 @@ namespace ApiSdk.Groups.Item.SubscribeByMail {
         public SubscribeByMailRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/subscribeByMail", pathParameters) {
         }
         /// <summary>
-        /// Invoke action subscribeByMail
+        /// Calling this method will enable the current user to receive email notifications for this group, about new posts, events, and files in that group. Supported for Microsoft 365 groups only.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

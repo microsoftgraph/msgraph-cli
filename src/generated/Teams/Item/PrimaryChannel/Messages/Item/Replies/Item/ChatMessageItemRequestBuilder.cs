@@ -67,11 +67,12 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.Replies.Item {
             return command;
         }
         /// <summary>
-        /// Replies for a specified message. Supports $expand for channel messages.
+        /// Retrieve a single message or a message reply in a channel or a chat.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chatmessage-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Replies for a specified message. Supports $expand for channel messages.";
+            command.Description = "Retrieve a single message or a message reply in a channel or a chat.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chatmessage-get?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -295,7 +296,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.Replies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Replies for a specified message. Supports $expand for channel messages.
+        /// Retrieve a single message or a message reply in a channel or a chat.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -349,7 +350,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.Replies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Replies for a specified message. Supports $expand for channel messages.
+        /// Retrieve a single message or a message reply in a channel or a chat.
         /// </summary>
         public class ChatMessageItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

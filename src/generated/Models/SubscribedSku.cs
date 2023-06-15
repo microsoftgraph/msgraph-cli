@@ -5,6 +5,22 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class SubscribedSku : Entity, IParsable {
+        /// <summary>The accountId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AccountId { get; set; }
+#nullable restore
+#else
+        public string AccountId { get; set; }
+#endif
+        /// <summary>The accountName property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? AccountName { get; set; }
+#nullable restore
+#else
+        public string AccountName { get; set; }
+#endif
         /// <summary>For example, &apos;User&apos; or &apos;Company&apos;.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -49,6 +65,14 @@ namespace ApiSdk.Models {
 #else
         public string SkuPartNumber { get; set; }
 #endif
+        /// <summary>The subscriptionIds property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? SubscriptionIds { get; set; }
+#nullable restore
+#else
+        public List<string> SubscriptionIds { get; set; }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -62,6 +86,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+                {"accountId", n => { AccountId = n.GetStringValue(); } },
+                {"accountName", n => { AccountName = n.GetStringValue(); } },
                 {"appliesTo", n => { AppliesTo = n.GetStringValue(); } },
                 {"capabilityStatus", n => { CapabilityStatus = n.GetStringValue(); } },
                 {"consumedUnits", n => { ConsumedUnits = n.GetIntValue(); } },
@@ -69,6 +95,7 @@ namespace ApiSdk.Models {
                 {"servicePlans", n => { ServicePlans = n.GetCollectionOfObjectValues<ServicePlanInfo>(ServicePlanInfo.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"skuId", n => { SkuId = n.GetGuidValue(); } },
                 {"skuPartNumber", n => { SkuPartNumber = n.GetStringValue(); } },
+                {"subscriptionIds", n => { SubscriptionIds = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
         /// <summary>
@@ -78,6 +105,8 @@ namespace ApiSdk.Models {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
+            writer.WriteStringValue("accountId", AccountId);
+            writer.WriteStringValue("accountName", AccountName);
             writer.WriteStringValue("appliesTo", AppliesTo);
             writer.WriteStringValue("capabilityStatus", CapabilityStatus);
             writer.WriteIntValue("consumedUnits", ConsumedUnits);
@@ -85,6 +114,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<ServicePlanInfo>("servicePlans", ServicePlans);
             writer.WriteGuidValue("skuId", SkuId);
             writer.WriteStringValue("skuPartNumber", SkuPartNumber);
+            writer.WriteCollectionOfPrimitiveValues<string>("subscriptionIds", SubscriptionIds);
         }
     }
 }

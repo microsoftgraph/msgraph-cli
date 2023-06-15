@@ -64,11 +64,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OfferShiftRequests.Item {
             return command;
         }
         /// <summary>
-        /// Get offerShiftRequests from users
+        /// Retrieve the properties and relationships of an offerShiftRequest object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/offershiftrequest-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get offerShiftRequests from users";
+            command.Description = "Retrieve the properties and relationships of an offerShiftRequest object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/offershiftrequest-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -237,7 +238,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OfferShiftRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get offerShiftRequests from users
+        /// Retrieve the properties and relationships of an offerShiftRequest object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -291,7 +292,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OfferShiftRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get offerShiftRequests from users
+        /// Retrieve the properties and relationships of an offerShiftRequest object.
         /// </summary>
         public class OfferShiftRequestItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

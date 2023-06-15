@@ -7,8 +7,6 @@ using ApiSdk.Groups.Item.Events.Item.DismissReminder;
 using ApiSdk.Groups.Item.Events.Item.Extensions;
 using ApiSdk.Groups.Item.Events.Item.Forward;
 using ApiSdk.Groups.Item.Events.Item.Instances;
-using ApiSdk.Groups.Item.Events.Item.MultiValueExtendedProperties;
-using ApiSdk.Groups.Item.Events.Item.SingleValueExtendedProperties;
 using ApiSdk.Groups.Item.Events.Item.SnoozeReminder;
 using ApiSdk.Groups.Item.Events.Item.TentativelyAccept;
 using ApiSdk.Models.ODataErrors;
@@ -118,11 +116,12 @@ namespace ApiSdk.Groups.Item.Events.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property events for groups
+        /// Delete an event object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/group-delete-event?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property events for groups";
+            command.Description = "Delete an event object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-delete-event?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -212,11 +211,12 @@ namespace ApiSdk.Groups.Item.Events.Item {
             return command;
         }
         /// <summary>
-        /// The group&apos;s calendar events.
+        /// Get an event object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/group-get-event?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The group's calendar events.";
+            command.Description = "Get an event object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-get-event?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -297,31 +297,6 @@ namespace ApiSdk.Groups.Item.Events.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.event entity.
-        /// </summary>
-        public Command BuildMultiValueExtendedPropertiesNavCommand() {
-            var command = new Command("multi-value-extended-properties");
-            command.Description = "Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.event entity.";
-            var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            var nonExecCommands = new List<Command>();
-            nonExecCommands.Add(builder.BuildCountNavCommand());
-            execCommands.Add(builder.BuildCreateCommand());
-            execCommands.Add(builder.BuildListCommand());
-            var cmds = builder.BuildCommand();
-            execCommands.AddRange(cmds.Item1);
-            nonExecCommands.AddRange(cmds.Item2);
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property events in groups
         /// </summary>
         public Command BuildPatchCommand() {
@@ -385,31 +360,6 @@ namespace ApiSdk.Groups.Item.Events.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.event entity.
-        /// </summary>
-        public Command BuildSingleValueExtendedPropertiesNavCommand() {
-            var command = new Command("single-value-extended-properties");
-            command.Description = "Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.event entity.";
-            var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            var nonExecCommands = new List<Command>();
-            nonExecCommands.Add(builder.BuildCountNavCommand());
-            execCommands.Add(builder.BuildCreateCommand());
-            execCommands.Add(builder.BuildListCommand());
-            var cmds = builder.BuildCommand();
-            execCommands.AddRange(cmds.Item1);
-            nonExecCommands.AddRange(cmds.Item2);
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
-        }
-        /// <summary>
         /// Provides operations to call the snoozeReminder method.
         /// </summary>
         public Command BuildSnoozeReminderNavCommand() {
@@ -446,7 +396,7 @@ namespace ApiSdk.Groups.Item.Events.Item {
         public EventItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/events/{event%2Did}{?%24select}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property events for groups
+        /// Delete an event object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -471,7 +421,7 @@ namespace ApiSdk.Groups.Item.Events.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The group&apos;s calendar events.
+        /// Get an event object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -525,7 +475,7 @@ namespace ApiSdk.Groups.Item.Events.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The group&apos;s calendar events.
+        /// Get an event object.
         /// </summary>
         public class EventItemRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>

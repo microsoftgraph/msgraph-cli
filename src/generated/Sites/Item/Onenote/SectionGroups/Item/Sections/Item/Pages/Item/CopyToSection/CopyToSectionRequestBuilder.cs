@@ -19,11 +19,12 @@ namespace ApiSdk.Sites.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item.
     /// </summary>
     public class CopyToSectionRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action copyToSection
+        /// Copy a page to a specific section. For copy operations, you follow an asynchronous calling pattern:  First call the Copy action, and then poll the operation endpoint for the result.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/page-copytosection?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action copyToSection";
+            command.Description = "Copy a page to a specific section. For copy operations, you follow an asynchronous calling pattern:  First call the Copy action, and then poll the operation endpoint for the result.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/page-copytosection?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -100,7 +101,7 @@ namespace ApiSdk.Sites.Item.Onenote.SectionGroups.Item.Sections.Item.Pages.Item.
         public CopyToSectionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/onenote/sectionGroups/{sectionGroup%2Did}/sections/{onenoteSection%2Did}/pages/{onenotePage%2Did}/copyToSection", pathParameters) {
         }
         /// <summary>
-        /// Invoke action copyToSection
+        /// Copy a page to a specific section. For copy operations, you follow an asynchronous calling pattern:  First call the Copy action, and then poll the operation endpoint for the result.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

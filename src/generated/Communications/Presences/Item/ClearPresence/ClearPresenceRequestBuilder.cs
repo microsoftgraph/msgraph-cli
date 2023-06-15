@@ -18,11 +18,12 @@ namespace ApiSdk.Communications.Presences.Item.ClearPresence {
     /// </summary>
     public class ClearPresenceRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action clearPresence
+        /// Clear the application&apos;s presence session for a user. If it is the user&apos;s only presence session, the user&apos;s presence will change to `Offline/Offline`. For details about presences sessions, see presence: setPresence.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/presence-clearpresence?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action clearPresence";
+            command.Description = "Clear the application's presence session for a user. If it is the user's only presence session, the user's presence will change to `Offline/Offline`. For details about presences sessions, see presence: setPresence.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/presence-clearpresence?view=graph-rest-1.0";
             var presenceIdOption = new Option<string>("--presence-id", description: "The unique identifier of presence") {
             };
             presenceIdOption.IsRequired = true;
@@ -60,7 +61,7 @@ namespace ApiSdk.Communications.Presences.Item.ClearPresence {
         public ClearPresenceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/presences/{presence%2Did}/clearPresence", pathParameters) {
         }
         /// <summary>
-        /// Invoke action clearPresence
+        /// Clear the application&apos;s presence session for a user. If it is the user&apos;s only presence session, the user&apos;s presence will change to `Offline/Offline`. For details about presences sessions, see presence: setPresence.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -19,11 +19,12 @@ namespace ApiSdk.Security.TriggerTypes.RetentionEventTypes.Item {
     /// </summary>
     public class RetentionEventTypeItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property retentionEventTypes for security
+        /// Delete a retentionEventType object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-retentioneventtype-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property retentionEventTypes for security";
+            command.Description = "Delete a retentionEventType object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-retentioneventtype-delete?view=graph-rest-1.0";
             var retentionEventTypeIdOption = new Option<string>("--retention-event-type-id", description: "The unique identifier of retentionEventType") {
             };
             retentionEventTypeIdOption.IsRequired = true;
@@ -52,11 +53,12 @@ namespace ApiSdk.Security.TriggerTypes.RetentionEventTypes.Item {
             return command;
         }
         /// <summary>
-        /// Get retentionEventTypes from security
+        /// Read the properties and relationships of a retentionEventType object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-retentioneventtype-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get retentionEventTypes from security";
+            command.Description = "Read the properties and relationships of a retentionEventType object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-retentioneventtype-get?view=graph-rest-1.0";
             var retentionEventTypeIdOption = new Option<string>("--retention-event-type-id", description: "The unique identifier of retentionEventType") {
             };
             retentionEventTypeIdOption.IsRequired = true;
@@ -176,7 +178,7 @@ namespace ApiSdk.Security.TriggerTypes.RetentionEventTypes.Item {
         public RetentionEventTypeItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/triggerTypes/retentionEventTypes/{retentionEventType%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property retentionEventTypes for security
+        /// Delete a retentionEventType object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -201,7 +203,7 @@ namespace ApiSdk.Security.TriggerTypes.RetentionEventTypes.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get retentionEventTypes from security
+        /// Read the properties and relationships of a retentionEventType object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -255,7 +257,7 @@ namespace ApiSdk.Security.TriggerTypes.RetentionEventTypes.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get retentionEventTypes from security
+        /// Read the properties and relationships of a retentionEventType object.
         /// </summary>
         public class RetentionEventTypeItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

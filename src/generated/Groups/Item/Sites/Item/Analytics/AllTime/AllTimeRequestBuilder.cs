@@ -19,11 +19,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.Analytics.AllTime {
     /// </summary>
     public class AllTimeRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Get allTime from groups
+        /// Get [itemAnalytics][] about the views that took place under this resource.The **itemAnalytics** resource is a convenient way to get activity stats for `allTime` and the `lastSevenDays`.For a custom time range or interval, use the [getActivitiesByInterval][] API.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/itemanalytics-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get allTime from groups";
+            command.Description = "Get [itemAnalytics][] about the views that took place under this resource.The **itemAnalytics** resource is a convenient way to get activity stats for `allTime` and the `lastSevenDays`.For a custom time range or interval, use the [getActivitiesByInterval][] API.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/itemanalytics-get?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -92,7 +93,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Analytics.AllTime {
         public AllTimeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/analytics/allTime{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get allTime from groups
+        /// Get [itemAnalytics][] about the views that took place under this resource.The **itemAnalytics** resource is a convenient way to get activity stats for `allTime` and the `lastSevenDays`.For a custom time range or interval, use the [getActivitiesByInterval][] API.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -118,7 +119,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Analytics.AllTime {
             return requestInfo;
         }
         /// <summary>
-        /// Get allTime from groups
+        /// Get [itemAnalytics][] about the views that took place under this resource.The **itemAnalytics** resource is a convenient way to get activity stats for `allTime` and the `lastSevenDays`.For a custom time range or interval, use the [getActivitiesByInterval][] API.
         /// </summary>
         public class AllTimeRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

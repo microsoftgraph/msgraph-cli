@@ -82,11 +82,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item {
             return command;
         }
         /// <summary>
-        /// The list of previous versions of the item. For more info, see [getting previous versions][]. Read-only. Nullable.
+        /// Retrieve the metadata for a specific version of a DriveItem.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/driveitemversion-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The list of previous versions of the item. For more info, see [getting previous versions][]. Read-only. Nullable.";
+            command.Description = "Retrieve the metadata for a specific version of a DriveItem.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitemversion-get?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -270,7 +271,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The list of previous versions of the item. For more info, see [getting previous versions][]. Read-only. Nullable.
+        /// Retrieve the metadata for a specific version of a DriveItem.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -324,7 +325,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The list of previous versions of the item. For more info, see [getting previous versions][]. Read-only. Nullable.
+        /// Retrieve the metadata for a specific version of a DriveItem.
         /// </summary>
         public class DriveItemVersionItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

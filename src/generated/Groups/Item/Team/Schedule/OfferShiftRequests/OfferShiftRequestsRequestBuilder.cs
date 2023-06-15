@@ -104,11 +104,12 @@ namespace ApiSdk.Groups.Item.Team.Schedule.OfferShiftRequests {
             return command;
         }
         /// <summary>
-        /// Get offerShiftRequests from groups
+        /// Retrieve the properties and relationships of all offerShiftRequest objects in a team.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/offershiftrequest-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get offerShiftRequests from groups";
+            command.Description = "Retrieve the properties and relationships of all offerShiftRequest objects in a team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/offershiftrequest-list?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -220,7 +221,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.OfferShiftRequests {
         public OfferShiftRequestsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/schedule/offerShiftRequests{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get offerShiftRequests from groups
+        /// Retrieve the properties and relationships of all offerShiftRequest objects in a team.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -274,7 +275,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.OfferShiftRequests {
             return requestInfo;
         }
         /// <summary>
-        /// Get offerShiftRequests from groups
+        /// Retrieve the properties and relationships of all offerShiftRequest objects in a team.
         /// </summary>
         public class OfferShiftRequestsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

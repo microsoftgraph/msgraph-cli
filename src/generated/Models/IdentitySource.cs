@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new identitySource and sets the default values.
+        /// Instantiates a new IdentitySource and sets the default values.
         /// </summary>
         public IdentitySource() {
             AdditionalData = new Dictionary<string, object>();

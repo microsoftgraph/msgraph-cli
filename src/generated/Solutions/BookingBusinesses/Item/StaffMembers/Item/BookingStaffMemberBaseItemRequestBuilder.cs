@@ -19,11 +19,12 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers.Item {
     /// </summary>
     public class BookingStaffMemberBaseItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property staffMembers for solutions
+        /// Delete a bookingStaffMember in the specified bookingBusiness.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/bookingstaffmember-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property staffMembers for solutions";
+            command.Description = "Delete a bookingStaffMember in the specified bookingBusiness.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bookingstaffmember-delete?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -58,11 +59,12 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers.Item {
             return command;
         }
         /// <summary>
-        /// All the staff members that provide services in this business. Read-only. Nullable.
+        /// Get the properties and relationships of a bookingStaffMember in the specified bookingBusiness.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/bookingstaffmember-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "All the staff members that provide services in this business. Read-only. Nullable.";
+            command.Description = "Get the properties and relationships of a bookingStaffMember in the specified bookingBusiness.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bookingstaffmember-get?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -125,11 +127,12 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property staffMembers in solutions
+        /// Update the properties of a bookingStaffMember in the specified bookingBusiness.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/bookingstaffmember-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property staffMembers in solutions";
+            command.Description = "Update the properties of a bookingStaffMember in the specified bookingBusiness.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bookingstaffmember-update?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -194,7 +197,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers.Item {
         public BookingStaffMemberBaseItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/staffMembers/{bookingStaffMemberBase%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property staffMembers for solutions
+        /// Delete a bookingStaffMember in the specified bookingBusiness.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -219,7 +222,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers.Item {
             return requestInfo;
         }
         /// <summary>
-        /// All the staff members that provide services in this business. Read-only. Nullable.
+        /// Get the properties and relationships of a bookingStaffMember in the specified bookingBusiness.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -245,7 +248,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property staffMembers in solutions
+        /// Update the properties of a bookingStaffMember in the specified bookingBusiness.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -273,7 +276,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.StaffMembers.Item {
             return requestInfo;
         }
         /// <summary>
-        /// All the staff members that provide services in this business. Read-only. Nullable.
+        /// Get the properties and relationships of a bookingStaffMember in the specified bookingBusiness.
         /// </summary>
         public class BookingStaffMemberBaseItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

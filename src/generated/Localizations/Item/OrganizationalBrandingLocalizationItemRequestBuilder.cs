@@ -1,6 +1,10 @@
 using ApiSdk.Localizations.Item.BackgroundImage;
 using ApiSdk.Localizations.Item.BannerLogo;
+using ApiSdk.Localizations.Item.CustomCSS;
+using ApiSdk.Localizations.Item.Favicon;
+using ApiSdk.Localizations.Item.HeaderLogo;
 using ApiSdk.Localizations.Item.SquareLogo;
+using ApiSdk.Localizations.Item.SquareLogoDark;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -54,6 +58,22 @@ namespace ApiSdk.Localizations.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to manage the media for the organizationalBrandingLocalization entity.
+        /// </summary>
+        public Command BuildCustomCSSNavCommand() {
+            var command = new Command("custom-c-s-s");
+            command.Description = "Provides operations to manage the media for the organizationalBrandingLocalization entity.";
+            var builder = new CustomCSSRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPutCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Delete entity from localizations
         /// </summary>
         public Command BuildDeleteCommand() {
@@ -84,6 +104,22 @@ namespace ApiSdk.Localizations.Item {
                 await reqAdapter.SendNoContentAsync(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken);
                 Console.WriteLine("Success");
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the media for the organizationalBrandingLocalization entity.
+        /// </summary>
+        public Command BuildFaviconNavCommand() {
+            var command = new Command("favicon");
+            command.Description = "Provides operations to manage the media for the organizationalBrandingLocalization entity.";
+            var builder = new FaviconRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPutCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -148,6 +184,22 @@ namespace ApiSdk.Localizations.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to manage the media for the organizationalBrandingLocalization entity.
+        /// </summary>
+        public Command BuildHeaderLogoNavCommand() {
+            var command = new Command("header-logo");
+            command.Description = "Provides operations to manage the media for the organizationalBrandingLocalization entity.";
+            var builder = new HeaderLogoRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPutCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Update entity in localizations
         /// </summary>
         public Command BuildPatchCommand() {
@@ -202,6 +254,22 @@ namespace ApiSdk.Localizations.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the media for the organizationalBrandingLocalization entity.
+        /// </summary>
+        public Command BuildSquareLogoDarkNavCommand() {
+            var command = new Command("square-logo-dark");
+            command.Description = "Provides operations to manage the media for the organizationalBrandingLocalization entity.";
+            var builder = new SquareLogoDarkRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPutCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>

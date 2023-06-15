@@ -64,11 +64,12 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks.Item.AssignedToTaskBoardF
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Used to render the task correctly in the task board view when grouped by assignedTo.
+        /// Retrieve the properties and relationships of a **plannerAssignedToTaskBoardTaskFormat** object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/plannerassignedtotaskboardtaskformat-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read-only. Nullable. Used to render the task correctly in the task board view when grouped by assignedTo.";
+            command.Description = "Retrieve the properties and relationships of a **plannerAssignedToTaskBoardTaskFormat** object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerassignedtotaskboardtaskformat-get?view=graph-rest-1.0";
             var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
             };
             plannerPlanIdOption.IsRequired = true;
@@ -138,10 +139,11 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks.Item.AssignedToTaskBoardF
         }
         /// <summary>
         /// Update the navigation property assignedToTaskBoardFormat in planner
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/plannerassignedtotaskboardtaskformat-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property assignedToTaskBoardFormat in planner";
+            command.Description = "Update the navigation property assignedToTaskBoardFormat in planner\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerassignedtotaskboardtaskformat-update?view=graph-rest-1.0";
             var plannerPlanIdOption = new Option<string>("--planner-plan-id", description: "The unique identifier of plannerPlan") {
             };
             plannerPlanIdOption.IsRequired = true;
@@ -244,7 +246,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks.Item.AssignedToTaskBoardF
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Used to render the task correctly in the task board view when grouped by assignedTo.
+        /// Retrieve the properties and relationships of a **plannerAssignedToTaskBoardTaskFormat** object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -298,7 +300,7 @@ namespace ApiSdk.Planner.Plans.Item.Buckets.Item.Tasks.Item.AssignedToTaskBoardF
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Used to render the task correctly in the task board view when grouped by assignedTo.
+        /// Retrieve the properties and relationships of a **plannerAssignedToTaskBoardTaskFormat** object.
         /// </summary>
         public class AssignedToTaskBoardFormatRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

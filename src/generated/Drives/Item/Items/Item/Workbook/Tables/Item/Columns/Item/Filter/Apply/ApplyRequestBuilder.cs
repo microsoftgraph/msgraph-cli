@@ -18,11 +18,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
     /// </summary>
     public class ApplyRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action apply
+        /// Apply the given filter criteria on the given column.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/filter-apply?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action apply";
+            command.Description = "Apply the given filter criteria on the given column.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/filter-apply?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -78,7 +79,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item.Filter
         public ApplyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/{workbookTable%2Did}/columns/{workbookTableColumn%2Did}/filter/apply", pathParameters) {
         }
         /// <summary>
-        /// Invoke action apply
+        /// Apply the given filter criteria on the given column.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

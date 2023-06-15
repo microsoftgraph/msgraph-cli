@@ -78,11 +78,12 @@ namespace ApiSdk.Print.Services.Item {
             return command;
         }
         /// <summary>
-        /// The list of available Universal Print service endpoints.
+        /// Retrieve the properties and relationships of a print service.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/printservice-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The list of available Universal Print service endpoints.";
+            command.Description = "Retrieve the properties and relationships of a print service.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printservice-get?view=graph-rest-1.0";
             var printServiceIdOption = new Option<string>("--print-service-id", description: "The unique identifier of printService") {
             };
             printServiceIdOption.IsRequired = true;
@@ -227,7 +228,7 @@ namespace ApiSdk.Print.Services.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The list of available Universal Print service endpoints.
+        /// Retrieve the properties and relationships of a print service.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -281,7 +282,7 @@ namespace ApiSdk.Print.Services.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The list of available Universal Print service endpoints.
+        /// Retrieve the properties and relationships of a print service.
         /// </summary>
         public class PrintServiceItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -57,6 +57,7 @@ namespace ApiSdk.ServicePrincipals {
             commands.Add(builder.BuildRemoveKeyNavCommand());
             commands.Add(builder.BuildRemovePasswordNavCommand());
             commands.Add(builder.BuildRestoreNavCommand());
+            commands.Add(builder.BuildSynchronizationNavCommand());
             commands.Add(builder.BuildTokenIssuancePoliciesNavCommand());
             commands.Add(builder.BuildTokenLifetimePoliciesNavCommand());
             commands.Add(builder.BuildTransitiveMemberOfNavCommand());

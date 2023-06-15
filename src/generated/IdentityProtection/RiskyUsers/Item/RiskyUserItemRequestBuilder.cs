@@ -53,11 +53,12 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item {
             return command;
         }
         /// <summary>
-        /// Users that are flagged as at-risk by Azure AD Identity Protection.
+        /// Read the properties and relationships of a riskyUser object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/riskyuser-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Users that are flagged as at-risk by Azure AD Identity Protection.";
+            command.Description = "Read the properties and relationships of a riskyUser object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/riskyuser-get?view=graph-rest-1.0";
             var riskyUserIdOption = new Option<string>("--risky-user-id", description: "The unique identifier of riskyUser") {
             };
             riskyUserIdOption.IsRequired = true;
@@ -227,7 +228,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Users that are flagged as at-risk by Azure AD Identity Protection.
+        /// Read the properties and relationships of a riskyUser object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -281,7 +282,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Users that are flagged as at-risk by Azure AD Identity Protection.
+        /// Read the properties and relationships of a riskyUser object.
         /// </summary>
         public class RiskyUserItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

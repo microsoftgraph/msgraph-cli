@@ -18,11 +18,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Ite
     /// </summary>
     public class MicrosoftGraphSecurityReleaseRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action release
+        /// Release the non-custodial data source from the case.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoverynoncustodialdatasource-release?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action release";
+            command.Description = "Release the non-custodial data source from the case.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverynoncustodialdatasource-release?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -56,7 +57,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Ite
         public MicrosoftGraphSecurityReleaseRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/noncustodialDataSources/{ediscoveryNoncustodialDataSource%2Did}/microsoft.graph.security.release", pathParameters) {
         }
         /// <summary>
-        /// Invoke action release
+        /// Release the non-custodial data source from the case.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

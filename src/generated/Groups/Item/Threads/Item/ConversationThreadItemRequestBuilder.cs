@@ -21,11 +21,12 @@ namespace ApiSdk.Groups.Item.Threads.Item {
     /// </summary>
     public class ConversationThreadItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property threads for groups
+        /// Delete conversationThread.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/conversationthread-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property threads for groups";
+            command.Description = "Delete conversationThread.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/conversationthread-delete?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -60,11 +61,12 @@ namespace ApiSdk.Groups.Item.Threads.Item {
             return command;
         }
         /// <summary>
-        /// The group&apos;s conversation threads. Nullable.
+        /// Get a thread object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/group-get-thread?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The group's conversation threads. Nullable.";
+            command.Description = "Get a thread object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-get-thread?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -120,11 +122,12 @@ namespace ApiSdk.Groups.Item.Threads.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property threads in groups
+        /// Update conversation thread
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/group-update-thread?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property threads in groups";
+            command.Description = "Update conversation thread\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-update-thread?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -228,7 +231,7 @@ namespace ApiSdk.Groups.Item.Threads.Item {
         public ConversationThreadItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/threads/{conversationThread%2Did}{?%24select}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property threads for groups
+        /// Delete conversationThread.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -253,7 +256,7 @@ namespace ApiSdk.Groups.Item.Threads.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The group&apos;s conversation threads. Nullable.
+        /// Get a thread object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -279,7 +282,7 @@ namespace ApiSdk.Groups.Item.Threads.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property threads in groups
+        /// Update conversation thread
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -307,7 +310,7 @@ namespace ApiSdk.Groups.Item.Threads.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The group&apos;s conversation threads. Nullable.
+        /// Get a thread object.
         /// </summary>
         public class ConversationThreadItemRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>

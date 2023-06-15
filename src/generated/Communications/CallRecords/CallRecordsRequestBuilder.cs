@@ -102,11 +102,11 @@ namespace ApiSdk.Communications.CallRecords {
             return command;
         }
         /// <summary>
-        /// Get callRecords from communications
+        /// Retrieve the properties and relationships of a callRecord object. There are two ways to get the **id** of a **callRecord**:
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get callRecords from communications";
+            command.Description = "Retrieve the properties and relationships of a callRecord object. There are two ways to get the **id** of a **callRecord**:";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -206,13 +206,43 @@ namespace ApiSdk.Communications.CallRecords {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the getDirectRoutingCalls method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTimeRbCommand() {
+            var command = new Command("microsoft-graph-call-records-get-direct-routing-calls-with-from-date-time-with-to-date-time");
+            command.Description = "Provides operations to call the getDirectRoutingCalls method.";
+            var builder = new MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTimeRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getPstnCalls method.
+        /// </summary>
+        public Command BuildMicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRbCommand() {
+            var command = new Command("microsoft-graph-call-records-get-pstn-calls-with-from-date-time-with-to-date-time");
+            command.Description = "Provides operations to call the getPstnCalls method.";
+            var builder = new MicrosoftGraphCallRecordsGetPstnCallsWithFromDateTimeWithToDateTimeRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Instantiates a new CallRecordsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CallRecordsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/callRecords{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get callRecords from communications
+        /// Retrieve the properties and relationships of a callRecord object. There are two ways to get the **id** of a **callRecord**:
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -266,7 +296,7 @@ namespace ApiSdk.Communications.CallRecords {
             return requestInfo;
         }
         /// <summary>
-        /// Get callRecords from communications
+        /// Retrieve the properties and relationships of a callRecord object. There are two ways to get the **id** of a **callRecord**:
         /// </summary>
         public class CallRecordsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

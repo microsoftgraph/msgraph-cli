@@ -62,11 +62,12 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item {
             return command;
         }
         /// <summary>
-        /// A collection of all the messages in the channel. A navigation property. Nullable.
+        /// Retrieve a single message or a message reply in a channel or a chat.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chatmessage-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "A collection of all the messages in the channel. A navigation property. Nullable.";
+            command.Description = "Retrieve a single message or a message reply in a channel or a chat.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chatmessage-get?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -154,11 +155,12 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property messages in teams
+        /// Update a chatMessage object. With the exception of the **policyViolation** property, all properties of a **chatMessage** can be updated in delegated permissions scenarios.Only the **policyViolation** property of a **chatMessage** can be updated in application permissions scenarios. The update only works for chats where members are Microsoft Teams users. If one of the participants is using Skype, the operation will fail. This method does not support federation. Only the user in the tenant who sent the message can perform data loss prevention (DLP) updates on the specified chat message.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chatmessage-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property messages in teams";
+            command.Description = "Update a chatMessage object. With the exception of the **policyViolation** property, all properties of a **chatMessage** can be updated in delegated permissions scenarios.Only the **policyViolation** property of a **chatMessage** can be updated in application permissions scenarios. The update only works for chats where members are Microsoft Teams users. If one of the participants is using Skype, the operation will fail. This method does not support federation. Only the user in the tenant who sent the message can perform data loss prevention (DLP) updates on the specified chat message.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chatmessage-update?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -304,7 +306,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of all the messages in the channel. A navigation property. Nullable.
+        /// Retrieve a single message or a message reply in a channel or a chat.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -330,7 +332,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property messages in teams
+        /// Update a chatMessage object. With the exception of the **policyViolation** property, all properties of a **chatMessage** can be updated in delegated permissions scenarios.Only the **policyViolation** property of a **chatMessage** can be updated in application permissions scenarios. The update only works for chats where members are Microsoft Teams users. If one of the participants is using Skype, the operation will fail. This method does not support federation. Only the user in the tenant who sent the message can perform data loss prevention (DLP) updates on the specified chat message.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -358,7 +360,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of all the messages in the channel. A navigation property. Nullable.
+        /// Retrieve a single message or a message reply in a channel or a chat.
         /// </summary>
         public class ChatMessageItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

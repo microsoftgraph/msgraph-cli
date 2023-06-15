@@ -8,11 +8,9 @@ using ApiSdk.Users.Item.Messages.Item.CreateReplyAll;
 using ApiSdk.Users.Item.Messages.Item.Extensions;
 using ApiSdk.Users.Item.Messages.Item.Forward;
 using ApiSdk.Users.Item.Messages.Item.Move;
-using ApiSdk.Users.Item.Messages.Item.MultiValueExtendedProperties;
 using ApiSdk.Users.Item.Messages.Item.Reply;
 using ApiSdk.Users.Item.Messages.Item.ReplyAll;
 using ApiSdk.Users.Item.Messages.Item.Send;
-using ApiSdk.Users.Item.Messages.Item.SingleValueExtendedProperties;
 using ApiSdk.Users.Item.Messages.Item.Value;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
@@ -135,11 +133,12 @@ namespace ApiSdk.Users.Item.Messages.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property messages for users
+        /// Delete a message in the specified user&apos;s mailbox, or delete a relationship of the message.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/message-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property messages for users";
+            command.Description = "Delete a message in the specified user's mailbox, or delete a relationship of the message.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/message-delete?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -215,10 +214,11 @@ namespace ApiSdk.Users.Item.Messages.Item {
         }
         /// <summary>
         /// The messages in a mailbox or folder. Read-only. Nullable.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/eventmessage-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The messages in a mailbox or folder. Read-only. Nullable.";
+            command.Description = "The messages in a mailbox or folder. Read-only. Nullable.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/eventmessage-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -302,36 +302,12 @@ namespace ApiSdk.Users.Item.Messages.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.message entity.
-        /// </summary>
-        public Command BuildMultiValueExtendedPropertiesNavCommand() {
-            var command = new Command("multi-value-extended-properties");
-            command.Description = "Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.message entity.";
-            var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            var nonExecCommands = new List<Command>();
-            nonExecCommands.Add(builder.BuildCountNavCommand());
-            execCommands.Add(builder.BuildCreateCommand());
-            execCommands.Add(builder.BuildListCommand());
-            var cmds = builder.BuildCommand();
-            execCommands.AddRange(cmds.Item1);
-            nonExecCommands.AddRange(cmds.Item2);
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
-        }
-        /// <summary>
-        /// Update the navigation property messages in users
+        /// Update the properties of a message object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/message-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property messages in users";
+            command.Description = "Update the properties of a message object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/message-update?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -435,38 +411,13 @@ namespace ApiSdk.Users.Item.Messages.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.message entity.
-        /// </summary>
-        public Command BuildSingleValueExtendedPropertiesNavCommand() {
-            var command = new Command("single-value-extended-properties");
-            command.Description = "Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.message entity.";
-            var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            var nonExecCommands = new List<Command>();
-            nonExecCommands.Add(builder.BuildCountNavCommand());
-            execCommands.Add(builder.BuildCreateCommand());
-            execCommands.Add(builder.BuildListCommand());
-            var cmds = builder.BuildCommand();
-            execCommands.AddRange(cmds.Item1);
-            nonExecCommands.AddRange(cmds.Item2);
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
-        }
-        /// <summary>
         /// Instantiates a new MessageItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MessageItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/messages/{message%2Did}{?includeHiddenMessages*,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property messages for users
+        /// Delete a message in the specified user&apos;s mailbox, or delete a relationship of the message.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -517,7 +468,7 @@ namespace ApiSdk.Users.Item.Messages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property messages in users
+        /// Update the properties of a message object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

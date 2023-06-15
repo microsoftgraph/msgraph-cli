@@ -38,8 +38,10 @@ namespace ApiSdk.Drives.Item.Items {
             commands.Add(builder.BuildCreateUploadSessionNavCommand());
             executables.Add(builder.BuildDeleteCommand());
             commands.Add(builder.BuildDeltaNavCommand());
+            commands.Add(builder.BuildDeltaWithTokenRbCommand());
             commands.Add(builder.BuildFollowNavCommand());
             commands.Add(builder.BuildGetActivitiesByIntervalNavCommand());
+            commands.Add(builder.BuildGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRbCommand());
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildInviteNavCommand());
             commands.Add(builder.BuildLastModifiedByUserNavCommand());
@@ -48,6 +50,7 @@ namespace ApiSdk.Drives.Item.Items {
             commands.Add(builder.BuildPermissionsNavCommand());
             commands.Add(builder.BuildPreviewNavCommand());
             commands.Add(builder.BuildRestoreNavCommand());
+            commands.Add(builder.BuildSearchWithQRbCommand());
             commands.Add(builder.BuildSubscriptionsNavCommand());
             commands.Add(builder.BuildThumbnailsNavCommand());
             commands.Add(builder.BuildUnfollowNavCommand());

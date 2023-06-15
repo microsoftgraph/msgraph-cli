@@ -52,7 +52,7 @@ namespace ApiSdk.Models {
         public string Subject { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new scheduleItem and sets the default values.
+        /// Instantiates a new ScheduleItem and sets the default values.
         /// </summary>
         public ScheduleItem() {
             AdditionalData = new Dictionary<string, object>();

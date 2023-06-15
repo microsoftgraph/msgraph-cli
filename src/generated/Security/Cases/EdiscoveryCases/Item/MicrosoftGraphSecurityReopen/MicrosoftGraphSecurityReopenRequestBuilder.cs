@@ -18,11 +18,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.MicrosoftGraphSecurityReope
     /// </summary>
     public class MicrosoftGraphSecurityReopenRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action reopen
+        /// Reopen an eDiscovery case that was closed. For details, see Reopen a closed case.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoverycase-reopen?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action reopen";
+            command.Description = "Reopen an eDiscovery case that was closed. For details, see Reopen a closed case.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-reopen?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -50,7 +51,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.MicrosoftGraphSecurityReope
         public MicrosoftGraphSecurityReopenRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/microsoft.graph.security.reopen", pathParameters) {
         }
         /// <summary>
-        /// Invoke action reopen
+        /// Reopen an eDiscovery case that was closed. For details, see Reopen a closed case.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

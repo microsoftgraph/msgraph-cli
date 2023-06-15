@@ -19,11 +19,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Names.Add {
     /// </summary>
     public class AddRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action add
+        /// Adds a new name to the collection of the given scope using the user&apos;s locale for the formula.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/nameditem-add?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action add";
+            command.Description = "Adds a new name to the collection of the given scope using the user's locale for the formula.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/nameditem-add?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -94,7 +95,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Names.Add {
         public AddRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/names/add", pathParameters) {
         }
         /// <summary>
-        /// Invoke action add
+        /// Adds a new name to the collection of the given scope using the user&apos;s locale for the formula.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

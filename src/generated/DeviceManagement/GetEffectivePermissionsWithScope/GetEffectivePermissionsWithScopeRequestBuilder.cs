@@ -110,9 +110,7 @@ namespace ApiSdk.DeviceManagement.GetEffectivePermissionsWithScope {
         /// Instantiates a new GetEffectivePermissionsWithScopeRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="scope">Usage: scope=&apos;{scope}&apos;</param>
-        public GetEffectivePermissionsWithScopeRequestBuilder(Dictionary<string, object> pathParameters, string scope = "") : base("{+baseurl}/deviceManagement/getEffectivePermissions(scope='{scope}'){?%24top,%24skip,%24search,%24filter,%24count}", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(scope)) PathParameters.Add("scope", scope);
+        public GetEffectivePermissionsWithScopeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/getEffectivePermissions(scope='{scope}'){?%24top,%24skip,%24search,%24filter,%24count}", pathParameters) {
         }
         /// <summary>
         /// Retrieves the effective permissions of the currently authenticated user

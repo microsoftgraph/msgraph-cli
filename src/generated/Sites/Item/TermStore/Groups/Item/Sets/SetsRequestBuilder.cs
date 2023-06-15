@@ -115,11 +115,12 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets {
             return command;
         }
         /// <summary>
-        /// All sets under the group in a term [store].
+        /// Get a list of the set objects and their properties.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/termstore-group-list-sets?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "All sets under the group in a term [store].";
+            command.Description = "Get a list of the set objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/termstore-group-list-sets?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -237,7 +238,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets {
         public SetsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/termStore/groups/{group%2Did}/sets{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// All sets under the group in a term [store].
+        /// Get a list of the set objects and their properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -291,7 +292,7 @@ namespace ApiSdk.Sites.Item.TermStore.Groups.Item.Sets {
             return requestInfo;
         }
         /// <summary>
-        /// All sets under the group in a term [store].
+        /// Get a list of the set objects and their properties.
         /// </summary>
         public class SetsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

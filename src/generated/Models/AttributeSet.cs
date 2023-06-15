@@ -5,7 +5,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class AttributeSet : Entity, IParsable {
-        /// <summary>The description property</summary>
+        /// <summary>Description of the attribute set. Can be up to 128 characters long and include Unicode characters. Can be changed later.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }
@@ -13,7 +13,7 @@ namespace ApiSdk.Models {
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>The maxAttributesPerSet property</summary>
+        /// <summary>Maximum number of custom security attributes that can be defined in this attribute set. Default value is null. If not specified, the administrator can add up to the maximum of 500 active attributes per tenant. Can be changed later.</summary>
         public int? MaxAttributesPerSet { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

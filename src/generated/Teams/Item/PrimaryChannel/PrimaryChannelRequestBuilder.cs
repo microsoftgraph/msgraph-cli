@@ -112,11 +112,12 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
             return command;
         }
         /// <summary>
-        /// The general channel for the team.
+        /// Get the default channel, **General**, of a team.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/team-get-primarychannel?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The general channel for the team.";
+            command.Description = "Get the default channel, **General**, of a team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-get-primarychannel?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -393,7 +394,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
             return requestInfo;
         }
         /// <summary>
-        /// The general channel for the team.
+        /// Get the default channel, **General**, of a team.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -447,7 +448,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel {
             return requestInfo;
         }
         /// <summary>
-        /// The general channel for the team.
+        /// Get the default channel, **General**, of a team.
         /// </summary>
         public class PrimaryChannelRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

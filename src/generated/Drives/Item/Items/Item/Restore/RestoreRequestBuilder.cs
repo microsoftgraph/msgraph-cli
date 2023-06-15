@@ -19,11 +19,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Restore {
     /// </summary>
     public class RestoreRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action restore
+        /// Restore a driveItem that has been deleted and is currently in the recycle bin. **NOTE**: This functionality is currently only available for OneDrive Personal.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/driveitem-restore?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action restore";
+            command.Description = "Restore a driveItem that has been deleted and is currently in the recycle bin. **NOTE**: This functionality is currently only available for OneDrive Personal.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitem-restore?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -88,7 +89,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Restore {
         public RestoreRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/restore", pathParameters) {
         }
         /// <summary>
-        /// Invoke action restore
+        /// Restore a driveItem that has been deleted and is currently in the recycle bin. **NOTE**: This functionality is currently only available for OneDrive Personal.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

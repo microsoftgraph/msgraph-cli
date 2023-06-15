@@ -63,11 +63,12 @@ namespace ApiSdk.Identity.IdentityProviders {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to identityProviders for identity
+        /// Create an identity provider object that is of the type specified in the request body. Among the types of providers derived from identityProviderBase, you can currently create a socialIdentityProvider resource in Azure AD. In Azure AD B2C, this operation can currently create a socialIdentityProvider, or an appleManagedIdentityProvider resource.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/identitycontainer-post-identityproviders?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to identityProviders for identity";
+            command.Description = "Create an identity provider object that is of the type specified in the request body. Among the types of providers derived from identityProviderBase, you can currently create a socialIdentityProvider resource in Azure AD. In Azure AD B2C, this operation can currently create a socialIdentityProvider, or an appleManagedIdentityProvider resource.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/identitycontainer-post-identityproviders?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -114,11 +115,12 @@ namespace ApiSdk.Identity.IdentityProviders {
             return command;
         }
         /// <summary>
-        /// Get identityProviders from identity
+        /// Get a collection of identity provider resources that are configured for a tenant, and that are derived from identityProviderBase. For an Azure AD tenant, the providers can be socialIdentityProviders or builtinIdentityProviders objects. For an Azure AD B2C, the providers can be socialIdentityProvider, or appleManagedIdentityProvider objects.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/identitycontainer-list-identityproviders?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get identityProviders from identity";
+            command.Description = "Get a collection of identity provider resources that are configured for a tenant, and that are derived from identityProviderBase. For an Azure AD tenant, the providers can be socialIdentityProviders or builtinIdentityProviders objects. For an Azure AD B2C, the providers can be socialIdentityProvider, or appleManagedIdentityProvider objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/identitycontainer-list-identityproviders?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -224,7 +226,7 @@ namespace ApiSdk.Identity.IdentityProviders {
         public IdentityProvidersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/identityProviders{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get identityProviders from identity
+        /// Get a collection of identity provider resources that are configured for a tenant, and that are derived from identityProviderBase. For an Azure AD tenant, the providers can be socialIdentityProviders or builtinIdentityProviders objects. For an Azure AD B2C, the providers can be socialIdentityProvider, or appleManagedIdentityProvider objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -250,7 +252,7 @@ namespace ApiSdk.Identity.IdentityProviders {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to identityProviders for identity
+        /// Create an identity provider object that is of the type specified in the request body. Among the types of providers derived from identityProviderBase, you can currently create a socialIdentityProvider resource in Azure AD. In Azure AD B2C, this operation can currently create a socialIdentityProvider, or an appleManagedIdentityProvider resource.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -278,7 +280,7 @@ namespace ApiSdk.Identity.IdentityProviders {
             return requestInfo;
         }
         /// <summary>
-        /// Get identityProviders from identity
+        /// Get a collection of identity provider resources that are configured for a tenant, and that are derived from identityProviderBase. For an Azure AD tenant, the providers can be socialIdentityProviders or builtinIdentityProviders objects. For an Azure AD B2C, the providers can be socialIdentityProvider, or appleManagedIdentityProvider objects.
         /// </summary>
         public class IdentityProvidersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

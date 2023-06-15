@@ -19,11 +19,12 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength.Policies.Item
     /// </summary>
     public class UpdateAllowedCombinationsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action updateAllowedCombinations
+        /// Update the allowedCombinations property of an authenticationStrengthPolicy object. To update other properties of an authenticationStrengthPolicy object, use the Update authenticationStrengthPolicy method.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/authenticationstrengthpolicy-updateallowedcombinations?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action updateAllowedCombinations";
+            command.Description = "Update the allowedCombinations property of an authenticationStrengthPolicy object. To update other properties of an authenticationStrengthPolicy object, use the Update authenticationStrengthPolicy method.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/authenticationstrengthpolicy-updateallowedcombinations?view=graph-rest-1.0";
             var authenticationStrengthPolicyIdOption = new Option<string>("--authentication-strength-policy-id", description: "The unique identifier of authenticationStrengthPolicy") {
             };
             authenticationStrengthPolicyIdOption.IsRequired = true;
@@ -82,7 +83,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength.Policies.Item
         public UpdateAllowedCombinationsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/conditionalAccess/authenticationStrength/policies/{authenticationStrengthPolicy%2Did}/updateAllowedCombinations", pathParameters) {
         }
         /// <summary>
-        /// Invoke action updateAllowedCombinations
+        /// Update the allowedCombinations property of an authenticationStrengthPolicy object. To update other properties of an authenticationStrengthPolicy object, use the Update authenticationStrengthPolicy method.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

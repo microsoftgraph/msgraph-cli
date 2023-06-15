@@ -53,11 +53,12 @@ namespace ApiSdk.Agreements.Item.FileNamespace {
             return command;
         }
         /// <summary>
-        /// Default PDF linked to this agreement.
+        /// Retrieve the details of the default file for an agreement, including the language and version information. The file information is specified through the agreementFile object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/agreementfile-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Default PDF linked to this agreement.";
+            command.Description = "Retrieve the details of the default file for an agreement, including the language and version information. The file information is specified through the agreementFile object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/agreementfile-get?view=graph-rest-1.0";
             var agreementIdOption = new Option<string>("--agreement-id", description: "The unique identifier of agreement") {
             };
             agreementIdOption.IsRequired = true;
@@ -227,7 +228,7 @@ namespace ApiSdk.Agreements.Item.FileNamespace {
             return requestInfo;
         }
         /// <summary>
-        /// Default PDF linked to this agreement.
+        /// Retrieve the details of the default file for an agreement, including the language and version information. The file information is specified through the agreementFile object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -281,7 +282,7 @@ namespace ApiSdk.Agreements.Item.FileNamespace {
             return requestInfo;
         }
         /// <summary>
-        /// Default PDF linked to this agreement.
+        /// Retrieve the details of the default file for an agreement, including the language and version information. The file information is specified through the agreementFile object.
         /// </summary>
         public class FileRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

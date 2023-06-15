@@ -18,11 +18,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.RemoveEmail {
     /// </summary>
     public class RemoveEmailRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action removeEmail
+        /// Remove the email address of a channel. You can remove an email address only if it was provisioned using the provisionEmail method or through the Microsoft Teams client.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/channel-removeemail?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action removeEmail";
+            command.Description = "Remove the email address of a channel. You can remove an email address only if it was provisioned using the provisionEmail method or through the Microsoft Teams client.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-removeemail?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -56,7 +57,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.RemoveEmail {
         public RemoveEmailRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/primaryChannel/removeEmail", pathParameters) {
         }
         /// <summary>
-        /// Invoke action removeEmail
+        /// Remove the email address of a channel. You can remove an email address only if it was provisioned using the provisionEmail method or through the Microsoft Teams client.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

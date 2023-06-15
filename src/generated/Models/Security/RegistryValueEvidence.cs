@@ -5,6 +5,14 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models.Security {
     public class RegistryValueEvidence : AlertEvidence, IParsable {
+        /// <summary>The mdeDeviceId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? MdeDeviceId { get; set; }
+#nullable restore
+#else
+        public string MdeDeviceId { get; set; }
+#endif
         /// <summary>Registry hive of the key that the recorded action was applied to.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -58,6 +66,7 @@ namespace ApiSdk.Models.Security {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+                {"mdeDeviceId", n => { MdeDeviceId = n.GetStringValue(); } },
                 {"registryHive", n => { RegistryHive = n.GetStringValue(); } },
                 {"registryKey", n => { RegistryKey = n.GetStringValue(); } },
                 {"registryValue", n => { RegistryValue = n.GetStringValue(); } },
@@ -72,6 +81,7 @@ namespace ApiSdk.Models.Security {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
+            writer.WriteStringValue("mdeDeviceId", MdeDeviceId);
             writer.WriteStringValue("registryHive", RegistryHive);
             writer.WriteStringValue("registryKey", RegistryKey);
             writer.WriteStringValue("registryValue", RegistryValue);

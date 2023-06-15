@@ -58,11 +58,12 @@ namespace ApiSdk.Users.Item.Authentication.Operations.Item {
             return command;
         }
         /// <summary>
-        /// Represents the status of a long-running operation.
+        /// Retrieve the status of a long-running operation, represented by a longRunningOperation object. A long-running operation is initiated when you reset a user&apos;s password. This resource type is also the base type for the richLongRunningOperation object that represents the status of a long-running operation on a site or a list. The possible states of the long-running operation are `notStarted`, `running`, `succeeded`, `failed`, `unknownFutureValue` where `succeeded` and `failed` are terminal states.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/longrunningoperation-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Represents the status of a long-running operation.";
+            command.Description = "Retrieve the status of a long-running operation, represented by a longRunningOperation object. A long-running operation is initiated when you reset a user's password. This resource type is also the base type for the richLongRunningOperation object that represents the status of a long-running operation on a site or a list. The possible states of the long-running operation are `notStarted`, `running`, `succeeded`, `failed`, `unknownFutureValue` where `succeeded` and `failed` are terminal states.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/longrunningoperation-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -219,7 +220,7 @@ namespace ApiSdk.Users.Item.Authentication.Operations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Represents the status of a long-running operation.
+        /// Retrieve the status of a long-running operation, represented by a longRunningOperation object. A long-running operation is initiated when you reset a user&apos;s password. This resource type is also the base type for the richLongRunningOperation object that represents the status of a long-running operation on a site or a list. The possible states of the long-running operation are `notStarted`, `running`, `succeeded`, `failed`, `unknownFutureValue` where `succeeded` and `failed` are terminal states.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -273,7 +274,7 @@ namespace ApiSdk.Users.Item.Authentication.Operations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Represents the status of a long-running operation.
+        /// Retrieve the status of a long-running operation, represented by a longRunningOperation object. A long-running operation is initiated when you reset a user&apos;s password. This resource type is also the base type for the richLongRunningOperation object that represents the status of a long-running operation on a site or a list. The possible states of the long-running operation are `notStarted`, `running`, `succeeded`, `failed`, `unknownFutureValue` where `succeeded` and `failed` are terminal states.
         /// </summary>
         public class LongRunningOperationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

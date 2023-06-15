@@ -47,11 +47,12 @@ namespace ApiSdk.External.Connections.Item.Groups.Item.Members {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to members for external
+        /// Create an identity resource for a new member in an externalGroup.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/externalconnectors-externalgroup-post-members?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to members for external";
+            command.Description = "Create an identity resource for a new member in an externalGroup.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/externalconnectors-externalgroup-post-members?view=graph-rest-1.0";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -258,7 +259,7 @@ namespace ApiSdk.External.Connections.Item.Groups.Item.Members {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to members for external
+        /// Create an identity resource for a new member in an externalGroup.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

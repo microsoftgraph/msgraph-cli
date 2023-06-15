@@ -46,11 +46,12 @@ namespace ApiSdk.Policies.IdentitySecurityDefaultsEnforcementPolicy {
             return command;
         }
         /// <summary>
-        /// The policy that represents the security defaults that protect against common attacks.
+        /// Retrieve the properties of an identitySecurityDefaultsEnforcementPolicy object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/identitysecuritydefaultsenforcementpolicy-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The policy that represents the security defaults that protect against common attacks.";
+            command.Description = "Retrieve the properties of an identitySecurityDefaultsEnforcementPolicy object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/identitysecuritydefaultsenforcementpolicy-get?view=graph-rest-1.0";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -101,11 +102,12 @@ namespace ApiSdk.Policies.IdentitySecurityDefaultsEnforcementPolicy {
             return command;
         }
         /// <summary>
-        /// Update the navigation property identitySecurityDefaultsEnforcementPolicy in policies
+        /// Update the properties of an identitySecurityDefaultsEnforcementPolicy object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/identitysecuritydefaultsenforcementpolicy-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property identitySecurityDefaultsEnforcementPolicy in policies";
+            command.Description = "Update the properties of an identitySecurityDefaultsEnforcementPolicy object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/identitysecuritydefaultsenforcementpolicy-update?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -183,7 +185,7 @@ namespace ApiSdk.Policies.IdentitySecurityDefaultsEnforcementPolicy {
             return requestInfo;
         }
         /// <summary>
-        /// The policy that represents the security defaults that protect against common attacks.
+        /// Retrieve the properties of an identitySecurityDefaultsEnforcementPolicy object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -209,7 +211,7 @@ namespace ApiSdk.Policies.IdentitySecurityDefaultsEnforcementPolicy {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property identitySecurityDefaultsEnforcementPolicy in policies
+        /// Update the properties of an identitySecurityDefaultsEnforcementPolicy object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -237,7 +239,7 @@ namespace ApiSdk.Policies.IdentitySecurityDefaultsEnforcementPolicy {
             return requestInfo;
         }
         /// <summary>
-        /// The policy that represents the security defaults that protect against common attacks.
+        /// Retrieve the properties of an identitySecurityDefaultsEnforcementPolicy object.
         /// </summary>
         public class IdentitySecurityDefaultsEnforcementPolicyRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

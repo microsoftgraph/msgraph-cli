@@ -19,11 +19,12 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.Cop
     /// </summary>
     public class CopyRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action copy
+        /// Copy a message to a folder within the user&apos;s mailbox.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/message-copy?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action copy";
+            command.Description = "Copy a message to a folder within the user's mailbox.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/message-copy?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -100,7 +101,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Messages.Item.Cop
         public CopyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/childFolders/{mailFolder%2Did1}/messages/{message%2Did}/copy", pathParameters) {
         }
         /// <summary>
-        /// Invoke action copy
+        /// Copy a message to a folder within the user&apos;s mailbox.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -98,11 +98,11 @@ namespace ApiSdk.DirectoryNamespace.OnPremisesSynchronization {
             return command;
         }
         /// <summary>
-        /// A container for on-premises directory synchronization functionalities that are available for the organization.
+        /// Read the properties and relationships of an onPremisesDirectorySynchronization object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A container for on-premises directory synchronization functionalities that are available for the organization.";
+            command.Description = "Read the properties and relationships of an onPremisesDirectorySynchronization object.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -208,7 +208,7 @@ namespace ApiSdk.DirectoryNamespace.OnPremisesSynchronization {
         public OnPremisesSynchronizationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/onPremisesSynchronization{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// A container for on-premises directory synchronization functionalities that are available for the organization.
+        /// Read the properties and relationships of an onPremisesDirectorySynchronization object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -262,7 +262,7 @@ namespace ApiSdk.DirectoryNamespace.OnPremisesSynchronization {
             return requestInfo;
         }
         /// <summary>
-        /// A container for on-premises directory synchronization functionalities that are available for the organization.
+        /// Read the properties and relationships of an onPremisesDirectorySynchronization object.
         /// </summary>
         public class OnPremisesSynchronizationRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

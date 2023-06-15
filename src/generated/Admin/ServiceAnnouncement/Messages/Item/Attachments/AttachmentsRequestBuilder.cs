@@ -106,11 +106,12 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments {
             return command;
         }
         /// <summary>
-        /// A collection of serviceAnnouncementAttachments.
+        /// Get the list of attachments associated with a service message.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/serviceupdatemessage-list-attachments?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A collection of serviceAnnouncementAttachments.";
+            command.Description = "Get the list of attachments associated with a service message.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceupdatemessage-list-attachments?view=graph-rest-1.0";
             var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "The unique identifier of serviceUpdateMessage") {
             };
             serviceUpdateMessageIdOption.IsRequired = true;
@@ -222,7 +223,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments {
         public AttachmentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/serviceAnnouncement/messages/{serviceUpdateMessage%2Did}/attachments{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// A collection of serviceAnnouncementAttachments.
+        /// Get the list of attachments associated with a service message.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -276,7 +277,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of serviceAnnouncementAttachments.
+        /// Get the list of attachments associated with a service message.
         /// </summary>
         public class AttachmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

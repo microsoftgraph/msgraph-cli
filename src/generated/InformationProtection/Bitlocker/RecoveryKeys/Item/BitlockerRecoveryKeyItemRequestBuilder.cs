@@ -19,11 +19,12 @@ namespace ApiSdk.InformationProtection.Bitlocker.RecoveryKeys.Item {
     /// </summary>
     public class BitlockerRecoveryKeyItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// The recovery keys associated with the bitlocker entity.
+        /// Retrieve the properties and relationships of a bitlockerRecoveryKey object.  By default, this operation does not return the **key** property that represents the actual recovery key. To include the **key** property in the response, use the `$select` OData query parameter. Including the `$select` query parameter triggers an Azure AD audit of the operation and generates an audit log. For more information on audit logs for bitlocker recovery keys, see the KeyManagement category filter of Azure AD audit logs.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/bitlockerrecoverykey-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The recovery keys associated with the bitlocker entity.";
+            command.Description = "Retrieve the properties and relationships of a bitlockerRecoveryKey object.  By default, this operation does not return the **key** property that represents the actual recovery key. To include the **key** property in the response, use the `$select` OData query parameter. Including the `$select` query parameter triggers an Azure AD audit of the operation and generates an audit log. For more information on audit logs for bitlocker recovery keys, see the KeyManagement category filter of Azure AD audit logs.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bitlockerrecoverykey-get?view=graph-rest-1.0";
             var bitlockerRecoveryKeyIdOption = new Option<string>("--bitlocker-recovery-key-id", description: "The unique identifier of bitlockerRecoveryKey") {
             };
             bitlockerRecoveryKeyIdOption.IsRequired = true;
@@ -86,7 +87,7 @@ namespace ApiSdk.InformationProtection.Bitlocker.RecoveryKeys.Item {
         public BitlockerRecoveryKeyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/informationProtection/bitlocker/recoveryKeys/{bitlockerRecoveryKey%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The recovery keys associated with the bitlocker entity.
+        /// Retrieve the properties and relationships of a bitlockerRecoveryKey object.  By default, this operation does not return the **key** property that represents the actual recovery key. To include the **key** property in the response, use the `$select` OData query parameter. Including the `$select` query parameter triggers an Azure AD audit of the operation and generates an audit log. For more information on audit logs for bitlocker recovery keys, see the KeyManagement category filter of Azure AD audit logs.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -112,7 +113,7 @@ namespace ApiSdk.InformationProtection.Bitlocker.RecoveryKeys.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The recovery keys associated with the bitlocker entity.
+        /// Retrieve the properties and relationships of a bitlockerRecoveryKey object.  By default, this operation does not return the **key** property that represents the actual recovery key. To include the **key** property in the response, use the `$select` OData query parameter. Including the `$select` query parameter triggers an Azure AD audit of the operation and generates an audit log. For more information on audit logs for bitlocker recovery keys, see the KeyManagement category filter of Azure AD audit logs.
         /// </summary>
         public class BitlockerRecoveryKeyItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

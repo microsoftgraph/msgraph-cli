@@ -56,11 +56,12 @@ namespace ApiSdk.Sites.Item.Lists {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to lists for sites
+        /// Create a new [list][] in a [site][].
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/list-create?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to lists for sites";
+            command.Description = "Create a new [list][] in a [site][].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/list-create?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -113,11 +114,12 @@ namespace ApiSdk.Sites.Item.Lists {
             return command;
         }
         /// <summary>
-        /// The collection of lists under this site.
+        /// Get the collection of [lists][] for a [site][]. Lists with the [system][] facet are hidden by default.To list them, include `system` in your `$select` statement.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/list-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The collection of lists under this site.";
+            command.Description = "Get the collection of [lists][] for a [site][]. Lists with the [system][] facet are hidden by default.To list them, include `system` in your `$select` statement.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/list-list?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -229,7 +231,7 @@ namespace ApiSdk.Sites.Item.Lists {
         public ListsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/lists{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The collection of lists under this site.
+        /// Get the collection of [lists][] for a [site][]. Lists with the [system][] facet are hidden by default.To list them, include `system` in your `$select` statement.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -255,7 +257,7 @@ namespace ApiSdk.Sites.Item.Lists {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to lists for sites
+        /// Create a new [list][] in a [site][].
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -283,7 +285,7 @@ namespace ApiSdk.Sites.Item.Lists {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of lists under this site.
+        /// Get the collection of [lists][] for a [site][]. Lists with the [system][] facet are hidden by default.To list them, include `system` in your `$select` statement.
         /// </summary>
         public class ListsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

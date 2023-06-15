@@ -19,11 +19,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.Sections.Item.Cop
     /// </summary>
     public class CopyToSectionGroupRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action copyToSectionGroup
+        /// For Copy operations, you follow an asynchronous calling pattern:  First call the Copy action, and then poll the operation endpoint for the result.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/section-copytosectiongroup?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action copyToSectionGroup";
+            command.Description = "For Copy operations, you follow an asynchronous calling pattern:  First call the Copy action, and then poll the operation endpoint for the result.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/section-copytosectiongroup?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -100,7 +101,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Notebooks.Item.Sections.Item.Cop
         public CopyToSectionGroupRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote/notebooks/{notebook%2Did}/sections/{onenoteSection%2Did}/copyToSectionGroup", pathParameters) {
         }
         /// <summary>
-        /// Invoke action copyToSectionGroup
+        /// For Copy operations, you follow an asynchronous calling pattern:  First call the Copy action, and then poll the operation endpoint for the result.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

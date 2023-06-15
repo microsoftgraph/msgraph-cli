@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
         public string QualityId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new rubricQualitySelectedColumnModel and sets the default values.
+        /// Instantiates a new RubricQualitySelectedColumnModel and sets the default values.
         /// </summary>
         public RubricQualitySelectedColumnModel() {
             AdditionalData = new Dictionary<string, object>();

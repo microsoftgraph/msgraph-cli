@@ -51,7 +51,7 @@ namespace ApiSdk.Models {
         public string ResourceId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new auditResource and sets the default values.
+        /// Instantiates a new AuditResource and sets the default values.
         /// </summary>
         public AuditResource() {
             AdditionalData = new Dictionary<string, object>();

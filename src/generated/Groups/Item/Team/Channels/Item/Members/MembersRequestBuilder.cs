@@ -63,11 +63,12 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Members {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to members for groups
+        /// Add a conversationMember to a channel. This operation is allowed only for channels with a **membershipType** value of `private` or `shared`.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/channel-post-members?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to members for groups";
+            command.Description = "Add a conversationMember to a channel. This operation is allowed only for channels with a **membershipType** value of `private` or `shared`.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-post-members?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -126,11 +127,12 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Members {
             return command;
         }
         /// <summary>
-        /// A collection of membership records associated with the channel.
+        /// Retrieve a list of conversationMembers from a channel. This method supports federation. Only a user who is a member of the shared channel can retrieve the channel member list.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/channel-list-members?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A collection of membership records associated with the channel.";
+            command.Description = "Retrieve a list of conversationMembers from a channel. This method supports federation. Only a user who is a member of the shared channel can retrieve the channel member list.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-list-members?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -248,7 +250,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Members {
         public MembersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/channels/{channel%2Did}/members{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// A collection of membership records associated with the channel.
+        /// Retrieve a list of conversationMembers from a channel. This method supports federation. Only a user who is a member of the shared channel can retrieve the channel member list.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -274,7 +276,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Members {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to members for groups
+        /// Add a conversationMember to a channel. This operation is allowed only for channels with a **membershipType** value of `private` or `shared`.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -302,7 +304,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Members {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of membership records associated with the channel.
+        /// Retrieve a list of conversationMembers from a channel. This method supports federation. Only a user who is a member of the shared channel can retrieve the channel member list.
         /// </summary>
         public class MembersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

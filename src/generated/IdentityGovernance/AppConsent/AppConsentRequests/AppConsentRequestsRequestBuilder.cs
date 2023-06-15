@@ -101,11 +101,27 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests {
             return command;
         }
         /// <summary>
-        /// A collection of userConsentRequest objects for a specific application.
+        /// Provides operations to call the filterByCurrentUser method.
+        /// </summary>
+        public Command BuildFilterByCurrentUserWithOnRbCommand() {
+            var command = new Command("filter-by-current-user-with-on");
+            command.Description = "Provides operations to call the filterByCurrentUser method.";
+            var builder = new FilterByCurrentUserWithOnRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Retrieve appConsentRequest objects and their properties.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/appconsentapprovalroute-list-appconsentrequests?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A collection of userConsentRequest objects for a specific application.";
+            command.Description = "Retrieve appConsentRequest objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/appconsentapprovalroute-list-appconsentrequests?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -211,7 +227,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests {
         public AppConsentRequestsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/appConsent/appConsentRequests{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// A collection of userConsentRequest objects for a specific application.
+        /// Retrieve appConsentRequest objects and their properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -265,7 +281,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of userConsentRequest objects for a specific application.
+        /// Retrieve appConsentRequest objects and their properties.
         /// </summary>
         public class AppConsentRequestsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -20,10 +20,11 @@ namespace ApiSdk.ServicePrincipals.Item.Owners.Ref {
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Directory objects that are owners of this servicePrincipal. The owners are a set of non-admin users or servicePrincipals who are allowed to modify this object. Read-only. Nullable.  Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/serviceprincipal-list-owners?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Directory objects that are owners of this servicePrincipal. The owners are a set of non-admin users or servicePrincipals who are allowed to modify this object. Read-only. Nullable.  Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).";
+            command.Description = "Directory objects that are owners of this servicePrincipal. The owners are a set of non-admin users or servicePrincipals who are allowed to modify this object. Read-only. Nullable.  Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-list-owners?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -122,11 +123,12 @@ namespace ApiSdk.ServicePrincipals.Item.Owners.Ref {
             return command;
         }
         /// <summary>
-        /// Create new navigation property ref to owners for servicePrincipals
+        /// Use this API to add an owner for the servicePrincipal. Service principal owners can be users, the service principal itself, or other service principals.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/serviceprincipal-post-owners?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Create new navigation property ref to owners for servicePrincipals";
+            command.Description = "Use this API to add an owner for the servicePrincipal. Service principal owners can be users, the service principal itself, or other service principals.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-post-owners?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -190,7 +192,7 @@ namespace ApiSdk.ServicePrincipals.Item.Owners.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property ref to owners for servicePrincipals
+        /// Use this API to add an owner for the servicePrincipal. Service principal owners can be users, the service principal itself, or other service principals.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

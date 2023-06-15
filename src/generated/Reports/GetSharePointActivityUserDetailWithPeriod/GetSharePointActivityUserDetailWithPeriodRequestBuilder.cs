@@ -59,9 +59,7 @@ namespace ApiSdk.Reports.GetSharePointActivityUserDetailWithPeriod {
         /// Instantiates a new GetSharePointActivityUserDetailWithPeriodRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
-        public GetSharePointActivityUserDetailWithPeriodRequestBuilder(Dictionary<string, object> pathParameters, string period = "") : base("{+baseurl}/reports/getSharePointActivityUserDetail(period='{period}')", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(period)) PathParameters.Add("period", period);
+        public GetSharePointActivityUserDetailWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getSharePointActivityUserDetail(period='{period}')", pathParameters) {
         }
         /// <summary>
         /// Invoke function getSharePointActivityUserDetail

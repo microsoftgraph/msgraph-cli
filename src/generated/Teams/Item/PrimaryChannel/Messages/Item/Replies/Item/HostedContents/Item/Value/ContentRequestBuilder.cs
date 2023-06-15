@@ -19,10 +19,11 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.Replies.Item.HostedCont
     public class ContentRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Get media content for the navigation property hostedContents from teams
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chatmessage-list-hostedcontents?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get media content for the navigation property hostedContents from teams";
+            command.Description = "Get media content for the navigation property hostedContents from teams\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chatmessage-list-hostedcontents?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;

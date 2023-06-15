@@ -51,11 +51,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Se
             return command;
         }
         /// <summary>
-        /// Create new navigation property to children for groups
+        /// Create a new term object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/termstore-term-post?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to children for groups";
+            command.Description = "Create a new term object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/termstore-term-post?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -132,11 +133,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Se
             return command;
         }
         /// <summary>
-        /// Children terms of set in term [store].
+        /// Get the first level children of a [set] or [term] resource using the children navigation property.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/termstore-term-list-children?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Children terms of set in term [store].";
+            command.Description = "Get the first level children of a [set] or [term] resource using the children navigation property.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/termstore-term-list-children?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -272,7 +274,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Se
         public ChildrenRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}/parentGroup/sets/{set%2Did1}/children{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Children terms of set in term [store].
+        /// Get the first level children of a [set] or [term] resource using the children navigation property.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -298,7 +300,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Se
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to children for groups
+        /// Create a new term object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -326,7 +328,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Se
             return requestInfo;
         }
         /// <summary>
-        /// Children terms of set in term [store].
+        /// Get the first level children of a [set] or [term] resource using the children navigation property.
         /// </summary>
         public class ChildrenRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

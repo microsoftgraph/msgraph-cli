@@ -23,11 +23,12 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
     /// </summary>
     public class B2xIdentityUserFlowItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property b2xUserFlows for identity
+        /// Delete a b2xIdentityUserFlow object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/b2xidentityuserflow-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property b2xUserFlows for identity";
+            command.Description = "Delete a b2xIdentityUserFlow object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/b2xidentityuserflow-delete?view=graph-rest-1.0";
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
@@ -56,11 +57,12 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
             return command;
         }
         /// <summary>
-        /// Represents entry point for B2X/self-service sign-up identity userflows.
+        /// Retrieve the properties and relationships of a b2xIdentityUserFlow object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/b2xidentityuserflow-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Represents entry point for B2X/self-service sign-up identity userflows.";
+            command.Description = "Retrieve the properties and relationships of a b2xIdentityUserFlow object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/b2xidentityuserflow-get?view=graph-rest-1.0";
             var b2xIdentityUserFlowIdOption = new Option<string>("--b2x-identity-user-flow-id", description: "The unique identifier of b2xIdentityUserFlow") {
             };
             b2xIdentityUserFlowIdOption.IsRequired = true;
@@ -281,7 +283,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
         public B2xIdentityUserFlowItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/b2xUserFlows/{b2xIdentityUserFlow%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property b2xUserFlows for identity
+        /// Delete a b2xIdentityUserFlow object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -306,7 +308,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Represents entry point for B2X/self-service sign-up identity userflows.
+        /// Retrieve the properties and relationships of a b2xIdentityUserFlow object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -360,7 +362,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Represents entry point for B2X/self-service sign-up identity userflows.
+        /// Retrieve the properties and relationships of a b2xIdentityUserFlow object.
         /// </summary>
         public class B2xIdentityUserFlowItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

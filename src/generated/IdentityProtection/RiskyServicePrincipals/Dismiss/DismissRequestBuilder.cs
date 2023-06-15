@@ -18,11 +18,12 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Dismiss {
     /// </summary>
     public class DismissRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action dismiss
+        /// Dismiss the risk of one or more riskyServicePrincipal objects. This action sets the targeted service principal account&apos;s risk level to `none`. You can dismiss up to 60 service principal accounts in one request.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/riskyserviceprincipal-dismiss?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action dismiss";
+            command.Description = "Dismiss the risk of one or more riskyServicePrincipal objects. This action sets the targeted service principal account's risk level to `none`. You can dismiss up to 60 service principal accounts in one request.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/riskyserviceprincipal-dismiss?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -54,7 +55,7 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals.Dismiss {
         public DismissRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProtection/riskyServicePrincipals/dismiss", pathParameters) {
         }
         /// <summary>
-        /// Invoke action dismiss
+        /// Dismiss the risk of one or more riskyServicePrincipal objects. This action sets the targeted service principal account&apos;s risk level to `none`. You can dismiss up to 60 service principal accounts in one request.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

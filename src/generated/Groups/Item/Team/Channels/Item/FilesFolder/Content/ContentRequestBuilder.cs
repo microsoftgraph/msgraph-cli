@@ -20,10 +20,11 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.FilesFolder.Content {
     public class ContentRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// The content stream, if the item represents a file.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/channel-get-filesfolder?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The content stream, if the item represents a file.";
+            command.Description = "The content stream, if the item represents a file.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-get-filesfolder?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;

@@ -18,11 +18,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Ite
     /// </summary>
     public class MicrosoftGraphSecurityUpdateIndexRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action updateIndex
+        /// Trigger an indexOperation to make a non-custodial data source and its associated data source searchable.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoverynoncustodialdatasource-updateindex?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action updateIndex";
+            command.Description = "Trigger an indexOperation to make a non-custodial data source and its associated data source searchable.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverynoncustodialdatasource-updateindex?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -56,7 +57,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Ite
         public MicrosoftGraphSecurityUpdateIndexRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/noncustodialDataSources/{ediscoveryNoncustodialDataSource%2Did}/microsoft.graph.security.updateIndex", pathParameters) {
         }
         /// <summary>
-        /// Invoke action updateIndex
+        /// Trigger an indexOperation to make a non-custodial data source and its associated data source searchable.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

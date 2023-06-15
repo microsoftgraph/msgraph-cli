@@ -98,11 +98,12 @@ namespace ApiSdk.IdentityProtection.RiskDetections {
             return command;
         }
         /// <summary>
-        /// Risk detection in Azure AD Identity Protection and the associated information about the detection.
+        /// Get a list of the riskDetection objects and their properties.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/riskdetection-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Risk detection in Azure AD Identity Protection and the associated information about the detection.";
+            command.Description = "Get a list of the riskDetection objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/riskdetection-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -208,7 +209,7 @@ namespace ApiSdk.IdentityProtection.RiskDetections {
         public RiskDetectionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProtection/riskDetections{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Risk detection in Azure AD Identity Protection and the associated information about the detection.
+        /// Get a list of the riskDetection objects and their properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -262,7 +263,7 @@ namespace ApiSdk.IdentityProtection.RiskDetections {
             return requestInfo;
         }
         /// <summary>
-        /// Risk detection in Azure AD Identity Protection and the associated information about the detection.
+        /// Get a list of the riskDetection objects and their properties.
         /// </summary>
         public class RiskDetectionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -120,11 +120,12 @@ namespace ApiSdk.Print.Printers {
             return command;
         }
         /// <summary>
-        /// The list of printers registered in the tenant.
+        /// Retrieve the list of **printers** that are registered in the tenant.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/print-list-printers?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The list of printers registered in the tenant.";
+            command.Description = "Retrieve the list of **printers** that are registered in the tenant.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/print-list-printers?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -230,7 +231,7 @@ namespace ApiSdk.Print.Printers {
         public PrintersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/printers{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The list of printers registered in the tenant.
+        /// Retrieve the list of **printers** that are registered in the tenant.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -284,7 +285,7 @@ namespace ApiSdk.Print.Printers {
             return requestInfo;
         }
         /// <summary>
-        /// The list of printers registered in the tenant.
+        /// Retrieve the list of **printers** that are registered in the tenant.
         /// </summary>
         public class PrintersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

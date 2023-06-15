@@ -55,11 +55,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to searches for security
+        /// Create a new ediscoverySearch object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoverycase-post-searches?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to searches for security";
+            command.Description = "Create a new ediscoverySearch object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-post-searches?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -112,11 +113,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches {
             return command;
         }
         /// <summary>
-        /// Returns a list of eDiscoverySearch objects associated with this case.
+        /// Get the list of ediscoverySearch resources from an eDiscoveryCase object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoverycase-list-searches?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Returns a list of eDiscoverySearch objects associated with this case.";
+            command.Description = "Get the list of ediscoverySearch resources from an eDiscoveryCase object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-list-searches?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -228,7 +230,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches {
         public SearchesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/searches{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Returns a list of eDiscoverySearch objects associated with this case.
+        /// Get the list of ediscoverySearch resources from an eDiscoveryCase object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -254,7 +256,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to searches for security
+        /// Create a new ediscoverySearch object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -282,7 +284,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches {
             return requestInfo;
         }
         /// <summary>
-        /// Returns a list of eDiscoverySearch objects associated with this case.
+        /// Get the list of ediscoverySearch resources from an eDiscoveryCase object.
         /// </summary>
         public class SearchesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

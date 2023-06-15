@@ -92,11 +92,12 @@ namespace ApiSdk.Contacts.Item.TransitiveMemberOf {
             return command;
         }
         /// <summary>
-        /// Get transitiveMemberOf from contacts
+        /// Groups that this contact is a member of, including groups that the contact is nested under. Read-only. Nullable.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/orgcontact-list-transitivememberof?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get transitiveMemberOf from contacts";
+            command.Description = "Groups that this contact is a member of, including groups that the contact is nested under. Read-only. Nullable.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/orgcontact-list-transitivememberof?view=graph-rest-1.0";
             var orgContactIdOption = new Option<string>("--org-contact-id", description: "The unique identifier of orgContact") {
             };
             orgContactIdOption.IsRequired = true;
@@ -215,7 +216,7 @@ namespace ApiSdk.Contacts.Item.TransitiveMemberOf {
         public TransitiveMemberOfRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/contacts/{orgContact%2Did}/transitiveMemberOf{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get transitiveMemberOf from contacts
+        /// Groups that this contact is a member of, including groups that the contact is nested under. Read-only. Nullable.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -241,7 +242,7 @@ namespace ApiSdk.Contacts.Item.TransitiveMemberOf {
             return requestInfo;
         }
         /// <summary>
-        /// Get transitiveMemberOf from contacts
+        /// Groups that this contact is a member of, including groups that the contact is nested under. Read-only. Nullable.
         /// </summary>
         public class TransitiveMemberOfRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

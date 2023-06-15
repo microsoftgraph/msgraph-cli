@@ -132,6 +132,21 @@ namespace ApiSdk.Users.Item.Outlook {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the supportedTimeZones method.
+        /// </summary>
+        public Command BuildSupportedTimeZonesWithTimeZoneStandardRbCommand() {
+            var command = new Command("supported-time-zones-with-time-zone-standard");
+            command.Description = "Provides operations to call the supportedTimeZones method.";
+            var builder = new SupportedTimeZonesWithTimeZoneStandardRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Instantiates a new OutlookRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>

@@ -7,8 +7,16 @@ namespace ApiSdk.Models.Security {
     public class AlertEvidence : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The time the evidence was created and added to the alert.</summary>
+        /// <summary>The date and time when the evidence was created and added to the alert. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
+        /// <summary>The detailedRoles property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? DetailedRoles { get; set; }
+#nullable restore
+#else
+        public List<string> DetailedRoles { get; set; }
+#endif
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -27,7 +35,7 @@ namespace ApiSdk.Models.Security {
 #else
         public string RemediationStatusDetails { get; set; }
 #endif
-        /// <summary>The role/s that an evidence entity represents in an alert, e.g., an IP address that is associated with an attacker will have the evidence role &apos;Attacker&apos;.</summary>
+        /// <summary>One or more roles that an evidence entity represents in an alert. For example, an IP address that is associated with an attacker has the evidence role Attacker.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<EvidenceRole?>? Roles { get; set; }
@@ -35,7 +43,7 @@ namespace ApiSdk.Models.Security {
 #else
         public List<EvidenceRole?> Roles { get; set; }
 #endif
-        /// <summary>Array of custom tags associated with an evidence instance, for example to denote a group of devices, high value assets, etc.</summary>
+        /// <summary>Array of custom tags associated with an evidence instance. For example, to denote a group of devices or high value assets.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? Tags { get; set; }
@@ -59,10 +67,13 @@ namespace ApiSdk.Models.Security {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {
+                "#microsoft.graph.security.amazonResourceEvidence" => new AmazonResourceEvidence(),
                 "#microsoft.graph.security.analyzedMessageEvidence" => new AnalyzedMessageEvidence(),
+                "#microsoft.graph.security.azureResourceEvidence" => new AzureResourceEvidence(),
                 "#microsoft.graph.security.cloudApplicationEvidence" => new CloudApplicationEvidence(),
                 "#microsoft.graph.security.deviceEvidence" => new DeviceEvidence(),
                 "#microsoft.graph.security.fileEvidence" => new FileEvidence(),
+                "#microsoft.graph.security.googleCloudResourceEvidence" => new GoogleCloudResourceEvidence(),
                 "#microsoft.graph.security.ipEvidence" => new IpEvidence(),
                 "#microsoft.graph.security.mailboxEvidence" => new MailboxEvidence(),
                 "#microsoft.graph.security.mailClusterEvidence" => new MailClusterEvidence(),
@@ -82,6 +93,7 @@ namespace ApiSdk.Models.Security {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
+                {"detailedRoles", n => { DetailedRoles = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"remediationStatus", n => { RemediationStatus = n.GetEnumValue<EvidenceRemediationStatus>(); } },
                 {"remediationStatusDetails", n => { RemediationStatusDetails = n.GetStringValue(); } },
@@ -97,6 +109,7 @@ namespace ApiSdk.Models.Security {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
+            writer.WriteCollectionOfPrimitiveValues<string>("detailedRoles", DetailedRoles);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteEnumValue<EvidenceRemediationStatus>("remediationStatus", RemediationStatus);
             writer.WriteStringValue("remediationStatusDetails", RemediationStatusDetails);

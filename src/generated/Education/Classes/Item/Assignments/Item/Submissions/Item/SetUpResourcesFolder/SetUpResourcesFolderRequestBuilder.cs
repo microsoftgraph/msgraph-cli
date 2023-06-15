@@ -19,11 +19,12 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.SetUpR
     /// </summary>
     public class SetUpResourcesFolderRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action setUpResourcesFolder
+        /// Trigger the creation of the SharePoint resource folder where all file-based resources (Word, Excel, and so on) should be uploaded for a given submission. Only teachers and students can perform this operation. Note that files must be located in this folder in order to be added as resources. Only a student in the class can determine what files to upload in a given submission-level resource folder. 
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationsubmission-setupresourcesfolder?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action setUpResourcesFolder";
+            command.Description = "Trigger the creation of the SharePoint resource folder where all file-based resources (Word, Excel, and so on) should be uploaded for a given submission. Only teachers and students can perform this operation. Note that files must be located in this folder in order to be added as resources. Only a student in the class can determine what files to upload in a given submission-level resource folder. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationsubmission-setupresourcesfolder?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -84,7 +85,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.SetUpR
         public SetUpResourcesFolderRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignments/{educationAssignment%2Did}/submissions/{educationSubmission%2Did}/setUpResourcesFolder", pathParameters) {
         }
         /// <summary>
-        /// Invoke action setUpResourcesFolder
+        /// Trigger the creation of the SharePoint resource folder where all file-based resources (Word, Excel, and so on) should be uploaded for a given submission. Only teachers and students can perform this operation. Note that files must be located in this folder in order to be added as resources. Only a student in the class can determine what files to upload in a given submission-level resource folder. 
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

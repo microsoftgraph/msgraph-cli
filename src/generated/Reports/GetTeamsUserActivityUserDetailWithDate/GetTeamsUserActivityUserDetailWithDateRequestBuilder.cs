@@ -58,10 +58,8 @@ namespace ApiSdk.Reports.GetTeamsUserActivityUserDetailWithDate {
         /// <summary>
         /// Instantiates a new GetTeamsUserActivityUserDetailWithDateRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="date">Usage: date={date}</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetTeamsUserActivityUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters, Date? date = default) : base("{+baseurl}/reports/getTeamsUserActivityUserDetail(date={date})", pathParameters) {
-            if (date is not null) PathParameters.Add("date", date);
+        public GetTeamsUserActivityUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getTeamsUserActivityUserDetail(date={date})", pathParameters) {
         }
         /// <summary>
         /// Invoke function getTeamsUserActivityUserDetail

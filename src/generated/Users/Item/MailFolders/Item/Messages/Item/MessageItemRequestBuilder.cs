@@ -8,11 +8,9 @@ using ApiSdk.Users.Item.MailFolders.Item.Messages.Item.CreateReplyAll;
 using ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Extensions;
 using ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Forward;
 using ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Move;
-using ApiSdk.Users.Item.MailFolders.Item.Messages.Item.MultiValueExtendedProperties;
 using ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Reply;
 using ApiSdk.Users.Item.MailFolders.Item.Messages.Item.ReplyAll;
 using ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Send;
-using ApiSdk.Users.Item.MailFolders.Item.Messages.Item.SingleValueExtendedProperties;
 using ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Value;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
@@ -308,31 +306,6 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.message entity.
-        /// </summary>
-        public Command BuildMultiValueExtendedPropertiesNavCommand() {
-            var command = new Command("multi-value-extended-properties");
-            command.Description = "Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.message entity.";
-            var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            var nonExecCommands = new List<Command>();
-            nonExecCommands.Add(builder.BuildCountNavCommand());
-            execCommands.Add(builder.BuildCreateCommand());
-            execCommands.Add(builder.BuildListCommand());
-            var cmds = builder.BuildCommand();
-            execCommands.AddRange(cmds.Item1);
-            nonExecCommands.AddRange(cmds.Item2);
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property messages in users
         /// </summary>
         public Command BuildPatchCommand() {
@@ -441,31 +414,6 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item {
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.message entity.
-        /// </summary>
-        public Command BuildSingleValueExtendedPropertiesNavCommand() {
-            var command = new Command("single-value-extended-properties");
-            command.Description = "Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.message entity.";
-            var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            var nonExecCommands = new List<Command>();
-            nonExecCommands.Add(builder.BuildCountNavCommand());
-            execCommands.Add(builder.BuildCreateCommand());
-            execCommands.Add(builder.BuildListCommand());
-            var cmds = builder.BuildCommand();
-            execCommands.AddRange(cmds.Item1);
-            nonExecCommands.AddRange(cmds.Item2);
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
             {
                 command.AddCommand(cmd);
             }

@@ -19,11 +19,12 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Customers.Item {
     /// </summary>
     public class BookingCustomerBaseItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property customers for solutions
+        /// Delete the specified bookingCustomer object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/bookingcustomer-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property customers for solutions";
+            command.Description = "Delete the specified bookingCustomer object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bookingcustomer-delete?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -58,11 +59,12 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Customers.Item {
             return command;
         }
         /// <summary>
-        /// All the customers of this business. Read-only. Nullable.
+        /// Get the properties and relationships of a bookingCustomer object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/bookingcustomer-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "All the customers of this business. Read-only. Nullable.";
+            command.Description = "Get the properties and relationships of a bookingCustomer object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bookingcustomer-get?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -125,11 +127,12 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Customers.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property customers in solutions
+        /// Update the properties of a bookingCustomer object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/bookingcustomer-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property customers in solutions";
+            command.Description = "Update the properties of a bookingCustomer object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bookingcustomer-update?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -194,7 +197,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Customers.Item {
         public BookingCustomerBaseItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/customers/{bookingCustomerBase%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property customers for solutions
+        /// Delete the specified bookingCustomer object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -219,7 +222,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Customers.Item {
             return requestInfo;
         }
         /// <summary>
-        /// All the customers of this business. Read-only. Nullable.
+        /// Get the properties and relationships of a bookingCustomer object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -245,7 +248,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Customers.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property customers in solutions
+        /// Update the properties of a bookingCustomer object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -273,7 +276,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Customers.Item {
             return requestInfo;
         }
         /// <summary>
-        /// All the customers of this business. Read-only. Nullable.
+        /// Get the properties and relationships of a bookingCustomer object.
         /// </summary>
         public class BookingCustomerBaseItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

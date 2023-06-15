@@ -55,11 +55,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to accessPackages for identityGovernance
+        /// Create a new accessPackage object. The access package will be added to an existing accessPackageCatalog.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/entitlementmanagement-post-accesspackages?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to accessPackages for identityGovernance";
+            command.Description = "Create a new accessPackage object. The access package will be added to an existing accessPackageCatalog.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/entitlementmanagement-post-accesspackages?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -106,11 +107,27 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages {
             return command;
         }
         /// <summary>
-        /// Access packages define the collection of resource roles and the policies for which subjects can request or be assigned access to those resources.
+        /// Provides operations to call the filterByCurrentUser method.
+        /// </summary>
+        public Command BuildFilterByCurrentUserWithOnRbCommand() {
+            var command = new Command("filter-by-current-user-with-on");
+            command.Description = "Provides operations to call the filterByCurrentUser method.";
+            var builder = new FilterByCurrentUserWithOnRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Retrieve a list of accessPackage objects.  The resulting list includes all the access packages that the caller has access to read, across all catalogs.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/entitlementmanagement-list-accesspackages?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Access packages define the collection of resource roles and the policies for which subjects can request or be assigned access to those resources.";
+            command.Description = "Retrieve a list of accessPackage objects.  The resulting list includes all the access packages that the caller has access to read, across all catalogs.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/entitlementmanagement-list-accesspackages?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -216,7 +233,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages {
         public AccessPackagesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/accessPackages{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Access packages define the collection of resource roles and the policies for which subjects can request or be assigned access to those resources.
+        /// Retrieve a list of accessPackage objects.  The resulting list includes all the access packages that the caller has access to read, across all catalogs.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -242,7 +259,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to accessPackages for identityGovernance
+        /// Create a new accessPackage object. The access package will be added to an existing accessPackageCatalog.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -270,7 +287,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages {
             return requestInfo;
         }
         /// <summary>
-        /// Access packages define the collection of resource roles and the policies for which subjects can request or be assigned access to those resources.
+        /// Retrieve a list of accessPackage objects.  The resulting list includes all the access packages that the caller has access to read, across all catalogs.
         /// </summary>
         public class AccessPackagesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

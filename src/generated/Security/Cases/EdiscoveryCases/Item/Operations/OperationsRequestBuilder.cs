@@ -104,11 +104,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Operations {
             return command;
         }
         /// <summary>
-        /// Returns a list of case caseOperation objects for this case.
+        /// Get a list of the caseOperation objects and their properties.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoverycase-list-operations?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Returns a list of case caseOperation objects for this case.";
+            command.Description = "Get a list of the caseOperation objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-list-operations?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -220,7 +221,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Operations {
         public OperationsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/operations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Returns a list of case caseOperation objects for this case.
+        /// Get a list of the caseOperation objects and their properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -274,7 +275,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Operations {
             return requestInfo;
         }
         /// <summary>
-        /// Returns a list of case caseOperation objects for this case.
+        /// Get a list of the caseOperation objects and their properties.
         /// </summary>
         public class OperationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

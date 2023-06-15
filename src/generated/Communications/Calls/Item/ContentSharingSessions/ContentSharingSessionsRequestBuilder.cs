@@ -104,11 +104,12 @@ namespace ApiSdk.Communications.Calls.Item.ContentSharingSessions {
             return command;
         }
         /// <summary>
-        /// Get contentSharingSessions from communications
+        /// Retrieve a list of contentSharingSession objects in a call.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/call-list-contentsharingsessions?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get contentSharingSessions from communications";
+            command.Description = "Retrieve a list of contentSharingSession objects in a call.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/call-list-contentsharingsessions?view=graph-rest-1.0";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -220,7 +221,7 @@ namespace ApiSdk.Communications.Calls.Item.ContentSharingSessions {
         public ContentSharingSessionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/contentSharingSessions{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get contentSharingSessions from communications
+        /// Retrieve a list of contentSharingSession objects in a call.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -274,7 +275,7 @@ namespace ApiSdk.Communications.Calls.Item.ContentSharingSessions {
             return requestInfo;
         }
         /// <summary>
-        /// Get contentSharingSessions from communications
+        /// Retrieve a list of contentSharingSession objects in a call.
         /// </summary>
         public class ContentSharingSessionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

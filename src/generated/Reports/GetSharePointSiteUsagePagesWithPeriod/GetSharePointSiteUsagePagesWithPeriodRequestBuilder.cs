@@ -59,9 +59,7 @@ namespace ApiSdk.Reports.GetSharePointSiteUsagePagesWithPeriod {
         /// Instantiates a new GetSharePointSiteUsagePagesWithPeriodRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
-        public GetSharePointSiteUsagePagesWithPeriodRequestBuilder(Dictionary<string, object> pathParameters, string period = "") : base("{+baseurl}/reports/getSharePointSiteUsagePages(period='{period}')", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(period)) PathParameters.Add("period", period);
+        public GetSharePointSiteUsagePagesWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getSharePointSiteUsagePages(period='{period}')", pathParameters) {
         }
         /// <summary>
         /// Invoke function getSharePointSiteUsagePages

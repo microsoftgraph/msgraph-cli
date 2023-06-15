@@ -18,11 +18,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ge
     /// </summary>
     public class GetApplicablePolicyRequirementsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action getApplicablePolicyRequirements
+        /// In Azure AD entitlement management, this action retrieves a list of accessPackageAssignmentRequestRequirements objects that the currently signed-in user can use to create an accessPackageAssignmentRequest.  Each requirement object corresponds to an access package assignment policy that the currently signed-in user is allowed to request an assignment for.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/accesspackage-getapplicablepolicyrequirements?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action getApplicablePolicyRequirements";
+            command.Description = "In Azure AD entitlement management, this action retrieves a list of accessPackageAssignmentRequestRequirements objects that the currently signed-in user can use to create an accessPackageAssignmentRequest.  Each requirement object corresponds to an access package assignment policy that the currently signed-in user is allowed to request an assignment for.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/accesspackage-getapplicablepolicyrequirements?view=graph-rest-1.0";
             var accessPackageIdOption = new Option<string>("--access-package-id", description: "The unique identifier of accessPackage") {
             };
             accessPackageIdOption.IsRequired = true;
@@ -83,7 +84,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Ge
         public GetApplicablePolicyRequirementsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/accessPackages/{accessPackage%2Did}/getApplicablePolicyRequirements", pathParameters) {
         }
         /// <summary>
-        /// Invoke action getApplicablePolicyRequirements
+        /// In Azure AD entitlement management, this action retrieves a list of accessPackageAssignmentRequestRequirements objects that the currently signed-in user can use to create an accessPackageAssignmentRequest.  Each requirement object corresponds to an access package assignment policy that the currently signed-in user is allowed to request an assignment for.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

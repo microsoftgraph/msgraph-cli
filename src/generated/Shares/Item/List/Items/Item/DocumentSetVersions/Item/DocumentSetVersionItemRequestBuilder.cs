@@ -21,11 +21,12 @@ namespace ApiSdk.Shares.Item.List.Items.Item.DocumentSetVersions.Item {
     /// </summary>
     public class DocumentSetVersionItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property documentSetVersions for shares
+        /// Delete a version of a document set in a list.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/documentsetversion-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property documentSetVersions for shares";
+            command.Description = "Delete a version of a document set in a list.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/documentsetversion-delete?view=graph-rest-1.0";
             var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
@@ -83,11 +84,12 @@ namespace ApiSdk.Shares.Item.List.Items.Item.DocumentSetVersions.Item {
             return command;
         }
         /// <summary>
-        /// Version information for a document set version created by a user.
+        /// Read the properties and relationships of a documentSetVersion object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/documentsetversion-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Version information for a document set version created by a user.";
+            command.Description = "Read the properties and relationships of a documentSetVersion object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/documentsetversion-get?view=graph-rest-1.0";
             var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
@@ -246,7 +248,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.DocumentSetVersions.Item {
         public DocumentSetVersionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/list/items/{listItem%2Did}/documentSetVersions/{documentSetVersion%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property documentSetVersions for shares
+        /// Delete a version of a document set in a list.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -271,7 +273,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.DocumentSetVersions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Version information for a document set version created by a user.
+        /// Read the properties and relationships of a documentSetVersion object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -325,7 +327,7 @@ namespace ApiSdk.Shares.Item.List.Items.Item.DocumentSetVersions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Version information for a document set version created by a user.
+        /// Read the properties and relationships of a documentSetVersion object.
         /// </summary>
         public class DocumentSetVersionItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

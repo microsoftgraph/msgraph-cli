@@ -106,11 +106,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
             return command;
         }
         /// <summary>
-        /// Represents a collection of all points in the series. Read-only.
+        /// Retrieve the properties and relationships of chartpoint object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chartpoint-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Represents a collection of all points in the series. Read-only.";
+            command.Description = "Retrieve the properties and relationships of chartpoint object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chartpoint-get?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -315,7 +316,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
             return requestInfo;
         }
         /// <summary>
-        /// Represents a collection of all points in the series. Read-only.
+        /// Retrieve the properties and relationships of chartpoint object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -369,7 +370,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
             return requestInfo;
         }
         /// <summary>
-        /// Represents a collection of all points in the series. Read-only.
+        /// Retrieve the properties and relationships of chartpoint object.
         /// </summary>
         public class WorkbookChartPointItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

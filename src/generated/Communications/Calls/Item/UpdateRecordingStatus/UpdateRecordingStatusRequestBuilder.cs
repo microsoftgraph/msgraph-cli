@@ -19,11 +19,12 @@ namespace ApiSdk.Communications.Calls.Item.UpdateRecordingStatus {
     /// </summary>
     public class UpdateRecordingStatusRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action updateRecordingStatus
+        /// Update the application&apos;s recording status associated with a call. This requires the use of the Teams policy-based recording solution.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/call-updaterecordingstatus?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action updateRecordingStatus";
+            command.Description = "Update the application's recording status associated with a call. This requires the use of the Teams policy-based recording solution.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/call-updaterecordingstatus?view=graph-rest-1.0";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -82,7 +83,7 @@ namespace ApiSdk.Communications.Calls.Item.UpdateRecordingStatus {
         public UpdateRecordingStatusRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/updateRecordingStatus", pathParameters) {
         }
         /// <summary>
-        /// Invoke action updateRecordingStatus
+        /// Update the application&apos;s recording status associated with a call. This requires the use of the Teams policy-based recording solution.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

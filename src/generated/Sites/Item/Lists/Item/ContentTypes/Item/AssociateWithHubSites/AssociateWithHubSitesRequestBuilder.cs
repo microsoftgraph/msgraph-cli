@@ -18,11 +18,12 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.AssociateWithHubSites {
     /// </summary>
     public class AssociateWithHubSitesRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action associateWithHubSites
+        /// Associate a published [content type][contentType] present in a content type hub with a list of hub sites.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/contenttype-associatewithhubsites?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action associateWithHubSites";
+            command.Description = "Associate a published [content type][contentType] present in a content type hub with a list of hub sites.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contenttype-associatewithhubsites?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -72,7 +73,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.AssociateWithHubSites {
         public AssociateWithHubSitesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/contentTypes/{contentType%2Did}/associateWithHubSites", pathParameters) {
         }
         /// <summary>
-        /// Invoke action associateWithHubSites
+        /// Associate a published [content type][contentType] present in a content type hub with a list of hub sites.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

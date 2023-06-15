@@ -58,10 +58,8 @@ namespace ApiSdk.Reports.GetM365AppUserDetailWithDate {
         /// <summary>
         /// Instantiates a new GetM365AppUserDetailWithDateRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="date">Usage: date={date}</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetM365AppUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters, Date? date = default) : base("{+baseurl}/reports/getM365AppUserDetail(date={date})", pathParameters) {
-            if (date is not null) PathParameters.Add("date", date);
+        public GetM365AppUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getM365AppUserDetail(date={date})", pathParameters) {
         }
         /// <summary>
         /// Invoke function getM365AppUserDetail

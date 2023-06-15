@@ -54,11 +54,12 @@ namespace ApiSdk.Sites.Item.TermStore {
             return command;
         }
         /// <summary>
-        /// The default termStore under this site.
+        /// Read the properties and relationships of a store object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/termstore-store-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The default termStore under this site.";
+            command.Description = "Read the properties and relationships of a store object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/termstore-store-get?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -140,11 +141,12 @@ namespace ApiSdk.Sites.Item.TermStore {
             return command;
         }
         /// <summary>
-        /// Update the navigation property termStore in sites
+        /// Update the properties of a store object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/termstore-store-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property termStore in sites";
+            command.Description = "Update the properties of a store object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/termstore-store-update?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -253,7 +255,7 @@ namespace ApiSdk.Sites.Item.TermStore {
             return requestInfo;
         }
         /// <summary>
-        /// The default termStore under this site.
+        /// Read the properties and relationships of a store object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -279,7 +281,7 @@ namespace ApiSdk.Sites.Item.TermStore {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property termStore in sites
+        /// Update the properties of a store object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -307,7 +309,7 @@ namespace ApiSdk.Sites.Item.TermStore {
             return requestInfo;
         }
         /// <summary>
-        /// The default termStore under this site.
+        /// Read the properties and relationships of a store object.
         /// </summary>
         public class TermStoreRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

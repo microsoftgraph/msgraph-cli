@@ -4,9 +4,6 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
-    /// <summary>
-    /// Represents a custom question of the business.
-    /// </summary>
     public class BookingCustomQuestion : Entity, IParsable {
         /// <summary>The expected answer type. The possible values are: text, radioButton, unknownFutureValue.</summary>
         public ApiSdk.Models.AnswerInputType? AnswerInputType { get; set; }

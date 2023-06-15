@@ -52,11 +52,12 @@ namespace ApiSdk.Print.Shares {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to shares for print
+        /// Create a new **printerShare** for the specified printer.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/print-post-shares?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to shares for print";
+            command.Description = "Create a new **printerShare** for the specified printer.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/print-post-shares?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -103,11 +104,12 @@ namespace ApiSdk.Print.Shares {
             return command;
         }
         /// <summary>
-        /// The list of printer shares registered in the tenant.
+        /// Retrieve a list of **printerShares**.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/print-list-shares?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The list of printer shares registered in the tenant.";
+            command.Description = "Retrieve a list of **printerShares**.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/print-list-shares?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -213,7 +215,7 @@ namespace ApiSdk.Print.Shares {
         public SharesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/shares{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The list of printer shares registered in the tenant.
+        /// Retrieve a list of **printerShares**.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -239,7 +241,7 @@ namespace ApiSdk.Print.Shares {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to shares for print
+        /// Create a new **printerShare** for the specified printer.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -267,7 +269,7 @@ namespace ApiSdk.Print.Shares {
             return requestInfo;
         }
         /// <summary>
-        /// The list of printer shares registered in the tenant.
+        /// Retrieve a list of **printerShares**.
         /// </summary>
         public class SharesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

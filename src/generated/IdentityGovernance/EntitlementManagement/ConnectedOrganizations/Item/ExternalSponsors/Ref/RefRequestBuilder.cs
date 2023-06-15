@@ -19,11 +19,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Get ref of externalSponsors from identityGovernance
+        /// Retrieve a list of a connectedOrganization&apos;s external sponsors.  The external sponsors are a set of users who can approve requests on behalf of other users from that connected organization.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/connectedorganization-list-externalsponsors?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get ref of externalSponsors from identityGovernance";
+            command.Description = "Retrieve a list of a connectedOrganization's external sponsors.  The external sponsors are a set of users who can approve requests on behalf of other users from that connected organization.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/connectedorganization-list-externalsponsors?view=graph-rest-1.0";
             var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "The unique identifier of connectedOrganization") {
             };
             connectedOrganizationIdOption.IsRequired = true;
@@ -115,11 +116,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return command;
         }
         /// <summary>
-        /// Create new navigation property ref to externalSponsors for identityGovernance
+        /// Add a user or a group to the connected organization&apos;s external sponsors. The external sponsors are a set of users who can approve requests on behalf of other users from that connected organization.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/connectedorganization-post-externalsponsors?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Create new navigation property ref to externalSponsors for identityGovernance";
+            command.Description = "Add a user or a group to the connected organization's external sponsors. The external sponsors are a set of users who can approve requests on behalf of other users from that connected organization.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/connectedorganization-post-externalsponsors?view=graph-rest-1.0";
             var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "The unique identifier of connectedOrganization") {
             };
             connectedOrganizationIdOption.IsRequired = true;
@@ -157,7 +159,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
         public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/connectedOrganizations/{connectedOrganization%2Did}/externalSponsors/$ref{?%24top,%24skip,%24search,%24filter,%24count,%24orderby}", pathParameters) {
         }
         /// <summary>
-        /// Get ref of externalSponsors from identityGovernance
+        /// Retrieve a list of a connectedOrganization&apos;s external sponsors.  The external sponsors are a set of users who can approve requests on behalf of other users from that connected organization.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -183,7 +185,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property ref to externalSponsors for identityGovernance
+        /// Add a user or a group to the connected organization&apos;s external sponsors. The external sponsors are a set of users who can approve requests on behalf of other users from that connected organization.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -210,7 +212,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return requestInfo;
         }
         /// <summary>
-        /// Get ref of externalSponsors from identityGovernance
+        /// Retrieve a list of a connectedOrganization&apos;s external sponsors.  The external sponsors are a set of users who can approve requests on behalf of other users from that connected organization.
         /// </summary>
         public class RefRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

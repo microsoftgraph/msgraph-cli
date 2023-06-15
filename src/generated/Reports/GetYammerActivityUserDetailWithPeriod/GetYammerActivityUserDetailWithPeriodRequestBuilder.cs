@@ -59,9 +59,7 @@ namespace ApiSdk.Reports.GetYammerActivityUserDetailWithPeriod {
         /// Instantiates a new GetYammerActivityUserDetailWithPeriodRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
-        public GetYammerActivityUserDetailWithPeriodRequestBuilder(Dictionary<string, object> pathParameters, string period = "") : base("{+baseurl}/reports/getYammerActivityUserDetail(period='{period}')", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(period)) PathParameters.Add("period", period);
+        public GetYammerActivityUserDetailWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getYammerActivityUserDetail(period='{period}')", pathParameters) {
         }
         /// <summary>
         /// Invoke function getYammerActivityUserDetail

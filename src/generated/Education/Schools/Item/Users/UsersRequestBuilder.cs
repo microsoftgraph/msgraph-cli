@@ -43,11 +43,12 @@ namespace ApiSdk.Education.Schools.Item.Users {
             return command;
         }
         /// <summary>
-        /// Users in the school. Nullable.
+        /// Get the educationUser resources associated with an educationSchool.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationschool-list-users?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Users in the school. Nullable.";
+            command.Description = "Get the educationUser resources associated with an educationSchool.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationschool-list-users?view=graph-rest-1.0";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -176,7 +177,7 @@ namespace ApiSdk.Education.Schools.Item.Users {
         public UsersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/schools/{educationSchool%2Did}/users{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Users in the school. Nullable.
+        /// Get the educationUser resources associated with an educationSchool.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -202,7 +203,7 @@ namespace ApiSdk.Education.Schools.Item.Users {
             return requestInfo;
         }
         /// <summary>
-        /// Users in the school. Nullable.
+        /// Get the educationUser resources associated with an educationSchool.
         /// </summary>
         public class UsersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

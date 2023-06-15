@@ -57,7 +57,7 @@ namespace ApiSdk.Models.Security {
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>Detection technology or sensor that identified the notable component or activity.</summary>
+        /// <summary>Detection technology or sensor that identified the notable component or activity. Possible values are: unknown, microsoftDefenderForEndpoint, antivirus, smartScreen, customTi, microsoftDefenderForOffice365, automatedInvestigation, microsoftThreatExperts, customDetection, microsoftDefenderForIdentity, cloudAppSecurity, microsoft365Defender, azureAdIdentityProtection, manual, microsoftDataLossPrevention, appGovernancePolicy, appGovernanceDetection, unknownFutureValue, microsoftDefenderForCloud. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: microsoftDefenderForCloud.</summary>
         public ApiSdk.Models.Security.DetectionSource? DetectionSource { get; set; }
         /// <summary>The ID of the detector that triggered the alert.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

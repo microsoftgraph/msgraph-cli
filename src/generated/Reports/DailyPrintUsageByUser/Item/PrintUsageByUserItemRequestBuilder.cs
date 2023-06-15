@@ -52,11 +52,12 @@ namespace ApiSdk.Reports.DailyPrintUsageByUser.Item {
             return command;
         }
         /// <summary>
-        /// Get dailyPrintUsageByUser from reports
+        /// Retrieve a user&apos;s usage summary for a particular time period. For descriptions of each endpoint, see printUsageByUser.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/printusagebyuser-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get dailyPrintUsageByUser from reports";
+            command.Description = "Retrieve a user's usage summary for a particular time period. For descriptions of each endpoint, see printUsageByUser.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printusagebyuser-get?view=graph-rest-1.0";
             var printUsageByUserIdOption = new Option<string>("--print-usage-by-user-id", description: "The unique identifier of printUsageByUser") {
             };
             printUsageByUserIdOption.IsRequired = true;
@@ -201,7 +202,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByUser.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get dailyPrintUsageByUser from reports
+        /// Retrieve a user&apos;s usage summary for a particular time period. For descriptions of each endpoint, see printUsageByUser.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -255,7 +256,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByUser.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get dailyPrintUsageByUser from reports
+        /// Retrieve a user&apos;s usage summary for a particular time period. For descriptions of each endpoint, see printUsageByUser.
         /// </summary>
         public class PrintUsageByUserItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

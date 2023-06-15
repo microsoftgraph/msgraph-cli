@@ -52,11 +52,12 @@ namespace ApiSdk.Security.Alerts_v2.Item {
             return command;
         }
         /// <summary>
-        /// A collection of alerts in Microsoft 365 Defender.
+        /// Get the properties and relationships of an alert in an organization based on the specified alert **id** property.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-alert-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "A collection of alerts in Microsoft 365 Defender.";
+            command.Description = "Get the properties and relationships of an alert in an organization based on the specified alert **id** property.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-alert-get?view=graph-rest-1.0";
             var alertIdOption = new Option<string>("--alert-id", description: "The unique identifier of alert") {
             };
             alertIdOption.IsRequired = true;
@@ -113,11 +114,12 @@ namespace ApiSdk.Security.Alerts_v2.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property alerts_v2 in security
+        /// Update the properties of an alert object in an organization based on the specified alert **id** property.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-alert-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property alerts_v2 in security";
+            command.Description = "Update the properties of an alert object in an organization based on the specified alert **id** property.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-alert-update?view=graph-rest-1.0";
             var alertIdOption = new Option<string>("--alert-id", description: "The unique identifier of alert") {
             };
             alertIdOption.IsRequired = true;
@@ -201,7 +203,7 @@ namespace ApiSdk.Security.Alerts_v2.Item {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of alerts in Microsoft 365 Defender.
+        /// Get the properties and relationships of an alert in an organization based on the specified alert **id** property.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -227,7 +229,7 @@ namespace ApiSdk.Security.Alerts_v2.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property alerts_v2 in security
+        /// Update the properties of an alert object in an organization based on the specified alert **id** property.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -255,7 +257,7 @@ namespace ApiSdk.Security.Alerts_v2.Item {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of alerts in Microsoft 365 Defender.
+        /// Get the properties and relationships of an alert in an organization based on the specified alert **id** property.
         /// </summary>
         public class AlertItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

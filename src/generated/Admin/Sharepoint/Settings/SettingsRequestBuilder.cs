@@ -46,11 +46,12 @@ namespace ApiSdk.Admin.Sharepoint.Settings {
             return command;
         }
         /// <summary>
-        /// Get settings from admin
+        /// Get the tenant-level settings for SharePoint and OneDrive.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/sharepointsettings-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get settings from admin";
+            command.Description = "Get the tenant-level settings for SharePoint and OneDrive.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/sharepointsettings-get?view=graph-rest-1.0";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -101,11 +102,12 @@ namespace ApiSdk.Admin.Sharepoint.Settings {
             return command;
         }
         /// <summary>
-        /// Update the navigation property settings in admin
+        /// Update one or more tenant-level settings for SharePoint and OneDrive.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/sharepointsettings-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property settings in admin";
+            command.Description = "Update one or more tenant-level settings for SharePoint and OneDrive.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/sharepointsettings-update?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -183,7 +185,7 @@ namespace ApiSdk.Admin.Sharepoint.Settings {
             return requestInfo;
         }
         /// <summary>
-        /// Get settings from admin
+        /// Get the tenant-level settings for SharePoint and OneDrive.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -209,7 +211,7 @@ namespace ApiSdk.Admin.Sharepoint.Settings {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property settings in admin
+        /// Update one or more tenant-level settings for SharePoint and OneDrive.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -237,7 +239,7 @@ namespace ApiSdk.Admin.Sharepoint.Settings {
             return requestInfo;
         }
         /// <summary>
-        /// Get settings from admin
+        /// Get the tenant-level settings for SharePoint and OneDrive.
         /// </summary>
         public class SettingsRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

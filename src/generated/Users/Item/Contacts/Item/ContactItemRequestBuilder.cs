@@ -1,9 +1,7 @@
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
 using ApiSdk.Users.Item.Contacts.Item.Extensions;
-using ApiSdk.Users.Item.Contacts.Item.MultiValueExtendedProperties;
 using ApiSdk.Users.Item.Contacts.Item.Photo;
-using ApiSdk.Users.Item.Contacts.Item.SingleValueExtendedProperties;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
@@ -23,11 +21,12 @@ namespace ApiSdk.Users.Item.Contacts.Item {
     /// </summary>
     public class ContactItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property contacts for users
+        /// Delete a contact.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/contact-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property contacts for users";
+            command.Description = "Delete a contact.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contact-delete?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -87,11 +86,12 @@ namespace ApiSdk.Users.Item.Contacts.Item {
             return command;
         }
         /// <summary>
-        /// The user&apos;s contacts. Read-only. Nullable.
+        /// Retrieve the properties and relationships of a contact object. There are two scenarios where an app can get a contact in another user&apos;s contact folder:
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/contact-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The user's contacts. Read-only. Nullable.";
+            command.Description = "Retrieve the properties and relationships of a contact object. There are two scenarios where an app can get a contact in another user's contact folder:\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contact-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -154,36 +154,12 @@ namespace ApiSdk.Users.Item.Contacts.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.contact entity.
-        /// </summary>
-        public Command BuildMultiValueExtendedPropertiesNavCommand() {
-            var command = new Command("multi-value-extended-properties");
-            command.Description = "Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.contact entity.";
-            var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            var nonExecCommands = new List<Command>();
-            nonExecCommands.Add(builder.BuildCountNavCommand());
-            execCommands.Add(builder.BuildCreateCommand());
-            execCommands.Add(builder.BuildListCommand());
-            var cmds = builder.BuildCommand();
-            execCommands.AddRange(cmds.Item1);
-            nonExecCommands.AddRange(cmds.Item2);
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
-        }
-        /// <summary>
-        /// Update the navigation property contacts in users
+        /// Update the properties of a contact object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/contact-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property contacts in users";
+            command.Description = "Update the properties of a contact object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contact-update?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -264,38 +240,13 @@ namespace ApiSdk.Users.Item.Contacts.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.contact entity.
-        /// </summary>
-        public Command BuildSingleValueExtendedPropertiesNavCommand() {
-            var command = new Command("single-value-extended-properties");
-            command.Description = "Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.contact entity.";
-            var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            var nonExecCommands = new List<Command>();
-            nonExecCommands.Add(builder.BuildCountNavCommand());
-            execCommands.Add(builder.BuildCreateCommand());
-            execCommands.Add(builder.BuildListCommand());
-            var cmds = builder.BuildCommand();
-            execCommands.AddRange(cmds.Item1);
-            nonExecCommands.AddRange(cmds.Item2);
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
-        }
-        /// <summary>
         /// Instantiates a new ContactItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public ContactItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/contacts/{contact%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property contacts for users
+        /// Delete a contact.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -320,7 +271,7 @@ namespace ApiSdk.Users.Item.Contacts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The user&apos;s contacts. Read-only. Nullable.
+        /// Retrieve the properties and relationships of a contact object. There are two scenarios where an app can get a contact in another user&apos;s contact folder:
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -346,7 +297,7 @@ namespace ApiSdk.Users.Item.Contacts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property contacts in users
+        /// Update the properties of a contact object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -374,7 +325,7 @@ namespace ApiSdk.Users.Item.Contacts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The user&apos;s contacts. Read-only. Nullable.
+        /// Retrieve the properties and relationships of a contact object. There are two scenarios where an app can get a contact in another user&apos;s contact folder:
         /// </summary>
         public class ContactItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

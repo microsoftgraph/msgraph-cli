@@ -172,11 +172,12 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property contentTypes for sites
+        /// Remove a [content type][contentType] from a [list][] or a [site][].
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/contenttype-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property contentTypes for sites";
+            command.Description = "Remove a [content type][contentType] from a [list][] or a [site][].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contenttype-delete?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -211,11 +212,12 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item {
             return command;
         }
         /// <summary>
-        /// The collection of content types defined for this site.
+        /// Retrieve the metadata for a [content type][contentType] in a [site][] or a [list][].
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/contenttype-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The collection of content types defined for this site.";
+            command.Description = "Retrieve the metadata for a [content type][contentType] in a [site][] or a [list][].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contenttype-get?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -293,11 +295,12 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property contentTypes in sites
+        /// Update a [content type][contentType].
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/contenttype-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property contentTypes in sites";
+            command.Description = "Update a [content type][contentType].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contenttype-update?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -392,7 +395,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item {
         public ContentTypeItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/contentTypes/{contentType%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property contentTypes for sites
+        /// Remove a [content type][contentType] from a [list][] or a [site][].
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -417,7 +420,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of content types defined for this site.
+        /// Retrieve the metadata for a [content type][contentType] in a [site][] or a [list][].
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -443,7 +446,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property contentTypes in sites
+        /// Update a [content type][contentType].
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -471,7 +474,7 @@ namespace ApiSdk.Sites.Item.ContentTypes.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of content types defined for this site.
+        /// Retrieve the metadata for a [content type][contentType] in a [site][] or a [list][].
         /// </summary>
         public class ContentTypeItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

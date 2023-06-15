@@ -19,11 +19,12 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members.Item {
     /// </summary>
     public class IdentityItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property members for connections
+        /// Delete an identity resource to remove the corresponding member from an externalGroup.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/externalconnectors-identity-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property members for connections";
+            command.Description = "Delete an identity resource to remove the corresponding member from an externalGroup.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/externalconnectors-identity-delete?view=graph-rest-1.0";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -212,7 +213,7 @@ namespace ApiSdk.Connections.Item.Groups.Item.Members.Item {
         public IdentityItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/connections/{externalConnection%2Did}/groups/{externalGroup%2Did}/members/{identity%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property members for connections
+        /// Delete an identity resource to remove the corresponding member from an externalGroup.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

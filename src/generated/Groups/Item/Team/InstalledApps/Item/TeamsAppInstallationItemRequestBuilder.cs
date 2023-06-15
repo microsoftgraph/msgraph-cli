@@ -22,11 +22,12 @@ namespace ApiSdk.Groups.Item.Team.InstalledApps.Item {
     /// </summary>
     public class TeamsAppInstallationItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property installedApps for groups
+        /// Uninstalls an app from the specified team.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/team-delete-installedapps?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property installedApps for groups";
+            command.Description = "Uninstalls an app from the specified team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-delete-installedapps?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -61,11 +62,12 @@ namespace ApiSdk.Groups.Item.Team.InstalledApps.Item {
             return command;
         }
         /// <summary>
-        /// The apps installed in this team.
+        /// Retrieve the app installed in the specified team.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/team-get-installedapps?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The apps installed in this team.";
+            command.Description = "Retrieve the app installed in the specified team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-get-installedapps?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -242,7 +244,7 @@ namespace ApiSdk.Groups.Item.Team.InstalledApps.Item {
         public TeamsAppInstallationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/installedApps/{teamsAppInstallation%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property installedApps for groups
+        /// Uninstalls an app from the specified team.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -267,7 +269,7 @@ namespace ApiSdk.Groups.Item.Team.InstalledApps.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The apps installed in this team.
+        /// Retrieve the app installed in the specified team.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -321,7 +323,7 @@ namespace ApiSdk.Groups.Item.Team.InstalledApps.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The apps installed in this team.
+        /// Retrieve the app installed in the specified team.
         /// </summary>
         public class TeamsAppInstallationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

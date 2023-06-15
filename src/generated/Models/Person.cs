@@ -53,7 +53,7 @@ namespace ApiSdk.Models {
 #else
         public string ImAddress { get; set; }
 #endif
-        /// <summary>true if the user has flagged this person as a favorite.</summary>
+        /// <summary>True if the user has flagged this person as a favorite.</summary>
         public bool? IsFavorite { get; set; }
         /// <summary>The person&apos;s job title.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
