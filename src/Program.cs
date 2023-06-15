@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.CommandLine;
 using System.CommandLine.Builder;
 using System.CommandLine.Hosting;
@@ -24,12 +23,10 @@ using Microsoft.Graph.Authentication;
 using Microsoft.Graph.Cli.Core.Authentication;
 using Microsoft.Graph.Cli.Core.Commands.Authentication;
 using Microsoft.Graph.Cli.Core.Configuration;
-using Microsoft.Graph.Cli.Core.Configuration.Extensions;
 using Microsoft.Graph.Cli.Core.Http;
 using Microsoft.Graph.Cli.Core.IO;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Abstractions.Authentication;
-using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Cli.Commons.Extensions;
 using Microsoft.Kiota.Http.HttpClientLibrary;
 using Microsoft.Kiota.Serialization.Form;
@@ -40,17 +37,17 @@ namespace Microsoft.Graph.Cli
 {
     class Program
     {
+        private static bool debugEnabled = false;
+        private static AzureEventSourceListener? listener = null;
+
         static async Task<int> Main(string[] args)
         {
             Console.InputEncoding = Encoding.Unicode;
             Console.OutputEncoding = Encoding.Unicode;
             var builder = BuildCommandLine()
                 .UseDefaults()
-                .UseHost(a =>
-                {
-                    // Pass all the args to avoid system.commandline swallowing them up
-                    return CreateHostBuilder(args);
-                }).UseRequestAdapter(ic =>
+                .UseHost(CreateHostBuilder)
+                .UseRequestAdapter(ic =>
                 {
                     var host = ic.GetHost();
                     var adapter = host.Services.GetRequiredService<IRequestAdapter>();
@@ -59,16 +56,9 @@ namespace Microsoft.Graph.Cli
                     {
                         adapter.BaseUrl = client.BaseAddress?.ToString();
                     }
+                    adapter.BaseUrl = adapter.BaseUrl?.TrimEnd('/');
                     return adapter;
                 }).RegisterCommonServices();
-
-            builder.AddMiddleware(async (ic, next) =>
-            {
-                var op = ic.GetHost().Services.GetService<IOptions<ExtraOptions>>()?.Value;
-                // Show Azure Identity logs if the --debug option is set
-                using AzureEventSourceListener? listener = op?.DebugEnabled == true ? AzureEventSourceListener.CreateConsoleLogger(EventLevel.LogAlways) : null;
-                await next(ic);
-            });
             builder.AddMiddleware(async (ic, next) =>
             {
                 var host = ic.GetHost();
@@ -108,24 +98,42 @@ namespace Microsoft.Graph.Cli
                 context.ExitCode = exitCode;
             });
 
-            var parser = builder.Build();
-
-            return await parser.InvokeAsync(args);
+            try
+            {
+                var parser = builder.Build();
+                return await parser.InvokeAsync(args);
+            }
+            finally
+            {
+                listener?.Dispose();
+            }
         }
 
         static CommandLineBuilder BuildCommandLine()
         {
             var rootCommand = new GraphClient().BuildRootCommand();
             rootCommand.Description = "Microsoft Graph CLI";
-            // Support specifying additional arguments as configuration arguments
-            // System.CommandLine might swallow valid config tokens sometimes.
-            // e.g. if a command has an option --debug and we also want to use
-            // --debug for configs.
-            rootCommand.TreatUnmatchedTokensAsErrors = false;
 
             var builder = new CommandLineBuilder(rootCommand);
+            var debugOption = new Option<bool>("--debug", "Enable debug output");
+
+            builder.AddMiddleware(async (ic, next) =>
+            {
+                debugEnabled = ic.ParseResult.GetValueForOption<bool>(debugOption);
+                if (debugEnabled)
+                {
+                    listener = AzureEventSourceListener.CreateConsoleLogger(EventLevel.LogAlways);
+                }
+                else
+                {
+                    listener = AzureEventSourceListener.CreateConsoleLogger(EventLevel.Warning);
+                }
+                await next(ic);
+            });
+
             rootCommand.AddCommand(new LoginCommand(builder));
             rootCommand.AddCommand(new LogoutCommand());
+            rootCommand.AddGlobalOption(debugOption);
 
             return builder;
         }
@@ -141,10 +149,6 @@ namespace Microsoft.Graph.Cli
             {
                 var authSection = ctx.Configuration.GetSection(nameof(AuthenticationOptions));
                 services.Configure<AuthenticationOptions>(authSection);
-                services.Configure<ExtraOptions>(op =>
-                {
-                    op.DebugEnabled = ctx.Configuration.GetValue<bool>("Debug");
-                });
                 services.AddTransient<LoggingHandler>();
                 services.AddSingleton<HttpClient>(p =>
                 {
@@ -197,13 +201,8 @@ namespace Microsoft.Graph.Cli
             }).ConfigureLogging((ctx, logBuilder) =>
             {
                 logBuilder.SetMinimumLevel(LogLevel.Warning);
-                // If a config is unavailable, troubleshoot using (ctx.Configuration as IConfigurationRoot)?.GetDebugView();
-                // At this point, the host isn't ready. Get the config option directly.
-                var debugEnabled = ctx.Configuration.GetValue<bool>("Debug");
-                if (debugEnabled == true)
-                {
-                    logBuilder.AddFilter("Microsoft.Graph.Cli", LogLevel.Debug);
-                }
+                // Allow runtime selection of log level
+                logBuilder.AddFilter("Microsoft.Graph.Cli", level => level >= (debugEnabled ? LogLevel.Debug : LogLevel.Warning));
             });
 
         static void ConfigureAppConfiguration(IConfigurationBuilder builder, string[] args)
@@ -217,7 +216,6 @@ namespace Microsoft.Graph.Cli
             builder.AddJsonFile(userConfigPath, optional: true);
             builder.AddJsonFile(authCache.GetAuthenticationCacheFilePath(), optional: true, reloadOnChange: true);
             builder.AddEnvironmentVariables(prefix: "MGC_");
-            builder.AddCommandLine(args.ExpandFlagsForConfiguration());
         }
     }
 }
