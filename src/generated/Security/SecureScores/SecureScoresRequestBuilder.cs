@@ -98,11 +98,12 @@ namespace ApiSdk.Security.SecureScores {
             return command;
         }
         /// <summary>
-        /// Get secureScores from security
+        /// Retrieve a list of secureScore objects.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-list-securescores?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get secureScores from security";
+            command.Description = "Retrieve a list of secureScore objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-list-securescores?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -208,7 +209,7 @@ namespace ApiSdk.Security.SecureScores {
         public SecureScoresRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/secureScores{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get secureScores from security
+        /// Retrieve a list of secureScore objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -262,7 +263,7 @@ namespace ApiSdk.Security.SecureScores {
             return requestInfo;
         }
         /// <summary>
-        /// Get secureScores from security
+        /// Retrieve a list of secureScore objects.
         /// </summary>
         public class SecureScoresRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

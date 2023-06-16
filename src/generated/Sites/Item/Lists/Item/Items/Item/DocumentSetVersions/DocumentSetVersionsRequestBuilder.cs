@@ -50,11 +50,12 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DocumentSetVersions {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to documentSetVersions for sites
+        /// Create a new version of a document set item in a list.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/listitem-post-documentsetversions?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to documentSetVersions for sites";
+            command.Description = "Create a new version of a document set item in a list.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/listitem-post-documentsetversions?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -119,11 +120,12 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DocumentSetVersions {
             return command;
         }
         /// <summary>
-        /// Version information for a document set version created by a user.
+        /// Get a list of the versions of a document set item in a list.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/listitem-list-documentsetversions?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Version information for a document set version created by a user.";
+            command.Description = "Get a list of the versions of a document set item in a list.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/listitem-list-documentsetversions?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -247,7 +249,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DocumentSetVersions {
         public DocumentSetVersionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/documentSetVersions{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Version information for a document set version created by a user.
+        /// Get a list of the versions of a document set item in a list.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -273,7 +275,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DocumentSetVersions {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to documentSetVersions for sites
+        /// Create a new version of a document set item in a list.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -301,7 +303,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.DocumentSetVersions {
             return requestInfo;
         }
         /// <summary>
-        /// Version information for a document set version created by a user.
+        /// Get a list of the versions of a document set item in a list.
         /// </summary>
         public class DocumentSetVersionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

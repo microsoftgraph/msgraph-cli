@@ -19,11 +19,12 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes.Item {
     /// </summary>
     public class PermissionGrantConditionSetItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property includes for policies
+        /// Deletes a permissionGrantConditionSet from the **includes** collection of a permissionGrantPolicy.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/permissiongrantpolicy-delete-includes?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property includes for policies";
+            command.Description = "Deletes a permissionGrantConditionSet from the **includes** collection of a permissionGrantPolicy.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/permissiongrantpolicy-delete-includes?view=graph-rest-1.0";
             var permissionGrantPolicyIdOption = new Option<string>("--permission-grant-policy-id", description: "The unique identifier of permissionGrantPolicy") {
             };
             permissionGrantPolicyIdOption.IsRequired = true;
@@ -194,7 +195,7 @@ namespace ApiSdk.Policies.PermissionGrantPolicies.Item.Includes.Item {
         public PermissionGrantConditionSetItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/permissionGrantPolicies/{permissionGrantPolicy%2Did}/includes/{permissionGrantConditionSet%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property includes for policies
+        /// Deletes a permissionGrantConditionSet from the **includes** collection of a permissionGrantPolicy.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

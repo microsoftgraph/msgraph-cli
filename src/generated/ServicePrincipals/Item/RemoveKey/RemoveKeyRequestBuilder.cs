@@ -18,11 +18,12 @@ namespace ApiSdk.ServicePrincipals.Item.RemoveKey {
     /// </summary>
     public class RemoveKeyRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action removeKey
+        /// Remove a key credential from a servicePrincipal. This method along with addKey can be used by a servicePrincipal to automate rolling its expiring keys. As part of the request validation for this method, a proof of possession of an existing key is verified before the action can be performed.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/serviceprincipal-removekey?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action removeKey";
+            command.Description = "Remove a key credential from a servicePrincipal. This method along with addKey can be used by a servicePrincipal to automate rolling its expiring keys. As part of the request validation for this method, a proof of possession of an existing key is verified before the action can be performed.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-removekey?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -60,7 +61,7 @@ namespace ApiSdk.ServicePrincipals.Item.RemoveKey {
         public RemoveKeyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/removeKey", pathParameters) {
         }
         /// <summary>
-        /// Invoke action removeKey
+        /// Remove a key credential from a servicePrincipal. This method along with addKey can be used by a servicePrincipal to automate rolling its expiring keys. As part of the request validation for this method, a proof of possession of an existing key is verified before the action can be performed.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

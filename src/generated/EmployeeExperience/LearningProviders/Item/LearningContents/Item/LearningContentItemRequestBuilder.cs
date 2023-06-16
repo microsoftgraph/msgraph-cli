@@ -19,11 +19,12 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningContents.Item
     /// </summary>
     public class LearningContentItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property learningContents for employeeExperience
+        /// Delete the specified learningContent resource that represents the metadata of the specified provider&apos;s ingested content.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/learningprovider-delete-learningcontents?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property learningContents for employeeExperience";
+            command.Description = "Delete the specified learningContent resource that represents the metadata of the specified provider's ingested content.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/learningprovider-delete-learningcontents?view=graph-rest-1.0";
             var learningProviderIdOption = new Option<string>("--learning-provider-id", description: "The unique identifier of learningProvider") {
             };
             learningProviderIdOption.IsRequired = true;
@@ -58,11 +59,12 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningContents.Item
             return command;
         }
         /// <summary>
-        /// Learning catalog items for the provider.
+        /// Get the specified learningContent resource which represents the metadata of the specified provider&apos;s ingested content.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/learningcontent-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Learning catalog items for the provider.";
+            command.Description = "Get the specified learningContent resource which represents the metadata of the specified provider's ingested content.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/learningcontent-get?view=graph-rest-1.0";
             var learningProviderIdOption = new Option<string>("--learning-provider-id", description: "The unique identifier of learningProvider") {
             };
             learningProviderIdOption.IsRequired = true;
@@ -194,7 +196,7 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningContents.Item
         public LearningContentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/employeeExperience/learningProviders/{learningProvider%2Did}/learningContents/{learningContent%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property learningContents for employeeExperience
+        /// Delete the specified learningContent resource that represents the metadata of the specified provider&apos;s ingested content.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -219,7 +221,7 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningContents.Item
             return requestInfo;
         }
         /// <summary>
-        /// Learning catalog items for the provider.
+        /// Get the specified learningContent resource which represents the metadata of the specified provider&apos;s ingested content.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -273,7 +275,7 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningContents.Item
             return requestInfo;
         }
         /// <summary>
-        /// Learning catalog items for the provider.
+        /// Get the specified learningContent resource which represents the metadata of the specified provider&apos;s ingested content.
         /// </summary>
         public class LearningContentItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

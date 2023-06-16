@@ -38,10 +38,14 @@ namespace ApiSdk.Organization.Item {
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildBackgroundImageNavCommand());
             nonExecCommands.Add(builder.BuildBannerLogoNavCommand());
+            nonExecCommands.Add(builder.BuildCustomCSSNavCommand());
             execCommands.Add(builder.BuildDeleteCommand());
+            nonExecCommands.Add(builder.BuildFaviconNavCommand());
             execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildHeaderLogoNavCommand());
             nonExecCommands.Add(builder.BuildLocalizationsNavCommand());
             execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildSquareLogoDarkNavCommand());
             nonExecCommands.Add(builder.BuildSquareLogoNavCommand());
             foreach (var cmd in execCommands)
             {

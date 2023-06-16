@@ -18,11 +18,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings.MicrosoftGraphSecu
     /// </summary>
     public class MicrosoftGraphSecurityResetToDefaultRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action resetToDefault
+        /// Reset a caseSettings object to the default values.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoverycasesettings-resettodefault?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action resetToDefault";
+            command.Description = "Reset a caseSettings object to the default values.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycasesettings-resettodefault?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -50,7 +51,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Settings.MicrosoftGraphSecu
         public MicrosoftGraphSecurityResetToDefaultRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/settings/microsoft.graph.security.resetToDefault", pathParameters) {
         }
         /// <summary>
-        /// Invoke action resetToDefault
+        /// Reset a caseSettings object to the default values.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

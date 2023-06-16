@@ -43,11 +43,12 @@ namespace ApiSdk.Education.Classes.Item.Teachers {
             return command;
         }
         /// <summary>
-        /// All teachers in the class. Nullable.
+        /// Retrieve a list teachers for a class. Delegated tokens must be members of the class to get the teacher list.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationclass-list-teachers?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "All teachers in the class. Nullable.";
+            command.Description = "Retrieve a list teachers for a class. Delegated tokens must be members of the class to get the teacher list.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationclass-list-teachers?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -176,7 +177,7 @@ namespace ApiSdk.Education.Classes.Item.Teachers {
         public TeachersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/teachers{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// All teachers in the class. Nullable.
+        /// Retrieve a list teachers for a class. Delegated tokens must be members of the class to get the teacher list.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -202,7 +203,7 @@ namespace ApiSdk.Education.Classes.Item.Teachers {
             return requestInfo;
         }
         /// <summary>
-        /// All teachers in the class. Nullable.
+        /// Retrieve a list teachers for a class. Delegated tokens must be members of the class to get the teacher list.
         /// </summary>
         public class TeachersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

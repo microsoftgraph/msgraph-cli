@@ -104,11 +104,12 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningContents {
             return command;
         }
         /// <summary>
-        /// Learning catalog items for the provider.
+        /// Get a list of the learningContent resources and their properties. This list represents the metadata of the specified provider&apos;s content in Viva Learning.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/learningprovider-list-learningcontents?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Learning catalog items for the provider.";
+            command.Description = "Get a list of the learningContent resources and their properties. This list represents the metadata of the specified provider's content in Viva Learning.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/learningprovider-list-learningcontents?view=graph-rest-1.0";
             var learningProviderIdOption = new Option<string>("--learning-provider-id", description: "The unique identifier of learningProvider") {
             };
             learningProviderIdOption.IsRequired = true;
@@ -220,7 +221,7 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningContents {
         public LearningContentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/employeeExperience/learningProviders/{learningProvider%2Did}/learningContents{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Learning catalog items for the provider.
+        /// Get a list of the learningContent resources and their properties. This list represents the metadata of the specified provider&apos;s content in Viva Learning.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -274,7 +275,7 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item.LearningContents {
             return requestInfo;
         }
         /// <summary>
-        /// Learning catalog items for the provider.
+        /// Get a list of the learningContent resources and their properties. This list represents the metadata of the specified provider&apos;s content in Viva Learning.
         /// </summary>
         public class LearningContentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

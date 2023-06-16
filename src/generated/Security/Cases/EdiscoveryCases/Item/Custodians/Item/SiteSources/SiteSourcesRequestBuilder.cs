@@ -49,11 +49,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.SiteSources
             return command;
         }
         /// <summary>
-        /// Create new navigation property to siteSources for security
+        /// Create a new siteSource object associated with an eDiscovery custodian.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoverycustodian-post-sitesources?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to siteSources for security";
+            command.Description = "Create a new siteSource object associated with an eDiscovery custodian.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycustodian-post-sitesources?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -112,11 +113,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.SiteSources
             return command;
         }
         /// <summary>
-        /// Data source entity for SharePoint sites associated with the custodian.
+        /// Get a list of the siteSource objects associated with an ediscoveryCustodian.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoverycustodian-list-sitesources?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Data source entity for SharePoint sites associated with the custodian.";
+            command.Description = "Get a list of the siteSource objects associated with an ediscoveryCustodian.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycustodian-list-sitesources?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -234,7 +236,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.SiteSources
         public SiteSourcesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/custodians/{ediscoveryCustodian%2Did}/siteSources{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Data source entity for SharePoint sites associated with the custodian.
+        /// Get a list of the siteSource objects associated with an ediscoveryCustodian.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -260,7 +262,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.SiteSources
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to siteSources for security
+        /// Create a new siteSource object associated with an eDiscovery custodian.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -288,7 +290,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Custodians.Item.SiteSources
             return requestInfo;
         }
         /// <summary>
-        /// Data source entity for SharePoint sites associated with the custodian.
+        /// Get a list of the siteSource objects associated with an ediscoveryCustodian.
         /// </summary>
         public class SiteSourcesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -164,12 +164,12 @@ namespace ApiSdk.Teams.Item {
             return command;
         }
         /// <summary>
-        /// Get entity from teams by key
+        /// Retrieve the properties and relationships of the specified team.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/team-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get entity from teams by key\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of the specified team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-get?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -586,7 +586,7 @@ namespace ApiSdk.Teams.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get entity from teams by key
+        /// Retrieve the properties and relationships of the specified team.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -640,7 +640,7 @@ namespace ApiSdk.Teams.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get entity from teams by key
+        /// Retrieve the properties and relationships of the specified team.
         /// </summary>
         public class TeamItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -18,11 +18,12 @@ namespace ApiSdk.ServicePrincipals.Item.CheckMemberGroups {
     /// </summary>
     public class CheckMemberGroupsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action checkMemberGroups
+        /// Check for membership in a specified list of group IDs, and return from that list those groups (identified by IDs) of which the specified user, group, service principal, organizational contact, device, or directory object is a member. This function is transitive. You can check up to a maximum of 20 groups per request. This function supports all groups provisioned in Azure AD. Because Microsoft 365 groups cannot contain other groups, membership in a Microsoft 365 group is always direct.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/directoryobject-checkmembergroups?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action checkMemberGroups";
+            command.Description = "Check for membership in a specified list of group IDs, and return from that list those groups (identified by IDs) of which the specified user, group, service principal, organizational contact, device, or directory object is a member. This function is transitive. You can check up to a maximum of 20 groups per request. This function supports all groups provisioned in Azure AD. Because Microsoft 365 groups cannot contain other groups, membership in a Microsoft 365 group is always direct.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directoryobject-checkmembergroups?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -93,7 +94,7 @@ namespace ApiSdk.ServicePrincipals.Item.CheckMemberGroups {
         public CheckMemberGroupsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/checkMemberGroups", pathParameters) {
         }
         /// <summary>
-        /// Invoke action checkMemberGroups
+        /// Check for membership in a specified list of group IDs, and return from that list those groups (identified by IDs) of which the specified user, group, service principal, organizational contact, device, or directory object is a member. This function is transitive. You can check up to a maximum of 20 groups per request. This function supports all groups provisioned in Azure AD. Because Microsoft 365 groups cannot contain other groups, membership in a Microsoft 365 group is always direct.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

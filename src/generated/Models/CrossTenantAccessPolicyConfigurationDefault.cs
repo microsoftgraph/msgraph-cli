@@ -5,7 +5,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class CrossTenantAccessPolicyConfigurationDefault : Entity, IParsable {
-        /// <summary>The automaticUserConsentSettings property</summary>
+        /// <summary>Determines the default configuration for automatic user consent settings. The inboundAllowed and outboundAllowed properties are always false and cannot be updated in the default configuration. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public InboundOutboundPolicyConfiguration? AutomaticUserConsentSettings { get; set; }

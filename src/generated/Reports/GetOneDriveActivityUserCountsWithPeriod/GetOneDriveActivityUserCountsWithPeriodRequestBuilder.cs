@@ -59,9 +59,7 @@ namespace ApiSdk.Reports.GetOneDriveActivityUserCountsWithPeriod {
         /// Instantiates a new GetOneDriveActivityUserCountsWithPeriodRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
-        public GetOneDriveActivityUserCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters, string period = "") : base("{+baseurl}/reports/getOneDriveActivityUserCounts(period='{period}')", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(period)) PathParameters.Add("period", period);
+        public GetOneDriveActivityUserCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getOneDriveActivityUserCounts(period='{period}')", pathParameters) {
         }
         /// <summary>
         /// Invoke function getOneDriveActivityUserCounts

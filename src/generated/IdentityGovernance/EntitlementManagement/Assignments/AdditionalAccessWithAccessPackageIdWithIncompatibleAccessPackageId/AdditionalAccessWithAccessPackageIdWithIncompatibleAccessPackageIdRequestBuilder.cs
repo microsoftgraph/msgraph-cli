@@ -129,12 +129,8 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Additional
         /// <summary>
         /// Instantiates a new AdditionalAccessWithAccessPackageIdWithIncompatibleAccessPackageIdRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="accessPackageId">Usage: accessPackageId=&apos;{accessPackageId}&apos;</param>
-        /// <param name="incompatibleAccessPackageId">Usage: incompatibleAccessPackageId=&apos;{incompatibleAccessPackageId}&apos;</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AdditionalAccessWithAccessPackageIdWithIncompatibleAccessPackageIdRequestBuilder(Dictionary<string, object> pathParameters, string accessPackageId = "", string incompatibleAccessPackageId = "") : base("{+baseurl}/identityGovernance/entitlementManagement/assignments/additionalAccess(accessPackageId='{accessPackageId}',incompatibleAccessPackageId='{incompatibleAccessPackageId}'){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(accessPackageId)) PathParameters.Add("accessPackageId", accessPackageId);
-            if (!string.IsNullOrWhiteSpace(incompatibleAccessPackageId)) PathParameters.Add("incompatibleAccessPackageId", incompatibleAccessPackageId);
+        public AdditionalAccessWithAccessPackageIdWithIncompatibleAccessPackageIdRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/assignments/additionalAccess(accessPackageId='{accessPackageId}',incompatibleAccessPackageId='{incompatibleAccessPackageId}'){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", pathParameters) {
         }
         /// <summary>
         /// Invoke function additionalAccess

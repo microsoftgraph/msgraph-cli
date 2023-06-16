@@ -51,11 +51,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to assignmentPolicies for identityGovernance
+        /// In Azure AD entitlement management, create a new accessPackageAssignmentPolicy object.  The request will include a reference to the accessPackage that will contain this policy, which must already exist.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/entitlementmanagement-post-assignmentpolicies?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to assignmentPolicies for identityGovernance";
+            command.Description = "In Azure AD entitlement management, create a new accessPackageAssignmentPolicy object.  The request will include a reference to the accessPackage that will contain this policy, which must already exist.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/entitlementmanagement-post-assignmentpolicies?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -102,11 +103,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies {
             return command;
         }
         /// <summary>
-        /// Access package assignment policies govern which subjects can request or be assigned an access package via an access package assignment.
+        /// In Azure AD entitlement management, retrieve a list of accessPackageAssignmentPolicy objects. If the delegated user is in a directory role, the resulting list includes all the assignment policies that the caller has access to read, across all catalogs and access packages. If the delegated user is an access package manager or catalog owner, they should instead retrieve the policies for the access packages they can read with list accessPackages by including `$expand=accessPackageAssignmentPolicies` as a query parameter.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/entitlementmanagement-list-assignmentpolicies?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Access package assignment policies govern which subjects can request or be assigned an access package via an access package assignment.";
+            command.Description = "In Azure AD entitlement management, retrieve a list of accessPackageAssignmentPolicy objects. If the delegated user is in a directory role, the resulting list includes all the assignment policies that the caller has access to read, across all catalogs and access packages. If the delegated user is an access package manager or catalog owner, they should instead retrieve the policies for the access packages they can read with list accessPackages by including `$expand=accessPackageAssignmentPolicies` as a query parameter.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/entitlementmanagement-list-assignmentpolicies?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -212,7 +214,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies {
         public AssignmentPoliciesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/assignmentPolicies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Access package assignment policies govern which subjects can request or be assigned an access package via an access package assignment.
+        /// In Azure AD entitlement management, retrieve a list of accessPackageAssignmentPolicy objects. If the delegated user is in a directory role, the resulting list includes all the assignment policies that the caller has access to read, across all catalogs and access packages. If the delegated user is an access package manager or catalog owner, they should instead retrieve the policies for the access packages they can read with list accessPackages by including `$expand=accessPackageAssignmentPolicies` as a query parameter.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -238,7 +240,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to assignmentPolicies for identityGovernance
+        /// In Azure AD entitlement management, create a new accessPackageAssignmentPolicy object.  The request will include a reference to the accessPackage that will contain this policy, which must already exist.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -266,7 +268,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Access package assignment policies govern which subjects can request or be assigned an access package via an access package assignment.
+        /// In Azure AD entitlement management, retrieve a list of accessPackageAssignmentPolicy objects. If the delegated user is in a directory role, the resulting list includes all the assignment policies that the caller has access to read, across all catalogs and access packages. If the delegated user is an access package manager or catalog owner, they should instead retrieve the policies for the access packages they can read with list accessPackages by including `$expand=accessPackageAssignmentPolicies` as a query parameter.
         /// </summary>
         public class AssignmentPoliciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

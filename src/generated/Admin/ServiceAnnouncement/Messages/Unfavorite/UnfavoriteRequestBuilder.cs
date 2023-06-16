@@ -18,11 +18,12 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Unfavorite {
     /// </summary>
     public class UnfavoriteRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action unfavorite
+        /// Remove the favorite status of serviceUpdateMessages for the signed in user.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/serviceupdatemessage-unfavorite?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action unfavorite";
+            command.Description = "Remove the favorite status of serviceUpdateMessages for the signed in user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceupdatemessage-unfavorite?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -75,7 +76,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Unfavorite {
         public UnfavoriteRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/serviceAnnouncement/messages/unfavorite", pathParameters) {
         }
         /// <summary>
-        /// Invoke action unfavorite
+        /// Remove the favorite status of serviceUpdateMessages for the signed in user.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

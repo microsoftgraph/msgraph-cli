@@ -22,11 +22,12 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
     /// </summary>
     public class AdministrativeUnitItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property administrativeUnits for directory
+        /// Delete an administrativeUnit.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/administrativeunit-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property administrativeUnits for directory";
+            command.Description = "Delete an administrativeUnit.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/administrativeunit-delete?view=graph-rest-1.0";
             var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
@@ -80,11 +81,12 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
             return command;
         }
         /// <summary>
-        /// Conceptual container for user and group directory objects.
+        /// Retrieve the properties and relationships of an administrativeUnit object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/administrativeunit-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Conceptual container for user and group directory objects.";
+            command.Description = "Retrieve the properties and relationships of an administrativeUnit object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/administrativeunit-get?view=graph-rest-1.0";
             var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
@@ -172,11 +174,12 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property administrativeUnits in directory
+        /// Update the properties of an administrativeUnit object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/administrativeunit-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property administrativeUnits in directory";
+            command.Description = "Update the properties of an administrativeUnit object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/administrativeunit-update?view=graph-rest-1.0";
             var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
@@ -260,7 +263,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
         public AdministrativeUnitItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/administrativeUnits/{administrativeUnit%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property administrativeUnits for directory
+        /// Delete an administrativeUnit.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -285,7 +288,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Conceptual container for user and group directory objects.
+        /// Retrieve the properties and relationships of an administrativeUnit object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -311,7 +314,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property administrativeUnits in directory
+        /// Update the properties of an administrativeUnit object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -339,7 +342,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Conceptual container for user and group directory objects.
+        /// Retrieve the properties and relationships of an administrativeUnit object.
         /// </summary>
         public class AdministrativeUnitItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

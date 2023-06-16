@@ -20,11 +20,12 @@ namespace ApiSdk.Users.Item.Chats.Item.PinnedMessages.Item {
     /// </summary>
     public class PinnedChatMessageInfoItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property pinnedMessages for users
+        /// Unpin a message from a chat.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chat-delete-pinnedmessages?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property pinnedMessages for users";
+            command.Description = "Unpin a message from a chat.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-delete-pinnedmessages?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -228,7 +229,7 @@ namespace ApiSdk.Users.Item.Chats.Item.PinnedMessages.Item {
         public PinnedChatMessageInfoItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/pinnedMessages/{pinnedChatMessageInfo%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property pinnedMessages for users
+        /// Unpin a message from a chat.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -7,8 +7,6 @@ using ApiSdk.Groups.Item.Calendar.Events.Item.DismissReminder;
 using ApiSdk.Groups.Item.Calendar.Events.Item.Extensions;
 using ApiSdk.Groups.Item.Calendar.Events.Item.Forward;
 using ApiSdk.Groups.Item.Calendar.Events.Item.Instances;
-using ApiSdk.Groups.Item.Calendar.Events.Item.MultiValueExtendedProperties;
-using ApiSdk.Groups.Item.Calendar.Events.Item.SingleValueExtendedProperties;
 using ApiSdk.Groups.Item.Calendar.Events.Item.SnoozeReminder;
 using ApiSdk.Groups.Item.Calendar.Events.Item.TentativelyAccept;
 using ApiSdk.Models.ODataErrors;
@@ -304,36 +302,12 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.event entity.
-        /// </summary>
-        public Command BuildMultiValueExtendedPropertiesNavCommand() {
-            var command = new Command("multi-value-extended-properties");
-            command.Description = "Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.event entity.";
-            var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            var nonExecCommands = new List<Command>();
-            nonExecCommands.Add(builder.BuildCountNavCommand());
-            execCommands.Add(builder.BuildCreateCommand());
-            execCommands.Add(builder.BuildListCommand());
-            var cmds = builder.BuildCommand();
-            execCommands.AddRange(cmds.Item1);
-            nonExecCommands.AddRange(cmds.Item2);
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
-        }
-        /// <summary>
-        /// Update the navigation property events in groups
+        /// Update an event object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/group-update-event?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property events in groups";
+            command.Description = "Update an event object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-update-event?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -389,31 +363,6 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.event entity.
-        /// </summary>
-        public Command BuildSingleValueExtendedPropertiesNavCommand() {
-            var command = new Command("single-value-extended-properties");
-            command.Description = "Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.event entity.";
-            var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            var nonExecCommands = new List<Command>();
-            nonExecCommands.Add(builder.BuildCountNavCommand());
-            execCommands.Add(builder.BuildCreateCommand());
-            execCommands.Add(builder.BuildListCommand());
-            var cmds = builder.BuildCommand();
-            execCommands.AddRange(cmds.Item1);
-            nonExecCommands.AddRange(cmds.Item2);
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
-            {
-                command.AddCommand(cmd);
-            }
             return command;
         }
         /// <summary>
@@ -504,7 +453,7 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property events in groups
+        /// Update an event object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

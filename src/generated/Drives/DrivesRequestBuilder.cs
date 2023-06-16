@@ -1,4 +1,3 @@
-using ApiSdk.Drives.Count;
 using ApiSdk.Drives.Item;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
@@ -37,24 +36,10 @@ namespace ApiSdk.Drives {
             executables.Add(builder.BuildPatchCommand());
             commands.Add(builder.BuildRecentNavCommand());
             commands.Add(builder.BuildRootNavCommand());
+            commands.Add(builder.BuildSearchWithQRbCommand());
             commands.Add(builder.BuildSharedWithMeNavCommand());
             commands.Add(builder.BuildSpecialNavCommand());
             return new(executables, commands);
-        }
-        /// <summary>
-        /// Provides operations to count the resources in the collection.
-        /// </summary>
-        public Command BuildCountNavCommand() {
-            var command = new Command("count");
-            command.Description = "Provides operations to count the resources in the collection.";
-            var builder = new CountRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            execCommands.Add(builder.BuildGetCommand());
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
         }
         /// <summary>
         /// Add new entity to drives
@@ -130,10 +115,6 @@ namespace ApiSdk.Drives {
             };
             filterOption.IsRequired = false;
             command.AddOption(filterOption);
-            var countOption = new Option<bool?>("--count", description: "Include count of items") {
-            };
-            countOption.IsRequired = false;
-            command.AddOption(countOption);
             var orderbyOption = new Option<string[]>("--orderby", description: "Order items by property values") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -169,7 +150,6 @@ namespace ApiSdk.Drives {
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
                 var search = invocationContext.ParseResult.GetValueForOption(searchOption);
                 var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
-                var count = invocationContext.ParseResult.GetValueForOption(countOption);
                 var orderby = invocationContext.ParseResult.GetValueForOption(orderbyOption);
                 var select = invocationContext.ParseResult.GetValueForOption(selectOption);
                 var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
@@ -187,7 +167,6 @@ namespace ApiSdk.Drives {
                     q.QueryParameters.Skip = skip;
                     if (!string.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
                     if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
-                    q.QueryParameters.Count = count;
                     q.QueryParameters.Orderby = orderby;
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -216,7 +195,7 @@ namespace ApiSdk.Drives {
         /// Instantiates a new DrivesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public DrivesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public DrivesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives{?%24top,%24skip,%24search,%24filter,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
         /// Get entities from drives
@@ -276,9 +255,6 @@ namespace ApiSdk.Drives {
         /// Get entities from drives
         /// </summary>
         public class DrivesRequestBuilderGetQueryParameters {
-            /// <summary>Include count of items</summary>
-            [QueryParameter("%24count")]
-            public bool? Count { get; set; }
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

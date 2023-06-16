@@ -51,11 +51,12 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to agreements for identityGovernance
+        /// Create a new agreement object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/termsofusecontainer-post-agreements?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to agreements for identityGovernance";
+            command.Description = "Create a new agreement object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/termsofusecontainer-post-agreements?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -102,11 +103,12 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements {
             return command;
         }
         /// <summary>
-        /// Represents a tenant&apos;s customizable terms of use agreement that&apos;s created and managed with Azure Active Directory (Azure AD).
+        /// Retrieve a list of agreement objects.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/termsofusecontainer-list-agreements?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Represents a tenant's customizable terms of use agreement that's created and managed with Azure Active Directory (Azure AD).";
+            command.Description = "Retrieve a list of agreement objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/termsofusecontainer-list-agreements?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -212,7 +214,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements {
         public AgreementsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/termsOfUse/agreements{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Represents a tenant&apos;s customizable terms of use agreement that&apos;s created and managed with Azure Active Directory (Azure AD).
+        /// Retrieve a list of agreement objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -238,7 +240,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to agreements for identityGovernance
+        /// Create a new agreement object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -266,7 +268,7 @@ namespace ApiSdk.IdentityGovernance.TermsOfUse.Agreements {
             return requestInfo;
         }
         /// <summary>
-        /// Represents a tenant&apos;s customizable terms of use agreement that&apos;s created and managed with Azure Active Directory (Azure AD).
+        /// Retrieve a list of agreement objects.
         /// </summary>
         public class AgreementsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -19,11 +19,12 @@ namespace ApiSdk.Education.Me.Assignments.Item.Categories.Ref {
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// When set, enables users to easily find assignments of a given type.  Read-only. Nullable.
+        /// List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationassignment-list-categories?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "When set, enables users to easily find assignments of a given type.  Read-only. Nullable.";
+            command.Description = "List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationassignment-list-categories?view=graph-rest-1.0";
             var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
@@ -115,11 +116,12 @@ namespace ApiSdk.Education.Me.Assignments.Item.Categories.Ref {
             return command;
         }
         /// <summary>
-        /// Create new navigation property ref to categories for education
+        /// Add one or more existing educationCategory objects to the specified  educationAssignment. Only teachers can perform this operation.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationassignment-post-categories?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Create new navigation property ref to categories for education";
+            command.Description = "Add one or more existing educationCategory objects to the specified  educationAssignment. Only teachers can perform this operation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationassignment-post-categories?view=graph-rest-1.0";
             var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
@@ -157,7 +159,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Categories.Ref {
         public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/me/assignments/{educationAssignment%2Did}/categories/$ref{?%24top,%24skip,%24search,%24filter,%24count,%24orderby}", pathParameters) {
         }
         /// <summary>
-        /// When set, enables users to easily find assignments of a given type.  Read-only. Nullable.
+        /// List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -183,7 +185,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Categories.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property ref to categories for education
+        /// Add one or more existing educationCategory objects to the specified  educationAssignment. Only teachers can perform this operation.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -210,7 +212,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Categories.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// When set, enables users to easily find assignments of a given type.  Read-only. Nullable.
+        /// List all the categories associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
         /// </summary>
         public class RefRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

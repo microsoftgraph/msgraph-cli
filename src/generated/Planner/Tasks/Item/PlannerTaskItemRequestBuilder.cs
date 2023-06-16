@@ -57,11 +57,12 @@ namespace ApiSdk.Planner.Tasks.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property tasks for planner
+        /// Delete a plannerTask object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/plannertask-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property tasks for planner";
+            command.Description = "Delete a plannerTask object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannertask-delete?view=graph-rest-1.0";
             var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "The unique identifier of plannerTask") {
             };
             plannerTaskIdOption.IsRequired = true;
@@ -107,11 +108,12 @@ namespace ApiSdk.Planner.Tasks.Item {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified tasks
+        /// Retrieve the properties and relationships of plannerTask object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/plannertask-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read-only. Nullable. Returns a collection of the specified tasks";
+            command.Description = "Retrieve the properties and relationships of plannerTask object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannertask-get?view=graph-rest-1.0";
             var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "The unique identifier of plannerTask") {
             };
             plannerTaskIdOption.IsRequired = true;
@@ -169,10 +171,11 @@ namespace ApiSdk.Planner.Tasks.Item {
         }
         /// <summary>
         /// Update the navigation property tasks in planner
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/plannertask-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property tasks in planner";
+            command.Description = "Update the navigation property tasks in planner\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannertask-update?view=graph-rest-1.0";
             var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "The unique identifier of plannerTask") {
             };
             plannerTaskIdOption.IsRequired = true;
@@ -255,7 +258,7 @@ namespace ApiSdk.Planner.Tasks.Item {
         public PlannerTaskItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/planner/tasks/{plannerTask%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property tasks for planner
+        /// Delete a plannerTask object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -280,7 +283,7 @@ namespace ApiSdk.Planner.Tasks.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified tasks
+        /// Retrieve the properties and relationships of plannerTask object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -334,7 +337,7 @@ namespace ApiSdk.Planner.Tasks.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Returns a collection of the specified tasks
+        /// Retrieve the properties and relationships of plannerTask object.
         /// </summary>
         public class PlannerTaskItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -15,7 +15,7 @@ namespace ApiSdk.Models {
 #else
         public List<string> ExcludeGroups { get; set; }
 #endif
-        /// <summary>The excludeGuestsOrExternalUsers property</summary>
+        /// <summary>Internal guests or external users excluded from the policy scope. Optionally populated.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ConditionalAccessGuestsOrExternalUsers? ExcludeGuestsOrExternalUsers { get; set; }
@@ -47,7 +47,7 @@ namespace ApiSdk.Models {
 #else
         public List<string> IncludeGroups { get; set; }
 #endif
-        /// <summary>The includeGuestsOrExternalUsers property</summary>
+        /// <summary>Internal guests or external users included in the policy scope. Optionally populated.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ConditionalAccessGuestsOrExternalUsers? IncludeGuestsOrExternalUsers { get; set; }

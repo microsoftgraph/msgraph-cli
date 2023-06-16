@@ -19,11 +19,12 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Members.Item {
     /// </summary>
     public class ConversationMemberItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property members for groups
+        /// Delete a conversationMember from a channel. This operation is allowed only for channels with a **membershipType** value of `private` or `shared`.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/channel-delete-members?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property members for groups";
+            command.Description = "Delete a conversationMember from a channel. This operation is allowed only for channels with a **membershipType** value of `private` or `shared`.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-delete-members?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -64,11 +65,12 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Members.Item {
             return command;
         }
         /// <summary>
-        /// A collection of membership records associated with the channel.
+        /// Get a conversationMember from a channel.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/channel-get-members?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "A collection of membership records associated with the channel.";
+            command.Description = "Get a conversationMember from a channel.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-get-members?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -137,11 +139,12 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Members.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property members in groups
+        /// Update the role of a conversationMember in a channel. This operation is allowed only for channels with a **membershipType** value of `private` or `shared`.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/channel-update-members?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property members in groups";
+            command.Description = "Update the role of a conversationMember in a channel. This operation is allowed only for channels with a **membershipType** value of `private` or `shared`.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-update-members?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -212,7 +215,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Members.Item {
         public ConversationMemberItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/channels/{channel%2Did}/members/{conversationMember%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property members for groups
+        /// Delete a conversationMember from a channel. This operation is allowed only for channels with a **membershipType** value of `private` or `shared`.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -237,7 +240,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Members.Item {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of membership records associated with the channel.
+        /// Get a conversationMember from a channel.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -263,7 +266,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Members.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property members in groups
+        /// Update the role of a conversationMember in a channel. This operation is allowed only for channels with a **membershipType** value of `private` or `shared`.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -291,7 +294,7 @@ namespace ApiSdk.Groups.Item.Team.Channels.Item.Members.Item {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of membership records associated with the channel.
+        /// Get a conversationMember from a channel.
         /// </summary>
         public class ConversationMemberItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

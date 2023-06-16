@@ -58,10 +58,8 @@ namespace ApiSdk.Reports.GetTeamsTeamActivityDetailWithDate {
         /// <summary>
         /// Instantiates a new GetTeamsTeamActivityDetailWithDateRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="date">Usage: date={date}</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetTeamsTeamActivityDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters, Date? date = default) : base("{+baseurl}/reports/getTeamsTeamActivityDetail(date={date})", pathParameters) {
-            if (date is not null) PathParameters.Add("date", date);
+        public GetTeamsTeamActivityDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getTeamsTeamActivityDetail(date={date})", pathParameters) {
         }
         /// <summary>
         /// Invoke function getTeamsTeamActivityDetail

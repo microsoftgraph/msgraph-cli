@@ -46,11 +46,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
             return command;
         }
         /// <summary>
-        /// The settings that control the behavior of Azure AD entitlement management.
+        /// Retrieve the properties of an entitlementManagementSettings object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/entitlementmanagementsettings-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The settings that control the behavior of Azure AD entitlement management.";
+            command.Description = "Retrieve the properties of an entitlementManagementSettings object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/entitlementmanagementsettings-get?view=graph-rest-1.0";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -101,11 +102,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
             return command;
         }
         /// <summary>
-        /// Update the navigation property settings in identityGovernance
+        /// Update an existing entitlementManagementSettings object to change one or more of its properties.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/entitlementmanagementsettings-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property settings in identityGovernance";
+            command.Description = "Update an existing entitlementManagementSettings object to change one or more of its properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/entitlementmanagementsettings-update?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -183,7 +185,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
             return requestInfo;
         }
         /// <summary>
-        /// The settings that control the behavior of Azure AD entitlement management.
+        /// Retrieve the properties of an entitlementManagementSettings object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -209,7 +211,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property settings in identityGovernance
+        /// Update an existing entitlementManagementSettings object to change one or more of its properties.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -237,7 +239,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Settings {
             return requestInfo;
         }
         /// <summary>
-        /// The settings that control the behavior of Azure AD entitlement management.
+        /// Retrieve the properties of an entitlementManagementSettings object.
         /// </summary>
         public class SettingsRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

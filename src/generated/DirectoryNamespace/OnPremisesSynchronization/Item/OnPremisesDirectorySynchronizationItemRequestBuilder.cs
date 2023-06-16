@@ -52,11 +52,12 @@ namespace ApiSdk.DirectoryNamespace.OnPremisesSynchronization.Item {
             return command;
         }
         /// <summary>
-        /// A container for on-premises directory synchronization functionalities that are available for the organization.
+        /// Read the properties and relationships of an onPremisesDirectorySynchronization object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/onpremisesdirectorysynchronization-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "A container for on-premises directory synchronization functionalities that are available for the organization.";
+            command.Description = "Read the properties and relationships of an onPremisesDirectorySynchronization object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/onpremisesdirectorysynchronization-get?view=graph-rest-1.0";
             var onPremisesDirectorySynchronizationIdOption = new Option<string>("--on-premises-directory-synchronization-id", description: "The unique identifier of onPremisesDirectorySynchronization") {
             };
             onPremisesDirectorySynchronizationIdOption.IsRequired = true;
@@ -113,11 +114,12 @@ namespace ApiSdk.DirectoryNamespace.OnPremisesSynchronization.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property onPremisesSynchronization in directory
+        /// Update the properties of an onPremisesDirectorySynchronization object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/onpremisesdirectorysynchronization-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property onPremisesSynchronization in directory";
+            command.Description = "Update the properties of an onPremisesDirectorySynchronization object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/onpremisesdirectorysynchronization-update?view=graph-rest-1.0";
             var onPremisesDirectorySynchronizationIdOption = new Option<string>("--on-premises-directory-synchronization-id", description: "The unique identifier of onPremisesDirectorySynchronization") {
             };
             onPremisesDirectorySynchronizationIdOption.IsRequired = true;
@@ -201,7 +203,7 @@ namespace ApiSdk.DirectoryNamespace.OnPremisesSynchronization.Item {
             return requestInfo;
         }
         /// <summary>
-        /// A container for on-premises directory synchronization functionalities that are available for the organization.
+        /// Read the properties and relationships of an onPremisesDirectorySynchronization object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -227,7 +229,7 @@ namespace ApiSdk.DirectoryNamespace.OnPremisesSynchronization.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property onPremisesSynchronization in directory
+        /// Update the properties of an onPremisesDirectorySynchronization object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -255,7 +257,7 @@ namespace ApiSdk.DirectoryNamespace.OnPremisesSynchronization.Item {
             return requestInfo;
         }
         /// <summary>
-        /// A container for on-premises directory synchronization functionalities that are available for the organization.
+        /// Read the properties and relationships of an onPremisesDirectorySynchronization object.
         /// </summary>
         public class OnPremisesDirectorySynchronizationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

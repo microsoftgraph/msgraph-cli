@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
         public string Value { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new settingValue and sets the default values.
+        /// Instantiates a new SettingValue and sets the default values.
         /// </summary>
         public SettingValue() {
             AdditionalData = new Dictionary<string, object>();

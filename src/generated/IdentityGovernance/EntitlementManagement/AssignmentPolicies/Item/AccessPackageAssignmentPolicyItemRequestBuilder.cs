@@ -52,11 +52,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies.Ite
             return command;
         }
         /// <summary>
-        /// Delete navigation property assignmentPolicies for identityGovernance
+        /// In Azure AD entitlement management, delete an accessPackageAssignmentPolicy.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/accesspackageassignmentpolicy-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property assignmentPolicies for identityGovernance";
+            command.Description = "In Azure AD entitlement management, delete an accessPackageAssignmentPolicy.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/accesspackageassignmentpolicy-delete?view=graph-rest-1.0";
             var accessPackageAssignmentPolicyIdOption = new Option<string>("--access-package-assignment-policy-id", description: "The unique identifier of accessPackageAssignmentPolicy") {
             };
             accessPackageAssignmentPolicyIdOption.IsRequired = true;
@@ -85,11 +86,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies.Ite
             return command;
         }
         /// <summary>
-        /// Access package assignment policies govern which subjects can request or be assigned an access package via an access package assignment.
+        /// In Azure AD entitlement management, retrieve the properties and relationships of an accessPackageAssignmentPolicy object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/accesspackageassignmentpolicy-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Access package assignment policies govern which subjects can request or be assigned an access package via an access package assignment.";
+            command.Description = "In Azure AD entitlement management, retrieve the properties and relationships of an accessPackageAssignmentPolicy object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/accesspackageassignmentpolicy-get?view=graph-rest-1.0";
             var accessPackageAssignmentPolicyIdOption = new Option<string>("--access-package-assignment-policy-id", description: "The unique identifier of accessPackageAssignmentPolicy") {
             };
             accessPackageAssignmentPolicyIdOption.IsRequired = true;
@@ -234,7 +236,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies.Ite
         public AccessPackageAssignmentPolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/assignmentPolicies/{accessPackageAssignmentPolicy%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property assignmentPolicies for identityGovernance
+        /// In Azure AD entitlement management, delete an accessPackageAssignmentPolicy.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -259,7 +261,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Access package assignment policies govern which subjects can request or be assigned an access package via an access package assignment.
+        /// In Azure AD entitlement management, retrieve the properties and relationships of an accessPackageAssignmentPolicy object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -313,7 +315,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentPolicies.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Access package assignment policies govern which subjects can request or be assigned an access package via an access package assignment.
+        /// In Azure AD entitlement management, retrieve the properties and relationships of an accessPackageAssignmentPolicy object.
         /// </summary>
         public class AccessPackageAssignmentPolicyItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

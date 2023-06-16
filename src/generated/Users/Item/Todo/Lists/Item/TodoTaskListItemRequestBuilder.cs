@@ -21,11 +21,12 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item {
     /// </summary>
     public class TodoTaskListItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property lists for users
+        /// Deletes a todoTaskList object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/todotasklist-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property lists for users";
+            command.Description = "Deletes a todoTaskList object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/todotasklist-delete?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -85,11 +86,12 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item {
             return command;
         }
         /// <summary>
-        /// The task lists in the users mailbox.
+        /// Read the properties and relationships of a todoTaskList object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/todotasklist-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The task lists in the users mailbox.";
+            command.Description = "Read the properties and relationships of a todoTaskList object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/todotasklist-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -152,11 +154,12 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property lists in users
+        /// Update the properties of a todoTaskList object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/todotasklist-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property lists in users";
+            command.Description = "Update the properties of a todoTaskList object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/todotasklist-update?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -247,7 +250,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item {
         public TodoTaskListItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/todo/lists/{todoTaskList%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property lists for users
+        /// Deletes a todoTaskList object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -272,7 +275,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The task lists in the users mailbox.
+        /// Read the properties and relationships of a todoTaskList object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -298,7 +301,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property lists in users
+        /// Update the properties of a todoTaskList object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -326,7 +329,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The task lists in the users mailbox.
+        /// Read the properties and relationships of a todoTaskList object.
         /// </summary>
         public class TodoTaskListItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

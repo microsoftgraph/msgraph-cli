@@ -67,10 +67,8 @@ namespace ApiSdk.DeviceManagement.VerifyWindowsEnrollmentAutoDiscoveryWithDomain
         /// <summary>
         /// Instantiates a new VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="domainName">Usage: domainName=&apos;{domainName}&apos;</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRequestBuilder(Dictionary<string, object> pathParameters, string domainName = "") : base("{+baseurl}/deviceManagement/verifyWindowsEnrollmentAutoDiscovery(domainName='{domainName}')", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(domainName)) PathParameters.Add("domainName", domainName);
+        public VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/verifyWindowsEnrollmentAutoDiscovery(domainName='{domainName}')", pathParameters) {
         }
         /// <summary>
         /// Invoke function verifyWindowsEnrollmentAutoDiscovery

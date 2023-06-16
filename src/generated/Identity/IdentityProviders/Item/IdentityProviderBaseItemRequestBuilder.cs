@@ -19,11 +19,12 @@ namespace ApiSdk.Identity.IdentityProviders.Item {
     /// </summary>
     public class IdentityProviderBaseItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property identityProviders for identity
+        /// Delete an identity provider resource that is of the type specified by the **id** in the request. Among the types of providers derived from identityProviderBase, you can currently delete a socialIdentityProvider resource in Azure AD. In Azure AD B2C, this operation can currently delete a socialIdentityProvider, or an appleManagedIdentityProvider resource.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/identityproviderbase-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property identityProviders for identity";
+            command.Description = "Delete an identity provider resource that is of the type specified by the **id** in the request. Among the types of providers derived from identityProviderBase, you can currently delete a socialIdentityProvider resource in Azure AD. In Azure AD B2C, this operation can currently delete a socialIdentityProvider, or an appleManagedIdentityProvider resource.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/identityproviderbase-delete?view=graph-rest-1.0";
             var identityProviderBaseIdOption = new Option<string>("--identity-provider-base-id", description: "The unique identifier of identityProviderBase") {
             };
             identityProviderBaseIdOption.IsRequired = true;
@@ -52,11 +53,12 @@ namespace ApiSdk.Identity.IdentityProviders.Item {
             return command;
         }
         /// <summary>
-        /// Get identityProviders from identity
+        /// Get the properties and relationships of the specified identity provider configured in the tenant. Among the types of providers derived from identityProviderBase, you can currently get a socialIdentityProvider or a builtinIdentityProvider resource in Azure AD. In Azure AD B2C, this operation can currently get a socialIdentityProvider, or an appleManagedIdentityProvider resource.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/identityproviderbase-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get identityProviders from identity";
+            command.Description = "Get the properties and relationships of the specified identity provider configured in the tenant. Among the types of providers derived from identityProviderBase, you can currently get a socialIdentityProvider or a builtinIdentityProvider resource in Azure AD. In Azure AD B2C, this operation can currently get a socialIdentityProvider, or an appleManagedIdentityProvider resource.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/identityproviderbase-get?view=graph-rest-1.0";
             var identityProviderBaseIdOption = new Option<string>("--identity-provider-base-id", description: "The unique identifier of identityProviderBase") {
             };
             identityProviderBaseIdOption.IsRequired = true;
@@ -113,11 +115,12 @@ namespace ApiSdk.Identity.IdentityProviders.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property identityProviders in identity
+        /// Update the properties of the specified identity provider configured in the tenant. Among the types of providers derived from identityProviderBase, you can currently update a socialIdentityProvider resource in Azure AD. In Azure AD B2C, this operation can currently update a socialIdentityProvider, or an appleManagedIdentityProvider resource.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/identityproviderbase-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property identityProviders in identity";
+            command.Description = "Update the properties of the specified identity provider configured in the tenant. Among the types of providers derived from identityProviderBase, you can currently update a socialIdentityProvider resource in Azure AD. In Azure AD B2C, this operation can currently update a socialIdentityProvider, or an appleManagedIdentityProvider resource.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/identityproviderbase-update?view=graph-rest-1.0";
             var identityProviderBaseIdOption = new Option<string>("--identity-provider-base-id", description: "The unique identifier of identityProviderBase") {
             };
             identityProviderBaseIdOption.IsRequired = true;
@@ -176,7 +179,7 @@ namespace ApiSdk.Identity.IdentityProviders.Item {
         public IdentityProviderBaseItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/identityProviders/{identityProviderBase%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property identityProviders for identity
+        /// Delete an identity provider resource that is of the type specified by the **id** in the request. Among the types of providers derived from identityProviderBase, you can currently delete a socialIdentityProvider resource in Azure AD. In Azure AD B2C, this operation can currently delete a socialIdentityProvider, or an appleManagedIdentityProvider resource.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -201,7 +204,7 @@ namespace ApiSdk.Identity.IdentityProviders.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get identityProviders from identity
+        /// Get the properties and relationships of the specified identity provider configured in the tenant. Among the types of providers derived from identityProviderBase, you can currently get a socialIdentityProvider or a builtinIdentityProvider resource in Azure AD. In Azure AD B2C, this operation can currently get a socialIdentityProvider, or an appleManagedIdentityProvider resource.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -227,7 +230,7 @@ namespace ApiSdk.Identity.IdentityProviders.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property identityProviders in identity
+        /// Update the properties of the specified identity provider configured in the tenant. Among the types of providers derived from identityProviderBase, you can currently update a socialIdentityProvider resource in Azure AD. In Azure AD B2C, this operation can currently update a socialIdentityProvider, or an appleManagedIdentityProvider resource.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -255,7 +258,7 @@ namespace ApiSdk.Identity.IdentityProviders.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get identityProviders from identity
+        /// Get the properties and relationships of the specified identity provider configured in the tenant. Among the types of providers derived from identityProviderBase, you can currently get a socialIdentityProvider or a builtinIdentityProvider resource in Azure AD. In Azure AD B2C, this operation can currently get a socialIdentityProvider, or an appleManagedIdentityProvider resource.
         /// </summary>
         public class IdentityProviderBaseItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

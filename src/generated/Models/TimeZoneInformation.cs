@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new timeZoneInformation and sets the default values.
+        /// Instantiates a new TimeZoneInformation and sets the default values.
         /// </summary>
         public TimeZoneInformation() {
             AdditionalData = new Dictionary<string, object>();

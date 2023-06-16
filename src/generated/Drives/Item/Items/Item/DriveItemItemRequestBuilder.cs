@@ -208,11 +208,12 @@ namespace ApiSdk.Drives.Item.Items.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property items for drives
+        /// Delete a DriveItem by using its ID or path.Note that deleting items using this method will move the items to the recycle bin instead of permanently deleting the item.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/driveitem-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property items for drives";
+            command.Description = "Delete a DriveItem by using its ID or path.Note that deleting items using this method will move the items to the recycle bin instead of permanently deleting the item.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitem-delete?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -262,6 +263,21 @@ namespace ApiSdk.Drives.Item.Items.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the delta method.
+        /// </summary>
+        public Command BuildDeltaWithTokenRbCommand() {
+            var command = new Command("delta-with-token");
+            command.Description = "Provides operations to call the delta method.";
+            var builder = new DeltaWithTokenRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the follow method.
         /// </summary>
         public Command BuildFollowNavCommand() {
@@ -283,6 +299,21 @@ namespace ApiSdk.Drives.Item.Items.Item {
             var command = new Command("get-activities-by-interval");
             command.Description = "Provides operations to call the getActivitiesByInterval method.";
             var builder = new GetActivitiesByIntervalRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getActivitiesByInterval method.
+        /// </summary>
+        public Command BuildGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRbCommand() {
+            var command = new Command("get-activities-by-interval-with-start-date-time-with-end-date-time-with-interval");
+            command.Description = "Provides operations to call the getActivitiesByInterval method.";
+            var builder = new GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -410,11 +441,12 @@ namespace ApiSdk.Drives.Item.Items.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property items in drives
+        /// To move a DriveItem to a new parent item, your app requests to update the **parentReference** of the DriveItem to move. This is a special case of the Update method.Your app can combine moving an item to a new container and updating other properties of the item into a single request. Items cannot be moved between Drives using this request.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/driveitem-move?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property items in drives";
+            command.Description = "To move a DriveItem to a new parent item, your app requests to update the **parentReference** of the DriveItem to move. This is a special case of the Update method.Your app can combine moving an item to a new container and updating other properties of the item into a single request. Items cannot be moved between Drives using this request.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitem-move?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -521,6 +553,21 @@ namespace ApiSdk.Drives.Item.Items.Item {
             var builder = new RestoreRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the search method.
+        /// </summary>
+        public Command BuildSearchWithQRbCommand() {
+            var command = new Command("search-with-q");
+            command.Description = "Provides operations to call the search method.";
+            var builder = new SearchWithQRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
@@ -652,6 +699,8 @@ namespace ApiSdk.Drives.Item.Items.Item {
             nonExecCommands.Add(builder.BuildOperationsNavCommand());
             execCommands.Add(builder.BuildPatchCommand());
             nonExecCommands.Add(builder.BuildRefreshSessionNavCommand());
+            nonExecCommands.Add(builder.BuildSessionInfoResourceWithKeyRbCommand());
+            nonExecCommands.Add(builder.BuildTableRowOperationResultWithKeyRbCommand());
             nonExecCommands.Add(builder.BuildTablesNavCommand());
             nonExecCommands.Add(builder.BuildWorksheetsNavCommand());
             foreach (var cmd in execCommands)
@@ -671,7 +720,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
         public DriveItemItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property items for drives
+        /// Delete a DriveItem by using its ID or path.Note that deleting items using this method will move the items to the recycle bin instead of permanently deleting the item.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -722,7 +771,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property items in drives
+        /// To move a DriveItem to a new parent item, your app requests to update the **parentReference** of the DriveItem to move. This is a special case of the Update method.Your app can combine moving an item to a new container and updating other properties of the item into a single request. Items cannot be moved between Drives using this request.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

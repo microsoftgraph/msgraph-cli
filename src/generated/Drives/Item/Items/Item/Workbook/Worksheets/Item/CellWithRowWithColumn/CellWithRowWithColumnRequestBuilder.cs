@@ -92,12 +92,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.CellWithRowWith
         /// <summary>
         /// Instantiates a new CellWithRowWithColumnRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="column">Usage: column={column}</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="row">Usage: row={row}</param>
-        public CellWithRowWithColumnRequestBuilder(Dictionary<string, object> pathParameters, int? column = default, int? row = default) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/cell(row={row},column={column})", pathParameters) {
-            if (column is not null) PathParameters.Add("column", column);
-            if (row is not null) PathParameters.Add("row", row);
+        public CellWithRowWithColumnRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/cell(row={row},column={column})", pathParameters) {
         }
         /// <summary>
         /// Invoke function cell

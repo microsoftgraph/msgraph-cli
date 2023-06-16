@@ -39,12 +39,10 @@ namespace ApiSdk.Users.Item.Messages {
             commands.Add(builder.BuildForwardNavCommand());
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildMoveNavCommand());
-            commands.Add(builder.BuildMultiValueExtendedPropertiesNavCommand());
             executables.Add(builder.BuildPatchCommand());
             commands.Add(builder.BuildReplyAllNavCommand());
             commands.Add(builder.BuildReplyNavCommand());
             commands.Add(builder.BuildSendNavCommand());
-            commands.Add(builder.BuildSingleValueExtendedPropertiesNavCommand());
             return new(executables, commands);
         }
         /// <summary>
@@ -63,11 +61,12 @@ namespace ApiSdk.Users.Item.Messages {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to messages for users
+        /// Create an open extension (openTypeExtension object) and add custom properties in a new or existing instance of a resource. You can create an open extension in a resource instance and store custom data to it all in the same operation, except for specific resources. See known limitations of open extensions for more information. The table in the Permissions section lists the resources that support open extensions.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/opentypeextension-post-opentypeextension?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to messages for users";
+            command.Description = "Create an open extension (openTypeExtension object) and add custom properties in a new or existing instance of a resource. You can create an open extension in a resource instance and store custom data to it all in the same operation, except for specific resources. See known limitations of open extensions for more information. The table in the Permissions section lists the resources that support open extensions.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/opentypeextension-post-opentypeextension?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -136,10 +135,11 @@ namespace ApiSdk.Users.Item.Messages {
         }
         /// <summary>
         /// The messages in a mailbox or folder. Read-only. Nullable.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-list-messages?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The messages in a mailbox or folder. Read-only. Nullable.";
+            command.Description = "The messages in a mailbox or folder. Read-only. Nullable.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-messages?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -283,7 +283,7 @@ namespace ApiSdk.Users.Item.Messages {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to messages for users
+        /// Create an open extension (openTypeExtension object) and add custom properties in a new or existing instance of a resource. You can create an open extension in a resource instance and store custom data to it all in the same operation, except for specific resources. See known limitations of open extensions for more information. The table in the Permissions section lists the resources that support open extensions.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

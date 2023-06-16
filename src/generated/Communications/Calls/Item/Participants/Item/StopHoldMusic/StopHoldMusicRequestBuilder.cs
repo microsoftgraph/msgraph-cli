@@ -19,11 +19,12 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StopHoldMusic {
     /// </summary>
     public class StopHoldMusicRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action stopHoldMusic
+        /// Reincorporate a participant previously put on hold to the call.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/participant-stopholdmusic?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action stopHoldMusic";
+            command.Description = "Reincorporate a participant previously put on hold to the call.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/participant-stopholdmusic?view=graph-rest-1.0";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -88,7 +89,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StopHoldMusic {
         public StopHoldMusicRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/participants/{participant%2Did}/stopHoldMusic", pathParameters) {
         }
         /// <summary>
-        /// Invoke action stopHoldMusic
+        /// Reincorporate a participant previously put on hold to the call.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

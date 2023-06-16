@@ -15,6 +15,7 @@ using ApiSdk.Applications.Item.RemoveKey;
 using ApiSdk.Applications.Item.RemovePassword;
 using ApiSdk.Applications.Item.Restore;
 using ApiSdk.Applications.Item.SetVerifiedPublisher;
+using ApiSdk.Applications.Item.Synchronization;
 using ApiSdk.Applications.Item.TokenIssuancePolicies;
 using ApiSdk.Applications.Item.TokenLifetimePolicies;
 using ApiSdk.Applications.Item.UnsetVerifiedPublisher;
@@ -496,6 +497,32 @@ namespace ApiSdk.Applications.Item {
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the synchronization property of the microsoft.graph.application entity.
+        /// </summary>
+        public Command BuildSynchronizationNavCommand() {
+            var command = new Command("synchronization");
+            command.Description = "Provides operations to manage the synchronization property of the microsoft.graph.application entity.";
+            var builder = new SynchronizationRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAcquireAccessTokenNavCommand());
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildJobsNavCommand());
+            execCommands.Add(builder.BuildPutCommand());
+            nonExecCommands.Add(builder.BuildSecretsNavCommand());
+            nonExecCommands.Add(builder.BuildTemplatesNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }

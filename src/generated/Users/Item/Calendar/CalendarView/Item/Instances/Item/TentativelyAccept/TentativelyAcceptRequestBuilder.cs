@@ -18,11 +18,12 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances.Item.Tentativel
     /// </summary>
     public class TentativelyAcceptRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action tentativelyAccept
+        /// Tentatively accept the specified event in a user calendar. If the event allows proposals for new times, on responding tentative to the event, an invitee can choose to suggest an alternative time by including the **proposedNewTime** parameter. For more information on how to propose a time, and how to receive and accept a new time proposal, see Propose new meeting times.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/event-tentativelyaccept?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action tentativelyAccept";
+            command.Description = "Tentatively accept the specified event in a user calendar. If the event allows proposals for new times, on responding tentative to the event, an invitee can choose to suggest an alternative time by including the **proposedNewTime** parameter. For more information on how to propose a time, and how to receive and accept a new time proposal, see Propose new meeting times.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/event-tentativelyaccept?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -72,7 +73,7 @@ namespace ApiSdk.Users.Item.Calendar.CalendarView.Item.Instances.Item.Tentativel
         public TentativelyAcceptRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendar/calendarView/{event%2Did}/instances/{event%2Did1}/tentativelyAccept", pathParameters) {
         }
         /// <summary>
-        /// Invoke action tentativelyAccept
+        /// Tentatively accept the specified event in a user calendar. If the event allows proposals for new times, on responding tentative to the event, an invitee can choose to suggest an alternative time by including the **proposedNewTime** parameter. For more information on how to propose a time, and how to receive and accept a new time proposal, see Propose new meeting times.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -58,10 +58,8 @@ namespace ApiSdk.Reports.GetSharePointSiteUsageDetailWithDate {
         /// <summary>
         /// Instantiates a new GetSharePointSiteUsageDetailWithDateRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="date">Usage: date={date}</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetSharePointSiteUsageDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters, Date? date = default) : base("{+baseurl}/reports/getSharePointSiteUsageDetail(date={date})", pathParameters) {
-            if (date is not null) PathParameters.Add("date", date);
+        public GetSharePointSiteUsageDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getSharePointSiteUsageDetail(date={date})", pathParameters) {
         }
         /// <summary>
         /// Invoke function getSharePointSiteUsageDetail

@@ -115,12 +115,8 @@ namespace ApiSdk.Communications.CallRecords.MicrosoftGraphCallRecordsGetDirectRo
         /// <summary>
         /// Instantiates a new MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTimeRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="fromDateTime">Usage: fromDateTime={fromDateTime}</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="toDateTime">Usage: toDateTime={toDateTime}</param>
-        public MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTimeRequestBuilder(Dictionary<string, object> pathParameters, DateTimeOffset? fromDateTime = default, DateTimeOffset? toDateTime = default) : base("{+baseurl}/communications/callRecords/microsoft.graph.callRecords.getDirectRoutingCalls(fromDateTime={fromDateTime},toDateTime={toDateTime}){?%24top,%24skip,%24search,%24filter,%24count}", pathParameters) {
-            if (fromDateTime is not null) PathParameters.Add("fromDateTime", fromDateTime);
-            if (toDateTime is not null) PathParameters.Add("toDateTime", toDateTime);
+        public MicrosoftGraphCallRecordsGetDirectRoutingCallsWithFromDateTimeWithToDateTimeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/callRecords/microsoft.graph.callRecords.getDirectRoutingCalls(fromDateTime={fromDateTime},toDateTime={toDateTime}){?%24top,%24skip,%24search,%24filter,%24count}", pathParameters) {
         }
         /// <summary>
         /// Invoke function getDirectRoutingCalls

@@ -18,11 +18,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
     /// </summary>
     public class ClearRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action clear
+        /// Clear the line format of a chart element.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chartlineformat-clear?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action clear";
+            command.Description = "Clear the line format of a chart element.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chartlineformat-clear?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -68,7 +69,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Axe
         public ClearRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/{workbookChart%2Did}/axes/valueAxis/majorGridlines/format/line/clear", pathParameters) {
         }
         /// <summary>
-        /// Invoke action clear
+        /// Clear the line format of a chart element.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

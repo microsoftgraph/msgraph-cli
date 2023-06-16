@@ -19,11 +19,12 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.SharedCookies.It
     /// </summary>
     public class BrowserSharedCookieItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property sharedCookies for admin
+        /// Delete a browserSharedCookie from a browserSiteList.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/browsersitelist-delete-sharedcookies?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property sharedCookies for admin";
+            command.Description = "Delete a browserSharedCookie from a browserSiteList.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/browsersitelist-delete-sharedcookies?view=graph-rest-1.0";
             var browserSiteListIdOption = new Option<string>("--browser-site-list-id", description: "The unique identifier of browserSiteList") {
             };
             browserSiteListIdOption.IsRequired = true;
@@ -58,11 +59,12 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.SharedCookies.It
             return command;
         }
         /// <summary>
-        /// A collection of shared cookies defined for the site list.
+        /// Get a session cookie that can be shared between a Microsoft Edge process and an Internet Explorer process, while using Internet Explorer mode.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/browsersharedcookie-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "A collection of shared cookies defined for the site list.";
+            command.Description = "Get a session cookie that can be shared between a Microsoft Edge process and an Internet Explorer process, while using Internet Explorer mode.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/browsersharedcookie-get?view=graph-rest-1.0";
             var browserSiteListIdOption = new Option<string>("--browser-site-list-id", description: "The unique identifier of browserSiteList") {
             };
             browserSiteListIdOption.IsRequired = true;
@@ -125,11 +127,12 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.SharedCookies.It
             return command;
         }
         /// <summary>
-        /// Update the navigation property sharedCookies in admin
+        /// Update the properties of a browserSharedCookie object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/browsersharedcookie-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property sharedCookies in admin";
+            command.Description = "Update the properties of a browserSharedCookie object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/browsersharedcookie-update?view=graph-rest-1.0";
             var browserSiteListIdOption = new Option<string>("--browser-site-list-id", description: "The unique identifier of browserSiteList") {
             };
             browserSiteListIdOption.IsRequired = true;
@@ -194,7 +197,7 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.SharedCookies.It
         public BrowserSharedCookieItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/edge/internetExplorerMode/siteLists/{browserSiteList%2Did}/sharedCookies/{browserSharedCookie%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property sharedCookies for admin
+        /// Delete a browserSharedCookie from a browserSiteList.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -219,7 +222,7 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.SharedCookies.It
             return requestInfo;
         }
         /// <summary>
-        /// A collection of shared cookies defined for the site list.
+        /// Get a session cookie that can be shared between a Microsoft Edge process and an Internet Explorer process, while using Internet Explorer mode.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -245,7 +248,7 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.SharedCookies.It
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property sharedCookies in admin
+        /// Update the properties of a browserSharedCookie object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -273,7 +276,7 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.SharedCookies.It
             return requestInfo;
         }
         /// <summary>
-        /// A collection of shared cookies defined for the site list.
+        /// Get a session cookie that can be shared between a Microsoft Edge process and an Internet Explorer process, while using Internet Explorer mode.
         /// </summary>
         public class BrowserSharedCookieItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

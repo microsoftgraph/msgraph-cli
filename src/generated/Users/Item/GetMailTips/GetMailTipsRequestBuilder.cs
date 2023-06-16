@@ -18,11 +18,12 @@ namespace ApiSdk.Users.Item.GetMailTips {
     /// </summary>
     public class GetMailTipsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action getMailTips
+        /// Get the MailTips of one or more recipients as available to the signed-in user. Note that by making a `POST` call to the `getMailTips` action, you can request specific types of MailTips to be returned for more than one recipient at one time. The requested MailTips are returned in a mailTips collection.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-getmailtips?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action getMailTips";
+            command.Description = "Get the MailTips of one or more recipients as available to the signed-in user. Note that by making a `POST` call to the `getMailTips` action, you can request specific types of MailTips to be returned for more than one recipient at one time. The requested MailTips are returned in a mailTips collection.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-getmailtips?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -93,7 +94,7 @@ namespace ApiSdk.Users.Item.GetMailTips {
         public GetMailTipsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/getMailTips", pathParameters) {
         }
         /// <summary>
-        /// Invoke action getMailTips
+        /// Get the MailTips of one or more recipients as available to the signed-in user. Note that by making a `POST` call to the `getMailTips` action, you can request specific types of MailTips to be returned for more than one recipient at one time. The requested MailTips are returned in a mailTips collection.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

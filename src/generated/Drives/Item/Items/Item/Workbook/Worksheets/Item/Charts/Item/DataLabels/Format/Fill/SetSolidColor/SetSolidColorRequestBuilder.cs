@@ -18,11 +18,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Dat
     /// </summary>
     public class SetSolidColorRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action setSolidColor
+        /// Sets the fill formatting of a chart element to a uniform color.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chartfill-setsolidcolor?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action setSolidColor";
+            command.Description = "Sets the fill formatting of a chart element to a uniform color.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chartfill-setsolidcolor?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -78,7 +79,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Dat
         public SetSolidColorRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/{workbookChart%2Did}/dataLabels/format/fill/setSolidColor", pathParameters) {
         }
         /// <summary>
-        /// Invoke action setSolidColor
+        /// Sets the fill formatting of a chart element to a uniform color.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

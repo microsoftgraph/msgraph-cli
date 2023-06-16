@@ -45,11 +45,12 @@ namespace ApiSdk.Education.Me.TaughtClasses {
             return command;
         }
         /// <summary>
-        /// Classes for which the user is a teacher.
+        /// Get the educationClass resources owned by an educationUser.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationuser-list-taughtclasses?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Classes for which the user is a teacher.";
+            command.Description = "Get the educationClass resources owned by an educationUser.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationuser-list-taughtclasses?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -155,7 +156,7 @@ namespace ApiSdk.Education.Me.TaughtClasses {
         public TaughtClassesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/me/taughtClasses{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Classes for which the user is a teacher.
+        /// Get the educationClass resources owned by an educationUser.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -181,7 +182,7 @@ namespace ApiSdk.Education.Me.TaughtClasses {
             return requestInfo;
         }
         /// <summary>
-        /// Classes for which the user is a teacher.
+        /// Get the educationClass resources owned by an educationUser.
         /// </summary>
         public class TaughtClassesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

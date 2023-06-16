@@ -363,6 +363,21 @@ namespace ApiSdk.Drives.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the search method.
+        /// </summary>
+        public Command BuildSearchWithQRbCommand() {
+            var command = new Command("search-with-q");
+            command.Description = "Provides operations to call the search method.";
+            var builder = new SearchWithQRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the sharedWithMe method.
         /// </summary>
         public Command BuildSharedWithMeNavCommand() {

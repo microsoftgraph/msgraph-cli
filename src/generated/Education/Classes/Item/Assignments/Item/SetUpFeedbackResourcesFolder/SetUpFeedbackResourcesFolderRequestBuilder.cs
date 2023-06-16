@@ -19,11 +19,12 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.SetUpFeedbackResourcesF
     /// </summary>
     public class SetUpFeedbackResourcesFolderRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action setUpFeedbackResourcesFolder
+        /// Create a SharePoint folder to upload feedback files for a given educationSubmission. Only teachers can perform this operation. The teacher determines the resources to upload in the feedback resources folder of a submission.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationassignment-setupfeedbackresourcesfolder?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action setUpFeedbackResourcesFolder";
+            command.Description = "Create a SharePoint folder to upload feedback files for a given educationSubmission. Only teachers can perform this operation. The teacher determines the resources to upload in the feedback resources folder of a submission.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationassignment-setupfeedbackresourcesfolder?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -78,7 +79,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.SetUpFeedbackResourcesF
         public SetUpFeedbackResourcesFolderRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignments/{educationAssignment%2Did}/setUpFeedbackResourcesFolder", pathParameters) {
         }
         /// <summary>
-        /// Invoke action setUpFeedbackResourcesFolder
+        /// Create a SharePoint folder to upload feedback files for a given educationSubmission. Only teachers can perform this operation. The teacher determines the resources to upload in the feedback resources folder of a submission.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

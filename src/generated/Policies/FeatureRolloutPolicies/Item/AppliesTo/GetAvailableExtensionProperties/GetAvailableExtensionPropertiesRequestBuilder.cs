@@ -18,11 +18,12 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.GetAvailableExte
     /// </summary>
     public class GetAvailableExtensionPropertiesRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action getAvailableExtensionProperties
+        /// Return all directory extension definitions that have been registered in a directory, including through multi-tenant apps. The following entities support extension properties:+ user+ group+ administrativeUnit+ application+ device+ organization
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/directoryobject-getavailableextensionproperties?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action getAvailableExtensionProperties";
+            command.Description = "Return all directory extension definitions that have been registered in a directory, including through multi-tenant apps. The following entities support extension properties:+ user+ group+ administrativeUnit+ application+ device+ organization\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directoryobject-getavailableextensionproperties?view=graph-rest-1.0";
             var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "The unique identifier of featureRolloutPolicy") {
             };
             featureRolloutPolicyIdOption.IsRequired = true;
@@ -93,7 +94,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.GetAvailableExte
         public GetAvailableExtensionPropertiesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/featureRolloutPolicies/{featureRolloutPolicy%2Did}/appliesTo/getAvailableExtensionProperties", pathParameters) {
         }
         /// <summary>
-        /// Invoke action getAvailableExtensionProperties
+        /// Return all directory extension definitions that have been registered in a directory, including through multi-tenant apps. The following entities support extension properties:+ user+ group+ administrativeUnit+ application+ device+ organization
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -18,11 +18,12 @@ namespace ApiSdk.Shares.Item.Permission.Grant {
     /// </summary>
     public class GrantRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action grant
+        /// Grant users access to a link represented by a [permission][].
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/permission-grant?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action grant";
+            command.Description = "Grant users access to a link represented by a [permission][].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/permission-grant?view=graph-rest-1.0";
             var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
@@ -93,7 +94,7 @@ namespace ApiSdk.Shares.Item.Permission.Grant {
         public GrantRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/permission/grant", pathParameters) {
         }
         /// <summary>
-        /// Invoke action grant
+        /// Grant users access to a link represented by a [permission][].
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

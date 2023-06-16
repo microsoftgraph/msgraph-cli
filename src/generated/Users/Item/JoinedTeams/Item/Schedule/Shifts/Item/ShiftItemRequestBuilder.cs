@@ -19,11 +19,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.Shifts.Item {
     /// </summary>
     public class ShiftItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property shifts for users
+        /// Delete a shift from the schedule.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/shift-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property shifts for users";
+            command.Description = "Delete a shift from the schedule.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/shift-delete?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -64,11 +65,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.Shifts.Item {
             return command;
         }
         /// <summary>
-        /// The shifts in the schedule.
+        /// Retrieve the properties and relationships of a shift object by ID.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/shift-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The shifts in the schedule.";
+            command.Description = "Retrieve the properties and relationships of a shift object by ID.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/shift-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -130,11 +132,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.Shifts.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property shifts in users
+        /// Replace an existing shift. If the specified shift doesn&apos;t exist, this method returns `404 Not found`. The duration of a shift cannot be less than 1 minute or longer than 24 hours.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/shift-put?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property shifts in users";
+            command.Description = "Replace an existing shift. If the specified shift doesn't exist, this method returns `404 Not found`. The duration of a shift cannot be less than 1 minute or longer than 24 hours.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/shift-put?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -205,7 +208,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.Shifts.Item {
         public ShiftItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/schedule/shifts/{shift%2Did}{?%24select}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property shifts for users
+        /// Delete a shift from the schedule.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -230,7 +233,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.Shifts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The shifts in the schedule.
+        /// Retrieve the properties and relationships of a shift object by ID.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -256,7 +259,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.Shifts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property shifts in users
+        /// Replace an existing shift. If the specified shift doesn&apos;t exist, this method returns `404 Not found`. The duration of a shift cannot be less than 1 minute or longer than 24 hours.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -284,7 +287,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.Shifts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The shifts in the schedule.
+        /// Retrieve the properties and relationships of a shift object by ID.
         /// </summary>
         public class ShiftItemRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>

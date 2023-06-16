@@ -29,6 +29,21 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
     /// </summary>
     public class WorkbookWorksheetItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
+        /// Provides operations to call the cell method.
+        /// </summary>
+        public Command BuildCellWithRowWithColumnRbCommand() {
+            var command = new Command("cell-with-row-with-column");
+            command.Description = "Provides operations to call the cell method.";
+            var builder = new CellWithRowWithColumnRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the charts property of the microsoft.graph.workbookWorksheet entity.
         /// </summary>
         public Command BuildChartsNavCommand() {
@@ -40,6 +55,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
             nonExecCommands.Add(builder.BuildAddNavCommand());
             nonExecCommands.Add(builder.BuildCountNavCommand());
             execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildItemAtWithIndexRbCommand());
+            nonExecCommands.Add(builder.BuildItemWithNameRbCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
             execCommands.AddRange(cmds.Item1);
@@ -55,11 +72,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property worksheets for drives
+        /// Deletes the worksheet from the workbook.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/worksheet-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property worksheets for drives";
+            command.Description = "Deletes the worksheet from the workbook.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/worksheet-delete?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -100,11 +118,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
             return command;
         }
         /// <summary>
-        /// Represents a collection of worksheets associated with the workbook. Read-only.
+        /// Retrieve the properties and relationships of worksheet object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/worksheet-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Represents a collection of worksheets associated with the workbook. Read-only.";
+            command.Description = "Retrieve the properties and relationships of worksheet object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/worksheet-get?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -200,11 +219,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property worksheets in drives
+        /// Update the properties of worksheet object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/worksheet-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property worksheets in drives";
+            command.Description = "Update the properties of worksheet object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/worksheet-update?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -334,6 +354,21 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the range method.
+        /// </summary>
+        public Command BuildRangeWithAddressRbCommand() {
+            var command = new Command("range-with-address");
+            command.Description = "Provides operations to call the range method.";
+            var builder = new RangeWithAddressRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the tables property of the microsoft.graph.workbookWorksheet entity.
         /// </summary>
         public Command BuildTablesNavCommand() {
@@ -345,6 +380,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
             nonExecCommands.Add(builder.BuildAddNavCommand());
             nonExecCommands.Add(builder.BuildCountNavCommand());
             execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildItemAtWithIndexRbCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
             execCommands.AddRange(cmds.Item1);
@@ -375,13 +411,28 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the usedRange method.
+        /// </summary>
+        public Command BuildUsedRangeWithValuesOnlyRbCommand() {
+            var command = new Command("used-range-with-values-only");
+            command.Description = "Provides operations to call the usedRange method.";
+            var builder = new UsedRangeWithValuesOnlyRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Instantiates a new WorkbookWorksheetItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public WorkbookWorksheetItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property worksheets for drives
+        /// Deletes the worksheet from the workbook.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -406,7 +457,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Represents a collection of worksheets associated with the workbook. Read-only.
+        /// Retrieve the properties and relationships of worksheet object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -432,7 +483,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property worksheets in drives
+        /// Update the properties of worksheet object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -460,7 +511,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Represents a collection of worksheets associated with the workbook. Read-only.
+        /// Retrieve the properties and relationships of worksheet object.
         /// </summary>
         public class WorkbookWorksheetItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

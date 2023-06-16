@@ -19,11 +19,12 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Submit {
     /// </summary>
     public class SubmitRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action submit
+        /// Indicate that a student is done with the work and is ready to hand in the assignment. Only teachers, students, and applications with application permissions can perform this operation. This method changes the status of the submission from `working` to `submitted`. During the submit process, all the resources are copied to the **submittedResources** bucket. The teacher will be looking at the submitted resources list for grading. A teacher can also submit a student&apos;s assignment on their behalf.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationsubmission-submit?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action submit";
+            command.Description = "Indicate that a student is done with the work and is ready to hand in the assignment. Only teachers, students, and applications with application permissions can perform this operation. This method changes the status of the submission from `working` to `submitted`. During the submit process, all the resources are copied to the **submittedResources** bucket. The teacher will be looking at the submitted resources list for grading. A teacher can also submit a student's assignment on their behalf.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationsubmission-submit?view=graph-rest-1.0";
             var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
@@ -84,7 +85,7 @@ namespace ApiSdk.Education.Users.Item.Assignments.Item.Submissions.Item.Submit {
         public SubmitRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/users/{educationUser%2Did}/assignments/{educationAssignment%2Did}/submissions/{educationSubmission%2Did}/submit", pathParameters) {
         }
         /// <summary>
-        /// Invoke action submit
+        /// Indicate that a student is done with the work and is ready to hand in the assignment. Only teachers, students, and applications with application permissions can perform this operation. This method changes the status of the submission from `working` to `submitted`. During the submit process, all the resources are copied to the **submittedResources** bucket. The teacher will be looking at the submitted resources list for grading. A teacher can also submit a student&apos;s assignment on their behalf.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

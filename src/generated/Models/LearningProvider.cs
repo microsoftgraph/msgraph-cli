@@ -13,6 +13,8 @@ namespace ApiSdk.Models {
 #else
         public string DisplayName { get; set; }
 #endif
+        /// <summary>Indicates whether a provider can ingest learning course activity records. The default value is false. Set to true to make learningCourseActivities available for this provider.</summary>
+        public bool? IsCourseActivitySyncEnabled { get; set; }
         /// <summary>Learning catalog items for the provider.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -75,6 +77,7 @@ namespace ApiSdk.Models {
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
+                {"isCourseActivitySyncEnabled", n => { IsCourseActivitySyncEnabled = n.GetBoolValue(); } },
                 {"learningContents", n => { LearningContents = n.GetCollectionOfObjectValues<LearningContent>(LearningContent.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"loginWebUrl", n => { LoginWebUrl = n.GetStringValue(); } },
                 {"longLogoWebUrlForDarkTheme", n => { LongLogoWebUrlForDarkTheme = n.GetStringValue(); } },
@@ -91,6 +94,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("displayName", DisplayName);
+            writer.WriteBoolValue("isCourseActivitySyncEnabled", IsCourseActivitySyncEnabled);
             writer.WriteCollectionOfObjectValues<LearningContent>("learningContents", LearningContents);
             writer.WriteStringValue("loginWebUrl", LoginWebUrl);
             writer.WriteStringValue("longLogoWebUrlForDarkTheme", LongLogoWebUrlForDarkTheme);

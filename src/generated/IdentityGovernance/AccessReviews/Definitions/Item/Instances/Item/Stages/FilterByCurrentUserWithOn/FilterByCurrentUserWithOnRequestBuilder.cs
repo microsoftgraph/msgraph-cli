@@ -135,10 +135,8 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item.Instances.Ite
         /// <summary>
         /// Instantiates a new FilterByCurrentUserWithOnRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="on">Usage: on=&apos;{on}&apos;</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public FilterByCurrentUserWithOnRequestBuilder(Dictionary<string, object> pathParameters, string on = "") : base("{+baseurl}/identityGovernance/accessReviews/definitions/{accessReviewScheduleDefinition%2Did}/instances/{accessReviewInstance%2Did}/stages/filterByCurrentUser(on='{on}'){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(on)) PathParameters.Add("on", on);
+        public FilterByCurrentUserWithOnRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/accessReviews/definitions/{accessReviewScheduleDefinition%2Did}/instances/{accessReviewInstance%2Did}/stages/filterByCurrentUser(on='{on}'){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", pathParameters) {
         }
         /// <summary>
         /// Invoke function filterByCurrentUser

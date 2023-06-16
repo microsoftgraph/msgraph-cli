@@ -19,11 +19,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.LastEstimateS
     /// </summary>
     public class LastEstimateStatisticsOperationRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// The last estimate operation associated with the eDiscovery search.
+        /// Get the last  ediscoveryEstimateOperation objects and their properties.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoverysearch-list-lastestimatestatisticsoperation?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The last estimate operation associated with the eDiscovery search.";
+            command.Description = "Get the last  ediscoveryEstimateOperation objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverysearch-list-lastestimatestatisticsoperation?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -92,7 +93,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.LastEstimateS
         public LastEstimateStatisticsOperationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/searches/{ediscoverySearch%2Did}/lastEstimateStatisticsOperation{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The last estimate operation associated with the eDiscovery search.
+        /// Get the last  ediscoveryEstimateOperation objects and their properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -118,7 +119,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Searches.Item.LastEstimateS
             return requestInfo;
         }
         /// <summary>
-        /// The last estimate operation associated with the eDiscovery search.
+        /// Get the last  ediscoveryEstimateOperation objects and their properties.
         /// </summary>
         public class LastEstimateStatisticsOperationRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

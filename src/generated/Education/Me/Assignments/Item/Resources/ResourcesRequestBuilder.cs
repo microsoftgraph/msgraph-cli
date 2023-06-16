@@ -47,11 +47,12 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to resources for education
+        /// Create an assignment resource. Only teachers can perform this operation. You can create the following types of assignment resources: Every resource has an **@odata.type** property to indicate which type of resource is being created.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationassignment-post-resource?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to resources for education";
+            command.Description = "Create an assignment resource. Only teachers can perform this operation. You can create the following types of assignment resources: Every resource has an **@odata.type** property to indicate which type of resource is being created.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationassignment-post-resource?view=graph-rest-1.0";
             var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
@@ -104,11 +105,12 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources {
             return command;
         }
         /// <summary>
-        /// Learning objects that are associated with this assignment.  Only teachers can modify this list. Nullable.
+        /// Get all the educationAssignmentResource objects associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationassignment-list-resources?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Learning objects that are associated with this assignment.  Only teachers can modify this list. Nullable.";
+            command.Description = "Get all the educationAssignmentResource objects associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationassignment-list-resources?view=graph-rest-1.0";
             var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
@@ -220,7 +222,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources {
         public ResourcesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/me/assignments/{educationAssignment%2Did}/resources{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Learning objects that are associated with this assignment.  Only teachers can modify this list. Nullable.
+        /// Get all the educationAssignmentResource objects associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -246,7 +248,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to resources for education
+        /// Create an assignment resource. Only teachers can perform this operation. You can create the following types of assignment resources: Every resource has an **@odata.type** property to indicate which type of resource is being created.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -274,7 +276,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Resources {
             return requestInfo;
         }
         /// <summary>
-        /// Learning objects that are associated with this assignment.  Only teachers can modify this list. Nullable.
+        /// Get all the educationAssignmentResource objects associated with an assignment. Only teachers, students, and applications with application permissions can perform this operation.
         /// </summary>
         public class ResourcesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

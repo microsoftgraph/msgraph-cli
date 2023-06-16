@@ -1,3 +1,5 @@
+using ApiSdk.External.Connections.Item.Items.Item.Activities;
+using ApiSdk.External.Connections.Item.Items.Item.MicrosoftGraphExternalConnectorsAddActivities;
 using ApiSdk.Models.ExternalConnectors;
 using ApiSdk.Models.ODataErrors;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -19,11 +21,37 @@ namespace ApiSdk.External.Connections.Item.Items.Item {
     /// </summary>
     public class ExternalItemItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property items for external
+        /// Provides operations to manage the activities property of the microsoft.graph.externalConnectors.externalItem entity.
+        /// </summary>
+        public Command BuildActivitiesNavCommand() {
+            var command = new Command("activities");
+            command.Description = "Provides operations to manage the activities property of the microsoft.graph.externalConnectors.externalItem entity.";
+            var builder = new ActivitiesRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Delete an externalItem object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/externalconnectors-externalitem-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property items for external";
+            command.Description = "Delete an externalItem object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/externalconnectors-externalitem-delete?view=graph-rest-1.0";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -58,11 +86,12 @@ namespace ApiSdk.External.Connections.Item.Items.Item {
             return command;
         }
         /// <summary>
-        /// Get items from external
+        /// Read the properties and relationships of an externalItem object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/externalconnectors-externalitem-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get items from external";
+            command.Description = "Read the properties and relationships of an externalItem object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/externalconnectors-externalitem-get?view=graph-rest-1.0";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -122,6 +151,21 @@ namespace ApiSdk.External.Connections.Item.Items.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the addActivities method.
+        /// </summary>
+        public Command BuildMicrosoftGraphExternalConnectorsAddActivitiesNavCommand() {
+            var command = new Command("microsoft-graph-external-connectors-add-activities");
+            command.Description = "Provides operations to call the addActivities method.";
+            var builder = new MicrosoftGraphExternalConnectorsAddActivitiesRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -194,7 +238,7 @@ namespace ApiSdk.External.Connections.Item.Items.Item {
         public ExternalItemItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/external/connections/{externalConnection%2Did}/items/{externalItem%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property items for external
+        /// Delete an externalItem object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -219,7 +263,7 @@ namespace ApiSdk.External.Connections.Item.Items.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get items from external
+        /// Read the properties and relationships of an externalItem object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -273,7 +317,7 @@ namespace ApiSdk.External.Connections.Item.Items.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get items from external
+        /// Read the properties and relationships of an externalItem object.
         /// </summary>
         public class ExternalItemItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

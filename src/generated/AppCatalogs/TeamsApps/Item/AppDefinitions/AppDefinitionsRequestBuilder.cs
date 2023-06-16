@@ -49,11 +49,12 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to appDefinitions for appCatalogs
+        /// Update an app previously published to the Microsoft Teams app catalog. To update an app, the **distributionMethod** property for the app must be set to `organization`. This API specifically updates an app published to your organization&apos;s app catalog (the tenant app catalog).
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/teamsapp-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to appDefinitions for appCatalogs";
+            command.Description = "Update an app previously published to the Microsoft Teams app catalog. To update an app, the **distributionMethod** property for the app must be set to `organization`. This API specifically updates an app published to your organization's app catalog (the tenant app catalog).\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/teamsapp-update?view=graph-rest-1.0";
             var teamsAppIdOption = new Option<string>("--teams-app-id", description: "The unique identifier of teamsApp") {
             };
             teamsAppIdOption.IsRequired = true;
@@ -248,7 +249,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item.AppDefinitions {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to appDefinitions for appCatalogs
+        /// Update an app previously published to the Microsoft Teams app catalog. To update an app, the **distributionMethod** property for the app must be set to `organization`. This API specifically updates an app published to your organization&apos;s app catalog (the tenant app catalog).
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

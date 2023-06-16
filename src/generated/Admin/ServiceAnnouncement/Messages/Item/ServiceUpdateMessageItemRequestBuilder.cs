@@ -95,11 +95,12 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
             return command;
         }
         /// <summary>
-        /// A collection of service messages for tenant. This property is a contained navigation property, it is nullable and readonly.
+        /// Retrieve the properties and relationships of a serviceUpdateMessage object. This operation retrieves a specified service update message for the tenant. The operation returns an error if the message does not exist for the tenant.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/serviceupdatemessage-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "A collection of service messages for tenant. This property is a contained navigation property, it is nullable and readonly.";
+            command.Description = "Retrieve the properties and relationships of a serviceUpdateMessage object. This operation retrieves a specified service update message for the tenant. The operation returns an error if the message does not exist for the tenant.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceupdatemessage-get?view=graph-rest-1.0";
             var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "The unique identifier of serviceUpdateMessage") {
             };
             serviceUpdateMessageIdOption.IsRequired = true;
@@ -244,7 +245,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of service messages for tenant. This property is a contained navigation property, it is nullable and readonly.
+        /// Retrieve the properties and relationships of a serviceUpdateMessage object. This operation retrieves a specified service update message for the tenant. The operation returns an error if the message does not exist for the tenant.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -298,7 +299,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of service messages for tenant. This property is a contained navigation property, it is nullable and readonly.
+        /// Retrieve the properties and relationships of a serviceUpdateMessage object. This operation retrieves a specified service update message for the tenant. The operation returns an error if the message does not exist for the tenant.
         /// </summary>
         public class ServiceUpdateMessageItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

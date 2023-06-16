@@ -21,11 +21,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
     /// </summary>
     public class ConnectedOrganizationItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property connectedOrganizations for identityGovernance
+        /// Delete a connectedOrganization object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/connectedorganization-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property connectedOrganizations for identityGovernance";
+            command.Description = "Delete a connectedOrganization object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/connectedorganization-delete?view=graph-rest-1.0";
             var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "The unique identifier of connectedOrganization") {
             };
             connectedOrganizationIdOption.IsRequired = true;
@@ -84,11 +85,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return command;
         }
         /// <summary>
-        /// References to a directory or domain of another organization whose users can request access.
+        /// Retrieve the properties and relationships of a connectedOrganization object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/connectedorganization-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "References to a directory or domain of another organization whose users can request access.";
+            command.Description = "Retrieve the properties and relationships of a connectedOrganization object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/connectedorganization-get?view=graph-rest-1.0";
             var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "The unique identifier of connectedOrganization") {
             };
             connectedOrganizationIdOption.IsRequired = true;
@@ -175,11 +177,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return command;
         }
         /// <summary>
-        /// Update the navigation property connectedOrganizations in identityGovernance
+        /// Update a connectedOrganization object to change one or more of its properties.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/connectedorganization-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property connectedOrganizations in identityGovernance";
+            command.Description = "Update a connectedOrganization object to change one or more of its properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/connectedorganization-update?view=graph-rest-1.0";
             var connectedOrganizationIdOption = new Option<string>("--connected-organization-id", description: "The unique identifier of connectedOrganization") {
             };
             connectedOrganizationIdOption.IsRequired = true;
@@ -238,7 +241,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
         public ConnectedOrganizationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/connectedOrganizations/{connectedOrganization%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property connectedOrganizations for identityGovernance
+        /// Delete a connectedOrganization object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -263,7 +266,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return requestInfo;
         }
         /// <summary>
-        /// References to a directory or domain of another organization whose users can request access.
+        /// Retrieve the properties and relationships of a connectedOrganization object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -289,7 +292,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property connectedOrganizations in identityGovernance
+        /// Update a connectedOrganization object to change one or more of its properties.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -317,7 +320,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations
             return requestInfo;
         }
         /// <summary>
-        /// References to a directory or domain of another organization whose users can request access.
+        /// Retrieve the properties and relationships of a connectedOrganization object.
         /// </summary>
         public class ConnectedOrganizationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

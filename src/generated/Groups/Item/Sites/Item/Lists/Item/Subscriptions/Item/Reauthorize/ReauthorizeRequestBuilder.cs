@@ -18,11 +18,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Subscriptions.Item.Reauthoriz
     /// </summary>
     public class ReauthorizeRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action reauthorize
+        /// Reauthorize a subscription when you receive a **reauthorizationRequired** challenge.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/subscription-reauthorize?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action reauthorize";
+            command.Description = "Reauthorize a subscription when you receive a **reauthorizationRequired** challenge.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/subscription-reauthorize?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -68,7 +69,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Lists.Item.Subscriptions.Item.Reauthoriz
         public ReauthorizeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/lists/{list%2Did}/subscriptions/{subscription%2Did}/reauthorize", pathParameters) {
         }
         /// <summary>
-        /// Invoke action reauthorize
+        /// Reauthorize a subscription when you receive a **reauthorizationRequired** challenge.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

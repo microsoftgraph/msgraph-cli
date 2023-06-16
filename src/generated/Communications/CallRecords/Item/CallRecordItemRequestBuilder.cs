@@ -53,11 +53,12 @@ namespace ApiSdk.Communications.CallRecords.Item {
             return command;
         }
         /// <summary>
-        /// Get callRecords from communications
+        /// Retrieve the properties and relationships of a callRecord object. There are two ways to get the **id** of a **callRecord**:
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/callrecords-callrecord-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get callRecords from communications";
+            command.Description = "Retrieve the properties and relationships of a callRecord object. There are two ways to get the **id** of a **callRecord**:\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/callrecords-callrecord-get?view=graph-rest-1.0";
             var callRecordIdOption = new Option<string>("--call-record-id", description: "The unique identifier of callRecord") {
             };
             callRecordIdOption.IsRequired = true;
@@ -227,7 +228,7 @@ namespace ApiSdk.Communications.CallRecords.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get callRecords from communications
+        /// Retrieve the properties and relationships of a callRecord object. There are two ways to get the **id** of a **callRecord**:
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -281,7 +282,7 @@ namespace ApiSdk.Communications.CallRecords.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get callRecords from communications
+        /// Retrieve the properties and relationships of a callRecord object. There are two ways to get the **id** of a **callRecord**:
         /// </summary>
         public class CallRecordItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

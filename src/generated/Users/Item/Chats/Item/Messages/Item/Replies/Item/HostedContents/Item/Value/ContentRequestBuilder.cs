@@ -19,10 +19,11 @@ namespace ApiSdk.Users.Item.Chats.Item.Messages.Item.Replies.Item.HostedContents
     public class ContentRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Get media content for the navigation property hostedContents from users
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chatmessage-list-hostedcontents?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get media content for the navigation property hostedContents from users";
+            command.Description = "Get media content for the navigation property hostedContents from users\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chatmessage-list-hostedcontents?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;

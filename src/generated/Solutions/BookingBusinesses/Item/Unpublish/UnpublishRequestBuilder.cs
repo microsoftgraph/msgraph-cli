@@ -18,11 +18,12 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Unpublish {
     /// </summary>
     public class UnpublishRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Prevents the general public from seeing the scheduling page of this business.
+        /// Make the scheduling page of this business not available to external customers. Set the **isPublished** property to `false`, and the **publicUrl** property to `null`.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/bookingbusiness-unpublish?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Prevents the general public from seeing the scheduling page of this business.";
+            command.Description = "Make the scheduling page of this business not available to external customers. Set the **isPublished** property to `false`, and the **publicUrl** property to `null`.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bookingbusiness-unpublish?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -50,7 +51,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Unpublish {
         public UnpublishRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/unpublish", pathParameters) {
         }
         /// <summary>
-        /// Prevents the general public from seeing the scheduling page of this business.
+        /// Make the scheduling page of this business not available to external customers. Set the **isPublished** property to `false`, and the **publicUrl** property to `null`.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -18,11 +18,12 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item.Cancel {
     /// </summary>
     public class CancelRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Cancels the giving booking appointment, sending a message to the involved parties.
+        /// Cancel the specified bookingAppointment in the specified bookingBusiness and send a message to the involved customer and staff members.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/bookingappointment-cancel?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Cancels the giving booking appointment, sending a message to the involved parties.";
+            command.Description = "Cancel the specified bookingAppointment in the specified bookingBusiness and send a message to the involved customer and staff members.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bookingappointment-cancel?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -66,7 +67,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Appointments.Item.Cancel {
         public CancelRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/appointments/{bookingAppointment%2Did}/cancel", pathParameters) {
         }
         /// <summary>
-        /// Cancels the giving booking appointment, sending a message to the involved parties.
+        /// Cancel the specified bookingAppointment in the specified bookingBusiness and send a message to the involved customer and staff members.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

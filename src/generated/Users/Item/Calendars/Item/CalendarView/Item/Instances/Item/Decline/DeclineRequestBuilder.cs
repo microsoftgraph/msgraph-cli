@@ -18,11 +18,12 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item.Decl
     /// </summary>
     public class DeclineRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action decline
+        /// Decline invitation to the specified event in a user calendar. If the event allows proposals for new times, on declining the event, an invitee can choose to suggest an alternative time by including the **proposedNewTime** parameter. For more information on how to propose a time, and how to receive and accept a new time proposal, see Propose new meeting times.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/event-decline?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action decline";
+            command.Description = "Decline invitation to the specified event in a user calendar. If the event allows proposals for new times, on declining the event, an invitee can choose to suggest an alternative time by including the **proposedNewTime** parameter. For more information on how to propose a time, and how to receive and accept a new time proposal, see Propose new meeting times.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/event-decline?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -78,7 +79,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item.Decl
         public DeclineRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendars/{calendar%2Did}/calendarView/{event%2Did}/instances/{event%2Did1}/decline", pathParameters) {
         }
         /// <summary>
-        /// Invoke action decline
+        /// Decline invitation to the specified event in a user calendar. If the event allows proposals for new times, on declining the event, an invitee can choose to suggest an alternative time by including the **proposedNewTime** parameter. For more information on how to propose a time, and how to receive and accept a new time proposal, see Propose new meeting times.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

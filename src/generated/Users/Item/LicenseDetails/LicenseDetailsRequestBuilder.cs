@@ -104,11 +104,12 @@ namespace ApiSdk.Users.Item.LicenseDetails {
             return command;
         }
         /// <summary>
-        /// A collection of this user&apos;s license details. Read-only.
+        /// Retrieve a list of licenseDetails objects for enterprise users. This API returns details for licenses that are directly assigned and those transitively assigned through memberships in licensed groups.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-list-licensedetails?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A collection of this user's license details. Read-only.";
+            command.Description = "Retrieve a list of licenseDetails objects for enterprise users. This API returns details for licenses that are directly assigned and those transitively assigned through memberships in licensed groups.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-licensedetails?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -220,7 +221,7 @@ namespace ApiSdk.Users.Item.LicenseDetails {
         public LicenseDetailsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/licenseDetails{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// A collection of this user&apos;s license details. Read-only.
+        /// Retrieve a list of licenseDetails objects for enterprise users. This API returns details for licenses that are directly assigned and those transitively assigned through memberships in licensed groups.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -274,7 +275,7 @@ namespace ApiSdk.Users.Item.LicenseDetails {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of this user&apos;s license details. Read-only.
+        /// Retrieve a list of licenseDetails objects for enterprise users. This API returns details for licenses that are directly assigned and those transitively assigned through memberships in licensed groups.
         /// </summary>
         public class LicenseDetailsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

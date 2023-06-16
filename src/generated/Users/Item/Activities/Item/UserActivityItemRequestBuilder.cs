@@ -20,11 +20,12 @@ namespace ApiSdk.Users.Item.Activities.Item {
     /// </summary>
     public class UserActivityItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property activities for users
+        /// Delete an existing user activity for your app.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/projectrome-delete-activity?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property activities for users";
+            command.Description = "Delete an existing user activity for your app.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/projectrome-delete-activity?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -220,7 +221,7 @@ namespace ApiSdk.Users.Item.Activities.Item {
         public UserActivityItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/activities/{userActivity%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property activities for users
+        /// Delete an existing user activity for your app.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -22,5 +22,7 @@ namespace ApiSdk.Models.Security {
         DataLossPrevention,
         [EnumMember(Value = "unknownFutureValue")]
         UnknownFutureValue,
+        [EnumMember(Value = "microsoftDefenderForCloud")]
+        MicrosoftDefenderForCloud,
     }
 }

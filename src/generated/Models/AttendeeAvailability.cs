@@ -26,7 +26,7 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new attendeeAvailability and sets the default values.
+        /// Instantiates a new AttendeeAvailability and sets the default values.
         /// </summary>
         public AttendeeAvailability() {
             AdditionalData = new Dictionary<string, object>();

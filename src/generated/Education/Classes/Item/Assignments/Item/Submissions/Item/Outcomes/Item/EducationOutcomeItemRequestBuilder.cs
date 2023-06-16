@@ -19,11 +19,12 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Outcom
     /// </summary>
     public class EducationOutcomeItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property outcomes for education
+        /// Delete a feedback resource from a submission. This can only be done by a teacher.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationfeedbackresourceoutcome-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property outcomes for education";
+            command.Description = "Delete a feedback resource from a submission. This can only be done by a teacher.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationfeedbackresourceoutcome-delete?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -149,11 +150,12 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Outcom
             return command;
         }
         /// <summary>
-        /// Update the navigation property outcomes in education
+        /// Update the properties of an educationOutcome object. Only teachers can perform this operation.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationoutcome-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property outcomes in education";
+            command.Description = "Update the properties of an educationOutcome object. Only teachers can perform this operation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationoutcome-update?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -230,7 +232,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Outcom
         public EducationOutcomeItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/assignments/{educationAssignment%2Did}/submissions/{educationSubmission%2Did}/outcomes/{educationOutcome%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property outcomes for education
+        /// Delete a feedback resource from a submission. This can only be done by a teacher.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -281,7 +283,7 @@ namespace ApiSdk.Education.Classes.Item.Assignments.Item.Submissions.Item.Outcom
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property outcomes in education
+        /// Update the properties of an educationOutcome object. Only teachers can perform this operation.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

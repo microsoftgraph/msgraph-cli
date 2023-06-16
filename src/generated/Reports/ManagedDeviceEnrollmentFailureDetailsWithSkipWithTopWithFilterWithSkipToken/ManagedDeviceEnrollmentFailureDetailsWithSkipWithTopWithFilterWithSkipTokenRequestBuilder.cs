@@ -86,16 +86,8 @@ namespace ApiSdk.Reports.ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWit
         /// <summary>
         /// Instantiates a new ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWithFilterWithSkipTokenRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="filter">Usage: filter=&apos;{filter}&apos;</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="skip">Usage: skip={skip}</param>
-        /// <param name="skipToken">Usage: skipToken=&apos;{skipToken}&apos;</param>
-        /// <param name="top">Usage: top={top}</param>
-        public ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWithFilterWithSkipTokenRequestBuilder(Dictionary<string, object> pathParameters, string filter = "", int? skip = default, string skipToken = "", int? top = default) : base("{+baseurl}/reports/managedDeviceEnrollmentFailureDetails(skip={skip},top={top},filter='{filter}',skipToken='{skipToken}')", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(filter)) PathParameters.Add("filter", filter);
-            if (skip is not null) PathParameters.Add("skip", skip);
-            if (!string.IsNullOrWhiteSpace(skipToken)) PathParameters.Add("skipToken", skipToken);
-            if (top is not null) PathParameters.Add("top", top);
+        public ManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWithFilterWithSkipTokenRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/managedDeviceEnrollmentFailureDetails(skip={skip},top={top},filter='{filter}',skipToken='{skipToken}')", pathParameters) {
         }
         /// <summary>
         /// Invoke function managedDeviceEnrollmentFailureDetails

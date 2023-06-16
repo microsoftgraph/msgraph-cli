@@ -18,11 +18,12 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Unpublish {
     /// </summary>
     public class UnpublishRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action unpublish
+        /// Unpublish a [contentType][] from a content type hub site.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/contenttype-unpublish?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action unpublish";
+            command.Description = "Unpublish a [contentType][] from a content type hub site.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contenttype-unpublish?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -62,7 +63,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.ContentTypes.Item.Unpublish {
         public UnpublishRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/contentTypes/{contentType%2Did}/unpublish", pathParameters) {
         }
         /// <summary>
-        /// Invoke action unpublish
+        /// Unpublish a [contentType][] from a content type hub site.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

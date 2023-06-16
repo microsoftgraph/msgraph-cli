@@ -103,11 +103,12 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleReq
             return command;
         }
         /// <summary>
-        /// Requests for role eligibilities for principals through PIM.
+        /// In PIM, read the details of a request for for a role eligibility request made through the unifiedRoleEligibilityScheduleRequest object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/unifiedroleeligibilityschedulerequest-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Requests for role eligibilities for principals through PIM.";
+            command.Description = "In PIM, read the details of a request for for a role eligibility request made through the unifiedRoleEligibilityScheduleRequest object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/unifiedroleeligibilityschedulerequest-get?view=graph-rest-1.0";
             var unifiedRoleEligibilityScheduleRequestIdOption = new Option<string>("--unified-role-eligibility-schedule-request-id", description: "The unique identifier of unifiedRoleEligibilityScheduleRequest") {
             };
             unifiedRoleEligibilityScheduleRequestIdOption.IsRequired = true;
@@ -297,7 +298,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleReq
             return requestInfo;
         }
         /// <summary>
-        /// Requests for role eligibilities for principals through PIM.
+        /// In PIM, read the details of a request for for a role eligibility request made through the unifiedRoleEligibilityScheduleRequest object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -351,7 +352,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleEligibilityScheduleReq
             return requestInfo;
         }
         /// <summary>
-        /// Requests for role eligibilities for principals through PIM.
+        /// In PIM, read the details of a request for for a role eligibility request made through the unifiedRoleEligibilityScheduleRequest object.
         /// </summary>
         public class UnifiedRoleEligibilityScheduleRequestItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

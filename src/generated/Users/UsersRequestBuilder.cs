@@ -54,6 +54,7 @@ namespace ApiSdk.Users {
             commands.Add(builder.BuildDrivesNavCommand());
             commands.Add(builder.BuildEventsNavCommand());
             commands.Add(builder.BuildExportDeviceAndAppManagementDataNavCommand());
+            commands.Add(builder.BuildExportDeviceAndAppManagementDataWithSkipWithTopRbCommand());
             commands.Add(builder.BuildExportPersonalDataNavCommand());
             commands.Add(builder.BuildExtensionsNavCommand());
             commands.Add(builder.BuildFindMeetingTimesNavCommand());
@@ -89,6 +90,7 @@ namespace ApiSdk.Users {
             commands.Add(builder.BuildPlannerNavCommand());
             commands.Add(builder.BuildPresenceNavCommand());
             commands.Add(builder.BuildRegisteredDevicesNavCommand());
+            commands.Add(builder.BuildReminderViewWithStartDateTimeWithEndDateTimeRbCommand());
             commands.Add(builder.BuildRemoveAllDevicesFromManagementNavCommand());
             commands.Add(builder.BuildReprocessLicenseAssignmentNavCommand());
             commands.Add(builder.BuildRestoreNavCommand());

@@ -19,11 +19,12 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item.Start {
     /// </summary>
     public class StartRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action start
+        /// Submits the print job to the associated printer or printerShare. It will be printed after any existing pending **jobs** are completed, aborted, or canceled.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/printjob-start?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action start";
+            command.Description = "Submits the print job to the associated printer or printerShare. It will be printed after any existing pending **jobs** are completed, aborted, or canceled.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printjob-start?view=graph-rest-1.0";
             var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
             };
             printerIdOption.IsRequired = true;
@@ -78,7 +79,7 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item.Start {
         public StartRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/printers/{printer%2Did}/jobs/{printJob%2Did}/start", pathParameters) {
         }
         /// <summary>
-        /// Invoke action start
+        /// Submits the print job to the associated printer or printerShare. It will be printed after any existing pending **jobs** are completed, aborted, or canceled.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -80,10 +80,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.TableRowOperationResultWithKey 
         /// <summary>
         /// Instantiates a new TableRowOperationResultWithKeyRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="key">Usage: key=&apos;{key}&apos;</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public TableRowOperationResultWithKeyRequestBuilder(Dictionary<string, object> pathParameters, string key = "") : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tableRowOperationResult(key='{key}')", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(key)) PathParameters.Add("key", key);
+        public TableRowOperationResultWithKeyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tableRowOperationResult(key='{key}')", pathParameters) {
         }
         /// <summary>
         /// Invoke function tableRowOperationResult

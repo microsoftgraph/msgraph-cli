@@ -46,7 +46,7 @@ namespace ApiSdk.Models {
         public string ResourceAppId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new resourceSpecificPermissionGrant and sets the default values.
+        /// Instantiates a new ResourceSpecificPermissionGrant and sets the default values.
         /// </summary>
         public ResourceSpecificPermissionGrant() : base() {
             OdataType = "#microsoft.graph.resourceSpecificPermissionGrant";

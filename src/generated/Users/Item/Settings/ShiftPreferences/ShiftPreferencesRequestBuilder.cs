@@ -52,11 +52,12 @@ namespace ApiSdk.Users.Item.Settings.ShiftPreferences {
             return command;
         }
         /// <summary>
-        /// Get shiftPreferences from users
+        /// Retrieve the properties and relationships of a shiftPreferences object by ID.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/shiftpreferences-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get shiftPreferences from users";
+            command.Description = "Retrieve the properties and relationships of a shiftPreferences object by ID.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/shiftpreferences-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -113,11 +114,12 @@ namespace ApiSdk.Users.Item.Settings.ShiftPreferences {
             return command;
         }
         /// <summary>
-        /// Update the navigation property shiftPreferences in users
+        /// Update the properties and relationships of a shiftPreferences object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/shiftpreferences-put?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property shiftPreferences in users";
+            command.Description = "Update the properties and relationships of a shiftPreferences object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/shiftpreferences-put?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -201,7 +203,7 @@ namespace ApiSdk.Users.Item.Settings.ShiftPreferences {
             return requestInfo;
         }
         /// <summary>
-        /// Get shiftPreferences from users
+        /// Retrieve the properties and relationships of a shiftPreferences object by ID.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -227,7 +229,7 @@ namespace ApiSdk.Users.Item.Settings.ShiftPreferences {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property shiftPreferences in users
+        /// Update the properties and relationships of a shiftPreferences object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -255,7 +257,7 @@ namespace ApiSdk.Users.Item.Settings.ShiftPreferences {
             return requestInfo;
         }
         /// <summary>
-        /// Get shiftPreferences from users
+        /// Retrieve the properties and relationships of a shiftPreferences object by ID.
         /// </summary>
         public class ShiftPreferencesRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

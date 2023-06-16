@@ -109,10 +109,8 @@ namespace ApiSdk.DeviceManagement.AuditEvents.GetAuditActivityTypesWithCategory 
         /// <summary>
         /// Instantiates a new GetAuditActivityTypesWithCategoryRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="category">Usage: category=&apos;{category}&apos;</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetAuditActivityTypesWithCategoryRequestBuilder(Dictionary<string, object> pathParameters, string category = "") : base("{+baseurl}/deviceManagement/auditEvents/getAuditActivityTypes(category='{category}'){?%24top,%24skip,%24search,%24filter,%24count}", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(category)) PathParameters.Add("category", category);
+        public GetAuditActivityTypesWithCategoryRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/auditEvents/getAuditActivityTypes(category='{category}'){?%24top,%24skip,%24search,%24filter,%24count}", pathParameters) {
         }
         /// <summary>
         /// Invoke function getAuditActivityTypes

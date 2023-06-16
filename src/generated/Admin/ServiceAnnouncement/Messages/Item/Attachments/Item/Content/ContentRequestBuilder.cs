@@ -20,10 +20,11 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Item.Attachments.Item.Conten
     public class ContentRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// The attachment content.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/serviceupdatemessage-list-attachments?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The attachment content.";
+            command.Description = "The attachment content.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceupdatemessage-list-attachments?view=graph-rest-1.0";
             var serviceUpdateMessageIdOption = new Option<string>("--service-update-message-id", description: "The unique identifier of serviceUpdateMessage") {
             };
             serviceUpdateMessageIdOption.IsRequired = true;

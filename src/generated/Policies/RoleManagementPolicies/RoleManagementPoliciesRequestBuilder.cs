@@ -101,11 +101,12 @@ namespace ApiSdk.Policies.RoleManagementPolicies {
             return command;
         }
         /// <summary>
-        /// Specifies the various policies associated with scopes and roles.
+        /// Get role management policies and their details.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/policyroot-list-rolemanagementpolicies?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Specifies the various policies associated with scopes and roles.";
+            command.Description = "Get role management policies and their details.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/policyroot-list-rolemanagementpolicies?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -211,7 +212,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies {
         public RoleManagementPoliciesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/roleManagementPolicies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Specifies the various policies associated with scopes and roles.
+        /// Get role management policies and their details.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -265,7 +266,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Specifies the various policies associated with scopes and roles.
+        /// Get role management policies and their details.
         /// </summary>
         public class RoleManagementPoliciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

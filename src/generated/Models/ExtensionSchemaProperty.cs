@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
         public string Type { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new extensionSchemaProperty and sets the default values.
+        /// Instantiates a new ExtensionSchemaProperty and sets the default values.
         /// </summary>
         public ExtensionSchemaProperty() {
             AdditionalData = new Dictionary<string, object>();

@@ -86,6 +86,7 @@ namespace ApiSdk.DeviceManagement {
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
             execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildGetAuditActivityTypesWithCategoryRbCommand());
             nonExecCommands.Add(builder.BuildGetAuditCategoriesNavCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
@@ -430,6 +431,21 @@ namespace ApiSdk.DeviceManagement {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getEffectivePermissions method.
+        /// </summary>
+        public Command BuildGetEffectivePermissionsWithScopeRbCommand() {
+            var command = new Command("get-effective-permissions-with-scope");
+            command.Description = "Provides operations to call the getEffectivePermissions method.";
+            var builder = new GetEffectivePermissionsWithScopeRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -850,6 +866,21 @@ namespace ApiSdk.DeviceManagement {
                 command.AddCommand(cmd);
             }
             foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the verifyWindowsEnrollmentAutoDiscovery method.
+        /// </summary>
+        public Command BuildVerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRbCommand() {
+            var command = new Command("verify-windows-enrollment-auto-discovery-with-domain-name");
+            command.Description = "Provides operations to call the verifyWindowsEnrollmentAutoDiscovery method.";
+            var builder = new VerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }

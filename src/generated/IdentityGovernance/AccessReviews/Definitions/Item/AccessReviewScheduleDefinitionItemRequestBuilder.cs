@@ -21,11 +21,12 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
     /// </summary>
     public class AccessReviewScheduleDefinitionItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property definitions for identityGovernance
+        /// Deletes an accessReviewScheduleDefinition object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/accessreviewscheduledefinition-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property definitions for identityGovernance";
+            command.Description = "Deletes an accessReviewScheduleDefinition object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/accessreviewscheduledefinition-delete?view=graph-rest-1.0";
             var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "The unique identifier of accessReviewScheduleDefinition") {
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
@@ -54,11 +55,12 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             return command;
         }
         /// <summary>
-        /// Represents the template and scheduling for an access review.
+        /// Read the properties and relationships of an accessReviewScheduleDefinition object. To retrieve the instances of the access review series, use the list accessReviewInstance API.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/accessreviewscheduledefinition-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Represents the template and scheduling for an access review.";
+            command.Description = "Read the properties and relationships of an accessReviewScheduleDefinition object. To retrieve the instances of the access review series, use the list accessReviewInstance API.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/accessreviewscheduledefinition-get?view=graph-rest-1.0";
             var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "The unique identifier of accessReviewScheduleDefinition") {
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
@@ -125,6 +127,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
             execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildFilterByCurrentUserWithOnRbCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
             execCommands.AddRange(cmds.Item1);
@@ -140,11 +143,12 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property definitions in identityGovernance
+        /// Update an existing accessReviewScheduleDefinition object to change one or more of its properties.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/accessreviewscheduledefinition-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property definitions in identityGovernance";
+            command.Description = "Update an existing accessReviewScheduleDefinition object to change one or more of its properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/accessreviewscheduledefinition-update?view=graph-rest-1.0";
             var accessReviewScheduleDefinitionIdOption = new Option<string>("--access-review-schedule-definition-id", description: "The unique identifier of accessReviewScheduleDefinition") {
             };
             accessReviewScheduleDefinitionIdOption.IsRequired = true;
@@ -218,7 +222,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
         public AccessReviewScheduleDefinitionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/accessReviews/definitions/{accessReviewScheduleDefinition%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property definitions for identityGovernance
+        /// Deletes an accessReviewScheduleDefinition object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -243,7 +247,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Represents the template and scheduling for an access review.
+        /// Read the properties and relationships of an accessReviewScheduleDefinition object. To retrieve the instances of the access review series, use the list accessReviewInstance API.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -269,7 +273,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property definitions in identityGovernance
+        /// Update an existing accessReviewScheduleDefinition object to change one or more of its properties.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -297,7 +301,7 @@ namespace ApiSdk.IdentityGovernance.AccessReviews.Definitions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Represents the template and scheduling for an access review.
+        /// Read the properties and relationships of an accessReviewScheduleDefinition object. To retrieve the instances of the access review series, use the list accessReviewInstance API.
         /// </summary>
         public class AccessReviewScheduleDefinitionItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

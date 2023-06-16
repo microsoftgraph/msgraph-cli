@@ -137,11 +137,12 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Fields {
             return command;
         }
         /// <summary>
-        /// Update the navigation property fields in sites
+        /// Update the properties on a **[listItem][]**.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/listitem-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property fields in sites";
+            command.Description = "Update the properties on a **[listItem][]**.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/listitem-update?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -263,7 +264,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Fields {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property fields in sites
+        /// Update the properties on a **[listItem][]**.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

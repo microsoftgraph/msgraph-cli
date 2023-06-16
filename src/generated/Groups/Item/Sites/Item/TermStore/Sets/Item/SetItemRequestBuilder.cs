@@ -48,11 +48,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Sets.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property sets for groups
+        /// Delete a set object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/termstore-set-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property sets for groups";
+            command.Description = "Delete a set object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/termstore-set-delete?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -93,11 +94,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Sets.Item {
             return command;
         }
         /// <summary>
-        /// Collection of all sets available in the term store. This relationship can only be used to load a specific term set.
+        /// Read the properties and relationships of a set object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/termstore-set-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Collection of all sets available in the term store. This relationship can only be used to load a specific term set.";
+            command.Description = "Read the properties and relationships of a set object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/termstore-set-get?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -189,11 +191,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Sets.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property sets in groups
+        /// Update the properties of a set object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/termstore-set-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property sets in groups";
+            command.Description = "Update the properties of a set object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/termstore-set-update?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -314,7 +317,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Sets.Item {
         public SetItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStore/sets/{set%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property sets for groups
+        /// Delete a set object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -339,7 +342,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Sets.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Collection of all sets available in the term store. This relationship can only be used to load a specific term set.
+        /// Read the properties and relationships of a set object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -365,7 +368,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Sets.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property sets in groups
+        /// Update the properties of a set object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -393,7 +396,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Sets.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Collection of all sets available in the term store. This relationship can only be used to load a specific term set.
+        /// Read the properties and relationships of a set object.
         /// </summary>
         public class SetItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -39,9 +39,7 @@ namespace ApiSdk.Groups.Item.Events {
             commands.Add(builder.BuildForwardNavCommand());
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildInstancesNavCommand());
-            commands.Add(builder.BuildMultiValueExtendedPropertiesNavCommand());
             executables.Add(builder.BuildPatchCommand());
-            commands.Add(builder.BuildSingleValueExtendedPropertiesNavCommand());
             commands.Add(builder.BuildSnoozeReminderNavCommand());
             commands.Add(builder.BuildTentativelyAcceptNavCommand());
             return new(executables, commands);
@@ -62,11 +60,12 @@ namespace ApiSdk.Groups.Item.Events {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to events for groups
+        /// Use this API to create a new event.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/group-post-events?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to events for groups";
+            command.Description = "Use this API to create a new event.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-post-events?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -134,11 +133,12 @@ namespace ApiSdk.Groups.Item.Events {
             return command;
         }
         /// <summary>
-        /// The group&apos;s calendar events.
+        /// Retrieve a list of event objects.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/group-list-events?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The group's calendar events.";
+            command.Description = "Retrieve a list of event objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-list-events?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -237,7 +237,7 @@ namespace ApiSdk.Groups.Item.Events {
         public EventsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/events{?%24top,%24skip,%24filter,%24count,%24orderby,%24select}", pathParameters) {
         }
         /// <summary>
-        /// The group&apos;s calendar events.
+        /// Retrieve a list of event objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -263,7 +263,7 @@ namespace ApiSdk.Groups.Item.Events {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to events for groups
+        /// Use this API to create a new event.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -291,7 +291,7 @@ namespace ApiSdk.Groups.Item.Events {
             return requestInfo;
         }
         /// <summary>
-        /// The group&apos;s calendar events.
+        /// Retrieve a list of event objects.
         /// </summary>
         public class EventsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

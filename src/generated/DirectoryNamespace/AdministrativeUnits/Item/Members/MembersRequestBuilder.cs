@@ -184,10 +184,11 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members {
         }
         /// <summary>
         /// Users and groups that are members of this administrative unit. Supports $expand.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/administrativeunit-list-members?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Users and groups that are members of this administrative unit. Supports $expand.";
+            command.Description = "Users and groups that are members of this administrative unit. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/administrativeunit-list-members?view=graph-rest-1.0";
             var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;

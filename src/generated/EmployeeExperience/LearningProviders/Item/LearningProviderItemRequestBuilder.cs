@@ -20,11 +20,12 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item {
     /// </summary>
     public class LearningProviderItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property learningProviders for employeeExperience
+        /// Delete a learningProvider resource and remove its registration in Viva Learning for a tenant.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/employeeexperience-delete-learningproviders?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property learningProviders for employeeExperience";
+            command.Description = "Delete a learningProvider resource and remove its registration in Viva Learning for a tenant.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/employeeexperience-delete-learningproviders?view=graph-rest-1.0";
             var learningProviderIdOption = new Option<string>("--learning-provider-id", description: "The unique identifier of learningProvider") {
             };
             learningProviderIdOption.IsRequired = true;
@@ -53,11 +54,12 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item {
             return command;
         }
         /// <summary>
-        /// A collection of learning providers.
+        /// Read the properties and relationships of a learningProvider object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/learningprovider-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "A collection of learning providers.";
+            command.Description = "Read the properties and relationships of a learningProvider object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/learningprovider-get?view=graph-rest-1.0";
             var learningProviderIdOption = new Option<string>("--learning-provider-id", description: "The unique identifier of learningProvider") {
             };
             learningProviderIdOption.IsRequired = true;
@@ -139,11 +141,12 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property learningProviders in employeeExperience
+        /// Update the properties of a learningProvider object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/learningprovider-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property learningProviders in employeeExperience";
+            command.Description = "Update the properties of a learningProvider object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/learningprovider-update?view=graph-rest-1.0";
             var learningProviderIdOption = new Option<string>("--learning-provider-id", description: "The unique identifier of learningProvider") {
             };
             learningProviderIdOption.IsRequired = true;
@@ -202,7 +205,7 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item {
         public LearningProviderItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/employeeExperience/learningProviders/{learningProvider%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property learningProviders for employeeExperience
+        /// Delete a learningProvider resource and remove its registration in Viva Learning for a tenant.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -227,7 +230,7 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of learning providers.
+        /// Read the properties and relationships of a learningProvider object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -253,7 +256,7 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property learningProviders in employeeExperience
+        /// Update the properties of a learningProvider object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -281,7 +284,7 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of learning providers.
+        /// Read the properties and relationships of a learningProvider object.
         /// </summary>
         public class LearningProviderItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

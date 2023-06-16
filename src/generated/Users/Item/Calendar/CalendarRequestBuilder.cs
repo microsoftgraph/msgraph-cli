@@ -5,8 +5,6 @@ using ApiSdk.Users.Item.Calendar.CalendarPermissions;
 using ApiSdk.Users.Item.Calendar.CalendarView;
 using ApiSdk.Users.Item.Calendar.Events;
 using ApiSdk.Users.Item.Calendar.GetSchedule;
-using ApiSdk.Users.Item.Calendar.MultiValueExtendedProperties;
-using ApiSdk.Users.Item.Calendar.SingleValueExtendedProperties;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
@@ -25,6 +23,21 @@ namespace ApiSdk.Users.Item.Calendar {
     /// Provides operations to manage the calendar property of the microsoft.graph.user entity.
     /// </summary>
     public class CalendarRequestBuilder : BaseCliRequestBuilder {
+        /// <summary>
+        /// Provides operations to call the allowedCalendarSharingRoles method.
+        /// </summary>
+        public Command BuildAllowedCalendarSharingRolesWithUserRbCommand() {
+            var command = new Command("allowed-calendar-sharing-roles-with-user");
+            command.Description = "Provides operations to call the allowedCalendarSharingRoles method.";
+            var builder = new AllowedCalendarSharingRolesWithUserRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
         /// <summary>
         /// Provides operations to manage the calendarPermissions property of the microsoft.graph.calendar entity.
         /// </summary>
@@ -102,11 +115,12 @@ namespace ApiSdk.Users.Item.Calendar {
             return command;
         }
         /// <summary>
-        /// The user&apos;s primary calendar. Read-only.
+        /// Get the properties and relationships of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user&apos;s calendar:
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/calendar-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The user's primary calendar. Read-only.";
+            command.Description = "Get the properties and relationships of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user's calendar:\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/calendar-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -171,36 +185,12 @@ namespace ApiSdk.Users.Item.Calendar {
             return command;
         }
         /// <summary>
-        /// Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.calendar entity.
-        /// </summary>
-        public Command BuildMultiValueExtendedPropertiesNavCommand() {
-            var command = new Command("multi-value-extended-properties");
-            command.Description = "Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.calendar entity.";
-            var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            var nonExecCommands = new List<Command>();
-            nonExecCommands.Add(builder.BuildCountNavCommand());
-            execCommands.Add(builder.BuildCreateCommand());
-            execCommands.Add(builder.BuildListCommand());
-            var cmds = builder.BuildCommand();
-            execCommands.AddRange(cmds.Item1);
-            nonExecCommands.AddRange(cmds.Item2);
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
-        }
-        /// <summary>
-        /// Update the navigation property calendar in users
+        /// Update the properties of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/calendar-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property calendar in users";
+            command.Description = "Update the properties of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/calendar-update?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -253,38 +243,13 @@ namespace ApiSdk.Users.Item.Calendar {
             return command;
         }
         /// <summary>
-        /// Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.calendar entity.
-        /// </summary>
-        public Command BuildSingleValueExtendedPropertiesNavCommand() {
-            var command = new Command("single-value-extended-properties");
-            command.Description = "Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.calendar entity.";
-            var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            var nonExecCommands = new List<Command>();
-            nonExecCommands.Add(builder.BuildCountNavCommand());
-            execCommands.Add(builder.BuildCreateCommand());
-            execCommands.Add(builder.BuildListCommand());
-            var cmds = builder.BuildCommand();
-            execCommands.AddRange(cmds.Item1);
-            nonExecCommands.AddRange(cmds.Item2);
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
-        }
-        /// <summary>
         /// Instantiates a new CalendarRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public CalendarRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendar{?%24select}", pathParameters) {
         }
         /// <summary>
-        /// The user&apos;s primary calendar. Read-only.
+        /// Get the properties and relationships of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user&apos;s calendar:
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -310,7 +275,7 @@ namespace ApiSdk.Users.Item.Calendar {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property calendar in users
+        /// Update the properties of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -338,7 +303,7 @@ namespace ApiSdk.Users.Item.Calendar {
             return requestInfo;
         }
         /// <summary>
-        /// The user&apos;s primary calendar. Read-only.
+        /// Get the properties and relationships of a calendar object. The calendar can be one for a user, or the default calendar of a Microsoft 365 group. There are two scenarios where an app can get another user&apos;s calendar:
         /// </summary>
         public class CalendarRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>

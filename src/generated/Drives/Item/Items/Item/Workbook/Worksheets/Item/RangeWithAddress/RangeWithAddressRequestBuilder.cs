@@ -86,10 +86,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.RangeWithAddres
         /// <summary>
         /// Instantiates a new RangeWithAddressRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="address">Usage: address=&apos;{address}&apos;</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public RangeWithAddressRequestBuilder(Dictionary<string, object> pathParameters, string address = "") : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/range(address='{address}')", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(address)) PathParameters.Add("address", address);
+        public RangeWithAddressRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/range(address='{address}')", pathParameters) {
         }
         /// <summary>
         /// Invoke function range

@@ -18,11 +18,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Ite
     /// </summary>
     public class MicrosoftGraphSecurityApplyTagsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action applyTags
+        /// Apply tags to files in an eDiscovery review set. For details, see Tag documents in a review set in eDiscovery.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoveryreviewsetquery-applytags?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action applyTags";
+            command.Description = "Apply tags to files in an eDiscovery review set. For details, see Tag documents in a review set in eDiscovery.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoveryreviewsetquery-applytags?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -72,7 +73,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Ite
         public MicrosoftGraphSecurityApplyTagsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/reviewSets/{ediscoveryReviewSet%2Did}/queries/{ediscoveryReviewSetQuery%2Did}/microsoft.graph.security.applyTags", pathParameters) {
         }
         /// <summary>
-        /// Invoke action applyTags
+        /// Apply tags to files in an eDiscovery review set. For details, see Tag documents in a review set in eDiscovery.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -44,7 +44,7 @@ namespace ApiSdk.Models {
         public string ReplacesCallId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new invitationParticipantInfo and sets the default values.
+        /// Instantiates a new InvitationParticipantInfo and sets the default values.
         /// </summary>
         public InvitationParticipantInfo() {
             AdditionalData = new Dictionary<string, object>();

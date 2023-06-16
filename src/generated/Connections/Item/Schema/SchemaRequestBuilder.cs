@@ -52,11 +52,12 @@ namespace ApiSdk.Connections.Item.Schema {
             return command;
         }
         /// <summary>
-        /// Get schema from connections
+        /// Read the properties and relationships of a schema object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/externalconnectors-schema-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get schema from connections";
+            command.Description = "Read the properties and relationships of a schema object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/externalconnectors-schema-get?view=graph-rest-1.0";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -201,7 +202,7 @@ namespace ApiSdk.Connections.Item.Schema {
             return requestInfo;
         }
         /// <summary>
-        /// Get schema from connections
+        /// Read the properties and relationships of a schema object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -255,7 +256,7 @@ namespace ApiSdk.Connections.Item.Schema {
             return requestInfo;
         }
         /// <summary>
-        /// Get schema from connections
+        /// Read the properties and relationships of a schema object.
         /// </summary>
         public class SchemaRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

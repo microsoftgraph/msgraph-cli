@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
         public string IdentityType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new provisionedIdentity and sets the default values.
+        /// Instantiates a new ProvisionedIdentity and sets the default values.
         /// </summary>
         public ProvisionedIdentity() : base() {
             OdataType = "#microsoft.graph.provisionedIdentity";

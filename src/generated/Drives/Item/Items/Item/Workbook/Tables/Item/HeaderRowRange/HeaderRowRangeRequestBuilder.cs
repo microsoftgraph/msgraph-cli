@@ -19,11 +19,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.HeaderRowRange {
     /// </summary>
     public class HeaderRowRangeRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke function headerRowRange
+        /// Gets the range object associated with header row of the table.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/table-headerrowrange?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Invoke function headerRowRange";
+            command.Description = "Gets the range object associated with header row of the table.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/table-headerrowrange?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -84,7 +85,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.HeaderRowRange {
         public HeaderRowRangeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/{workbookTable%2Did}/headerRowRange()", pathParameters) {
         }
         /// <summary>
-        /// Invoke function headerRowRange
+        /// Gets the range object associated with header row of the table.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -49,11 +49,12 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.Columns {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to columns for shares
+        /// Add a column to a [content type][contentType] in a site, or a list with a request that specifies a [columnDefinition][columnDefinition].
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/contenttype-post-columns?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to columns for shares";
+            command.Description = "Add a column to a [content type][contentType] in a site, or a list with a request that specifies a [columnDefinition][columnDefinition].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contenttype-post-columns?view=graph-rest-1.0";
             var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
@@ -112,11 +113,12 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.Columns {
             return command;
         }
         /// <summary>
-        /// The collection of column definitions for this contentType.
+        /// Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [content type][contentType].
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/contenttype-list-columns?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The collection of column definitions for this contentType.";
+            command.Description = "Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [content type][contentType].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contenttype-list-columns?view=graph-rest-1.0";
             var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
@@ -234,7 +236,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.Columns {
         public ColumnsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/list/contentTypes/{contentType%2Did}/columns{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The collection of column definitions for this contentType.
+        /// Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [content type][contentType].
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -260,7 +262,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.Columns {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to columns for shares
+        /// Add a column to a [content type][contentType] in a site, or a list with a request that specifies a [columnDefinition][columnDefinition].
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -288,7 +290,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.Item.Columns {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of column definitions for this contentType.
+        /// Get the collection of columns represented as [columnDefinition][columnDefinition] resources in a [content type][contentType].
         /// </summary>
         public class ColumnsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

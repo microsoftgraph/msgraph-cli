@@ -26,7 +26,7 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new sortProperty and sets the default values.
+        /// Instantiates a new SortProperty and sets the default values.
         /// </summary>
         public SortProperty() {
             AdditionalData = new Dictionary<string, object>();

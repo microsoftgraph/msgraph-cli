@@ -19,11 +19,12 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.GetNotebookFromWebUrl {
     /// </summary>
     public class GetNotebookFromWebUrlRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action getNotebookFromWebUrl
+        /// Retrieve the properties and relationships of a notebook object by using its URL path. The location can be user notebooks on Microsoft 365, group notebooks, or SharePoint site-hosted team notebooks on Microsoft 365.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/notebook-getnotebookfromweburl?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action getNotebookFromWebUrl";
+            command.Description = "Retrieve the properties and relationships of a notebook object by using its URL path. The location can be user notebooks on Microsoft 365, group notebooks, or SharePoint site-hosted team notebooks on Microsoft 365.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/notebook-getnotebookfromweburl?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -82,7 +83,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.GetNotebookFromWebUrl {
         public GetNotebookFromWebUrlRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/onenote/notebooks/getNotebookFromWebUrl", pathParameters) {
         }
         /// <summary>
-        /// Invoke action getNotebookFromWebUrl
+        /// Retrieve the properties and relationships of a notebook object by using its URL path. The location can be user notebooks on Microsoft 365, group notebooks, or SharePoint site-hosted team notebooks on Microsoft 365.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -47,11 +47,12 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShiftChangeRequests {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to openShiftChangeRequests for teams
+        /// Create instance of an openShiftChangeRequest object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/openshiftchangerequest-post?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to openShiftChangeRequests for teams";
+            command.Description = "Create instance of an openShiftChangeRequest object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/openshiftchangerequest-post?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -104,11 +105,12 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShiftChangeRequests {
             return command;
         }
         /// <summary>
-        /// The open shift requests in the schedule.
+        /// Retrieve a list of openShiftChangeRequest objects in a team.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/openshiftchangerequest-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The open shift requests in the schedule.";
+            command.Description = "Retrieve a list of openShiftChangeRequest objects in a team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/openshiftchangerequest-list?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -220,7 +222,7 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShiftChangeRequests {
         public OpenShiftChangeRequestsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/schedule/openShiftChangeRequests{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The open shift requests in the schedule.
+        /// Retrieve a list of openShiftChangeRequest objects in a team.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -246,7 +248,7 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShiftChangeRequests {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to openShiftChangeRequests for teams
+        /// Create instance of an openShiftChangeRequest object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -274,7 +276,7 @@ namespace ApiSdk.Teams.Item.Schedule.OpenShiftChangeRequests {
             return requestInfo;
         }
         /// <summary>
-        /// The open shift requests in the schedule.
+        /// Retrieve a list of openShiftChangeRequest objects in a team.
         /// </summary>
         public class OpenShiftChangeRequestsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

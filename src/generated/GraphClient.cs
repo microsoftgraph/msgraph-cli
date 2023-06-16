@@ -7,7 +7,6 @@ using ApiSdk.Applications;
 using ApiSdk.AuditLogs;
 using ApiSdk.AuthenticationMethodConfigurations;
 using ApiSdk.AuthenticationMethodsPolicy;
-using ApiSdk.Branding;
 using ApiSdk.CertificateBasedAuthConfiguration;
 using ApiSdk.Chats;
 using ApiSdk.Communications;
@@ -29,6 +28,8 @@ using ApiSdk.Drives;
 using ApiSdk.Education;
 using ApiSdk.EmployeeExperience;
 using ApiSdk.External;
+using ApiSdk.FilterOperators;
+using ApiSdk.Functions;
 using ApiSdk.GroupLifecyclePolicies;
 using ApiSdk.GroupSettingTemplates;
 using ApiSdk.GroupSettings;
@@ -303,31 +304,6 @@ namespace ApiSdk {
             return command;
         }
         /// <summary>
-        /// Provides operations to manage the organizationalBranding singleton.
-        /// </summary>
-        public Command BuildBrandingNavCommand() {
-            var command = new Command("branding");
-            command.Description = "Provides operations to manage the organizationalBranding singleton.";
-            var builder = new BrandingRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            var nonExecCommands = new List<Command>();
-            nonExecCommands.Add(builder.BuildBackgroundImageNavCommand());
-            nonExecCommands.Add(builder.BuildBannerLogoNavCommand());
-            execCommands.Add(builder.BuildGetCommand());
-            nonExecCommands.Add(builder.BuildLocalizationsNavCommand());
-            execCommands.Add(builder.BuildPatchCommand());
-            nonExecCommands.Add(builder.BuildSquareLogoNavCommand());
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            foreach (var cmd in nonExecCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
-        }
-        /// <summary>
         /// Provides operations to manage the collection of certificateBasedAuthConfiguration entities.
         /// </summary>
         public Command BuildCertificateBasedAuthConfigurationNavCommand() {
@@ -588,6 +564,7 @@ namespace ApiSdk {
             nonExecCommands.Add(builder.BuildDeviceManagementPartnersNavCommand());
             nonExecCommands.Add(builder.BuildExchangeConnectorsNavCommand());
             execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildGetEffectivePermissionsWithScopeRbCommand());
             nonExecCommands.Add(builder.BuildImportedWindowsAutopilotDeviceIdentitiesNavCommand());
             nonExecCommands.Add(builder.BuildIosUpdateStatusesNavCommand());
             nonExecCommands.Add(builder.BuildManagedDeviceOverviewNavCommand());
@@ -604,6 +581,7 @@ namespace ApiSdk {
             nonExecCommands.Add(builder.BuildTelecomExpenseManagementPartnersNavCommand());
             nonExecCommands.Add(builder.BuildTermsAndConditionsNavCommand());
             nonExecCommands.Add(builder.BuildTroubleshootingEventsNavCommand());
+            nonExecCommands.Add(builder.BuildVerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRbCommand());
             nonExecCommands.Add(builder.BuildWindowsAutopilotDeviceIdentitiesNavCommand());
             nonExecCommands.Add(builder.BuildWindowsInformationProtectionAppLearningSummariesNavCommand());
             nonExecCommands.Add(builder.BuildWindowsInformationProtectionNetworkLearningSummariesNavCommand());
@@ -819,7 +797,6 @@ namespace ApiSdk {
             var builder = new DrivesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
-            nonExecCommands.Add(builder.BuildCountNavCommand());
             execCommands.Add(builder.BuildCreateCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
@@ -899,6 +876,56 @@ namespace ApiSdk {
                 command.AddCommand(cmd);
             }
             foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the collection of filterOperatorSchema entities.
+        /// </summary>
+        public Command BuildFilterOperatorsNavCommand() {
+            var command = new Command("filter-operators");
+            command.Description = "Provides operations to manage the collection of filterOperatorSchema entities.";
+            var builder = new FilterOperatorsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the collection of attributeMappingFunctionSchema entities.
+        /// </summary>
+        public Command BuildFunctionsNavCommand() {
+            var command = new Command("functions");
+            command.Description = "Provides operations to manage the collection of attributeMappingFunctionSchema entities.";
+            var builder = new FunctionsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
             {
                 command.AddCommand(cmd);
             }
@@ -1415,11 +1442,105 @@ namespace ApiSdk {
             nonExecCommands.Add(builder.BuildDeviceConfigurationDeviceActivityNavCommand());
             nonExecCommands.Add(builder.BuildDeviceConfigurationUserActivityNavCommand());
             execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildGetEmailActivityCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetEmailActivityUserCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetEmailActivityUserDetailWithDateRbCommand());
+            nonExecCommands.Add(builder.BuildGetEmailActivityUserDetailWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetEmailAppUsageAppsUserCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetEmailAppUsageUserCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetEmailAppUsageUserDetailWithDateRbCommand());
+            nonExecCommands.Add(builder.BuildGetEmailAppUsageUserDetailWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetEmailAppUsageVersionsUserCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWithEndDateTimeRbCommand());
+            nonExecCommands.Add(builder.BuildGetM365AppPlatformUserCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetM365AppUserCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetM365AppUserDetailWithDateRbCommand());
+            nonExecCommands.Add(builder.BuildGetM365AppUserDetailWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetMailboxUsageDetailWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetMailboxUsageMailboxCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetMailboxUsageQuotaStatusMailboxCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetMailboxUsageStorageWithPeriodRbCommand());
             nonExecCommands.Add(builder.BuildGetOffice365ActivationCountsNavCommand());
             nonExecCommands.Add(builder.BuildGetOffice365ActivationsUserCountsNavCommand());
             nonExecCommands.Add(builder.BuildGetOffice365ActivationsUserDetailNavCommand());
+            nonExecCommands.Add(builder.BuildGetOffice365ActiveUserCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetOffice365ActiveUserDetailWithDateRbCommand());
+            nonExecCommands.Add(builder.BuildGetOffice365ActiveUserDetailWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetOffice365GroupsActivityCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetOffice365GroupsActivityDetailWithDateRbCommand());
+            nonExecCommands.Add(builder.BuildGetOffice365GroupsActivityDetailWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetOffice365GroupsActivityFileCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetOffice365GroupsActivityGroupCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetOffice365GroupsActivityStorageWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetOffice365ServicesUserCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetOneDriveActivityFileCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetOneDriveActivityUserCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetOneDriveActivityUserDetailWithDateRbCommand());
+            nonExecCommands.Add(builder.BuildGetOneDriveActivityUserDetailWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetOneDriveUsageAccountCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetOneDriveUsageAccountDetailWithDateRbCommand());
+            nonExecCommands.Add(builder.BuildGetOneDriveUsageAccountDetailWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetOneDriveUsageFileCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetOneDriveUsageStorageWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetPrinterArchivedPrintJobsWithPrinterIdWithStartDateTimeWithEndDateTimeRbCommand());
+            nonExecCommands.Add(builder.BuildGetSharePointActivityFileCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetSharePointActivityPagesWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetSharePointActivityUserCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetSharePointActivityUserDetailWithDateRbCommand());
+            nonExecCommands.Add(builder.BuildGetSharePointActivityUserDetailWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetSharePointSiteUsageDetailWithDateRbCommand());
+            nonExecCommands.Add(builder.BuildGetSharePointSiteUsageDetailWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetSharePointSiteUsageFileCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetSharePointSiteUsagePagesWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetSharePointSiteUsageSiteCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetSharePointSiteUsageStorageWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetSkypeForBusinessActivityCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetSkypeForBusinessActivityUserCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetSkypeForBusinessActivityUserDetailWithDateRbCommand());
+            nonExecCommands.Add(builder.BuildGetSkypeForBusinessActivityUserDetailWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetSkypeForBusinessDeviceUsageDistributionUserCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetSkypeForBusinessDeviceUsageUserCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetSkypeForBusinessDeviceUsageUserDetailWithDateRbCommand());
+            nonExecCommands.Add(builder.BuildGetSkypeForBusinessDeviceUsageUserDetailWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetSkypeForBusinessOrganizerActivityCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetSkypeForBusinessOrganizerActivityMinuteCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetSkypeForBusinessOrganizerActivityUserCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetSkypeForBusinessParticipantActivityCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetSkypeForBusinessParticipantActivityMinuteCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetSkypeForBusinessParticipantActivityUserCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetSkypeForBusinessPeerToPeerActivityCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetSkypeForBusinessPeerToPeerActivityMinuteCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetSkypeForBusinessPeerToPeerActivityUserCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetTeamsDeviceUsageDistributionUserCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetTeamsDeviceUsageUserCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetTeamsDeviceUsageUserDetailWithDateRbCommand());
+            nonExecCommands.Add(builder.BuildGetTeamsDeviceUsageUserDetailWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetTeamsTeamActivityCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetTeamsTeamActivityDetailWithDateRbCommand());
+            nonExecCommands.Add(builder.BuildGetTeamsTeamActivityDetailWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetTeamsTeamActivityDistributionCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetTeamsTeamCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetTeamsUserActivityCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetTeamsUserActivityUserCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetTeamsUserActivityUserDetailWithDateRbCommand());
+            nonExecCommands.Add(builder.BuildGetTeamsUserActivityUserDetailWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetUserArchivedPrintJobsWithUserIdWithStartDateTimeWithEndDateTimeRbCommand());
+            nonExecCommands.Add(builder.BuildGetYammerActivityCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetYammerActivityUserCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetYammerActivityUserDetailWithDateRbCommand());
+            nonExecCommands.Add(builder.BuildGetYammerActivityUserDetailWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetYammerDeviceUsageDistributionUserCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetYammerDeviceUsageUserCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetYammerDeviceUsageUserDetailWithDateRbCommand());
+            nonExecCommands.Add(builder.BuildGetYammerDeviceUsageUserDetailWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetYammerGroupsActivityCountsWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetYammerGroupsActivityDetailWithDateRbCommand());
+            nonExecCommands.Add(builder.BuildGetYammerGroupsActivityDetailWithPeriodRbCommand());
+            nonExecCommands.Add(builder.BuildGetYammerGroupsActivityGroupCountsWithPeriodRbCommand());
             nonExecCommands.Add(builder.BuildManagedDeviceEnrollmentFailureDetailsNavCommand());
+            nonExecCommands.Add(builder.BuildManagedDeviceEnrollmentFailureDetailsWithSkipWithTopWithFilterWithSkipTokenRbCommand());
             nonExecCommands.Add(builder.BuildManagedDeviceEnrollmentTopFailuresNavCommand());
+            nonExecCommands.Add(builder.BuildManagedDeviceEnrollmentTopFailuresWithPeriodRbCommand());
             nonExecCommands.Add(builder.BuildMonthlyPrintUsageByPrinterNavCommand());
             nonExecCommands.Add(builder.BuildMonthlyPrintUsageByUserNavCommand());
             execCommands.Add(builder.BuildPatchCommand());
@@ -1472,7 +1593,6 @@ namespace ApiSdk {
             command.AddCommand(BuildAuditLogsNavCommand());
             command.AddCommand(BuildAuthenticationMethodConfigurationsNavCommand());
             command.AddCommand(BuildAuthenticationMethodsPolicyNavCommand());
-            command.AddCommand(BuildBrandingNavCommand());
             command.AddCommand(BuildCertificateBasedAuthConfigurationNavCommand());
             command.AddCommand(BuildChatsNavCommand());
             command.AddCommand(BuildCommunicationsNavCommand());
@@ -1494,6 +1614,8 @@ namespace ApiSdk {
             command.AddCommand(BuildEducationNavCommand());
             command.AddCommand(BuildEmployeeExperienceNavCommand());
             command.AddCommand(BuildExternalNavCommand());
+            command.AddCommand(BuildFilterOperatorsNavCommand());
+            command.AddCommand(BuildFunctionsNavCommand());
             command.AddCommand(BuildGroupLifecyclePoliciesNavCommand());
             command.AddCommand(BuildGroupSettingsNavCommand());
             command.AddCommand(BuildGroupSettingTemplatesNavCommand());
@@ -1700,6 +1822,7 @@ namespace ApiSdk {
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildAddNavCommand());
             nonExecCommands.Add(builder.BuildCountNavCommand());
+            nonExecCommands.Add(builder.BuildGetAllSitesNavCommand());
             execCommands.Add(builder.BuildListCommand());
             nonExecCommands.Add(builder.BuildRemoveNavCommand());
             var cmds = builder.BuildCommand();
@@ -1798,6 +1921,7 @@ namespace ApiSdk {
             nonExecCommands.Add(builder.BuildCountNavCommand());
             execCommands.Add(builder.BuildCreateCommand());
             nonExecCommands.Add(builder.BuildGetAllMessagesNavCommand());
+            execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
             execCommands.AddRange(cmds.Item1);
             nonExecCommands.AddRange(cmds.Item2);

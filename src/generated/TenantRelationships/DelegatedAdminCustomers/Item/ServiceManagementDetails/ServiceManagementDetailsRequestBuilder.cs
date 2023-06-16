@@ -104,11 +104,12 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item.ServiceManagem
             return command;
         }
         /// <summary>
-        /// Contains the management details of a service in the customer tenant that&apos;s managed by delegated administration.
+        /// Get a list of the delegatedAdminServiceManagementDetail objects and their properties.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/delegatedadmincustomer-list-servicemanagementdetails?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Contains the management details of a service in the customer tenant that's managed by delegated administration.";
+            command.Description = "Get a list of the delegatedAdminServiceManagementDetail objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/delegatedadmincustomer-list-servicemanagementdetails?view=graph-rest-1.0";
             var delegatedAdminCustomerIdOption = new Option<string>("--delegated-admin-customer-id", description: "The unique identifier of delegatedAdminCustomer") {
             };
             delegatedAdminCustomerIdOption.IsRequired = true;
@@ -220,7 +221,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item.ServiceManagem
         public ServiceManagementDetailsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/tenantRelationships/delegatedAdminCustomers/{delegatedAdminCustomer%2Did}/serviceManagementDetails{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Contains the management details of a service in the customer tenant that&apos;s managed by delegated administration.
+        /// Get a list of the delegatedAdminServiceManagementDetail objects and their properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -274,7 +275,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminCustomers.Item.ServiceManagem
             return requestInfo;
         }
         /// <summary>
-        /// Contains the management details of a service in the customer tenant that&apos;s managed by delegated administration.
+        /// Get a list of the delegatedAdminServiceManagementDetail objects and their properties.
         /// </summary>
         public class ServiceManagementDetailsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

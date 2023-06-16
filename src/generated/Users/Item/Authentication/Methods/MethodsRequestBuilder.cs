@@ -105,11 +105,12 @@ namespace ApiSdk.Users.Item.Authentication.Methods {
             return command;
         }
         /// <summary>
-        /// Represents all authentication methods registered to a user.
+        /// Retrieve a list of authentication methods registered to a user. The authentication methods are defined by the types derived from the authenticationMethod resource type, and only the methods supported on this API version. See Azure AD authentication methods API overview for a list of currently supported methods.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/authentication-list-methods?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Represents all authentication methods registered to a user.";
+            command.Description = "Retrieve a list of authentication methods registered to a user. The authentication methods are defined by the types derived from the authenticationMethod resource type, and only the methods supported on this API version. See Azure AD authentication methods API overview for a list of currently supported methods.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/authentication-list-methods?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -221,7 +222,7 @@ namespace ApiSdk.Users.Item.Authentication.Methods {
         public MethodsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/authentication/methods{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Represents all authentication methods registered to a user.
+        /// Retrieve a list of authentication methods registered to a user. The authentication methods are defined by the types derived from the authenticationMethod resource type, and only the methods supported on this API version. See Azure AD authentication methods API overview for a list of currently supported methods.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -275,7 +276,7 @@ namespace ApiSdk.Users.Item.Authentication.Methods {
             return requestInfo;
         }
         /// <summary>
-        /// Represents all authentication methods registered to a user.
+        /// Retrieve a list of authentication methods registered to a user. The authentication methods are defined by the types derived from the authenticationMethod resource type, and only the methods supported on this API version. See Azure AD authentication methods API overview for a list of currently supported methods.
         /// </summary>
         public class MethodsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

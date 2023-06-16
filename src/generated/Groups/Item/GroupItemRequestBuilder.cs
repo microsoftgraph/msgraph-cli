@@ -148,13 +148,12 @@ namespace ApiSdk.Groups.Item {
             var builder = new CalendarRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAllowedCalendarSharingRolesWithUserRbCommand());
             nonExecCommands.Add(builder.BuildCalendarPermissionsNavCommand());
             nonExecCommands.Add(builder.BuildCalendarViewNavCommand());
             nonExecCommands.Add(builder.BuildEventsNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             nonExecCommands.Add(builder.BuildGetScheduleNavCommand());
-            nonExecCommands.Add(builder.BuildMultiValueExtendedPropertiesNavCommand());
-            nonExecCommands.Add(builder.BuildSingleValueExtendedPropertiesNavCommand());
             foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
@@ -940,6 +939,7 @@ namespace ApiSdk.Groups.Item {
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildAddNavCommand());
             nonExecCommands.Add(builder.BuildCountNavCommand());
+            nonExecCommands.Add(builder.BuildGetAllSitesNavCommand());
             execCommands.Add(builder.BuildListCommand());
             nonExecCommands.Add(builder.BuildRemoveNavCommand());
             var cmds = builder.BuildCommand();

@@ -87,9 +87,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.UsedRangeWithVa
         /// Instantiates a new UsedRangeWithValuesOnlyRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="valuesOnly">Usage: valuesOnly={valuesOnly}</param>
-        public UsedRangeWithValuesOnlyRequestBuilder(Dictionary<string, object> pathParameters, bool? valuesOnly = default) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/usedRange(valuesOnly={valuesOnly})", pathParameters) {
-            if (valuesOnly is not null) PathParameters.Add("valuesOnly", valuesOnly);
+        public UsedRangeWithValuesOnlyRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/usedRange(valuesOnly={valuesOnly})", pathParameters) {
         }
         /// <summary>
         /// Invoke function usedRange

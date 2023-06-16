@@ -34,6 +34,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations {
             commands.Add(builder.BuildDeviceStatusesNavCommand());
             commands.Add(builder.BuildDeviceStatusOverviewNavCommand());
             executables.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildGetOmaSettingPlainTextValueWithSecretReferenceValueIdRbCommand());
             executables.Add(builder.BuildPatchCommand());
             commands.Add(builder.BuildUserStatusesNavCommand());
             commands.Add(builder.BuildUserStatusOverviewNavCommand());

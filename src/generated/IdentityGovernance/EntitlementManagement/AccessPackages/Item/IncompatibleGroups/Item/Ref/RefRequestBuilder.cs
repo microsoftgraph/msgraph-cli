@@ -18,11 +18,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.In
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete ref of navigation property incompatibleGroups for identityGovernance
+        /// Remove a group from the list of groups that have been marked as incompatible on an accessPackage.  
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/accesspackage-delete-incompatiblegroup?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete ref of navigation property incompatibleGroups for identityGovernance";
+            command.Description = "Remove a group from the list of groups that have been marked as incompatible on an accessPackage.  \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/accesspackage-delete-incompatiblegroup?view=graph-rest-1.0";
             var accessPackageIdOption = new Option<string>("--access-package-id", description: "The unique identifier of accessPackage") {
             };
             accessPackageIdOption.IsRequired = true;
@@ -69,7 +70,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.In
         public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/accessPackages/{accessPackage%2Did}/incompatibleGroups/{group%2Did}/$ref{?%40id*}", pathParameters) {
         }
         /// <summary>
-        /// Delete ref of navigation property incompatibleGroups for identityGovernance
+        /// Remove a group from the list of groups that have been marked as incompatible on an accessPackage.  
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -94,7 +95,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.In
             return requestInfo;
         }
         /// <summary>
-        /// Delete ref of navigation property incompatibleGroups for identityGovernance
+        /// Remove a group from the list of groups that have been marked as incompatible on an accessPackage.  
         /// </summary>
         public class RefRequestBuilderDeleteQueryParameters {
             /// <summary>Delete Uri</summary>

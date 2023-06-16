@@ -121,14 +121,8 @@ namespace ApiSdk.Reports.GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWi
         /// <summary>
         /// Instantiates a new GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWithEndDateTimeRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="endDateTime">Usage: endDateTime={endDateTime}</param>
-        /// <param name="groupId">Usage: groupId=&apos;{groupId}&apos;</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="startDateTime">Usage: startDateTime={startDateTime}</param>
-        public GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWithEndDateTimeRequestBuilder(Dictionary<string, object> pathParameters, DateTimeOffset? endDateTime = default, string groupId = "", DateTimeOffset? startDateTime = default) : base("{+baseurl}/reports/getGroupArchivedPrintJobs(groupId='{groupId}',startDateTime={startDateTime},endDateTime={endDateTime}){?%24top,%24skip,%24search,%24filter,%24count}", pathParameters) {
-            if (endDateTime is not null) PathParameters.Add("endDateTime", endDateTime);
-            if (!string.IsNullOrWhiteSpace(groupId)) PathParameters.Add("groupId", groupId);
-            if (startDateTime is not null) PathParameters.Add("startDateTime", startDateTime);
+        public GetGroupArchivedPrintJobsWithGroupIdWithStartDateTimeWithEndDateTimeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getGroupArchivedPrintJobs(groupId='{groupId}',startDateTime={startDateTime},endDateTime={endDateTime}){?%24top,%24skip,%24search,%24filter,%24count}", pathParameters) {
         }
         /// <summary>
         /// Invoke function getGroupArchivedPrintJobs

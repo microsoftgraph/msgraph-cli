@@ -331,6 +331,14 @@ namespace ApiSdk.Models {
 #else
         public string SignInAudience { get; set; }
 #endif
+        /// <summary>The synchronization property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.Synchronization? Synchronization { get; set; }
+#nullable restore
+#else
+        public ApiSdk.Models.Synchronization Synchronization { get; set; }
+#endif
         /// <summary>Custom strings that can be used to categorize and identify the service principal. Not nullable. The value is the union of strings set here and on the associated application entity&apos;s tags property.Supports $filter (eq, not, ge, le, startsWith).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -435,6 +443,7 @@ namespace ApiSdk.Models {
                 {"servicePrincipalNames", n => { ServicePrincipalNames = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"servicePrincipalType", n => { ServicePrincipalType = n.GetStringValue(); } },
                 {"signInAudience", n => { SignInAudience = n.GetStringValue(); } },
+                {"synchronization", n => { Synchronization = n.GetObjectValue<ApiSdk.Models.Synchronization>(ApiSdk.Models.Synchronization.CreateFromDiscriminatorValue); } },
                 {"tags", n => { Tags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"tokenEncryptionKeyId", n => { TokenEncryptionKeyId = n.GetGuidValue(); } },
                 {"tokenIssuancePolicies", n => { TokenIssuancePolicies = n.GetCollectionOfObjectValues<TokenIssuancePolicy>(TokenIssuancePolicy.CreateFromDiscriminatorValue)?.ToList(); } },
@@ -493,6 +502,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfPrimitiveValues<string>("servicePrincipalNames", ServicePrincipalNames);
             writer.WriteStringValue("servicePrincipalType", ServicePrincipalType);
             writer.WriteStringValue("signInAudience", SignInAudience);
+            writer.WriteObjectValue<ApiSdk.Models.Synchronization>("synchronization", Synchronization);
             writer.WriteCollectionOfPrimitiveValues<string>("tags", Tags);
             writer.WriteGuidValue("tokenEncryptionKeyId", TokenEncryptionKeyId);
             writer.WriteCollectionOfObjectValues<TokenIssuancePolicy>("tokenIssuancePolicies", TokenIssuancePolicies);

@@ -34,7 +34,7 @@ namespace ApiSdk.Models {
         public string Type { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new addIn and sets the default values.
+        /// Instantiates a new AddIn and sets the default values.
         /// </summary>
         public AddIn() {
             AdditionalData = new Dictionary<string, object>();

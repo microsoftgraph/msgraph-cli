@@ -63,11 +63,12 @@ namespace ApiSdk.Education.Schools.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property schools for education
+        /// Delete a school.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationschool-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property schools for education";
+            command.Description = "Delete a school.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationschool-delete?view=graph-rest-1.0";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -96,11 +97,12 @@ namespace ApiSdk.Education.Schools.Item {
             return command;
         }
         /// <summary>
-        /// Get schools from education
+        /// Read the properties and relationships of an educationSchool object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationschool-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get schools from education";
+            command.Description = "Read the properties and relationships of an educationSchool object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationschool-get?view=graph-rest-1.0";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -157,11 +159,12 @@ namespace ApiSdk.Education.Schools.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property schools in education
+        /// Update the properties of an educationSchool object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationschool-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property schools in education";
+            command.Description = "Update the properties of an educationSchool object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationschool-update?view=graph-rest-1.0";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -245,7 +248,7 @@ namespace ApiSdk.Education.Schools.Item {
         public EducationSchoolItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/schools/{educationSchool%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property schools for education
+        /// Delete a school.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -270,7 +273,7 @@ namespace ApiSdk.Education.Schools.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get schools from education
+        /// Read the properties and relationships of an educationSchool object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -296,7 +299,7 @@ namespace ApiSdk.Education.Schools.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property schools in education
+        /// Update the properties of an educationSchool object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -324,7 +327,7 @@ namespace ApiSdk.Education.Schools.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get schools from education
+        /// Read the properties and relationships of an educationSchool object.
         /// </summary>
         public class EducationSchoolItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

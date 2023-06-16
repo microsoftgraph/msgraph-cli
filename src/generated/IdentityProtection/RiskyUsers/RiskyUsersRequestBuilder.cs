@@ -132,11 +132,12 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
             return command;
         }
         /// <summary>
-        /// Users that are flagged as at-risk by Azure AD Identity Protection.
+        /// Get a list of the riskyUser objects and their properties.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/riskyuser-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Users that are flagged as at-risk by Azure AD Identity Protection.";
+            command.Description = "Get a list of the riskyUser objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/riskyuser-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -242,7 +243,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
         public RiskyUsersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProtection/riskyUsers{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Users that are flagged as at-risk by Azure AD Identity Protection.
+        /// Get a list of the riskyUser objects and their properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -296,7 +297,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers {
             return requestInfo;
         }
         /// <summary>
-        /// Users that are flagged as at-risk by Azure AD Identity Protection.
+        /// Get a list of the riskyUser objects and their properties.
         /// </summary>
         public class RiskyUsersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

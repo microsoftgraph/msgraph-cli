@@ -19,11 +19,12 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat {
     /// </summary>
     public class ChatRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// The chat between the user and Teams app.
+        /// Retrieve the chat of the specified user and Teams app.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/userscopeteamsappinstallation-get-chat?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The chat between the user and Teams app.";
+            command.Description = "Retrieve the chat of the specified user and Teams app.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/userscopeteamsappinstallation-get-chat?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -92,7 +93,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat {
         public ChatRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/teamwork/installedApps/{userScopeTeamsAppInstallation%2Did}/chat{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The chat between the user and Teams app.
+        /// Retrieve the chat of the specified user and Teams app.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -118,7 +119,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps.Item.Chat {
             return requestInfo;
         }
         /// <summary>
-        /// The chat between the user and Teams app.
+        /// Retrieve the chat of the specified user and Teams app.
         /// </summary>
         public class ChatRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

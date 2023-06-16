@@ -53,11 +53,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Messages {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to messages for users
+        /// Send a new chatMessage in the specified channel.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/channel-post-messages?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to messages for users";
+            command.Description = "Send a new chatMessage in the specified channel.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-post-messages?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -131,11 +132,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Messages {
             return command;
         }
         /// <summary>
-        /// A collection of all the messages in the channel. A navigation property. Nullable.
+        /// Retrieve the list of messages (without the replies) in a channel of a team.  To get the replies for a message, call the list message replies or the get message reply API.  This method supports federation. To list channel messages in application context, the request must be made from the tenant that the channel owner belongs to (represented by the **tenantId** property on the channel).
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/channel-list-messages?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A collection of all the messages in the channel. A navigation property. Nullable.";
+            command.Description = "Retrieve the list of messages (without the replies) in a channel of a team.  To get the replies for a message, call the list message replies or the get message reply API.  This method supports federation. To list channel messages in application context, the request must be made from the tenant that the channel owner belongs to (represented by the **tenantId** property on the channel).\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-list-messages?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -253,7 +255,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Messages {
         public MessagesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/primaryChannel/messages{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// A collection of all the messages in the channel. A navigation property. Nullable.
+        /// Retrieve the list of messages (without the replies) in a channel of a team.  To get the replies for a message, call the list message replies or the get message reply API.  This method supports federation. To list channel messages in application context, the request must be made from the tenant that the channel owner belongs to (represented by the **tenantId** property on the channel).
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -279,7 +281,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Messages {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to messages for users
+        /// Send a new chatMessage in the specified channel.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -307,7 +309,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Messages {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of all the messages in the channel. A navigation property. Nullable.
+        /// Retrieve the list of messages (without the replies) in a channel of a team.  To get the replies for a message, call the list message replies or the get message reply API.  This method supports federation. To list channel messages in application context, the request must be made from the tenant that the channel owner belongs to (represented by the **tenantId** property on the channel).
         /// </summary>
         public class MessagesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

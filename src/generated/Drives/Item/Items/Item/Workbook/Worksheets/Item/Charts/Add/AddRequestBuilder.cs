@@ -19,11 +19,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Add {
     /// </summary>
     public class AddRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action add
+        /// Creates a new chart.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chartcollection-add?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action add";
+            command.Description = "Creates a new chart.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chartcollection-add?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -94,7 +95,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Add {
         public AddRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/add", pathParameters) {
         }
         /// <summary>
-        /// Invoke action add
+        /// Creates a new chart.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

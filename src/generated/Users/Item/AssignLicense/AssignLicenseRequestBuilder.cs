@@ -19,11 +19,12 @@ namespace ApiSdk.Users.Item.AssignLicense {
     /// </summary>
     public class AssignLicenseRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action assignLicense
+        /// Add or remove subscriptions for the user. You can also enable and disable specific plans associated with a subscription.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-assignlicense?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action assignLicense";
+            command.Description = "Add or remove subscriptions for the user. You can also enable and disable specific plans associated with a subscription.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-assignlicense?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -82,7 +83,7 @@ namespace ApiSdk.Users.Item.AssignLicense {
         public AssignLicenseRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/assignLicense", pathParameters) {
         }
         /// <summary>
-        /// Invoke action assignLicense
+        /// Add or remove subscriptions for the user. You can also enable and disable specific plans associated with a subscription.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

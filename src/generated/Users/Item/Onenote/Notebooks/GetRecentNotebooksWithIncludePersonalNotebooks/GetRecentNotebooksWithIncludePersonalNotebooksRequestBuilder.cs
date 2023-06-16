@@ -115,10 +115,8 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.GetRecentNotebooksWithIncludePerso
         /// <summary>
         /// Instantiates a new GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="includePersonalNotebooks">Usage: includePersonalNotebooks={includePersonalNotebooks}</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilder(Dictionary<string, object> pathParameters, bool? includePersonalNotebooks = default) : base("{+baseurl}/users/{user%2Did}/onenote/notebooks/getRecentNotebooks(includePersonalNotebooks={includePersonalNotebooks}){?%24top,%24skip,%24search,%24filter,%24count}", pathParameters) {
-            if (includePersonalNotebooks is not null) PathParameters.Add("includePersonalNotebooks", includePersonalNotebooks);
+        public GetRecentNotebooksWithIncludePersonalNotebooksRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/onenote/notebooks/getRecentNotebooks(includePersonalNotebooks={includePersonalNotebooks}){?%24top,%24skip,%24search,%24filter,%24count}", pathParameters) {
         }
         /// <summary>
         /// Invoke function getRecentNotebooks

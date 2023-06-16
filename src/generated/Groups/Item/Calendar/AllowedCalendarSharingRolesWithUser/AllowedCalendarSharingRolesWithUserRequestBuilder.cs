@@ -116,9 +116,7 @@ namespace ApiSdk.Groups.Item.Calendar.AllowedCalendarSharingRolesWithUser {
         /// Instantiates a new AllowedCalendarSharingRolesWithUserRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="user">Usage: User=&apos;{User}&apos;</param>
-        public AllowedCalendarSharingRolesWithUserRequestBuilder(Dictionary<string, object> pathParameters, string user = "") : base("{+baseurl}/groups/{group%2Did}/calendar/allowedCalendarSharingRoles(User='{User}'){?%24top,%24skip,%24search,%24filter,%24count}", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(user)) PathParameters.Add("User", user);
+        public AllowedCalendarSharingRolesWithUserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/calendar/allowedCalendarSharingRoles(User='{User}'){?%24top,%24skip,%24search,%24filter,%24count}", pathParameters) {
         }
         /// <summary>
         /// Invoke function allowedCalendarSharingRoles

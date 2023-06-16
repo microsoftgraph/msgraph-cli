@@ -18,11 +18,12 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers.Item.Ref {
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete ref of navigation property allowedUsers for print
+        /// Revoke the specified user&apos;s access to submit print jobs to the associated printerShare.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/printershare-delete-alloweduser?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete ref of navigation property allowedUsers for print";
+            command.Description = "Revoke the specified user's access to submit print jobs to the associated printerShare.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/printershare-delete-alloweduser?view=graph-rest-1.0";
             var printerShareIdOption = new Option<string>("--printer-share-id", description: "The unique identifier of printerShare") {
             };
             printerShareIdOption.IsRequired = true;
@@ -69,7 +70,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers.Item.Ref {
         public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/shares/{printerShare%2Did}/allowedUsers/{user%2Did}/$ref{?%40id*}", pathParameters) {
         }
         /// <summary>
-        /// Delete ref of navigation property allowedUsers for print
+        /// Revoke the specified user&apos;s access to submit print jobs to the associated printerShare.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -94,7 +95,7 @@ namespace ApiSdk.Print.Shares.Item.AllowedUsers.Item.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Delete ref of navigation property allowedUsers for print
+        /// Revoke the specified user&apos;s access to submit print jobs to the associated printerShare.
         /// </summary>
         public class RefRequestBuilderDeleteQueryParameters {
             /// <summary>Delete Uri</summary>

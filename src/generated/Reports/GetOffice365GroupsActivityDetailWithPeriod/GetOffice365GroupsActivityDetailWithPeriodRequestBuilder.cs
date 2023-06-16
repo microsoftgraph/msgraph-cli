@@ -59,9 +59,7 @@ namespace ApiSdk.Reports.GetOffice365GroupsActivityDetailWithPeriod {
         /// Instantiates a new GetOffice365GroupsActivityDetailWithPeriodRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
-        public GetOffice365GroupsActivityDetailWithPeriodRequestBuilder(Dictionary<string, object> pathParameters, string period = "") : base("{+baseurl}/reports/getOffice365GroupsActivityDetail(period='{period}')", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(period)) PathParameters.Add("period", period);
+        public GetOffice365GroupsActivityDetailWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getOffice365GroupsActivityDetail(period='{period}')", pathParameters) {
         }
         /// <summary>
         /// Invoke function getOffice365GroupsActivityDetail

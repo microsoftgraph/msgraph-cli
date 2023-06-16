@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class CrossTenantAccessPolicyConfigurationPartner : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The automaticUserConsentSettings property</summary>
+        /// <summary>Determines the partner-specific configuration for automatic user consent settings. Unless specifically configured, the inboundAllowed and outboundAllowed properties are null and inherit from the default settings, which is always false.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public InboundOutboundPolicyConfiguration? AutomaticUserConsentSettings { get; set; }
@@ -47,7 +47,7 @@ namespace ApiSdk.Models {
 #else
         public CrossTenantAccessPolicyB2BSetting B2bDirectConnectOutbound { get; set; }
 #endif
-        /// <summary>The identitySynchronization property</summary>
+        /// <summary>Defines the cross-tenant policy for the synchronization of users from a partner tenant. Use this user synchronization policy to streamline collaboration between users in a multi-tenant organization by automating the creation, update, and deletion of users from one tenant to another.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public CrossTenantIdentitySyncPolicyPartner? IdentitySynchronization { get; set; }
@@ -82,7 +82,7 @@ namespace ApiSdk.Models {
         public string TenantId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new crossTenantAccessPolicyConfigurationPartner and sets the default values.
+        /// Instantiates a new CrossTenantAccessPolicyConfigurationPartner and sets the default values.
         /// </summary>
         public CrossTenantAccessPolicyConfigurationPartner() {
             AdditionalData = new Dictionary<string, object>();

@@ -18,11 +18,12 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Instances.Item.Accept {
     /// </summary>
     public class AcceptRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action accept
+        /// Accept the specified event in a user calendar.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/event-accept?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action accept";
+            command.Description = "Accept the specified event in a user calendar.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/event-accept?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -72,7 +73,7 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Instances.Item.Accept {
         public AcceptRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/calendar/events/{event%2Did}/instances/{event%2Did1}/accept", pathParameters) {
         }
         /// <summary>
-        /// Invoke action accept
+        /// Accept the specified event in a user calendar.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

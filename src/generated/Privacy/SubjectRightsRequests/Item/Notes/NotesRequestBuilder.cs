@@ -47,11 +47,12 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to notes for privacy
+        /// Create a new authoredNote object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/subjectrightsrequest-post-notes?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to notes for privacy";
+            command.Description = "Create a new authoredNote object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/subjectrightsrequest-post-notes?view=graph-rest-1.0";
             var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "The unique identifier of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
@@ -104,11 +105,12 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
             return command;
         }
         /// <summary>
-        /// List of notes associcated with the request.
+        /// Get the list of authored notes assoicated with a subject rights request. 
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/subjectrightsrequest-list-notes?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List of notes associcated with the request.";
+            command.Description = "Get the list of authored notes assoicated with a subject rights request. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/subjectrightsrequest-list-notes?view=graph-rest-1.0";
             var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "The unique identifier of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
@@ -220,7 +222,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
         public NotesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/privacy/subjectRightsRequests/{subjectRightsRequest%2Did}/notes{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// List of notes associcated with the request.
+        /// Get the list of authored notes assoicated with a subject rights request. 
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -246,7 +248,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to notes for privacy
+        /// Create a new authoredNote object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -274,7 +276,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes {
             return requestInfo;
         }
         /// <summary>
-        /// List of notes associcated with the request.
+        /// Get the list of authored notes assoicated with a subject rights request. 
         /// </summary>
         public class NotesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

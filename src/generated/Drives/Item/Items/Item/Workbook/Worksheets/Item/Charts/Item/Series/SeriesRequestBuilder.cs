@@ -51,11 +51,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
             return command;
         }
         /// <summary>
-        /// Create new navigation property to series for drives
+        /// Use this API to create a new ChartSeries.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chart-post-series?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to series for drives";
+            command.Description = "Use this API to create a new ChartSeries.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chart-post-series?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -126,11 +127,27 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
             return command;
         }
         /// <summary>
-        /// Represents either a single series or collection of series in the chart. Read-only.
+        /// Provides operations to call the itemAt method.
+        /// </summary>
+        public Command BuildItemAtWithIndexRbCommand() {
+            var command = new Command("item-at-with-index");
+            command.Description = "Provides operations to call the itemAt method.";
+            var builder = new ItemAtWithIndexRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Retrieve a list of chartseries objects.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chartseries-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Represents either a single series or collection of series in the chart. Read-only.";
+            command.Description = "Retrieve a list of chartseries objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chartseries-list?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -260,7 +277,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
         public SeriesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/{workbookChart%2Did}/series{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Represents either a single series or collection of series in the chart. Read-only.
+        /// Retrieve a list of chartseries objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -286,7 +303,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to series for drives
+        /// Use this API to create a new ChartSeries.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -314,7 +331,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ser
             return requestInfo;
         }
         /// <summary>
-        /// Represents either a single series or collection of series in the chart. Read-only.
+        /// Retrieve a list of chartseries objects.
         /// </summary>
         public class SeriesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

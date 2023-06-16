@@ -58,10 +58,8 @@ namespace ApiSdk.Reports.GetYammerGroupsActivityDetailWithDate {
         /// <summary>
         /// Instantiates a new GetYammerGroupsActivityDetailWithDateRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="date">Usage: date={date}</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetYammerGroupsActivityDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters, Date? date = default) : base("{+baseurl}/reports/getYammerGroupsActivityDetail(date={date})", pathParameters) {
-            if (date is not null) PathParameters.Add("date", date);
+        public GetYammerGroupsActivityDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getYammerGroupsActivityDetail(date={date})", pathParameters) {
         }
         /// <summary>
         /// Invoke function getYammerGroupsActivityDetail

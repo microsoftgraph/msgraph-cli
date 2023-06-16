@@ -18,11 +18,12 @@ namespace ApiSdk.Domains.Item.Promote {
     /// </summary>
     public class PromoteRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action promote
+        /// Promote a verified subdomain to the root domain. A verified domain has its **isVerified** property set to `true`.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/domain-promote?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action promote";
+            command.Description = "Promote a verified subdomain to the root domain. A verified domain has its **isVerified** property set to `true`.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/domain-promote?view=graph-rest-1.0";
             var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
@@ -71,7 +72,7 @@ namespace ApiSdk.Domains.Item.Promote {
         public PromoteRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/domains/{domain%2Did}/promote", pathParameters) {
         }
         /// <summary>
-        /// Invoke action promote
+        /// Promote a verified subdomain to the root domain. A verified domain has its **isVerified** property set to `true`.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -7,10 +7,12 @@ namespace ApiSdk.Models {
     public class DefaultUserRolePermissions : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Indicates whether the default user role can create applications.</summary>
+        /// <summary>Indicates whether the default user role can create applications. This setting corresponds to the Users can register applications setting in the User settings menu in the Azure portal.</summary>
         public bool? AllowedToCreateApps { get; set; }
-        /// <summary>Indicates whether the default user role can create security groups.</summary>
+        /// <summary>Indicates whether the default user role can create security groups. This setting corresponds to the following menus in the Azure portal:  The Users can create security groups in Azure portals, API or PowerShell setting in the Group settings menu.  Users can create security groups setting in the User settings menu.</summary>
         public bool? AllowedToCreateSecurityGroups { get; set; }
+        /// <summary>Indicates whether the default user role can create tenants. This setting corresponds to the Restrict non-admin users from creating tenants setting in the User settings menu in the Azure portal.  When this setting is false, users assigned the Tenant Creator role can still create tenants.</summary>
+        public bool? AllowedToCreateTenants { get; set; }
         /// <summary>Indicates whether the registered owners of a device can read their own BitLocker recovery keys with default user role.</summary>
         public bool? AllowedToReadBitlockerKeysForOwnedDevice { get; set; }
         /// <summary>Indicates whether the default user role can read other users.</summary>
@@ -32,7 +34,7 @@ namespace ApiSdk.Models {
         public List<string> PermissionGrantPoliciesAssigned { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new defaultUserRolePermissions and sets the default values.
+        /// Instantiates a new DefaultUserRolePermissions and sets the default values.
         /// </summary>
         public DefaultUserRolePermissions() {
             AdditionalData = new Dictionary<string, object>();
@@ -52,6 +54,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"allowedToCreateApps", n => { AllowedToCreateApps = n.GetBoolValue(); } },
                 {"allowedToCreateSecurityGroups", n => { AllowedToCreateSecurityGroups = n.GetBoolValue(); } },
+                {"allowedToCreateTenants", n => { AllowedToCreateTenants = n.GetBoolValue(); } },
                 {"allowedToReadBitlockerKeysForOwnedDevice", n => { AllowedToReadBitlockerKeysForOwnedDevice = n.GetBoolValue(); } },
                 {"allowedToReadOtherUsers", n => { AllowedToReadOtherUsers = n.GetBoolValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
@@ -66,6 +69,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("allowedToCreateApps", AllowedToCreateApps);
             writer.WriteBoolValue("allowedToCreateSecurityGroups", AllowedToCreateSecurityGroups);
+            writer.WriteBoolValue("allowedToCreateTenants", AllowedToCreateTenants);
             writer.WriteBoolValue("allowedToReadBitlockerKeysForOwnedDevice", AllowedToReadBitlockerKeysForOwnedDevice);
             writer.WriteBoolValue("allowedToReadOtherUsers", AllowedToReadOtherUsers);
             writer.WriteStringValue("@odata.type", OdataType);

@@ -38,8 +38,6 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView {
             commands.Add(builder.BuildForwardNavCommand());
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildInstancesNavCommand());
-            commands.Add(builder.BuildMultiValueExtendedPropertiesNavCommand());
-            commands.Add(builder.BuildSingleValueExtendedPropertiesNavCommand());
             commands.Add(builder.BuildSnoozeReminderNavCommand());
             commands.Add(builder.BuildTentativelyAcceptNavCommand());
             return new(executables, commands);
@@ -75,11 +73,12 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView {
             return command;
         }
         /// <summary>
-        /// The calendar view for the calendar. Navigation property. Read-only.
+        /// Get the occurrences, exceptions and single instances of events in a calendar view defined by a time range,from a user&apos;s default calendar `(../me/calendarView)` or some other calendar of the user&apos;s.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/calendar-list-calendarview?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The calendar view for the calendar. Navigation property. Read-only.";
+            command.Description = "Get the occurrences, exceptions and single instances of events in a calendar view defined by a time range,from a user's default calendar `(../me/calendarView)` or some other calendar of the user's.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/calendar-list-calendarview?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -190,7 +189,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView {
         public CalendarViewRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/calendarGroups/{calendarGroup%2Did}/calendars/{calendar%2Did}/calendarView{?%24top,%24skip,%24filter,%24count,%24orderby,%24select}", pathParameters) {
         }
         /// <summary>
-        /// The calendar view for the calendar. Navigation property. Read-only.
+        /// Get the occurrences, exceptions and single instances of events in a calendar view defined by a time range,from a user&apos;s default calendar `(../me/calendarView)` or some other calendar of the user&apos;s.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -216,7 +215,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView {
             return requestInfo;
         }
         /// <summary>
-        /// The calendar view for the calendar. Navigation property. Read-only.
+        /// Get the occurrences, exceptions and single instances of events in a calendar view defined by a time range,from a user&apos;s default calendar `(../me/calendarView)` or some other calendar of the user&apos;s.
         /// </summary>
         public class CalendarViewRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

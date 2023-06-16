@@ -5,8 +5,6 @@ using ApiSdk.Users.Item.MailFolders.Item.Copy;
 using ApiSdk.Users.Item.MailFolders.Item.MessageRules;
 using ApiSdk.Users.Item.MailFolders.Item.Messages;
 using ApiSdk.Users.Item.MailFolders.Item.Move;
-using ApiSdk.Users.Item.MailFolders.Item.MultiValueExtendedProperties;
-using ApiSdk.Users.Item.MailFolders.Item.SingleValueExtendedProperties;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
@@ -67,11 +65,12 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property mailFolders for users
+        /// Delete the specified mailFolder. The folder can be a mailSearchFolder. You can specify a mail folder by its folder ID, or by its well-known folder name, if one exists.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/mailfolder-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property mailFolders for users";
+            command.Description = "Delete the specified mailFolder. The folder can be a mailSearchFolder. You can specify a mail folder by its folder ID, or by its well-known folder name, if one exists.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/mailfolder-delete?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -107,10 +106,11 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
         }
         /// <summary>
         /// The user&apos;s mail folders. Read-only. Nullable.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/mailfolder-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The user's mail folders. Read-only. Nullable.";
+            command.Description = "The user's mail folders. Read-only. Nullable.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/mailfolder-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -245,36 +245,12 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.mailFolder entity.
-        /// </summary>
-        public Command BuildMultiValueExtendedPropertiesNavCommand() {
-            var command = new Command("multi-value-extended-properties");
-            command.Description = "Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.mailFolder entity.";
-            var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            var nonExecCommands = new List<Command>();
-            nonExecCommands.Add(builder.BuildCountNavCommand());
-            execCommands.Add(builder.BuildCreateCommand());
-            execCommands.Add(builder.BuildListCommand());
-            var cmds = builder.BuildCommand();
-            execCommands.AddRange(cmds.Item1);
-            nonExecCommands.AddRange(cmds.Item2);
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
-        }
-        /// <summary>
-        /// Update the navigation property mailFolders in users
+        /// Update the writable properties of a mailSearchFolder object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/mailsearchfolder-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property mailFolders in users";
+            command.Description = "Update the writable properties of a mailSearchFolder object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/mailsearchfolder-update?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -333,38 +309,13 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.mailFolder entity.
-        /// </summary>
-        public Command BuildSingleValueExtendedPropertiesNavCommand() {
-            var command = new Command("single-value-extended-properties");
-            command.Description = "Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.mailFolder entity.";
-            var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            var nonExecCommands = new List<Command>();
-            nonExecCommands.Add(builder.BuildCountNavCommand());
-            execCommands.Add(builder.BuildCreateCommand());
-            execCommands.Add(builder.BuildListCommand());
-            var cmds = builder.BuildCommand();
-            execCommands.AddRange(cmds.Item1);
-            nonExecCommands.AddRange(cmds.Item2);
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
-        }
-        /// <summary>
         /// Instantiates a new MailFolderItemRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public MailFolderItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}{?includeHiddenFolders*,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property mailFolders for users
+        /// Delete the specified mailFolder. The folder can be a mailSearchFolder. You can specify a mail folder by its folder ID, or by its well-known folder name, if one exists.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -415,7 +366,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property mailFolders in users
+        /// Update the writable properties of a mailSearchFolder object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

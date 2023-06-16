@@ -18,11 +18,12 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability {
     /// </summary>
     public class GetStaffAvailabilityRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action getStaffAvailability
+        /// Get the availability information of staff members of a Microsoft Bookings calendar.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/bookingbusiness-getstaffavailability?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action getStaffAvailability";
+            command.Description = "Get the availability information of staff members of a Microsoft Bookings calendar.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bookingbusiness-getstaffavailability?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -93,7 +94,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.GetStaffAvailability {
         public GetStaffAvailabilityRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/getStaffAvailability", pathParameters) {
         }
         /// <summary>
-        /// Invoke action getStaffAvailability
+        /// Get the availability information of staff members of a Microsoft Bookings calendar.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

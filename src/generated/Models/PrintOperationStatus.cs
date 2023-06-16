@@ -26,7 +26,7 @@ namespace ApiSdk.Models {
         /// <summary>The state property</summary>
         public PrintOperationProcessingState? State { get; set; }
         /// <summary>
-        /// Instantiates a new printOperationStatus and sets the default values.
+        /// Instantiates a new PrintOperationStatus and sets the default values.
         /// </summary>
         public PrintOperationStatus() {
             AdditionalData = new Dictionary<string, object>();

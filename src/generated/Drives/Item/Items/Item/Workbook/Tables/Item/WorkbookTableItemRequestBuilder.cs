@@ -56,6 +56,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
             nonExecCommands.Add(builder.BuildAddNavCommand());
             nonExecCommands.Add(builder.BuildCountNavCommand());
             execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildItemAtWithIndexRbCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
             execCommands.AddRange(cmds.Item1);
@@ -101,11 +102,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property tables for drives
+        /// Deletes the table.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/table-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property tables for drives";
+            command.Description = "Deletes the table.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/table-delete?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -146,11 +148,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
             return command;
         }
         /// <summary>
-        /// Represents a collection of tables associated with the workbook. Read-only.
+        /// Retrieve the properties and relationships of table object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/table-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Represents a collection of tables associated with the workbook. Read-only.";
+            command.Description = "Retrieve the properties and relationships of table object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/table-get?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -234,11 +237,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property tables in drives
+        /// Update the properties of table object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/table-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property tables in drives";
+            command.Description = "Update the properties of table object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/table-update?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -344,6 +348,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
             nonExecCommands.Add(builder.BuildAddNavCommand());
             nonExecCommands.Add(builder.BuildCountNavCommand());
             execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildItemAtWithIndexRbCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
             execCommands.AddRange(cmds.Item1);
@@ -420,7 +425,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
         public WorkbookTableItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/{workbookTable%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property tables for drives
+        /// Deletes the table.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -445,7 +450,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Represents a collection of tables associated with the workbook. Read-only.
+        /// Retrieve the properties and relationships of table object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -471,7 +476,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property tables in drives
+        /// Update the properties of table object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -499,7 +504,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Represents a collection of tables associated with the workbook. Read-only.
+        /// Retrieve the properties and relationships of table object.
         /// </summary>
         public class WorkbookTableItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

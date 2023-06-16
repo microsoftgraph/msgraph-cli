@@ -18,11 +18,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Application.Calculate {
     /// </summary>
     public class CalculateRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action calculate
+        /// Recalculate all currently opened workbooks in Excel.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/workbookapplication-calculate?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action calculate";
+            command.Description = "Recalculate all currently opened workbooks in Excel.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/workbookapplication-calculate?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -66,7 +67,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Application.Calculate {
         public CalculateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/application/calculate", pathParameters) {
         }
         /// <summary>
-        /// Invoke action calculate
+        /// Recalculate all currently opened workbooks in Excel.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

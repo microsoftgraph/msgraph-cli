@@ -56,11 +56,12 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             return command;
         }
         /// <summary>
-        /// Get subjectRightsRequests from privacy
+        /// Read the properties and relationships of a subjectRightsRequest object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/subjectrightsrequest-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get subjectRightsRequests from privacy";
+            command.Description = "Read the properties and relationships of a subjectRightsRequest object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/subjectrightsrequest-get?view=graph-rest-1.0";
             var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "The unique identifier of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
@@ -172,11 +173,12 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property subjectRightsRequests in privacy
+        /// Update the properties of a subjectRightsRequest object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/subjectrightsrequest-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property subjectRightsRequests in privacy";
+            command.Description = "Update the properties of a subjectRightsRequest object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/subjectrightsrequest-update?view=graph-rest-1.0";
             var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "The unique identifier of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
@@ -275,7 +277,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get subjectRightsRequests from privacy
+        /// Read the properties and relationships of a subjectRightsRequest object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -301,7 +303,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property subjectRightsRequests in privacy
+        /// Update the properties of a subjectRightsRequest object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -329,7 +331,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get subjectRightsRequests from privacy
+        /// Read the properties and relationships of a subjectRightsRequest object.
         /// </summary>
         public class SubjectRightsRequestItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

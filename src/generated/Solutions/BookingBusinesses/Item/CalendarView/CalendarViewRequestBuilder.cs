@@ -107,10 +107,11 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CalendarView {
         }
         /// <summary>
         /// The set of appointments of this business in a specified date range. Read-only. Nullable.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/bookingbusiness-list-calendarview?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The set of appointments of this business in a specified date range. Read-only. Nullable.";
+            command.Description = "The set of appointments of this business in a specified date range. Read-only. Nullable.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bookingbusiness-list-calendarview?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;

@@ -18,11 +18,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
     /// </summary>
     public class UndoSoftDeleteRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action undoSoftDelete
+        /// Undo soft deletion of a single chatMessage or a chat message reply in a channel or a chat.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chatmessage-undosoftdelete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action undoSoftDelete";
+            command.Description = "Undo soft deletion of a single chatMessage or a chat message reply in a channel or a chat.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chatmessage-undosoftdelete?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -74,7 +75,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Messages.Item.Replies
         public UndoSoftDeleteRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/channels/{channel%2Did}/messages/{chatMessage%2Did}/replies/{chatMessage%2Did1}/undoSoftDelete", pathParameters) {
         }
         /// <summary>
-        /// Invoke action undoSoftDelete
+        /// Undo soft deletion of a single chatMessage or a chat message reply in a channel or a chat.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

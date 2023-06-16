@@ -119,11 +119,12 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentScheduleRequest
             return command;
         }
         /// <summary>
-        /// Requests for active role assignments to principals through PIM.
+        /// In PIM, read the details of a request for an active and persistent role assignment made through the unifiedRoleAssignmentScheduleRequest object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/unifiedroleassignmentschedulerequest-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Requests for active role assignments to principals through PIM.";
+            command.Description = "In PIM, read the details of a request for an active and persistent role assignment made through the unifiedRoleAssignmentScheduleRequest object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/unifiedroleassignmentschedulerequest-get?view=graph-rest-1.0";
             var unifiedRoleAssignmentScheduleRequestIdOption = new Option<string>("--unified-role-assignment-schedule-request-id", description: "The unique identifier of unifiedRoleAssignmentScheduleRequest") {
             };
             unifiedRoleAssignmentScheduleRequestIdOption.IsRequired = true;
@@ -313,7 +314,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentScheduleRequest
             return requestInfo;
         }
         /// <summary>
-        /// Requests for active role assignments to principals through PIM.
+        /// In PIM, read the details of a request for an active and persistent role assignment made through the unifiedRoleAssignmentScheduleRequest object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -367,7 +368,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentScheduleRequest
             return requestInfo;
         }
         /// <summary>
-        /// Requests for active role assignments to principals through PIM.
+        /// In PIM, read the details of a request for an active and persistent role assignment made through the unifiedRoleAssignmentScheduleRequest object.
         /// </summary>
         public class UnifiedRoleAssignmentScheduleRequestItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

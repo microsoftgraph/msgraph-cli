@@ -18,11 +18,12 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Publish {
     /// </summary>
     public class PublishRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Makes the scheduling page of this business available to the general public.
+        /// Make the scheduling page of a business available to external customers. Set the **isPublished** property to `true`, and the **publicUrl** property to the URL of the scheduling page.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/bookingbusiness-publish?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Makes the scheduling page of this business available to the general public.";
+            command.Description = "Make the scheduling page of a business available to external customers. Set the **isPublished** property to `true`, and the **publicUrl** property to the URL of the scheduling page.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bookingbusiness-publish?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -50,7 +51,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Publish {
         public PublishRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/publish", pathParameters) {
         }
         /// <summary>
-        /// Makes the scheduling page of this business available to the general public.
+        /// Make the scheduling page of a business available to external customers. Set the **isPublished** property to `true`, and the **publicUrl** property to the URL of the scheduling page.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

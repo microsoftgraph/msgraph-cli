@@ -52,11 +52,12 @@ namespace ApiSdk.IdentityProtection.RiskDetections.Item {
             return command;
         }
         /// <summary>
-        /// Risk detection in Azure AD Identity Protection and the associated information about the detection.
+        /// Read the properties and relationships of a riskDetection object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/riskdetection-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Risk detection in Azure AD Identity Protection and the associated information about the detection.";
+            command.Description = "Read the properties and relationships of a riskDetection object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/riskdetection-get?view=graph-rest-1.0";
             var riskDetectionIdOption = new Option<string>("--risk-detection-id", description: "The unique identifier of riskDetection") {
             };
             riskDetectionIdOption.IsRequired = true;
@@ -201,7 +202,7 @@ namespace ApiSdk.IdentityProtection.RiskDetections.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Risk detection in Azure AD Identity Protection and the associated information about the detection.
+        /// Read the properties and relationships of a riskDetection object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -255,7 +256,7 @@ namespace ApiSdk.IdentityProtection.RiskDetections.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Risk detection in Azure AD Identity Protection and the associated information about the detection.
+        /// Read the properties and relationships of a riskDetection object.
         /// </summary>
         public class RiskDetectionItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

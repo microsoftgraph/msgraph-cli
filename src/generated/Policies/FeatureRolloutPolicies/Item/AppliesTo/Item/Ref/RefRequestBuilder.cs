@@ -18,11 +18,12 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Item.Ref {
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete ref of navigation property appliesTo for policies
+        /// Remove an appliesTo on a featureRolloutPolicy object to remove the directoryObject from feature rollout.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/featurerolloutpolicy-delete-appliesto?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete ref of navigation property appliesTo for policies";
+            command.Description = "Remove an appliesTo on a featureRolloutPolicy object to remove the directoryObject from feature rollout.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/featurerolloutpolicy-delete-appliesto?view=graph-rest-1.0";
             var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "The unique identifier of featureRolloutPolicy") {
             };
             featureRolloutPolicyIdOption.IsRequired = true;
@@ -69,7 +70,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Item.Ref {
         public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/featureRolloutPolicies/{featureRolloutPolicy%2Did}/appliesTo/{directoryObject%2Did}/$ref{?%40id*}", pathParameters) {
         }
         /// <summary>
-        /// Delete ref of navigation property appliesTo for policies
+        /// Remove an appliesTo on a featureRolloutPolicy object to remove the directoryObject from feature rollout.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -94,7 +95,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.Item.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Delete ref of navigation property appliesTo for policies
+        /// Remove an appliesTo on a featureRolloutPolicy object to remove the directoryObject from feature rollout.
         /// </summary>
         public class RefRequestBuilderDeleteQueryParameters {
             /// <summary>Delete Uri</summary>

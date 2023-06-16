@@ -18,11 +18,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item.CopyToDefaultContentLo
     /// </summary>
     public class CopyToDefaultContentLocationRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action copyToDefaultContentLocation
+        /// Copy a file to a default content location in a [content type][contentType]. The file can then be added as a default file or template via a POST operation.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/contenttype-copytodefaultcontentlocation?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action copyToDefaultContentLocation";
+            command.Description = "Copy a file to a default content location in a [content type][contentType]. The file can then be added as a default file or template via a POST operation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/contenttype-copytodefaultcontentlocation?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -72,7 +73,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.ContentTypes.Item.CopyToDefaultContentLo
         public CopyToDefaultContentLocationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/contentTypes/{contentType%2Did}/copyToDefaultContentLocation", pathParameters) {
         }
         /// <summary>
-        /// Invoke action copyToDefaultContentLocation
+        /// Copy a file to a default content location in a [content type][contentType]. The file can then be added as a default file or template via a POST operation.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

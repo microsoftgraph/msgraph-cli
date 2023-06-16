@@ -98,11 +98,12 @@ namespace ApiSdk.Security.AttackSimulation.Simulations {
             return command;
         }
         /// <summary>
-        /// Represents an attack simulation training campaign in a tenant.
+        /// Get a list of attack simulation campaigns for a tenant.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/attacksimulationroot-list-simulations?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Represents an attack simulation training campaign in a tenant.";
+            command.Description = "Get a list of attack simulation campaigns for a tenant.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/attacksimulationroot-list-simulations?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -208,7 +209,7 @@ namespace ApiSdk.Security.AttackSimulation.Simulations {
         public SimulationsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/attackSimulation/simulations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Represents an attack simulation training campaign in a tenant.
+        /// Get a list of attack simulation campaigns for a tenant.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -262,7 +263,7 @@ namespace ApiSdk.Security.AttackSimulation.Simulations {
             return requestInfo;
         }
         /// <summary>
-        /// Represents an attack simulation training campaign in a tenant.
+        /// Get a list of attack simulation campaigns for a tenant.
         /// </summary>
         public class SimulationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

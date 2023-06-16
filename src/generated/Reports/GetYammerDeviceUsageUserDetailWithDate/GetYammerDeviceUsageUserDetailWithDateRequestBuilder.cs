@@ -58,10 +58,8 @@ namespace ApiSdk.Reports.GetYammerDeviceUsageUserDetailWithDate {
         /// <summary>
         /// Instantiates a new GetYammerDeviceUsageUserDetailWithDateRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="date">Usage: date={date}</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetYammerDeviceUsageUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters, Date? date = default) : base("{+baseurl}/reports/getYammerDeviceUsageUserDetail(date={date})", pathParameters) {
-            if (date is not null) PathParameters.Add("date", date);
+        public GetYammerDeviceUsageUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getYammerDeviceUsageUserDetail(date={date})", pathParameters) {
         }
         /// <summary>
         /// Invoke function getYammerDeviceUsageUserDetail

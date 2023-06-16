@@ -18,11 +18,12 @@ namespace ApiSdk.Chats.Item.SendActivityNotification {
     /// </summary>
     public class SendActivityNotificationRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action sendActivityNotification
+        /// Send an activity feed notification in scope of a chat. For more details about sending notifications and the requirements for doing so, see sending Teams activity notifications.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chat-sendactivitynotification?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action sendActivityNotification";
+            command.Description = "Send an activity feed notification in scope of a chat. For more details about sending notifications and the requirements for doing so, see sending Teams activity notifications.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-sendactivitynotification?view=graph-rest-1.0";
             var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
@@ -60,7 +61,7 @@ namespace ApiSdk.Chats.Item.SendActivityNotification {
         public SendActivityNotificationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/chats/{chat%2Did}/sendActivityNotification", pathParameters) {
         }
         /// <summary>
-        /// Invoke action sendActivityNotification
+        /// Send an activity feed notification in scope of a chat. For more details about sending notifications and the requirements for doing so, see sending Teams activity notifications.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

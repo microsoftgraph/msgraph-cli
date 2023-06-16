@@ -80,11 +80,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property charts for drives
+        /// Deletes the chart object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chart-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property charts for drives";
+            command.Description = "Deletes the chart object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chart-delete?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -155,11 +156,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
             return command;
         }
         /// <summary>
-        /// Returns collection of charts that are part of the worksheet. Read-only.
+        /// Retrieve the properties and relationships of chart object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chart-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Returns collection of charts that are part of the worksheet. Read-only.";
+            command.Description = "Retrieve the properties and relationships of chart object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chart-get?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -249,6 +251,51 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the image method.
+        /// </summary>
+        public Command BuildImageWithWidthRbCommand() {
+            var command = new Command("image-with-width");
+            command.Description = "Provides operations to call the image method.";
+            var builder = new ImageWithWidthRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the image method.
+        /// </summary>
+        public Command BuildImageWithWidthWithHeightRbCommand() {
+            var command = new Command("image-with-width-with-height");
+            command.Description = "Provides operations to call the image method.";
+            var builder = new ImageWithWidthWithHeightRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the image method.
+        /// </summary>
+        public Command BuildImageWithWidthWithHeightWithFittingModeRbCommand() {
+            var command = new Command("image-with-width-with-height-with-fitting-mode");
+            command.Description = "Provides operations to call the image method.";
+            var builder = new ImageWithWidthWithHeightWithFittingModeRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the legend property of the microsoft.graph.workbookChart entity.
         /// </summary>
         public Command BuildLegendNavCommand() {
@@ -272,11 +319,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property charts in drives
+        /// Update the properties of chart object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chart-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property charts in drives";
+            command.Description = "Update the properties of chart object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chart-update?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -357,6 +405,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
             execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildItemAtWithIndexRbCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
             execCommands.AddRange(cmds.Item1);
@@ -446,7 +495,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
         public WorkbookChartItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/{workbookChart%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property charts for drives
+        /// Deletes the chart object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -471,7 +520,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Returns collection of charts that are part of the worksheet. Read-only.
+        /// Retrieve the properties and relationships of chart object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -497,7 +546,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property charts in drives
+        /// Update the properties of chart object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -525,7 +574,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Returns collection of charts that are part of the worksheet. Read-only.
+        /// Retrieve the properties and relationships of chart object.
         /// </summary>
         public class WorkbookChartItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

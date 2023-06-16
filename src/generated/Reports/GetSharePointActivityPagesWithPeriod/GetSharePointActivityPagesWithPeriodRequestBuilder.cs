@@ -59,9 +59,7 @@ namespace ApiSdk.Reports.GetSharePointActivityPagesWithPeriod {
         /// Instantiates a new GetSharePointActivityPagesWithPeriodRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
-        public GetSharePointActivityPagesWithPeriodRequestBuilder(Dictionary<string, object> pathParameters, string period = "") : base("{+baseurl}/reports/getSharePointActivityPages(period='{period}')", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(period)) PathParameters.Add("period", period);
+        public GetSharePointActivityPagesWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getSharePointActivityPages(period='{period}')", pathParameters) {
         }
         /// <summary>
         /// Invoke function getSharePointActivityPages

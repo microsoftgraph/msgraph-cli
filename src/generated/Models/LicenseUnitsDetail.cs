@@ -9,6 +9,8 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The number of units that are enabled for the active subscription of the service SKU.</summary>
         public int? Enabled { get; set; }
+        /// <summary>The lockedOut property</summary>
+        public int? LockedOut { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -41,6 +43,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"enabled", n => { Enabled = n.GetIntValue(); } },
+                {"lockedOut", n => { LockedOut = n.GetIntValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"suspended", n => { Suspended = n.GetIntValue(); } },
                 {"warning", n => { Warning = n.GetIntValue(); } },
@@ -53,6 +56,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("enabled", Enabled);
+            writer.WriteIntValue("lockedOut", LockedOut);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteIntValue("suspended", Suspended);
             writer.WriteIntValue("warning", Warning);

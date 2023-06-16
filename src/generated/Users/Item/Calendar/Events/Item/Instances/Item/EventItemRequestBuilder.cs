@@ -8,8 +8,6 @@ using ApiSdk.Users.Item.Calendar.Events.Item.Instances.Item.Decline;
 using ApiSdk.Users.Item.Calendar.Events.Item.Instances.Item.DismissReminder;
 using ApiSdk.Users.Item.Calendar.Events.Item.Instances.Item.Extensions;
 using ApiSdk.Users.Item.Calendar.Events.Item.Instances.Item.Forward;
-using ApiSdk.Users.Item.Calendar.Events.Item.Instances.Item.MultiValueExtendedProperties;
-using ApiSdk.Users.Item.Calendar.Events.Item.Instances.Item.SingleValueExtendedProperties;
 using ApiSdk.Users.Item.Calendar.Events.Item.Instances.Item.SnoozeReminder;
 using ApiSdk.Users.Item.Calendar.Events.Item.Instances.Item.TentativelyAccept;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -247,56 +245,6 @@ namespace ApiSdk.Users.Item.Calendar.Events.Item.Instances.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.event entity.
-        /// </summary>
-        public Command BuildMultiValueExtendedPropertiesNavCommand() {
-            var command = new Command("multi-value-extended-properties");
-            command.Description = "Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.event entity.";
-            var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            var nonExecCommands = new List<Command>();
-            nonExecCommands.Add(builder.BuildCountNavCommand());
-            execCommands.Add(builder.BuildCreateCommand());
-            execCommands.Add(builder.BuildListCommand());
-            var cmds = builder.BuildCommand();
-            execCommands.AddRange(cmds.Item1);
-            nonExecCommands.AddRange(cmds.Item2);
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.event entity.
-        /// </summary>
-        public Command BuildSingleValueExtendedPropertiesNavCommand() {
-            var command = new Command("single-value-extended-properties");
-            command.Description = "Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.event entity.";
-            var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            var nonExecCommands = new List<Command>();
-            nonExecCommands.Add(builder.BuildCountNavCommand());
-            execCommands.Add(builder.BuildCreateCommand());
-            execCommands.Add(builder.BuildListCommand());
-            var cmds = builder.BuildCommand();
-            execCommands.AddRange(cmds.Item1);
-            nonExecCommands.AddRange(cmds.Item2);
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
-            {
-                command.AddCommand(cmd);
-            }
             return command;
         }
         /// <summary>

@@ -48,7 +48,7 @@ namespace ApiSdk.Models {
         public List<string> SearchTerms { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new searchResponse and sets the default values.
+        /// Instantiates a new SearchResponse and sets the default values.
         /// </summary>
         public SearchResponse() {
             AdditionalData = new Dictionary<string, object>();

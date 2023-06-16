@@ -638,6 +638,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
             var builder = new OperationsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
             execCommands.Add(builder.BuildCreateCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
@@ -732,6 +733,36 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the sessionInfoResource method.
+        /// </summary>
+        public Command BuildSessionInfoResourceWithKeyRbCommand() {
+            var command = new Command("session-info-resource-with-key");
+            command.Description = "Provides operations to call the sessionInfoResource method.";
+            var builder = new SessionInfoResourceWithKeyRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the tableRowOperationResult method.
+        /// </summary>
+        public Command BuildTableRowOperationResultWithKeyRbCommand() {
+            var command = new Command("table-row-operation-result-with-key");
+            command.Description = "Provides operations to call the tableRowOperationResult method.";
+            var builder = new TableRowOperationResultWithKeyRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the tables property of the microsoft.graph.workbook entity.
         /// </summary>
         public Command BuildTablesNavCommand() {
@@ -743,6 +774,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook {
             nonExecCommands.Add(builder.BuildAddNavCommand());
             nonExecCommands.Add(builder.BuildCountNavCommand());
             execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildItemAtWithIndexRbCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
             execCommands.AddRange(cmds.Item1);

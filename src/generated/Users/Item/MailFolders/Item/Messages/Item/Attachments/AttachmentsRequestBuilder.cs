@@ -47,11 +47,12 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Attachments {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to attachments for users
+        /// Use this API to create a new Attachment. An attachment can be one of the following types: All these types of attachment resources are derived from the attachmentresource. 
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/eventmessage-post-attachments?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to attachments for users";
+            command.Description = "Use this API to create a new Attachment. An attachment can be one of the following types: All these types of attachment resources are derived from the attachmentresource. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/eventmessage-post-attachments?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -131,11 +132,12 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Attachments {
             return command;
         }
         /// <summary>
-        /// The fileAttachment and itemAttachment attachments for the message.
+        /// Retrieve a list of attachment objects attached to a message.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/message-list-attachments?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The fileAttachment and itemAttachment attachments for the message.";
+            command.Description = "Retrieve a list of attachment objects attached to a message.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/message-list-attachments?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -148,14 +150,6 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Attachments {
             };
             messageIdOption.IsRequired = true;
             command.AddOption(messageIdOption);
-            var topOption = new Option<int?>("--top", description: "Show only the first n items") {
-            };
-            topOption.IsRequired = false;
-            command.AddOption(topOption);
-            var skipOption = new Option<int?>("--skip", description: "Skip the first n items") {
-            };
-            skipOption.IsRequired = false;
-            command.AddOption(skipOption);
             var filterOption = new Option<string>("--filter", description: "Filter items by property values") {
             };
             filterOption.IsRequired = false;
@@ -198,8 +192,6 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Attachments {
                 var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
                 var mailFolderId = invocationContext.ParseResult.GetValueForOption(mailFolderIdOption);
                 var messageId = invocationContext.ParseResult.GetValueForOption(messageIdOption);
-                var top = invocationContext.ParseResult.GetValueForOption(topOption);
-                var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
                 var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
                 var count = invocationContext.ParseResult.GetValueForOption(countOption);
                 var orderby = invocationContext.ParseResult.GetValueForOption(orderbyOption);
@@ -215,8 +207,6 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Attachments {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
-                    q.QueryParameters.Top = top;
-                    q.QueryParameters.Skip = skip;
                     if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
                     q.QueryParameters.Count = count;
                     q.QueryParameters.Orderby = orderby;
@@ -250,10 +240,10 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Attachments {
         /// Instantiates a new AttachmentsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public AttachmentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/messages/{message%2Did}/attachments{?%24top,%24skip,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public AttachmentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/messages/{message%2Did}/attachments{?%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The fileAttachment and itemAttachment attachments for the message.
+        /// Retrieve a list of attachment objects attached to a message.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -279,7 +269,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Attachments {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to attachments for users
+        /// Use this API to create a new Attachment. An attachment can be one of the following types: All these types of attachment resources are derived from the attachmentresource. 
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -307,7 +297,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Attachments {
             return requestInfo;
         }
         /// <summary>
-        /// The fileAttachment and itemAttachment attachments for the message.
+        /// Retrieve a list of attachment objects attached to a message.
         /// </summary>
         public class AttachmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
@@ -353,12 +343,6 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Attachments {
             [QueryParameter("%24select")]
             public string[] Select { get; set; }
 #endif
-            /// <summary>Skip the first n items</summary>
-            [QueryParameter("%24skip")]
-            public int? Skip { get; set; }
-            /// <summary>Show only the first n items</summary>
-            [QueryParameter("%24top")]
-            public int? Top { get; set; }
         }
     }
 }

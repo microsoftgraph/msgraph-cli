@@ -59,9 +59,7 @@ namespace ApiSdk.Reports.GetMailboxUsageQuotaStatusMailboxCountsWithPeriod {
         /// Instantiates a new GetMailboxUsageQuotaStatusMailboxCountsWithPeriodRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
-        public GetMailboxUsageQuotaStatusMailboxCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters, string period = "") : base("{+baseurl}/reports/getMailboxUsageQuotaStatusMailboxCounts(period='{period}')", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(period)) PathParameters.Add("period", period);
+        public GetMailboxUsageQuotaStatusMailboxCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getMailboxUsageQuotaStatusMailboxCounts(period='{period}')", pathParameters) {
         }
         /// <summary>
         /// Invoke function getMailboxUsageQuotaStatusMailboxCounts

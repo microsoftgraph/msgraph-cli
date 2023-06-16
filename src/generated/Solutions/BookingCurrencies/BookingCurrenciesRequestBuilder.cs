@@ -98,11 +98,12 @@ namespace ApiSdk.Solutions.BookingCurrencies {
             return command;
         }
         /// <summary>
-        /// Get bookingCurrencies from solutions
+        /// Get a list of bookingCurrency objects available to a Microsoft Bookings business.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/bookingcurrency-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get bookingCurrencies from solutions";
+            command.Description = "Get a list of bookingCurrency objects available to a Microsoft Bookings business.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bookingcurrency-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -208,7 +209,7 @@ namespace ApiSdk.Solutions.BookingCurrencies {
         public BookingCurrenciesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/bookingCurrencies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get bookingCurrencies from solutions
+        /// Get a list of bookingCurrency objects available to a Microsoft Bookings business.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -262,7 +263,7 @@ namespace ApiSdk.Solutions.BookingCurrencies {
             return requestInfo;
         }
         /// <summary>
-        /// Get bookingCurrencies from solutions
+        /// Get a list of bookingCurrency objects available to a Microsoft Bookings business.
         /// </summary>
         public class BookingCurrenciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

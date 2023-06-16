@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class CrossTenantIdentitySyncPolicyPartner : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The displayName property</summary>
+        /// <summary>Display name for the cross-tenant user synchronization policy. Use the name of the partner Azure AD (Azure Active Directory) tenant to easily identify the policy. Optional.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }
@@ -23,7 +23,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The tenantId property</summary>
+        /// <summary>Tenant identifier for the partner Azure AD organization. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TenantId { get; set; }
@@ -31,7 +31,7 @@ namespace ApiSdk.Models {
 #else
         public string TenantId { get; set; }
 #endif
-        /// <summary>The userSyncInbound property</summary>
+        /// <summary>Defines whether users can be synchronized from the partner tenant. Key.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public CrossTenantUserSyncInbound? UserSyncInbound { get; set; }

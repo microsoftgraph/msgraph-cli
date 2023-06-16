@@ -19,11 +19,12 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Move {
     /// </summary>
     public class MoveRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action move
+        /// Move a mailfolder and its contents to another mailfolder.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/mailfolder-move?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action move";
+            command.Description = "Move a mailfolder and its contents to another mailfolder.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/mailfolder-move?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -94,7 +95,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Move {
         public MoveRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/childFolders/{mailFolder%2Did1}/move", pathParameters) {
         }
         /// <summary>
-        /// Invoke action move
+        /// Move a mailfolder and its contents to another mailfolder.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

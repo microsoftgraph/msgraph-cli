@@ -62,11 +62,12 @@ namespace ApiSdk.Chats.Item.Messages.Item {
             return command;
         }
         /// <summary>
-        /// A collection of all the messages in the chat. Nullable.
+        /// Retrieve a single message or a message reply in a channel or a chat.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chatmessage-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "A collection of all the messages in the chat. Nullable.";
+            command.Description = "Retrieve a single message or a message reply in a channel or a chat.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chatmessage-get?view=graph-rest-1.0";
             var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
@@ -304,7 +305,7 @@ namespace ApiSdk.Chats.Item.Messages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of all the messages in the chat. Nullable.
+        /// Retrieve a single message or a message reply in a channel or a chat.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -358,7 +359,7 @@ namespace ApiSdk.Chats.Item.Messages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of all the messages in the chat. Nullable.
+        /// Retrieve a single message or a message reply in a channel or a chat.
         /// </summary>
         public class ChatMessageItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

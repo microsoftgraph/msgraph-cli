@@ -79,11 +79,12 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Specifies the various policies associated with scopes and roles.
+        /// Retrieve the details of a role management policy.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/unifiedrolemanagementpolicy-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Specifies the various policies associated with scopes and roles.";
+            command.Description = "Retrieve the details of a role management policy.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/unifiedrolemanagementpolicy-get?view=graph-rest-1.0";
             var unifiedRoleManagementPolicyIdOption = new Option<string>("--unified-role-management-policy-id", description: "The unique identifier of unifiedRoleManagementPolicy") {
             };
             unifiedRoleManagementPolicyIdOption.IsRequired = true;
@@ -253,7 +254,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Specifies the various policies associated with scopes and roles.
+        /// Retrieve the details of a role management policy.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -307,7 +308,7 @@ namespace ApiSdk.Policies.RoleManagementPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Specifies the various policies associated with scopes and roles.
+        /// Retrieve the details of a role management policy.
         /// </summary>
         public class UnifiedRoleManagementPolicyItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

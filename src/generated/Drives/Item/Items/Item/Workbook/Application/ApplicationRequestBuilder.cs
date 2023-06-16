@@ -74,11 +74,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Application {
             return command;
         }
         /// <summary>
-        /// Get application from drives
+        /// Retrieve the properties and relationships of a workbookApplication object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/workbookapplication-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get application from drives";
+            command.Description = "Retrieve the properties and relationships of a workbookApplication object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/workbookapplication-get?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -235,7 +236,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Application {
             return requestInfo;
         }
         /// <summary>
-        /// Get application from drives
+        /// Retrieve the properties and relationships of a workbookApplication object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -289,7 +290,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Application {
             return requestInfo;
         }
         /// <summary>
-        /// Get application from drives
+        /// Retrieve the properties and relationships of a workbookApplication object.
         /// </summary>
         public class ApplicationRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

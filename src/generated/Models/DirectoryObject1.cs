@@ -13,7 +13,7 @@ namespace ApiSdk.Models {
 #else
         public List<AdministrativeUnit> AdministrativeUnits { get; set; }
 #endif
-        /// <summary>The attributeSets property</summary>
+        /// <summary>Group of related custom security attribute definitions.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<AttributeSet>? AttributeSets { get; set; }
@@ -21,7 +21,7 @@ namespace ApiSdk.Models {
 #else
         public List<AttributeSet> AttributeSets { get; set; }
 #endif
-        /// <summary>The customSecurityAttributeDefinitions property</summary>
+        /// <summary>Schema of a custom security attributes (key-value pairs).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<CustomSecurityAttributeDefinition>? CustomSecurityAttributeDefinitions { get; set; }

@@ -19,11 +19,12 @@ namespace ApiSdk.Education.Schools.Item.Users.Ref {
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Users in the school. Nullable.
+        /// Get the educationUser resources associated with an educationSchool.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationschool-list-users?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Users in the school. Nullable.";
+            command.Description = "Get the educationUser resources associated with an educationSchool.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationschool-list-users?view=graph-rest-1.0";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -115,11 +116,12 @@ namespace ApiSdk.Education.Schools.Item.Users.Ref {
             return command;
         }
         /// <summary>
-        /// Create new navigation property ref to users for education
+        /// Add a user to a school.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationschool-post-users?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Create new navigation property ref to users for education";
+            command.Description = "Add a user to a school.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationschool-post-users?view=graph-rest-1.0";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -157,7 +159,7 @@ namespace ApiSdk.Education.Schools.Item.Users.Ref {
         public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/schools/{educationSchool%2Did}/users/$ref{?%24top,%24skip,%24search,%24filter,%24count,%24orderby}", pathParameters) {
         }
         /// <summary>
-        /// Users in the school. Nullable.
+        /// Get the educationUser resources associated with an educationSchool.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -183,7 +185,7 @@ namespace ApiSdk.Education.Schools.Item.Users.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property ref to users for education
+        /// Add a user to a school.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -210,7 +212,7 @@ namespace ApiSdk.Education.Schools.Item.Users.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Users in the school. Nullable.
+        /// Get the educationUser resources associated with an educationSchool.
         /// </summary>
         public class RefRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

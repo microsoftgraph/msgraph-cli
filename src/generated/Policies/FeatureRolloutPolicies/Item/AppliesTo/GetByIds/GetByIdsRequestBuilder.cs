@@ -18,11 +18,12 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.GetByIds {
     /// </summary>
     public class GetByIdsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action getByIds
+        /// Return the directory objects specified in a list of IDs. Some common uses for this function are to:
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/directoryobject-getbyids?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action getByIds";
+            command.Description = "Return the directory objects specified in a list of IDs. Some common uses for this function are to:\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directoryobject-getbyids?view=graph-rest-1.0";
             var featureRolloutPolicyIdOption = new Option<string>("--feature-rollout-policy-id", description: "The unique identifier of featureRolloutPolicy") {
             };
             featureRolloutPolicyIdOption.IsRequired = true;
@@ -93,7 +94,7 @@ namespace ApiSdk.Policies.FeatureRolloutPolicies.Item.AppliesTo.GetByIds {
         public GetByIdsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/featureRolloutPolicies/{featureRolloutPolicy%2Did}/appliesTo/getByIds", pathParameters) {
         }
         /// <summary>
-        /// Invoke action getByIds
+        /// Return the directory objects specified in a list of IDs. Some common uses for this function are to:
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

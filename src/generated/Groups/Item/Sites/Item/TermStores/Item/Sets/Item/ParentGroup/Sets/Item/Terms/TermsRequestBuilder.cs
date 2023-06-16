@@ -132,11 +132,11 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Se
             return command;
         }
         /// <summary>
-        /// All the terms under the set.
+        /// Read the properties and relationships of a term object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "All the terms under the set.";
+            command.Description = "Read the properties and relationships of a term object.";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -272,7 +272,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Se
         public TermsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStores/{store%2Did}/sets/{set%2Did}/parentGroup/sets/{set%2Did1}/terms{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// All the terms under the set.
+        /// Read the properties and relationships of a term object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -326,7 +326,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStores.Item.Sets.Item.ParentGroup.Se
             return requestInfo;
         }
         /// <summary>
-        /// All the terms under the set.
+        /// Read the properties and relationships of a term object.
         /// </summary>
         public class TermsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -18,11 +18,12 @@ namespace ApiSdk.Groups.Item.ResetUnseenCount {
     /// </summary>
     public class ResetUnseenCountRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action resetUnseenCount
+        /// Reset the unseenCount of all the posts that the current user has not seen since their last visit. Supported for Microsoft 365 groups only.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/group-resetunseencount?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action resetUnseenCount";
+            command.Description = "Reset the unseenCount of all the posts that the current user has not seen since their last visit. Supported for Microsoft 365 groups only.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-resetunseencount?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -50,7 +51,7 @@ namespace ApiSdk.Groups.Item.ResetUnseenCount {
         public ResetUnseenCountRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/resetUnseenCount", pathParameters) {
         }
         /// <summary>
-        /// Invoke action resetUnseenCount
+        /// Reset the unseenCount of all the posts that the current user has not seen since their last visit. Supported for Microsoft 365 groups only.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

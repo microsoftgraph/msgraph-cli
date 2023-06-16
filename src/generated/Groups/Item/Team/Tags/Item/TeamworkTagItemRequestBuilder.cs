@@ -20,11 +20,12 @@ namespace ApiSdk.Groups.Item.Team.Tags.Item {
     /// </summary>
     public class TeamworkTagItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property tags for groups
+        /// Delete a tag object permanently.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/teamworktag-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property tags for groups";
+            command.Description = "Delete a tag object permanently.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/teamworktag-delete?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -59,11 +60,12 @@ namespace ApiSdk.Groups.Item.Team.Tags.Item {
             return command;
         }
         /// <summary>
-        /// The tags associated with the team.
+        /// Read the properties and relationships of a tag object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/teamworktag-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The tags associated with the team.";
+            command.Description = "Read the properties and relationships of a tag object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/teamworktag-get?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -151,11 +153,12 @@ namespace ApiSdk.Groups.Item.Team.Tags.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property tags in groups
+        /// Update the properties of a tag object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/teamworktag-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property tags in groups";
+            command.Description = "Update the properties of a tag object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/teamworktag-update?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -220,7 +223,7 @@ namespace ApiSdk.Groups.Item.Team.Tags.Item {
         public TeamworkTagItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/team/tags/{teamworkTag%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property tags for groups
+        /// Delete a tag object permanently.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -245,7 +248,7 @@ namespace ApiSdk.Groups.Item.Team.Tags.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The tags associated with the team.
+        /// Read the properties and relationships of a tag object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -271,7 +274,7 @@ namespace ApiSdk.Groups.Item.Team.Tags.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property tags in groups
+        /// Update the properties of a tag object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -299,7 +302,7 @@ namespace ApiSdk.Groups.Item.Team.Tags.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The tags associated with the team.
+        /// Read the properties and relationships of a tag object.
         /// </summary>
         public class TeamworkTagItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -44,11 +44,12 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property homeRealmDiscoveryPolicies for policies
+        /// Delete a homeRealmDiscoveryPolicy object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/homerealmdiscoverypolicy-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property homeRealmDiscoveryPolicies for policies";
+            command.Description = "Delete a homeRealmDiscoveryPolicy object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/homerealmdiscoverypolicy-delete?view=graph-rest-1.0";
             var homeRealmDiscoveryPolicyIdOption = new Option<string>("--home-realm-discovery-policy-id", description: "The unique identifier of homeRealmDiscoveryPolicy") {
             };
             homeRealmDiscoveryPolicyIdOption.IsRequired = true;
@@ -77,11 +78,12 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
             return command;
         }
         /// <summary>
-        /// The policy to control Azure AD authentication behavior for federated users.
+        /// Retrieve the properties and relationships of a homeRealmDiscoveryPolicy object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/homerealmdiscoverypolicy-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The policy to control Azure AD authentication behavior for federated users.";
+            command.Description = "Retrieve the properties and relationships of a homeRealmDiscoveryPolicy object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/homerealmdiscoverypolicy-get?view=graph-rest-1.0";
             var homeRealmDiscoveryPolicyIdOption = new Option<string>("--home-realm-discovery-policy-id", description: "The unique identifier of homeRealmDiscoveryPolicy") {
             };
             homeRealmDiscoveryPolicyIdOption.IsRequired = true;
@@ -138,11 +140,12 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property homeRealmDiscoveryPolicies in policies
+        /// Update the properties of a homeRealmDiscoveryPolicy object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/homerealmdiscoverypolicy-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property homeRealmDiscoveryPolicies in policies";
+            command.Description = "Update the properties of a homeRealmDiscoveryPolicy object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/homerealmdiscoverypolicy-update?view=graph-rest-1.0";
             var homeRealmDiscoveryPolicyIdOption = new Option<string>("--home-realm-discovery-policy-id", description: "The unique identifier of homeRealmDiscoveryPolicy") {
             };
             homeRealmDiscoveryPolicyIdOption.IsRequired = true;
@@ -201,7 +204,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
         public HomeRealmDiscoveryPolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/policies/homeRealmDiscoveryPolicies/{homeRealmDiscoveryPolicy%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property homeRealmDiscoveryPolicies for policies
+        /// Delete a homeRealmDiscoveryPolicy object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -226,7 +229,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The policy to control Azure AD authentication behavior for federated users.
+        /// Retrieve the properties and relationships of a homeRealmDiscoveryPolicy object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -252,7 +255,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property homeRealmDiscoveryPolicies in policies
+        /// Update the properties of a homeRealmDiscoveryPolicy object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -280,7 +283,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The policy to control Azure AD authentication behavior for federated users.
+        /// Retrieve the properties and relationships of a homeRealmDiscoveryPolicy object.
         /// </summary>
         public class HomeRealmDiscoveryPolicyItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

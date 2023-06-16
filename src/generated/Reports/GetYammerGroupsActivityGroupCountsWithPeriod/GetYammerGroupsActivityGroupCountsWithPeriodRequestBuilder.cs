@@ -59,9 +59,7 @@ namespace ApiSdk.Reports.GetYammerGroupsActivityGroupCountsWithPeriod {
         /// Instantiates a new GetYammerGroupsActivityGroupCountsWithPeriodRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
-        public GetYammerGroupsActivityGroupCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters, string period = "") : base("{+baseurl}/reports/getYammerGroupsActivityGroupCounts(period='{period}')", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(period)) PathParameters.Add("period", period);
+        public GetYammerGroupsActivityGroupCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getYammerGroupsActivityGroupCounts(period='{period}')", pathParameters) {
         }
         /// <summary>
         /// Invoke function getYammerGroupsActivityGroupCounts

@@ -59,9 +59,7 @@ namespace ApiSdk.Reports.GetSkypeForBusinessParticipantActivityMinuteCountsWithP
         /// Instantiates a new GetSkypeForBusinessParticipantActivityMinuteCountsWithPeriodRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
-        public GetSkypeForBusinessParticipantActivityMinuteCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters, string period = "") : base("{+baseurl}/reports/getSkypeForBusinessParticipantActivityMinuteCounts(period='{period}')", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(period)) PathParameters.Add("period", period);
+        public GetSkypeForBusinessParticipantActivityMinuteCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getSkypeForBusinessParticipantActivityMinuteCounts(period='{period}')", pathParameters) {
         }
         /// <summary>
         /// Invoke function getSkypeForBusinessParticipantActivityMinuteCounts

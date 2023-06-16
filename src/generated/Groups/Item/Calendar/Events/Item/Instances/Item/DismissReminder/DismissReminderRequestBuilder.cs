@@ -18,11 +18,12 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Instances.Item.DismissReminder
     /// </summary>
     public class DismissReminderRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action dismissReminder
+        /// Dismiss a reminder that has been triggered for an event in a user calendar.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/event-dismissreminder?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action dismissReminder";
+            command.Description = "Dismiss a reminder that has been triggered for an event in a user calendar.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/event-dismissreminder?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -62,7 +63,7 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Instances.Item.DismissReminder
         public DismissReminderRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/calendar/events/{event%2Did}/instances/{event%2Did1}/dismissReminder", pathParameters) {
         }
         /// <summary>
-        /// Invoke action dismissReminder
+        /// Dismiss a reminder that has been triggered for an event in a user calendar.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

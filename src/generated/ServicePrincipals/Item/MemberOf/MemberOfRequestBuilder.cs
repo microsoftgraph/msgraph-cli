@@ -93,10 +93,11 @@ namespace ApiSdk.ServicePrincipals.Item.MemberOf {
         }
         /// <summary>
         /// Roles that this service principal is a member of. HTTP Methods: GET Read-only. Nullable. Supports $expand.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/serviceprincipal-list-memberof?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Roles that this service principal is a member of. HTTP Methods: GET Read-only. Nullable. Supports $expand.";
+            command.Description = "Roles that this service principal is a member of. HTTP Methods: GET Read-only. Nullable. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-list-memberof?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;

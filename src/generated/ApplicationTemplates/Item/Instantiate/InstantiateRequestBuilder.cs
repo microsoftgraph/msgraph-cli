@@ -19,11 +19,12 @@ namespace ApiSdk.ApplicationTemplates.Item.Instantiate {
     /// </summary>
     public class InstantiateRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action instantiate
+        /// Add an instance of an application from the Azure AD application gallery into your directory. You can also use this API to instantiate non-gallery apps. Use the following ID for the **applicationTemplate** object: `8adf8e6e-67b2-4cf2-a259-e3dc5476c621`.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/applicationtemplate-instantiate?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action instantiate";
+            command.Description = "Add an instance of an application from the Azure AD application gallery into your directory. You can also use this API to instantiate non-gallery apps. Use the following ID for the **applicationTemplate** object: `8adf8e6e-67b2-4cf2-a259-e3dc5476c621`.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/applicationtemplate-instantiate?view=graph-rest-1.0";
             var applicationTemplateIdOption = new Option<string>("--application-template-id", description: "The unique identifier of applicationTemplate") {
             };
             applicationTemplateIdOption.IsRequired = true;
@@ -82,7 +83,7 @@ namespace ApiSdk.ApplicationTemplates.Item.Instantiate {
         public InstantiateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applicationTemplates/{applicationTemplate%2Did}/instantiate", pathParameters) {
         }
         /// <summary>
-        /// Invoke action instantiate
+        /// Add an instance of an application from the Azure AD application gallery into your directory. You can also use this API to instantiate non-gallery apps. Use the following ID for the **applicationTemplate** object: `8adf8e6e-67b2-4cf2-a259-e3dc5476c621`.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

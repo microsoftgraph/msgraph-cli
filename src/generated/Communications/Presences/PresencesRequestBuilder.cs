@@ -103,11 +103,11 @@ namespace ApiSdk.Communications.Presences {
             return command;
         }
         /// <summary>
-        /// Get presences from communications
+        /// Get a user&apos;s presence information.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get presences from communications";
+            command.Description = "Get a user's presence information.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -213,7 +213,7 @@ namespace ApiSdk.Communications.Presences {
         public PresencesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/presences{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get presences from communications
+        /// Get a user&apos;s presence information.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -267,7 +267,7 @@ namespace ApiSdk.Communications.Presences {
             return requestInfo;
         }
         /// <summary>
-        /// Get presences from communications
+        /// Get a user&apos;s presence information.
         /// </summary>
         public class PresencesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

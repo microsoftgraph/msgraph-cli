@@ -19,11 +19,12 @@ namespace ApiSdk.Users.Item.Authentication.Methods.Item.ResetPassword {
     /// </summary>
     public class ResetPasswordRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action resetPassword
+        /// Reset a user&apos;s password, represented by a password authentication method object. This can only be done by an administrator with appropriate permissions and cannot be performed on a user&apos;s own account. This flow writes the new password to Azure Active Directory and pushes it to on-premises Active Directory if configured using password writeback. The admin can either provide a new password or have the system generate one. The user is prompted to change their password on their next sign in. This reset is a long-running operation and will return a **Location** header with a link where the caller can periodically check for the status of the reset operation.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/authenticationmethod-resetpassword?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action resetPassword";
+            command.Description = "Reset a user's password, represented by a password authentication method object. This can only be done by an administrator with appropriate permissions and cannot be performed on a user's own account. This flow writes the new password to Azure Active Directory and pushes it to on-premises Active Directory if configured using password writeback. The admin can either provide a new password or have the system generate one. The user is prompted to change their password on their next sign in. This reset is a long-running operation and will return a **Location** header with a link where the caller can periodically check for the status of the reset operation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/authenticationmethod-resetpassword?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -88,7 +89,7 @@ namespace ApiSdk.Users.Item.Authentication.Methods.Item.ResetPassword {
         public ResetPasswordRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/authentication/methods/{authenticationMethod%2Did}/resetPassword", pathParameters) {
         }
         /// <summary>
-        /// Invoke action resetPassword
+        /// Reset a user&apos;s password, represented by a password authentication method object. This can only be done by an administrator with appropriate permissions and cannot be performed on a user&apos;s own account. This flow writes the new password to Azure Active Directory and pushes it to on-premises Active Directory if configured using password writeback. The admin can either provide a new password or have the system generate one. The user is prompted to change their password on their next sign in. This reset is a long-running operation and will return a **Location** header with a link where the caller can periodically check for the status of the reset operation.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

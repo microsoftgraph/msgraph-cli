@@ -58,10 +58,8 @@ namespace ApiSdk.Reports.GetSharePointActivityUserDetailWithDate {
         /// <summary>
         /// Instantiates a new GetSharePointActivityUserDetailWithDateRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="date">Usage: date={date}</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetSharePointActivityUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters, Date? date = default) : base("{+baseurl}/reports/getSharePointActivityUserDetail(date={date})", pathParameters) {
-            if (date is not null) PathParameters.Add("date", date);
+        public GetSharePointActivityUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getSharePointActivityUserDetail(date={date})", pathParameters) {
         }
         /// <summary>
         /// Invoke function getSharePointActivityUserDetail

@@ -18,11 +18,12 @@ namespace ApiSdk.Applications.Item.RemovePassword {
     /// </summary>
     public class RemovePasswordRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action removePassword
+        /// Remove a password from an application.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/application-removepassword?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action removePassword";
+            command.Description = "Remove a password from an application.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-removepassword?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -60,7 +61,7 @@ namespace ApiSdk.Applications.Item.RemovePassword {
         public RemovePasswordRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/removePassword", pathParameters) {
         }
         /// <summary>
-        /// Invoke action removePassword
+        /// Remove a password from an application.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

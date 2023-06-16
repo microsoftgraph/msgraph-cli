@@ -49,11 +49,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to queries for security
+        /// Create a new ediscoveryReviewSetQuery object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoveryreviewset-post-queries?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to queries for security";
+            command.Description = "Create a new ediscoveryReviewSetQuery object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoveryreviewset-post-queries?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -112,11 +113,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries {
             return command;
         }
         /// <summary>
-        /// Represents queries within the review set.
+        /// Get the list of queries associated with an eDiscovery review set.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoveryreviewset-list-queries?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Represents queries within the review set.";
+            command.Description = "Get the list of queries associated with an eDiscovery review set.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoveryreviewset-list-queries?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -234,7 +236,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries {
         public QueriesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/reviewSets/{ediscoveryReviewSet%2Did}/queries{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Represents queries within the review set.
+        /// Get the list of queries associated with an eDiscovery review set.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -260,7 +262,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to queries for security
+        /// Create a new ediscoveryReviewSetQuery object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -288,7 +290,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries {
             return requestInfo;
         }
         /// <summary>
-        /// Represents queries within the review set.
+        /// Get the list of queries associated with an eDiscovery review set.
         /// </summary>
         public class QueriesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

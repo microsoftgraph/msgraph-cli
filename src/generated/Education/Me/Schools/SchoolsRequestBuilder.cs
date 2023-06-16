@@ -45,11 +45,12 @@ namespace ApiSdk.Education.Me.Schools {
             return command;
         }
         /// <summary>
-        /// Schools to which the user belongs. Nullable.
+        /// Retrieve a list of schools for a user.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationuser-list-schools?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Schools to which the user belongs. Nullable.";
+            command.Description = "Retrieve a list of schools for a user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationuser-list-schools?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -155,7 +156,7 @@ namespace ApiSdk.Education.Me.Schools {
         public SchoolsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/me/schools{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Schools to which the user belongs. Nullable.
+        /// Retrieve a list of schools for a user.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -181,7 +182,7 @@ namespace ApiSdk.Education.Me.Schools {
             return requestInfo;
         }
         /// <summary>
-        /// Schools to which the user belongs. Nullable.
+        /// Retrieve a list of schools for a user.
         /// </summary>
         public class SchoolsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

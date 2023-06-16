@@ -47,11 +47,12 @@ namespace ApiSdk.Domains.Item.FederationConfiguration {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to federationConfiguration for domains
+        /// Create a new internalDomainFederation object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/domain-post-federationconfiguration?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to federationConfiguration for domains";
+            command.Description = "Create a new internalDomainFederation object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/domain-post-federationconfiguration?view=graph-rest-1.0";
             var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
@@ -104,11 +105,11 @@ namespace ApiSdk.Domains.Item.FederationConfiguration {
             return command;
         }
         /// <summary>
-        /// Domain settings configured by a customer when federated with Azure AD. Supports $expand.
+        /// Read the properties and relationships of an internalDomainFederation object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Domain settings configured by a customer when federated with Azure AD. Supports $expand.";
+            command.Description = "Read the properties and relationships of an internalDomainFederation object.";
             var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
@@ -220,7 +221,7 @@ namespace ApiSdk.Domains.Item.FederationConfiguration {
         public FederationConfigurationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/domains/{domain%2Did}/federationConfiguration{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Domain settings configured by a customer when federated with Azure AD. Supports $expand.
+        /// Read the properties and relationships of an internalDomainFederation object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -246,7 +247,7 @@ namespace ApiSdk.Domains.Item.FederationConfiguration {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to federationConfiguration for domains
+        /// Create a new internalDomainFederation object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -274,7 +275,7 @@ namespace ApiSdk.Domains.Item.FederationConfiguration {
             return requestInfo;
         }
         /// <summary>
-        /// Domain settings configured by a customer when federated with Azure AD. Supports $expand.
+        /// Read the properties and relationships of an internalDomainFederation object.
         /// </summary>
         public class FederationConfigurationRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

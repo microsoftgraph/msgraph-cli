@@ -63,11 +63,12 @@ namespace ApiSdk.Users.Item.Chats.Item.Members {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to members for users
+        /// Add a conversationMember to a chat.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chat-post-members?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to members for users";
+            command.Description = "Add a conversationMember to a chat.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-post-members?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -126,11 +127,12 @@ namespace ApiSdk.Users.Item.Chats.Item.Members {
             return command;
         }
         /// <summary>
-        /// A collection of all the members in the chat. Nullable.
+        /// List all conversation members in a chat or channel.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/conversationmember-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "A collection of all the members in the chat. Nullable.";
+            command.Description = "List all conversation members in a chat or channel.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/conversationmember-list?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -248,7 +250,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Members {
         public MembersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/members{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// A collection of all the members in the chat. Nullable.
+        /// List all conversation members in a chat or channel.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -274,7 +276,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Members {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to members for users
+        /// Add a conversationMember to a chat.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -302,7 +304,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Members {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of all the members in the chat. Nullable.
+        /// List all conversation members in a chat or channel.
         /// </summary>
         public class MembersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -18,11 +18,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.CompleteMigration {
     /// </summary>
     public class CompleteMigrationRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action completeMigration
+        /// Complete the message migration process by removing `migration mode` from a channel in a team. `Migration mode` is a special state that prevents certain operations, like sending messages and adding members, during the data migration process. After a **completeMigration** request is made, you cannot import additional messages into the team. You can add members to the team after the request returns a successful response.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/channel-completemigration?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action completeMigration";
+            command.Description = "Complete the message migration process by removing `migration mode` from a channel in a team. `Migration mode` is a special state that prevents certain operations, like sending messages and adding members, during the data migration process. After a **completeMigration** request is made, you cannot import additional messages into the team. You can add members to the team after the request returns a successful response.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-completemigration?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -62,7 +63,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.CompleteMigration {
         public CompleteMigrationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/channels/{channel%2Did}/completeMigration", pathParameters) {
         }
         /// <summary>
-        /// Invoke action completeMigration
+        /// Complete the message migration process by removing `migration mode` from a channel in a team. `Migration mode` is a special state that prevents certain operations, like sending messages and adding members, during the data migration process. After a **completeMigration** request is made, you cannot import additional messages into the team. You can add members to the team after the request returns a successful response.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

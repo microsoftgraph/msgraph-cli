@@ -105,11 +105,27 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules {
             return command;
         }
         /// <summary>
-        /// Schedules for active role assignment operations.
+        /// Provides operations to call the filterByCurrentUser method.
+        /// </summary>
+        public Command BuildFilterByCurrentUserWithOnRbCommand() {
+            var command = new Command("filter-by-current-user-with-on");
+            command.Description = "Provides operations to call the filterByCurrentUser method.";
+            var builder = new FilterByCurrentUserWithOnRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Get the schedules for active role assignment operations.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/rbacapplication-list-roleassignmentschedules?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Schedules for active role assignment operations.";
+            command.Description = "Get the schedules for active role assignment operations.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/rbacapplication-list-roleassignmentschedules?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -215,7 +231,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules {
         public RoleAssignmentSchedulesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/directory/roleAssignmentSchedules{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Schedules for active role assignment operations.
+        /// Get the schedules for active role assignment operations.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -269,7 +285,7 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentSchedules {
             return requestInfo;
         }
         /// <summary>
-        /// Schedules for active role assignment operations.
+        /// Get the schedules for active role assignment operations.
         /// </summary>
         public class RoleAssignmentSchedulesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

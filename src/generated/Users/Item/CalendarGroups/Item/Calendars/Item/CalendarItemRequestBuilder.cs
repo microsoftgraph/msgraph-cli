@@ -5,8 +5,6 @@ using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarPermissions;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.Events;
 using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.GetSchedule;
-using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.MultiValueExtendedProperties;
-using ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.SingleValueExtendedProperties;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
@@ -25,6 +23,21 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item {
     /// Provides operations to manage the calendars property of the microsoft.graph.calendarGroup entity.
     /// </summary>
     public class CalendarItemRequestBuilder : BaseCliRequestBuilder {
+        /// <summary>
+        /// Provides operations to call the allowedCalendarSharingRoles method.
+        /// </summary>
+        public Command BuildAllowedCalendarSharingRolesWithUserRbCommand() {
+            var command = new Command("allowed-calendar-sharing-roles-with-user");
+            command.Description = "Provides operations to call the allowedCalendarSharingRoles method.";
+            var builder = new AllowedCalendarSharingRolesWithUserRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
         /// <summary>
         /// Provides operations to manage the calendarPermissions property of the microsoft.graph.calendar entity.
         /// </summary>
@@ -228,31 +241,6 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item {
             return command;
         }
         /// <summary>
-        /// Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.calendar entity.
-        /// </summary>
-        public Command BuildMultiValueExtendedPropertiesNavCommand() {
-            var command = new Command("multi-value-extended-properties");
-            command.Description = "Provides operations to manage the multiValueExtendedProperties property of the microsoft.graph.calendar entity.";
-            var builder = new MultiValueExtendedPropertiesRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            var nonExecCommands = new List<Command>();
-            nonExecCommands.Add(builder.BuildCountNavCommand());
-            execCommands.Add(builder.BuildCreateCommand());
-            execCommands.Add(builder.BuildListCommand());
-            var cmds = builder.BuildCommand();
-            execCommands.AddRange(cmds.Item1);
-            nonExecCommands.AddRange(cmds.Item2);
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
-            {
-                command.AddCommand(cmd);
-            }
-            return command;
-        }
-        /// <summary>
         /// Update the navigation property calendars in users
         /// </summary>
         public Command BuildPatchCommand() {
@@ -319,31 +307,6 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
-            return command;
-        }
-        /// <summary>
-        /// Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.calendar entity.
-        /// </summary>
-        public Command BuildSingleValueExtendedPropertiesNavCommand() {
-            var command = new Command("single-value-extended-properties");
-            command.Description = "Provides operations to manage the singleValueExtendedProperties property of the microsoft.graph.calendar entity.";
-            var builder = new SingleValueExtendedPropertiesRequestBuilder(PathParameters);
-            var execCommands = new List<Command>();
-            var nonExecCommands = new List<Command>();
-            nonExecCommands.Add(builder.BuildCountNavCommand());
-            execCommands.Add(builder.BuildCreateCommand());
-            execCommands.Add(builder.BuildListCommand());
-            var cmds = builder.BuildCommand();
-            execCommands.AddRange(cmds.Item1);
-            nonExecCommands.AddRange(cmds.Item2);
-            foreach (var cmd in execCommands)
-            {
-                command.AddCommand(cmd);
-            }
-            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
-            {
-                command.AddCommand(cmd);
-            }
             return command;
         }
         /// <summary>

@@ -58,10 +58,8 @@ namespace ApiSdk.Reports.GetOffice365ActiveUserDetailWithDate {
         /// <summary>
         /// Instantiates a new GetOffice365ActiveUserDetailWithDateRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="date">Usage: date={date}</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetOffice365ActiveUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters, Date? date = default) : base("{+baseurl}/reports/getOffice365ActiveUserDetail(date={date})", pathParameters) {
-            if (date is not null) PathParameters.Add("date", date);
+        public GetOffice365ActiveUserDetailWithDateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getOffice365ActiveUserDetail(date={date})", pathParameters) {
         }
         /// <summary>
         /// Invoke function getOffice365ActiveUserDetail

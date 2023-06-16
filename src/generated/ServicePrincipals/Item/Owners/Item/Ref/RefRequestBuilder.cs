@@ -18,11 +18,12 @@ namespace ApiSdk.ServicePrincipals.Item.Owners.Item.Ref {
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete ref of navigation property owners for servicePrincipals
+        /// Remove an owner from a servicePrincipal object. As a recommended best practice, service principals should have at least two owners.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/serviceprincipal-delete-owners?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete ref of navigation property owners for servicePrincipals";
+            command.Description = "Remove an owner from a servicePrincipal object. As a recommended best practice, service principals should have at least two owners.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-delete-owners?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -69,7 +70,7 @@ namespace ApiSdk.ServicePrincipals.Item.Owners.Item.Ref {
         public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/owners/{directoryObject%2Did}/$ref{?%40id*}", pathParameters) {
         }
         /// <summary>
-        /// Delete ref of navigation property owners for servicePrincipals
+        /// Remove an owner from a servicePrincipal object. As a recommended best practice, service principals should have at least two owners.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -94,7 +95,7 @@ namespace ApiSdk.ServicePrincipals.Item.Owners.Item.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Delete ref of navigation property owners for servicePrincipals
+        /// Remove an owner from a servicePrincipal object. As a recommended best practice, service principals should have at least two owners.
         /// </summary>
         public class RefRequestBuilderDeleteQueryParameters {
             /// <summary>Delete Uri</summary>

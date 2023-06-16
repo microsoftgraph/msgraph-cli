@@ -19,11 +19,12 @@ namespace ApiSdk.Identity.UserFlowAttributes.Item {
     /// </summary>
     public class IdentityUserFlowAttributeItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property userFlowAttributes for identity
+        /// Delete an identityUserFlowAttribute. Only custom user flow attributes can be deleted.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/identityuserflowattribute-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property userFlowAttributes for identity";
+            command.Description = "Delete an identityUserFlowAttribute. Only custom user flow attributes can be deleted.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/identityuserflowattribute-delete?view=graph-rest-1.0";
             var identityUserFlowAttributeIdOption = new Option<string>("--identity-user-flow-attribute-id", description: "The unique identifier of identityUserFlowAttribute") {
             };
             identityUserFlowAttributeIdOption.IsRequired = true;
@@ -52,11 +53,12 @@ namespace ApiSdk.Identity.UserFlowAttributes.Item {
             return command;
         }
         /// <summary>
-        /// Represents entry point for identity userflow attributes.
+        /// Retrieve the properties and relationships of a identityUserFlowAttribute object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/identityuserflowattribute-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Represents entry point for identity userflow attributes.";
+            command.Description = "Retrieve the properties and relationships of a identityUserFlowAttribute object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/identityuserflowattribute-get?view=graph-rest-1.0";
             var identityUserFlowAttributeIdOption = new Option<string>("--identity-user-flow-attribute-id", description: "The unique identifier of identityUserFlowAttribute") {
             };
             identityUserFlowAttributeIdOption.IsRequired = true;
@@ -113,11 +115,12 @@ namespace ApiSdk.Identity.UserFlowAttributes.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property userFlowAttributes in identity
+        /// Update the properties of a identityUserFlowAttribute object. Only custom user flow attributes can be updated.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/identityuserflowattribute-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property userFlowAttributes in identity";
+            command.Description = "Update the properties of a identityUserFlowAttribute object. Only custom user flow attributes can be updated.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/identityuserflowattribute-update?view=graph-rest-1.0";
             var identityUserFlowAttributeIdOption = new Option<string>("--identity-user-flow-attribute-id", description: "The unique identifier of identityUserFlowAttribute") {
             };
             identityUserFlowAttributeIdOption.IsRequired = true;
@@ -176,7 +179,7 @@ namespace ApiSdk.Identity.UserFlowAttributes.Item {
         public IdentityUserFlowAttributeItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/userFlowAttributes/{identityUserFlowAttribute%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property userFlowAttributes for identity
+        /// Delete an identityUserFlowAttribute. Only custom user flow attributes can be deleted.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -201,7 +204,7 @@ namespace ApiSdk.Identity.UserFlowAttributes.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Represents entry point for identity userflow attributes.
+        /// Retrieve the properties and relationships of a identityUserFlowAttribute object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -227,7 +230,7 @@ namespace ApiSdk.Identity.UserFlowAttributes.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property userFlowAttributes in identity
+        /// Update the properties of a identityUserFlowAttribute object. Only custom user flow attributes can be updated.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -255,7 +258,7 @@ namespace ApiSdk.Identity.UserFlowAttributes.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Represents entry point for identity userflow attributes.
+        /// Retrieve the properties and relationships of a identityUserFlowAttribute object.
         /// </summary>
         public class IdentityUserFlowAttributeItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

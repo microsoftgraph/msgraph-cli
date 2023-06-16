@@ -35,7 +35,7 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new iosHomeScreenFolderPage and sets the default values.
+        /// Instantiates a new IosHomeScreenFolderPage and sets the default values.
         /// </summary>
         public IosHomeScreenFolderPage() {
             AdditionalData = new Dictionary<string, object>();

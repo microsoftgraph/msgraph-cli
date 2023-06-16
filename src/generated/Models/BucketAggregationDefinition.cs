@@ -38,7 +38,7 @@ namespace ApiSdk.Models {
         /// <summary>The sortBy property</summary>
         public BucketAggregationSortProperty? SortBy { get; set; }
         /// <summary>
-        /// Instantiates a new bucketAggregationDefinition and sets the default values.
+        /// Instantiates a new BucketAggregationDefinition and sets the default values.
         /// </summary>
         public BucketAggregationDefinition() {
             AdditionalData = new Dictionary<string, object>();

@@ -19,6 +19,14 @@ namespace ApiSdk.Models {
         public DateTimeOffset? ApproximateLastSignInDateTime { get; set; }
         /// <summary>The timestamp when the device is no longer deemed compliant. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
         public DateTimeOffset? ComplianceExpirationDateTime { get; set; }
+        /// <summary>User-defined property set by Intune to automatically add devices to groups and simplify managing devices.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DeviceCategory { get; set; }
+#nullable restore
+#else
+        public string DeviceCategory { get; set; }
+#endif
         /// <summary>Unique identifier set by Azure Device Registration Service at the time of registration. This is an alternate key that can be used to reference the device object. Supports $filter (eq, ne, not, startsWith).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -35,6 +43,14 @@ namespace ApiSdk.Models {
 #else
         public string DeviceMetadata { get; set; }
 #endif
+        /// <summary>Ownership of the device. This property is set by Intune. Possible values are: unknown, company, personal.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DeviceOwnership { get; set; }
+#nullable restore
+#else
+        public string DeviceOwnership { get; set; }
+#endif
         /// <summary>For internal use only.</summary>
         public int? DeviceVersion { get; set; }
         /// <summary>The display name for the device. Required. Supports $filter (eq, ne, not, ge, le, in, startsWith, and eq on null values), $search, and $orderBy.</summary>
@@ -44,6 +60,14 @@ namespace ApiSdk.Models {
 #nullable restore
 #else
         public string DisplayName { get; set; }
+#endif
+        /// <summary>Enrollment profile applied to the device. For example, Apple Device Enrollment Profile, Device enrollment - Corporate device identifiers, or Windows Autopilot profile name. This property is set by Intune.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? EnrollmentProfileName { get; set; }
+#nullable restore
+#else
+        public string EnrollmentProfileName { get; set; }
 #endif
         /// <summary>The collection of open extensions defined for the device. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -125,6 +149,8 @@ namespace ApiSdk.Models {
 #else
         public List<DirectoryObject> RegisteredUsers { get; set; }
 #endif
+        /// <summary>Date and time of when the device was registered. The timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
+        public DateTimeOffset? RegistrationDateTime { get; set; }
         /// <summary>List of labels applied to the device by the system. Supports $filter (/$count eq 0, /$count ne 0).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -172,10 +198,13 @@ namespace ApiSdk.Models {
                 {"alternativeSecurityIds", n => { AlternativeSecurityIds = n.GetCollectionOfObjectValues<AlternativeSecurityId>(AlternativeSecurityId.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"approximateLastSignInDateTime", n => { ApproximateLastSignInDateTime = n.GetDateTimeOffsetValue(); } },
                 {"complianceExpirationDateTime", n => { ComplianceExpirationDateTime = n.GetDateTimeOffsetValue(); } },
+                {"deviceCategory", n => { DeviceCategory = n.GetStringValue(); } },
                 {"deviceId", n => { DeviceId = n.GetStringValue(); } },
                 {"deviceMetadata", n => { DeviceMetadata = n.GetStringValue(); } },
+                {"deviceOwnership", n => { DeviceOwnership = n.GetStringValue(); } },
                 {"deviceVersion", n => { DeviceVersion = n.GetIntValue(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
+                {"enrollmentProfileName", n => { EnrollmentProfileName = n.GetStringValue(); } },
                 {"extensions", n => { Extensions = n.GetCollectionOfObjectValues<Extension>(Extension.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"isCompliant", n => { IsCompliant = n.GetBoolValue(); } },
                 {"isManaged", n => { IsManaged = n.GetBoolValue(); } },
@@ -189,6 +218,7 @@ namespace ApiSdk.Models {
                 {"profileType", n => { ProfileType = n.GetStringValue(); } },
                 {"registeredOwners", n => { RegisteredOwners = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"registeredUsers", n => { RegisteredUsers = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"registrationDateTime", n => { RegistrationDateTime = n.GetDateTimeOffsetValue(); } },
                 {"systemLabels", n => { SystemLabels = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"transitiveMemberOf", n => { TransitiveMemberOf = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"trustType", n => { TrustType = n.GetStringValue(); } },
@@ -205,10 +235,13 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<AlternativeSecurityId>("alternativeSecurityIds", AlternativeSecurityIds);
             writer.WriteDateTimeOffsetValue("approximateLastSignInDateTime", ApproximateLastSignInDateTime);
             writer.WriteDateTimeOffsetValue("complianceExpirationDateTime", ComplianceExpirationDateTime);
+            writer.WriteStringValue("deviceCategory", DeviceCategory);
             writer.WriteStringValue("deviceId", DeviceId);
             writer.WriteStringValue("deviceMetadata", DeviceMetadata);
+            writer.WriteStringValue("deviceOwnership", DeviceOwnership);
             writer.WriteIntValue("deviceVersion", DeviceVersion);
             writer.WriteStringValue("displayName", DisplayName);
+            writer.WriteStringValue("enrollmentProfileName", EnrollmentProfileName);
             writer.WriteCollectionOfObjectValues<Extension>("extensions", Extensions);
             writer.WriteBoolValue("isCompliant", IsCompliant);
             writer.WriteBoolValue("isManaged", IsManaged);
@@ -222,6 +255,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("profileType", ProfileType);
             writer.WriteCollectionOfObjectValues<DirectoryObject>("registeredOwners", RegisteredOwners);
             writer.WriteCollectionOfObjectValues<DirectoryObject>("registeredUsers", RegisteredUsers);
+            writer.WriteDateTimeOffsetValue("registrationDateTime", RegistrationDateTime);
             writer.WriteCollectionOfPrimitiveValues<string>("systemLabels", SystemLabels);
             writer.WriteCollectionOfObjectValues<DirectoryObject>("transitiveMemberOf", TransitiveMemberOf);
             writer.WriteStringValue("trustType", TrustType);

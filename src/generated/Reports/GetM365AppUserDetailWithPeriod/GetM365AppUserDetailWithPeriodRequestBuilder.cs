@@ -59,9 +59,7 @@ namespace ApiSdk.Reports.GetM365AppUserDetailWithPeriod {
         /// Instantiates a new GetM365AppUserDetailWithPeriodRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
-        public GetM365AppUserDetailWithPeriodRequestBuilder(Dictionary<string, object> pathParameters, string period = "") : base("{+baseurl}/reports/getM365AppUserDetail(period='{period}')", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(period)) PathParameters.Add("period", period);
+        public GetM365AppUserDetailWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getM365AppUserDetail(period='{period}')", pathParameters) {
         }
         /// <summary>
         /// Invoke function getM365AppUserDetail

@@ -43,11 +43,12 @@ namespace ApiSdk.Applications.Item.TokenLifetimePolicies {
             return command;
         }
         /// <summary>
-        /// Get tokenLifetimePolicies from applications
+        /// List the tokenLifetimePolicy objects that are assigned to an application.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/application-list-tokenlifetimepolicies?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get tokenLifetimePolicies from applications";
+            command.Description = "List the tokenLifetimePolicy objects that are assigned to an application.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-list-tokenlifetimepolicies?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -176,7 +177,7 @@ namespace ApiSdk.Applications.Item.TokenLifetimePolicies {
         public TokenLifetimePoliciesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/tokenLifetimePolicies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get tokenLifetimePolicies from applications
+        /// List the tokenLifetimePolicy objects that are assigned to an application.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -202,7 +203,7 @@ namespace ApiSdk.Applications.Item.TokenLifetimePolicies {
             return requestInfo;
         }
         /// <summary>
-        /// Get tokenLifetimePolicies from applications
+        /// List the tokenLifetimePolicy objects that are assigned to an application.
         /// </summary>
         public class TokenLifetimePoliciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

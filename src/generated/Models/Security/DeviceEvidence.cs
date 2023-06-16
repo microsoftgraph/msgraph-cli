@@ -27,6 +27,14 @@ namespace ApiSdk.Models.Security {
         public DateTimeOffset? FirstSeenDateTime { get; set; }
         /// <summary>The health state of the device.The possible values are: active, inactive, impairedCommunication, noSensorData, noSensorDataImpairedCommunication, unknown, unknownFutureValue.</summary>
         public DeviceHealthStatus? HealthStatus { get; set; }
+        /// <summary>The ipInterfaces property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? IpInterfaces { get; set; }
+#nullable restore
+#else
+        public List<string> IpInterfaces { get; set; }
+#endif
         /// <summary>Users that were logged on the machine during the time of the alert.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -101,6 +109,7 @@ namespace ApiSdk.Models.Security {
                 {"deviceDnsName", n => { DeviceDnsName = n.GetStringValue(); } },
                 {"firstSeenDateTime", n => { FirstSeenDateTime = n.GetDateTimeOffsetValue(); } },
                 {"healthStatus", n => { HealthStatus = n.GetEnumValue<DeviceHealthStatus>(); } },
+                {"ipInterfaces", n => { IpInterfaces = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"loggedOnUsers", n => { LoggedOnUsers = n.GetCollectionOfObjectValues<LoggedOnUser>(LoggedOnUser.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"mdeDeviceId", n => { MdeDeviceId = n.GetStringValue(); } },
                 {"onboardingStatus", n => { OnboardingStatus = n.GetEnumValue<OnboardingStatus>(); } },
@@ -125,6 +134,7 @@ namespace ApiSdk.Models.Security {
             writer.WriteStringValue("deviceDnsName", DeviceDnsName);
             writer.WriteDateTimeOffsetValue("firstSeenDateTime", FirstSeenDateTime);
             writer.WriteEnumValue<DeviceHealthStatus>("healthStatus", HealthStatus);
+            writer.WriteCollectionOfPrimitiveValues<string>("ipInterfaces", IpInterfaces);
             writer.WriteCollectionOfObjectValues<LoggedOnUser>("loggedOnUsers", LoggedOnUsers);
             writer.WriteStringValue("mdeDeviceId", MdeDeviceId);
             writer.WriteEnumValue<OnboardingStatus>("onboardingStatus", OnboardingStatus);

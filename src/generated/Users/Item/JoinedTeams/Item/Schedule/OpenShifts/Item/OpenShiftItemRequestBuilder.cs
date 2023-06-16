@@ -19,11 +19,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShifts.Item {
     /// </summary>
     public class OpenShiftItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property openShifts for users
+        /// Delete an openShift object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/openshift-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property openShifts for users";
+            command.Description = "Delete an openShift object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/openshift-delete?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -64,11 +65,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShifts.Item {
             return command;
         }
         /// <summary>
-        /// The set of open shifts in a scheduling group in the schedule.
+        /// Retrieve the properties and relationships of an openshift object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/openshift-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The set of open shifts in a scheduling group in the schedule.";
+            command.Description = "Retrieve the properties and relationships of an openshift object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/openshift-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -137,11 +139,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShifts.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property openShifts in users
+        /// Update the properties of an openShift object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/openshift-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property openShifts in users";
+            command.Description = "Update the properties of an openShift object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/openshift-update?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -212,7 +215,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShifts.Item {
         public OpenShiftItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/joinedTeams/{team%2Did}/schedule/openShifts/{openShift%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property openShifts for users
+        /// Delete an openShift object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -237,7 +240,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShifts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The set of open shifts in a scheduling group in the schedule.
+        /// Retrieve the properties and relationships of an openshift object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -263,7 +266,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShifts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property openShifts in users
+        /// Update the properties of an openShift object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -291,7 +294,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OpenShifts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The set of open shifts in a scheduling group in the schedule.
+        /// Retrieve the properties and relationships of an openshift object.
         /// </summary>
         public class OpenShiftItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

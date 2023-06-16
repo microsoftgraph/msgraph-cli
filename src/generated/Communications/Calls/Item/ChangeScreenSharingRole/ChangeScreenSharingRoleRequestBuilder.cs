@@ -18,11 +18,12 @@ namespace ApiSdk.Communications.Calls.Item.ChangeScreenSharingRole {
     /// </summary>
     public class ChangeScreenSharingRoleRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action changeScreenSharingRole
+        /// Allow applications to share screen content with the participants of a group call.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/call-changescreensharingrole?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action changeScreenSharingRole";
+            command.Description = "Allow applications to share screen content with the participants of a group call.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/call-changescreensharingrole?view=graph-rest-1.0";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -60,7 +61,7 @@ namespace ApiSdk.Communications.Calls.Item.ChangeScreenSharingRole {
         public ChangeScreenSharingRoleRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/changeScreenSharingRole", pathParameters) {
         }
         /// <summary>
-        /// Invoke action changeScreenSharingRole
+        /// Allow applications to share screen content with the participants of a group call.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

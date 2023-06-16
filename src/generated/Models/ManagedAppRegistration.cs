@@ -4,9 +4,6 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
-    /// <summary>
-    /// The ManagedAppEntity is the base entity type for all other entity types under app management workflow.
-    /// </summary>
     public class ManagedAppRegistration : Entity, IParsable {
         /// <summary>The app package Identifier</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

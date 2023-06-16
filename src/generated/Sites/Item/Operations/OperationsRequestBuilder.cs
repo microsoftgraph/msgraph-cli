@@ -104,11 +104,12 @@ namespace ApiSdk.Sites.Item.Operations {
             return command;
         }
         /// <summary>
-        /// The collection of long-running operations on the site.
+        /// Get a list of rich long-running operations associated with a site.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/site-list-operations?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The collection of long-running operations on the site.";
+            command.Description = "Get a list of rich long-running operations associated with a site.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/site-list-operations?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -220,7 +221,7 @@ namespace ApiSdk.Sites.Item.Operations {
         public OperationsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/operations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The collection of long-running operations on the site.
+        /// Get a list of rich long-running operations associated with a site.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -274,7 +275,7 @@ namespace ApiSdk.Sites.Item.Operations {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of long-running operations on the site.
+        /// Get a list of rich long-running operations associated with a site.
         /// </summary>
         public class OperationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

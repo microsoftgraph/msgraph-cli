@@ -47,11 +47,12 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to customQuestions for solutions
+        /// Create a new bookingCustomQuestion object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/bookingbusiness-post-customquestions?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to customQuestions for solutions";
+            command.Description = "Create a new bookingCustomQuestion object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bookingbusiness-post-customquestions?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -104,11 +105,12 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions {
             return command;
         }
         /// <summary>
-        /// All the custom questions of this business. Read-only. Nullable.
+        /// Get the bookingCustomQuestion resources associated with a bookingBusiness.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/bookingbusiness-list-customquestions?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "All the custom questions of this business. Read-only. Nullable.";
+            command.Description = "Get the bookingCustomQuestion resources associated with a bookingBusiness.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bookingbusiness-list-customquestions?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -220,7 +222,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions {
         public CustomQuestionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/customQuestions{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// All the custom questions of this business. Read-only. Nullable.
+        /// Get the bookingCustomQuestion resources associated with a bookingBusiness.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -246,7 +248,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to customQuestions for solutions
+        /// Create a new bookingCustomQuestion object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -274,7 +276,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.CustomQuestions {
             return requestInfo;
         }
         /// <summary>
-        /// All the custom questions of this business. Read-only. Nullable.
+        /// Get the bookingCustomQuestion resources associated with a bookingBusiness.
         /// </summary>
         public class CustomQuestionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

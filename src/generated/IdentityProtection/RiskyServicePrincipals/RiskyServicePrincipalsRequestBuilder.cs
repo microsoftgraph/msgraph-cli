@@ -132,11 +132,12 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals {
             return command;
         }
         /// <summary>
-        /// Azure AD service principals that are at risk.
+        /// Retrieve the properties and relationships of riskyServicePrincipal objects.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/identityprotectionroot-list-riskyserviceprincipals?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Azure AD service principals that are at risk.";
+            command.Description = "Retrieve the properties and relationships of riskyServicePrincipal objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/identityprotectionroot-list-riskyserviceprincipals?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -242,7 +243,7 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals {
         public RiskyServicePrincipalsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityProtection/riskyServicePrincipals{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Azure AD service principals that are at risk.
+        /// Retrieve the properties and relationships of riskyServicePrincipal objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -296,7 +297,7 @@ namespace ApiSdk.IdentityProtection.RiskyServicePrincipals {
             return requestInfo;
         }
         /// <summary>
-        /// Azure AD service principals that are at risk.
+        /// Retrieve the properties and relationships of riskyServicePrincipal objects.
         /// </summary>
         public class RiskyServicePrincipalsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

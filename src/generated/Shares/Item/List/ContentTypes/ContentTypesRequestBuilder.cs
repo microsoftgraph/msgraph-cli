@@ -163,11 +163,12 @@ namespace ApiSdk.Shares.Item.List.ContentTypes {
             return command;
         }
         /// <summary>
-        /// The collection of content types present in this list.
+        /// Get the collection of [contentType][contentType] resources in a [list][].
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/list-list-contenttypes?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The collection of content types present in this list.";
+            command.Description = "Get the collection of [contentType][contentType] resources in a [list][].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/list-list-contenttypes?view=graph-rest-1.0";
             var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
@@ -279,7 +280,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes {
         public ContentTypesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/list/contentTypes{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The collection of content types present in this list.
+        /// Get the collection of [contentType][contentType] resources in a [list][].
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -333,7 +334,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of content types present in this list.
+        /// Get the collection of [contentType][contentType] resources in a [list][].
         /// </summary>
         public class ContentTypesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

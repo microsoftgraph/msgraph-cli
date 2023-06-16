@@ -2,8 +2,11 @@ using ApiSdk.DirectoryNamespace.DeletedItems.Item.CheckMemberGroups;
 using ApiSdk.DirectoryNamespace.DeletedItems.Item.CheckMemberObjects;
 using ApiSdk.DirectoryNamespace.DeletedItems.Item.GetMemberGroups;
 using ApiSdk.DirectoryNamespace.DeletedItems.Item.GetMemberObjects;
+using ApiSdk.DirectoryNamespace.DeletedItems.Item.GraphAdministrativeUnit;
 using ApiSdk.DirectoryNamespace.DeletedItems.Item.GraphApplication;
+using ApiSdk.DirectoryNamespace.DeletedItems.Item.GraphDevice;
 using ApiSdk.DirectoryNamespace.DeletedItems.Item.GraphGroup;
+using ApiSdk.DirectoryNamespace.DeletedItems.Item.GraphServicePrincipal;
 using ApiSdk.DirectoryNamespace.DeletedItems.Item.GraphUser;
 using ApiSdk.DirectoryNamespace.DeletedItems.Item.Restore;
 using ApiSdk.Models.ODataErrors;
@@ -57,11 +60,12 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property deletedItems for directory
+        /// Permanently delete a recently deleted application, group, servicePrincipal, or user object from deleted items. After an item is permanently deleted, it **cannot** be restored. Administrative units **cannot** be permanently deleted by using the **deletedItems** API. Soft-deleted administrative units will be permanently deleted 30 days after initial deletion unless they are restored.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/directory-deleteditems-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property deletedItems for directory";
+            command.Description = "Permanently delete a recently deleted application, group, servicePrincipal, or user object from deleted items. After an item is permanently deleted, it **cannot** be restored. Administrative units **cannot** be permanently deleted by using the **deletedItems** API. Soft-deleted administrative units will be permanently deleted 30 days after initial deletion unless they are restored.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directory-deleteditems-delete?view=graph-rest-1.0";
             var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "The unique identifier of directoryObject") {
             };
             directoryObjectIdOption.IsRequired = true;
@@ -90,11 +94,12 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
             return command;
         }
         /// <summary>
-        /// Recently deleted items. Read-only. Nullable.
+        /// Retrieve the properties of a recently deleted application, group, servicePrincipal, administrative unit, or user object from deleted items.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/directory-deleteditems-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Recently deleted items. Read-only. Nullable.";
+            command.Description = "Retrieve the properties of a recently deleted application, group, servicePrincipal, administrative unit, or user object from deleted items.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directory-deleteditems-get?view=graph-rest-1.0";
             var directoryObjectIdOption = new Option<string>("--directory-object-id", description: "The unique identifier of directoryObject") {
             };
             directoryObjectIdOption.IsRequired = true;
@@ -181,6 +186,21 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
             return command;
         }
         /// <summary>
+        /// Casts the previous resource to administrativeUnit.
+        /// </summary>
+        public Command BuildGraphAdministrativeUnitByIdNavCommand() {
+            var command = new Command("graph-administrative-unit-by-id");
+            command.Description = "Casts the previous resource to administrativeUnit.";
+            var builder = new GraphAdministrativeUnitRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Casts the previous resource to application.
         /// </summary>
         public Command BuildGraphApplicationByIdNavCommand() {
@@ -196,12 +216,42 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
             return command;
         }
         /// <summary>
+        /// Casts the previous resource to device.
+        /// </summary>
+        public Command BuildGraphDeviceByIdNavCommand() {
+            var command = new Command("graph-device-by-id");
+            command.Description = "Casts the previous resource to device.";
+            var builder = new GraphDeviceRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Casts the previous resource to group.
         /// </summary>
         public Command BuildGraphGroupByIdNavCommand() {
             var command = new Command("graph-group-by-id");
             command.Description = "Casts the previous resource to group.";
             var builder = new GraphGroupRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to servicePrincipal.
+        /// </summary>
+        public Command BuildGraphServicePrincipalByIdNavCommand() {
+            var command = new Command("graph-service-principal-by-id");
+            command.Description = "Casts the previous resource to servicePrincipal.";
+            var builder = new GraphServicePrincipalRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
@@ -304,7 +354,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
         public DirectoryObjectItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directory/deletedItems/{directoryObject%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property deletedItems for directory
+        /// Permanently delete a recently deleted application, group, servicePrincipal, or user object from deleted items. After an item is permanently deleted, it **cannot** be restored. Administrative units **cannot** be permanently deleted by using the **deletedItems** API. Soft-deleted administrative units will be permanently deleted 30 days after initial deletion unless they are restored.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -329,7 +379,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Recently deleted items. Read-only. Nullable.
+        /// Retrieve the properties of a recently deleted application, group, servicePrincipal, administrative unit, or user object from deleted items.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -383,7 +433,7 @@ namespace ApiSdk.DirectoryNamespace.DeletedItems.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Recently deleted items. Read-only. Nullable.
+        /// Retrieve the properties of a recently deleted application, group, servicePrincipal, administrative unit, or user object from deleted items.
         /// </summary>
         public class DirectoryObjectItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

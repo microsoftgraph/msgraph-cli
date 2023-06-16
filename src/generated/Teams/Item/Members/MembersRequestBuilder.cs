@@ -63,11 +63,12 @@ namespace ApiSdk.Teams.Item.Members {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to members for teams
+        /// Add a new conversationMember to a team.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/team-post-members?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to members for teams";
+            command.Description = "Add a new conversationMember to a team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-post-members?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -120,11 +121,12 @@ namespace ApiSdk.Teams.Item.Members {
             return command;
         }
         /// <summary>
-        /// Members and owners of the team.
+        /// Get the conversationMember collection of a team.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/team-list-members?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Members and owners of the team.";
+            command.Description = "Get the conversationMember collection of a team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/team-list-members?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -236,7 +238,7 @@ namespace ApiSdk.Teams.Item.Members {
         public MembersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams/{team%2Did}/members{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Members and owners of the team.
+        /// Get the conversationMember collection of a team.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -262,7 +264,7 @@ namespace ApiSdk.Teams.Item.Members {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to members for teams
+        /// Add a new conversationMember to a team.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -290,7 +292,7 @@ namespace ApiSdk.Teams.Item.Members {
             return requestInfo;
         }
         /// <summary>
-        /// Members and owners of the team.
+        /// Get the conversationMember collection of a team.
         /// </summary>
         public class MembersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

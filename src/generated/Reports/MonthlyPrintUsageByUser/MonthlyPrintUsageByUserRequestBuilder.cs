@@ -98,11 +98,12 @@ namespace ApiSdk.Reports.MonthlyPrintUsageByUser {
             return command;
         }
         /// <summary>
-        /// Get monthlyPrintUsageByUser from reports
+        /// Retrieve a list of monthly print usage summaries, grouped by user.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/reportroot-list-monthlyprintusagebyuser?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get monthlyPrintUsageByUser from reports";
+            command.Description = "Retrieve a list of monthly print usage summaries, grouped by user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/reportroot-list-monthlyprintusagebyuser?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -208,7 +209,7 @@ namespace ApiSdk.Reports.MonthlyPrintUsageByUser {
         public MonthlyPrintUsageByUserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/monthlyPrintUsageByUser{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get monthlyPrintUsageByUser from reports
+        /// Retrieve a list of monthly print usage summaries, grouped by user.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -262,7 +263,7 @@ namespace ApiSdk.Reports.MonthlyPrintUsageByUser {
             return requestInfo;
         }
         /// <summary>
-        /// Get monthlyPrintUsageByUser from reports
+        /// Retrieve a list of monthly print usage summaries, grouped by user.
         /// </summary>
         public class MonthlyPrintUsageByUserRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

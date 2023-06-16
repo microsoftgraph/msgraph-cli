@@ -18,11 +18,12 @@ namespace ApiSdk.Education.Classes.Item.Members.Item.Ref {
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete ref of navigation property members for education
+        /// Remove an educationUser from an educationClass.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationclass-delete-members?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete ref of navigation property members for education";
+            command.Description = "Remove an educationUser from an educationClass.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationclass-delete-members?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -69,7 +70,7 @@ namespace ApiSdk.Education.Classes.Item.Members.Item.Ref {
         public RefRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/members/{educationUser%2Did}/$ref{?%40id*}", pathParameters) {
         }
         /// <summary>
-        /// Delete ref of navigation property members for education
+        /// Remove an educationUser from an educationClass.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -94,7 +95,7 @@ namespace ApiSdk.Education.Classes.Item.Members.Item.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Delete ref of navigation property members for education
+        /// Remove an educationUser from an educationClass.
         /// </summary>
         public class RefRequestBuilderDeleteQueryParameters {
             /// <summary>Delete Uri</summary>

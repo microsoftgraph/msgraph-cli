@@ -18,11 +18,12 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite {
     /// </summary>
     public class FavoriteRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action favorite
+        /// Change the status of a list of serviceUpdateMessages to favorite for the signed in user.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/serviceupdatemessage-favorite?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action favorite";
+            command.Description = "Change the status of a list of serviceUpdateMessages to favorite for the signed in user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceupdatemessage-favorite?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -75,7 +76,7 @@ namespace ApiSdk.Admin.ServiceAnnouncement.Messages.Favorite {
         public FavoriteRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/admin/serviceAnnouncement/messages/favorite", pathParameters) {
         }
         /// <summary>
-        /// Invoke action favorite
+        /// Change the status of a list of serviceUpdateMessages to favorite for the signed in user.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

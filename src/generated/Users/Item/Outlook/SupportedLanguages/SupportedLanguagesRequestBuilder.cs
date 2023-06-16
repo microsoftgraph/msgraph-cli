@@ -18,11 +18,12 @@ namespace ApiSdk.Users.Item.Outlook.SupportedLanguages {
     /// </summary>
     public class SupportedLanguagesRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke function supportedLanguages
+        /// Get the list of locales and languages that are supported for the user, as configured on the user&apos;s mailbox server. When setting up an Outlook client, the user selects the preferred language from this supported list. You can subsequently get the preferred language by getting the user&apos;s mailbox settings.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/outlookuser-supportedlanguages?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Invoke function supportedLanguages";
+            command.Description = "Get the list of locales and languages that are supported for the user, as configured on the user's mailbox server. When setting up an Outlook client, the user selects the preferred language from this supported list. You can subsequently get the preferred language by getting the user's mailbox settings.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/outlookuser-supportedlanguages?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -113,7 +114,7 @@ namespace ApiSdk.Users.Item.Outlook.SupportedLanguages {
         public SupportedLanguagesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/outlook/supportedLanguages(){?%24top,%24skip,%24search,%24filter,%24count}", pathParameters) {
         }
         /// <summary>
-        /// Invoke function supportedLanguages
+        /// Get the list of locales and languages that are supported for the user, as configured on the user&apos;s mailbox server. When setting up an Outlook client, the user selects the preferred language from this supported list. You can subsequently get the preferred language by getting the user&apos;s mailbox settings.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -139,7 +140,7 @@ namespace ApiSdk.Users.Item.Outlook.SupportedLanguages {
             return requestInfo;
         }
         /// <summary>
-        /// Invoke function supportedLanguages
+        /// Get the list of locales and languages that are supported for the user, as configured on the user&apos;s mailbox server. When setting up an Outlook client, the user selects the preferred language from this supported list. You can subsequently get the preferred language by getting the user&apos;s mailbox settings.
         /// </summary>
         public class SupportedLanguagesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

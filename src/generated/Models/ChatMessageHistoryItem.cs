@@ -9,7 +9,7 @@ namespace ApiSdk.Models {
         public ChatMessageActions? Actions { get; set; }
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The modifiedDateTime property</summary>
+        /// <summary>The date and time when the message was modified.</summary>
         public DateTimeOffset? ModifiedDateTime { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -19,7 +19,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The reaction property</summary>
+        /// <summary>The reaction in the modified message.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ChatMessageReaction? Reaction { get; set; }
@@ -28,7 +28,7 @@ namespace ApiSdk.Models {
         public ChatMessageReaction Reaction { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new chatMessageHistoryItem and sets the default values.
+        /// Instantiates a new ChatMessageHistoryItem and sets the default values.
         /// </summary>
         public ChatMessageHistoryItem() {
             AdditionalData = new Dictionary<string, object>();

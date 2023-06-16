@@ -1,5 +1,6 @@
 using ApiSdk.Groups.Item.Sites.Add;
 using ApiSdk.Groups.Item.Sites.Count;
+using ApiSdk.Groups.Item.Sites.GetAllSites;
 using ApiSdk.Groups.Item.Sites.Item;
 using ApiSdk.Groups.Item.Sites.Remove;
 using ApiSdk.Models.ODataErrors;
@@ -52,6 +53,9 @@ namespace ApiSdk.Groups.Item.Sites {
             commands.Add(builder.BuildDrivesNavCommand());
             commands.Add(builder.BuildExternalColumnsNavCommand());
             commands.Add(builder.BuildGetActivitiesByIntervalNavCommand());
+            commands.Add(builder.BuildGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRbCommand());
+            commands.Add(builder.BuildGetApplicableContentTypesForListWithListIdRbCommand());
+            commands.Add(builder.BuildGetByPathWithPathRbCommand());
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildItemsNavCommand());
             commands.Add(builder.BuildLastModifiedByUserNavCommand());
@@ -72,6 +76,21 @@ namespace ApiSdk.Groups.Item.Sites {
             var command = new Command("count");
             command.Description = "Provides operations to count the resources in the collection.";
             var builder = new CountRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the getAllSites method.
+        /// </summary>
+        public Command BuildGetAllSitesNavCommand() {
+            var command = new Command("get-all-sites");
+            command.Description = "Provides operations to call the getAllSites method.";
+            var builder = new GetAllSitesRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)

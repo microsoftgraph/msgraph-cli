@@ -55,11 +55,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property ediscoveryCases for security
+        /// Delete an ediscoveryCase object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-casesroot-delete-ediscoverycases?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property ediscoveryCases for security";
+            command.Description = "Delete an ediscoveryCase object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-casesroot-delete-ediscoverycases?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -88,11 +89,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             return command;
         }
         /// <summary>
-        /// Get ediscoveryCases from security
+        /// Read the properties and relationships of an ediscoveryCase object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoverycase-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get ediscoveryCases from security";
+            command.Description = "Read the properties and relationships of an ediscoveryCase object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-get?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -231,11 +233,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property ediscoveryCases in security
+        /// Update the properties of an ediscoveryCase object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoverycase-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property ediscoveryCases in security";
+            command.Description = "Update the properties of an ediscoveryCase object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-update?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -393,7 +396,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
         public EdiscoveryCaseItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property ediscoveryCases for security
+        /// Delete an ediscoveryCase object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -418,7 +421,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get ediscoveryCases from security
+        /// Read the properties and relationships of an ediscoveryCase object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -444,7 +447,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property ediscoveryCases in security
+        /// Update the properties of an ediscoveryCase object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -472,7 +475,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get ediscoveryCases from security
+        /// Read the properties and relationships of an ediscoveryCase object.
         /// </summary>
         public class EdiscoveryCaseItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

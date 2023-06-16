@@ -39,11 +39,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property columns for drives
+        /// Deletes the column from the table.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/tablecolumn-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property columns for drives";
+            command.Description = "Deletes the column from the table.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/tablecolumn-delete?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -124,11 +125,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item {
             return command;
         }
         /// <summary>
-        /// Represents a collection of all the columns in the table. Read-only.
+        /// Retrieve the properties and relationships of tablecolumn object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/tablecolumn-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Represents a collection of all the columns in the table. Read-only.";
+            command.Description = "Retrieve the properties and relationships of tablecolumn object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/tablecolumn-get?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -218,11 +220,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property columns in drives
+        /// Update the properties of tablecolumn object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/tablecolumn-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property columns in drives";
+            command.Description = "Update the properties of tablecolumn object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/tablecolumn-update?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -329,7 +332,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item {
         public WorkbookTableColumnItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/{workbookTable%2Did}/columns/{workbookTableColumn%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property columns for drives
+        /// Deletes the column from the table.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -354,7 +357,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Represents a collection of all the columns in the table. Read-only.
+        /// Retrieve the properties and relationships of tablecolumn object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -380,7 +383,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property columns in drives
+        /// Update the properties of tablecolumn object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -408,7 +411,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Columns.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Represents a collection of all the columns in the table. Read-only.
+        /// Retrieve the properties and relationships of tablecolumn object.
         /// </summary>
         public class WorkbookTableColumnItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

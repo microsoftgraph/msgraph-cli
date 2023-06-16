@@ -45,11 +45,12 @@ namespace ApiSdk.Education.Classes.Item.Schools {
             return command;
         }
         /// <summary>
-        /// All schools that this class is associated with. Nullable.
+        /// Retrieve a list of schools in which the class is taught.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationclass-list-schools?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "All schools that this class is associated with. Nullable.";
+            command.Description = "Retrieve a list of schools in which the class is taught.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationclass-list-schools?view=graph-rest-1.0";
             var educationClassIdOption = new Option<string>("--education-class-id", description: "The unique identifier of educationClass") {
             };
             educationClassIdOption.IsRequired = true;
@@ -161,7 +162,7 @@ namespace ApiSdk.Education.Classes.Item.Schools {
         public SchoolsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/classes/{educationClass%2Did}/schools{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// All schools that this class is associated with. Nullable.
+        /// Retrieve a list of schools in which the class is taught.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -187,7 +188,7 @@ namespace ApiSdk.Education.Classes.Item.Schools {
             return requestInfo;
         }
         /// <summary>
-        /// All schools that this class is associated with. Nullable.
+        /// Retrieve a list of schools in which the class is taught.
         /// </summary>
         public class SchoolsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

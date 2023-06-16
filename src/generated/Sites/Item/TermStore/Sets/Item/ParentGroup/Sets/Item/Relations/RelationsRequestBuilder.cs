@@ -120,11 +120,12 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.ParentGroup.Sets.Item.Relations 
             return command;
         }
         /// <summary>
-        /// Indicates which terms have been pinned or reused directly under the set.
+        /// Get the different relation of a [term] or [set] from the relations navigation property.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/termstore-term-list-relations?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Indicates which terms have been pinned or reused directly under the set.";
+            command.Description = "Get the different relation of a [term] or [set] from the relations navigation property.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/termstore-term-list-relations?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -248,7 +249,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.ParentGroup.Sets.Item.Relations 
         public RelationsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/termStore/sets/{set%2Did}/parentGroup/sets/{set%2Did1}/relations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Indicates which terms have been pinned or reused directly under the set.
+        /// Get the different relation of a [term] or [set] from the relations navigation property.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -302,7 +303,7 @@ namespace ApiSdk.Sites.Item.TermStore.Sets.Item.ParentGroup.Sets.Item.Relations 
             return requestInfo;
         }
         /// <summary>
-        /// Indicates which terms have been pinned or reused directly under the set.
+        /// Get the different relation of a [term] or [set] from the relations navigation property.
         /// </summary>
         public class RelationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

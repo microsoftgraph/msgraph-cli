@@ -19,11 +19,12 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Extensions.Item {
     /// </summary>
     public class ExtensionItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property extensions for users
+        /// Delete an open extension (openTypeExtension object) from the specified instance of a resource.  See the table in the Permissions section for the list of resources that support open extensions.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/opentypeextension-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property extensions for users";
+            command.Description = "Delete an open extension (openTypeExtension object) from the specified instance of a resource.  See the table in the Permissions section for the list of resources that support open extensions.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/opentypeextension-delete?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -70,11 +71,12 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Extensions.Item {
             return command;
         }
         /// <summary>
-        /// The collection of open extensions defined for the message. Nullable.
+        /// Get an open extension (openTypeExtension object) identified by name or fully qualified name. The table in the Permissions section lists the resources that support open extensions. The following table lists the three scenarios where you can get an open extension from a supported resource instance.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/opentypeextension-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The collection of open extensions defined for the message. Nullable.";
+            command.Description = "Get an open extension (openTypeExtension object) identified by name or fully qualified name. The table in the Permissions section lists the resources that support open extensions. The following table lists the three scenarios where you can get an open extension from a supported resource instance.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/opentypeextension-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -230,7 +232,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Extensions.Item {
         public ExtensionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/messages/{message%2Did}/extensions/{extension%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property extensions for users
+        /// Delete an open extension (openTypeExtension object) from the specified instance of a resource.  See the table in the Permissions section for the list of resources that support open extensions.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -255,7 +257,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Extensions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of open extensions defined for the message. Nullable.
+        /// Get an open extension (openTypeExtension object) identified by name or fully qualified name. The table in the Permissions section lists the resources that support open extensions. The following table lists the three scenarios where you can get an open extension from a supported resource instance.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -309,7 +311,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Extensions.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of open extensions defined for the message. Nullable.
+        /// Get an open extension (openTypeExtension object) identified by name or fully qualified name. The table in the Permissions section lists the resources that support open extensions. The following table lists the three scenarios where you can get an open extension from a supported resource instance.
         /// </summary>
         public class ExtensionItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -19,11 +19,12 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides.Item {
     /// </summary>
     public class InferenceClassificationOverrideItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property overrides for users
+        /// Delete an override specified by its ID.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/inferenceclassificationoverride-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property overrides for users";
+            command.Description = "Delete an override specified by its ID.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/inferenceclassificationoverride-delete?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -118,11 +119,12 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property overrides in users
+        /// Change the **classifyAs** field of an override as specified. You cannot use PATCH to change any other fields in an inferenceClassificationOverride instance. If an override exists for a sender and the sender changes his/her display name, you can use POST to force an update to the name field in the existing override. If an override exists for a sender and the sender changes his/her SMTP address, deleting the existing override and creating a new one withthe new SMTP address is the only way to &apos;update&apos; the override for this sender.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/inferenceclassificationoverride-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property overrides in users";
+            command.Description = "Change the **classifyAs** field of an override as specified. You cannot use PATCH to change any other fields in an inferenceClassificationOverride instance. If an override exists for a sender and the sender changes his/her display name, you can use POST to force an update to the name field in the existing override. If an override exists for a sender and the sender changes his/her SMTP address, deleting the existing override and creating a new one withthe new SMTP address is the only way to 'update' the override for this sender.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/inferenceclassificationoverride-update?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -187,7 +189,7 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides.Item {
         public InferenceClassificationOverrideItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/inferenceClassification/overrides/{inferenceClassificationOverride%2Did}{?%24select}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property overrides for users
+        /// Delete an override specified by its ID.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -238,7 +240,7 @@ namespace ApiSdk.Users.Item.InferenceClassification.Overrides.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property overrides in users
+        /// Change the **classifyAs** field of an override as specified. You cannot use PATCH to change any other fields in an inferenceClassificationOverride instance. If an override exists for a sender and the sender changes his/her display name, you can use POST to force an update to the name field in the existing override. If an override exists for a sender and the sender changes his/her SMTP address, deleting the existing override and creating a new one withthe new SMTP address is the only way to &apos;update&apos; the override for this sender.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

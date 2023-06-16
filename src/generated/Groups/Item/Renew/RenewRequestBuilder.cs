@@ -18,11 +18,12 @@ namespace ApiSdk.Groups.Item.Renew {
     /// </summary>
     public class RenewRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action renew
+        /// Renews a group&apos;s expiration. When a group is renewed, the group expiration is extended by the number of days defined in the policy.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/group-renew?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action renew";
+            command.Description = "Renews a group's expiration. When a group is renewed, the group expiration is extended by the number of days defined in the policy.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/group-renew?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -50,7 +51,7 @@ namespace ApiSdk.Groups.Item.Renew {
         public RenewRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/renew", pathParameters) {
         }
         /// <summary>
-        /// Invoke action renew
+        /// Renews a group&apos;s expiration. When a group is renewed, the group expiration is extended by the number of days defined in the policy.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

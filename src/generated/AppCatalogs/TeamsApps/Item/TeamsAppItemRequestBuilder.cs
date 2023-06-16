@@ -45,11 +45,12 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property teamsApps for appCatalogs
+        /// Delete teamsApp
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/teamsapp-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property teamsApps for appCatalogs";
+            command.Description = "Delete teamsApp\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/teamsapp-delete?view=graph-rest-1.0";
             var teamsAppIdOption = new Option<string>("--teams-app-id", description: "The unique identifier of teamsApp") {
             };
             teamsAppIdOption.IsRequired = true;
@@ -202,7 +203,7 @@ namespace ApiSdk.AppCatalogs.TeamsApps.Item {
         public TeamsAppItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/appCatalogs/teamsApps/{teamsApp%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property teamsApps for appCatalogs
+        /// Delete teamsApp
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

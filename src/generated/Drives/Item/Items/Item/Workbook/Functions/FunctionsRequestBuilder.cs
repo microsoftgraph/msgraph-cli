@@ -77,7 +77,7 @@ using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Csc;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Csch;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CumIPmt;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.CumPrinc;
-using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Date;
+using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.DateNamespace;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Datevalue;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Daverage;
 using ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Day;

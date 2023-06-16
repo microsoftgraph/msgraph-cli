@@ -123,10 +123,8 @@ namespace ApiSdk.RoleManagement.DirectoryNamespace.RoleAssignmentScheduleRequest
         /// <summary>
         /// Instantiates a new FilterByCurrentUserWithOnRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="on">Usage: on=&apos;{on}&apos;</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public FilterByCurrentUserWithOnRequestBuilder(Dictionary<string, object> pathParameters, string on = "") : base("{+baseurl}/roleManagement/directory/roleAssignmentScheduleRequests/filterByCurrentUser(on='{on}'){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(on)) PathParameters.Add("on", on);
+        public FilterByCurrentUserWithOnRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/roleManagement/directory/roleAssignmentScheduleRequests/filterByCurrentUser(on='{on}'){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", pathParameters) {
         }
         /// <summary>
         /// Invoke function filterByCurrentUser

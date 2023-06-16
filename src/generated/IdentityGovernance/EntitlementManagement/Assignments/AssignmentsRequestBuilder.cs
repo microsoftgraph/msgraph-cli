@@ -39,6 +39,21 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
             return command;
         }
         /// <summary>
+        /// Provides operations to call the additionalAccess method.
+        /// </summary>
+        public Command BuildAdditionalAccessWithAccessPackageIdWithIncompatibleAccessPackageIdRbCommand() {
+            var command = new Command("additional-access-with-access-package-id-with-incompatible-access-package-id");
+            command.Description = "Provides operations to call the additionalAccess method.";
+            var builder = new AdditionalAccessWithAccessPackageIdWithIncompatibleAccessPackageIdRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the assignments property of the microsoft.graph.entitlementManagement entity.
         /// </summary>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
@@ -121,11 +136,27 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
             return command;
         }
         /// <summary>
-        /// The assignment of an access package to a subject for a period of time.
+        /// Provides operations to call the filterByCurrentUser method.
+        /// </summary>
+        public Command BuildFilterByCurrentUserWithOnRbCommand() {
+            var command = new Command("filter-by-current-user-with-on");
+            command.Description = "Provides operations to call the filterByCurrentUser method.";
+            var builder = new FilterByCurrentUserWithOnRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// In Azure AD entitlement management, retrieve a list of accessPackageAssignment objects. For directory-wide administrators, the resulting list includes all the assignments, current and well as expired, that the caller has access to read, across all catalogs and access packages.  If the caller is on behalf of a delegated user who is assigned only to catalog-specific delegated administrative roles, the request must supply a filter to indicate a specific access package, such as: `$filter=accessPackage/id eq &apos;a914b616-e04e-476b-aa37-91038f0b165b&apos;`.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/entitlementmanagement-list-assignments?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The assignment of an access package to a subject for a period of time.";
+            command.Description = "In Azure AD entitlement management, retrieve a list of accessPackageAssignment objects. For directory-wide administrators, the resulting list includes all the assignments, current and well as expired, that the caller has access to read, across all catalogs and access packages.  If the caller is on behalf of a delegated user who is assigned only to catalog-specific delegated administrative roles, the request must supply a filter to indicate a specific access package, such as: `$filter=accessPackage/id eq 'a914b616-e04e-476b-aa37-91038f0b165b'`.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/entitlementmanagement-list-assignments?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -231,7 +262,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
         public AssignmentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identityGovernance/entitlementManagement/assignments{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The assignment of an access package to a subject for a period of time.
+        /// In Azure AD entitlement management, retrieve a list of accessPackageAssignment objects. For directory-wide administrators, the resulting list includes all the assignments, current and well as expired, that the caller has access to read, across all catalogs and access packages.  If the caller is on behalf of a delegated user who is assigned only to catalog-specific delegated administrative roles, the request must supply a filter to indicate a specific access package, such as: `$filter=accessPackage/id eq &apos;a914b616-e04e-476b-aa37-91038f0b165b&apos;`.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -285,7 +316,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments {
             return requestInfo;
         }
         /// <summary>
-        /// The assignment of an access package to a subject for a period of time.
+        /// In Azure AD entitlement management, retrieve a list of accessPackageAssignment objects. For directory-wide administrators, the resulting list includes all the assignments, current and well as expired, that the caller has access to read, across all catalogs and access packages.  If the caller is on behalf of a delegated user who is assigned only to catalog-specific delegated administrative roles, the request must supply a filter to indicate a specific access package, such as: `$filter=accessPackage/id eq &apos;a914b616-e04e-476b-aa37-91038f0b165b&apos;`.
         /// </summary>
         public class AssignmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

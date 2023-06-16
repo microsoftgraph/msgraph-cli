@@ -34,7 +34,7 @@ namespace ApiSdk.Models {
         /// <summary>The document&apos;s size in bytes.</summary>
         public long? Size { get; set; }
         /// <summary>
-        /// Instantiates a new printDocumentUploadProperties and sets the default values.
+        /// Instantiates a new PrintDocumentUploadProperties and sets the default values.
         /// </summary>
         public PrintDocumentUploadProperties() {
             AdditionalData = new Dictionary<string, object>();

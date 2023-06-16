@@ -19,11 +19,12 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments.Item {
     /// </summary>
     public class AppRoleAssignmentItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property appRoleAssignments for servicePrincipals
+        /// Deletes an appRoleAssignment that a service principal has been granted. App roles which are assigned to service principals are also known as application permissions. Deleting an app role assignment for a service principal is equivalent to revoking the app-only permission grant.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/serviceprincipal-delete-approleassignments?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property appRoleAssignments for servicePrincipals";
+            command.Description = "Deletes an appRoleAssignment that a service principal has been granted. App roles which are assigned to service principals are also known as application permissions. Deleting an app role assignment for a service principal is equivalent to revoking the app-only permission grant.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/serviceprincipal-delete-approleassignments?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -201,7 +202,7 @@ namespace ApiSdk.ServicePrincipals.Item.AppRoleAssignments.Item {
         public AppRoleAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/appRoleAssignments/{appRoleAssignment%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property appRoleAssignments for servicePrincipals
+        /// Deletes an appRoleAssignment that a service principal has been granted. App roles which are assigned to service principals are also known as application permissions. Deleting an app role assignment for a service principal is equivalent to revoking the app-only permission grant.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

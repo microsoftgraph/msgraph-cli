@@ -119,11 +119,12 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions {
             return command;
         }
         /// <summary>
-        /// The list of previous versions of the list item.
+        /// SharePoint can be configured to retain the history for list items. Previous versions may be retained for a finite period of time depending on admin settings which may be unique per user or location.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/listitem-list-versions?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The list of previous versions of the list item.";
+            command.Description = "SharePoint can be configured to retain the history for list items. Previous versions may be retained for a finite period of time depending on admin settings which may be unique per user or location.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/listitem-list-versions?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -247,7 +248,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions {
         public VersionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/sites/{site%2Did}/lists/{list%2Did}/items/{listItem%2Did}/versions{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The list of previous versions of the list item.
+        /// SharePoint can be configured to retain the history for list items. Previous versions may be retained for a finite period of time depending on admin settings which may be unique per user or location.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -301,7 +302,7 @@ namespace ApiSdk.Sites.Item.Lists.Item.Items.Item.Versions {
             return requestInfo;
         }
         /// <summary>
-        /// The list of previous versions of the list item.
+        /// SharePoint can be configured to retain the history for list items. Previous versions may be retained for a finite period of time depending on admin settings which may be unique per user or location.
         /// </summary>
         public class VersionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

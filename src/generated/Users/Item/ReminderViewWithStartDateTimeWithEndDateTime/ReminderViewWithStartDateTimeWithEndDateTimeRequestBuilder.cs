@@ -121,12 +121,8 @@ namespace ApiSdk.Users.Item.ReminderViewWithStartDateTimeWithEndDateTime {
         /// <summary>
         /// Instantiates a new ReminderViewWithStartDateTimeWithEndDateTimeRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="endDateTime">Usage: EndDateTime=&apos;{EndDateTime}&apos;</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="startDateTime">Usage: StartDateTime=&apos;{StartDateTime}&apos;</param>
-        public ReminderViewWithStartDateTimeWithEndDateTimeRequestBuilder(Dictionary<string, object> pathParameters, string endDateTime = "", string startDateTime = "") : base("{+baseurl}/users/{user%2Did}/reminderView(StartDateTime='{StartDateTime}',EndDateTime='{EndDateTime}'){?%24top,%24skip,%24search,%24filter,%24count}", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(endDateTime)) PathParameters.Add("EndDateTime", endDateTime);
-            if (!string.IsNullOrWhiteSpace(startDateTime)) PathParameters.Add("StartDateTime", startDateTime);
+        public ReminderViewWithStartDateTimeWithEndDateTimeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/reminderView(StartDateTime='{StartDateTime}',EndDateTime='{EndDateTime}'){?%24top,%24skip,%24search,%24filter,%24count}", pathParameters) {
         }
         /// <summary>
         /// Invoke function reminderView

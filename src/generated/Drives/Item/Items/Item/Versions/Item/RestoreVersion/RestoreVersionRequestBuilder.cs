@@ -18,11 +18,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item.RestoreVersion {
     /// </summary>
     public class RestoreVersionRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action restoreVersion
+        /// Restore a previous version of a DriveItem to be the current version. This will create a new version with the contents of the previous version, but preserves all existing versions of the file.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/driveitemversion-restore?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action restoreVersion";
+            command.Description = "Restore a previous version of a DriveItem to be the current version. This will create a new version with the contents of the previous version, but preserves all existing versions of the file.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitemversion-restore?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -62,7 +63,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Versions.Item.RestoreVersion {
         public RestoreVersionRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/versions/{driveItemVersion%2Did}/restoreVersion", pathParameters) {
         }
         /// <summary>
-        /// Invoke action restoreVersion
+        /// Restore a previous version of a DriveItem to be the current version. This will create a new version with the contents of the previous version, but preserves all existing versions of the file.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

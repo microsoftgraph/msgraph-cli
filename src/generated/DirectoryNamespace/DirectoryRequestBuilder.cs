@@ -114,8 +114,11 @@ namespace ApiSdk.DirectoryNamespace {
             nonExecCommands.Add(builder.BuildDeltaNavCommand());
             nonExecCommands.Add(builder.BuildGetAvailableExtensionPropertiesNavCommand());
             nonExecCommands.Add(builder.BuildGetByIdsNavCommand());
+            nonExecCommands.Add(builder.BuildGraphAdministrativeUnitNavCommand());
             nonExecCommands.Add(builder.BuildGraphApplicationNavCommand());
+            nonExecCommands.Add(builder.BuildGraphDeviceNavCommand());
             nonExecCommands.Add(builder.BuildGraphGroupNavCommand());
+            nonExecCommands.Add(builder.BuildGraphServicePrincipalNavCommand());
             nonExecCommands.Add(builder.BuildGraphUserNavCommand());
             execCommands.Add(builder.BuildListCommand());
             nonExecCommands.Add(builder.BuildValidatePropertiesNavCommand());

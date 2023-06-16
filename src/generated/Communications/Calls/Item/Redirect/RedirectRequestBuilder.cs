@@ -18,11 +18,12 @@ namespace ApiSdk.Communications.Calls.Item.Redirect {
     /// </summary>
     public class RedirectRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action redirect
+        /// Redirect an incoming call that hasn&apos;t been answered or rejected yet. The terms &apos;redirecting&apos; and &apos;forwarding&apos; a call are used interchangeably. The bot is expected to redirect the call before the call times out. The current timeout value is 15 seconds.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/call-redirect?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action redirect";
+            command.Description = "Redirect an incoming call that hasn't been answered or rejected yet. The terms 'redirecting' and 'forwarding' a call are used interchangeably. The bot is expected to redirect the call before the call times out. The current timeout value is 15 seconds.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/call-redirect?view=graph-rest-1.0";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -60,7 +61,7 @@ namespace ApiSdk.Communications.Calls.Item.Redirect {
         public RedirectRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/communications/calls/{call%2Did}/redirect", pathParameters) {
         }
         /// <summary>
-        /// Invoke action redirect
+        /// Redirect an incoming call that hasn&apos;t been answered or rejected yet. The terms &apos;redirecting&apos; and &apos;forwarding&apos; a call are used interchangeably. The bot is expected to redirect the call before the call times out. The current timeout value is 15 seconds.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

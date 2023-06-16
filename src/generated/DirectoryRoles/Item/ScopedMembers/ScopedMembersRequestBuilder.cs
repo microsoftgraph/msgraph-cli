@@ -104,11 +104,12 @@ namespace ApiSdk.DirectoryRoles.Item.ScopedMembers {
             return command;
         }
         /// <summary>
-        /// Members of this directory role that are scoped to administrative units. Read-only. Nullable.
+        /// Retrieve a list of scopedRoleMembership objects for a directory role.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/directoryrole-list-scopedmembers?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Members of this directory role that are scoped to administrative units. Read-only. Nullable.";
+            command.Description = "Retrieve a list of scopedRoleMembership objects for a directory role.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/directoryrole-list-scopedmembers?view=graph-rest-1.0";
             var directoryRoleIdOption = new Option<string>("--directory-role-id", description: "The unique identifier of directoryRole") {
             };
             directoryRoleIdOption.IsRequired = true;
@@ -220,7 +221,7 @@ namespace ApiSdk.DirectoryRoles.Item.ScopedMembers {
         public ScopedMembersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/directoryRoles/{directoryRole%2Did}/scopedMembers{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Members of this directory role that are scoped to administrative units. Read-only. Nullable.
+        /// Retrieve a list of scopedRoleMembership objects for a directory role.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -274,7 +275,7 @@ namespace ApiSdk.DirectoryRoles.Item.ScopedMembers {
             return requestInfo;
         }
         /// <summary>
-        /// Members of this directory role that are scoped to administrative units. Read-only. Nullable.
+        /// Retrieve a list of scopedRoleMembership objects for a directory role.
         /// </summary>
         public class ScopedMembersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

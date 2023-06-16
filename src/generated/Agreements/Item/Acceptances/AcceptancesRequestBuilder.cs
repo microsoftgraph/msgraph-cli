@@ -104,11 +104,12 @@ namespace ApiSdk.Agreements.Item.Acceptances {
             return command;
         }
         /// <summary>
-        /// Read-only. Information about acceptances of this agreement.
+        /// Get the details about the acceptance records for a specific agreement.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/agreement-list-acceptances?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read-only. Information about acceptances of this agreement.";
+            command.Description = "Get the details about the acceptance records for a specific agreement.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/agreement-list-acceptances?view=graph-rest-1.0";
             var agreementIdOption = new Option<string>("--agreement-id", description: "The unique identifier of agreement") {
             };
             agreementIdOption.IsRequired = true;
@@ -220,7 +221,7 @@ namespace ApiSdk.Agreements.Item.Acceptances {
         public AcceptancesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/agreements/{agreement%2Did}/acceptances{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Read-only. Information about acceptances of this agreement.
+        /// Get the details about the acceptance records for a specific agreement.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -274,7 +275,7 @@ namespace ApiSdk.Agreements.Item.Acceptances {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Information about acceptances of this agreement.
+        /// Get the details about the acceptance records for a specific agreement.
         /// </summary>
         public class AcceptancesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -50,11 +50,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to reviewSets for security
+        /// Create a new ediscoveryReviewSet object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoverycase-post-reviewsets?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to reviewSets for security";
+            command.Description = "Create a new ediscoveryReviewSet object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-post-reviewsets?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -107,11 +108,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets {
             return command;
         }
         /// <summary>
-        /// Returns a list of eDiscoveryReviewSet objects in the case.
+        /// Get a list of ediscoveryReviewSet objects associated with an eDiscovery case.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoverycase-list-reviewsets?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Returns a list of eDiscoveryReviewSet objects in the case.";
+            command.Description = "Get a list of ediscoveryReviewSet objects associated with an eDiscovery case.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-list-reviewsets?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -223,7 +225,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets {
         public ReviewSetsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/reviewSets{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Returns a list of eDiscoveryReviewSet objects in the case.
+        /// Get a list of ediscoveryReviewSet objects associated with an eDiscovery case.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -249,7 +251,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to reviewSets for security
+        /// Create a new ediscoveryReviewSet object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -277,7 +279,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets {
             return requestInfo;
         }
         /// <summary>
-        /// Returns a list of eDiscoveryReviewSet objects in the case.
+        /// Get a list of ediscoveryReviewSet objects associated with an eDiscovery case.
         /// </summary>
         public class ReviewSetsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

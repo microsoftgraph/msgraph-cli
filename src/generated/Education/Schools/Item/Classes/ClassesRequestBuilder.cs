@@ -43,11 +43,12 @@ namespace ApiSdk.Education.Schools.Item.Classes {
             return command;
         }
         /// <summary>
-        /// Classes taught at the school. Nullable.
+        /// Get the educationClass resources owned by an educationSchool.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/educationschool-list-classes?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Classes taught at the school. Nullable.";
+            command.Description = "Get the educationClass resources owned by an educationSchool.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/educationschool-list-classes?view=graph-rest-1.0";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -176,7 +177,7 @@ namespace ApiSdk.Education.Schools.Item.Classes {
         public ClassesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/education/schools/{educationSchool%2Did}/classes{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Classes taught at the school. Nullable.
+        /// Get the educationClass resources owned by an educationSchool.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -202,7 +203,7 @@ namespace ApiSdk.Education.Schools.Item.Classes {
             return requestInfo;
         }
         /// <summary>
-        /// Classes taught at the school. Nullable.
+        /// Get the educationClass resources owned by an educationSchool.
         /// </summary>
         public class ClassesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

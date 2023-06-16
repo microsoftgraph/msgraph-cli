@@ -51,6 +51,7 @@ namespace ApiSdk.Applications {
             commands.Add(builder.BuildRemovePasswordNavCommand());
             commands.Add(builder.BuildRestoreNavCommand());
             commands.Add(builder.BuildSetVerifiedPublisherNavCommand());
+            commands.Add(builder.BuildSynchronizationNavCommand());
             commands.Add(builder.BuildTokenIssuancePoliciesNavCommand());
             commands.Add(builder.BuildTokenLifetimePoliciesNavCommand());
             commands.Add(builder.BuildUnsetVerifiedPublisherNavCommand());

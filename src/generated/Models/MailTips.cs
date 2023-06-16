@@ -70,7 +70,7 @@ namespace ApiSdk.Models {
         /// <summary>The number of members if the recipient is a distribution list.</summary>
         public int? TotalMemberCount { get; set; }
         /// <summary>
-        /// Instantiates a new mailTips and sets the default values.
+        /// Instantiates a new MailTips and sets the default values.
         /// </summary>
         public MailTips() {
             AdditionalData = new Dictionary<string, object>();

@@ -47,11 +47,12 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to requests for tenantRelationships
+        /// Create a new delegatedAdminRelationshipRequest object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/delegatedadminrelationship-post-requests?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to requests for tenantRelationships";
+            command.Description = "Create a new delegatedAdminRelationshipRequest object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/delegatedadminrelationship-post-requests?view=graph-rest-1.0";
             var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "The unique identifier of delegatedAdminRelationship") {
             };
             delegatedAdminRelationshipIdOption.IsRequired = true;
@@ -104,11 +105,12 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests {
             return command;
         }
         /// <summary>
-        /// The requests associated with the delegated admin relationship.
+        /// Get a list of the delegatedAdminRelationshipRequest objects and their properties.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/delegatedadminrelationship-list-requests?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The requests associated with the delegated admin relationship.";
+            command.Description = "Get a list of the delegatedAdminRelationshipRequest objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/delegatedadminrelationship-list-requests?view=graph-rest-1.0";
             var delegatedAdminRelationshipIdOption = new Option<string>("--delegated-admin-relationship-id", description: "The unique identifier of delegatedAdminRelationship") {
             };
             delegatedAdminRelationshipIdOption.IsRequired = true;
@@ -220,7 +222,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests {
         public RequestsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/tenantRelationships/delegatedAdminRelationships/{delegatedAdminRelationship%2Did}/requests{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The requests associated with the delegated admin relationship.
+        /// Get a list of the delegatedAdminRelationshipRequest objects and their properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -246,7 +248,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to requests for tenantRelationships
+        /// Create a new delegatedAdminRelationshipRequest object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -274,7 +276,7 @@ namespace ApiSdk.TenantRelationships.DelegatedAdminRelationships.Item.Requests {
             return requestInfo;
         }
         /// <summary>
-        /// The requests associated with the delegated admin relationship.
+        /// Get a list of the delegatedAdminRelationshipRequest objects and their properties.
         /// </summary>
         public class RequestsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

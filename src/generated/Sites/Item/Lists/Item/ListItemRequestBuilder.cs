@@ -155,11 +155,12 @@ namespace ApiSdk.Sites.Item.Lists.Item {
             return command;
         }
         /// <summary>
-        /// The collection of lists under this site.
+        /// Returns the metadata for a [list][].
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/list-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The collection of lists under this site.";
+            command.Description = "Returns the metadata for a [list][].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/list-get?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -230,7 +231,6 @@ namespace ApiSdk.Sites.Item.Lists.Item {
             var builder = new ItemsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
-            nonExecCommands.Add(builder.BuildCountNavCommand());
             execCommands.Add(builder.BuildCreateCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
@@ -412,7 +412,7 @@ namespace ApiSdk.Sites.Item.Lists.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of lists under this site.
+        /// Returns the metadata for a [list][].
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -466,7 +466,7 @@ namespace ApiSdk.Sites.Item.Lists.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The collection of lists under this site.
+        /// Returns the metadata for a [list][].
         /// </summary>
         public class ListItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

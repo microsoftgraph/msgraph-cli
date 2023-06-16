@@ -69,9 +69,7 @@ namespace ApiSdk.Reports.ManagedDeviceEnrollmentTopFailuresWithPeriod {
         /// Instantiates a new ManagedDeviceEnrollmentTopFailuresWithPeriodRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
-        public ManagedDeviceEnrollmentTopFailuresWithPeriodRequestBuilder(Dictionary<string, object> pathParameters, string period = "") : base("{+baseurl}/reports/managedDeviceEnrollmentTopFailures(period='{period}')", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(period)) PathParameters.Add("period", period);
+        public ManagedDeviceEnrollmentTopFailuresWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/managedDeviceEnrollmentTopFailures(period='{period}')", pathParameters) {
         }
         /// <summary>
         /// Invoke function managedDeviceEnrollmentTopFailures

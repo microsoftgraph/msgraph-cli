@@ -16,7 +16,7 @@ namespace ApiSdk.Models.Security {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new huntingRowResult and sets the default values.
+        /// Instantiates a new HuntingRowResult and sets the default values.
         /// </summary>
         public HuntingRowResult() {
             AdditionalData = new Dictionary<string, object>();

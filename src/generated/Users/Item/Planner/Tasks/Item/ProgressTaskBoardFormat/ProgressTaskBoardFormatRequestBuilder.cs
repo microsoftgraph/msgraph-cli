@@ -58,11 +58,12 @@ namespace ApiSdk.Users.Item.Planner.Tasks.Item.ProgressTaskBoardFormat {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Used to render the task correctly in the task board view when grouped by progress.
+        /// Retrieve the properties and relationships of **plannerProgressTaskBoardTaskFormat** object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/plannerprogresstaskboardtaskformat-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read-only. Nullable. Used to render the task correctly in the task board view when grouped by progress.";
+            command.Description = "Retrieve the properties and relationships of **plannerProgressTaskBoardTaskFormat** object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerprogresstaskboardtaskformat-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -126,10 +127,11 @@ namespace ApiSdk.Users.Item.Planner.Tasks.Item.ProgressTaskBoardFormat {
         }
         /// <summary>
         /// Update the navigation property progressTaskBoardFormat in users
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/plannerprogresstaskboardtaskformat-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property progressTaskBoardFormat in users";
+            command.Description = "Update the navigation property progressTaskBoardFormat in users\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerprogresstaskboardtaskformat-update?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -226,7 +228,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks.Item.ProgressTaskBoardFormat {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Used to render the task correctly in the task board view when grouped by progress.
+        /// Retrieve the properties and relationships of **plannerProgressTaskBoardTaskFormat** object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -280,7 +282,7 @@ namespace ApiSdk.Users.Item.Planner.Tasks.Item.ProgressTaskBoardFormat {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Used to render the task correctly in the task board view when grouped by progress.
+        /// Retrieve the properties and relationships of **plannerProgressTaskBoardTaskFormat** object.
         /// </summary>
         public class ProgressTaskBoardFormatRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

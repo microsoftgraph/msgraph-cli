@@ -19,11 +19,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Follow {
     /// </summary>
     public class FollowRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action follow
+        /// Follow a driveItem.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/driveitem-follow?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action follow";
+            command.Description = "Follow a driveItem.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitem-follow?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -78,7 +79,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Follow {
         public FollowRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/follow", pathParameters) {
         }
         /// <summary>
-        /// Invoke action follow
+        /// Follow a driveItem.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

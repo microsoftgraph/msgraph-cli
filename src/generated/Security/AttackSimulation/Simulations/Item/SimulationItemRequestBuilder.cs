@@ -52,11 +52,12 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item {
             return command;
         }
         /// <summary>
-        /// Represents an attack simulation training campaign in a tenant.
+        /// Get an attack simulation campaign for a tenant.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/simulation-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Represents an attack simulation training campaign in a tenant.";
+            command.Description = "Get an attack simulation campaign for a tenant.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/simulation-get?view=graph-rest-1.0";
             var simulationIdOption = new Option<string>("--simulation-id", description: "The unique identifier of simulation") {
             };
             simulationIdOption.IsRequired = true;
@@ -201,7 +202,7 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Represents an attack simulation training campaign in a tenant.
+        /// Get an attack simulation campaign for a tenant.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -255,7 +256,7 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Represents an attack simulation training campaign in a tenant.
+        /// Get an attack simulation campaign for a tenant.
         /// </summary>
         public class SimulationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

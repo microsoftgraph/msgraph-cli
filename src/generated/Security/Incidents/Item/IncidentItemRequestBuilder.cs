@@ -77,11 +77,12 @@ namespace ApiSdk.Security.Incidents.Item {
             return command;
         }
         /// <summary>
-        /// A collection of incidents in Microsoft 365 Defender, each of which is a set of correlated alerts and associated metadata that reflects the story of an attack.
+        /// Retrieve the properties and relationships of an incident object. Attacks are typically inflicted on different types of entities, such as devices, users, and mailboxes, resulting in multiple alert objects. Microsoft 365 Defender correlates alerts with the same attack techniques or the same attacker into an **incident**. 
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-incident-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "A collection of incidents in Microsoft 365 Defender, each of which is a set of correlated alerts and associated metadata that reflects the story of an attack.";
+            command.Description = "Retrieve the properties and relationships of an incident object. Attacks are typically inflicted on different types of entities, such as devices, users, and mailboxes, resulting in multiple alert objects. Microsoft 365 Defender correlates alerts with the same attack techniques or the same attacker into an **incident**. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-incident-get?view=graph-rest-1.0";
             var incidentIdOption = new Option<string>("--incident-id", description: "The unique identifier of incident") {
             };
             incidentIdOption.IsRequired = true;
@@ -138,11 +139,12 @@ namespace ApiSdk.Security.Incidents.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property incidents in security
+        /// Update the properties of an incident object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-incident-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property incidents in security";
+            command.Description = "Update the properties of an incident object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-incident-update?view=graph-rest-1.0";
             var incidentIdOption = new Option<string>("--incident-id", description: "The unique identifier of incident") {
             };
             incidentIdOption.IsRequired = true;
@@ -226,7 +228,7 @@ namespace ApiSdk.Security.Incidents.Item {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of incidents in Microsoft 365 Defender, each of which is a set of correlated alerts and associated metadata that reflects the story of an attack.
+        /// Retrieve the properties and relationships of an incident object. Attacks are typically inflicted on different types of entities, such as devices, users, and mailboxes, resulting in multiple alert objects. Microsoft 365 Defender correlates alerts with the same attack techniques or the same attacker into an **incident**. 
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -252,7 +254,7 @@ namespace ApiSdk.Security.Incidents.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property incidents in security
+        /// Update the properties of an incident object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -280,7 +282,7 @@ namespace ApiSdk.Security.Incidents.Item {
             return requestInfo;
         }
         /// <summary>
-        /// A collection of incidents in Microsoft 365 Defender, each of which is a set of correlated alerts and associated metadata that reflects the story of an attack.
+        /// Retrieve the properties and relationships of an incident object. Attacks are typically inflicted on different types of entities, such as devices, users, and mailboxes, resulting in multiple alert objects. Microsoft 365 Defender correlates alerts with the same attack techniques or the same attacker into an **incident**. 
         /// </summary>
         public class IncidentItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

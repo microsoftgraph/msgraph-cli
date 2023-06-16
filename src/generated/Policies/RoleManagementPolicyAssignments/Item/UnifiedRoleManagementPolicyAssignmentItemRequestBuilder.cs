@@ -53,11 +53,12 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments.Item {
             return command;
         }
         /// <summary>
-        /// The assignment of a role management policy to a role definition object.
+        /// Get the details of a role management policy assignment including the policy and rules associated with the Azure AD role.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/unifiedrolemanagementpolicyassignment-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The assignment of a role management policy to a role definition object.";
+            command.Description = "Get the details of a role management policy assignment including the policy and rules associated with the Azure AD role.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/unifiedrolemanagementpolicyassignment-get?view=graph-rest-1.0";
             var unifiedRoleManagementPolicyAssignmentIdOption = new Option<string>("--unified-role-management-policy-assignment-id", description: "The unique identifier of unifiedRoleManagementPolicyAssignment") {
             };
             unifiedRoleManagementPolicyAssignmentIdOption.IsRequired = true;
@@ -217,7 +218,7 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The assignment of a role management policy to a role definition object.
+        /// Get the details of a role management policy assignment including the policy and rules associated with the Azure AD role.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -271,7 +272,7 @@ namespace ApiSdk.Policies.RoleManagementPolicyAssignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The assignment of a role management policy to a role definition object.
+        /// Get the details of a role management policy assignment including the policy and rules associated with the Azure AD role.
         /// </summary>
         public class UnifiedRoleManagementPolicyAssignmentItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

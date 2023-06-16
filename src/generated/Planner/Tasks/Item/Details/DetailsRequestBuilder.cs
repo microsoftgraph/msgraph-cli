@@ -52,11 +52,12 @@ namespace ApiSdk.Planner.Tasks.Item.Details {
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Additional details about the task.
+        /// Retrieve the properties and relationships of a **plannerTaskDetails** object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/plannertaskdetails-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read-only. Nullable. Additional details about the task.";
+            command.Description = "Retrieve the properties and relationships of a **plannerTaskDetails** object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannertaskdetails-get?view=graph-rest-1.0";
             var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "The unique identifier of plannerTask") {
             };
             plannerTaskIdOption.IsRequired = true;
@@ -114,10 +115,11 @@ namespace ApiSdk.Planner.Tasks.Item.Details {
         }
         /// <summary>
         /// Update the navigation property details in planner
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/plannertaskdetails-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property details in planner";
+            command.Description = "Update the navigation property details in planner\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannertaskdetails-update?view=graph-rest-1.0";
             var plannerTaskIdOption = new Option<string>("--planner-task-id", description: "The unique identifier of plannerTask") {
             };
             plannerTaskIdOption.IsRequired = true;
@@ -208,7 +210,7 @@ namespace ApiSdk.Planner.Tasks.Item.Details {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Additional details about the task.
+        /// Retrieve the properties and relationships of a **plannerTaskDetails** object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -262,7 +264,7 @@ namespace ApiSdk.Planner.Tasks.Item.Details {
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Additional details about the task.
+        /// Retrieve the properties and relationships of a **plannerTaskDetails** object.
         /// </summary>
         public class DetailsRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

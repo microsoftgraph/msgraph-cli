@@ -98,11 +98,12 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength.Authenticatio
             return command;
         }
         /// <summary>
-        /// Names and descriptions of all valid authentication method modes in the system.
+        /// Get a list of all supported authentication methods, or all supported authentication method combinations as a list of **authenticationMethodModes** objects and their properties.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/authenticationstrengthroot-list-authenticationmethodmodes?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Names and descriptions of all valid authentication method modes in the system.";
+            command.Description = "Get a list of all supported authentication methods, or all supported authentication method combinations as a list of **authenticationMethodModes** objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/authenticationstrengthroot-list-authenticationmethodmodes?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -208,7 +209,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength.Authenticatio
         public AuthenticationMethodModesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/identity/conditionalAccess/authenticationStrength/authenticationMethodModes{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Names and descriptions of all valid authentication method modes in the system.
+        /// Get a list of all supported authentication methods, or all supported authentication method combinations as a list of **authenticationMethodModes** objects and their properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -262,7 +263,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength.Authenticatio
             return requestInfo;
         }
         /// <summary>
-        /// Names and descriptions of all valid authentication method modes in the system.
+        /// Get a list of all supported authentication methods, or all supported authentication method combinations as a list of **authenticationMethodModes** objects and their properties.
         /// </summary>
         public class AuthenticationMethodModesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -92,9 +92,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ima
         /// Instantiates a new ImageWithWidthRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="width">Usage: width={width}</param>
-        public ImageWithWidthRequestBuilder(Dictionary<string, object> pathParameters, int? width = default) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/{workbookChart%2Did}/image(width={width})", pathParameters) {
-            if (width is not null) PathParameters.Add("width", width);
+        public ImageWithWidthRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/{workbookChart%2Did}/image(width={width})", pathParameters) {
         }
         /// <summary>
         /// Invoke function image

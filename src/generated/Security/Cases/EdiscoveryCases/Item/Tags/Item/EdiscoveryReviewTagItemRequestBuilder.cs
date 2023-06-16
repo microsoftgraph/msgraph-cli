@@ -45,11 +45,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property tags for security
+        /// Remove an ediscoveryReviewTag object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoverycase-delete-tags?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property tags for security";
+            command.Description = "Remove an ediscoveryReviewTag object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoverycase-delete-tags?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -84,11 +85,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
             return command;
         }
         /// <summary>
-        /// Returns a list of ediscoveryReviewTag objects associated to this case.
+        /// Read the properties and relationships of an ediscoveryReviewTag object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoveryreviewtag-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Returns a list of ediscoveryReviewTag objects associated to this case.";
+            command.Description = "Read the properties and relationships of an ediscoveryReviewTag object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoveryreviewtag-get?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -166,11 +168,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property tags in security
+        /// Update the properties of an ediscoveryReviewTag object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-ediscoveryreviewtag-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property tags in security";
+            command.Description = "Update the properties of an ediscoveryReviewTag object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-ediscoveryreviewtag-update?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -235,7 +238,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
         public EdiscoveryReviewTagItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/security/cases/ediscoveryCases/{ediscoveryCase%2Did}/tags/{ediscoveryReviewTag%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property tags for security
+        /// Remove an ediscoveryReviewTag object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -260,7 +263,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Returns a list of ediscoveryReviewTag objects associated to this case.
+        /// Read the properties and relationships of an ediscoveryReviewTag object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -286,7 +289,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property tags in security
+        /// Update the properties of an ediscoveryReviewTag object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -314,7 +317,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.Tags.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Returns a list of ediscoveryReviewTag objects associated to this case.
+        /// Read the properties and relationships of an ediscoveryReviewTag object.
         /// </summary>
         public class EdiscoveryReviewTagItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

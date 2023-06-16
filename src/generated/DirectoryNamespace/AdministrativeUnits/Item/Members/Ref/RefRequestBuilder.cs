@@ -20,10 +20,11 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Ref {
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Users and groups that are members of this administrative unit. Supports $expand.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/administrativeunit-list-members?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Users and groups that are members of this administrative unit. Supports $expand.";
+            command.Description = "Users and groups that are members of this administrative unit. Supports $expand.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/administrativeunit-list-members?view=graph-rest-1.0";
             var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
@@ -122,11 +123,12 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Ref {
             return command;
         }
         /// <summary>
-        /// Create new navigation property ref to members for directory
+        /// Use this API to add a member (user, group, or device) to an administrative unit. Currently it&apos;s only possible to add one member at a time to an administrative unit.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/administrativeunit-post-members?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Create new navigation property ref to members for directory";
+            command.Description = "Use this API to add a member (user, group, or device) to an administrative unit. Currently it's only possible to add one member at a time to an administrative unit.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/administrativeunit-post-members?view=graph-rest-1.0";
             var administrativeUnitIdOption = new Option<string>("--administrative-unit-id", description: "The unique identifier of administrativeUnit") {
             };
             administrativeUnitIdOption.IsRequired = true;
@@ -190,7 +192,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item.Members.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property ref to members for directory
+        /// Use this API to add a member (user, group, or device) to an administrative unit. Currently it&apos;s only possible to add one member at a time to an administrative unit.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

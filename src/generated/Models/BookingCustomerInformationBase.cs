@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new bookingCustomerInformationBase and sets the default values.
+        /// Instantiates a new BookingCustomerInformationBase and sets the default values.
         /// </summary>
         public BookingCustomerInformationBase() {
             AdditionalData = new Dictionary<string, object>();

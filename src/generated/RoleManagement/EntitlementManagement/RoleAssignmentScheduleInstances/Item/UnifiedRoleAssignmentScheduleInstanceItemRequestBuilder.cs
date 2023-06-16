@@ -102,11 +102,12 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
             return command;
         }
         /// <summary>
-        /// Instances for active role assignments.
+        /// Get the instance of an active role assignment.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/unifiedroleassignmentscheduleinstance-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Instances for active role assignments.";
+            command.Description = "Get the instance of an active role assignment.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/unifiedroleassignmentscheduleinstance-get?view=graph-rest-1.0";
             var unifiedRoleAssignmentScheduleInstanceIdOption = new Option<string>("--unified-role-assignment-schedule-instance-id", description: "The unique identifier of unifiedRoleAssignmentScheduleInstance") {
             };
             unifiedRoleAssignmentScheduleInstanceIdOption.IsRequired = true;
@@ -281,7 +282,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
             return requestInfo;
         }
         /// <summary>
-        /// Instances for active role assignments.
+        /// Get the instance of an active role assignment.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -335,7 +336,7 @@ namespace ApiSdk.RoleManagement.EntitlementManagement.RoleAssignmentScheduleInst
             return requestInfo;
         }
         /// <summary>
-        /// Instances for active role assignments.
+        /// Get the instance of an active role assignment.
         /// </summary>
         public class UnifiedRoleAssignmentScheduleInstanceItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -59,9 +59,7 @@ namespace ApiSdk.Reports.GetYammerDeviceUsageDistributionUserCountsWithPeriod {
         /// Instantiates a new GetYammerDeviceUsageDistributionUserCountsWithPeriodRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="period">Usage: period=&apos;{period}&apos;</param>
-        public GetYammerDeviceUsageDistributionUserCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters, string period = "") : base("{+baseurl}/reports/getYammerDeviceUsageDistributionUserCounts(period='{period}')", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(period)) PathParameters.Add("period", period);
+        public GetYammerDeviceUsageDistributionUserCountsWithPeriodRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports/getYammerDeviceUsageDistributionUserCounts(period='{period}')", pathParameters) {
         }
         /// <summary>
         /// Invoke function getYammerDeviceUsageDistributionUserCounts

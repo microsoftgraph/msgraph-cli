@@ -40,7 +40,7 @@ namespace ApiSdk.Models {
         public string TargetId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new convertIdResult and sets the default values.
+        /// Instantiates a new ConvertIdResult and sets the default values.
         /// </summary>
         public ConvertIdResult() {
             AdditionalData = new Dictionary<string, object>();

@@ -48,11 +48,12 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods {
             return command;
         }
         /// <summary>
-        /// The details of the Microsoft Authenticator app registered to a user for authentication.
+        /// Get a list of the microsoftAuthenticatorAuthenticationMethod objects and their properties.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/microsoftauthenticatorauthenticationmethod-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The details of the Microsoft Authenticator app registered to a user for authentication.";
+            command.Description = "Get a list of the microsoftAuthenticatorAuthenticationMethod objects and their properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/microsoftauthenticatorauthenticationmethod-list?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -164,7 +165,7 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods {
         public MicrosoftAuthenticatorMethodsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/authentication/microsoftAuthenticatorMethods{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The details of the Microsoft Authenticator app registered to a user for authentication.
+        /// Get a list of the microsoftAuthenticatorAuthenticationMethod objects and their properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -190,7 +191,7 @@ namespace ApiSdk.Users.Item.Authentication.MicrosoftAuthenticatorMethods {
             return requestInfo;
         }
         /// <summary>
-        /// The details of the Microsoft Authenticator app registered to a user for authentication.
+        /// Get a list of the microsoftAuthenticatorAuthenticationMethod objects and their properties.
         /// </summary>
         public class MicrosoftAuthenticatorMethodsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

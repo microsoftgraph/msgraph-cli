@@ -34,6 +34,7 @@ namespace ApiSdk.Drives.Item.List.Items {
             commands.Add(builder.BuildDriveItemNavCommand());
             commands.Add(builder.BuildFieldsNavCommand());
             commands.Add(builder.BuildGetActivitiesByIntervalNavCommand());
+            commands.Add(builder.BuildGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRbCommand());
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildLastModifiedByUserNavCommand());
             executables.Add(builder.BuildPatchCommand());
@@ -56,11 +57,12 @@ namespace ApiSdk.Drives.Item.List.Items {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to items for drives
+        /// Create a new [listItem][] in a [list][].
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/listitem-create?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to items for drives";
+            command.Description = "Create a new [listItem][] in a [list][].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/listitem-create?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -113,11 +115,12 @@ namespace ApiSdk.Drives.Item.List.Items {
             return command;
         }
         /// <summary>
-        /// All items contained in the list.
+        /// Get the collection of [items][item] in a [list][].
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/listitem-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "All items contained in the list.";
+            command.Description = "Get the collection of [items][item] in a [list][].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/listitem-list?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -138,10 +141,6 @@ namespace ApiSdk.Drives.Item.List.Items {
             };
             filterOption.IsRequired = false;
             command.AddOption(filterOption);
-            var countOption = new Option<bool?>("--count", description: "Include count of items") {
-            };
-            countOption.IsRequired = false;
-            command.AddOption(countOption);
             var orderbyOption = new Option<string[]>("--orderby", description: "Order items by property values") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -178,7 +177,6 @@ namespace ApiSdk.Drives.Item.List.Items {
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
                 var search = invocationContext.ParseResult.GetValueForOption(searchOption);
                 var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
-                var count = invocationContext.ParseResult.GetValueForOption(countOption);
                 var orderby = invocationContext.ParseResult.GetValueForOption(orderbyOption);
                 var select = invocationContext.ParseResult.GetValueForOption(selectOption);
                 var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
@@ -196,7 +194,6 @@ namespace ApiSdk.Drives.Item.List.Items {
                     q.QueryParameters.Skip = skip;
                     if (!string.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
                     if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
-                    q.QueryParameters.Count = count;
                     q.QueryParameters.Orderby = orderby;
                     q.QueryParameters.Select = select;
                     q.QueryParameters.Expand = expand;
@@ -226,10 +223,10 @@ namespace ApiSdk.Drives.Item.List.Items {
         /// Instantiates a new ItemsRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ItemsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/list/items{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public ItemsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/list/items{?%24top,%24skip,%24search,%24filter,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// All items contained in the list.
+        /// Get the collection of [items][item] in a [list][].
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -255,7 +252,7 @@ namespace ApiSdk.Drives.Item.List.Items {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to items for drives
+        /// Create a new [listItem][] in a [list][].
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -283,12 +280,9 @@ namespace ApiSdk.Drives.Item.List.Items {
             return requestInfo;
         }
         /// <summary>
-        /// All items contained in the list.
+        /// Get the collection of [items][item] in a [list][].
         /// </summary>
         public class ItemsRequestBuilderGetQueryParameters {
-            /// <summary>Include count of items</summary>
-            [QueryParameter("%24count")]
-            public bool? Count { get; set; }
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

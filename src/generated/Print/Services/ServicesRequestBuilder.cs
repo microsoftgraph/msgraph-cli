@@ -100,11 +100,12 @@ namespace ApiSdk.Print.Services {
             return command;
         }
         /// <summary>
-        /// The list of available Universal Print service endpoints.
+        /// Retrieve a list of **printService** objects that represent the services available to your tenant.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/print-list-services?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The list of available Universal Print service endpoints.";
+            command.Description = "Retrieve a list of **printService** objects that represent the services available to your tenant.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/print-list-services?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -210,7 +211,7 @@ namespace ApiSdk.Print.Services {
         public ServicesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/print/services{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The list of available Universal Print service endpoints.
+        /// Retrieve a list of **printService** objects that represent the services available to your tenant.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -264,7 +265,7 @@ namespace ApiSdk.Print.Services {
             return requestInfo;
         }
         /// <summary>
-        /// The list of available Universal Print service endpoints.
+        /// Retrieve a list of **printService** objects that represent the services available to your tenant.
         /// </summary>
         public class ServicesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -18,11 +18,12 @@ namespace ApiSdk.Applications.Item.UnsetVerifiedPublisher {
     /// </summary>
     public class UnsetVerifiedPublisherRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action unsetVerifiedPublisher
+        /// Unset the verifiedPublisher previously set on an application, removing all verified publisher properties. For more information, see Publisher verification.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/application-unsetverifiedpublisher?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action unsetVerifiedPublisher";
+            command.Description = "Unset the verifiedPublisher previously set on an application, removing all verified publisher properties. For more information, see Publisher verification.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/application-unsetverifiedpublisher?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -50,7 +51,7 @@ namespace ApiSdk.Applications.Item.UnsetVerifiedPublisher {
         public UnsetVerifiedPublisherRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/unsetVerifiedPublisher", pathParameters) {
         }
         /// <summary>
-        /// Invoke action unsetVerifiedPublisher
+        /// Unset the verifiedPublisher previously set on an application, removing all verified publisher properties. For more information, see Publisher verification.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

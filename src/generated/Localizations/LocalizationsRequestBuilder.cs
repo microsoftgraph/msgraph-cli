@@ -29,9 +29,13 @@ namespace ApiSdk.Localizations {
             var builder = new OrganizationalBrandingLocalizationItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildBackgroundImageNavCommand());
             commands.Add(builder.BuildBannerLogoNavCommand());
+            commands.Add(builder.BuildCustomCSSNavCommand());
             executables.Add(builder.BuildDeleteCommand());
+            commands.Add(builder.BuildFaviconNavCommand());
             executables.Add(builder.BuildGetCommand());
+            commands.Add(builder.BuildHeaderLogoNavCommand());
             executables.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildSquareLogoDarkNavCommand());
             commands.Add(builder.BuildSquareLogoNavCommand());
             return new(executables, commands);
         }

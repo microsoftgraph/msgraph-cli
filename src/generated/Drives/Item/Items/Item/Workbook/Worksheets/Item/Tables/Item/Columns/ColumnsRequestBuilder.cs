@@ -70,11 +70,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
             return command;
         }
         /// <summary>
-        /// Create new navigation property to columns for drives
+        /// Use this API to create a new TableColumn.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/table-post-columns?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to columns for drives";
+            command.Description = "Use this API to create a new TableColumn.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/table-post-columns?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -145,11 +146,27 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
             return command;
         }
         /// <summary>
-        /// Represents a collection of all the columns in the table. Read-only.
+        /// Provides operations to call the itemAt method.
+        /// </summary>
+        public Command BuildItemAtWithIndexRbCommand() {
+            var command = new Command("item-at-with-index");
+            command.Description = "Provides operations to call the itemAt method.";
+            var builder = new ItemAtWithIndexRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Retrieve a list of tablecolumn objects.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/table-list-columns?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Represents a collection of all the columns in the table. Read-only.";
+            command.Description = "Retrieve a list of tablecolumn objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/table-list-columns?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -279,7 +296,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
         public ColumnsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/tables/{workbookTable%2Did}/columns{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Represents a collection of all the columns in the table. Read-only.
+        /// Retrieve a list of tablecolumn objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -305,7 +322,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to columns for drives
+        /// Use this API to create a new TableColumn.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -333,7 +350,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Col
             return requestInfo;
         }
         /// <summary>
-        /// Represents a collection of all the columns in the table. Read-only.
+        /// Retrieve a list of tablecolumn objects.
         /// </summary>
         public class ColumnsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

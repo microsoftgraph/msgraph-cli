@@ -18,11 +18,12 @@ namespace ApiSdk.Users.Item.Presence.SetUserPreferredPresence {
     /// </summary>
     public class SetUserPreferredPresenceRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action setUserPreferredPresence
+        /// Set the preferred availability and activity status for a user. If the preferred presence of a user is set, the user&apos;s presence shows as the preferred status. Preferred presence takes effect only when at least one presence session exists for the user. Otherwise, the user&apos;s presence shows as `Offline`. A presence session is created as a result of a successful setPresence operation, or if the user is signed in on a Microsoft Teams client. For more details, see presence sessions and time-out and expiration.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/presence-setuserpreferredpresence?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action setUserPreferredPresence";
+            command.Description = "Set the preferred availability and activity status for a user. If the preferred presence of a user is set, the user's presence shows as the preferred status. Preferred presence takes effect only when at least one presence session exists for the user. Otherwise, the user's presence shows as `Offline`. A presence session is created as a result of a successful setPresence operation, or if the user is signed in on a Microsoft Teams client. For more details, see presence sessions and time-out and expiration.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/presence-setuserpreferredpresence?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -60,7 +61,7 @@ namespace ApiSdk.Users.Item.Presence.SetUserPreferredPresence {
         public SetUserPreferredPresenceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/presence/setUserPreferredPresence", pathParameters) {
         }
         /// <summary>
-        /// Invoke action setUserPreferredPresence
+        /// Set the preferred availability and activity status for a user. If the preferred presence of a user is set, the user&apos;s presence shows as the preferred status. Preferred presence takes effect only when at least one presence session exists for the user. Otherwise, the user&apos;s presence shows as `Offline`. A presence session is created as a result of a successful setPresence operation, or if the user is signed in on a Microsoft Teams client. For more details, see presence sessions and time-out and expiration.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

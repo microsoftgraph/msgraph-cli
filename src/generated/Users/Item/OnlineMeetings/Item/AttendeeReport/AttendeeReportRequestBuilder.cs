@@ -19,10 +19,11 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport {
     public class AttendeeReportRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// The content stream of the attendee report of a Microsoft Teams live event. Read-only.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/onlinemeeting-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The content stream of the attendee report of a Microsoft Teams live event. Read-only.";
+            command.Description = "The content stream of the attendee report of a Microsoft Teams live event. Read-only.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/onlinemeeting-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;

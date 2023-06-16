@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class InboundOutboundPolicyConfiguration : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The inboundAllowed property</summary>
+        /// <summary>Defines whether external users coming inbound are allowed.</summary>
         public bool? InboundAllowed { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -17,7 +17,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The outboundAllowed property</summary>
+        /// <summary>Defines whether internal users are allowed to go outbound.</summary>
         public bool? OutboundAllowed { get; set; }
         /// <summary>
         /// Instantiates a new inboundOutboundPolicyConfiguration and sets the default values.

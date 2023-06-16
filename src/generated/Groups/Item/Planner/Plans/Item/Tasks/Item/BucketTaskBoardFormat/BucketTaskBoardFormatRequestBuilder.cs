@@ -64,11 +64,12 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Tasks.Item.BucketTaskBoardFormat
             return command;
         }
         /// <summary>
-        /// Read-only. Nullable. Used to render the task correctly in the task board view when grouped by bucket.
+        /// Retrieve the properties and relationships of **plannerBucketTaskBoardTaskFormat** object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/plannerbuckettaskboardtaskformat-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read-only. Nullable. Used to render the task correctly in the task board view when grouped by bucket.";
+            command.Description = "Retrieve the properties and relationships of **plannerBucketTaskBoardTaskFormat** object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerbuckettaskboardtaskformat-get?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -138,10 +139,11 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Tasks.Item.BucketTaskBoardFormat
         }
         /// <summary>
         /// Update the navigation property bucketTaskBoardFormat in groups
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/plannerbuckettaskboardtaskformat-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property bucketTaskBoardFormat in groups";
+            command.Description = "Update the navigation property bucketTaskBoardFormat in groups\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/plannerbuckettaskboardtaskformat-update?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -244,7 +246,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Tasks.Item.BucketTaskBoardFormat
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Used to render the task correctly in the task board view when grouped by bucket.
+        /// Retrieve the properties and relationships of **plannerBucketTaskBoardTaskFormat** object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -298,7 +300,7 @@ namespace ApiSdk.Groups.Item.Planner.Plans.Item.Tasks.Item.BucketTaskBoardFormat
             return requestInfo;
         }
         /// <summary>
-        /// Read-only. Nullable. Used to render the task correctly in the task board view when grouped by bucket.
+        /// Retrieve the properties and relationships of **plannerBucketTaskBoardTaskFormat** object.
         /// </summary>
         public class BucketTaskBoardFormatRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

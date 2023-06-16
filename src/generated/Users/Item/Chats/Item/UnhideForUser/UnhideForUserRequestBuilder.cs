@@ -18,11 +18,12 @@ namespace ApiSdk.Users.Item.Chats.Item.UnhideForUser {
     /// </summary>
     public class UnhideForUserRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action unhideForUser
+        /// Unhide a chat for a user.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chat-unhideforuser?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action unhideForUser";
+            command.Description = "Unhide a chat for a user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chat-unhideforuser?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -66,7 +67,7 @@ namespace ApiSdk.Users.Item.Chats.Item.UnhideForUser {
         public UnhideForUserRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/chats/{chat%2Did}/unhideForUser", pathParameters) {
         }
         /// <summary>
-        /// Invoke action unhideForUser
+        /// Unhide a chat for a user.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

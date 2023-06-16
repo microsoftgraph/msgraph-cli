@@ -1,0 +1,9 @@
+{
+  "tool": "Credential Scanner",
+  "suppressions": [
+    {
+      "file": "SynchronizationSecret.cs",
+      "_justification": "False positive."
+    }
+  ]
+}

@@ -38,8 +38,6 @@ namespace ApiSdk.Users.Item.CalendarView {
             commands.Add(builder.BuildForwardNavCommand());
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildInstancesNavCommand());
-            commands.Add(builder.BuildMultiValueExtendedPropertiesNavCommand());
-            commands.Add(builder.BuildSingleValueExtendedPropertiesNavCommand());
             commands.Add(builder.BuildSnoozeReminderNavCommand());
             commands.Add(builder.BuildTentativelyAcceptNavCommand());
             return new(executables, commands);
@@ -76,10 +74,11 @@ namespace ApiSdk.Users.Item.CalendarView {
         }
         /// <summary>
         /// The calendar view for the calendar. Read-only. Nullable.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-list-calendarview?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The calendar view for the calendar. Read-only. Nullable.";
+            command.Description = "The calendar view for the calendar. Read-only. Nullable.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-list-calendarview?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;

@@ -45,11 +45,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.SectionGroups.Item.SectionGroups
             return command;
         }
         /// <summary>
-        /// The section groups in the section. Read-only. Nullable.
+        /// Retrieve a list of section groups from the specified section group.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/sectiongroup-list-sectiongroups?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The section groups in the section. Read-only. Nullable.";
+            command.Description = "Retrieve a list of section groups from the specified section group.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/sectiongroup-list-sectiongroups?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -173,7 +174,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.SectionGroups.Item.SectionGroups
         public SectionGroupsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/onenote/sectionGroups/{sectionGroup%2Did}/sectionGroups{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The section groups in the section. Read-only. Nullable.
+        /// Retrieve a list of section groups from the specified section group.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -199,7 +200,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.SectionGroups.Item.SectionGroups
             return requestInfo;
         }
         /// <summary>
-        /// The section groups in the section. Read-only. Nullable.
+        /// Retrieve a list of section groups from the specified section group.
         /// </summary>
         public class SectionGroupsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

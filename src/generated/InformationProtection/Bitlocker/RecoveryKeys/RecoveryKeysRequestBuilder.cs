@@ -45,11 +45,12 @@ namespace ApiSdk.InformationProtection.Bitlocker.RecoveryKeys {
             return command;
         }
         /// <summary>
-        /// The recovery keys associated with the bitlocker entity.
+        /// Get a list of the bitlockerRecoveryKey objects and their properties.  This operation does not return the **key** property. For information about how to read the **key** property, see Get bitlockerRecoveryKey.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/bitlocker-list-recoverykeys?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The recovery keys associated with the bitlocker entity.";
+            command.Description = "Get a list of the bitlockerRecoveryKey objects and their properties.  This operation does not return the **key** property. For information about how to read the **key** property, see Get bitlockerRecoveryKey.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/bitlocker-list-recoverykeys?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -155,7 +156,7 @@ namespace ApiSdk.InformationProtection.Bitlocker.RecoveryKeys {
         public RecoveryKeysRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/informationProtection/bitlocker/recoveryKeys{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The recovery keys associated with the bitlocker entity.
+        /// Get a list of the bitlockerRecoveryKey objects and their properties.  This operation does not return the **key** property. For information about how to read the **key** property, see Get bitlockerRecoveryKey.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -181,7 +182,7 @@ namespace ApiSdk.InformationProtection.Bitlocker.RecoveryKeys {
             return requestInfo;
         }
         /// <summary>
-        /// The recovery keys associated with the bitlocker entity.
+        /// Get a list of the bitlockerRecoveryKey objects and their properties.  This operation does not return the **key** property. For information about how to read the **key** property, see Get bitlockerRecoveryKey.
         /// </summary>
         public class RecoveryKeysRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

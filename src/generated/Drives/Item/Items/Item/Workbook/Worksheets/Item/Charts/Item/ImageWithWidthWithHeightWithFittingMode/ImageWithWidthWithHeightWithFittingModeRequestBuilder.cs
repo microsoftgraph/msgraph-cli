@@ -103,14 +103,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Charts.Item.Ima
         /// <summary>
         /// Instantiates a new ImageWithWidthWithHeightWithFittingModeRequestBuilder and sets the default values.
         /// </summary>
-        /// <param name="fittingMode">Usage: fittingMode=&apos;{fittingMode}&apos;</param>
-        /// <param name="height">Usage: height={height}</param>
         /// <param name="pathParameters">Path parameters for the request</param>
-        /// <param name="width">Usage: width={width}</param>
-        public ImageWithWidthWithHeightWithFittingModeRequestBuilder(Dictionary<string, object> pathParameters, string fittingMode = "", int? height = default, int? width = default) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/{workbookChart%2Did}/image(width={width},height={height},fittingMode='{fittingMode}')", pathParameters) {
-            if (!string.IsNullOrWhiteSpace(fittingMode)) PathParameters.Add("fittingMode", fittingMode);
-            if (height is not null) PathParameters.Add("height", height);
-            if (width is not null) PathParameters.Add("width", width);
+        public ImageWithWidthWithHeightWithFittingModeRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/worksheets/{workbookWorksheet%2Did}/charts/{workbookChart%2Did}/image(width={width},height={height},fittingMode='{fittingMode}')", pathParameters) {
         }
         /// <summary>
         /// Invoke function image

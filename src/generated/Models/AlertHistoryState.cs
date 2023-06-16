@@ -54,7 +54,7 @@ namespace ApiSdk.Models {
         public string User { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new alertHistoryState and sets the default values.
+        /// Instantiates a new AlertHistoryState and sets the default values.
         /// </summary>
         public AlertHistoryState() {
             AdditionalData = new Dictionary<string, object>();
