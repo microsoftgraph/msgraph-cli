@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+### Changed
+
+## [1.0.0-preview.1] - 2023-06-16
+
+### Added
+
+- Added overloaded OData functions as commands. Examples of newly added command
+paths:
+  - `mgc drives items workbook worksheets charts image-with-width`
+  - `mgc drives items workbook worksheets charts image-with-width-with-height`
+
+### Changed
+
+- `--file` has now been split into `--input-file` and `--output-file` to cater
+for endpoints that accept a stream and return a stream.
+- Fix error when accessing `mgc users direct-reports graph-org-contact`. There
+are now 2 similar commands under `mgc users direct-reports graph-org-contact`.
+  - `mgc users direct-reports graph-org-contact`
+  - `mgc users direct-reports graph-org-contact-by-id`
+
 ## [0.4.0-preview.1] - 2023-05-05
 
 ### Added
