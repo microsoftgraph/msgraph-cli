@@ -120,14 +120,7 @@ namespace Microsoft.Graph.Cli
             builder.AddMiddleware(async (ic, next) =>
             {
                 debugEnabled = ic.ParseResult.GetValueForOption<bool>(debugOption);
-                if (debugEnabled)
-                {
-                    listener = AzureEventSourceListener.CreateConsoleLogger(EventLevel.LogAlways);
-                }
-                else
-                {
-                    listener = AzureEventSourceListener.CreateConsoleLogger(EventLevel.Warning);
-                }
+                listener = AzureEventSourceListener.CreateConsoleLogger(debugEnabled ? EventLevel.LogAlways : EventLevel.Warning);
                 await next(ic);
             });
 
