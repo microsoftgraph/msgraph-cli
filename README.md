@@ -131,12 +131,23 @@ Required packages:
 
 > On WSL, systemd can be enabled by following [these instructions](https://learn.microsoft.com/en-us/windows/wsl/systemd)
 
+1. Install gnome-keyring
 ``` bash
 sudo apt-get install --assume-yes gnome-keyring
 
+```
+
+2. If running in a headless environment(e.g. WSL), you may need to run the following commands as well to start gnome-keyring in your shell session:
+
+```bash
 export KEYRING_PASSWORD=any-password
 
 printf '%s' "$KEYRING_PASSWORD" | gnome-keyring-daemon --daemonize --components=secrets --unlock
+```
+
+3. Run mgc
+
+```bash
 
 mgc login
 ```
