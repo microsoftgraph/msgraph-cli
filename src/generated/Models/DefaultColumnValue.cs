@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class DefaultColumnValue : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The formula used to compute the default value for this column.</summary>
+        /// <summary>The formula used to compute the default value for the column.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Formula { get; set; }
@@ -23,7 +23,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The direct value to use as the default value for this column.</summary>
+        /// <summary>The direct value to use as the default value for the column.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Value { get; set; }

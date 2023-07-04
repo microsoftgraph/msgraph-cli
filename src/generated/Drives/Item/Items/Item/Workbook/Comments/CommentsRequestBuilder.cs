@@ -112,11 +112,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments {
             return command;
         }
         /// <summary>
-        /// Get comments from drives
+        /// Represents a collection of comments in a workbook.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get comments from drives";
+            command.Description = "Represents a collection of comments in a workbook.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -234,7 +234,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments {
         public CommentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/comments{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get comments from drives
+        /// Represents a collection of comments in a workbook.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -288,7 +288,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments {
             return requestInfo;
         }
         /// <summary>
-        /// Get comments from drives
+        /// Represents a collection of comments in a workbook.
         /// </summary>
         public class CommentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

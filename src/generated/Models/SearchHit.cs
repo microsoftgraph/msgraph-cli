@@ -23,7 +23,7 @@ namespace ApiSdk.Models {
 #else
         public string HitId { get; set; }
 #endif
-        /// <summary>Indicates whether the current result is collapsed when the collapseProperties property is used.</summary>
+        /// <summary>Indicates whether the current result is collapsed when the collapseProperties property in the searchRequest is used.</summary>
         public bool? IsCollapsed { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

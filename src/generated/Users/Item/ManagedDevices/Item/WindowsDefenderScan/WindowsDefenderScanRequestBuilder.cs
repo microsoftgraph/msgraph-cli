@@ -18,11 +18,12 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.WindowsDefenderScan {
     /// </summary>
     public class WindowsDefenderScanRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action windowsDefenderScan
+        /// Not yet documented
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-manageddevice-windowsdefenderscan?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action windowsDefenderScan";
+            command.Description = "Not yet documented\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-manageddevice-windowsdefenderscan?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -66,7 +67,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.WindowsDefenderScan {
         public WindowsDefenderScanRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/managedDevices/{managedDevice%2Did}/windowsDefenderScan", pathParameters) {
         }
         /// <summary>
-        /// Invoke action windowsDefenderScan
+        /// Not yet documented
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

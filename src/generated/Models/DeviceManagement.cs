@@ -109,6 +109,14 @@ namespace ApiSdk.Models {
 #else
         public List<DeviceManagementPartner> DeviceManagementPartners { get; set; }
 #endif
+        /// <summary>Device protection overview.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.DeviceProtectionOverview? DeviceProtectionOverview { get; set; }
+#nullable restore
+#else
+        public ApiSdk.Models.DeviceProtectionOverview DeviceProtectionOverview { get; set; }
+#endif
         /// <summary>The list of Exchange Connectors configured by the tenant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -158,6 +166,14 @@ namespace ApiSdk.Models {
 #nullable restore
 #else
         public List<ManagedDevice> ManagedDevices { get; set; }
+#endif
+        /// <summary>The collection property of MobileAppTroubleshootingEvent.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<MobileAppTroubleshootingEvent>? MobileAppTroubleshootingEvents { get; set; }
+#nullable restore
+#else
+        public List<MobileAppTroubleshootingEvent> MobileAppTroubleshootingEvents { get; set; }
 #endif
         /// <summary>The list of Mobile threat Defense connectors configured by the tenant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -257,6 +273,190 @@ namespace ApiSdk.Models {
 #else
         public List<DeviceManagementTroubleshootingEvent> TroubleshootingEvents { get; set; }
 #endif
+        /// <summary>User experience analytics appHealth Application Performance</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ApiSdk.Models.UserExperienceAnalyticsAppHealthApplicationPerformance>? UserExperienceAnalyticsAppHealthApplicationPerformance { get; set; }
+#nullable restore
+#else
+        public List<ApiSdk.Models.UserExperienceAnalyticsAppHealthApplicationPerformance> UserExperienceAnalyticsAppHealthApplicationPerformance { get; set; }
+#endif
+        /// <summary>User experience analytics appHealth Application Performance by App Version details</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails>? UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails { get; set; }
+#nullable restore
+#else
+        public List<UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails> UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails { get; set; }
+#endif
+        /// <summary>User experience analytics appHealth Application Performance by App Version Device Id</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId>? UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId { get; set; }
+#nullable restore
+#else
+        public List<UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId> UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId { get; set; }
+#endif
+        /// <summary>User experience analytics appHealth Application Performance by OS Version</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion>? UserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion { get; set; }
+#nullable restore
+#else
+        public List<UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion> UserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion { get; set; }
+#endif
+        /// <summary>User experience analytics appHealth Model Performance</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ApiSdk.Models.UserExperienceAnalyticsAppHealthDeviceModelPerformance>? UserExperienceAnalyticsAppHealthDeviceModelPerformance { get; set; }
+#nullable restore
+#else
+        public List<ApiSdk.Models.UserExperienceAnalyticsAppHealthDeviceModelPerformance> UserExperienceAnalyticsAppHealthDeviceModelPerformance { get; set; }
+#endif
+        /// <summary>User experience analytics appHealth Device Performance</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ApiSdk.Models.UserExperienceAnalyticsAppHealthDevicePerformance>? UserExperienceAnalyticsAppHealthDevicePerformance { get; set; }
+#nullable restore
+#else
+        public List<ApiSdk.Models.UserExperienceAnalyticsAppHealthDevicePerformance> UserExperienceAnalyticsAppHealthDevicePerformance { get; set; }
+#endif
+        /// <summary>User experience analytics device performance details</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ApiSdk.Models.UserExperienceAnalyticsAppHealthDevicePerformanceDetails>? UserExperienceAnalyticsAppHealthDevicePerformanceDetails { get; set; }
+#nullable restore
+#else
+        public List<ApiSdk.Models.UserExperienceAnalyticsAppHealthDevicePerformanceDetails> UserExperienceAnalyticsAppHealthDevicePerformanceDetails { get; set; }
+#endif
+        /// <summary>User experience analytics appHealth OS version Performance</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ApiSdk.Models.UserExperienceAnalyticsAppHealthOSVersionPerformance>? UserExperienceAnalyticsAppHealthOSVersionPerformance { get; set; }
+#nullable restore
+#else
+        public List<ApiSdk.Models.UserExperienceAnalyticsAppHealthOSVersionPerformance> UserExperienceAnalyticsAppHealthOSVersionPerformance { get; set; }
+#endif
+        /// <summary>User experience analytics appHealth overview</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public UserExperienceAnalyticsCategory? UserExperienceAnalyticsAppHealthOverview { get; set; }
+#nullable restore
+#else
+        public UserExperienceAnalyticsCategory UserExperienceAnalyticsAppHealthOverview { get; set; }
+#endif
+        /// <summary>User experience analytics baselines</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<UserExperienceAnalyticsBaseline>? UserExperienceAnalyticsBaselines { get; set; }
+#nullable restore
+#else
+        public List<UserExperienceAnalyticsBaseline> UserExperienceAnalyticsBaselines { get; set; }
+#endif
+        /// <summary>User experience analytics categories</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<UserExperienceAnalyticsCategory>? UserExperienceAnalyticsCategories { get; set; }
+#nullable restore
+#else
+        public List<UserExperienceAnalyticsCategory> UserExperienceAnalyticsCategories { get; set; }
+#endif
+        /// <summary>User experience analytics device performance</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ApiSdk.Models.UserExperienceAnalyticsDevicePerformance>? UserExperienceAnalyticsDevicePerformance { get; set; }
+#nullable restore
+#else
+        public List<ApiSdk.Models.UserExperienceAnalyticsDevicePerformance> UserExperienceAnalyticsDevicePerformance { get; set; }
+#endif
+        /// <summary>User experience analytics device scores</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ApiSdk.Models.UserExperienceAnalyticsDeviceScores>? UserExperienceAnalyticsDeviceScores { get; set; }
+#nullable restore
+#else
+        public List<ApiSdk.Models.UserExperienceAnalyticsDeviceScores> UserExperienceAnalyticsDeviceScores { get; set; }
+#endif
+        /// <summary>User experience analytics device Startup History</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ApiSdk.Models.UserExperienceAnalyticsDeviceStartupHistory>? UserExperienceAnalyticsDeviceStartupHistory { get; set; }
+#nullable restore
+#else
+        public List<ApiSdk.Models.UserExperienceAnalyticsDeviceStartupHistory> UserExperienceAnalyticsDeviceStartupHistory { get; set; }
+#endif
+        /// <summary>User experience analytics device Startup Processes</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<UserExperienceAnalyticsDeviceStartupProcess>? UserExperienceAnalyticsDeviceStartupProcesses { get; set; }
+#nullable restore
+#else
+        public List<UserExperienceAnalyticsDeviceStartupProcess> UserExperienceAnalyticsDeviceStartupProcesses { get; set; }
+#endif
+        /// <summary>User experience analytics metric history</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ApiSdk.Models.UserExperienceAnalyticsMetricHistory>? UserExperienceAnalyticsMetricHistory { get; set; }
+#nullable restore
+#else
+        public List<ApiSdk.Models.UserExperienceAnalyticsMetricHistory> UserExperienceAnalyticsMetricHistory { get; set; }
+#endif
+        /// <summary>User experience analytics model scores</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ApiSdk.Models.UserExperienceAnalyticsModelScores>? UserExperienceAnalyticsModelScores { get; set; }
+#nullable restore
+#else
+        public List<ApiSdk.Models.UserExperienceAnalyticsModelScores> UserExperienceAnalyticsModelScores { get; set; }
+#endif
+        /// <summary>User experience analytics overview</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.UserExperienceAnalyticsOverview? UserExperienceAnalyticsOverview { get; set; }
+#nullable restore
+#else
+        public ApiSdk.Models.UserExperienceAnalyticsOverview UserExperienceAnalyticsOverview { get; set; }
+#endif
+        /// <summary>User experience analytics device Startup Score History</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ApiSdk.Models.UserExperienceAnalyticsScoreHistory>? UserExperienceAnalyticsScoreHistory { get; set; }
+#nullable restore
+#else
+        public List<ApiSdk.Models.UserExperienceAnalyticsScoreHistory> UserExperienceAnalyticsScoreHistory { get; set; }
+#endif
+        /// <summary>User experience analytics device settings</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.UserExperienceAnalyticsSettings? UserExperienceAnalyticsSettings { get; set; }
+#nullable restore
+#else
+        public ApiSdk.Models.UserExperienceAnalyticsSettings UserExperienceAnalyticsSettings { get; set; }
+#endif
+        /// <summary>User experience analytics work from anywhere hardware readiness metrics.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric? UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric { get; set; }
+#nullable restore
+#else
+        public ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric { get; set; }
+#endif
+        /// <summary>User experience analytics work from anywhere metrics.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<UserExperienceAnalyticsWorkFromAnywhereMetric>? UserExperienceAnalyticsWorkFromAnywhereMetrics { get; set; }
+#nullable restore
+#else
+        public List<UserExperienceAnalyticsWorkFromAnywhereMetric> UserExperienceAnalyticsWorkFromAnywhereMetrics { get; set; }
+#endif
+        /// <summary>The user experience analytics work from anywhere model performance</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereModelPerformance>? UserExperienceAnalyticsWorkFromAnywhereModelPerformance { get; set; }
+#nullable restore
+#else
+        public List<ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereModelPerformance> UserExperienceAnalyticsWorkFromAnywhereModelPerformance { get; set; }
+#endif
         /// <summary>The Windows autopilot device identities contained collection.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -280,6 +480,22 @@ namespace ApiSdk.Models {
 #nullable restore
 #else
         public List<WindowsInformationProtectionNetworkLearningSummary> WindowsInformationProtectionNetworkLearningSummaries { get; set; }
+#endif
+        /// <summary>The list of affected malware in the tenant.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<ApiSdk.Models.WindowsMalwareInformation>? WindowsMalwareInformation { get; set; }
+#nullable restore
+#else
+        public List<ApiSdk.Models.WindowsMalwareInformation> WindowsMalwareInformation { get; set; }
+#endif
+        /// <summary>Malware overview for windows devices.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.WindowsMalwareOverview? WindowsMalwareOverview { get; set; }
+#nullable restore
+#else
+        public ApiSdk.Models.WindowsMalwareOverview WindowsMalwareOverview { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -307,6 +523,7 @@ namespace ApiSdk.Models {
                 {"deviceConfigurations", n => { DeviceConfigurations = n.GetCollectionOfObjectValues<DeviceConfiguration>(DeviceConfiguration.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"deviceEnrollmentConfigurations", n => { DeviceEnrollmentConfigurations = n.GetCollectionOfObjectValues<DeviceEnrollmentConfiguration>(DeviceEnrollmentConfiguration.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"deviceManagementPartners", n => { DeviceManagementPartners = n.GetCollectionOfObjectValues<DeviceManagementPartner>(DeviceManagementPartner.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"deviceProtectionOverview", n => { DeviceProtectionOverview = n.GetObjectValue<ApiSdk.Models.DeviceProtectionOverview>(ApiSdk.Models.DeviceProtectionOverview.CreateFromDiscriminatorValue); } },
                 {"exchangeConnectors", n => { ExchangeConnectors = n.GetCollectionOfObjectValues<DeviceManagementExchangeConnector>(DeviceManagementExchangeConnector.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"importedWindowsAutopilotDeviceIdentities", n => { ImportedWindowsAutopilotDeviceIdentities = n.GetCollectionOfObjectValues<ImportedWindowsAutopilotDeviceIdentity>(ImportedWindowsAutopilotDeviceIdentity.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"intuneAccountId", n => { IntuneAccountId = n.GetGuidValue(); } },
@@ -314,6 +531,7 @@ namespace ApiSdk.Models {
                 {"iosUpdateStatuses", n => { IosUpdateStatuses = n.GetCollectionOfObjectValues<IosUpdateDeviceStatus>(IosUpdateDeviceStatus.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"managedDeviceOverview", n => { ManagedDeviceOverview = n.GetObjectValue<ApiSdk.Models.ManagedDeviceOverview>(ApiSdk.Models.ManagedDeviceOverview.CreateFromDiscriminatorValue); } },
                 {"managedDevices", n => { ManagedDevices = n.GetCollectionOfObjectValues<ManagedDevice>(ManagedDevice.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"mobileAppTroubleshootingEvents", n => { MobileAppTroubleshootingEvents = n.GetCollectionOfObjectValues<MobileAppTroubleshootingEvent>(MobileAppTroubleshootingEvent.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"mobileThreatDefenseConnectors", n => { MobileThreatDefenseConnectors = n.GetCollectionOfObjectValues<MobileThreatDefenseConnector>(MobileThreatDefenseConnector.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"notificationMessageTemplates", n => { NotificationMessageTemplates = n.GetCollectionOfObjectValues<NotificationMessageTemplate>(NotificationMessageTemplate.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"remoteAssistancePartners", n => { RemoteAssistancePartners = n.GetCollectionOfObjectValues<RemoteAssistancePartner>(RemoteAssistancePartner.CreateFromDiscriminatorValue)?.ToList(); } },
@@ -327,9 +545,34 @@ namespace ApiSdk.Models {
                 {"telecomExpenseManagementPartners", n => { TelecomExpenseManagementPartners = n.GetCollectionOfObjectValues<TelecomExpenseManagementPartner>(TelecomExpenseManagementPartner.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"termsAndConditions", n => { TermsAndConditions = n.GetCollectionOfObjectValues<ApiSdk.Models.TermsAndConditions>(ApiSdk.Models.TermsAndConditions.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"troubleshootingEvents", n => { TroubleshootingEvents = n.GetCollectionOfObjectValues<DeviceManagementTroubleshootingEvent>(DeviceManagementTroubleshootingEvent.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"userExperienceAnalyticsAppHealthApplicationPerformance", n => { UserExperienceAnalyticsAppHealthApplicationPerformance = n.GetCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsAppHealthApplicationPerformance>(ApiSdk.Models.UserExperienceAnalyticsAppHealthApplicationPerformance.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails", n => { UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails = n.GetCollectionOfObjectValues<UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails>(UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId", n => { UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId = n.GetCollectionOfObjectValues<UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId>(UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"userExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion", n => { UserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion = n.GetCollectionOfObjectValues<UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion>(UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"userExperienceAnalyticsAppHealthDeviceModelPerformance", n => { UserExperienceAnalyticsAppHealthDeviceModelPerformance = n.GetCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsAppHealthDeviceModelPerformance>(ApiSdk.Models.UserExperienceAnalyticsAppHealthDeviceModelPerformance.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"userExperienceAnalyticsAppHealthDevicePerformance", n => { UserExperienceAnalyticsAppHealthDevicePerformance = n.GetCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsAppHealthDevicePerformance>(ApiSdk.Models.UserExperienceAnalyticsAppHealthDevicePerformance.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"userExperienceAnalyticsAppHealthDevicePerformanceDetails", n => { UserExperienceAnalyticsAppHealthDevicePerformanceDetails = n.GetCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsAppHealthDevicePerformanceDetails>(ApiSdk.Models.UserExperienceAnalyticsAppHealthDevicePerformanceDetails.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"userExperienceAnalyticsAppHealthOSVersionPerformance", n => { UserExperienceAnalyticsAppHealthOSVersionPerformance = n.GetCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsAppHealthOSVersionPerformance>(ApiSdk.Models.UserExperienceAnalyticsAppHealthOSVersionPerformance.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"userExperienceAnalyticsAppHealthOverview", n => { UserExperienceAnalyticsAppHealthOverview = n.GetObjectValue<UserExperienceAnalyticsCategory>(UserExperienceAnalyticsCategory.CreateFromDiscriminatorValue); } },
+                {"userExperienceAnalyticsBaselines", n => { UserExperienceAnalyticsBaselines = n.GetCollectionOfObjectValues<UserExperienceAnalyticsBaseline>(UserExperienceAnalyticsBaseline.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"userExperienceAnalyticsCategories", n => { UserExperienceAnalyticsCategories = n.GetCollectionOfObjectValues<UserExperienceAnalyticsCategory>(UserExperienceAnalyticsCategory.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"userExperienceAnalyticsDevicePerformance", n => { UserExperienceAnalyticsDevicePerformance = n.GetCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsDevicePerformance>(ApiSdk.Models.UserExperienceAnalyticsDevicePerformance.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"userExperienceAnalyticsDeviceScores", n => { UserExperienceAnalyticsDeviceScores = n.GetCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsDeviceScores>(ApiSdk.Models.UserExperienceAnalyticsDeviceScores.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"userExperienceAnalyticsDeviceStartupHistory", n => { UserExperienceAnalyticsDeviceStartupHistory = n.GetCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsDeviceStartupHistory>(ApiSdk.Models.UserExperienceAnalyticsDeviceStartupHistory.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"userExperienceAnalyticsDeviceStartupProcesses", n => { UserExperienceAnalyticsDeviceStartupProcesses = n.GetCollectionOfObjectValues<UserExperienceAnalyticsDeviceStartupProcess>(UserExperienceAnalyticsDeviceStartupProcess.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"userExperienceAnalyticsMetricHistory", n => { UserExperienceAnalyticsMetricHistory = n.GetCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsMetricHistory>(ApiSdk.Models.UserExperienceAnalyticsMetricHistory.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"userExperienceAnalyticsModelScores", n => { UserExperienceAnalyticsModelScores = n.GetCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsModelScores>(ApiSdk.Models.UserExperienceAnalyticsModelScores.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"userExperienceAnalyticsOverview", n => { UserExperienceAnalyticsOverview = n.GetObjectValue<ApiSdk.Models.UserExperienceAnalyticsOverview>(ApiSdk.Models.UserExperienceAnalyticsOverview.CreateFromDiscriminatorValue); } },
+                {"userExperienceAnalyticsScoreHistory", n => { UserExperienceAnalyticsScoreHistory = n.GetCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsScoreHistory>(ApiSdk.Models.UserExperienceAnalyticsScoreHistory.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"userExperienceAnalyticsSettings", n => { UserExperienceAnalyticsSettings = n.GetObjectValue<ApiSdk.Models.UserExperienceAnalyticsSettings>(ApiSdk.Models.UserExperienceAnalyticsSettings.CreateFromDiscriminatorValue); } },
+                {"userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric", n => { UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric = n.GetObjectValue<ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric>(ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric.CreateFromDiscriminatorValue); } },
+                {"userExperienceAnalyticsWorkFromAnywhereMetrics", n => { UserExperienceAnalyticsWorkFromAnywhereMetrics = n.GetCollectionOfObjectValues<UserExperienceAnalyticsWorkFromAnywhereMetric>(UserExperienceAnalyticsWorkFromAnywhereMetric.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"userExperienceAnalyticsWorkFromAnywhereModelPerformance", n => { UserExperienceAnalyticsWorkFromAnywhereModelPerformance = n.GetCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereModelPerformance>(ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereModelPerformance.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"windowsAutopilotDeviceIdentities", n => { WindowsAutopilotDeviceIdentities = n.GetCollectionOfObjectValues<WindowsAutopilotDeviceIdentity>(WindowsAutopilotDeviceIdentity.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"windowsInformationProtectionAppLearningSummaries", n => { WindowsInformationProtectionAppLearningSummaries = n.GetCollectionOfObjectValues<WindowsInformationProtectionAppLearningSummary>(WindowsInformationProtectionAppLearningSummary.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"windowsInformationProtectionNetworkLearningSummaries", n => { WindowsInformationProtectionNetworkLearningSummaries = n.GetCollectionOfObjectValues<WindowsInformationProtectionNetworkLearningSummary>(WindowsInformationProtectionNetworkLearningSummary.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"windowsMalwareInformation", n => { WindowsMalwareInformation = n.GetCollectionOfObjectValues<ApiSdk.Models.WindowsMalwareInformation>(ApiSdk.Models.WindowsMalwareInformation.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"windowsMalwareOverview", n => { WindowsMalwareOverview = n.GetObjectValue<ApiSdk.Models.WindowsMalwareOverview>(ApiSdk.Models.WindowsMalwareOverview.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -352,6 +595,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<DeviceConfiguration>("deviceConfigurations", DeviceConfigurations);
             writer.WriteCollectionOfObjectValues<DeviceEnrollmentConfiguration>("deviceEnrollmentConfigurations", DeviceEnrollmentConfigurations);
             writer.WriteCollectionOfObjectValues<DeviceManagementPartner>("deviceManagementPartners", DeviceManagementPartners);
+            writer.WriteObjectValue<ApiSdk.Models.DeviceProtectionOverview>("deviceProtectionOverview", DeviceProtectionOverview);
             writer.WriteCollectionOfObjectValues<DeviceManagementExchangeConnector>("exchangeConnectors", ExchangeConnectors);
             writer.WriteCollectionOfObjectValues<ImportedWindowsAutopilotDeviceIdentity>("importedWindowsAutopilotDeviceIdentities", ImportedWindowsAutopilotDeviceIdentities);
             writer.WriteGuidValue("intuneAccountId", IntuneAccountId);
@@ -359,6 +603,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<IosUpdateDeviceStatus>("iosUpdateStatuses", IosUpdateStatuses);
             writer.WriteObjectValue<ApiSdk.Models.ManagedDeviceOverview>("managedDeviceOverview", ManagedDeviceOverview);
             writer.WriteCollectionOfObjectValues<ManagedDevice>("managedDevices", ManagedDevices);
+            writer.WriteCollectionOfObjectValues<MobileAppTroubleshootingEvent>("mobileAppTroubleshootingEvents", MobileAppTroubleshootingEvents);
             writer.WriteCollectionOfObjectValues<MobileThreatDefenseConnector>("mobileThreatDefenseConnectors", MobileThreatDefenseConnectors);
             writer.WriteCollectionOfObjectValues<NotificationMessageTemplate>("notificationMessageTemplates", NotificationMessageTemplates);
             writer.WriteCollectionOfObjectValues<RemoteAssistancePartner>("remoteAssistancePartners", RemoteAssistancePartners);
@@ -372,9 +617,34 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<TelecomExpenseManagementPartner>("telecomExpenseManagementPartners", TelecomExpenseManagementPartners);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.TermsAndConditions>("termsAndConditions", TermsAndConditions);
             writer.WriteCollectionOfObjectValues<DeviceManagementTroubleshootingEvent>("troubleshootingEvents", TroubleshootingEvents);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsAppHealthApplicationPerformance>("userExperienceAnalyticsAppHealthApplicationPerformance", UserExperienceAnalyticsAppHealthApplicationPerformance);
+            writer.WriteCollectionOfObjectValues<UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetails>("userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails", UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails);
+            writer.WriteCollectionOfObjectValues<UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId>("userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId", UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId);
+            writer.WriteCollectionOfObjectValues<UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion>("userExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion", UserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsAppHealthDeviceModelPerformance>("userExperienceAnalyticsAppHealthDeviceModelPerformance", UserExperienceAnalyticsAppHealthDeviceModelPerformance);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsAppHealthDevicePerformance>("userExperienceAnalyticsAppHealthDevicePerformance", UserExperienceAnalyticsAppHealthDevicePerformance);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsAppHealthDevicePerformanceDetails>("userExperienceAnalyticsAppHealthDevicePerformanceDetails", UserExperienceAnalyticsAppHealthDevicePerformanceDetails);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsAppHealthOSVersionPerformance>("userExperienceAnalyticsAppHealthOSVersionPerformance", UserExperienceAnalyticsAppHealthOSVersionPerformance);
+            writer.WriteObjectValue<UserExperienceAnalyticsCategory>("userExperienceAnalyticsAppHealthOverview", UserExperienceAnalyticsAppHealthOverview);
+            writer.WriteCollectionOfObjectValues<UserExperienceAnalyticsBaseline>("userExperienceAnalyticsBaselines", UserExperienceAnalyticsBaselines);
+            writer.WriteCollectionOfObjectValues<UserExperienceAnalyticsCategory>("userExperienceAnalyticsCategories", UserExperienceAnalyticsCategories);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsDevicePerformance>("userExperienceAnalyticsDevicePerformance", UserExperienceAnalyticsDevicePerformance);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsDeviceScores>("userExperienceAnalyticsDeviceScores", UserExperienceAnalyticsDeviceScores);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsDeviceStartupHistory>("userExperienceAnalyticsDeviceStartupHistory", UserExperienceAnalyticsDeviceStartupHistory);
+            writer.WriteCollectionOfObjectValues<UserExperienceAnalyticsDeviceStartupProcess>("userExperienceAnalyticsDeviceStartupProcesses", UserExperienceAnalyticsDeviceStartupProcesses);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsMetricHistory>("userExperienceAnalyticsMetricHistory", UserExperienceAnalyticsMetricHistory);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsModelScores>("userExperienceAnalyticsModelScores", UserExperienceAnalyticsModelScores);
+            writer.WriteObjectValue<ApiSdk.Models.UserExperienceAnalyticsOverview>("userExperienceAnalyticsOverview", UserExperienceAnalyticsOverview);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsScoreHistory>("userExperienceAnalyticsScoreHistory", UserExperienceAnalyticsScoreHistory);
+            writer.WriteObjectValue<ApiSdk.Models.UserExperienceAnalyticsSettings>("userExperienceAnalyticsSettings", UserExperienceAnalyticsSettings);
+            writer.WriteObjectValue<ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric>("userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric", UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric);
+            writer.WriteCollectionOfObjectValues<UserExperienceAnalyticsWorkFromAnywhereMetric>("userExperienceAnalyticsWorkFromAnywhereMetrics", UserExperienceAnalyticsWorkFromAnywhereMetrics);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.UserExperienceAnalyticsWorkFromAnywhereModelPerformance>("userExperienceAnalyticsWorkFromAnywhereModelPerformance", UserExperienceAnalyticsWorkFromAnywhereModelPerformance);
             writer.WriteCollectionOfObjectValues<WindowsAutopilotDeviceIdentity>("windowsAutopilotDeviceIdentities", WindowsAutopilotDeviceIdentities);
             writer.WriteCollectionOfObjectValues<WindowsInformationProtectionAppLearningSummary>("windowsInformationProtectionAppLearningSummaries", WindowsInformationProtectionAppLearningSummaries);
             writer.WriteCollectionOfObjectValues<WindowsInformationProtectionNetworkLearningSummary>("windowsInformationProtectionNetworkLearningSummaries", WindowsInformationProtectionNetworkLearningSummaries);
+            writer.WriteCollectionOfObjectValues<ApiSdk.Models.WindowsMalwareInformation>("windowsMalwareInformation", WindowsMalwareInformation);
+            writer.WriteObjectValue<ApiSdk.Models.WindowsMalwareOverview>("windowsMalwareOverview", WindowsMalwareOverview);
         }
     }
 }

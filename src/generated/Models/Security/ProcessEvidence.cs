@@ -23,7 +23,7 @@ namespace ApiSdk.Models.Security {
 #else
         public string MdeDeviceId { get; set; }
 #endif
-        /// <summary>Date and time when the parent of the process was created.</summary>
+        /// <summary>Date and time when the parent of the process was created. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? ParentProcessCreationDateTime { get; set; }
         /// <summary>Process ID (PID) of the parent process that spawned the process.</summary>
         public long? ParentProcessId { get; set; }
@@ -43,7 +43,7 @@ namespace ApiSdk.Models.Security {
 #else
         public string ProcessCommandLine { get; set; }
 #endif
-        /// <summary>Date and time the process was created.</summary>
+        /// <summary>Date and time when the process was created. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? ProcessCreationDateTime { get; set; }
         /// <summary>Process ID (PID) of the newly created process.</summary>
         public long? ProcessId { get; set; }

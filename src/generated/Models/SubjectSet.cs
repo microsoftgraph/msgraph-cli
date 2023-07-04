@@ -1,3 +1,4 @@
+using ApiSdk.Models.IdentityGovernance;
 using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
@@ -33,6 +34,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.connectedOrganizationMembers" => new ConnectedOrganizationMembers(),
                 "#microsoft.graph.externalSponsors" => new ExternalSponsors(),
                 "#microsoft.graph.groupMembers" => new GroupMembers(),
+                "#microsoft.graph.identityGovernance.ruleBasedSubjectSet" => new RuleBasedSubjectSet(),
                 "#microsoft.graph.internalSponsors" => new InternalSponsors(),
                 "#microsoft.graph.requestorManager" => new RequestorManager(),
                 "#microsoft.graph.singleServicePrincipal" => new SingleServicePrincipal(),

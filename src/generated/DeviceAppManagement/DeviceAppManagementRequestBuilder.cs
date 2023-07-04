@@ -84,11 +84,12 @@ namespace ApiSdk.DeviceAppManagement {
             return command;
         }
         /// <summary>
-        /// Get deviceAppManagement
+        /// Read properties and relationships of the deviceAppManagement object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-partnerintegration-deviceappmanagement-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get deviceAppManagement";
+            command.Description = "Read properties and relationships of the deviceAppManagement object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-partnerintegration-deviceappmanagement-get?view=graph-rest-1.0";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -367,11 +368,12 @@ namespace ApiSdk.DeviceAppManagement {
             return command;
         }
         /// <summary>
-        /// Update deviceAppManagement
+        /// Update the properties of a deviceAppManagement object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-books-deviceappmanagement-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update deviceAppManagement";
+            command.Description = "Update the properties of a deviceAppManagement object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-books-deviceappmanagement-update?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -514,7 +516,7 @@ namespace ApiSdk.DeviceAppManagement {
         public DeviceAppManagementRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get deviceAppManagement
+        /// Read properties and relationships of the deviceAppManagement object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -540,7 +542,7 @@ namespace ApiSdk.DeviceAppManagement {
             return requestInfo;
         }
         /// <summary>
-        /// Update deviceAppManagement
+        /// Update the properties of a deviceAppManagement object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -568,7 +570,7 @@ namespace ApiSdk.DeviceAppManagement {
             return requestInfo;
         }
         /// <summary>
-        /// Get deviceAppManagement
+        /// Read properties and relationships of the deviceAppManagement object.
         /// </summary>
         public class DeviceAppManagementRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

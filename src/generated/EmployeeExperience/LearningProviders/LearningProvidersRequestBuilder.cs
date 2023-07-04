@@ -30,6 +30,7 @@ namespace ApiSdk.EmployeeExperience.LearningProviders {
             executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildLearningContentsNavCommand());
+            commands.Add(builder.BuildLearningCourseActivitiesNavCommand());
             executables.Add(builder.BuildPatchCommand());
             return new(executables, commands);
         }

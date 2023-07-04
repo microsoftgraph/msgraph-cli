@@ -65,11 +65,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item {
             return command;
         }
         /// <summary>
-        /// Get comments from drives
+        /// Represents a collection of comments in a workbook.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get comments from drives";
+            command.Description = "Represents a collection of comments in a workbook.";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -263,7 +263,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get comments from drives
+        /// Represents a collection of comments in a workbook.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -317,7 +317,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Comments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get comments from drives
+        /// Represents a collection of comments in a workbook.
         /// </summary>
         public class WorkbookCommentItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

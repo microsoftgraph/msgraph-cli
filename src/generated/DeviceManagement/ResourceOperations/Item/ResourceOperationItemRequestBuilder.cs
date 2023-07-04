@@ -19,11 +19,12 @@ namespace ApiSdk.DeviceManagement.ResourceOperations.Item {
     /// </summary>
     public class ResourceOperationItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property resourceOperations for deviceManagement
+        /// Deletes a resourceOperation.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-rbac-resourceoperation-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property resourceOperations for deviceManagement";
+            command.Description = "Deletes a resourceOperation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-rbac-resourceoperation-delete?view=graph-rest-1.0";
             var resourceOperationIdOption = new Option<string>("--resource-operation-id", description: "The unique identifier of resourceOperation") {
             };
             resourceOperationIdOption.IsRequired = true;
@@ -52,11 +53,12 @@ namespace ApiSdk.DeviceManagement.ResourceOperations.Item {
             return command;
         }
         /// <summary>
-        /// The Resource Operations.
+        /// Read properties and relationships of the resourceOperation object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-rbac-resourceoperation-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The Resource Operations.";
+            command.Description = "Read properties and relationships of the resourceOperation object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-rbac-resourceoperation-get?view=graph-rest-1.0";
             var resourceOperationIdOption = new Option<string>("--resource-operation-id", description: "The unique identifier of resourceOperation") {
             };
             resourceOperationIdOption.IsRequired = true;
@@ -113,11 +115,12 @@ namespace ApiSdk.DeviceManagement.ResourceOperations.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property resourceOperations in deviceManagement
+        /// Update the properties of a resourceOperation object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-rbac-resourceoperation-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property resourceOperations in deviceManagement";
+            command.Description = "Update the properties of a resourceOperation object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-rbac-resourceoperation-update?view=graph-rest-1.0";
             var resourceOperationIdOption = new Option<string>("--resource-operation-id", description: "The unique identifier of resourceOperation") {
             };
             resourceOperationIdOption.IsRequired = true;
@@ -176,7 +179,7 @@ namespace ApiSdk.DeviceManagement.ResourceOperations.Item {
         public ResourceOperationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/resourceOperations/{resourceOperation%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property resourceOperations for deviceManagement
+        /// Deletes a resourceOperation.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -201,7 +204,7 @@ namespace ApiSdk.DeviceManagement.ResourceOperations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The Resource Operations.
+        /// Read properties and relationships of the resourceOperation object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -227,7 +230,7 @@ namespace ApiSdk.DeviceManagement.ResourceOperations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property resourceOperations in deviceManagement
+        /// Update the properties of a resourceOperation object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -255,7 +258,7 @@ namespace ApiSdk.DeviceManagement.ResourceOperations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The Resource Operations.
+        /// Read properties and relationships of the resourceOperation object.
         /// </summary>
         public class ResourceOperationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

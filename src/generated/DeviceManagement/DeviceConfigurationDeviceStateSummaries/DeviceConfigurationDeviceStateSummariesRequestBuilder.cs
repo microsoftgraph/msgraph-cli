@@ -46,11 +46,12 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurationDeviceStateSummaries {
             return command;
         }
         /// <summary>
-        /// The device configuration device state summary for this account.
+        /// Read properties and relationships of the deviceConfigurationDeviceStateSummary object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-deviceconfigurationdevicestatesummary-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The device configuration device state summary for this account.";
+            command.Description = "Read properties and relationships of the deviceConfigurationDeviceStateSummary object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-deviceconfigurationdevicestatesummary-get?view=graph-rest-1.0";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -101,11 +102,12 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurationDeviceStateSummaries {
             return command;
         }
         /// <summary>
-        /// Update the navigation property deviceConfigurationDeviceStateSummaries in deviceManagement
+        /// Update the properties of a deviceConfigurationDeviceStateSummary object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-deviceconfigurationdevicestatesummary-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property deviceConfigurationDeviceStateSummaries in deviceManagement";
+            command.Description = "Update the properties of a deviceConfigurationDeviceStateSummary object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-deviceconfigurationdevicestatesummary-update?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -183,7 +185,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurationDeviceStateSummaries {
             return requestInfo;
         }
         /// <summary>
-        /// The device configuration device state summary for this account.
+        /// Read properties and relationships of the deviceConfigurationDeviceStateSummary object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -209,7 +211,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurationDeviceStateSummaries {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property deviceConfigurationDeviceStateSummaries in deviceManagement
+        /// Update the properties of a deviceConfigurationDeviceStateSummary object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -237,7 +239,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurationDeviceStateSummaries {
             return requestInfo;
         }
         /// <summary>
-        /// The device configuration device state summary for this account.
+        /// Read properties and relationships of the deviceConfigurationDeviceStateSummary object.
         /// </summary>
         public class DeviceConfigurationDeviceStateSummariesRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

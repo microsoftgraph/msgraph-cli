@@ -19,10 +19,11 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.CleanWindowsDevice {
     public class CleanWindowsDeviceRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Clean Windows device
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-manageddevice-cleanwindowsdevice?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Clean Windows device";
+            command.Description = "Clean Windows device\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-manageddevice-cleanwindowsdevice?view=graph-rest-1.0";
             var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "The unique identifier of managedDevice") {
             };
             managedDeviceIdOption.IsRequired = true;

@@ -52,11 +52,12 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatusSu
             return command;
         }
         /// <summary>
-        /// App configuration device status summary.
+        /// Read properties and relationships of the managedDeviceMobileAppConfigurationDeviceSummary object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-apps-manageddevicemobileappconfigurationdevicesummary-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "App configuration device status summary.";
+            command.Description = "Read properties and relationships of the managedDeviceMobileAppConfigurationDeviceSummary object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-apps-manageddevicemobileappconfigurationdevicesummary-get?view=graph-rest-1.0";
             var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--managed-device-mobile-app-configuration-id", description: "The unique identifier of managedDeviceMobileAppConfiguration") {
             };
             managedDeviceMobileAppConfigurationIdOption.IsRequired = true;
@@ -113,11 +114,12 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatusSu
             return command;
         }
         /// <summary>
-        /// Update the navigation property deviceStatusSummary in deviceAppManagement
+        /// Update the properties of a managedDeviceMobileAppConfigurationDeviceSummary object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-apps-manageddevicemobileappconfigurationdevicesummary-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property deviceStatusSummary in deviceAppManagement";
+            command.Description = "Update the properties of a managedDeviceMobileAppConfigurationDeviceSummary object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-apps-manageddevicemobileappconfigurationdevicesummary-update?view=graph-rest-1.0";
             var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--managed-device-mobile-app-configuration-id", description: "The unique identifier of managedDeviceMobileAppConfiguration") {
             };
             managedDeviceMobileAppConfigurationIdOption.IsRequired = true;
@@ -201,7 +203,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatusSu
             return requestInfo;
         }
         /// <summary>
-        /// App configuration device status summary.
+        /// Read properties and relationships of the managedDeviceMobileAppConfigurationDeviceSummary object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -227,7 +229,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatusSu
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property deviceStatusSummary in deviceAppManagement
+        /// Update the properties of a managedDeviceMobileAppConfigurationDeviceSummary object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -255,7 +257,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.DeviceStatusSu
             return requestInfo;
         }
         /// <summary>
-        /// App configuration device status summary.
+        /// Read properties and relationships of the managedDeviceMobileAppConfigurationDeviceSummary object.
         /// </summary>
         public class DeviceStatusSummaryRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

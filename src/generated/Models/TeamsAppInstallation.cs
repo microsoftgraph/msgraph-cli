@@ -5,6 +5,14 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class TeamsAppInstallation : Entity, IParsable {
+        /// <summary>The consentedPermissionSet property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public TeamsAppPermissionSet? ConsentedPermissionSet { get; set; }
+#nullable restore
+#else
+        public TeamsAppPermissionSet ConsentedPermissionSet { get; set; }
+#endif
         /// <summary>The app that is installed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -38,6 +46,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
+                {"consentedPermissionSet", n => { ConsentedPermissionSet = n.GetObjectValue<TeamsAppPermissionSet>(TeamsAppPermissionSet.CreateFromDiscriminatorValue); } },
                 {"teamsApp", n => { TeamsApp = n.GetObjectValue<ApiSdk.Models.TeamsApp>(ApiSdk.Models.TeamsApp.CreateFromDiscriminatorValue); } },
                 {"teamsAppDefinition", n => { TeamsAppDefinition = n.GetObjectValue<ApiSdk.Models.TeamsAppDefinition>(ApiSdk.Models.TeamsAppDefinition.CreateFromDiscriminatorValue); } },
             };
@@ -49,6 +58,7 @@ namespace ApiSdk.Models {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
+            writer.WriteObjectValue<TeamsAppPermissionSet>("consentedPermissionSet", ConsentedPermissionSet);
             writer.WriteObjectValue<ApiSdk.Models.TeamsApp>("teamsApp", TeamsApp);
             writer.WriteObjectValue<ApiSdk.Models.TeamsAppDefinition>("teamsAppDefinition", TeamsAppDefinition);
         }

@@ -19,10 +19,11 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.BeginOnboarding 
     public class BeginOnboardingRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// A request to start onboarding.  Must be coupled with the appropriate TeamViewer account information
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-remoteassistance-remoteassistancepartner-beginonboarding?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "A request to start onboarding.  Must be coupled with the appropriate TeamViewer account information";
+            command.Description = "A request to start onboarding.  Must be coupled with the appropriate TeamViewer account information\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-remoteassistance-remoteassistancepartner-beginonboarding?view=graph-rest-1.0";
             var remoteAssistancePartnerIdOption = new Option<string>("--remote-assistance-partner-id", description: "The unique identifier of remoteAssistancePartner") {
             };
             remoteAssistancePartnerIdOption.IsRequired = true;

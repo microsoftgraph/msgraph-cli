@@ -52,11 +52,12 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to managedAppRegistrations for deviceAppManagement
+        /// Create a new androidManagedAppRegistration object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-mam-androidmanagedappregistration-create?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to managedAppRegistrations for deviceAppManagement";
+            command.Description = "Create a new androidManagedAppRegistration object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-mam-androidmanagedappregistration-create?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -118,11 +119,12 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations {
             return command;
         }
         /// <summary>
-        /// The managed app registrations.
+        /// List properties and relationships of the managedAppRegistration objects.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-mam-managedappregistration-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The managed app registrations.";
+            command.Description = "List properties and relationships of the managedAppRegistration objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-mam-managedappregistration-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -228,7 +230,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations {
         public ManagedAppRegistrationsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/managedAppRegistrations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The managed app registrations.
+        /// List properties and relationships of the managedAppRegistration objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -254,7 +256,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to managedAppRegistrations for deviceAppManagement
+        /// Create a new androidManagedAppRegistration object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -282,7 +284,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations {
             return requestInfo;
         }
         /// <summary>
-        /// The managed app registrations.
+        /// List properties and relationships of the managedAppRegistration objects.
         /// </summary>
         public class ManagedAppRegistrationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

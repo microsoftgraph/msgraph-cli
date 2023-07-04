@@ -52,7 +52,7 @@ namespace ApiSdk.Models {
         public string SortOn { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new WorkbookSortField and sets the default values.
+        /// Instantiates a new workbookSortField and sets the default values.
         /// </summary>
         public WorkbookSortField() {
             AdditionalData = new Dictionary<string, object>();

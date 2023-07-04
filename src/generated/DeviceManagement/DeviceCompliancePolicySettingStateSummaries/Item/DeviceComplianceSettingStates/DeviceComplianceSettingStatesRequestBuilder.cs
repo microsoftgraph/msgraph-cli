@@ -47,11 +47,12 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
             return command;
         }
         /// <summary>
-        /// Create new navigation property to deviceComplianceSettingStates for deviceManagement
+        /// Create a new deviceComplianceSettingState object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecompliancesettingstate-create?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to deviceComplianceSettingStates for deviceManagement";
+            command.Description = "Create a new deviceComplianceSettingState object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecompliancesettingstate-create?view=graph-rest-1.0";
             var deviceCompliancePolicySettingStateSummaryIdOption = new Option<string>("--device-compliance-policy-setting-state-summary-id", description: "The unique identifier of deviceCompliancePolicySettingStateSummary") {
             };
             deviceCompliancePolicySettingStateSummaryIdOption.IsRequired = true;
@@ -104,11 +105,12 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
             return command;
         }
         /// <summary>
-        /// Not yet documented
+        /// List properties and relationships of the deviceComplianceSettingState objects.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecompliancesettingstate-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Not yet documented";
+            command.Description = "List properties and relationships of the deviceComplianceSettingState objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecompliancesettingstate-list?view=graph-rest-1.0";
             var deviceCompliancePolicySettingStateSummaryIdOption = new Option<string>("--device-compliance-policy-setting-state-summary-id", description: "The unique identifier of deviceCompliancePolicySettingStateSummary") {
             };
             deviceCompliancePolicySettingStateSummaryIdOption.IsRequired = true;
@@ -220,7 +222,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
         public DeviceComplianceSettingStatesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceCompliancePolicySettingStateSummaries/{deviceCompliancePolicySettingStateSummary%2Did}/deviceComplianceSettingStates{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Not yet documented
+        /// List properties and relationships of the deviceComplianceSettingState objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -246,7 +248,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to deviceComplianceSettingStates for deviceManagement
+        /// Create a new deviceComplianceSettingState object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -274,7 +276,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
             return requestInfo;
         }
         /// <summary>
-        /// Not yet documented
+        /// List properties and relationships of the deviceComplianceSettingState objects.
         /// </summary>
         public class DeviceComplianceSettingStatesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

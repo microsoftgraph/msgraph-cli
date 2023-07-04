@@ -50,7 +50,7 @@ namespace ApiSdk.Models {
         /// <summary>Time at which the control state was updated.</summary>
         public DateTimeOffset? UpdatedDateTime { get; set; }
         /// <summary>
-        /// Instantiates a new secureScoreControlStateUpdate and sets the default values.
+        /// Instantiates a new SecureScoreControlStateUpdate and sets the default values.
         /// </summary>
         public SecureScoreControlStateUpdate() {
             AdditionalData = new Dictionary<string, object>();

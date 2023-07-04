@@ -19,11 +19,12 @@ namespace ApiSdk.DeviceManagement.TelecomExpenseManagementPartners.Item {
     /// </summary>
     public class TelecomExpenseManagementPartnerItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property telecomExpenseManagementPartners for deviceManagement
+        /// Deletes a telecomExpenseManagementPartner.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-tem-telecomexpensemanagementpartner-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property telecomExpenseManagementPartners for deviceManagement";
+            command.Description = "Deletes a telecomExpenseManagementPartner.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-tem-telecomexpensemanagementpartner-delete?view=graph-rest-1.0";
             var telecomExpenseManagementPartnerIdOption = new Option<string>("--telecom-expense-management-partner-id", description: "The unique identifier of telecomExpenseManagementPartner") {
             };
             telecomExpenseManagementPartnerIdOption.IsRequired = true;
@@ -52,11 +53,12 @@ namespace ApiSdk.DeviceManagement.TelecomExpenseManagementPartners.Item {
             return command;
         }
         /// <summary>
-        /// The telecom expense management partners.
+        /// Read properties and relationships of the telecomExpenseManagementPartner object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-tem-telecomexpensemanagementpartner-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The telecom expense management partners.";
+            command.Description = "Read properties and relationships of the telecomExpenseManagementPartner object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-tem-telecomexpensemanagementpartner-get?view=graph-rest-1.0";
             var telecomExpenseManagementPartnerIdOption = new Option<string>("--telecom-expense-management-partner-id", description: "The unique identifier of telecomExpenseManagementPartner") {
             };
             telecomExpenseManagementPartnerIdOption.IsRequired = true;
@@ -113,11 +115,12 @@ namespace ApiSdk.DeviceManagement.TelecomExpenseManagementPartners.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property telecomExpenseManagementPartners in deviceManagement
+        /// Update the properties of a telecomExpenseManagementPartner object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-tem-telecomexpensemanagementpartner-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property telecomExpenseManagementPartners in deviceManagement";
+            command.Description = "Update the properties of a telecomExpenseManagementPartner object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-tem-telecomexpensemanagementpartner-update?view=graph-rest-1.0";
             var telecomExpenseManagementPartnerIdOption = new Option<string>("--telecom-expense-management-partner-id", description: "The unique identifier of telecomExpenseManagementPartner") {
             };
             telecomExpenseManagementPartnerIdOption.IsRequired = true;
@@ -176,7 +179,7 @@ namespace ApiSdk.DeviceManagement.TelecomExpenseManagementPartners.Item {
         public TelecomExpenseManagementPartnerItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/telecomExpenseManagementPartners/{telecomExpenseManagementPartner%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property telecomExpenseManagementPartners for deviceManagement
+        /// Deletes a telecomExpenseManagementPartner.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -201,7 +204,7 @@ namespace ApiSdk.DeviceManagement.TelecomExpenseManagementPartners.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The telecom expense management partners.
+        /// Read properties and relationships of the telecomExpenseManagementPartner object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -227,7 +230,7 @@ namespace ApiSdk.DeviceManagement.TelecomExpenseManagementPartners.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property telecomExpenseManagementPartners in deviceManagement
+        /// Update the properties of a telecomExpenseManagementPartner object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -255,7 +258,7 @@ namespace ApiSdk.DeviceManagement.TelecomExpenseManagementPartners.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The telecom expense management partners.
+        /// Read properties and relationships of the telecomExpenseManagementPartner object.
         /// </summary>
         public class TelecomExpenseManagementPartnerItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

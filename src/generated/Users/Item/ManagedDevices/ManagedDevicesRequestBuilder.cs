@@ -37,6 +37,7 @@ namespace ApiSdk.Users.Item.ManagedDevices {
             commands.Add(builder.BuildDisableLostModeNavCommand());
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildLocateDeviceNavCommand());
+            commands.Add(builder.BuildLogCollectionRequestsNavCommand());
             commands.Add(builder.BuildLogoutSharedAppleDeviceActiveUserNavCommand());
             executables.Add(builder.BuildPatchCommand());
             commands.Add(builder.BuildRebootNowNavCommand());
@@ -51,6 +52,7 @@ namespace ApiSdk.Users.Item.ManagedDevices {
             commands.Add(builder.BuildUsersNavCommand());
             commands.Add(builder.BuildWindowsDefenderScanNavCommand());
             commands.Add(builder.BuildWindowsDefenderUpdateSignaturesNavCommand());
+            commands.Add(builder.BuildWindowsProtectionStateNavCommand());
             commands.Add(builder.BuildWipeNavCommand());
             return new(executables, commands);
         }

@@ -19,11 +19,12 @@ namespace ApiSdk.DeviceManagement.AuditEvents.Item {
     /// </summary>
     public class AuditEventItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property auditEvents for deviceManagement
+        /// Deletes a auditEvent.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-auditing-auditevent-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property auditEvents for deviceManagement";
+            command.Description = "Deletes a auditEvent.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-auditing-auditevent-delete?view=graph-rest-1.0";
             var auditEventIdOption = new Option<string>("--audit-event-id", description: "The unique identifier of auditEvent") {
             };
             auditEventIdOption.IsRequired = true;
@@ -52,11 +53,12 @@ namespace ApiSdk.DeviceManagement.AuditEvents.Item {
             return command;
         }
         /// <summary>
-        /// The Audit Events
+        /// Read properties and relationships of the auditEvent object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-auditing-auditevent-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The Audit Events";
+            command.Description = "Read properties and relationships of the auditEvent object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-auditing-auditevent-get?view=graph-rest-1.0";
             var auditEventIdOption = new Option<string>("--audit-event-id", description: "The unique identifier of auditEvent") {
             };
             auditEventIdOption.IsRequired = true;
@@ -113,11 +115,12 @@ namespace ApiSdk.DeviceManagement.AuditEvents.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property auditEvents in deviceManagement
+        /// Update the properties of a auditEvent object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-auditing-auditevent-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property auditEvents in deviceManagement";
+            command.Description = "Update the properties of a auditEvent object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-auditing-auditevent-update?view=graph-rest-1.0";
             var auditEventIdOption = new Option<string>("--audit-event-id", description: "The unique identifier of auditEvent") {
             };
             auditEventIdOption.IsRequired = true;
@@ -176,7 +179,7 @@ namespace ApiSdk.DeviceManagement.AuditEvents.Item {
         public AuditEventItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/auditEvents/{auditEvent%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property auditEvents for deviceManagement
+        /// Deletes a auditEvent.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -201,7 +204,7 @@ namespace ApiSdk.DeviceManagement.AuditEvents.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The Audit Events
+        /// Read properties and relationships of the auditEvent object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -227,7 +230,7 @@ namespace ApiSdk.DeviceManagement.AuditEvents.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property auditEvents in deviceManagement
+        /// Update the properties of a auditEvent object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -255,7 +258,7 @@ namespace ApiSdk.DeviceManagement.AuditEvents.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The Audit Events
+        /// Read properties and relationships of the auditEvent object.
         /// </summary>
         public class AuditEventItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

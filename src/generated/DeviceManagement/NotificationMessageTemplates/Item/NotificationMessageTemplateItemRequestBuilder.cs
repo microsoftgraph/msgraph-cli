@@ -21,11 +21,12 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
     /// </summary>
     public class NotificationMessageTemplateItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property notificationMessageTemplates for deviceManagement
+        /// Deletes a notificationMessageTemplate.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-notification-notificationmessagetemplate-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property notificationMessageTemplates for deviceManagement";
+            command.Description = "Deletes a notificationMessageTemplate.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-notification-notificationmessagetemplate-delete?view=graph-rest-1.0";
             var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "The unique identifier of notificationMessageTemplate") {
             };
             notificationMessageTemplateIdOption.IsRequired = true;
@@ -54,11 +55,12 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
             return command;
         }
         /// <summary>
-        /// The Notification Message Templates.
+        /// Read properties and relationships of the notificationMessageTemplate object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-notification-notificationmessagetemplate-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The Notification Message Templates.";
+            command.Description = "Read properties and relationships of the notificationMessageTemplate object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-notification-notificationmessagetemplate-get?view=graph-rest-1.0";
             var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "The unique identifier of notificationMessageTemplate") {
             };
             notificationMessageTemplateIdOption.IsRequired = true;
@@ -140,11 +142,12 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property notificationMessageTemplates in deviceManagement
+        /// Update the properties of a notificationMessageTemplate object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-notification-notificationmessagetemplate-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property notificationMessageTemplates in deviceManagement";
+            command.Description = "Update the properties of a notificationMessageTemplate object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-notification-notificationmessagetemplate-update?view=graph-rest-1.0";
             var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "The unique identifier of notificationMessageTemplate") {
             };
             notificationMessageTemplateIdOption.IsRequired = true;
@@ -218,7 +221,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
         public NotificationMessageTemplateItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/notificationMessageTemplates/{notificationMessageTemplate%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property notificationMessageTemplates for deviceManagement
+        /// Deletes a notificationMessageTemplate.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -243,7 +246,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The Notification Message Templates.
+        /// Read properties and relationships of the notificationMessageTemplate object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -269,7 +272,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property notificationMessageTemplates in deviceManagement
+        /// Update the properties of a notificationMessageTemplate object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -297,7 +300,7 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The Notification Message Templates.
+        /// Read properties and relationships of the notificationMessageTemplate object.
         /// </summary>
         public class NotificationMessageTemplateItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

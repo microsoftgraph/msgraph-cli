@@ -6,6 +6,7 @@ using ApiSdk.DeviceManagement.ManagedDevices.Item.DeviceCompliancePolicyStates;
 using ApiSdk.DeviceManagement.ManagedDevices.Item.DeviceConfigurationStates;
 using ApiSdk.DeviceManagement.ManagedDevices.Item.DisableLostMode;
 using ApiSdk.DeviceManagement.ManagedDevices.Item.LocateDevice;
+using ApiSdk.DeviceManagement.ManagedDevices.Item.LogCollectionRequests;
 using ApiSdk.DeviceManagement.ManagedDevices.Item.LogoutSharedAppleDeviceActiveUser;
 using ApiSdk.DeviceManagement.ManagedDevices.Item.RebootNow;
 using ApiSdk.DeviceManagement.ManagedDevices.Item.RecoverPasscode;
@@ -19,6 +20,7 @@ using ApiSdk.DeviceManagement.ManagedDevices.Item.UpdateWindowsDeviceAccount;
 using ApiSdk.DeviceManagement.ManagedDevices.Item.Users;
 using ApiSdk.DeviceManagement.ManagedDevices.Item.WindowsDefenderScan;
 using ApiSdk.DeviceManagement.ManagedDevices.Item.WindowsDefenderUpdateSignatures;
+using ApiSdk.DeviceManagement.ManagedDevices.Item.WindowsProtectionState;
 using ApiSdk.DeviceManagement.ManagedDevices.Item.Wipe;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
@@ -71,11 +73,12 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property managedDevices for deviceManagement
+        /// Deletes a managedDevice.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-manageddevice-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property managedDevices for deviceManagement";
+            command.Description = "Deletes a managedDevice.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-manageddevice-delete?view=graph-rest-1.0";
             var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "The unique identifier of managedDevice") {
             };
             managedDeviceIdOption.IsRequired = true;
@@ -201,11 +204,12 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
             return command;
         }
         /// <summary>
-        /// The list of managed devices.
+        /// Read properties and relationships of the managedDevice object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-manageddevice-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The list of managed devices.";
+            command.Description = "Read properties and relationships of the managedDevice object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-manageddevice-get?view=graph-rest-1.0";
             var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "The unique identifier of managedDevice") {
             };
             managedDeviceIdOption.IsRequired = true;
@@ -277,6 +281,31 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to manage the logCollectionRequests property of the microsoft.graph.managedDevice entity.
+        /// </summary>
+        public Command BuildLogCollectionRequestsNavCommand() {
+            var command = new Command("log-collection-requests");
+            command.Description = "Provides operations to manage the logCollectionRequests property of the microsoft.graph.managedDevice entity.";
+            var builder = new LogCollectionRequestsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the logoutSharedAppleDeviceActiveUser method.
         /// </summary>
         public Command BuildLogoutSharedAppleDeviceActiveUserNavCommand() {
@@ -292,11 +321,12 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property managedDevices in deviceManagement
+        /// Update the properties of a managedDevice object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-manageddevice-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property managedDevices in deviceManagement";
+            command.Description = "Update the properties of a managedDevice object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-manageddevice-update?view=graph-rest-1.0";
             var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "The unique identifier of managedDevice") {
             };
             managedDeviceIdOption.IsRequired = true;
@@ -529,6 +559,29 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to manage the windowsProtectionState property of the microsoft.graph.managedDevice entity.
+        /// </summary>
+        public Command BuildWindowsProtectionStateNavCommand() {
+            var command = new Command("windows-protection-state");
+            command.Description = "Provides operations to manage the windowsProtectionState property of the microsoft.graph.managedDevice entity.";
+            var builder = new WindowsProtectionStateRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            nonExecCommands.Add(builder.BuildDetectedMalwareStateNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the wipe method.
         /// </summary>
         public Command BuildWipeNavCommand() {
@@ -550,7 +603,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         public ManagedDeviceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property managedDevices for deviceManagement
+        /// Deletes a managedDevice.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -575,7 +628,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The list of managed devices.
+        /// Read properties and relationships of the managedDevice object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -601,7 +654,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property managedDevices in deviceManagement
+        /// Update the properties of a managedDevice object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -629,7 +682,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The list of managed devices.
+        /// Read properties and relationships of the managedDevice object.
         /// </summary>
         public class ManagedDeviceItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

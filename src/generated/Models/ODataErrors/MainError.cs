@@ -23,13 +23,13 @@ namespace ApiSdk.Models.ODataErrors {
 #else
         public List<ErrorDetails> Details { get; set; }
 #endif
-        /// <summary>The innererror property</summary>
+        /// <summary>The innerError property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public ApiSdk.Models.ODataErrors.InnerError? Innererror { get; set; }
+        public ApiSdk.Models.ODataErrors.InnerError? InnerError { get; set; }
 #nullable restore
 #else
-        public ApiSdk.Models.ODataErrors.InnerError Innererror { get; set; }
+        public ApiSdk.Models.ODataErrors.InnerError InnerError { get; set; }
 #endif
         /// <summary>The message property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -68,7 +68,7 @@ namespace ApiSdk.Models.ODataErrors {
             return new Dictionary<string, Action<IParseNode>> {
                 {"code", n => { Code = n.GetStringValue(); } },
                 {"details", n => { Details = n.GetCollectionOfObjectValues<ErrorDetails>(ErrorDetails.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"innererror", n => { Innererror = n.GetObjectValue<ApiSdk.Models.ODataErrors.InnerError>(ApiSdk.Models.ODataErrors.InnerError.CreateFromDiscriminatorValue); } },
+                {"innerError", n => { InnerError = n.GetObjectValue<ApiSdk.Models.ODataErrors.InnerError>(ApiSdk.Models.ODataErrors.InnerError.CreateFromDiscriminatorValue); } },
                 {"message", n => { Message = n.GetStringValue(); } },
                 {"target", n => { Target = n.GetStringValue(); } },
             };
@@ -81,7 +81,7 @@ namespace ApiSdk.Models.ODataErrors {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("code", Code);
             writer.WriteCollectionOfObjectValues<ErrorDetails>("details", Details);
-            writer.WriteObjectValue<ApiSdk.Models.ODataErrors.InnerError>("innererror", Innererror);
+            writer.WriteObjectValue<ApiSdk.Models.ODataErrors.InnerError>("innerError", InnerError);
             writer.WriteStringValue("message", Message);
             writer.WriteStringValue("target", Target);
             writer.WriteAdditionalData(AdditionalData);

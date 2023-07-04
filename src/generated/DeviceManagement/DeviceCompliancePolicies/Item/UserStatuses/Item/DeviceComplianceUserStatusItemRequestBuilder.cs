@@ -19,11 +19,12 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses.Ite
     /// </summary>
     public class DeviceComplianceUserStatusItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property userStatuses for deviceManagement
+        /// Deletes a deviceComplianceUserStatus.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecomplianceuserstatus-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property userStatuses for deviceManagement";
+            command.Description = "Deletes a deviceComplianceUserStatus.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecomplianceuserstatus-delete?view=graph-rest-1.0";
             var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
@@ -58,11 +59,12 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses.Ite
             return command;
         }
         /// <summary>
-        /// List of DeviceComplianceUserStatus.
+        /// Read properties and relationships of the deviceComplianceUserStatus object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecomplianceuserstatus-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "List of DeviceComplianceUserStatus.";
+            command.Description = "Read properties and relationships of the deviceComplianceUserStatus object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecomplianceuserstatus-get?view=graph-rest-1.0";
             var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
@@ -125,11 +127,12 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses.Ite
             return command;
         }
         /// <summary>
-        /// Update the navigation property userStatuses in deviceManagement
+        /// Update the properties of a deviceComplianceUserStatus object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecomplianceuserstatus-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property userStatuses in deviceManagement";
+            command.Description = "Update the properties of a deviceComplianceUserStatus object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecomplianceuserstatus-update?view=graph-rest-1.0";
             var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
@@ -194,7 +197,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses.Ite
         public DeviceComplianceUserStatusItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy%2Did}/userStatuses/{deviceComplianceUserStatus%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property userStatuses for deviceManagement
+        /// Deletes a deviceComplianceUserStatus.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -219,7 +222,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses.Ite
             return requestInfo;
         }
         /// <summary>
-        /// List of DeviceComplianceUserStatus.
+        /// Read properties and relationships of the deviceComplianceUserStatus object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -245,7 +248,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property userStatuses in deviceManagement
+        /// Update the properties of a deviceComplianceUserStatus object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -273,7 +276,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.UserStatuses.Ite
             return requestInfo;
         }
         /// <summary>
-        /// List of DeviceComplianceUserStatus.
+        /// Read properties and relationships of the deviceComplianceUserStatus object.
         /// </summary>
         public class DeviceComplianceUserStatusItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

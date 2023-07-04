@@ -63,11 +63,13 @@ namespace ApiSdk.IdentityProviders {
             return command;
         }
         /// <summary>
-        /// Add new entity to identityProviders
+        /// Create a new identityProvider by specifying display name, identityProvider type, client ID, and client secret.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/identityprovider-post-identityproviders?view=graph-rest-1.0" />
         /// </summary>
+        [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider on 2021-08-24 and will be removed 2023-03-15")]
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Add new entity to identityProviders";
+            command.Description = "Create a new identityProvider by specifying display name, identityProvider type, client ID, and client secret.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/identityprovider-post-identityproviders?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -117,6 +119,7 @@ namespace ApiSdk.IdentityProviders {
         /// Retrieve all identityProviders in the directory.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/identityprovider-list?view=graph-rest-1.0" />
         /// </summary>
+        [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider on 2021-08-24 and will be removed 2023-03-15")]
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Retrieve all identityProviders in the directory.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/identityprovider-list?view=graph-rest-1.0";
@@ -228,6 +231,7 @@ namespace ApiSdk.IdentityProviders {
         /// Retrieve all identityProviders in the directory.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider on 2021-08-24 and will be removed 2023-03-15")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<IdentityProvidersRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
@@ -251,10 +255,11 @@ namespace ApiSdk.IdentityProviders {
             return requestInfo;
         }
         /// <summary>
-        /// Add new entity to identityProviders
+        /// Create a new identityProvider by specifying display name, identityProvider type, client ID, and client secret.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider on 2021-08-24 and will be removed 2023-03-15")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public RequestInformation ToPostRequestInformation(IdentityProvider body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {

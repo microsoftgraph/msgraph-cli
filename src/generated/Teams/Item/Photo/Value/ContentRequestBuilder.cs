@@ -19,10 +19,11 @@ namespace ApiSdk.Teams.Item.Photo.Value {
     public class ContentRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Get media content for the navigation property photo from teams
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/profilephoto-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get media content for the navigation property photo from teams";
+            command.Description = "Get media content for the navigation property photo from teams\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/profilephoto-get?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;

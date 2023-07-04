@@ -152,6 +152,7 @@ namespace ApiSdk.DirectoryNamespace.AdministrativeUnits.Item {
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
             nonExecCommands.Add(builder.BuildGraphApplicationNavCommand());
             nonExecCommands.Add(builder.BuildGraphDeviceNavCommand());
             nonExecCommands.Add(builder.BuildGraphGroupNavCommand());

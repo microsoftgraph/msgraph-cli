@@ -1,4 +1,5 @@
 using ApiSdk.Drives.Item.Items.Item.Analytics;
+using ApiSdk.Drives.Item.Items.Item.AssignSensitivityLabel;
 using ApiSdk.Drives.Item.Items.Item.Checkin;
 using ApiSdk.Drives.Item.Items.Item.Checkout;
 using ApiSdk.Drives.Item.Items.Item.Children;
@@ -9,6 +10,7 @@ using ApiSdk.Drives.Item.Items.Item.CreateUploadSession;
 using ApiSdk.Drives.Item.Items.Item.CreatedByUser;
 using ApiSdk.Drives.Item.Items.Item.Delta;
 using ApiSdk.Drives.Item.Items.Item.DeltaWithToken;
+using ApiSdk.Drives.Item.Items.Item.ExtractSensitivityLabels;
 using ApiSdk.Drives.Item.Items.Item.Follow;
 using ApiSdk.Drives.Item.Items.Item.GetActivitiesByInterval;
 using ApiSdk.Drives.Item.Items.Item.GetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithInterval;
@@ -65,6 +67,21 @@ namespace ApiSdk.Drives.Item.Items.Item {
                 command.AddCommand(cmd);
             }
             foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the assignSensitivityLabel method.
+        /// </summary>
+        public Command BuildAssignSensitivityLabelNavCommand() {
+            var command = new Command("assign-sensitivity-label");
+            command.Description = "Provides operations to call the assignSensitivityLabel method.";
+            var builder = new AssignSensitivityLabelRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
@@ -271,6 +288,21 @@ namespace ApiSdk.Drives.Item.Items.Item {
             var builder = new DeltaWithTokenRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the extractSensitivityLabels method.
+        /// </summary>
+        public Command BuildExtractSensitivityLabelsNavCommand() {
+            var command = new Command("extract-sensitivity-labels");
+            command.Description = "Provides operations to call the extractSensitivityLabels method.";
+            var builder = new ExtractSensitivityLabelsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);

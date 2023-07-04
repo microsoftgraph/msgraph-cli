@@ -28,7 +28,7 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new assignedTrainingInfo and sets the default values.
+        /// Instantiates a new AssignedTrainingInfo and sets the default values.
         /// </summary>
         public AssignedTrainingInfo() {
             AdditionalData = new Dictionary<string, object>();

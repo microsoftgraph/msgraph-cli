@@ -45,11 +45,11 @@ namespace ApiSdk.Policies.AppManagementPolicies.Item {
         }
         /// <summary>
         /// Delete an appManagementPolicy object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/appManagementPolicy-delete?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/appmanagementpolicy-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete an appManagementPolicy object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/appManagementPolicy-delete?view=graph-rest-1.0";
+            command.Description = "Delete an appManagementPolicy object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/appmanagementpolicy-delete?view=graph-rest-1.0";
             var appManagementPolicyIdOption = new Option<string>("--app-management-policy-id", description: "The unique identifier of appManagementPolicy") {
             };
             appManagementPolicyIdOption.IsRequired = true;
@@ -141,11 +141,11 @@ namespace ApiSdk.Policies.AppManagementPolicies.Item {
         }
         /// <summary>
         /// Update an appManagementPolicy object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/appManagementPolicy-update?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/appmanagementpolicy-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update an appManagementPolicy object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/appManagementPolicy-update?view=graph-rest-1.0";
+            command.Description = "Update an appManagementPolicy object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/appmanagementpolicy-update?view=graph-rest-1.0";
             var appManagementPolicyIdOption = new Option<string>("--app-management-policy-id", description: "The unique identifier of appManagementPolicy") {
             };
             appManagementPolicyIdOption.IsRequired = true;

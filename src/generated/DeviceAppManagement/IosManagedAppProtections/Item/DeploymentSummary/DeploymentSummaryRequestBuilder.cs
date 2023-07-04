@@ -52,11 +52,12 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.DeploymentSum
             return command;
         }
         /// <summary>
-        /// Navigation property to deployment summary of the configuration.
+        /// Read properties and relationships of the managedAppPolicyDeploymentSummary object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-mam-managedapppolicydeploymentsummary-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Navigation property to deployment summary of the configuration.";
+            command.Description = "Read properties and relationships of the managedAppPolicyDeploymentSummary object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-mam-managedapppolicydeploymentsummary-get?view=graph-rest-1.0";
             var iosManagedAppProtectionIdOption = new Option<string>("--ios-managed-app-protection-id", description: "The unique identifier of iosManagedAppProtection") {
             };
             iosManagedAppProtectionIdOption.IsRequired = true;
@@ -113,11 +114,12 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.DeploymentSum
             return command;
         }
         /// <summary>
-        /// Update the navigation property deploymentSummary in deviceAppManagement
+        /// Update the properties of a managedAppPolicyDeploymentSummary object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-mam-managedapppolicydeploymentsummary-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property deploymentSummary in deviceAppManagement";
+            command.Description = "Update the properties of a managedAppPolicyDeploymentSummary object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-mam-managedapppolicydeploymentsummary-update?view=graph-rest-1.0";
             var iosManagedAppProtectionIdOption = new Option<string>("--ios-managed-app-protection-id", description: "The unique identifier of iosManagedAppProtection") {
             };
             iosManagedAppProtectionIdOption.IsRequired = true;
@@ -201,7 +203,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.DeploymentSum
             return requestInfo;
         }
         /// <summary>
-        /// Navigation property to deployment summary of the configuration.
+        /// Read properties and relationships of the managedAppPolicyDeploymentSummary object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -227,7 +229,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.DeploymentSum
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property deploymentSummary in deviceAppManagement
+        /// Update the properties of a managedAppPolicyDeploymentSummary object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -255,7 +257,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.DeploymentSum
             return requestInfo;
         }
         /// <summary>
-        /// Navigation property to deployment summary of the configuration.
+        /// Read properties and relationships of the managedAppPolicyDeploymentSummary object.
         /// </summary>
         public class DeploymentSummaryRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

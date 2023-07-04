@@ -19,10 +19,11 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.Disconnect {
     public class DisconnectRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// A request to remove the active TeamViewer connector
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-remoteassistance-remoteassistancepartner-disconnect?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "A request to remove the active TeamViewer connector";
+            command.Description = "A request to remove the active TeamViewer connector\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-remoteassistance-remoteassistancepartner-disconnect?view=graph-rest-1.0";
             var remoteAssistancePartnerIdOption = new Option<string>("--remote-assistance-partner-id", description: "The unique identifier of remoteAssistancePartner") {
             };
             remoteAssistancePartnerIdOption.IsRequired = true;

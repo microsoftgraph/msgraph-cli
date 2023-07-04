@@ -140,11 +140,12 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property columns in drives
+        /// Update a [site][], a [list][], or a [content type][contentType] [column][columnDefinition].
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/columndefinition-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property columns in drives";
+            command.Description = "Update a [site][], a [list][], or a [content type][contentType] [column][columnDefinition].\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/columndefinition-update?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -281,7 +282,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Columns.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property columns in drives
+        /// Update a [site][], a [list][], or a [content type][contentType] [column][columnDefinition].
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

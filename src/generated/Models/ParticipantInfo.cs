@@ -58,7 +58,7 @@ namespace ApiSdk.Models {
         public string Region { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new ParticipantInfo and sets the default values.
+        /// Instantiates a new participantInfo and sets the default values.
         /// </summary>
         public ParticipantInfo() {
             AdditionalData = new Dictionary<string, object>();

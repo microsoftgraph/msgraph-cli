@@ -52,11 +52,12 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses.Item {
             return command;
         }
         /// <summary>
-        /// The managed app statuses.
+        /// Read properties and relationships of the managedAppStatus object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-mam-managedappstatus-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The managed app statuses.";
+            command.Description = "Read properties and relationships of the managedAppStatus object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-mam-managedappstatus-get?view=graph-rest-1.0";
             var managedAppStatusIdOption = new Option<string>("--managed-app-status-id", description: "The unique identifier of managedAppStatus") {
             };
             managedAppStatusIdOption.IsRequired = true;
@@ -201,7 +202,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The managed app statuses.
+        /// Read properties and relationships of the managedAppStatus object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -255,7 +256,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The managed app statuses.
+        /// Read properties and relationships of the managedAppStatus object.
         /// </summary>
         public class ManagedAppStatusItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

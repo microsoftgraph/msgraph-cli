@@ -19,11 +19,12 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceSettingStateSu
     /// </summary>
     public class SettingStateDeviceSummaryItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property deviceSettingStateSummaries for deviceManagement
+        /// Deletes a settingStateDeviceSummary.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-settingstatedevicesummary-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property deviceSettingStateSummaries for deviceManagement";
+            command.Description = "Deletes a settingStateDeviceSummary.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-settingstatedevicesummary-delete?view=graph-rest-1.0";
             var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
@@ -58,11 +59,12 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceSettingStateSu
             return command;
         }
         /// <summary>
-        /// Device Configuration Setting State Device Summary
+        /// Read properties and relationships of the settingStateDeviceSummary object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-settingstatedevicesummary-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Device Configuration Setting State Device Summary";
+            command.Description = "Read properties and relationships of the settingStateDeviceSummary object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-settingstatedevicesummary-get?view=graph-rest-1.0";
             var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
@@ -125,11 +127,12 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceSettingStateSu
             return command;
         }
         /// <summary>
-        /// Update the navigation property deviceSettingStateSummaries in deviceManagement
+        /// Update the properties of a settingStateDeviceSummary object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-settingstatedevicesummary-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property deviceSettingStateSummaries in deviceManagement";
+            command.Description = "Update the properties of a settingStateDeviceSummary object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-settingstatedevicesummary-update?view=graph-rest-1.0";
             var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
@@ -194,7 +197,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceSettingStateSu
         public SettingStateDeviceSummaryItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceConfigurations/{deviceConfiguration%2Did}/deviceSettingStateSummaries/{settingStateDeviceSummary%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property deviceSettingStateSummaries for deviceManagement
+        /// Deletes a settingStateDeviceSummary.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -219,7 +222,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceSettingStateSu
             return requestInfo;
         }
         /// <summary>
-        /// Device Configuration Setting State Device Summary
+        /// Read properties and relationships of the settingStateDeviceSummary object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -245,7 +248,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceSettingStateSu
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property deviceSettingStateSummaries in deviceManagement
+        /// Update the properties of a settingStateDeviceSummary object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -273,7 +276,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceSettingStateSu
             return requestInfo;
         }
         /// <summary>
-        /// Device Configuration Setting State Device Summary
+        /// Read properties and relationships of the settingStateDeviceSummary object.
         /// </summary>
         public class SettingStateDeviceSummaryItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

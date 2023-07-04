@@ -47,11 +47,12 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to assignments for deviceManagement
+        /// Create a new termsAndConditionsAssignment object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-companyterms-termsandconditionsassignment-create?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to assignments for deviceManagement";
+            command.Description = "Create a new termsAndConditionsAssignment object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-companyterms-termsandconditionsassignment-create?view=graph-rest-1.0";
             var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "The unique identifier of termsAndConditions") {
             };
             termsAndConditionsIdOption.IsRequired = true;
@@ -104,11 +105,12 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments {
             return command;
         }
         /// <summary>
-        /// The list of assignments for this T&amp;C policy.
+        /// List properties and relationships of the termsAndConditionsAssignment objects.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-companyterms-termsandconditionsassignment-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The list of assignments for this T&C policy.";
+            command.Description = "List properties and relationships of the termsAndConditionsAssignment objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-companyterms-termsandconditionsassignment-list?view=graph-rest-1.0";
             var termsAndConditionsIdOption = new Option<string>("--terms-and-conditions-id", description: "The unique identifier of termsAndConditions") {
             };
             termsAndConditionsIdOption.IsRequired = true;
@@ -220,7 +222,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments {
         public AssignmentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/termsAndConditions/{termsAndConditions%2Did}/assignments{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The list of assignments for this T&amp;C policy.
+        /// List properties and relationships of the termsAndConditionsAssignment objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -246,7 +248,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to assignments for deviceManagement
+        /// Create a new termsAndConditionsAssignment object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -274,7 +276,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions.Item.Assignments {
             return requestInfo;
         }
         /// <summary>
-        /// The list of assignments for this T&amp;C policy.
+        /// List properties and relationships of the termsAndConditionsAssignment objects.
         /// </summary>
         public class AssignmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

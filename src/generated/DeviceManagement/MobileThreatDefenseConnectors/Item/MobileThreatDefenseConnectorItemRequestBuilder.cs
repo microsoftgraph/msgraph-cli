@@ -19,11 +19,12 @@ namespace ApiSdk.DeviceManagement.MobileThreatDefenseConnectors.Item {
     /// </summary>
     public class MobileThreatDefenseConnectorItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property mobileThreatDefenseConnectors for deviceManagement
+        /// Deletes a mobileThreatDefenseConnector.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-onboarding-mobilethreatdefenseconnector-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property mobileThreatDefenseConnectors for deviceManagement";
+            command.Description = "Deletes a mobileThreatDefenseConnector.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-onboarding-mobilethreatdefenseconnector-delete?view=graph-rest-1.0";
             var mobileThreatDefenseConnectorIdOption = new Option<string>("--mobile-threat-defense-connector-id", description: "The unique identifier of mobileThreatDefenseConnector") {
             };
             mobileThreatDefenseConnectorIdOption.IsRequired = true;
@@ -52,11 +53,12 @@ namespace ApiSdk.DeviceManagement.MobileThreatDefenseConnectors.Item {
             return command;
         }
         /// <summary>
-        /// The list of Mobile threat Defense connectors configured by the tenant.
+        /// Read properties and relationships of the mobileThreatDefenseConnector object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-onboarding-mobilethreatdefenseconnector-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The list of Mobile threat Defense connectors configured by the tenant.";
+            command.Description = "Read properties and relationships of the mobileThreatDefenseConnector object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-onboarding-mobilethreatdefenseconnector-get?view=graph-rest-1.0";
             var mobileThreatDefenseConnectorIdOption = new Option<string>("--mobile-threat-defense-connector-id", description: "The unique identifier of mobileThreatDefenseConnector") {
             };
             mobileThreatDefenseConnectorIdOption.IsRequired = true;
@@ -113,11 +115,12 @@ namespace ApiSdk.DeviceManagement.MobileThreatDefenseConnectors.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property mobileThreatDefenseConnectors in deviceManagement
+        /// Update the properties of a mobileThreatDefenseConnector object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-onboarding-mobilethreatdefenseconnector-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property mobileThreatDefenseConnectors in deviceManagement";
+            command.Description = "Update the properties of a mobileThreatDefenseConnector object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-onboarding-mobilethreatdefenseconnector-update?view=graph-rest-1.0";
             var mobileThreatDefenseConnectorIdOption = new Option<string>("--mobile-threat-defense-connector-id", description: "The unique identifier of mobileThreatDefenseConnector") {
             };
             mobileThreatDefenseConnectorIdOption.IsRequired = true;
@@ -176,7 +179,7 @@ namespace ApiSdk.DeviceManagement.MobileThreatDefenseConnectors.Item {
         public MobileThreatDefenseConnectorItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/mobileThreatDefenseConnectors/{mobileThreatDefenseConnector%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property mobileThreatDefenseConnectors for deviceManagement
+        /// Deletes a mobileThreatDefenseConnector.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -201,7 +204,7 @@ namespace ApiSdk.DeviceManagement.MobileThreatDefenseConnectors.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The list of Mobile threat Defense connectors configured by the tenant.
+        /// Read properties and relationships of the mobileThreatDefenseConnector object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -227,7 +230,7 @@ namespace ApiSdk.DeviceManagement.MobileThreatDefenseConnectors.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property mobileThreatDefenseConnectors in deviceManagement
+        /// Update the properties of a mobileThreatDefenseConnector object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -255,7 +258,7 @@ namespace ApiSdk.DeviceManagement.MobileThreatDefenseConnectors.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The list of Mobile threat Defense connectors configured by the tenant.
+        /// Read properties and relationships of the mobileThreatDefenseConnector object.
         /// </summary>
         public class MobileThreatDefenseConnectorItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

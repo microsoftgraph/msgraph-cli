@@ -49,6 +49,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders {
         /// Get the identity providers in a b2xIdentityUserFlow object.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/b2xidentityuserflow-list-identityproviders?view=graph-rest-1.0" />
         /// </summary>
+        [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider on 2021-08-24 and will be removed 2023-03-15")]
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get the identity providers in a b2xIdentityUserFlow object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/b2xidentityuserflow-list-identityproviders?view=graph-rest-1.0";
@@ -166,6 +167,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders {
         /// Get the identity providers in a b2xIdentityUserFlow object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider on 2021-08-24 and will be removed 2023-03-15")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<IdentityProvidersRequestBuilderGetQueryParameters>>? requestConfiguration = default) {

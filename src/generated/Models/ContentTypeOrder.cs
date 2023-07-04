@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class ContentTypeOrder : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Whether this is the default Content Type</summary>
+        /// <summary>Indicates whether this is the default content type</summary>
         public bool? Default { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -17,7 +17,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>Specifies the position in which the Content Type appears in the selection UI.</summary>
+        /// <summary>Specifies the position in which the content type appears in the selection UI.</summary>
         public int? Position { get; set; }
         /// <summary>
         /// Instantiates a new contentTypeOrder and sets the default values.

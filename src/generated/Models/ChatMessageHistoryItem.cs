@@ -28,7 +28,7 @@ namespace ApiSdk.Models {
         public ChatMessageReaction Reaction { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new ChatMessageHistoryItem and sets the default values.
+        /// Instantiates a new chatMessageHistoryItem and sets the default values.
         /// </summary>
         public ChatMessageHistoryItem() {
             AdditionalData = new Dictionary<string, object>();

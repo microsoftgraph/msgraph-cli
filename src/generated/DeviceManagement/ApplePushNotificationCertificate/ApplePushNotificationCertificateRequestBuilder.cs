@@ -62,11 +62,12 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate {
             return command;
         }
         /// <summary>
-        /// Apple push notification certificate.
+        /// Read properties and relationships of the applePushNotificationCertificate object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-applepushnotificationcertificate-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Apple push notification certificate.";
+            command.Description = "Read properties and relationships of the applePushNotificationCertificate object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-applepushnotificationcertificate-get?view=graph-rest-1.0";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -117,11 +118,12 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate {
             return command;
         }
         /// <summary>
-        /// Update the navigation property applePushNotificationCertificate in deviceManagement
+        /// Update the properties of a applePushNotificationCertificate object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-applepushnotificationcertificate-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property applePushNotificationCertificate in deviceManagement";
+            command.Description = "Update the properties of a applePushNotificationCertificate object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-applepushnotificationcertificate-update?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -199,7 +201,7 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate {
             return requestInfo;
         }
         /// <summary>
-        /// Apple push notification certificate.
+        /// Read properties and relationships of the applePushNotificationCertificate object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -225,7 +227,7 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property applePushNotificationCertificate in deviceManagement
+        /// Update the properties of a applePushNotificationCertificate object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -253,7 +255,7 @@ namespace ApiSdk.DeviceManagement.ApplePushNotificationCertificate {
             return requestInfo;
         }
         /// <summary>
-        /// Apple push notification certificate.
+        /// Read properties and relationships of the applePushNotificationCertificate object.
         /// </summary>
         public class ApplePushNotificationCertificateRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

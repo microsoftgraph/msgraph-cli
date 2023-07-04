@@ -20,11 +20,12 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
     /// </summary>
     public class DeviceCompliancePolicySettingStateSummaryItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property deviceCompliancePolicySettingStateSummaries for deviceManagement
+        /// Deletes a deviceCompliancePolicySettingStateSummary.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecompliancepolicysettingstatesummary-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property deviceCompliancePolicySettingStateSummaries for deviceManagement";
+            command.Description = "Deletes a deviceCompliancePolicySettingStateSummary.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecompliancepolicysettingstatesummary-delete?view=graph-rest-1.0";
             var deviceCompliancePolicySettingStateSummaryIdOption = new Option<string>("--device-compliance-policy-setting-state-summary-id", description: "The unique identifier of deviceCompliancePolicySettingStateSummary") {
             };
             deviceCompliancePolicySettingStateSummaryIdOption.IsRequired = true;
@@ -78,11 +79,12 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
             return command;
         }
         /// <summary>
-        /// The summary states of compliance policy settings for this account.
+        /// Read properties and relationships of the deviceCompliancePolicySettingStateSummary object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecompliancepolicysettingstatesummary-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The summary states of compliance policy settings for this account.";
+            command.Description = "Read properties and relationships of the deviceCompliancePolicySettingStateSummary object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecompliancepolicysettingstatesummary-get?view=graph-rest-1.0";
             var deviceCompliancePolicySettingStateSummaryIdOption = new Option<string>("--device-compliance-policy-setting-state-summary-id", description: "The unique identifier of deviceCompliancePolicySettingStateSummary") {
             };
             deviceCompliancePolicySettingStateSummaryIdOption.IsRequired = true;
@@ -139,11 +141,12 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
             return command;
         }
         /// <summary>
-        /// Update the navigation property deviceCompliancePolicySettingStateSummaries in deviceManagement
+        /// Update the properties of a deviceCompliancePolicySettingStateSummary object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecompliancepolicysettingstatesummary-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property deviceCompliancePolicySettingStateSummaries in deviceManagement";
+            command.Description = "Update the properties of a deviceCompliancePolicySettingStateSummary object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecompliancepolicysettingstatesummary-update?view=graph-rest-1.0";
             var deviceCompliancePolicySettingStateSummaryIdOption = new Option<string>("--device-compliance-policy-setting-state-summary-id", description: "The unique identifier of deviceCompliancePolicySettingStateSummary") {
             };
             deviceCompliancePolicySettingStateSummaryIdOption.IsRequired = true;
@@ -202,7 +205,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
         public DeviceCompliancePolicySettingStateSummaryItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceCompliancePolicySettingStateSummaries/{deviceCompliancePolicySettingStateSummary%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property deviceCompliancePolicySettingStateSummaries for deviceManagement
+        /// Deletes a deviceCompliancePolicySettingStateSummary.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -227,7 +230,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
             return requestInfo;
         }
         /// <summary>
-        /// The summary states of compliance policy settings for this account.
+        /// Read properties and relationships of the deviceCompliancePolicySettingStateSummary object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -253,7 +256,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property deviceCompliancePolicySettingStateSummaries in deviceManagement
+        /// Update the properties of a deviceCompliancePolicySettingStateSummary object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -281,7 +284,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicySettingStateSummaries.It
             return requestInfo;
         }
         /// <summary>
-        /// The summary states of compliance policy settings for this account.
+        /// Read properties and relationships of the deviceCompliancePolicySettingStateSummary object.
         /// </summary>
         public class DeviceCompliancePolicySettingStateSummaryItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

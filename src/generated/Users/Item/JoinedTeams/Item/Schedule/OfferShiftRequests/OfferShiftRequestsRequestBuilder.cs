@@ -47,11 +47,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OfferShiftRequests {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to offerShiftRequests for users
+        /// Create an instance of an offerShiftRequest.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/offershiftrequest-post?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to offerShiftRequests for users";
+            command.Description = "Create an instance of an offerShiftRequest.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/offershiftrequest-post?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -259,7 +260,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.OfferShiftRequests {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to offerShiftRequests for users
+        /// Create an instance of an offerShiftRequest.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

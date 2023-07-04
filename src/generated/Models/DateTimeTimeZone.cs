@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
         public string TimeZone { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new DateTimeTimeZone and sets the default values.
+        /// Instantiates a new dateTimeTimeZone and sets the default values.
         /// </summary>
         public DateTimeTimeZone() {
             AdditionalData = new Dictionary<string, object>();

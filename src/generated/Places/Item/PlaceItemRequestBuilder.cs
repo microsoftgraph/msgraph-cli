@@ -1,6 +1,7 @@
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
 using ApiSdk.Places.Item.GraphRoom;
+using ApiSdk.Places.Item.GraphRoomList;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
@@ -59,6 +60,21 @@ namespace ApiSdk.Places.Item {
             var command = new Command("graph-room-by-id");
             command.Description = "Casts the previous resource to room.";
             var builder = new GraphRoomRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to roomList.
+        /// </summary>
+        public Command BuildGraphRoomListByIdNavCommand() {
+            var command = new Command("graph-room-list-by-id");
+            command.Description = "Casts the previous resource to roomList.";
+            var builder = new GraphRoomListRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)

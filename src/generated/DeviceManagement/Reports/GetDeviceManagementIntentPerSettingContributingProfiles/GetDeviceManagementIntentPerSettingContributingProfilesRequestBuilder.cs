@@ -18,11 +18,12 @@ namespace ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentPerSettingCon
     /// </summary>
     public class GetDeviceManagementIntentPerSettingContributingProfilesRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action getDeviceManagementIntentPerSettingContributingProfiles
+        /// Not yet documented
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-reporting-devicemanagementreports-getdevicemanagementintentpersettingcontributingprofiles?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action getDeviceManagementIntentPerSettingContributingProfiles";
+            command.Description = "Not yet documented\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-reporting-devicemanagementreports-getdevicemanagementintentpersettingcontributingprofiles?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -66,7 +67,7 @@ namespace ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentPerSettingCon
         public GetDeviceManagementIntentPerSettingContributingProfilesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/reports/getDeviceManagementIntentPerSettingContributingProfiles", pathParameters) {
         }
         /// <summary>
-        /// Invoke action getDeviceManagementIntentPerSettingContributingProfiles
+        /// Not yet documented
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

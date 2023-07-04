@@ -52,12 +52,12 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.Replies {
             return command;
         }
         /// <summary>
-        /// Create a new reply to a chatMessage in a specified channel.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/channel-post-messagereply?view=graph-rest-1.0" />
+        /// Send a new reply to a chatMessage in a specified channel.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/chatmessage-post-replies?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new reply to a chatMessage in a specified channel.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-post-messagereply?view=graph-rest-1.0";
+            command.Description = "Send a new reply to a chatMessage in a specified channel.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/chatmessage-post-replies?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -280,7 +280,7 @@ namespace ApiSdk.Teams.Item.PrimaryChannel.Messages.Item.Replies {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new reply to a chatMessage in a specified channel.
+        /// Send a new reply to a chatMessage in a specified channel.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

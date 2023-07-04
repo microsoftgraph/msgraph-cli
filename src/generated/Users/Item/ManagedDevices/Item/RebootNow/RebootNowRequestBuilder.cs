@@ -19,10 +19,11 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.RebootNow {
     public class RebootNowRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Reboot device
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-manageddevice-rebootnow?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Reboot device";
+            command.Description = "Reboot device\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-manageddevice-rebootnow?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;

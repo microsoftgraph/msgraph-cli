@@ -80,11 +80,12 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item {
             return command;
         }
         /// <summary>
-        /// The managed app registrations.
+        /// Read properties and relationships of the iosManagedAppRegistration object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-mam-iosmanagedappregistration-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The managed app registrations.";
+            command.Description = "Read properties and relationships of the iosManagedAppRegistration object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-mam-iosmanagedappregistration-get?view=graph-rest-1.0";
             var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "The unique identifier of managedAppRegistration") {
             };
             managedAppRegistrationIdOption.IsRequired = true;
@@ -279,7 +280,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The managed app registrations.
+        /// Read properties and relationships of the iosManagedAppRegistration object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -333,7 +334,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The managed app registrations.
+        /// Read properties and relationships of the iosManagedAppRegistration object.
         /// </summary>
         public class ManagedAppRegistrationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -19,11 +19,12 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assignments.Item
     /// </summary>
     public class DeviceCompliancePolicyAssignmentItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property assignments for deviceManagement
+        /// Deletes a deviceCompliancePolicyAssignment.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecompliancepolicyassignment-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property assignments for deviceManagement";
+            command.Description = "Deletes a deviceCompliancePolicyAssignment.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecompliancepolicyassignment-delete?view=graph-rest-1.0";
             var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
@@ -58,11 +59,12 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assignments.Item
             return command;
         }
         /// <summary>
-        /// The collection of assignments for this compliance policy.
+        /// Read properties and relationships of the deviceCompliancePolicyAssignment object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecompliancepolicyassignment-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The collection of assignments for this compliance policy.";
+            command.Description = "Read properties and relationships of the deviceCompliancePolicyAssignment object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecompliancepolicyassignment-get?view=graph-rest-1.0";
             var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
@@ -125,11 +127,12 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assignments.Item
             return command;
         }
         /// <summary>
-        /// Update the navigation property assignments in deviceManagement
+        /// Update the properties of a deviceCompliancePolicyAssignment object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecompliancepolicyassignment-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property assignments in deviceManagement";
+            command.Description = "Update the properties of a deviceCompliancePolicyAssignment object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecompliancepolicyassignment-update?view=graph-rest-1.0";
             var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
@@ -194,7 +197,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assignments.Item
         public DeviceCompliancePolicyAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy%2Did}/assignments/{deviceCompliancePolicyAssignment%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property assignments for deviceManagement
+        /// Deletes a deviceCompliancePolicyAssignment.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -219,7 +222,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assignments.Item
             return requestInfo;
         }
         /// <summary>
-        /// The collection of assignments for this compliance policy.
+        /// Read properties and relationships of the deviceCompliancePolicyAssignment object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -245,7 +248,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assignments.Item
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property assignments in deviceManagement
+        /// Update the properties of a deviceCompliancePolicyAssignment object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -273,7 +276,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assignments.Item
             return requestInfo;
         }
         /// <summary>
-        /// The collection of assignments for this compliance policy.
+        /// Read properties and relationships of the deviceCompliancePolicyAssignment object.
         /// </summary>
         public class DeviceCompliancePolicyAssignmentItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

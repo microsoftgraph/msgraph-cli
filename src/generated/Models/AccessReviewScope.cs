@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new AccessReviewScope and sets the default values.
+        /// Instantiates a new accessReviewScope and sets the default values.
         /// </summary>
         public AccessReviewScope() {
             AdditionalData = new Dictionary<string, object>();
