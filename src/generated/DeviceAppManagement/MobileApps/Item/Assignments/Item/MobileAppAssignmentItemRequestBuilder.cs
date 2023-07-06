@@ -19,11 +19,12 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.Assignments.Item {
     /// </summary>
     public class MobileAppAssignmentItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property assignments for deviceAppManagement
+        /// Deletes a mobileAppAssignment.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-apps-mobileappassignment-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property assignments for deviceAppManagement";
+            command.Description = "Deletes a mobileAppAssignment.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-apps-mobileappassignment-delete?view=graph-rest-1.0";
             var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "The unique identifier of mobileApp") {
             };
             mobileAppIdOption.IsRequired = true;
@@ -58,11 +59,12 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.Assignments.Item {
             return command;
         }
         /// <summary>
-        /// The list of group assignments for this mobile app.
+        /// Read properties and relationships of the mobileAppAssignment object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-apps-mobileappassignment-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The list of group assignments for this mobile app.";
+            command.Description = "Read properties and relationships of the mobileAppAssignment object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-apps-mobileappassignment-get?view=graph-rest-1.0";
             var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "The unique identifier of mobileApp") {
             };
             mobileAppIdOption.IsRequired = true;
@@ -125,11 +127,12 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.Assignments.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property assignments in deviceAppManagement
+        /// Update the properties of a mobileAppAssignment object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-apps-mobileappassignment-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property assignments in deviceAppManagement";
+            command.Description = "Update the properties of a mobileAppAssignment object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-apps-mobileappassignment-update?view=graph-rest-1.0";
             var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "The unique identifier of mobileApp") {
             };
             mobileAppIdOption.IsRequired = true;
@@ -194,7 +197,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.Assignments.Item {
         public MobileAppAssignmentItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/assignments/{mobileAppAssignment%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property assignments for deviceAppManagement
+        /// Deletes a mobileAppAssignment.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -219,7 +222,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.Assignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The list of group assignments for this mobile app.
+        /// Read properties and relationships of the mobileAppAssignment object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -245,7 +248,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.Assignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property assignments in deviceAppManagement
+        /// Update the properties of a mobileAppAssignment object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -273,7 +276,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.Assignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The list of group assignments for this mobile app.
+        /// Read properties and relationships of the mobileAppAssignment object.
         /// </summary>
         public class MobileAppAssignmentItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

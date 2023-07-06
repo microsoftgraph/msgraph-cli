@@ -62,11 +62,12 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property deviceEnrollmentConfigurations for deviceManagement
+        /// Deletes a deviceEnrollmentPlatformRestrictionsConfiguration.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-onboarding-deviceenrollmentplatformrestrictionsconfiguration-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property deviceEnrollmentConfigurations for deviceManagement";
+            command.Description = "Deletes a deviceEnrollmentPlatformRestrictionsConfiguration.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-onboarding-deviceenrollmentplatformrestrictionsconfiguration-delete?view=graph-rest-1.0";
             var deviceEnrollmentConfigurationIdOption = new Option<string>("--device-enrollment-configuration-id", description: "The unique identifier of deviceEnrollmentConfiguration") {
             };
             deviceEnrollmentConfigurationIdOption.IsRequired = true;
@@ -95,11 +96,12 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
             return command;
         }
         /// <summary>
-        /// The list of device enrollment configurations
+        /// Read properties and relationships of the deviceEnrollmentLimitConfiguration object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-onboarding-deviceenrollmentlimitconfiguration-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The list of device enrollment configurations";
+            command.Description = "Read properties and relationships of the deviceEnrollmentLimitConfiguration object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-onboarding-deviceenrollmentlimitconfiguration-get?view=graph-rest-1.0";
             var deviceEnrollmentConfigurationIdOption = new Option<string>("--device-enrollment-configuration-id", description: "The unique identifier of deviceEnrollmentConfiguration") {
             };
             deviceEnrollmentConfigurationIdOption.IsRequired = true;
@@ -156,11 +158,12 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property deviceEnrollmentConfigurations in deviceManagement
+        /// Update the properties of a deviceEnrollmentPlatformRestrictionsConfiguration object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-onboarding-deviceenrollmentplatformrestrictionsconfiguration-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property deviceEnrollmentConfigurations in deviceManagement";
+            command.Description = "Update the properties of a deviceEnrollmentPlatformRestrictionsConfiguration object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-onboarding-deviceenrollmentplatformrestrictionsconfiguration-update?view=graph-rest-1.0";
             var deviceEnrollmentConfigurationIdOption = new Option<string>("--device-enrollment-configuration-id", description: "The unique identifier of deviceEnrollmentConfiguration") {
             };
             deviceEnrollmentConfigurationIdOption.IsRequired = true;
@@ -234,7 +237,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
         public DeviceEnrollmentConfigurationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceEnrollmentConfigurations/{deviceEnrollmentConfiguration%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property deviceEnrollmentConfigurations for deviceManagement
+        /// Deletes a deviceEnrollmentPlatformRestrictionsConfiguration.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -259,7 +262,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The list of device enrollment configurations
+        /// Read properties and relationships of the deviceEnrollmentLimitConfiguration object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -285,7 +288,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property deviceEnrollmentConfigurations in deviceManagement
+        /// Update the properties of a deviceEnrollmentPlatformRestrictionsConfiguration object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -313,7 +316,7 @@ namespace ApiSdk.DeviceManagement.DeviceEnrollmentConfigurations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The list of device enrollment configurations
+        /// Read properties and relationships of the deviceEnrollmentLimitConfiguration object.
         /// </summary>
         public class DeviceEnrollmentConfigurationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

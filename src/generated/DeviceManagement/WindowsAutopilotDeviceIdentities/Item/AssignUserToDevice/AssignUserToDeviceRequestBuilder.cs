@@ -19,10 +19,11 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.AssignUs
     public class AssignUserToDeviceRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Assigns user to Autopilot devices.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-enrollment-windowsautopilotdeviceidentity-assignusertodevice?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Assigns user to Autopilot devices.";
+            command.Description = "Assigns user to Autopilot devices.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-enrollment-windowsautopilotdeviceidentity-assignusertodevice?view=graph-rest-1.0";
             var windowsAutopilotDeviceIdentityIdOption = new Option<string>("--windows-autopilot-device-identity-id", description: "The unique identifier of windowsAutopilotDeviceIdentity") {
             };
             windowsAutopilotDeviceIdentityIdOption.IsRequired = true;

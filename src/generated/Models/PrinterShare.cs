@@ -33,8 +33,16 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.Printer Printer { get; set; }
 #endif
+        /// <summary>Additional data for a printer share as viewed by the signed-in user.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public PrinterShareViewpoint? ViewPoint { get; set; }
+#nullable restore
+#else
+        public PrinterShareViewpoint ViewPoint { get; set; }
+#endif
         /// <summary>
-        /// Instantiates a new printerShare and sets the default values.
+        /// Instantiates a new PrinterShare and sets the default values.
         /// </summary>
         public PrinterShare() : base() {
             OdataType = "#microsoft.graph.printerShare";
@@ -57,6 +65,7 @@ namespace ApiSdk.Models {
                 {"allowedUsers", n => { AllowedUsers = n.GetCollectionOfObjectValues<User>(User.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"printer", n => { Printer = n.GetObjectValue<ApiSdk.Models.Printer>(ApiSdk.Models.Printer.CreateFromDiscriminatorValue); } },
+                {"viewPoint", n => { ViewPoint = n.GetObjectValue<PrinterShareViewpoint>(PrinterShareViewpoint.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -71,6 +80,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<User>("allowedUsers", AllowedUsers);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteObjectValue<ApiSdk.Models.Printer>("printer", Printer);
+            writer.WriteObjectValue<PrinterShareViewpoint>("viewPoint", ViewPoint);
         }
     }
 }

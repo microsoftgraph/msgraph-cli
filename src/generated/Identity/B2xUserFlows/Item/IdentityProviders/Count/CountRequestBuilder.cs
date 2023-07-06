@@ -20,6 +20,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders.Count {
         /// <summary>
         /// Get the number of the resource
         /// </summary>
+        [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider on 2021-08-24 and will be removed 2023-03-15")]
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
@@ -67,6 +68,7 @@ namespace ApiSdk.Identity.B2xUserFlows.Item.IdentityProviders.Count {
         /// Get the number of the resource
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        [Obsolete("The identityProvider API is deprecated and will stop returning data on March 2023. Please use the new identityProviderBase API. as of 2021-05/identityProvider on 2021-08-24 and will be removed 2023-03-15")]
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CountRequestBuilderGetQueryParameters>>? requestConfiguration = default) {

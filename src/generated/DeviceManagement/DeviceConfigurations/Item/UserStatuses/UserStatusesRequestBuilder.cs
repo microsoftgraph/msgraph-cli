@@ -47,11 +47,12 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatuses {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to userStatuses for deviceManagement
+        /// Create a new deviceConfigurationUserStatus object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-deviceconfigurationuserstatus-create?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to userStatuses for deviceManagement";
+            command.Description = "Create a new deviceConfigurationUserStatus object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-deviceconfigurationuserstatus-create?view=graph-rest-1.0";
             var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
@@ -104,11 +105,12 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatuses {
             return command;
         }
         /// <summary>
-        /// Device configuration installation status by user.
+        /// List properties and relationships of the deviceConfigurationUserStatus objects.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-deviceconfigurationuserstatus-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Device configuration installation status by user.";
+            command.Description = "List properties and relationships of the deviceConfigurationUserStatus objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-deviceconfigurationuserstatus-list?view=graph-rest-1.0";
             var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
@@ -220,7 +222,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatuses {
         public UserStatusesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceConfigurations/{deviceConfiguration%2Did}/userStatuses{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Device configuration installation status by user.
+        /// List properties and relationships of the deviceConfigurationUserStatus objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -246,7 +248,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatuses {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to userStatuses for deviceManagement
+        /// Create a new deviceConfigurationUserStatus object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -274,7 +276,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.UserStatuses {
             return requestInfo;
         }
         /// <summary>
-        /// Device configuration installation status by user.
+        /// List properties and relationships of the deviceConfigurationUserStatus objects.
         /// </summary>
         public class UserStatusesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

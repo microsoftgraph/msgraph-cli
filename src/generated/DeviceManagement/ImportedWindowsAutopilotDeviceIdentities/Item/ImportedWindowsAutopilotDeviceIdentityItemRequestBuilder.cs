@@ -19,11 +19,12 @@ namespace ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Item 
     /// </summary>
     public class ImportedWindowsAutopilotDeviceIdentityItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property importedWindowsAutopilotDeviceIdentities for deviceManagement
+        /// Deletes a importedWindowsAutopilotDeviceIdentity.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-enrollment-importedwindowsautopilotdeviceidentity-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property importedWindowsAutopilotDeviceIdentities for deviceManagement";
+            command.Description = "Deletes a importedWindowsAutopilotDeviceIdentity.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-enrollment-importedwindowsautopilotdeviceidentity-delete?view=graph-rest-1.0";
             var importedWindowsAutopilotDeviceIdentityIdOption = new Option<string>("--imported-windows-autopilot-device-identity-id", description: "The unique identifier of importedWindowsAutopilotDeviceIdentity") {
             };
             importedWindowsAutopilotDeviceIdentityIdOption.IsRequired = true;
@@ -52,11 +53,12 @@ namespace ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Item 
             return command;
         }
         /// <summary>
-        /// Collection of imported Windows autopilot devices.
+        /// Read properties and relationships of the importedWindowsAutopilotDeviceIdentity object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-enrollment-importedwindowsautopilotdeviceidentity-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Collection of imported Windows autopilot devices.";
+            command.Description = "Read properties and relationships of the importedWindowsAutopilotDeviceIdentity object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-enrollment-importedwindowsautopilotdeviceidentity-get?view=graph-rest-1.0";
             var importedWindowsAutopilotDeviceIdentityIdOption = new Option<string>("--imported-windows-autopilot-device-identity-id", description: "The unique identifier of importedWindowsAutopilotDeviceIdentity") {
             };
             importedWindowsAutopilotDeviceIdentityIdOption.IsRequired = true;
@@ -176,7 +178,7 @@ namespace ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Item 
         public ImportedWindowsAutopilotDeviceIdentityItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/importedWindowsAutopilotDeviceIdentities/{importedWindowsAutopilotDeviceIdentity%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property importedWindowsAutopilotDeviceIdentities for deviceManagement
+        /// Deletes a importedWindowsAutopilotDeviceIdentity.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -201,7 +203,7 @@ namespace ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Item 
             return requestInfo;
         }
         /// <summary>
-        /// Collection of imported Windows autopilot devices.
+        /// Read properties and relationships of the importedWindowsAutopilotDeviceIdentity object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -255,7 +257,7 @@ namespace ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities.Item 
             return requestInfo;
         }
         /// <summary>
-        /// Collection of imported Windows autopilot devices.
+        /// Read properties and relationships of the importedWindowsAutopilotDeviceIdentity object.
         /// </summary>
         public class ImportedWindowsAutopilotDeviceIdentityItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

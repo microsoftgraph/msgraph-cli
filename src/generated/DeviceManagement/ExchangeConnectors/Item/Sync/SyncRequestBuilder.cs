@@ -18,11 +18,12 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item.Sync {
     /// </summary>
     public class SyncRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action sync
+        /// Not yet documented
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-onboarding-devicemanagementexchangeconnector-sync?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action sync";
+            command.Description = "Not yet documented\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-onboarding-devicemanagementexchangeconnector-sync?view=graph-rest-1.0";
             var deviceManagementExchangeConnectorIdOption = new Option<string>("--device-management-exchange-connector-id", description: "The unique identifier of deviceManagementExchangeConnector") {
             };
             deviceManagementExchangeConnectorIdOption.IsRequired = true;
@@ -60,7 +61,7 @@ namespace ApiSdk.DeviceManagement.ExchangeConnectors.Item.Sync {
         public SyncRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/exchangeConnectors/{deviceManagementExchangeConnector%2Did}/sync", pathParameters) {
         }
         /// <summary>
-        /// Invoke action sync
+        /// Not yet documented
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

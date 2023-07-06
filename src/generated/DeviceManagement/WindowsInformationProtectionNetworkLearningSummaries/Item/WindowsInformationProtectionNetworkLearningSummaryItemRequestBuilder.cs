@@ -19,11 +19,12 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionNetworkLearningSum
     /// </summary>
     public class WindowsInformationProtectionNetworkLearningSummaryItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property windowsInformationProtectionNetworkLearningSummaries for deviceManagement
+        /// Deletes a windowsInformationProtectionNetworkLearningSummary.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-wip-windowsinformationprotectionnetworklearningsummary-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property windowsInformationProtectionNetworkLearningSummaries for deviceManagement";
+            command.Description = "Deletes a windowsInformationProtectionNetworkLearningSummary.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-wip-windowsinformationprotectionnetworklearningsummary-delete?view=graph-rest-1.0";
             var windowsInformationProtectionNetworkLearningSummaryIdOption = new Option<string>("--windows-information-protection-network-learning-summary-id", description: "The unique identifier of windowsInformationProtectionNetworkLearningSummary") {
             };
             windowsInformationProtectionNetworkLearningSummaryIdOption.IsRequired = true;
@@ -52,11 +53,12 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionNetworkLearningSum
             return command;
         }
         /// <summary>
-        /// The windows information protection network learning summaries.
+        /// Read properties and relationships of the windowsInformationProtectionNetworkLearningSummary object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-wip-windowsinformationprotectionnetworklearningsummary-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The windows information protection network learning summaries.";
+            command.Description = "Read properties and relationships of the windowsInformationProtectionNetworkLearningSummary object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-wip-windowsinformationprotectionnetworklearningsummary-get?view=graph-rest-1.0";
             var windowsInformationProtectionNetworkLearningSummaryIdOption = new Option<string>("--windows-information-protection-network-learning-summary-id", description: "The unique identifier of windowsInformationProtectionNetworkLearningSummary") {
             };
             windowsInformationProtectionNetworkLearningSummaryIdOption.IsRequired = true;
@@ -113,11 +115,12 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionNetworkLearningSum
             return command;
         }
         /// <summary>
-        /// Update the navigation property windowsInformationProtectionNetworkLearningSummaries in deviceManagement
+        /// Update the properties of a windowsInformationProtectionNetworkLearningSummary object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-wip-windowsinformationprotectionnetworklearningsummary-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property windowsInformationProtectionNetworkLearningSummaries in deviceManagement";
+            command.Description = "Update the properties of a windowsInformationProtectionNetworkLearningSummary object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-wip-windowsinformationprotectionnetworklearningsummary-update?view=graph-rest-1.0";
             var windowsInformationProtectionNetworkLearningSummaryIdOption = new Option<string>("--windows-information-protection-network-learning-summary-id", description: "The unique identifier of windowsInformationProtectionNetworkLearningSummary") {
             };
             windowsInformationProtectionNetworkLearningSummaryIdOption.IsRequired = true;
@@ -176,7 +179,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionNetworkLearningSum
         public WindowsInformationProtectionNetworkLearningSummaryItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/windowsInformationProtectionNetworkLearningSummaries/{windowsInformationProtectionNetworkLearningSummary%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property windowsInformationProtectionNetworkLearningSummaries for deviceManagement
+        /// Deletes a windowsInformationProtectionNetworkLearningSummary.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -201,7 +204,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionNetworkLearningSum
             return requestInfo;
         }
         /// <summary>
-        /// The windows information protection network learning summaries.
+        /// Read properties and relationships of the windowsInformationProtectionNetworkLearningSummary object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -227,7 +230,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionNetworkLearningSum
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property windowsInformationProtectionNetworkLearningSummaries in deviceManagement
+        /// Update the properties of a windowsInformationProtectionNetworkLearningSummary object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -255,7 +258,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionNetworkLearningSum
             return requestInfo;
         }
         /// <summary>
-        /// The windows information protection network learning summaries.
+        /// Read properties and relationships of the windowsInformationProtectionNetworkLearningSummary object.
         /// </summary>
         public class WindowsInformationProtectionNetworkLearningSummaryItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

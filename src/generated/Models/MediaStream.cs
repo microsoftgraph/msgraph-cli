@@ -38,7 +38,7 @@ namespace ApiSdk.Models {
         public string SourceId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new mediaStream and sets the default values.
+        /// Instantiates a new MediaStream and sets the default values.
         /// </summary>
         public MediaStream() {
             AdditionalData = new Dictionary<string, object>();

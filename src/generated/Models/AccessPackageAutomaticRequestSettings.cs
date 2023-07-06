@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class AccessPackageAutomaticRequestSettings : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The gracePeriodBeforeAccessRemoval property</summary>
+        /// <summary>The duration for which access must be retained before the target&apos;s access is revoked once they leave the allowed target scope.</summary>
         public TimeSpan? GracePeriodBeforeAccessRemoval { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -17,7 +17,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The removeAccessWhenTargetLeavesAllowedTargets property</summary>
+        /// <summary>Indicates whether automatic assignment must be removed for targets who move out of the allowed target scope.</summary>
         public bool? RemoveAccessWhenTargetLeavesAllowedTargets { get; set; }
         /// <summary>If set to true, automatic assignments will be created for targets in the allowed target scope.</summary>
         public bool? RequestAccessForAllowedTargets { get; set; }

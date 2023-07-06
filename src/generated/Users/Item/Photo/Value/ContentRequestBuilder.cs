@@ -19,10 +19,11 @@ namespace ApiSdk.Users.Item.Photo.Value {
     public class ContentRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Get media content for the navigation property photo from users
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/profilephoto-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get media content for the navigation property photo from users";
+            command.Description = "Get media content for the navigation property photo from users\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/profilephoto-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;

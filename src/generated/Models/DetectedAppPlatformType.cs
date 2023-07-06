@@ -36,5 +36,8 @@ namespace ApiSdk.Models {
         /// <summary>Indicates that the platform of the detected application is Android dedicated and fully managed.</summary>
         [EnumMember(Value = "androidDedicatedAndFullyManaged")]
         AndroidDedicatedAndFullyManaged,
+        /// <summary>Evolvable enumeration sentinel value. Do not use.</summary>
+        [EnumMember(Value = "unknownFutureValue")]
+        UnknownFutureValue,
     }
 }

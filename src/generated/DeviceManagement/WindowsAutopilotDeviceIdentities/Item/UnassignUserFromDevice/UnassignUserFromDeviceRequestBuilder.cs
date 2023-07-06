@@ -19,10 +19,11 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.Unassign
     public class UnassignUserFromDeviceRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Unassigns the user from an Autopilot device.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-enrollment-windowsautopilotdeviceidentity-unassignuserfromdevice?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Unassigns the user from an Autopilot device.";
+            command.Description = "Unassigns the user from an Autopilot device.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-enrollment-windowsautopilotdeviceidentity-unassignuserfromdevice?view=graph-rest-1.0";
             var windowsAutopilotDeviceIdentityIdOption = new Option<string>("--windows-autopilot-device-identity-id", description: "The unique identifier of windowsAutopilotDeviceIdentity") {
             };
             windowsAutopilotDeviceIdentityIdOption.IsRequired = true;

@@ -37,6 +37,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices {
             commands.Add(builder.BuildDisableLostModeNavCommand());
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildLocateDeviceNavCommand());
+            commands.Add(builder.BuildLogCollectionRequestsNavCommand());
             commands.Add(builder.BuildLogoutSharedAppleDeviceActiveUserNavCommand());
             executables.Add(builder.BuildPatchCommand());
             commands.Add(builder.BuildRebootNowNavCommand());
@@ -51,6 +52,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices {
             commands.Add(builder.BuildUsersNavCommand());
             commands.Add(builder.BuildWindowsDefenderScanNavCommand());
             commands.Add(builder.BuildWindowsDefenderUpdateSignaturesNavCommand());
+            commands.Add(builder.BuildWindowsProtectionStateNavCommand());
             commands.Add(builder.BuildWipeNavCommand());
             return new(executables, commands);
         }
@@ -70,11 +72,12 @@ namespace ApiSdk.DeviceManagement.ManagedDevices {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to managedDevices for deviceManagement
+        /// Create a new managedDevice object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-manageddevice-create?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to managedDevices for deviceManagement";
+            command.Description = "Create a new managedDevice object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-manageddevice-create?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -121,11 +124,12 @@ namespace ApiSdk.DeviceManagement.ManagedDevices {
             return command;
         }
         /// <summary>
-        /// The list of managed devices.
+        /// List properties and relationships of the managedDevice objects.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-manageddevice-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The list of managed devices.";
+            command.Description = "List properties and relationships of the managedDevice objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-manageddevice-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -231,7 +235,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices {
         public ManagedDevicesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/managedDevices{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The list of managed devices.
+        /// List properties and relationships of the managedDevice objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -257,7 +261,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to managedDevices for deviceManagement
+        /// Create a new managedDevice object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -285,7 +289,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices {
             return requestInfo;
         }
         /// <summary>
-        /// The list of managed devices.
+        /// List properties and relationships of the managedDevice objects.
         /// </summary>
         public class ManagedDevicesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

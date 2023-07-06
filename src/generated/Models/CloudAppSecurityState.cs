@@ -40,7 +40,7 @@ namespace ApiSdk.Models {
         public string RiskScore { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new cloudAppSecurityState and sets the default values.
+        /// Instantiates a new CloudAppSecurityState and sets the default values.
         /// </summary>
         public CloudAppSecurityState() {
             AdditionalData = new Dictionary<string, object>();

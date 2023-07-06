@@ -19,10 +19,11 @@ namespace ApiSdk.Groups.Item.Team.Photo.Value {
     public class ContentRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Get media content for the navigation property photo from groups
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/profilephoto-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get media content for the navigation property photo from groups";
+            command.Description = "Get media content for the navigation property photo from groups\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/profilephoto-get?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;

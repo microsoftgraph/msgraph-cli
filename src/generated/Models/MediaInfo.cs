@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
         public string Uri { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new mediaInfo and sets the default values.
+        /// Instantiates a new MediaInfo and sets the default values.
         /// </summary>
         public MediaInfo() {
             AdditionalData = new Dictionary<string, object>();

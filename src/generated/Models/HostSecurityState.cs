@@ -70,7 +70,7 @@ namespace ApiSdk.Models {
         public string RiskScore { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new hostSecurityState and sets the default values.
+        /// Instantiates a new HostSecurityState and sets the default values.
         /// </summary>
         public HostSecurityState() {
             AdditionalData = new Dictionary<string, object>();

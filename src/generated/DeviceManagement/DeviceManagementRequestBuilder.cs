@@ -17,6 +17,7 @@ using ApiSdk.DeviceManagement.ImportedWindowsAutopilotDeviceIdentities;
 using ApiSdk.DeviceManagement.IosUpdateStatuses;
 using ApiSdk.DeviceManagement.ManagedDeviceOverview;
 using ApiSdk.DeviceManagement.ManagedDevices;
+using ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents;
 using ApiSdk.DeviceManagement.MobileThreatDefenseConnectors;
 using ApiSdk.DeviceManagement.NotificationMessageTemplates;
 using ApiSdk.DeviceManagement.RemoteAssistancePartners;
@@ -28,10 +29,34 @@ using ApiSdk.DeviceManagement.SoftwareUpdateStatusSummary;
 using ApiSdk.DeviceManagement.TelecomExpenseManagementPartners;
 using ApiSdk.DeviceManagement.TermsAndConditions;
 using ApiSdk.DeviceManagement.TroubleshootingEvents;
+using ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthApplicationPerformance;
+using ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails;
+using ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId;
+using ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion;
+using ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthDeviceModelPerformance;
+using ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthDevicePerformance;
+using ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthDevicePerformanceDetails;
+using ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthOSVersionPerformance;
+using ApiSdk.DeviceManagement.UserExperienceAnalyticsAppHealthOverview;
+using ApiSdk.DeviceManagement.UserExperienceAnalyticsBaselines;
+using ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories;
+using ApiSdk.DeviceManagement.UserExperienceAnalyticsDevicePerformance;
+using ApiSdk.DeviceManagement.UserExperienceAnalyticsDeviceScores;
+using ApiSdk.DeviceManagement.UserExperienceAnalyticsDeviceStartupHistory;
+using ApiSdk.DeviceManagement.UserExperienceAnalyticsDeviceStartupProcesses;
+using ApiSdk.DeviceManagement.UserExperienceAnalyticsMetricHistory;
+using ApiSdk.DeviceManagement.UserExperienceAnalyticsModelScores;
+using ApiSdk.DeviceManagement.UserExperienceAnalyticsOverview;
+using ApiSdk.DeviceManagement.UserExperienceAnalyticsScoreHistory;
+using ApiSdk.DeviceManagement.UserExperienceAnalyticsSummarizeWorkFromAnywhereDevices;
+using ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric;
+using ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereMetrics;
+using ApiSdk.DeviceManagement.UserExperienceAnalyticsWorkFromAnywhereModelPerformance;
 using ApiSdk.DeviceManagement.VerifyWindowsEnrollmentAutoDiscoveryWithDomainName;
 using ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities;
 using ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummaries;
 using ApiSdk.DeviceManagement.WindowsInformationProtectionNetworkLearningSummaries;
+using ApiSdk.DeviceManagement.WindowsMalwareInformation;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -379,11 +404,12 @@ namespace ApiSdk.DeviceManagement {
             return command;
         }
         /// <summary>
-        /// Get deviceManagement
+        /// Read properties and relationships of the deviceManagement object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-enrollment-devicemanagement-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get deviceManagement";
+            command.Description = "Read properties and relationships of the deviceManagement object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-enrollment-devicemanagement-get?view=graph-rest-1.0";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -540,6 +566,31 @@ namespace ApiSdk.DeviceManagement {
             return command;
         }
         /// <summary>
+        /// Provides operations to manage the mobileAppTroubleshootingEvents property of the microsoft.graph.deviceManagement entity.
+        /// </summary>
+        public Command BuildMobileAppTroubleshootingEventsNavCommand() {
+            var command = new Command("mobile-app-troubleshooting-events");
+            command.Description = "Provides operations to manage the mobileAppTroubleshootingEvents property of the microsoft.graph.deviceManagement entity.";
+            var builder = new MobileAppTroubleshootingEventsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the mobileThreatDefenseConnectors property of the microsoft.graph.deviceManagement entity.
         /// </summary>
         public Command BuildMobileThreatDefenseConnectorsNavCommand() {
@@ -590,11 +641,12 @@ namespace ApiSdk.DeviceManagement {
             return command;
         }
         /// <summary>
-        /// Update deviceManagement
+        /// Update the properties of a deviceManagement object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-raimportcerts-devicemanagement-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update deviceManagement";
+            command.Description = "Update the properties of a deviceManagement object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-raimportcerts-devicemanagement-update?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -872,6 +924,554 @@ namespace ApiSdk.DeviceManagement {
             return command;
         }
         /// <summary>
+        /// Provides operations to manage the userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails property of the microsoft.graph.deviceManagement entity.
+        /// </summary>
+        public Command BuildUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetailsNavCommand() {
+            var command = new Command("user-experience-analytics-app-health-application-performance-by-app-version-details");
+            command.Description = "Provides operations to manage the userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails property of the microsoft.graph.deviceManagement entity.";
+            var builder = new UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetailsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId property of the microsoft.graph.deviceManagement entity.
+        /// </summary>
+        public Command BuildUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdNavCommand() {
+            var command = new Command("user-experience-analytics-app-health-application-performance-by-app-version-device-id");
+            command.Description = "Provides operations to manage the userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId property of the microsoft.graph.deviceManagement entity.";
+            var builder = new UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the userExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion property of the microsoft.graph.deviceManagement entity.
+        /// </summary>
+        public Command BuildUserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersionNavCommand() {
+            var command = new Command("user-experience-analytics-app-health-application-performance-by-o-s-version");
+            command.Description = "Provides operations to manage the userExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion property of the microsoft.graph.deviceManagement entity.";
+            var builder = new UserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersionRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the userExperienceAnalyticsAppHealthApplicationPerformance property of the microsoft.graph.deviceManagement entity.
+        /// </summary>
+        public Command BuildUserExperienceAnalyticsAppHealthApplicationPerformanceNavCommand() {
+            var command = new Command("user-experience-analytics-app-health-application-performance");
+            command.Description = "Provides operations to manage the userExperienceAnalyticsAppHealthApplicationPerformance property of the microsoft.graph.deviceManagement entity.";
+            var builder = new UserExperienceAnalyticsAppHealthApplicationPerformanceRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the userExperienceAnalyticsAppHealthDeviceModelPerformance property of the microsoft.graph.deviceManagement entity.
+        /// </summary>
+        public Command BuildUserExperienceAnalyticsAppHealthDeviceModelPerformanceNavCommand() {
+            var command = new Command("user-experience-analytics-app-health-device-model-performance");
+            command.Description = "Provides operations to manage the userExperienceAnalyticsAppHealthDeviceModelPerformance property of the microsoft.graph.deviceManagement entity.";
+            var builder = new UserExperienceAnalyticsAppHealthDeviceModelPerformanceRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the userExperienceAnalyticsAppHealthDevicePerformanceDetails property of the microsoft.graph.deviceManagement entity.
+        /// </summary>
+        public Command BuildUserExperienceAnalyticsAppHealthDevicePerformanceDetailsNavCommand() {
+            var command = new Command("user-experience-analytics-app-health-device-performance-details");
+            command.Description = "Provides operations to manage the userExperienceAnalyticsAppHealthDevicePerformanceDetails property of the microsoft.graph.deviceManagement entity.";
+            var builder = new UserExperienceAnalyticsAppHealthDevicePerformanceDetailsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the userExperienceAnalyticsAppHealthDevicePerformance property of the microsoft.graph.deviceManagement entity.
+        /// </summary>
+        public Command BuildUserExperienceAnalyticsAppHealthDevicePerformanceNavCommand() {
+            var command = new Command("user-experience-analytics-app-health-device-performance");
+            command.Description = "Provides operations to manage the userExperienceAnalyticsAppHealthDevicePerformance property of the microsoft.graph.deviceManagement entity.";
+            var builder = new UserExperienceAnalyticsAppHealthDevicePerformanceRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the userExperienceAnalyticsAppHealthOSVersionPerformance property of the microsoft.graph.deviceManagement entity.
+        /// </summary>
+        public Command BuildUserExperienceAnalyticsAppHealthOSVersionPerformanceNavCommand() {
+            var command = new Command("user-experience-analytics-app-health-o-s-version-performance");
+            command.Description = "Provides operations to manage the userExperienceAnalyticsAppHealthOSVersionPerformance property of the microsoft.graph.deviceManagement entity.";
+            var builder = new UserExperienceAnalyticsAppHealthOSVersionPerformanceRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the userExperienceAnalyticsAppHealthOverview property of the microsoft.graph.deviceManagement entity.
+        /// </summary>
+        public Command BuildUserExperienceAnalyticsAppHealthOverviewNavCommand() {
+            var command = new Command("user-experience-analytics-app-health-overview");
+            command.Description = "Provides operations to manage the userExperienceAnalyticsAppHealthOverview property of the microsoft.graph.deviceManagement entity.";
+            var builder = new UserExperienceAnalyticsAppHealthOverviewRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildMetricValuesNavCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the userExperienceAnalyticsBaselines property of the microsoft.graph.deviceManagement entity.
+        /// </summary>
+        public Command BuildUserExperienceAnalyticsBaselinesNavCommand() {
+            var command = new Command("user-experience-analytics-baselines");
+            command.Description = "Provides operations to manage the userExperienceAnalyticsBaselines property of the microsoft.graph.deviceManagement entity.";
+            var builder = new UserExperienceAnalyticsBaselinesRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the userExperienceAnalyticsCategories property of the microsoft.graph.deviceManagement entity.
+        /// </summary>
+        public Command BuildUserExperienceAnalyticsCategoriesNavCommand() {
+            var command = new Command("user-experience-analytics-categories");
+            command.Description = "Provides operations to manage the userExperienceAnalyticsCategories property of the microsoft.graph.deviceManagement entity.";
+            var builder = new UserExperienceAnalyticsCategoriesRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the userExperienceAnalyticsDevicePerformance property of the microsoft.graph.deviceManagement entity.
+        /// </summary>
+        public Command BuildUserExperienceAnalyticsDevicePerformanceNavCommand() {
+            var command = new Command("user-experience-analytics-device-performance");
+            command.Description = "Provides operations to manage the userExperienceAnalyticsDevicePerformance property of the microsoft.graph.deviceManagement entity.";
+            var builder = new UserExperienceAnalyticsDevicePerformanceRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            nonExecCommands.Add(builder.BuildSummarizeDevicePerformanceDevicesWithSummarizeByRbCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the userExperienceAnalyticsDeviceScores property of the microsoft.graph.deviceManagement entity.
+        /// </summary>
+        public Command BuildUserExperienceAnalyticsDeviceScoresNavCommand() {
+            var command = new Command("user-experience-analytics-device-scores");
+            command.Description = "Provides operations to manage the userExperienceAnalyticsDeviceScores property of the microsoft.graph.deviceManagement entity.";
+            var builder = new UserExperienceAnalyticsDeviceScoresRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the userExperienceAnalyticsDeviceStartupHistory property of the microsoft.graph.deviceManagement entity.
+        /// </summary>
+        public Command BuildUserExperienceAnalyticsDeviceStartupHistoryNavCommand() {
+            var command = new Command("user-experience-analytics-device-startup-history");
+            command.Description = "Provides operations to manage the userExperienceAnalyticsDeviceStartupHistory property of the microsoft.graph.deviceManagement entity.";
+            var builder = new UserExperienceAnalyticsDeviceStartupHistoryRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the userExperienceAnalyticsDeviceStartupProcesses property of the microsoft.graph.deviceManagement entity.
+        /// </summary>
+        public Command BuildUserExperienceAnalyticsDeviceStartupProcessesNavCommand() {
+            var command = new Command("user-experience-analytics-device-startup-processes");
+            command.Description = "Provides operations to manage the userExperienceAnalyticsDeviceStartupProcesses property of the microsoft.graph.deviceManagement entity.";
+            var builder = new UserExperienceAnalyticsDeviceStartupProcessesRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the userExperienceAnalyticsMetricHistory property of the microsoft.graph.deviceManagement entity.
+        /// </summary>
+        public Command BuildUserExperienceAnalyticsMetricHistoryNavCommand() {
+            var command = new Command("user-experience-analytics-metric-history");
+            command.Description = "Provides operations to manage the userExperienceAnalyticsMetricHistory property of the microsoft.graph.deviceManagement entity.";
+            var builder = new UserExperienceAnalyticsMetricHistoryRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the userExperienceAnalyticsModelScores property of the microsoft.graph.deviceManagement entity.
+        /// </summary>
+        public Command BuildUserExperienceAnalyticsModelScoresNavCommand() {
+            var command = new Command("user-experience-analytics-model-scores");
+            command.Description = "Provides operations to manage the userExperienceAnalyticsModelScores property of the microsoft.graph.deviceManagement entity.";
+            var builder = new UserExperienceAnalyticsModelScoresRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the userExperienceAnalyticsOverview property of the microsoft.graph.deviceManagement entity.
+        /// </summary>
+        public Command BuildUserExperienceAnalyticsOverviewNavCommand() {
+            var command = new Command("user-experience-analytics-overview");
+            command.Description = "Provides operations to manage the userExperienceAnalyticsOverview property of the microsoft.graph.deviceManagement entity.";
+            var builder = new UserExperienceAnalyticsOverviewRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the userExperienceAnalyticsScoreHistory property of the microsoft.graph.deviceManagement entity.
+        /// </summary>
+        public Command BuildUserExperienceAnalyticsScoreHistoryNavCommand() {
+            var command = new Command("user-experience-analytics-score-history");
+            command.Description = "Provides operations to manage the userExperienceAnalyticsScoreHistory property of the microsoft.graph.deviceManagement entity.";
+            var builder = new UserExperienceAnalyticsScoreHistoryRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the userExperienceAnalyticsSummarizeWorkFromAnywhereDevices method.
+        /// </summary>
+        public Command BuildUserExperienceAnalyticsSummarizeWorkFromAnywhereDevicesNavCommand() {
+            var command = new Command("user-experience-analytics-summarize-work-from-anywhere-devices");
+            command.Description = "Provides operations to call the userExperienceAnalyticsSummarizeWorkFromAnywhereDevices method.";
+            var builder = new UserExperienceAnalyticsSummarizeWorkFromAnywhereDevicesRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric property of the microsoft.graph.deviceManagement entity.
+        /// </summary>
+        public Command BuildUserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricNavCommand() {
+            var command = new Command("user-experience-analytics-work-from-anywhere-hardware-readiness-metric");
+            command.Description = "Provides operations to manage the userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric property of the microsoft.graph.deviceManagement entity.";
+            var builder = new UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the userExperienceAnalyticsWorkFromAnywhereMetrics property of the microsoft.graph.deviceManagement entity.
+        /// </summary>
+        public Command BuildUserExperienceAnalyticsWorkFromAnywhereMetricsNavCommand() {
+            var command = new Command("user-experience-analytics-work-from-anywhere-metrics");
+            command.Description = "Provides operations to manage the userExperienceAnalyticsWorkFromAnywhereMetrics property of the microsoft.graph.deviceManagement entity.";
+            var builder = new UserExperienceAnalyticsWorkFromAnywhereMetricsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the userExperienceAnalyticsWorkFromAnywhereModelPerformance property of the microsoft.graph.deviceManagement entity.
+        /// </summary>
+        public Command BuildUserExperienceAnalyticsWorkFromAnywhereModelPerformanceNavCommand() {
+            var command = new Command("user-experience-analytics-work-from-anywhere-model-performance");
+            command.Description = "Provides operations to manage the userExperienceAnalyticsWorkFromAnywhereModelPerformance property of the microsoft.graph.deviceManagement entity.";
+            var builder = new UserExperienceAnalyticsWorkFromAnywhereModelPerformanceRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the verifyWindowsEnrollmentAutoDiscovery method.
         /// </summary>
         public Command BuildVerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRbCommand() {
@@ -962,13 +1562,38 @@ namespace ApiSdk.DeviceManagement {
             return command;
         }
         /// <summary>
+        /// Provides operations to manage the windowsMalwareInformation property of the microsoft.graph.deviceManagement entity.
+        /// </summary>
+        public Command BuildWindowsMalwareInformationNavCommand() {
+            var command = new Command("windows-malware-information");
+            command.Description = "Provides operations to manage the windowsMalwareInformation property of the microsoft.graph.deviceManagement entity.";
+            var builder = new WindowsMalwareInformationRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Instantiates a new DeviceManagementRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         public DeviceManagementRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get deviceManagement
+        /// Read properties and relationships of the deviceManagement object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -994,7 +1619,7 @@ namespace ApiSdk.DeviceManagement {
             return requestInfo;
         }
         /// <summary>
-        /// Update deviceManagement
+        /// Update the properties of a deviceManagement object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -1022,7 +1647,7 @@ namespace ApiSdk.DeviceManagement {
             return requestInfo;
         }
         /// <summary>
-        /// Get deviceManagement
+        /// Read properties and relationships of the deviceManagement object.
         /// </summary>
         public class DeviceManagementRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

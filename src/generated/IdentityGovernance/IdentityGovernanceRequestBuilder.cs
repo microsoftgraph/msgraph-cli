@@ -1,9 +1,10 @@
 using ApiSdk.IdentityGovernance.AccessReviews;
 using ApiSdk.IdentityGovernance.AppConsent;
 using ApiSdk.IdentityGovernance.EntitlementManagement;
+using ApiSdk.IdentityGovernance.LifecycleWorkflows;
 using ApiSdk.IdentityGovernance.TermsOfUse;
+using ApiSdk.Models.IdentityGovernance;
 using ApiSdk.Models.ODataErrors;
-using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
@@ -155,6 +156,34 @@ namespace ApiSdk.IdentityGovernance {
             return command;
         }
         /// <summary>
+        /// Provides operations to manage the lifecycleWorkflows property of the microsoft.graph.identityGovernance entity.
+        /// </summary>
+        public Command BuildLifecycleWorkflowsNavCommand() {
+            var command = new Command("lifecycle-workflows");
+            command.Description = "Provides operations to manage the lifecycleWorkflows property of the microsoft.graph.identityGovernance entity.";
+            var builder = new LifecycleWorkflowsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCustomTaskExtensionsNavCommand());
+            execCommands.Add(builder.BuildDeleteCommand());
+            nonExecCommands.Add(builder.BuildDeletedItemsNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildSettingsNavCommand());
+            nonExecCommands.Add(builder.BuildTaskDefinitionsNavCommand());
+            nonExecCommands.Add(builder.BuildWorkflowsNavCommand());
+            nonExecCommands.Add(builder.BuildWorkflowTemplatesNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Update identityGovernance
         /// </summary>
         public Command BuildPatchCommand() {
@@ -188,7 +217,7 @@ namespace ApiSdk.IdentityGovernance {
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
-                var model = parseNode.GetObjectValue<ApiSdk.Models.IdentityGovernance>(ApiSdk.Models.IdentityGovernance.CreateFromDiscriminatorValue);
+                var model = parseNode.GetObjectValue<ApiSdk.Models.IdentityGovernance.IdentityGovernance>(ApiSdk.Models.IdentityGovernance.IdentityGovernance.CreateFromDiscriminatorValue);
                 if (model is null) return; // Cannot create a POST request from a null model.
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
@@ -268,10 +297,10 @@ namespace ApiSdk.IdentityGovernance {
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.IdentityGovernance body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.IdentityGovernance.IdentityGovernance body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.IdentityGovernance body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPatchRequestInformation(ApiSdk.Models.IdentityGovernance.IdentityGovernance body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {

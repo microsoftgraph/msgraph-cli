@@ -19,10 +19,11 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.RemoteLock {
     public class RemoteLockRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Remote lock
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-manageddevice-remotelock?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Remote lock";
+            command.Description = "Remote lock\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-manageddevice-remotelock?view=graph-rest-1.0";
             var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "The unique identifier of managedDevice") {
             };
             managedDeviceIdOption.IsRequired = true;

@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class CalculatedColumn : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>For dateTime output types, the format of the value. Must be one of dateOnly or dateTime.</summary>
+        /// <summary>For dateTime output types, the format of the value. Possible values are: dateOnly or dateTime.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Format { get; set; }
@@ -31,7 +31,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The output type used to format values in this column. Must be one of boolean, currency, dateTime, number, or text.</summary>
+        /// <summary>The output type used to format values in this column. Possible values are: boolean, currency, dateTime, number, or text.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? OutputType { get; set; }

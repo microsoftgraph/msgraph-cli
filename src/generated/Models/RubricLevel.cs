@@ -48,7 +48,7 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new rubricLevel and sets the default values.
+        /// Instantiates a new RubricLevel and sets the default values.
         /// </summary>
         public RubricLevel() {
             AdditionalData = new Dictionary<string, object>();

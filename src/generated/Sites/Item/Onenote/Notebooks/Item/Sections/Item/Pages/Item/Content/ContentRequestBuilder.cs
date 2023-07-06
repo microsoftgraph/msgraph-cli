@@ -20,10 +20,11 @@ namespace ApiSdk.Sites.Item.Onenote.Notebooks.Item.Sections.Item.Pages.Item.Cont
     public class ContentRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// The page&apos;s HTML content.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/section-list-pages?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The page's HTML content.";
+            command.Description = "The page's HTML content.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/section-list-pages?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;

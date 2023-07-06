@@ -569,6 +569,7 @@ namespace ApiSdk {
             nonExecCommands.Add(builder.BuildIosUpdateStatusesNavCommand());
             nonExecCommands.Add(builder.BuildManagedDeviceOverviewNavCommand());
             nonExecCommands.Add(builder.BuildManagedDevicesNavCommand());
+            nonExecCommands.Add(builder.BuildMobileAppTroubleshootingEventsNavCommand());
             nonExecCommands.Add(builder.BuildMobileThreatDefenseConnectorsNavCommand());
             nonExecCommands.Add(builder.BuildNotificationMessageTemplatesNavCommand());
             execCommands.Add(builder.BuildPatchCommand());
@@ -581,10 +582,34 @@ namespace ApiSdk {
             nonExecCommands.Add(builder.BuildTelecomExpenseManagementPartnersNavCommand());
             nonExecCommands.Add(builder.BuildTermsAndConditionsNavCommand());
             nonExecCommands.Add(builder.BuildTroubleshootingEventsNavCommand());
+            nonExecCommands.Add(builder.BuildUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetailsNavCommand());
+            nonExecCommands.Add(builder.BuildUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdNavCommand());
+            nonExecCommands.Add(builder.BuildUserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersionNavCommand());
+            nonExecCommands.Add(builder.BuildUserExperienceAnalyticsAppHealthApplicationPerformanceNavCommand());
+            nonExecCommands.Add(builder.BuildUserExperienceAnalyticsAppHealthDeviceModelPerformanceNavCommand());
+            nonExecCommands.Add(builder.BuildUserExperienceAnalyticsAppHealthDevicePerformanceDetailsNavCommand());
+            nonExecCommands.Add(builder.BuildUserExperienceAnalyticsAppHealthDevicePerformanceNavCommand());
+            nonExecCommands.Add(builder.BuildUserExperienceAnalyticsAppHealthOSVersionPerformanceNavCommand());
+            nonExecCommands.Add(builder.BuildUserExperienceAnalyticsAppHealthOverviewNavCommand());
+            nonExecCommands.Add(builder.BuildUserExperienceAnalyticsBaselinesNavCommand());
+            nonExecCommands.Add(builder.BuildUserExperienceAnalyticsCategoriesNavCommand());
+            nonExecCommands.Add(builder.BuildUserExperienceAnalyticsDevicePerformanceNavCommand());
+            nonExecCommands.Add(builder.BuildUserExperienceAnalyticsDeviceScoresNavCommand());
+            nonExecCommands.Add(builder.BuildUserExperienceAnalyticsDeviceStartupHistoryNavCommand());
+            nonExecCommands.Add(builder.BuildUserExperienceAnalyticsDeviceStartupProcessesNavCommand());
+            nonExecCommands.Add(builder.BuildUserExperienceAnalyticsMetricHistoryNavCommand());
+            nonExecCommands.Add(builder.BuildUserExperienceAnalyticsModelScoresNavCommand());
+            nonExecCommands.Add(builder.BuildUserExperienceAnalyticsOverviewNavCommand());
+            nonExecCommands.Add(builder.BuildUserExperienceAnalyticsScoreHistoryNavCommand());
+            nonExecCommands.Add(builder.BuildUserExperienceAnalyticsSummarizeWorkFromAnywhereDevicesNavCommand());
+            nonExecCommands.Add(builder.BuildUserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricNavCommand());
+            nonExecCommands.Add(builder.BuildUserExperienceAnalyticsWorkFromAnywhereMetricsNavCommand());
+            nonExecCommands.Add(builder.BuildUserExperienceAnalyticsWorkFromAnywhereModelPerformanceNavCommand());
             nonExecCommands.Add(builder.BuildVerifyWindowsEnrollmentAutoDiscoveryWithDomainNameRbCommand());
             nonExecCommands.Add(builder.BuildWindowsAutopilotDeviceIdentitiesNavCommand());
             nonExecCommands.Add(builder.BuildWindowsInformationProtectionAppLearningSummariesNavCommand());
             nonExecCommands.Add(builder.BuildWindowsInformationProtectionNetworkLearningSummariesNavCommand());
+            nonExecCommands.Add(builder.BuildWindowsMalwareInformationNavCommand());
             foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
@@ -847,6 +872,7 @@ namespace ApiSdk {
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildLearningCourseActivitiesNavCommand());
             nonExecCommands.Add(builder.BuildLearningProvidersNavCommand());
             execCommands.Add(builder.BuildPatchCommand());
             foreach (var cmd in execCommands)
@@ -1052,6 +1078,7 @@ namespace ApiSdk {
             nonExecCommands.Add(builder.BuildAppConsentNavCommand());
             nonExecCommands.Add(builder.BuildEntitlementManagementNavCommand());
             execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildLifecycleWorkflowsNavCommand());
             execCommands.Add(builder.BuildPatchCommand());
             nonExecCommands.Add(builder.BuildTermsOfUseNavCommand());
             foreach (var cmd in execCommands)
@@ -1306,6 +1333,7 @@ namespace ApiSdk {
             var builder = new PlacesRequestBuilder(PathParameters);
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
+            nonExecCommands.Add(builder.BuildGraphRoomListNavCommand());
             nonExecCommands.Add(builder.BuildGraphRoomNavCommand());
             var cmds = builder.BuildCommand();
             nonExecCommands.AddRange(cmds.Item2);
@@ -1437,6 +1465,7 @@ namespace ApiSdk {
             var builder = new ReportsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAuthenticationMethodsNavCommand());
             nonExecCommands.Add(builder.BuildDailyPrintUsageByPrinterNavCommand());
             nonExecCommands.Add(builder.BuildDailyPrintUsageByUserNavCommand());
             nonExecCommands.Add(builder.BuildDeviceConfigurationDeviceActivityNavCommand());
@@ -1745,6 +1774,7 @@ namespace ApiSdk {
             execCommands.Add(builder.BuildPatchCommand());
             nonExecCommands.Add(builder.BuildSecureScoreControlProfilesNavCommand());
             nonExecCommands.Add(builder.BuildSecureScoresNavCommand());
+            nonExecCommands.Add(builder.BuildThreatIntelligenceNavCommand());
             nonExecCommands.Add(builder.BuildTriggersNavCommand());
             nonExecCommands.Add(builder.BuildTriggerTypesNavCommand());
             foreach (var cmd in execCommands)

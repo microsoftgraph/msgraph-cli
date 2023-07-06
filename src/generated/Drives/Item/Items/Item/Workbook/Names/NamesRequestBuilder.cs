@@ -146,11 +146,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Names {
         }
         /// <summary>
         /// Retrieve a list of nameditem objects.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/workbook-list-names?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/nameditem-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of nameditem objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/workbook-list-names?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of nameditem objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/nameditem-list?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;

@@ -53,11 +53,12 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to managedEBooks for deviceAppManagement
+        /// Create a new iosVppEBook object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-books-iosvppebook-create?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to managedEBooks for deviceAppManagement";
+            command.Description = "Create a new iosVppEBook object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-books-iosvppebook-create?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -104,11 +105,12 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks {
             return command;
         }
         /// <summary>
-        /// The Managed eBook.
+        /// List properties and relationships of the iosVppEBook objects.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-books-iosvppebook-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The Managed eBook.";
+            command.Description = "List properties and relationships of the iosVppEBook objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-books-iosvppebook-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -214,7 +216,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks {
         public ManagedEBooksRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/managedEBooks{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The Managed eBook.
+        /// List properties and relationships of the iosVppEBook objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -240,7 +242,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to managedEBooks for deviceAppManagement
+        /// Create a new iosVppEBook object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -268,7 +270,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks {
             return requestInfo;
         }
         /// <summary>
-        /// The Managed eBook.
+        /// List properties and relationships of the iosVppEBook objects.
         /// </summary>
         public class ManagedEBooksRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

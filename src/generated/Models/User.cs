@@ -245,6 +245,14 @@ namespace ApiSdk.Models {
 #else
         public List<ApiSdk.Models.Drive> Drives { get; set; }
 #endif
+        /// <summary>The employeeExperience property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public EmployeeExperienceUser? EmployeeExperience { get; set; }
+#nullable restore
+#else
+        public EmployeeExperienceUser EmployeeExperience { get; set; }
+#endif
         /// <summary>The date and time when the user was hired or will start work in case of a future hire. Returned only on $select. Supports $filter (eq, ne, not , ge, le, in).</summary>
         public DateTimeOffset? EmployeeHireDate { get; set; }
         /// <summary>The employee identifier assigned to the user by the organization. The maximum length is 16 characters. Returned only on $select. Supports $filter (eq, ne, not , ge, le, in, startsWith, and eq on null values).</summary>
@@ -521,7 +529,7 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.Onenote Onenote { get; set; }
 #endif
-        /// <summary>The onlineMeetings property</summary>
+        /// <summary>Information about a meeting, including the URL used to join a meeting, the attendees&apos; list, and the description.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<OnlineMeeting>? OnlineMeetings { get; set; }
@@ -725,6 +733,14 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.Presence Presence { get; set; }
 #endif
+        /// <summary>The print property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public UserPrint? Print { get; set; }
+#nullable restore
+#else
+        public UserPrint Print { get; set; }
+#endif
         /// <summary>The plans that are provisioned for the user. Read-only. Not nullable. Returned only on $select. Supports $filter (eq, not, ge, le).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -833,7 +849,7 @@ namespace ApiSdk.Models {
 #else
         public string Surname { get; set; }
 #endif
-        /// <summary>The teamwork property</summary>
+        /// <summary>A container for Microsoft Teams features available for the user. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public UserTeamwork? Teamwork { get; set; }
@@ -933,6 +949,7 @@ namespace ApiSdk.Models {
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"drive", n => { Drive = n.GetObjectValue<ApiSdk.Models.Drive>(ApiSdk.Models.Drive.CreateFromDiscriminatorValue); } },
                 {"drives", n => { Drives = n.GetCollectionOfObjectValues<ApiSdk.Models.Drive>(ApiSdk.Models.Drive.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"employeeExperience", n => { EmployeeExperience = n.GetObjectValue<EmployeeExperienceUser>(EmployeeExperienceUser.CreateFromDiscriminatorValue); } },
                 {"employeeHireDate", n => { EmployeeHireDate = n.GetDateTimeOffsetValue(); } },
                 {"employeeId", n => { EmployeeId = n.GetStringValue(); } },
                 {"employeeLeaveDateTime", n => { EmployeeLeaveDateTime = n.GetDateTimeOffsetValue(); } },
@@ -999,6 +1016,7 @@ namespace ApiSdk.Models {
                 {"preferredLanguage", n => { PreferredLanguage = n.GetStringValue(); } },
                 {"preferredName", n => { PreferredName = n.GetStringValue(); } },
                 {"presence", n => { Presence = n.GetObjectValue<ApiSdk.Models.Presence>(ApiSdk.Models.Presence.CreateFromDiscriminatorValue); } },
+                {"print", n => { Print = n.GetObjectValue<UserPrint>(UserPrint.CreateFromDiscriminatorValue); } },
                 {"provisionedPlans", n => { ProvisionedPlans = n.GetCollectionOfObjectValues<ProvisionedPlan>(ProvisionedPlan.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"proxyAddresses", n => { ProxyAddresses = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"registeredDevices", n => { RegisteredDevices = n.GetCollectionOfObjectValues<DirectoryObject>(DirectoryObject.CreateFromDiscriminatorValue)?.ToList(); } },
@@ -1062,6 +1080,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteObjectValue<ApiSdk.Models.Drive>("drive", Drive);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.Drive>("drives", Drives);
+            writer.WriteObjectValue<EmployeeExperienceUser>("employeeExperience", EmployeeExperience);
             writer.WriteDateTimeOffsetValue("employeeHireDate", EmployeeHireDate);
             writer.WriteStringValue("employeeId", EmployeeId);
             writer.WriteDateTimeOffsetValue("employeeLeaveDateTime", EmployeeLeaveDateTime);
@@ -1128,6 +1147,7 @@ namespace ApiSdk.Models {
             writer.WriteStringValue("preferredLanguage", PreferredLanguage);
             writer.WriteStringValue("preferredName", PreferredName);
             writer.WriteObjectValue<ApiSdk.Models.Presence>("presence", Presence);
+            writer.WriteObjectValue<UserPrint>("print", Print);
             writer.WriteCollectionOfObjectValues<ProvisionedPlan>("provisionedPlans", ProvisionedPlans);
             writer.WriteCollectionOfPrimitiveValues<string>("proxyAddresses", ProxyAddresses);
             writer.WriteCollectionOfObjectValues<DirectoryObject>("registeredDevices", RegisteredDevices);

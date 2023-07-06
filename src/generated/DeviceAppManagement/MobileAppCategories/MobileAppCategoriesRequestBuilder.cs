@@ -47,11 +47,12 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to mobileAppCategories for deviceAppManagement
+        /// Create a new mobileAppCategory object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-apps-mobileappcategory-create?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to mobileAppCategories for deviceAppManagement";
+            command.Description = "Create a new mobileAppCategory object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-apps-mobileappcategory-create?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -98,11 +99,12 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories {
             return command;
         }
         /// <summary>
-        /// The mobile app categories.
+        /// List properties and relationships of the mobileAppCategory objects.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-apps-mobileappcategory-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The mobile app categories.";
+            command.Description = "List properties and relationships of the mobileAppCategory objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-apps-mobileappcategory-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -208,7 +210,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories {
         public MobileAppCategoriesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileAppCategories{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The mobile app categories.
+        /// List properties and relationships of the mobileAppCategory objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -234,7 +236,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to mobileAppCategories for deviceAppManagement
+        /// Create a new mobileAppCategory object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -262,7 +264,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppCategories {
             return requestInfo;
         }
         /// <summary>
-        /// The mobile app categories.
+        /// List properties and relationships of the mobileAppCategory objects.
         /// </summary>
         public class MobileAppCategoriesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

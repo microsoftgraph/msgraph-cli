@@ -19,10 +19,11 @@ namespace ApiSdk.DeviceAppManagement.SyncMicrosoftStoreForBusinessApps {
     public class SyncMicrosoftStoreForBusinessAppsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Syncs Intune account with Microsoft Store For Business
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-onboarding-deviceappmanagement-syncmicrosoftstoreforbusinessapps?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Syncs Intune account with Microsoft Store For Business";
+            command.Description = "Syncs Intune account with Microsoft Store For Business\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-onboarding-deviceappmanagement-syncmicrosoftstoreforbusinessapps?view=graph-rest-1.0";
             command.SetHandler(async (invocationContext) => {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();

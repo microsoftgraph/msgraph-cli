@@ -18,11 +18,12 @@ namespace ApiSdk.GroupLifecyclePolicies.Item.AddGroup {
     /// </summary>
     public class AddGroupRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action addGroup
+        /// Adds specific groups to a lifecycle policy. This action limits the group lifecycle policy to a set of groups only if the **managedGroupTypes** property of groupLifecyclePolicy is set to `Selected`.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/grouplifecyclepolicy-addgroup?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action addGroup";
+            command.Description = "Adds specific groups to a lifecycle policy. This action limits the group lifecycle policy to a set of groups only if the **managedGroupTypes** property of groupLifecyclePolicy is set to `Selected`.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/grouplifecyclepolicy-addgroup?view=graph-rest-1.0";
             var groupLifecyclePolicyIdOption = new Option<string>("--group-lifecycle-policy-id", description: "The unique identifier of groupLifecyclePolicy") {
             };
             groupLifecyclePolicyIdOption.IsRequired = true;
@@ -81,7 +82,7 @@ namespace ApiSdk.GroupLifecyclePolicies.Item.AddGroup {
         public AddGroupRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/groupLifecyclePolicies/{groupLifecyclePolicy%2Did}/addGroup", pathParameters) {
         }
         /// <summary>
-        /// Invoke action addGroup
+        /// Adds specific groups to a lifecycle policy. This action limits the group lifecycle policy to a set of groups only if the **managedGroupTypes** property of groupLifecyclePolicy is set to `Selected`.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

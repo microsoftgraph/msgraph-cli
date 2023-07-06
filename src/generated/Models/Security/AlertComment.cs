@@ -34,7 +34,7 @@ namespace ApiSdk.Models.Security {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new alertComment and sets the default values.
+        /// Instantiates a new AlertComment and sets the default values.
         /// </summary>
         public AlertComment() {
             AdditionalData = new Dictionary<string, object>();

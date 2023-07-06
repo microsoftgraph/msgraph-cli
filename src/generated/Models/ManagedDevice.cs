@@ -174,6 +174,14 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>The date and time that the device last completed a successful sync with Intune. This property is read-only.</summary>
         public DateTimeOffset? LastSyncDateTime { get; private set; }
+        /// <summary>List of log collection requests</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<DeviceLogCollectionResponse>? LogCollectionRequests { get; set; }
+#nullable restore
+#else
+        public List<DeviceLogCollectionResponse> LogCollectionRequests { get; set; }
+#endif
         /// <summary>Automatically generated name to identify a device. Can be overwritten to a user friendly name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -332,6 +340,14 @@ namespace ApiSdk.Models {
 #else
         public string WiFiMacAddress { get; private set; }
 #endif
+        /// <summary>The device protection status. This property is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.WindowsProtectionState? WindowsProtectionState { get; set; }
+#nullable restore
+#else
+        public ApiSdk.Models.WindowsProtectionState WindowsProtectionState { get; set; }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -377,6 +393,7 @@ namespace ApiSdk.Models {
                 {"isSupervised", n => { IsSupervised = n.GetBoolValue(); } },
                 {"jailBroken", n => { JailBroken = n.GetStringValue(); } },
                 {"lastSyncDateTime", n => { LastSyncDateTime = n.GetDateTimeOffsetValue(); } },
+                {"logCollectionRequests", n => { LogCollectionRequests = n.GetCollectionOfObjectValues<DeviceLogCollectionResponse>(DeviceLogCollectionResponse.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"managedDeviceName", n => { ManagedDeviceName = n.GetStringValue(); } },
                 {"managedDeviceOwnerType", n => { ManagedDeviceOwnerType = n.GetEnumValue<ManagedDeviceOwnerType>(); } },
                 {"managementAgent", n => { ManagementAgent = n.GetEnumValue<ManagementAgentType>(); } },
@@ -402,6 +419,7 @@ namespace ApiSdk.Models {
                 {"userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
                 {"users", n => { Users = n.GetCollectionOfObjectValues<User>(User.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"wiFiMacAddress", n => { WiFiMacAddress = n.GetStringValue(); } },
+                {"windowsProtectionState", n => { WindowsProtectionState = n.GetObjectValue<ApiSdk.Models.WindowsProtectionState>(ApiSdk.Models.WindowsProtectionState.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -419,12 +437,14 @@ namespace ApiSdk.Models {
             writer.WriteEnumValue<DeviceRegistrationState>("deviceRegistrationState", DeviceRegistrationState);
             writer.WriteEnumValue<DeviceManagementExchangeAccessState>("exchangeAccessState", ExchangeAccessState);
             writer.WriteEnumValue<DeviceManagementExchangeAccessStateReason>("exchangeAccessStateReason", ExchangeAccessStateReason);
+            writer.WriteCollectionOfObjectValues<DeviceLogCollectionResponse>("logCollectionRequests", LogCollectionRequests);
             writer.WriteStringValue("managedDeviceName", ManagedDeviceName);
             writer.WriteEnumValue<ManagedDeviceOwnerType>("managedDeviceOwnerType", ManagedDeviceOwnerType);
             writer.WriteEnumValue<ManagementAgentType>("managementAgent", ManagementAgent);
             writer.WriteStringValue("notes", Notes);
             writer.WriteEnumValue<ManagedDevicePartnerReportedHealthState>("partnerReportedThreatState", PartnerReportedThreatState);
             writer.WriteCollectionOfObjectValues<User>("users", Users);
+            writer.WriteObjectValue<ApiSdk.Models.WindowsProtectionState>("windowsProtectionState", WindowsProtectionState);
         }
     }
 }

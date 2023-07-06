@@ -47,11 +47,12 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
             return command;
         }
         /// <summary>
-        /// Create new navigation property to windowsInformationProtectionAppLearningSummaries for deviceManagement
+        /// Create a new windowsInformationProtectionAppLearningSummary object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-wip-windowsinformationprotectionapplearningsummary-create?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to windowsInformationProtectionAppLearningSummaries for deviceManagement";
+            command.Description = "Create a new windowsInformationProtectionAppLearningSummary object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-wip-windowsinformationprotectionapplearningsummary-create?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -98,11 +99,12 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
             return command;
         }
         /// <summary>
-        /// The windows information protection app learning summaries.
+        /// List properties and relationships of the windowsInformationProtectionAppLearningSummary objects.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-wip-windowsinformationprotectionapplearningsummary-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The windows information protection app learning summaries.";
+            command.Description = "List properties and relationships of the windowsInformationProtectionAppLearningSummary objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-wip-windowsinformationprotectionapplearningsummary-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -208,7 +210,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
         public WindowsInformationProtectionAppLearningSummariesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/windowsInformationProtectionAppLearningSummaries{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The windows information protection app learning summaries.
+        /// List properties and relationships of the windowsInformationProtectionAppLearningSummary objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -234,7 +236,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to windowsInformationProtectionAppLearningSummaries for deviceManagement
+        /// Create a new windowsInformationProtectionAppLearningSummary object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -262,7 +264,7 @@ namespace ApiSdk.DeviceManagement.WindowsInformationProtectionAppLearningSummari
             return requestInfo;
         }
         /// <summary>
-        /// The windows information protection app learning summaries.
+        /// List properties and relationships of the windowsInformationProtectionAppLearningSummary objects.
         /// </summary>
         public class WindowsInformationProtectionAppLearningSummariesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

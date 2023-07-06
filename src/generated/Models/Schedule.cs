@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class Schedule : Entity, IParsable {
         /// <summary>Indicates whether the schedule is enabled for the team. Required.</summary>
         public bool? Enabled { get; set; }
-        /// <summary>The offerShiftRequests property</summary>
+        /// <summary>The offer requests for shifts in the schedule.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<OfferShiftRequest>? OfferShiftRequests { get; set; }
@@ -61,7 +61,7 @@ namespace ApiSdk.Models {
 #else
         public List<Shift> Shifts { get; set; }
 #endif
-        /// <summary>The swapShiftsChangeRequests property</summary>
+        /// <summary>The swap requests for shifts in the schedule.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<SwapShiftsChangeRequest>? SwapShiftsChangeRequests { get; set; }
@@ -81,7 +81,7 @@ namespace ApiSdk.Models {
 #else
         public List<TimeOffReason> TimeOffReasons { get; set; }
 #endif
-        /// <summary>The timeOffRequests property</summary>
+        /// <summary>The time off requests in the schedule.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<TimeOffRequest>? TimeOffRequests { get; set; }

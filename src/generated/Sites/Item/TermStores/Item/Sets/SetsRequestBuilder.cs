@@ -52,11 +52,12 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to sets for sites
+        /// Create a new set object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/termstore-set-post?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to sets for sites";
+            command.Description = "Create a new set object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/termstore-set-post?view=graph-rest-1.0";
             var siteIdOption = new Option<string>("--site-id", description: "The unique identifier of site") {
             };
             siteIdOption.IsRequired = true;
@@ -263,7 +264,7 @@ namespace ApiSdk.Sites.Item.TermStores.Item.Sets {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to sets for sites
+        /// Create a new set object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

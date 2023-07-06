@@ -1,5 +1,6 @@
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
+using ApiSdk.Reports.AuthenticationMethods;
 using ApiSdk.Reports.DailyPrintUsageByPrinter;
 using ApiSdk.Reports.DailyPrintUsageByUser;
 using ApiSdk.Reports.DeviceConfigurationDeviceActivity;
@@ -125,6 +126,33 @@ namespace ApiSdk.Reports {
     /// </summary>
     public class ReportsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
+        /// Provides operations to manage the authenticationMethods property of the microsoft.graph.reportRoot entity.
+        /// </summary>
+        public Command BuildAuthenticationMethodsNavCommand() {
+            var command = new Command("authentication-methods");
+            command.Description = "Provides operations to manage the authenticationMethods property of the microsoft.graph.reportRoot entity.";
+            var builder = new AuthenticationMethodsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildUserRegistrationDetailsNavCommand());
+            nonExecCommands.Add(builder.BuildUsersRegisteredByFeatureNavCommand());
+            nonExecCommands.Add(builder.BuildUsersRegisteredByFeatureWithIncludedUserTypesWithIncludedUserRolesRbCommand());
+            nonExecCommands.Add(builder.BuildUsersRegisteredByMethodNavCommand());
+            nonExecCommands.Add(builder.BuildUsersRegisteredByMethodWithIncludedUserTypesWithIncludedUserRolesRbCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the dailyPrintUsageByPrinter property of the microsoft.graph.reportRoot entity.
         /// </summary>
         public Command BuildDailyPrintUsageByPrinterNavCommand() {
@@ -205,11 +233,12 @@ namespace ApiSdk.Reports {
             return command;
         }
         /// <summary>
-        /// Get reports
+        /// Read properties and relationships of the reportRoot object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-reportroot-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get reports";
+            command.Description = "Read properties and relationships of the reportRoot object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-reportroot-get?view=graph-rest-1.0";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -1795,11 +1824,12 @@ namespace ApiSdk.Reports {
             return command;
         }
         /// <summary>
-        /// Update reports
+        /// Update the properties of a reportRoot object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-reportroot-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update reports";
+            command.Description = "Update the properties of a reportRoot object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-reportroot-update?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -1877,7 +1907,7 @@ namespace ApiSdk.Reports {
         public ReportsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/reports{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get reports
+        /// Read properties and relationships of the reportRoot object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -1903,7 +1933,7 @@ namespace ApiSdk.Reports {
             return requestInfo;
         }
         /// <summary>
-        /// Update reports
+        /// Update the properties of a reportRoot object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -1931,7 +1961,7 @@ namespace ApiSdk.Reports {
             return requestInfo;
         }
         /// <summary>
-        /// Get reports
+        /// Read properties and relationships of the reportRoot object.
         /// </summary>
         public class ReportsRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

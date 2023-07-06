@@ -19,10 +19,11 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.BypassActivationLock {
     public class BypassActivationLockRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Bypass activation lock
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-manageddevice-bypassactivationlock?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Bypass activation lock";
+            command.Description = "Bypass activation lock\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-manageddevice-bypassactivationlock?view=graph-rest-1.0";
             var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "The unique identifier of managedDevice") {
             };
             managedDeviceIdOption.IsRequired = true;

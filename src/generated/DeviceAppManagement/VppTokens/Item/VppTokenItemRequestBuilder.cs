@@ -20,11 +20,12 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
     /// </summary>
     public class VppTokenItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property vppTokens for deviceAppManagement
+        /// Deletes a vppToken.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-onboarding-vpptoken-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property vppTokens for deviceAppManagement";
+            command.Description = "Deletes a vppToken.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-onboarding-vpptoken-delete?view=graph-rest-1.0";
             var vppTokenIdOption = new Option<string>("--vpp-token-id", description: "The unique identifier of vppToken") {
             };
             vppTokenIdOption.IsRequired = true;
@@ -53,11 +54,12 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
             return command;
         }
         /// <summary>
-        /// List of Vpp tokens for this organization.
+        /// Read properties and relationships of the vppToken object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-onboarding-vpptoken-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "List of Vpp tokens for this organization.";
+            command.Description = "Read properties and relationships of the vppToken object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-onboarding-vpptoken-get?view=graph-rest-1.0";
             var vppTokenIdOption = new Option<string>("--vpp-token-id", description: "The unique identifier of vppToken") {
             };
             vppTokenIdOption.IsRequired = true;
@@ -114,11 +116,12 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property vppTokens in deviceAppManagement
+        /// Update the properties of a vppToken object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-onboarding-vpptoken-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property vppTokens in deviceAppManagement";
+            command.Description = "Update the properties of a vppToken object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-onboarding-vpptoken-update?view=graph-rest-1.0";
             var vppTokenIdOption = new Option<string>("--vpp-token-id", description: "The unique identifier of vppToken") {
             };
             vppTokenIdOption.IsRequired = true;
@@ -192,7 +195,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
         public VppTokenItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/vppTokens/{vppToken%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property vppTokens for deviceAppManagement
+        /// Deletes a vppToken.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -217,7 +220,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
             return requestInfo;
         }
         /// <summary>
-        /// List of Vpp tokens for this organization.
+        /// Read properties and relationships of the vppToken object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -243,7 +246,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property vppTokens in deviceAppManagement
+        /// Update the properties of a vppToken object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -271,7 +274,7 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item {
             return requestInfo;
         }
         /// <summary>
-        /// List of Vpp tokens for this organization.
+        /// Read properties and relationships of the vppToken object.
         /// </summary>
         public class VppTokenItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

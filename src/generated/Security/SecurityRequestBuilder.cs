@@ -8,6 +8,7 @@ using ApiSdk.Security.Incidents;
 using ApiSdk.Security.MicrosoftGraphSecurityRunHuntingQuery;
 using ApiSdk.Security.SecureScoreControlProfiles;
 using ApiSdk.Security.SecureScores;
+using ApiSdk.Security.ThreatIntelligence;
 using ApiSdk.Security.TriggerTypes;
 using ApiSdk.Security.Triggers;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -316,6 +317,38 @@ namespace ApiSdk.Security {
                 command.AddCommand(cmd);
             }
             foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the threatIntelligence property of the microsoft.graph.security entity.
+        /// </summary>
+        public Command BuildThreatIntelligenceNavCommand() {
+            var command = new Command("threat-intelligence");
+            command.Description = "Provides operations to manage the threatIntelligence property of the microsoft.graph.security entity.";
+            var builder = new ThreatIntelligenceRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildArticleIndicatorsNavCommand());
+            nonExecCommands.Add(builder.BuildArticlesNavCommand());
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            nonExecCommands.Add(builder.BuildHostComponentsNavCommand());
+            nonExecCommands.Add(builder.BuildHostCookiesNavCommand());
+            nonExecCommands.Add(builder.BuildHostsNavCommand());
+            nonExecCommands.Add(builder.BuildHostTrackersNavCommand());
+            nonExecCommands.Add(builder.BuildIntelligenceProfileIndicatorsNavCommand());
+            nonExecCommands.Add(builder.BuildIntelProfilesNavCommand());
+            nonExecCommands.Add(builder.BuildPassiveDnsRecordsNavCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildVulnerabilitiesNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }

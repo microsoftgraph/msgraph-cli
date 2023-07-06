@@ -133,12 +133,12 @@ namespace ApiSdk.Users.Item.Messages.Item {
             return command;
         }
         /// <summary>
-        /// Delete a message in the specified user&apos;s mailbox, or delete a relationship of the message.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/message-delete?view=graph-rest-1.0" />
+        /// Delete eventMessage.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/eventmessage-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a message in the specified user's mailbox, or delete a relationship of the message.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/message-delete?view=graph-rest-1.0";
+            command.Description = "Delete eventMessage.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/eventmessage-delete?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -214,11 +214,11 @@ namespace ApiSdk.Users.Item.Messages.Item {
         }
         /// <summary>
         /// The messages in a mailbox or folder. Read-only. Nullable.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/eventmessage-get?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/singlevaluelegacyextendedproperty-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The messages in a mailbox or folder. Read-only. Nullable.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/eventmessage-get?view=graph-rest-1.0";
+            command.Description = "The messages in a mailbox or folder. Read-only. Nullable.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/singlevaluelegacyextendedproperty-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -302,12 +302,12 @@ namespace ApiSdk.Users.Item.Messages.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a message object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/message-update?view=graph-rest-1.0" />
+        /// Update the properties of an eventMessage object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/eventmessage-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a message object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/message-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of an eventMessage object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/eventmessage-update?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -417,7 +417,7 @@ namespace ApiSdk.Users.Item.Messages.Item {
         public MessageItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/messages/{message%2Did}{?includeHiddenMessages*,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete a message in the specified user&apos;s mailbox, or delete a relationship of the message.
+        /// Delete eventMessage.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -468,7 +468,7 @@ namespace ApiSdk.Users.Item.Messages.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a message object.
+        /// Update the properties of an eventMessage object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

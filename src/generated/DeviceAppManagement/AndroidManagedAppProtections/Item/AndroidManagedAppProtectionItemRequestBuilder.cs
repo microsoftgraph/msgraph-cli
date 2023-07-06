@@ -72,11 +72,12 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property androidManagedAppProtections for deviceAppManagement
+        /// Deletes a androidManagedAppProtection.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-mam-androidmanagedappprotection-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property androidManagedAppProtections for deviceAppManagement";
+            command.Description = "Deletes a androidManagedAppProtection.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-mam-androidmanagedappprotection-delete?view=graph-rest-1.0";
             var androidManagedAppProtectionIdOption = new Option<string>("--android-managed-app-protection-id", description: "The unique identifier of androidManagedAppProtection") {
             };
             androidManagedAppProtectionIdOption.IsRequired = true;
@@ -122,11 +123,12 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
             return command;
         }
         /// <summary>
-        /// Android managed app policies.
+        /// Read properties and relationships of the androidManagedAppProtection object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-mam-androidmanagedappprotection-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Android managed app policies.";
+            command.Description = "Read properties and relationships of the androidManagedAppProtection object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-mam-androidmanagedappprotection-get?view=graph-rest-1.0";
             var androidManagedAppProtectionIdOption = new Option<string>("--android-managed-app-protection-id", description: "The unique identifier of androidManagedAppProtection") {
             };
             androidManagedAppProtectionIdOption.IsRequired = true;
@@ -183,11 +185,12 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property androidManagedAppProtections in deviceAppManagement
+        /// Update the properties of a androidManagedAppProtection object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-mam-androidmanagedappprotection-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property androidManagedAppProtections in deviceAppManagement";
+            command.Description = "Update the properties of a androidManagedAppProtection object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-mam-androidmanagedappprotection-update?view=graph-rest-1.0";
             var androidManagedAppProtectionIdOption = new Option<string>("--android-managed-app-protection-id", description: "The unique identifier of androidManagedAppProtection") {
             };
             androidManagedAppProtectionIdOption.IsRequired = true;
@@ -246,7 +249,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
         public AndroidManagedAppProtectionItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/androidManagedAppProtections/{androidManagedAppProtection%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property androidManagedAppProtections for deviceAppManagement
+        /// Deletes a androidManagedAppProtection.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -271,7 +274,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Android managed app policies.
+        /// Read properties and relationships of the androidManagedAppProtection object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -297,7 +300,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property androidManagedAppProtections in deviceAppManagement
+        /// Update the properties of a androidManagedAppProtection object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -325,7 +328,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Android managed app policies.
+        /// Read properties and relationships of the androidManagedAppProtection object.
         /// </summary>
         public class AndroidManagedAppProtectionItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

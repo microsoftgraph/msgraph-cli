@@ -64,7 +64,7 @@ namespace ApiSdk.Models.CallRecords {
         public List<MediaStream> Streams { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new Media and sets the default values.
+        /// Instantiates a new media and sets the default values.
         /// </summary>
         public Media() {
             AdditionalData = new Dictionary<string, object>();

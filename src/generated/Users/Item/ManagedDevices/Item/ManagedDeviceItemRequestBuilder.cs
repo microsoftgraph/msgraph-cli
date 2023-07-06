@@ -8,6 +8,7 @@ using ApiSdk.Users.Item.ManagedDevices.Item.DeviceCompliancePolicyStates;
 using ApiSdk.Users.Item.ManagedDevices.Item.DeviceConfigurationStates;
 using ApiSdk.Users.Item.ManagedDevices.Item.DisableLostMode;
 using ApiSdk.Users.Item.ManagedDevices.Item.LocateDevice;
+using ApiSdk.Users.Item.ManagedDevices.Item.LogCollectionRequests;
 using ApiSdk.Users.Item.ManagedDevices.Item.LogoutSharedAppleDeviceActiveUser;
 using ApiSdk.Users.Item.ManagedDevices.Item.RebootNow;
 using ApiSdk.Users.Item.ManagedDevices.Item.RecoverPasscode;
@@ -21,6 +22,7 @@ using ApiSdk.Users.Item.ManagedDevices.Item.UpdateWindowsDeviceAccount;
 using ApiSdk.Users.Item.ManagedDevices.Item.Users;
 using ApiSdk.Users.Item.ManagedDevices.Item.WindowsDefenderScan;
 using ApiSdk.Users.Item.ManagedDevices.Item.WindowsDefenderUpdateSignatures;
+using ApiSdk.Users.Item.ManagedDevices.Item.WindowsProtectionState;
 using ApiSdk.Users.Item.ManagedDevices.Item.Wipe;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
@@ -289,6 +291,31 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to manage the logCollectionRequests property of the microsoft.graph.managedDevice entity.
+        /// </summary>
+        public Command BuildLogCollectionRequestsNavCommand() {
+            var command = new Command("log-collection-requests");
+            command.Description = "Provides operations to manage the logCollectionRequests property of the microsoft.graph.managedDevice entity.";
+            var builder = new LogCollectionRequestsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Provides operations to call the logoutSharedAppleDeviceActiveUser method.
         /// </summary>
         public Command BuildLogoutSharedAppleDeviceActiveUserNavCommand() {
@@ -541,6 +568,29 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item {
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the windowsProtectionState property of the microsoft.graph.managedDevice entity.
+        /// </summary>
+        public Command BuildWindowsProtectionStateNavCommand() {
+            var command = new Command("windows-protection-state");
+            command.Description = "Provides operations to manage the windowsProtectionState property of the microsoft.graph.managedDevice entity.";
+            var builder = new WindowsProtectionStateRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            nonExecCommands.Add(builder.BuildDetectedMalwareStateNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }

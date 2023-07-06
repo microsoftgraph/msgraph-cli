@@ -26,7 +26,7 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new averageComparativeScore and sets the default values.
+        /// Instantiates a new AverageComparativeScore and sets the default values.
         /// </summary>
         public AverageComparativeScore() {
             AdditionalData = new Dictionary<string, object>();

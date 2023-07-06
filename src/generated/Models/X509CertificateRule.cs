@@ -28,7 +28,7 @@ namespace ApiSdk.Models {
         /// <summary>The type of the X.509 certificate mode configuration rule. The possible values are: issuerSubject, policyOID, unknownFutureValue. Required.</summary>
         public ApiSdk.Models.X509CertificateRuleType? X509CertificateRuleType { get; set; }
         /// <summary>
-        /// Instantiates a new X509CertificateRule and sets the default values.
+        /// Instantiates a new x509CertificateRule and sets the default values.
         /// </summary>
         public X509CertificateRule() {
             AdditionalData = new Dictionary<string, object>();

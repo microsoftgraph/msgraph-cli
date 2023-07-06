@@ -19,10 +19,11 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.Wipe {
     public class WipeRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Wipe a device
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-manageddevice-wipe?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Wipe a device";
+            command.Description = "Wipe a device\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-manageddevice-wipe?view=graph-rest-1.0";
             var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "The unique identifier of managedDevice") {
             };
             managedDeviceIdOption.IsRequired = true;

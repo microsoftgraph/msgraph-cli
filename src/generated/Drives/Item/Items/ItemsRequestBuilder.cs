@@ -28,6 +28,7 @@ namespace ApiSdk.Drives.Item.Items {
             var commands = new List<Command>();
             var builder = new DriveItemItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildAnalyticsNavCommand());
+            commands.Add(builder.BuildAssignSensitivityLabelNavCommand());
             commands.Add(builder.BuildCheckinNavCommand());
             commands.Add(builder.BuildCheckoutNavCommand());
             commands.Add(builder.BuildChildrenNavCommand());
@@ -39,6 +40,7 @@ namespace ApiSdk.Drives.Item.Items {
             executables.Add(builder.BuildDeleteCommand());
             commands.Add(builder.BuildDeltaNavCommand());
             commands.Add(builder.BuildDeltaWithTokenRbCommand());
+            commands.Add(builder.BuildExtractSensitivityLabelsNavCommand());
             commands.Add(builder.BuildFollowNavCommand());
             commands.Add(builder.BuildGetActivitiesByIntervalNavCommand());
             commands.Add(builder.BuildGetActivitiesByIntervalWithStartDateTimeWithEndDateTimeWithIntervalRbCommand());

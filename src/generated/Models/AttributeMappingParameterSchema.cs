@@ -30,7 +30,7 @@ namespace ApiSdk.Models {
         /// <summary>The type property</summary>
         public AttributeType? Type { get; set; }
         /// <summary>
-        /// Instantiates a new AttributeMappingParameterSchema and sets the default values.
+        /// Instantiates a new attributeMappingParameterSchema and sets the default values.
         /// </summary>
         public AttributeMappingParameterSchema() {
             AdditionalData = new Dictionary<string, object>();

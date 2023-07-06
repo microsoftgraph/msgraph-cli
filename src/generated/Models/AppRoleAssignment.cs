@@ -38,7 +38,7 @@ namespace ApiSdk.Models {
         /// <summary>The unique identifier (id) for the resource service principal for which the assignment is made. Required on create. Supports $filter (eq only).</summary>
         public Guid? ResourceId { get; set; }
         /// <summary>
-        /// Instantiates a new AppRoleAssignment and sets the default values.
+        /// Instantiates a new appRoleAssignment and sets the default values.
         /// </summary>
         public AppRoleAssignment() : base() {
             OdataType = "#microsoft.graph.appRoleAssignment";

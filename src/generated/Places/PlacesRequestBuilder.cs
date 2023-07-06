@@ -1,5 +1,6 @@
 using ApiSdk.Places.Count;
 using ApiSdk.Places.GraphRoom;
+using ApiSdk.Places.GraphRoomList;
 using ApiSdk.Places.Item;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.IO;
@@ -25,6 +26,7 @@ namespace ApiSdk.Places {
             var builder = new PlaceItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildDeleteCommand());
             commands.Add(builder.BuildGraphRoomByIdNavCommand());
+            commands.Add(builder.BuildGraphRoomListByIdNavCommand());
             executables.Add(builder.BuildPatchCommand());
             return new(executables, commands);
         }
@@ -38,6 +40,27 @@ namespace ApiSdk.Places {
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to roomList.
+        /// </summary>
+        public Command BuildGraphRoomListNavCommand() {
+            var command = new Command("graph-room-list");
+            command.Description = "Casts the previous resource to roomList.";
+            var builder = new GraphRoomListRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }

@@ -20,11 +20,12 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
     /// </summary>
     public class DetectedAppItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property detectedApps for deviceManagement
+        /// Deletes a detectedApp.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-detectedapp-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property detectedApps for deviceManagement";
+            command.Description = "Deletes a detectedApp.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-detectedapp-delete?view=graph-rest-1.0";
             var detectedAppIdOption = new Option<string>("--detected-app-id", description: "The unique identifier of detectedApp") {
             };
             detectedAppIdOption.IsRequired = true;
@@ -53,11 +54,12 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
             return command;
         }
         /// <summary>
-        /// The list of detected apps associated with a device.
+        /// Read properties and relationships of the detectedApp object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-detectedapp-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The list of detected apps associated with a device.";
+            command.Description = "Read properties and relationships of the detectedApp object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-detectedapp-get?view=graph-rest-1.0";
             var detectedAppIdOption = new Option<string>("--detected-app-id", description: "The unique identifier of detectedApp") {
             };
             detectedAppIdOption.IsRequired = true;
@@ -138,11 +140,12 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property detectedApps in deviceManagement
+        /// Update the properties of a detectedApp object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-detectedapp-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property detectedApps in deviceManagement";
+            command.Description = "Update the properties of a detectedApp object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-detectedapp-update?view=graph-rest-1.0";
             var detectedAppIdOption = new Option<string>("--detected-app-id", description: "The unique identifier of detectedApp") {
             };
             detectedAppIdOption.IsRequired = true;
@@ -201,7 +204,7 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
         public DetectedAppItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/detectedApps/{detectedApp%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property detectedApps for deviceManagement
+        /// Deletes a detectedApp.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -226,7 +229,7 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The list of detected apps associated with a device.
+        /// Read properties and relationships of the detectedApp object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -252,7 +255,7 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property detectedApps in deviceManagement
+        /// Update the properties of a detectedApp object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -280,7 +283,7 @@ namespace ApiSdk.DeviceManagement.DetectedApps.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The list of detected apps associated with a device.
+        /// Read properties and relationships of the detectedApp object.
         /// </summary>
         public class DetectedAppItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

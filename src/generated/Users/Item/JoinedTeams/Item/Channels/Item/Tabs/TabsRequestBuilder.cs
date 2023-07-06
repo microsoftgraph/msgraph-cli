@@ -49,11 +49,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Tabs {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to tabs for users
+        /// Adds (pins) a tab to the specified channel within a team. The corresponding app must already be installed in the team.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/channel-post-tabs?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to tabs for users";
+            command.Description = "Adds (pins) a tab to the specified channel within a team. The corresponding app must already be installed in the team.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-post-tabs?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -273,7 +274,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Tabs {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to tabs for users
+        /// Adds (pins) a tab to the specified channel within a team. The corresponding app must already be installed in the team.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

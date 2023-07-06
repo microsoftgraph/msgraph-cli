@@ -49,11 +49,12 @@ namespace ApiSdk.DeviceManagement.DeviceManagementPartners {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to deviceManagementPartners for deviceManagement
+        /// Create a new deviceManagementPartner object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-onboarding-devicemanagementpartner-create?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to deviceManagementPartners for deviceManagement";
+            command.Description = "Create a new deviceManagementPartner object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-onboarding-devicemanagementpartner-create?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -100,11 +101,12 @@ namespace ApiSdk.DeviceManagement.DeviceManagementPartners {
             return command;
         }
         /// <summary>
-        /// The list of Device Management Partners configured by the tenant.
+        /// List properties and relationships of the deviceManagementPartner objects.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-onboarding-devicemanagementpartner-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The list of Device Management Partners configured by the tenant.";
+            command.Description = "List properties and relationships of the deviceManagementPartner objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-onboarding-devicemanagementpartner-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -210,7 +212,7 @@ namespace ApiSdk.DeviceManagement.DeviceManagementPartners {
         public DeviceManagementPartnersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceManagementPartners{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// The list of Device Management Partners configured by the tenant.
+        /// List properties and relationships of the deviceManagementPartner objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -236,7 +238,7 @@ namespace ApiSdk.DeviceManagement.DeviceManagementPartners {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to deviceManagementPartners for deviceManagement
+        /// Create a new deviceManagementPartner object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -264,7 +266,7 @@ namespace ApiSdk.DeviceManagement.DeviceManagementPartners {
             return requestInfo;
         }
         /// <summary>
-        /// The list of Device Management Partners configured by the tenant.
+        /// List properties and relationships of the deviceManagementPartner objects.
         /// </summary>
         public class DeviceManagementPartnersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

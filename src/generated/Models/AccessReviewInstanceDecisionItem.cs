@@ -39,6 +39,14 @@ namespace ApiSdk.Models {
 #else
         public string Decision { get; set; }
 #endif
+        /// <summary>Insights are recommendations to reviewers on whether to approve or deny a decision. There can be multiple insights associated with an accessReviewInstanceDecisionItem.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<GovernanceInsight>? Insights { get; set; }
+#nullable restore
+#else
+        public List<GovernanceInsight> Insights { get; set; }
+#endif
         /// <summary>Justification left by the reviewer when they made the decision.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -115,6 +123,7 @@ namespace ApiSdk.Models {
                 {"appliedDateTime", n => { AppliedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"applyResult", n => { ApplyResult = n.GetStringValue(); } },
                 {"decision", n => { Decision = n.GetStringValue(); } },
+                {"insights", n => { Insights = n.GetCollectionOfObjectValues<GovernanceInsight>(GovernanceInsight.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"justification", n => { Justification = n.GetStringValue(); } },
                 {"principal", n => { Principal = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
                 {"principalLink", n => { PrincipalLink = n.GetStringValue(); } },
@@ -137,6 +146,7 @@ namespace ApiSdk.Models {
             writer.WriteDateTimeOffsetValue("appliedDateTime", AppliedDateTime);
             writer.WriteStringValue("applyResult", ApplyResult);
             writer.WriteStringValue("decision", Decision);
+            writer.WriteCollectionOfObjectValues<GovernanceInsight>("insights", Insights);
             writer.WriteStringValue("justification", Justification);
             writer.WriteObjectValue<Identity>("principal", Principal);
             writer.WriteStringValue("principalLink", PrincipalLink);

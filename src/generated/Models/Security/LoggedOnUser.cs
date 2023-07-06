@@ -32,7 +32,7 @@ namespace ApiSdk.Models.Security {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new loggedOnUser and sets the default values.
+        /// Instantiates a new LoggedOnUser and sets the default values.
         /// </summary>
         public LoggedOnUser() {
             AdditionalData = new Dictionary<string, object>();

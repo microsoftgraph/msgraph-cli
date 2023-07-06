@@ -61,6 +61,14 @@ namespace ApiSdk.Models.Security {
 #else
         public List<ApiSdk.Models.SecureScore> SecureScores { get; set; }
 #endif
+        /// <summary>The threatIntelligence property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.Security.ThreatIntelligence? ThreatIntelligence { get; set; }
+#nullable restore
+#else
+        public ApiSdk.Models.Security.ThreatIntelligence ThreatIntelligence { get; set; }
+#endif
         /// <summary>The triggers property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -97,6 +105,7 @@ namespace ApiSdk.Models.Security {
                 {"incidents", n => { Incidents = n.GetCollectionOfObjectValues<Incident>(Incident.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"secureScoreControlProfiles", n => { SecureScoreControlProfiles = n.GetCollectionOfObjectValues<ApiSdk.Models.SecureScoreControlProfile>(ApiSdk.Models.SecureScoreControlProfile.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"secureScores", n => { SecureScores = n.GetCollectionOfObjectValues<ApiSdk.Models.SecureScore>(ApiSdk.Models.SecureScore.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"threatIntelligence", n => { ThreatIntelligence = n.GetObjectValue<ApiSdk.Models.Security.ThreatIntelligence>(ApiSdk.Models.Security.ThreatIntelligence.CreateFromDiscriminatorValue); } },
                 {"triggers", n => { Triggers = n.GetObjectValue<TriggersRoot>(TriggersRoot.CreateFromDiscriminatorValue); } },
                 {"triggerTypes", n => { TriggerTypes = n.GetObjectValue<TriggerTypesRoot>(TriggerTypesRoot.CreateFromDiscriminatorValue); } },
             };
@@ -115,6 +124,7 @@ namespace ApiSdk.Models.Security {
             writer.WriteCollectionOfObjectValues<Incident>("incidents", Incidents);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.SecureScoreControlProfile>("secureScoreControlProfiles", SecureScoreControlProfiles);
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.SecureScore>("secureScores", SecureScores);
+            writer.WriteObjectValue<ApiSdk.Models.Security.ThreatIntelligence>("threatIntelligence", ThreatIntelligence);
             writer.WriteObjectValue<TriggersRoot>("triggers", Triggers);
             writer.WriteObjectValue<TriggerTypesRoot>("triggerTypes", TriggerTypes);
         }

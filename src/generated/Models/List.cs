@@ -86,7 +86,7 @@ namespace ApiSdk.Models {
         public SystemFacet System { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new List and sets the default values.
+        /// Instantiates a new list and sets the default values.
         /// </summary>
         public List() : base() {
             OdataType = "#microsoft.graph.list";

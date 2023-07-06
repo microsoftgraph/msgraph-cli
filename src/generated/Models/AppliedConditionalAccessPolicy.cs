@@ -50,7 +50,7 @@ namespace ApiSdk.Models {
         /// <summary>Indicates the result of the CA policy that was triggered. Possible values are: success, failure, notApplied (Policy isn&apos;t applied because policy conditions were not met),notEnabled (This is due to the policy in disabled state), unknown, unknownFutureValue.</summary>
         public AppliedConditionalAccessPolicyResult? Result { get; set; }
         /// <summary>
-        /// Instantiates a new appliedConditionalAccessPolicy and sets the default values.
+        /// Instantiates a new AppliedConditionalAccessPolicy and sets the default values.
         /// </summary>
         public AppliedConditionalAccessPolicy() {
             AdditionalData = new Dictionary<string, object>();

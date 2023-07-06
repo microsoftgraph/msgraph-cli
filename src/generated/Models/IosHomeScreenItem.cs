@@ -27,7 +27,7 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new IosHomeScreenItem and sets the default values.
+        /// Instantiates a new iosHomeScreenItem and sets the default values.
         /// </summary>
         public IosHomeScreenItem() {
             AdditionalData = new Dictionary<string, object>();

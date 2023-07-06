@@ -135,7 +135,7 @@ namespace ApiSdk.Models {
 #else
         public List<ProvisionedPlan> ProvisionedPlans { get; set; }
 #endif
-        /// <summary>The securityComplianceNotificationMails property</summary>
+        /// <summary>Not nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? SecurityComplianceNotificationMails { get; set; }
@@ -143,7 +143,7 @@ namespace ApiSdk.Models {
 #else
         public List<string> SecurityComplianceNotificationMails { get; set; }
 #endif
-        /// <summary>The securityComplianceNotificationPhones property</summary>
+        /// <summary>Not nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? SecurityComplianceNotificationPhones { get; set; }

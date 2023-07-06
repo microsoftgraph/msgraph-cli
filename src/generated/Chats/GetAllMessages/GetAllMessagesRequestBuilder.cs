@@ -23,6 +23,10 @@ namespace ApiSdk.Chats.GetAllMessages {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function getAllMessages";
+            var modelOption = new Option<string>("--model", description: "The payment model for the API") {
+            };
+            modelOption.IsRequired = false;
+            command.AddOption(modelOption);
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -69,6 +73,7 @@ namespace ApiSdk.Chats.GetAllMessages {
             var allOption = new Option<bool>("--all");
             command.AddOption(allOption);
             command.SetHandler(async (invocationContext) => {
+                var model = invocationContext.ParseResult.GetValueForOption(modelOption);
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
                 var search = invocationContext.ParseResult.GetValueForOption(searchOption);
@@ -86,6 +91,7 @@ namespace ApiSdk.Chats.GetAllMessages {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
+                    if (!string.IsNullOrEmpty(model)) q.QueryParameters.Model = model;
                     q.QueryParameters.Top = top;
                     q.QueryParameters.Skip = skip;
                     if (!string.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
@@ -118,7 +124,7 @@ namespace ApiSdk.Chats.GetAllMessages {
         /// Instantiates a new GetAllMessagesRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GetAllMessagesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/chats/getAllMessages(){?%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", pathParameters) {
+        public GetAllMessagesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/chats/getAllMessages(){?model*,%24top,%24skip,%24search,%24filter,%24count,%24select,%24orderby}", pathParameters) {
         }
         /// <summary>
         /// Invoke function getAllMessages
@@ -162,6 +168,14 @@ namespace ApiSdk.Chats.GetAllMessages {
 #else
             [QueryParameter("%24filter")]
             public string Filter { get; set; }
+#endif
+            /// <summary>The payment model for the API</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public string? Model { get; set; }
+#nullable restore
+#else
+            public string Model { get; set; }
 #endif
             /// <summary>Order items by property values</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

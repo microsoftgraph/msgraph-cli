@@ -52,11 +52,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Sets {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to sets for groups
+        /// Create a new set object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/termstore-set-post?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to sets for groups";
+            command.Description = "Create a new set object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/termstore-set-post?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -263,7 +264,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Sets {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to sets for groups
+        /// Create a new set object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

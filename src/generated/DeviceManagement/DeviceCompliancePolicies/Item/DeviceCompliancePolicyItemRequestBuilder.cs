@@ -68,11 +68,12 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             return command;
         }
         /// <summary>
-        /// Delete navigation property deviceCompliancePolicies for deviceManagement
+        /// Deletes a windows81CompliancePolicy.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-windows81compliancepolicy-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property deviceCompliancePolicies for deviceManagement";
+            command.Description = "Deletes a windows81CompliancePolicy.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-windows81compliancepolicy-delete?view=graph-rest-1.0";
             var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
@@ -168,11 +169,12 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             return command;
         }
         /// <summary>
-        /// The device compliance policies.
+        /// Read properties and relationships of the androidCompliancePolicy object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-androidcompliancepolicy-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The device compliance policies.";
+            command.Description = "Read properties and relationships of the androidCompliancePolicy object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-androidcompliancepolicy-get?view=graph-rest-1.0";
             var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
@@ -229,11 +231,12 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property deviceCompliancePolicies in deviceManagement
+        /// Update the properties of a windows10CompliancePolicy object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-windows10compliancepolicy-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property deviceCompliancePolicies in deviceManagement";
+            command.Description = "Update the properties of a windows10CompliancePolicy object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-windows10compliancepolicy-update?view=graph-rest-1.0";
             var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
@@ -374,7 +377,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
         public DeviceCompliancePolicyItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property deviceCompliancePolicies for deviceManagement
+        /// Deletes a windows81CompliancePolicy.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -399,7 +402,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The device compliance policies.
+        /// Read properties and relationships of the androidCompliancePolicy object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -425,7 +428,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property deviceCompliancePolicies in deviceManagement
+        /// Update the properties of a windows10CompliancePolicy object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -453,7 +456,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The device compliance policies.
+        /// Read properties and relationships of the androidCompliancePolicy object.
         /// </summary>
         public class DeviceCompliancePolicyItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

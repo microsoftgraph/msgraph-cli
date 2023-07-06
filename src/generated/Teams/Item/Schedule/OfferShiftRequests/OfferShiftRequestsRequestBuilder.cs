@@ -47,11 +47,12 @@ namespace ApiSdk.Teams.Item.Schedule.OfferShiftRequests {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to offerShiftRequests for teams
+        /// Create an instance of an offerShiftRequest.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/offershiftrequest-post?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to offerShiftRequests for teams";
+            command.Description = "Create an instance of an offerShiftRequest.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/offershiftrequest-post?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -247,7 +248,7 @@ namespace ApiSdk.Teams.Item.Schedule.OfferShiftRequests {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to offerShiftRequests for teams
+        /// Create an instance of an offerShiftRequest.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
