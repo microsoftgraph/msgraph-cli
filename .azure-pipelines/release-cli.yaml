@@ -120,7 +120,7 @@ stages:
               parameters:
                 vstsFeedName: ${{variables.internalFeed}}
 
-          - pwsh: dotnet publish ./src/msgraph-cli.csproj --no-restore --runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)
+          - pwsh: dotnet publish ./src/msgraph-cli.csproj -p:PublishSingleFile=true -p:PublishReadyToRun=true --no-restore --runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)
             workingDirectory: $(Build.SourcesDirectory)
             condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
             displayName: DotNet publish
