@@ -42,7 +42,7 @@ namespace ApiSdk.Models {
         public string Model { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new Fido2AuthenticationMethod and sets the default values.
+        /// Instantiates a new fido2AuthenticationMethod and sets the default values.
         /// </summary>
         public Fido2AuthenticationMethod() : base() {
             OdataType = "#microsoft.graph.fido2AuthenticationMethod";

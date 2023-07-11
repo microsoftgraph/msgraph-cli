@@ -19,11 +19,10 @@ namespace ApiSdk.Users.Item.WipeManagedAppRegistrationsByDeviceTag {
     public class WipeManagedAppRegistrationsByDeviceTagRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Issues a wipe operation on an app registration with specified device tag.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-mam-user-wipemanagedappregistrationsbydevicetag?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Issues a wipe operation on an app registration with specified device tag.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-mam-user-wipemanagedappregistrationsbydevicetag?view=graph-rest-1.0";
+            command.Description = "Issues a wipe operation on an app registration with specified device tag.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;

@@ -63,12 +63,12 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.Members {
             return command;
         }
         /// <summary>
-        /// Add a conversationMember to a channel. This operation is allowed only for channels with a **membershipType** value of `private` or `shared`.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/channel-post-members?view=graph-rest-1.0" />
+        /// Add a conversationMember to a channel.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/conversationmember-add?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Add a conversationMember to a channel. This operation is allowed only for channels with a **membershipType** value of `private` or `shared`.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-post-members?view=graph-rest-1.0";
+            command.Description = "Add a conversationMember to a channel.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/conversationmember-add?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -264,7 +264,7 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.Members {
             return requestInfo;
         }
         /// <summary>
-        /// Add a conversationMember to a channel. This operation is allowed only for channels with a **membershipType** value of `private` or `shared`.
+        /// Add a conversationMember to a channel.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

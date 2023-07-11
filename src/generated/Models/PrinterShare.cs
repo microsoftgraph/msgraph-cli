@@ -42,7 +42,7 @@ namespace ApiSdk.Models {
         public PrinterShareViewpoint ViewPoint { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new PrinterShare and sets the default values.
+        /// Instantiates a new printerShare and sets the default values.
         /// </summary>
         public PrinterShare() : base() {
             OdataType = "#microsoft.graph.printerShare";

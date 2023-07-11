@@ -30,7 +30,7 @@ namespace ApiSdk.Models {
         public List<CrossTenantAccessPolicyConfigurationPartner> Partners { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new CrossTenantAccessPolicy and sets the default values.
+        /// Instantiates a new crossTenantAccessPolicy and sets the default values.
         /// </summary>
         public CrossTenantAccessPolicy() : base() {
             OdataType = "#microsoft.graph.crossTenantAccessPolicy";

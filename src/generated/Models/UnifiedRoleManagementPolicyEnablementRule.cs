@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         public List<string> EnabledRules { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new UnifiedRoleManagementPolicyEnablementRule and sets the default values.
+        /// Instantiates a new unifiedRoleManagementPolicyEnablementRule and sets the default values.
         /// </summary>
         public UnifiedRoleManagementPolicyEnablementRule() : base() {
             OdataType = "#microsoft.graph.unifiedRoleManagementPolicyEnablementRule";

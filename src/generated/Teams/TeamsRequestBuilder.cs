@@ -133,11 +133,12 @@ namespace ApiSdk.Teams {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of the specified team.
+        /// List all teams in an organization.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/teams-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the properties and relationships of the specified team.";
+            command.Description = "List all teams in an organization.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/teams-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -243,7 +244,7 @@ namespace ApiSdk.Teams {
         public TeamsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/teams{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Retrieve the properties and relationships of the specified team.
+        /// List all teams in an organization.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -297,7 +298,7 @@ namespace ApiSdk.Teams {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of the specified team.
+        /// List all teams in an organization.
         /// </summary>
         public class TeamsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

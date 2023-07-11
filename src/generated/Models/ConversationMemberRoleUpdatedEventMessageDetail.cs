@@ -30,7 +30,7 @@ namespace ApiSdk.Models {
         public IdentitySet Initiator { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new ConversationMemberRoleUpdatedEventMessageDetail and sets the default values.
+        /// Instantiates a new conversationMemberRoleUpdatedEventMessageDetail and sets the default values.
         /// </summary>
         public ConversationMemberRoleUpdatedEventMessageDetail() : base() {
             OdataType = "#microsoft.graph.conversationMemberRoleUpdatedEventMessageDetail";

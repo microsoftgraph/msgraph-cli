@@ -80,11 +80,11 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item.Schema.Di
             return command;
         }
         /// <summary>
-        /// Get directories from servicePrincipals
+        /// Contains the collection of directories and all of their objects.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get directories from servicePrincipals";
+            command.Description = "Contains the collection of directories and all of their objects.";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -253,7 +253,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item.Schema.Di
             return requestInfo;
         }
         /// <summary>
-        /// Get directories from servicePrincipals
+        /// Contains the collection of directories and all of their objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -307,7 +307,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item.Schema.Di
             return requestInfo;
         }
         /// <summary>
-        /// Get directories from servicePrincipals
+        /// Contains the collection of directories and all of their objects.
         /// </summary>
         public class DirectoryDefinitionItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

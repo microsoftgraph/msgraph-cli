@@ -30,7 +30,7 @@ namespace ApiSdk.Models {
         public List<SettingTemplateValue> Values { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new GroupSettingTemplate and sets the default values.
+        /// Instantiates a new groupSettingTemplate and sets the default values.
         /// </summary>
         public GroupSettingTemplate() : base() {
             OdataType = "#microsoft.graph.groupSettingTemplate";

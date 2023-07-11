@@ -4,6 +4,7 @@ using ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.Catalo
 using ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.GetApplicablePolicyRequirements;
 using ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.IncompatibleAccessPackages;
 using ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.IncompatibleGroups;
+using ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.ResourceRoleScopes;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -305,6 +306,31 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the resourceRoleScopes property of the microsoft.graph.accessPackage entity.
+        /// </summary>
+        public Command BuildResourceRoleScopesNavCommand() {
+            var command = new Command("resource-role-scopes");
+            command.Description = "Provides operations to manage the resourceRoleScopes property of the microsoft.graph.accessPackage entity.";
+            var builder = new ResourceRoleScopesRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>

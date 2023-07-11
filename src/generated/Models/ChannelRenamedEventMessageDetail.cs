@@ -30,7 +30,7 @@ namespace ApiSdk.Models {
         public IdentitySet Initiator { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new ChannelRenamedEventMessageDetail and sets the default values.
+        /// Instantiates a new channelRenamedEventMessageDetail and sets the default values.
         /// </summary>
         public ChannelRenamedEventMessageDetail() : base() {
             OdataType = "#microsoft.graph.channelRenamedEventMessageDetail";

@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         public string UserId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new AadUserNotificationRecipient and sets the default values.
+        /// Instantiates a new aadUserNotificationRecipient and sets the default values.
         /// </summary>
         public AadUserNotificationRecipient() : base() {
             OdataType = "#microsoft.graph.aadUserNotificationRecipient";

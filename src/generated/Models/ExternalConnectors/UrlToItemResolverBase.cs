@@ -18,7 +18,7 @@ namespace ApiSdk.Models.ExternalConnectors {
         /// <summary>The priority which defines the sequence in which the urlToItemResolverBase instances are evaluated.</summary>
         public int? Priority { get; set; }
         /// <summary>
-        /// Instantiates a new UrlToItemResolverBase and sets the default values.
+        /// Instantiates a new urlToItemResolverBase and sets the default values.
         /// </summary>
         public UrlToItemResolverBase() {
             AdditionalData = new Dictionary<string, object>();

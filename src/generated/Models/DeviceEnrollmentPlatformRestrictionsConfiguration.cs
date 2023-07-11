@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// Device Enrollment Configuration that restricts the types of devices a user can enroll
+    /// </summary>
     public class DeviceEnrollmentPlatformRestrictionsConfiguration : DeviceEnrollmentConfiguration, IParsable {
         /// <summary>Android restrictions based on platform, platform operating system version, and device ownership</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -46,7 +49,7 @@ namespace ApiSdk.Models {
         public DeviceEnrollmentPlatformRestriction WindowsRestriction { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new DeviceEnrollmentPlatformRestrictionsConfiguration and sets the default values.
+        /// Instantiates a new deviceEnrollmentPlatformRestrictionsConfiguration and sets the default values.
         /// </summary>
         public DeviceEnrollmentPlatformRestrictionsConfiguration() : base() {
             OdataType = "#microsoft.graph.deviceEnrollmentPlatformRestrictionsConfiguration";

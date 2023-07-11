@@ -48,7 +48,7 @@ namespace ApiSdk.Models {
         public string ServicePrincipalName { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new AppIdentity and sets the default values.
+        /// Instantiates a new appIdentity and sets the default values.
         /// </summary>
         public AppIdentity() {
             AdditionalData = new Dictionary<string, object>();

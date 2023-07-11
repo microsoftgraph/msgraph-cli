@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         /// <summary>The number of days or hours.</summary>
         public int? Value { get; set; }
         /// <summary>
-        /// Instantiates a new SignInFrequencySessionControl and sets the default values.
+        /// Instantiates a new signInFrequencySessionControl and sets the default values.
         /// </summary>
         public SignInFrequencySessionControl() : base() {
             OdataType = "#microsoft.graph.signInFrequencySessionControl";

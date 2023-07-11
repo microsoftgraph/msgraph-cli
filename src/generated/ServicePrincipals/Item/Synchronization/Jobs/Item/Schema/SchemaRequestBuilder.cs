@@ -117,11 +117,12 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.Schema {
             return command;
         }
         /// <summary>
-        /// Get schema from servicePrincipals
+        /// Retrieve the schema for a given synchronization job or template.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/synchronization-synchronizationschema-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get schema from servicePrincipals";
+            command.Description = "Retrieve the schema for a given synchronization job or template.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/synchronization-synchronizationschema-get?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -199,11 +200,12 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.Schema {
             return command;
         }
         /// <summary>
-        /// Update the navigation property schema in servicePrincipals
+        /// Update the synchronization schema for a given job or template. This method fully replaces the current schema with the one provided in the request. To update the schema of a template, make the call on the application object. You must be the owner of the application.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/synchronization-synchronizationschema-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property schema in servicePrincipals";
+            command.Description = "Update the synchronization schema for a given job or template. This method fully replaces the current schema with the one provided in the request. To update the schema of a template, make the call on the application object. You must be the owner of the application.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/synchronization-synchronizationschema-update?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -293,7 +295,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.Schema {
             return requestInfo;
         }
         /// <summary>
-        /// Get schema from servicePrincipals
+        /// Retrieve the schema for a given synchronization job or template.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -319,7 +321,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.Schema {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property schema in servicePrincipals
+        /// Update the synchronization schema for a given job or template. This method fully replaces the current schema with the one provided in the request. To update the schema of a template, make the call on the application object. You must be the owner of the application.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -347,7 +349,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.Schema {
             return requestInfo;
         }
         /// <summary>
-        /// Get schema from servicePrincipals
+        /// Retrieve the schema for a given synchronization job or template.
         /// </summary>
         public class SchemaRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

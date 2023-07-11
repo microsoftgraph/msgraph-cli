@@ -68,7 +68,7 @@ namespace ApiSdk.Models {
         public string StageId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new AccessReviewStageSettings and sets the default values.
+        /// Instantiates a new accessReviewStageSettings and sets the default values.
         /// </summary>
         public AccessReviewStageSettings() {
             AdditionalData = new Dictionary<string, object>();

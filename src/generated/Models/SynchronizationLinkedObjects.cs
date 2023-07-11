@@ -15,7 +15,7 @@ namespace ApiSdk.Models {
 #else
         public SynchronizationJobSubject Manager { get; set; }
 #endif
-        /// <summary>The members property</summary>
+        /// <summary>All group members that you would like to provision.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<SynchronizationJobSubject>? Members { get; set; }

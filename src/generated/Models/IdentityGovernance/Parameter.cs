@@ -34,7 +34,7 @@ namespace ApiSdk.Models.IdentityGovernance {
         /// <summary>The valueType property</summary>
         public ApiSdk.Models.IdentityGovernance.ValueTypeObject? ValueTypeObject { get; set; }
         /// <summary>
-        /// Instantiates a new Parameter and sets the default values.
+        /// Instantiates a new parameter and sets the default values.
         /// </summary>
         public Parameter() {
             AdditionalData = new Dictionary<string, object>();

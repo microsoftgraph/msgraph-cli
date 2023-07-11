@@ -118,7 +118,7 @@ namespace ApiSdk.Models {
         public List<SortProperty> SortProperties { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new SearchRequest and sets the default values.
+        /// Instantiates a new searchRequest and sets the default values.
         /// </summary>
         public SearchRequest() {
             AdditionalData = new Dictionary<string, object>();

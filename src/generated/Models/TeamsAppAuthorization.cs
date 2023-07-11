@@ -15,7 +15,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The requiredPermissionSet property</summary>
+        /// <summary>Set of permissions required by the teamsApp.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public TeamsAppPermissionSet? RequiredPermissionSet { get; set; }

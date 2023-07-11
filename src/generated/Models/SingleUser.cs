@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
         public string UserId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new SingleUser and sets the default values.
+        /// Instantiates a new singleUser and sets the default values.
         /// </summary>
         public SingleUser() : base() {
             OdataType = "#microsoft.graph.singleUser";

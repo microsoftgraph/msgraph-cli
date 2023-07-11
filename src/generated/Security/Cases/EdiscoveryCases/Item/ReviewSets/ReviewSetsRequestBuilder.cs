@@ -30,6 +30,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets {
             executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildMicrosoftGraphSecurityAddToReviewSetNavCommand());
+            commands.Add(builder.BuildMicrosoftGraphSecurityExportNavCommand());
             executables.Add(builder.BuildPatchCommand());
             commands.Add(builder.BuildQueriesNavCommand());
             return new(executables, commands);

@@ -25,11 +25,12 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item {
     /// </summary>
     public class SynchronizationJobItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete navigation property jobs for applications
+        /// Stop the synchronization job, and permanently delete all the state associated with it. Synchronized accounts are left as-is.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/synchronization-synchronizationjob-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete navigation property jobs for applications";
+            command.Description = "Stop the synchronization job, and permanently delete all the state associated with it. Synchronized accounts are left as-is.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/synchronization-synchronizationjob-delete?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -64,11 +65,12 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item {
             return command;
         }
         /// <summary>
-        /// Get jobs from applications
+        /// Retrieve the existing synchronization job and its properties.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/synchronization-synchronizationjob-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get jobs from applications";
+            command.Description = "Retrieve the existing synchronization job and its properties.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/synchronization-synchronizationjob-get?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -301,7 +303,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item {
         public SynchronizationJobItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/synchronization/jobs/{synchronizationJob%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Delete navigation property jobs for applications
+        /// Stop the synchronization job, and permanently delete all the state associated with it. Synchronized accounts are left as-is.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -326,7 +328,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get jobs from applications
+        /// Retrieve the existing synchronization job and its properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -380,7 +382,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get jobs from applications
+        /// Retrieve the existing synchronization job and its properties.
         /// </summary>
         public class SynchronizationJobItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

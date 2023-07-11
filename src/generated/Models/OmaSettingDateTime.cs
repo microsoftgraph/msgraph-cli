@@ -4,11 +4,14 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// OMA Settings DateTime definition.
+    /// </summary>
     public class OmaSettingDateTime : OmaSetting, IParsable {
         /// <summary>Value.</summary>
         public DateTimeOffset? Value { get; set; }
         /// <summary>
-        /// Instantiates a new OmaSettingDateTime and sets the default values.
+        /// Instantiates a new omaSettingDateTime and sets the default values.
         /// </summary>
         public OmaSettingDateTime() : base() {
             OdataType = "#microsoft.graph.omaSettingDateTime";

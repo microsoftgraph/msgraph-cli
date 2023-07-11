@@ -19,12 +19,11 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
     /// </summary>
     public class DeviceComplianceActionItemItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Deletes a deviceComplianceActionItem.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecomplianceactionitem-delete?view=graph-rest-1.0" />
+        /// Delete navigation property scheduledActionConfigurations for deviceManagement
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Deletes a deviceComplianceActionItem.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecomplianceactionitem-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property scheduledActionConfigurations for deviceManagement";
             var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
@@ -65,12 +64,11 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the deviceComplianceActionItem object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecomplianceactionitem-get?view=graph-rest-1.0" />
+        /// The list of scheduled action configurations for this compliance policy. Compliance policy must have one and only one block scheduled action.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the deviceComplianceActionItem object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecomplianceactionitem-get?view=graph-rest-1.0";
+            command.Description = "The list of scheduled action configurations for this compliance policy. Compliance policy must have one and only one block scheduled action.";
             var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
@@ -139,12 +137,11 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             return command;
         }
         /// <summary>
-        /// Update the properties of a deviceComplianceActionItem object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecomplianceactionitem-update?view=graph-rest-1.0" />
+        /// Update the navigation property scheduledActionConfigurations in deviceManagement
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a deviceComplianceActionItem object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecomplianceactionitem-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property scheduledActionConfigurations in deviceManagement";
             var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
@@ -215,7 +212,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
         public DeviceComplianceActionItemItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy%2Did}/scheduledActionsForRule/{deviceComplianceScheduledActionForRule%2Did}/scheduledActionConfigurations/{deviceComplianceActionItem%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Deletes a deviceComplianceActionItem.
+        /// Delete navigation property scheduledActionConfigurations for deviceManagement
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -240,7 +237,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the deviceComplianceActionItem object.
+        /// The list of scheduled action configurations for this compliance policy. Compliance policy must have one and only one block scheduled action.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -266,7 +263,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a deviceComplianceActionItem object.
+        /// Update the navigation property scheduledActionConfigurations in deviceManagement
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -294,7 +291,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.ScheduledActions
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the deviceComplianceActionItem object.
+        /// The list of scheduled action configurations for this compliance policy. Compliance policy must have one and only one block scheduled action.
         /// </summary>
         public class DeviceComplianceActionItemItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

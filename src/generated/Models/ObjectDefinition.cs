@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class ObjectDefinition : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The attributes property</summary>
+        /// <summary>Defines attributes of the object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<AttributeDefinition>? Attributes { get; set; }
@@ -15,7 +15,7 @@ namespace ApiSdk.Models {
 #else
         public List<AttributeDefinition> Attributes { get; set; }
 #endif
-        /// <summary>The metadata property</summary>
+        /// <summary>Metadata for the given object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<ObjectDefinitionMetadataEntry>? Metadata { get; set; }
@@ -23,7 +23,7 @@ namespace ApiSdk.Models {
 #else
         public List<ObjectDefinitionMetadataEntry> Metadata { get; set; }
 #endif
-        /// <summary>The name property</summary>
+        /// <summary>Name of the object. Must be unique within a directory definition. Not nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -39,7 +39,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The supportedApis property</summary>
+        /// <summary>The API that the provisioning service queries to retrieve data for synchronization.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? SupportedApis { get; set; }

@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// The identifier for an iOS app.
+    /// </summary>
     public class IosMobileAppIdentifier : MobileAppIdentifier, IParsable {
         /// <summary>The identifier for an app, as specified in the app store.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -14,7 +17,7 @@ namespace ApiSdk.Models {
         public string BundleId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new IosMobileAppIdentifier and sets the default values.
+        /// Instantiates a new iosMobileAppIdentifier and sets the default values.
         /// </summary>
         public IosMobileAppIdentifier() : base() {
             OdataType = "#microsoft.graph.iosMobileAppIdentifier";

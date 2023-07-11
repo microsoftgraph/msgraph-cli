@@ -78,7 +78,7 @@ namespace ApiSdk.Models {
         /// <summary>A unique identifier for a specific participant in a conference. The CVI partner needs to copy over Call.MyParticipantId to this property.</summary>
         public Guid? ParticipantId { get; set; }
         /// <summary>
-        /// Instantiates a new TeleconferenceDeviceQuality and sets the default values.
+        /// Instantiates a new teleconferenceDeviceQuality and sets the default values.
         /// </summary>
         public TeleconferenceDeviceQuality() {
             AdditionalData = new Dictionary<string, object>();

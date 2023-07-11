@@ -1764,8 +1764,8 @@ namespace ApiSdk {
             var builder = new SecurityRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
-            nonExecCommands.Add(builder.BuildAlerts_v2NavCommand());
             nonExecCommands.Add(builder.BuildAlertsNavCommand());
+            nonExecCommands.Add(builder.BuildAlerts_v2NavCommand());
             nonExecCommands.Add(builder.BuildAttackSimulationNavCommand());
             nonExecCommands.Add(builder.BuildCasesNavCommand());
             execCommands.Add(builder.BuildGetCommand());

@@ -52,7 +52,7 @@ namespace ApiSdk.Models {
         public List<UserTrainingEventInfo> TrainingEvents { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new UserSimulationDetails and sets the default values.
+        /// Instantiates a new userSimulationDetails and sets the default values.
         /// </summary>
         public UserSimulationDetails() {
             AdditionalData = new Dictionary<string, object>();

@@ -19,11 +19,12 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.ProvisionOnDem
     /// </summary>
     public class ProvisionOnDemandRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action provisionOnDemand
+        /// Select a user and provision the account on-demand. The rate limit for this API is 5 requests per 10 seconds. 
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/synchronization-synchronizationjob-provisionondemand?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action provisionOnDemand";
+            command.Description = "Select a user and provision the account on-demand. The rate limit for this API is 5 requests per 10 seconds. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/synchronization-synchronizationjob-provisionondemand?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -88,7 +89,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.ProvisionOnDem
         public ProvisionOnDemandRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/synchronization/jobs/{synchronizationJob%2Did}/provisionOnDemand", pathParameters) {
         }
         /// <summary>
-        /// Invoke action provisionOnDemand
+        /// Select a user and provision the account on-demand. The rate limit for this API is 5 requests per 10 seconds. 
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

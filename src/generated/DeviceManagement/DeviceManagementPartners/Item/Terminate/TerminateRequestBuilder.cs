@@ -18,12 +18,11 @@ namespace ApiSdk.DeviceManagement.DeviceManagementPartners.Item.Terminate {
     /// </summary>
     public class TerminateRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Not yet documented
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-onboarding-devicemanagementpartner-terminate?view=graph-rest-1.0" />
+        /// Invoke action terminate
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Not yet documented\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-onboarding-devicemanagementpartner-terminate?view=graph-rest-1.0";
+            command.Description = "Invoke action terminate";
             var deviceManagementPartnerIdOption = new Option<string>("--device-management-partner-id", description: "The unique identifier of deviceManagementPartner") {
             };
             deviceManagementPartnerIdOption.IsRequired = true;
@@ -51,7 +50,7 @@ namespace ApiSdk.DeviceManagement.DeviceManagementPartners.Item.Terminate {
         public TerminateRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceManagementPartners/{deviceManagementPartner%2Did}/terminate", pathParameters) {
         }
         /// <summary>
-        /// Not yet documented
+        /// Invoke action terminate
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

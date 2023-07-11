@@ -22,7 +22,7 @@ namespace ApiSdk.Models.Security {
         public string Value { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new UnclassifiedArtifact and sets the default values.
+        /// Instantiates a new unclassifiedArtifact and sets the default values.
         /// </summary>
         public UnclassifiedArtifact() : base() {
             OdataType = "#microsoft.graph.security.unclassifiedArtifact";

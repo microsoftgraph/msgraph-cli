@@ -18,11 +18,12 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.AcquireAccessToken {
     /// </summary>
     public class AcquireAccessTokenRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action acquireAccessToken
+        /// Acquire an OAuth access token to authorize the Azure AD provisioning service to provision users into an application.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/synchronization-synchronization-acquireaccesstoken?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action acquireAccessToken";
+            command.Description = "Acquire an OAuth access token to authorize the Azure AD provisioning service to provision users into an application.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/synchronization-synchronization-acquireaccesstoken?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -60,7 +61,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.AcquireAccessToken {
         public AcquireAccessTokenRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/synchronization/acquireAccessToken", pathParameters) {
         }
         /// <summary>
-        /// Invoke action acquireAccessToken
+        /// Acquire an OAuth access token to authorize the Azure AD provisioning service to provision users into an application.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

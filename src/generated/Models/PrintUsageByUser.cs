@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         public string UserPrincipalName { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new PrintUsageByUser and sets the default values.
+        /// Instantiates a new printUsageByUser and sets the default values.
         /// </summary>
         public PrintUsageByUser() : base() {
             OdataType = "#microsoft.graph.printUsageByUser";

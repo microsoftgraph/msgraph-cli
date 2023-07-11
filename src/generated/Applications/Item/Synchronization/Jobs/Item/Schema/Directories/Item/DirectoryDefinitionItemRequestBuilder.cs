@@ -80,11 +80,11 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.Directories.
             return command;
         }
         /// <summary>
-        /// Get directories from applications
+        /// Contains the collection of directories and all of their objects.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get directories from applications";
+            command.Description = "Contains the collection of directories and all of their objects.";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -253,7 +253,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.Directories.
             return requestInfo;
         }
         /// <summary>
-        /// Get directories from applications
+        /// Contains the collection of directories and all of their objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -307,7 +307,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.Directories.
             return requestInfo;
         }
         /// <summary>
-        /// Get directories from applications
+        /// Contains the collection of directories and all of their objects.
         /// </summary>
         public class DirectoryDefinitionItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
         /// <summary>Number of points a teacher is giving this submission object.</summary>
         public float? Points { get; set; }
         /// <summary>
-        /// Instantiates a new EducationAssignmentPointsGrade and sets the default values.
+        /// Instantiates a new educationAssignmentPointsGrade and sets the default values.
         /// </summary>
         public EducationAssignmentPointsGrade() : base() {
             OdataType = "#microsoft.graph.educationAssignmentPointsGrade";

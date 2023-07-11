@@ -30,7 +30,7 @@ namespace ApiSdk.Models {
         public string QueryType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new AccessReviewNotificationRecipientQueryScope and sets the default values.
+        /// Instantiates a new accessReviewNotificationRecipientQueryScope and sets the default values.
         /// </summary>
         public AccessReviewNotificationRecipientQueryScope() : base() {
             OdataType = "#microsoft.graph.accessReviewNotificationRecipientQueryScope";

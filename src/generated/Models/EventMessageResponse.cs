@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
         /// <summary>The responseType property</summary>
         public ApiSdk.Models.ResponseType? ResponseType { get; set; }
         /// <summary>
-        /// Instantiates a new EventMessageResponse and sets the default values.
+        /// Instantiates a new eventMessageResponse and sets the default values.
         /// </summary>
         public EventMessageResponse() : base() {
             OdataType = "#microsoft.graph.eventMessageResponse";

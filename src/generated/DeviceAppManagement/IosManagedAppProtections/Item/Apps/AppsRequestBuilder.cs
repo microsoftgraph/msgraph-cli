@@ -47,12 +47,11 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Apps {
             return command;
         }
         /// <summary>
-        /// Create a new managedMobileApp object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-mam-managedmobileapp-create?view=graph-rest-1.0" />
+        /// Create new navigation property to apps for deviceAppManagement
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new managedMobileApp object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-mam-managedmobileapp-create?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to apps for deviceAppManagement";
             var iosManagedAppProtectionIdOption = new Option<string>("--ios-managed-app-protection-id", description: "The unique identifier of iosManagedAppProtection") {
             };
             iosManagedAppProtectionIdOption.IsRequired = true;
@@ -105,12 +104,11 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Apps {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the managedMobileApp objects.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-mam-managedmobileapp-list?view=graph-rest-1.0" />
+        /// List of apps to which the policy is deployed.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the managedMobileApp objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-mam-managedmobileapp-list?view=graph-rest-1.0";
+            command.Description = "List of apps to which the policy is deployed.";
             var iosManagedAppProtectionIdOption = new Option<string>("--ios-managed-app-protection-id", description: "The unique identifier of iosManagedAppProtection") {
             };
             iosManagedAppProtectionIdOption.IsRequired = true;
@@ -222,7 +220,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Apps {
         public AppsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/iosManagedAppProtections/{iosManagedAppProtection%2Did}/apps{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// List properties and relationships of the managedMobileApp objects.
+        /// List of apps to which the policy is deployed.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -248,7 +246,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Apps {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new managedMobileApp object.
+        /// Create new navigation property to apps for deviceAppManagement
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -276,7 +274,7 @@ namespace ApiSdk.DeviceAppManagement.IosManagedAppProtections.Item.Apps {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the managedMobileApp objects.
+        /// List of apps to which the policy is deployed.
         /// </summary>
         public class AppsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

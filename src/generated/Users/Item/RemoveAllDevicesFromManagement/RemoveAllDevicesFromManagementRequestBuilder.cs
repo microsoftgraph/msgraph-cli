@@ -19,11 +19,10 @@ namespace ApiSdk.Users.Item.RemoveAllDevicesFromManagement {
     public class RemoveAllDevicesFromManagementRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Retire all devices from management for this user
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-user-removealldevicesfrommanagement?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Retire all devices from management for this user\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-user-removealldevicesfrommanagement?view=graph-rest-1.0";
+            command.Description = "Retire all devices from management for this user";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;

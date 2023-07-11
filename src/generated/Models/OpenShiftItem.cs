@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
         /// <summary>Count of the number of slots for the given open shift.</summary>
         public int? OpenSlotCount { get; set; }
         /// <summary>
-        /// Instantiates a new OpenShiftItem and sets the default values.
+        /// Instantiates a new openShiftItem and sets the default values.
         /// </summary>
         public OpenShiftItem() : base() {
             OdataType = "#microsoft.graph.openShiftItem";

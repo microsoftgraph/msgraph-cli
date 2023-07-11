@@ -19,12 +19,11 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses.Item 
     /// </summary>
     public class DeviceConfigurationDeviceStatusItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Deletes a deviceConfigurationDeviceStatus.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-deviceconfigurationdevicestatus-delete?view=graph-rest-1.0" />
+        /// Delete navigation property deviceStatuses for deviceManagement
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Deletes a deviceConfigurationDeviceStatus.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-deviceconfigurationdevicestatus-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property deviceStatuses for deviceManagement";
             var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
@@ -59,12 +58,11 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses.Item 
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the deviceConfigurationDeviceStatus object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-deviceconfigurationdevicestatus-get?view=graph-rest-1.0" />
+        /// Device configuration installation status by device.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the deviceConfigurationDeviceStatus object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-deviceconfigurationdevicestatus-get?view=graph-rest-1.0";
+            command.Description = "Device configuration installation status by device.";
             var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
@@ -127,12 +125,11 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses.Item 
             return command;
         }
         /// <summary>
-        /// Update the properties of a deviceConfigurationDeviceStatus object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-deviceconfigurationdevicestatus-update?view=graph-rest-1.0" />
+        /// Update the navigation property deviceStatuses in deviceManagement
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a deviceConfigurationDeviceStatus object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-deviceconfigurationdevicestatus-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property deviceStatuses in deviceManagement";
             var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
@@ -197,7 +194,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses.Item 
         public DeviceConfigurationDeviceStatusItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceConfigurations/{deviceConfiguration%2Did}/deviceStatuses/{deviceConfigurationDeviceStatus%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Deletes a deviceConfigurationDeviceStatus.
+        /// Delete navigation property deviceStatuses for deviceManagement
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -222,7 +219,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses.Item 
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the deviceConfigurationDeviceStatus object.
+        /// Device configuration installation status by device.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -248,7 +245,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses.Item 
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a deviceConfigurationDeviceStatus object.
+        /// Update the navigation property deviceStatuses in deviceManagement
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -276,7 +273,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatuses.Item 
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the deviceConfigurationDeviceStatus object.
+        /// Device configuration installation status by device.
         /// </summary>
         public class DeviceConfigurationDeviceStatusItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

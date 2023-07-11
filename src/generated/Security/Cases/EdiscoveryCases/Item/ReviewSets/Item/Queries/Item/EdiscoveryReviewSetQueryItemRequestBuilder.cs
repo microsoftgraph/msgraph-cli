@@ -1,6 +1,7 @@
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.Security;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Item.MicrosoftGraphSecurityApplyTags;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Item.MicrosoftGraphSecurityExport;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
@@ -146,6 +147,21 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries.Ite
             var command = new Command("microsoft-graph-security-apply-tags");
             command.Description = "Provides operations to call the applyTags method.";
             var builder = new MicrosoftGraphSecurityApplyTagsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the export method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSecurityExportNavCommand() {
+            var command = new Command("microsoft-graph-security-export");
+            command.Description = "Provides operations to call the export method.";
+            var builder = new MicrosoftGraphSecurityExportRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)

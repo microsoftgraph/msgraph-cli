@@ -51,11 +51,11 @@ namespace ApiSdk.Reports.AuthenticationMethods {
             return command;
         }
         /// <summary>
-        /// Get authenticationMethods from reports
+        /// Container for navigation properties for Azure AD authentication methods resources.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get authenticationMethods from reports";
+            command.Description = "Container for navigation properties for Azure AD authentication methods resources.";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -273,7 +273,7 @@ namespace ApiSdk.Reports.AuthenticationMethods {
             return requestInfo;
         }
         /// <summary>
-        /// Get authenticationMethods from reports
+        /// Container for navigation properties for Azure AD authentication methods resources.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -327,7 +327,7 @@ namespace ApiSdk.Reports.AuthenticationMethods {
             return requestInfo;
         }
         /// <summary>
-        /// Get authenticationMethods from reports
+        /// Container for navigation properties for Azure AD authentication methods resources.
         /// </summary>
         public class AuthenticationMethodsRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

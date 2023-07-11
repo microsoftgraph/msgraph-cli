@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class AttributeMappingSource : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The expression property</summary>
+        /// <summary>Equivalent expression representation of this attributeMappingSource object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Expression { get; set; }
@@ -15,7 +15,7 @@ namespace ApiSdk.Models {
 #else
         public string Expression { get; set; }
 #endif
-        /// <summary>The name property</summary>
+        /// <summary>Name parameter of the mapping source. Depending on the type property value, this can be the name of the function, the name of the source attribute, or a constant value to be used.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -31,7 +31,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The parameters property</summary>
+        /// <summary>If this object represents a function, lists function parameters. Parameters consist of attributeMappingSource objects themselves, allowing for complex expressions. If type is not Function, this property will be null/empty array.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<StringKeyAttributeMappingSourceValuePair>? Parameters { get; set; }

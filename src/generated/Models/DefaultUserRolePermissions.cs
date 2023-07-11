@@ -34,7 +34,7 @@ namespace ApiSdk.Models {
         public List<string> PermissionGrantPoliciesAssigned { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new DefaultUserRolePermissions and sets the default values.
+        /// Instantiates a new defaultUserRolePermissions and sets the default values.
         /// </summary>
         public DefaultUserRolePermissions() {
             AdditionalData = new Dictionary<string, object>();

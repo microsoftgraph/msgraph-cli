@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
         public string TeamId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new TeamArchivedEventMessageDetail and sets the default values.
+        /// Instantiates a new teamArchivedEventMessageDetail and sets the default values.
         /// </summary>
         public TeamArchivedEventMessageDetail() : base() {
             OdataType = "#microsoft.graph.teamArchivedEventMessageDetail";

@@ -60,7 +60,7 @@ namespace ApiSdk.Models {
         public string Value { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new AppRole and sets the default values.
+        /// Instantiates a new appRole and sets the default values.
         /// </summary>
         public AppRole() {
             AdditionalData = new Dictionary<string, object>();

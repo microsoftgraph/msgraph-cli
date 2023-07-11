@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new RoleManagement and sets the default values.
+        /// Instantiates a new roleManagement and sets the default values.
         /// </summary>
         public RoleManagement() {
             AdditionalData = new Dictionary<string, object>();

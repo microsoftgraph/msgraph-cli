@@ -30,7 +30,7 @@ namespace ApiSdk.Models {
         public string QueryType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new AccessReviewQueryScope and sets the default values.
+        /// Instantiates a new accessReviewQueryScope and sets the default values.
         /// </summary>
         public AccessReviewQueryScope() : base() {
             OdataType = "#microsoft.graph.accessReviewQueryScope";

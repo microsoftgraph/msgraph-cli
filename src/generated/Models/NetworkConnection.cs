@@ -152,7 +152,7 @@ namespace ApiSdk.Models {
         public string UrlParameters { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new NetworkConnection and sets the default values.
+        /// Instantiates a new networkConnection and sets the default values.
         /// </summary>
         public NetworkConnection() {
             AdditionalData = new Dictionary<string, object>();

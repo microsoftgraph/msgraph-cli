@@ -21,6 +21,14 @@ namespace ApiSdk.Models {
 #else
         public AccessPackageAssignmentPolicy AssignmentPolicy { get; set; }
 #endif
+        /// <summary>The customExtensionCalloutInstances property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<CustomExtensionCalloutInstance>? CustomExtensionCalloutInstances { get; set; }
+#nullable restore
+#else
+        public List<CustomExtensionCalloutInstance> CustomExtensionCalloutInstances { get; set; }
+#endif
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
         public DateTimeOffset? ExpiredDateTime { get; set; }
         /// <summary>When the access assignment is to be in place. Read-only.</summary>
@@ -64,6 +72,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"accessPackage", n => { AccessPackage = n.GetObjectValue<ApiSdk.Models.AccessPackage>(ApiSdk.Models.AccessPackage.CreateFromDiscriminatorValue); } },
                 {"assignmentPolicy", n => { AssignmentPolicy = n.GetObjectValue<AccessPackageAssignmentPolicy>(AccessPackageAssignmentPolicy.CreateFromDiscriminatorValue); } },
+                {"customExtensionCalloutInstances", n => { CustomExtensionCalloutInstances = n.GetCollectionOfObjectValues<CustomExtensionCalloutInstance>(CustomExtensionCalloutInstance.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"expiredDateTime", n => { ExpiredDateTime = n.GetDateTimeOffsetValue(); } },
                 {"schedule", n => { Schedule = n.GetObjectValue<EntitlementManagementSchedule>(EntitlementManagementSchedule.CreateFromDiscriminatorValue); } },
                 {"state", n => { State = n.GetEnumValue<AccessPackageAssignmentState>(); } },
@@ -80,6 +89,7 @@ namespace ApiSdk.Models {
             base.Serialize(writer);
             writer.WriteObjectValue<ApiSdk.Models.AccessPackage>("accessPackage", AccessPackage);
             writer.WriteObjectValue<AccessPackageAssignmentPolicy>("assignmentPolicy", AssignmentPolicy);
+            writer.WriteCollectionOfObjectValues<CustomExtensionCalloutInstance>("customExtensionCalloutInstances", CustomExtensionCalloutInstances);
             writer.WriteDateTimeOffsetValue("expiredDateTime", ExpiredDateTime);
             writer.WriteObjectValue<EntitlementManagementSchedule>("schedule", Schedule);
             writer.WriteEnumValue<AccessPackageAssignmentState>("state", State);

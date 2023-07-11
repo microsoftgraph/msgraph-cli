@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
         public string DisplayName { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new DirectoryRoleTemplate and sets the default values.
+        /// Instantiates a new directoryRoleTemplate and sets the default values.
         /// </summary>
         public DirectoryRoleTemplate() : base() {
             OdataType = "#microsoft.graph.directoryRoleTemplate";

@@ -152,11 +152,11 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.Rows {
         }
         /// <summary>
         /// Retrieve a list of tablerow objects.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/table-list-rows?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/tablerow-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of tablerow objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/table-list-rows?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of tablerow objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/tablerow-list?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;

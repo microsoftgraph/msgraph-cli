@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
         /// <summary>The time offset from Coordinated Universal Time (UTC) for daylight saving time. This value is in minutes.</summary>
         public int? DaylightBias { get; set; }
         /// <summary>
-        /// Instantiates a new DaylightTimeZoneOffset and sets the default values.
+        /// Instantiates a new daylightTimeZoneOffset and sets the default values.
         /// </summary>
         public DaylightTimeZoneOffset() : base() {
             OdataType = "#microsoft.graph.daylightTimeZoneOffset";

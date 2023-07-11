@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// Android Work Profile custom configuration
+    /// </summary>
     public class AndroidWorkProfileCustomConfiguration : DeviceConfiguration, IParsable {
         /// <summary>OMA settings. This collection can contain a maximum of 500 elements.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -14,7 +17,7 @@ namespace ApiSdk.Models {
         public List<OmaSetting> OmaSettings { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new AndroidWorkProfileCustomConfiguration and sets the default values.
+        /// Instantiates a new androidWorkProfileCustomConfiguration and sets the default values.
         /// </summary>
         public AndroidWorkProfileCustomConfiguration() : base() {
             OdataType = "#microsoft.graph.androidWorkProfileCustomConfiguration";

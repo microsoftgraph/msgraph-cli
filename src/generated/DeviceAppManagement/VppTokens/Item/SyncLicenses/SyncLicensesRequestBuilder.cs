@@ -20,11 +20,10 @@ namespace ApiSdk.DeviceAppManagement.VppTokens.Item.SyncLicenses {
     public class SyncLicensesRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Syncs licenses associated with a specific appleVolumePurchaseProgramToken
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-onboarding-vpptoken-synclicenses?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Syncs licenses associated with a specific appleVolumePurchaseProgramToken\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-onboarding-vpptoken-synclicenses?view=graph-rest-1.0";
+            command.Description = "Syncs licenses associated with a specific appleVolumePurchaseProgramToken";
             var vppTokenIdOption = new Option<string>("--vpp-token-id", description: "The unique identifier of vppToken") {
             };
             vppTokenIdOption.IsRequired = true;

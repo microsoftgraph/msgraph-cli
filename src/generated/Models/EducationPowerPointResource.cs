@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         public string FileUrl { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new EducationPowerPointResource and sets the default values.
+        /// Instantiates a new educationPowerPointResource and sets the default values.
         /// </summary>
         public EducationPowerPointResource() : base() {
             OdataType = "#microsoft.graph.educationPowerPointResource";

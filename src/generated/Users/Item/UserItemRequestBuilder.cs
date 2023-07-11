@@ -460,12 +460,12 @@ namespace ApiSdk.Users.Item {
             return command;
         }
         /// <summary>
-        /// Deletes a user.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-mam-user-delete?view=graph-rest-1.0" />
+        /// Delete user.   When deleted, user resources are moved to a temporary container and can be restored within 30 days.  After that time, they are permanently deleted.  To learn more, see deletedItems.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Deletes a user.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-mam-user-delete?view=graph-rest-1.0";
+            command.Description = "Delete user.   When deleted, user resources are moved to a temporary container and can be restored within 30 days.  After that time, they are permanently deleted.  To learn more, see deletedItems.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-delete?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -1115,6 +1115,7 @@ namespace ApiSdk.Users.Item {
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
             nonExecCommands.Add(builder.BuildGraphAdministrativeUnitNavCommand());
+            nonExecCommands.Add(builder.BuildGraphDirectoryRoleNavCommand());
             nonExecCommands.Add(builder.BuildGraphGroupNavCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
@@ -1313,12 +1314,12 @@ namespace ApiSdk.Users.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a user object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-mam-user-update?view=graph-rest-1.0" />
+        /// Update the properties of a user object. Not all properties can be updated by Member or Guest users with their default permissions without Administrator roles. Compare member and guest default permissions to see properties they can manage.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a user object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-mam-user-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a user object. Not all properties can be updated by Member or Guest users with their default permissions without Administrator roles. Compare member and guest default permissions to see properties they can manage.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-update?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -1715,6 +1716,7 @@ namespace ApiSdk.Users.Item {
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
             nonExecCommands.Add(builder.BuildGraphAdministrativeUnitNavCommand());
+            nonExecCommands.Add(builder.BuildGraphDirectoryRoleNavCommand());
             nonExecCommands.Add(builder.BuildGraphGroupNavCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
@@ -1767,7 +1769,7 @@ namespace ApiSdk.Users.Item {
         public UserItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Deletes a user.
+        /// Delete user.   When deleted, user resources are moved to a temporary container and can be restored within 30 days.  After that time, they are permanently deleted.  To learn more, see deletedItems.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -1818,7 +1820,7 @@ namespace ApiSdk.Users.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a user object.
+        /// Update the properties of a user object. Not all properties can be updated by Member or Guest users with their default permissions without Administrator roles. Compare member and guest default permissions to see properties they can manage.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

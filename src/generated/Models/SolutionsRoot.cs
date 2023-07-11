@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new SolutionsRoot and sets the default values.
+        /// Instantiates a new solutionsRoot and sets the default values.
         /// </summary>
         public SolutionsRoot() {
             AdditionalData = new Dictionary<string, object>();

@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// Represents a customer of the business.
+    /// </summary>
     public class BookingCustomer : BookingCustomerBase, IParsable {
         /// <summary>Addresses associated with the customer. The attribute type of physicalAddress is not supported in v1.0. Internally we map the addresses to the type others.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -38,7 +41,7 @@ namespace ApiSdk.Models {
         public List<Phone> Phones { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new BookingCustomer and sets the default values.
+        /// Instantiates a new bookingCustomer and sets the default values.
         /// </summary>
         public BookingCustomer() : base() {
             OdataType = "#microsoft.graph.bookingCustomer";

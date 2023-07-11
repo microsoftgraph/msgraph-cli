@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// Contains properties and inherited properties for Managed iOS Line Of Business apps.
+    /// </summary>
     public class ManagedIOSLobApp : ManagedMobileLobApp, IParsable {
         /// <summary>Contains properties of the possible iOS device types the mobile app can run on.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -48,7 +51,7 @@ namespace ApiSdk.Models {
         public string VersionNumber { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new ManagedIOSLobApp and sets the default values.
+        /// Instantiates a new managedIOSLobApp and sets the default values.
         /// </summary>
         public ManagedIOSLobApp() : base() {
             OdataType = "#microsoft.graph.managedIOSLobApp";

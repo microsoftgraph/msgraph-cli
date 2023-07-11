@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
         public string SuggestedCalendarName { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new CalendarSharingMessage and sets the default values.
+        /// Instantiates a new calendarSharingMessage and sets the default values.
         /// </summary>
         public CalendarSharingMessage() : base() {
             OdataType = "#microsoft.graph.calendarSharingMessage";

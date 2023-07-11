@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// Policy for Windows information protection without MDM
+    /// </summary>
     public class WindowsInformationProtectionPolicy : WindowsInformationProtection, IParsable {
         /// <summary>Offline interval before app data is wiped (days)</summary>
         public int? DaysWithoutContactBeforeUnenroll { get; set; }
@@ -36,7 +39,7 @@ namespace ApiSdk.Models {
         /// <summary>Boolean value that sets Windows Hello for Business as a method for signing into Windows.</summary>
         public bool? WindowsHelloForBusinessBlocked { get; set; }
         /// <summary>
-        /// Instantiates a new WindowsInformationProtectionPolicy and sets the default values.
+        /// Instantiates a new windowsInformationProtectionPolicy and sets the default values.
         /// </summary>
         public WindowsInformationProtectionPolicy() : base() {
             OdataType = "#microsoft.graph.windowsInformationProtectionPolicy";

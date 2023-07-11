@@ -24,7 +24,7 @@ namespace ApiSdk.Models {
         /// <summary>If set to true, activates this policy. There can be many policies for the same policy type, but only one can be activated as the organization default. Optional, default value is false.</summary>
         public bool? IsOrganizationDefault { get; set; }
         /// <summary>
-        /// Instantiates a new StsPolicy and sets the default values.
+        /// Instantiates a new stsPolicy and sets the default values.
         /// </summary>
         public StsPolicy() : base() {
             OdataType = "#microsoft.graph.stsPolicy";

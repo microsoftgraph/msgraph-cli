@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
         /// <summary>Max points possible for this assignment.</summary>
         public float? MaxPoints { get; set; }
         /// <summary>
-        /// Instantiates a new EducationAssignmentPointsGradeType and sets the default values.
+        /// Instantiates a new educationAssignmentPointsGradeType and sets the default values.
         /// </summary>
         public EducationAssignmentPointsGradeType() : base() {
             OdataType = "#microsoft.graph.educationAssignmentPointsGradeType";

@@ -19,11 +19,10 @@ namespace ApiSdk.DeviceManagement.WindowsAutopilotDeviceIdentities.Item.UpdateDe
     public class UpdateDevicePropertiesRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Updates properties on Autopilot devices.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-enrollment-windowsautopilotdeviceidentity-updatedeviceproperties?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Updates properties on Autopilot devices.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-enrollment-windowsautopilotdeviceidentity-updatedeviceproperties?view=graph-rest-1.0";
+            command.Description = "Updates properties on Autopilot devices.";
             var windowsAutopilotDeviceIdentityIdOption = new Option<string>("--windows-autopilot-device-identity-id", description: "The unique identifier of windowsAutopilotDeviceIdentity") {
             };
             windowsAutopilotDeviceIdentityIdOption.IsRequired = true;

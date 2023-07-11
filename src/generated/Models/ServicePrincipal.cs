@@ -331,7 +331,7 @@ namespace ApiSdk.Models {
 #else
         public string SignInAudience { get; set; }
 #endif
-        /// <summary>The synchronization property</summary>
+        /// <summary>Represents the capability for Azure Active Directory (Azure AD) identity synchronization through the Microsoft Graph API.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.Synchronization? Synchronization { get; set; }
@@ -382,7 +382,7 @@ namespace ApiSdk.Models {
         public ApiSdk.Models.VerifiedPublisher VerifiedPublisher { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new ServicePrincipal and sets the default values.
+        /// Instantiates a new servicePrincipal and sets the default values.
         /// </summary>
         public ServicePrincipal() : base() {
             OdataType = "#microsoft.graph.servicePrincipal";

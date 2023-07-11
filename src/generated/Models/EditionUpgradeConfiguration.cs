@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// Windows 10 Edition Upgrade configuration.
+    /// </summary>
     public class EditionUpgradeConfiguration : DeviceConfiguration, IParsable {
         /// <summary>Edition Upgrade License File Content.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -26,7 +29,7 @@ namespace ApiSdk.Models {
         /// <summary>Windows 10 Edition type.</summary>
         public Windows10EditionType? TargetEdition { get; set; }
         /// <summary>
-        /// Instantiates a new EditionUpgradeConfiguration and sets the default values.
+        /// Instantiates a new editionUpgradeConfiguration and sets the default values.
         /// </summary>
         public EditionUpgradeConfiguration() : base() {
             OdataType = "#microsoft.graph.editionUpgradeConfiguration";

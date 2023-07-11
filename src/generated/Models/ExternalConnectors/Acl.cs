@@ -28,7 +28,7 @@ namespace ApiSdk.Models.ExternalConnectors {
         public string Value { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new Acl and sets the default values.
+        /// Instantiates a new acl and sets the default values.
         /// </summary>
         public Acl() {
             AdditionalData = new Dictionary<string, object>();

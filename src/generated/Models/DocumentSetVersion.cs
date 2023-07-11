@@ -34,7 +34,7 @@ namespace ApiSdk.Models {
         /// <summary>If true, minor versions of items are also captured; otherwise, only major versions will be captured. Default value is false.</summary>
         public bool? ShouldCaptureMinorVersion { get; set; }
         /// <summary>
-        /// Instantiates a new DocumentSetVersion and sets the default values.
+        /// Instantiates a new documentSetVersion and sets the default values.
         /// </summary>
         public DocumentSetVersion() : base() {
             OdataType = "#microsoft.graph.documentSetVersion";

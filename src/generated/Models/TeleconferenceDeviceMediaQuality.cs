@@ -70,7 +70,7 @@ namespace ApiSdk.Models {
         /// <summary>The remote media port.</summary>
         public int? RemotePort { get; set; }
         /// <summary>
-        /// Instantiates a new TeleconferenceDeviceMediaQuality and sets the default values.
+        /// Instantiates a new teleconferenceDeviceMediaQuality and sets the default values.
         /// </summary>
         public TeleconferenceDeviceMediaQuality() {
             AdditionalData = new Dictionary<string, object>();

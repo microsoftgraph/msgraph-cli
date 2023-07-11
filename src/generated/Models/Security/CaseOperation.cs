@@ -41,6 +41,7 @@ namespace ApiSdk.Models.Security {
             return mappingValue switch {
                 "#microsoft.graph.security.ediscoveryAddToReviewSetOperation" => new EdiscoveryAddToReviewSetOperation(),
                 "#microsoft.graph.security.ediscoveryEstimateOperation" => new EdiscoveryEstimateOperation(),
+                "#microsoft.graph.security.ediscoveryExportOperation" => new EdiscoveryExportOperation(),
                 "#microsoft.graph.security.ediscoveryHoldOperation" => new EdiscoveryHoldOperation(),
                 "#microsoft.graph.security.ediscoveryIndexOperation" => new EdiscoveryIndexOperation(),
                 "#microsoft.graph.security.ediscoveryPurgeDataOperation" => new EdiscoveryPurgeDataOperation(),

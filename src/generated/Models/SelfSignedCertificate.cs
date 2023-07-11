@@ -70,7 +70,7 @@ namespace ApiSdk.Models {
         public string Usage { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new SelfSignedCertificate and sets the default values.
+        /// Instantiates a new selfSignedCertificate and sets the default values.
         /// </summary>
         public SelfSignedCertificate() {
             AdditionalData = new Dictionary<string, object>();

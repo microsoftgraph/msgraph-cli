@@ -4,9 +4,12 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// Represents an assignment to all licensed users in the tenant.
+    /// </summary>
     public class AllLicensedUsersAssignmentTarget : DeviceAndAppManagementAssignmentTarget, IParsable {
         /// <summary>
-        /// Instantiates a new AllLicensedUsersAssignmentTarget and sets the default values.
+        /// Instantiates a new allLicensedUsersAssignmentTarget and sets the default values.
         /// </summary>
         public AllLicensedUsersAssignmentTarget() : base() {
             OdataType = "#microsoft.graph.allLicensedUsersAssignmentTarget";
