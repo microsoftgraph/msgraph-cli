@@ -10,7 +10,7 @@ namespace ApiSdk.Models.IdentityGovernance {
         /// <summary>The timeBasedAttribute property</summary>
         public WorkflowTriggerTimeBasedAttribute? TimeBasedAttribute { get; set; }
         /// <summary>
-        /// Instantiates a new TimeBasedAttributeTrigger and sets the default values.
+        /// Instantiates a new timeBasedAttributeTrigger and sets the default values.
         /// </summary>
         public TimeBasedAttributeTrigger() : base() {
             OdataType = "#microsoft.graph.identityGovernance.timeBasedAttributeTrigger";

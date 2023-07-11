@@ -14,7 +14,7 @@ namespace ApiSdk.Models.IdentityGovernance {
         public string Rule { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new RuleBasedSubjectSet and sets the default values.
+        /// Instantiates a new ruleBasedSubjectSet and sets the default values.
         /// </summary>
         public RuleBasedSubjectSet() : base() {
             OdataType = "#microsoft.graph.identityGovernance.ruleBasedSubjectSet";

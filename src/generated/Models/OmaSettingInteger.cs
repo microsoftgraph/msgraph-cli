@@ -4,11 +4,14 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// OMA Settings definition.
+    /// </summary>
     public class OmaSettingInteger : OmaSetting, IParsable {
         /// <summary>Value.</summary>
         public int? Value { get; set; }
         /// <summary>
-        /// Instantiates a new OmaSettingInteger and sets the default values.
+        /// Instantiates a new omaSettingInteger and sets the default values.
         /// </summary>
         public OmaSettingInteger() : base() {
             OdataType = "#microsoft.graph.omaSettingInteger";

@@ -19,11 +19,10 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.CleanWindowsDevice {
     public class CleanWindowsDeviceRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Clean Windows device
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-manageddevice-cleanwindowsdevice?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Clean Windows device\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-manageddevice-cleanwindowsdevice?view=graph-rest-1.0";
+            command.Description = "Clean Windows device";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;

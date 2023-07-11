@@ -34,7 +34,7 @@ namespace ApiSdk.Models.IdentityGovernance {
         /// <summary>When the custom extension was last modified.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>
-        /// Instantiates a new CustomTaskExtension and sets the default values.
+        /// Instantiates a new customTaskExtension and sets the default values.
         /// </summary>
         public CustomTaskExtension() : base() {
             OdataType = "#microsoft.graph.identityGovernance.customTaskExtension";

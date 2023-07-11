@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new EmployeeExperience and sets the default values.
+        /// Instantiates a new employeeExperience and sets the default values.
         /// </summary>
         public EmployeeExperience() {
             AdditionalData = new Dictionary<string, object>();

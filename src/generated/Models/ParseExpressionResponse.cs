@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class ParseExpressionResponse : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The error property</summary>
+        /// <summary>Error details, if expression evaluation resulted in an error.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public PublicError? Error { get; set; }
@@ -15,7 +15,7 @@ namespace ApiSdk.Models {
 #else
         public PublicError Error { get; set; }
 #endif
-        /// <summary>The evaluationResult property</summary>
+        /// <summary>A collection of values produced by the evaluation of the expression.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? EvaluationResult { get; set; }
@@ -23,7 +23,7 @@ namespace ApiSdk.Models {
 #else
         public List<string> EvaluationResult { get; set; }
 #endif
-        /// <summary>The evaluationSucceeded property</summary>
+        /// <summary>true if the evaluation was successful.</summary>
         public bool? EvaluationSucceeded { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -33,7 +33,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The parsedExpression property</summary>
+        /// <summary>An attributeMappingSource object representing the parsed expression.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public AttributeMappingSource? ParsedExpression { get; set; }
@@ -41,7 +41,7 @@ namespace ApiSdk.Models {
 #else
         public AttributeMappingSource ParsedExpression { get; set; }
 #endif
-        /// <summary>The parsingSucceeded property</summary>
+        /// <summary>true if the expression was parsed successfully.</summary>
         public bool? ParsingSucceeded { get; set; }
         /// <summary>
         /// Instantiates a new parseExpressionResponse and sets the default values.

@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
         public List<TeamworkUserIdentity> Members { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new MembersDeletedEventMessageDetail and sets the default values.
+        /// Instantiates a new membersDeletedEventMessageDetail and sets the default values.
         /// </summary>
         public MembersDeletedEventMessageDetail() : base() {
             OdataType = "#microsoft.graph.membersDeletedEventMessageDetail";

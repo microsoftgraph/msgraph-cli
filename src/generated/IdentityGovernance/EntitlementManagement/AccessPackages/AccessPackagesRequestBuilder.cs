@@ -37,6 +37,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages {
             commands.Add(builder.BuildIncompatibleAccessPackagesNavCommand());
             commands.Add(builder.BuildIncompatibleGroupsNavCommand());
             executables.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildResourceRoleScopesNavCommand());
             return new(executables, commands);
         }
         /// <summary>

@@ -29,6 +29,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.As
             var builder = new AccessPackageAssignmentPolicyItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildAccessPackageNavCommand());
             commands.Add(builder.BuildCatalogNavCommand());
+            commands.Add(builder.BuildCustomExtensionStageSettingsNavCommand());
             executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
             executables.Add(builder.BuildPatchCommand());

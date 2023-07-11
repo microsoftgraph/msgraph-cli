@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         public AccessReviewInstanceDecisionItemResource Scope { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new AccessReviewInstanceDecisionItemAzureRoleResource and sets the default values.
+        /// Instantiates a new accessReviewInstanceDecisionItemAzureRoleResource and sets the default values.
         /// </summary>
         public AccessReviewInstanceDecisionItemAzureRoleResource() : base() {
             OdataType = "#microsoft.graph.accessReviewInstanceDecisionItemAzureRoleResource";

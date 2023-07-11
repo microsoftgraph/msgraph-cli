@@ -19,11 +19,12 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.Directories.
     /// </summary>
     public class DiscoverRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action discover
+        /// Discover the latest schema definition for provisioning to an application. 
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/synchronization-directorydefinition-discover?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action discover";
+            command.Description = "Discover the latest schema definition for provisioning to an application. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/synchronization-directorydefinition-discover?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -84,7 +85,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Schema.Directories.
         public DiscoverRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/synchronization/jobs/{synchronizationJob%2Did}/schema/directories/{directoryDefinition%2Did}/discover", pathParameters) {
         }
         /// <summary>
-        /// Invoke action discover
+        /// Discover the latest schema definition for provisioning to an application. 
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -117,11 +117,11 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item.Schema {
             return command;
         }
         /// <summary>
-        /// Get schema from servicePrincipals
+        /// Default synchronization schema for the jobs based on this template.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get schema from servicePrincipals";
+            command.Description = "Default synchronization schema for the jobs based on this template.";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -293,7 +293,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item.Schema {
             return requestInfo;
         }
         /// <summary>
-        /// Get schema from servicePrincipals
+        /// Default synchronization schema for the jobs based on this template.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -347,7 +347,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item.Schema {
             return requestInfo;
         }
         /// <summary>
-        /// Get schema from servicePrincipals
+        /// Default synchronization schema for the jobs based on this template.
         /// </summary>
         public class SchemaRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

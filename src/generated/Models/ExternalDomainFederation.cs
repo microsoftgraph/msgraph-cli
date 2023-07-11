@@ -30,7 +30,7 @@ namespace ApiSdk.Models {
         public string IssuerUri { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new ExternalDomainFederation and sets the default values.
+        /// Instantiates a new externalDomainFederation and sets the default values.
         /// </summary>
         public ExternalDomainFederation() : base() {
             OdataType = "#microsoft.graph.externalDomainFederation";

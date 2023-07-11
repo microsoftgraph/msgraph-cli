@@ -48,7 +48,7 @@ namespace ApiSdk.Models.Security {
         public List<EdiscoveryNoncustodialDataSource> NoncustodialSources { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new EdiscoverySearch and sets the default values.
+        /// Instantiates a new ediscoverySearch and sets the default values.
         /// </summary>
         public EdiscoverySearch() : base() {
             OdataType = "#microsoft.graph.security.ediscoverySearch";

@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         public string Blob { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new AppHostedMediaConfig and sets the default values.
+        /// Instantiates a new appHostedMediaConfig and sets the default values.
         /// </summary>
         public AppHostedMediaConfig() : base() {
             OdataType = "#microsoft.graph.appHostedMediaConfig";

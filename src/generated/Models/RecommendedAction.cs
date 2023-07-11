@@ -34,7 +34,7 @@ namespace ApiSdk.Models {
         public string Title { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new RecommendedAction and sets the default values.
+        /// Instantiates a new recommendedAction and sets the default values.
         /// </summary>
         public RecommendedAction() {
             AdditionalData = new Dictionary<string, object>();

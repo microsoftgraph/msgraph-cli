@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         public string SkypeId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new SkypeUserConversationMember and sets the default values.
+        /// Instantiates a new skypeUserConversationMember and sets the default values.
         /// </summary>
         public SkypeUserConversationMember() : base() {
             OdataType = "#microsoft.graph.skypeUserConversationMember";

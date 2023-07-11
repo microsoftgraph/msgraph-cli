@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
         public string TemporaryAccessPass { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new TemporaryAccessPassAuthenticationMethod and sets the default values.
+        /// Instantiates a new temporaryAccessPassAuthenticationMethod and sets the default values.
         /// </summary>
         public TemporaryAccessPassAuthenticationMethod() : base() {
             OdataType = "#microsoft.graph.temporaryAccessPassAuthenticationMethod";

@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
         public IdentitySet Initiator { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new MessagePinnedEventMessageDetail and sets the default values.
+        /// Instantiates a new messagePinnedEventMessageDetail and sets the default values.
         /// </summary>
         public MessagePinnedEventMessageDetail() : base() {
             OdataType = "#microsoft.graph.messagePinnedEventMessageDetail";

@@ -24,7 +24,7 @@ namespace ApiSdk.Models.ExternalConnectors {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new External and sets the default values.
+        /// Instantiates a new external and sets the default values.
         /// </summary>
         public External() {
             AdditionalData = new Dictionary<string, object>();

@@ -40,7 +40,7 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new AlertDetection and sets the default values.
+        /// Instantiates a new alertDetection and sets the default values.
         /// </summary>
         public AlertDetection() {
             AdditionalData = new Dictionary<string, object>();

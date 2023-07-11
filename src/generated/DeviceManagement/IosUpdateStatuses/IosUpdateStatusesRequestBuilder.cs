@@ -47,12 +47,11 @@ namespace ApiSdk.DeviceManagement.IosUpdateStatuses {
             return command;
         }
         /// <summary>
-        /// Create a new iosUpdateDeviceStatus object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-iosupdatedevicestatus-create?view=graph-rest-1.0" />
+        /// Create new navigation property to iosUpdateStatuses for deviceManagement
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new iosUpdateDeviceStatus object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-iosupdatedevicestatus-create?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to iosUpdateStatuses for deviceManagement";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -99,12 +98,11 @@ namespace ApiSdk.DeviceManagement.IosUpdateStatuses {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the iosUpdateDeviceStatus objects.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-iosupdatedevicestatus-list?view=graph-rest-1.0" />
+        /// The IOS software update installation statuses for this account.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the iosUpdateDeviceStatus objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-iosupdatedevicestatus-list?view=graph-rest-1.0";
+            command.Description = "The IOS software update installation statuses for this account.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -210,7 +208,7 @@ namespace ApiSdk.DeviceManagement.IosUpdateStatuses {
         public IosUpdateStatusesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/iosUpdateStatuses{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// List properties and relationships of the iosUpdateDeviceStatus objects.
+        /// The IOS software update installation statuses for this account.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -236,7 +234,7 @@ namespace ApiSdk.DeviceManagement.IosUpdateStatuses {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new iosUpdateDeviceStatus object.
+        /// Create new navigation property to iosUpdateStatuses for deviceManagement
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -264,7 +262,7 @@ namespace ApiSdk.DeviceManagement.IosUpdateStatuses {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the iosUpdateDeviceStatus objects.
+        /// The IOS software update installation statuses for this account.
         /// </summary>
         public class IosUpdateStatusesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

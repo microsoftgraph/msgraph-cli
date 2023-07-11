@@ -89,6 +89,10 @@ namespace ApiSdk.IdentityGovernance {
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildResourceEnvironmentsNavCommand());
+            nonExecCommands.Add(builder.BuildResourceRequestsNavCommand());
+            nonExecCommands.Add(builder.BuildResourceRoleScopesNavCommand());
+            nonExecCommands.Add(builder.BuildResourcesNavCommand());
             nonExecCommands.Add(builder.BuildSettingsNavCommand());
             foreach (var cmd in execCommands)
             {

@@ -30,7 +30,7 @@ namespace ApiSdk.Models {
         public string IdentityProviderType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new SocialIdentityProvider and sets the default values.
+        /// Instantiates a new socialIdentityProvider and sets the default values.
         /// </summary>
         public SocialIdentityProvider() : base() {
             OdataType = "#microsoft.graph.socialIdentityProvider";

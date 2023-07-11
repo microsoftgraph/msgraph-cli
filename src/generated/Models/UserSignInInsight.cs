@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
         /// <summary>Indicates when the user last signed in.</summary>
         public DateTimeOffset? LastSignInDateTime { get; set; }
         /// <summary>
-        /// Instantiates a new UserSignInInsight and sets the default values.
+        /// Instantiates a new userSignInInsight and sets the default values.
         /// </summary>
         public UserSignInInsight() : base() {
             OdataType = "#microsoft.graph.userSignInInsight";

@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         public List<ExternalDomainName> Domains { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new SamlOrWsFedExternalDomainFederation and sets the default values.
+        /// Instantiates a new samlOrWsFedExternalDomainFederation and sets the default values.
         /// </summary>
         public SamlOrWsFedExternalDomainFederation() : base() {
             OdataType = "#microsoft.graph.samlOrWsFedExternalDomainFederation";

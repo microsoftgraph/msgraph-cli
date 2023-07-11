@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// Represents an item on the iOS Home Screen
+    /// </summary>
     public class IosHomeScreenApp : IosHomeScreenItem, IParsable {
         /// <summary>BundleID of the app if isWebClip is false or the URL of a web clip if isWebClip is true.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -14,7 +17,7 @@ namespace ApiSdk.Models {
         public string BundleID { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new IosHomeScreenApp and sets the default values.
+        /// Instantiates a new iosHomeScreenApp and sets the default values.
         /// </summary>
         public IosHomeScreenApp() : base() {
             OdataType = "#microsoft.graph.iosHomeScreenApp";

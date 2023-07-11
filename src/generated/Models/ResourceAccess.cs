@@ -26,7 +26,7 @@ namespace ApiSdk.Models {
         public string Type { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new ResourceAccess and sets the default values.
+        /// Instantiates a new resourceAccess and sets the default values.
         /// </summary>
         public ResourceAccess() {
             AdditionalData = new Dictionary<string, object>();

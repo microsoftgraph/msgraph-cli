@@ -5,7 +5,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class SynchronizationJob : Entity, IParsable {
-        /// <summary>The schedule property</summary>
+        /// <summary>Schedule used to run the job. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public SynchronizationSchedule? Schedule { get; set; }
@@ -13,7 +13,7 @@ namespace ApiSdk.Models {
 #else
         public SynchronizationSchedule Schedule { get; set; }
 #endif
-        /// <summary>The schema property</summary>
+        /// <summary>The synchronization schema configured for the job.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public SynchronizationSchema? Schema { get; set; }
@@ -21,7 +21,7 @@ namespace ApiSdk.Models {
 #else
         public SynchronizationSchema Schema { get; set; }
 #endif
-        /// <summary>The status property</summary>
+        /// <summary>Status of the job, which includes when the job was last run, current job state, and errors.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public SynchronizationStatus? Status { get; set; }
@@ -29,7 +29,7 @@ namespace ApiSdk.Models {
 #else
         public SynchronizationStatus Status { get; set; }
 #endif
-        /// <summary>The synchronizationJobSettings property</summary>
+        /// <summary>Settings associated with the job. Some settings are inherited from the template.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<KeyValuePair>? SynchronizationJobSettings { get; set; }
@@ -37,7 +37,7 @@ namespace ApiSdk.Models {
 #else
         public List<KeyValuePair> SynchronizationJobSettings { get; set; }
 #endif
-        /// <summary>The templateId property</summary>
+        /// <summary>Identifier of the synchronization template this job is based on.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TemplateId { get; set; }

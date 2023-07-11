@@ -34,7 +34,7 @@ namespace ApiSdk.Models {
         public string TenantId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new SensitivityLabelAssignment and sets the default values.
+        /// Instantiates a new sensitivityLabelAssignment and sets the default values.
         /// </summary>
         public SensitivityLabelAssignment() {
             AdditionalData = new Dictionary<string, object>();

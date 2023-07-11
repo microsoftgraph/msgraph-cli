@@ -18,11 +18,12 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.ValidateCreden
     /// </summary>
     public class ValidateCredentialsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action validateCredentials
+        /// Validate that the credentials are valid in the tenant.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/synchronization-synchronizationjob-validatecredentials?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action validateCredentials";
+            command.Description = "Validate that the credentials are valid in the tenant.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/synchronization-synchronizationjob-validatecredentials?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -66,7 +67,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs.Item.ValidateCreden
         public ValidateCredentialsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/synchronization/jobs/{synchronizationJob%2Did}/validateCredentials", pathParameters) {
         }
         /// <summary>
-        /// Invoke action validateCredentials
+        /// Validate that the credentials are valid in the tenant.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

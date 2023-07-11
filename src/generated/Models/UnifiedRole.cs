@@ -24,7 +24,7 @@ namespace ApiSdk.Models {
         public string RoleDefinitionId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new UnifiedRole and sets the default values.
+        /// Instantiates a new unifiedRole and sets the default values.
         /// </summary>
         public UnifiedRole() {
             AdditionalData = new Dictionary<string, object>();

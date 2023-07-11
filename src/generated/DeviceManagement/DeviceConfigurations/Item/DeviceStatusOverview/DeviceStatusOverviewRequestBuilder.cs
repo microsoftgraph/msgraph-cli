@@ -52,12 +52,11 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatusOverview
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the deviceConfigurationDeviceOverview object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-deviceconfigurationdeviceoverview-get?view=graph-rest-1.0" />
+        /// Device Configuration devices status overview
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the deviceConfigurationDeviceOverview object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-deviceconfigurationdeviceoverview-get?view=graph-rest-1.0";
+            command.Description = "Device Configuration devices status overview";
             var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
@@ -114,12 +113,11 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatusOverview
             return command;
         }
         /// <summary>
-        /// Update the properties of a deviceConfigurationDeviceOverview object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-deviceconfigurationdeviceoverview-update?view=graph-rest-1.0" />
+        /// Update the navigation property deviceStatusOverview in deviceManagement
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a deviceConfigurationDeviceOverview object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-deviceconfigurationdeviceoverview-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property deviceStatusOverview in deviceManagement";
             var deviceConfigurationIdOption = new Option<string>("--device-configuration-id", description: "The unique identifier of deviceConfiguration") {
             };
             deviceConfigurationIdOption.IsRequired = true;
@@ -203,7 +201,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatusOverview
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the deviceConfigurationDeviceOverview object.
+        /// Device Configuration devices status overview
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -229,7 +227,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatusOverview
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a deviceConfigurationDeviceOverview object.
+        /// Update the navigation property deviceStatusOverview in deviceManagement
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -257,7 +255,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations.Item.DeviceStatusOverview
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the deviceConfigurationDeviceOverview object.
+        /// Device Configuration devices status overview
         /// </summary>
         public class DeviceStatusOverviewRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

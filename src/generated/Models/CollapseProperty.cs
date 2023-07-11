@@ -26,7 +26,7 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new CollapseProperty and sets the default values.
+        /// Instantiates a new collapseProperty and sets the default values.
         /// </summary>
         public CollapseProperty() {
             AdditionalData = new Dictionary<string, object>();

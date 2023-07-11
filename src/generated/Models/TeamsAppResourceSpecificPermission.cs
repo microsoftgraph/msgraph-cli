@@ -15,9 +15,9 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The permissionType property</summary>
+        /// <summary>The type of resource-specific permission.</summary>
         public TeamsAppResourceSpecificPermissionType? PermissionType { get; set; }
-        /// <summary>The permissionValue property</summary>
+        /// <summary>The name of the resource-specific permission.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PermissionValue { get; set; }

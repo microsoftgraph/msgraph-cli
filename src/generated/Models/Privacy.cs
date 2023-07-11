@@ -24,7 +24,7 @@ namespace ApiSdk.Models {
         public List<SubjectRightsRequest> SubjectRightsRequests { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new Privacy and sets the default values.
+        /// Instantiates a new privacy and sets the default values.
         /// </summary>
         public Privacy() {
             AdditionalData = new Dictionary<string, object>();

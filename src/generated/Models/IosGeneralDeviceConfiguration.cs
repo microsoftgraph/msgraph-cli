@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// This topic provides descriptions of the declared methods, properties and relationships exposed by the iosGeneralDeviceConfiguration resource.
+    /// </summary>
     public class IosGeneralDeviceConfiguration : DeviceConfiguration, IParsable {
         /// <summary>Indicates whether or not to allow account modification when the device is in supervised mode.</summary>
         public bool? AccountBlockModification { get; set; }
@@ -382,7 +385,7 @@ namespace ApiSdk.Models {
         /// <summary>Indicates whether or not to force the device to use only Wi-Fi networks from configuration profiles when the device is in supervised mode. Available for devices running iOS and iPadOS versions 14.4 and earlier. Devices running 14.5+ should use the setting, &apos;WiFiConnectToAllowedNetworksOnlyForced.</summary>
         public bool? WiFiConnectOnlyToConfiguredNetworks { get; set; }
         /// <summary>
-        /// Instantiates a new IosGeneralDeviceConfiguration and sets the default values.
+        /// Instantiates a new iosGeneralDeviceConfiguration and sets the default values.
         /// </summary>
         public IosGeneralDeviceConfiguration() : base() {
             OdataType = "#microsoft.graph.iosGeneralDeviceConfiguration";

@@ -48,7 +48,7 @@ namespace ApiSdk.Models {
         public string Type { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new SettingTemplateValue and sets the default values.
+        /// Instantiates a new settingTemplateValue and sets the default values.
         /// </summary>
         public SettingTemplateValue() {
             AdditionalData = new Dictionary<string, object>();

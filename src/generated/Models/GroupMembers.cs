@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
         public string GroupId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new GroupMembers and sets the default values.
+        /// Instantiates a new groupMembers and sets the default values.
         /// </summary>
         public GroupMembers() : base() {
             OdataType = "#microsoft.graph.groupMembers";

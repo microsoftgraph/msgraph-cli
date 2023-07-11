@@ -19,11 +19,10 @@ namespace ApiSdk.Organization.Item.SetMobileDeviceManagementAuthority {
     public class SetMobileDeviceManagementAuthorityRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Set mobile device management authority
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-onboarding-organization-setmobiledevicemanagementauthority?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Set mobile device management authority\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-onboarding-organization-setmobiledevicemanagementauthority?view=graph-rest-1.0";
+            command.Description = "Set mobile device management authority";
             var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
             };
             organizationIdOption.IsRequired = true;

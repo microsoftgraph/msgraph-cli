@@ -4,13 +4,16 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// Windows Defender AdvancedThreatProtection Configuration.
+    /// </summary>
     public class WindowsDefenderAdvancedThreatProtectionConfiguration : DeviceConfiguration, IParsable {
         /// <summary>Windows Defender AdvancedThreatProtection &apos;Allow Sample Sharing&apos; Rule</summary>
         public bool? AllowSampleSharing { get; set; }
         /// <summary>Expedite Windows Defender Advanced Threat Protection telemetry reporting frequency.</summary>
         public bool? EnableExpeditedTelemetryReporting { get; set; }
         /// <summary>
-        /// Instantiates a new WindowsDefenderAdvancedThreatProtectionConfiguration and sets the default values.
+        /// Instantiates a new windowsDefenderAdvancedThreatProtectionConfiguration and sets the default values.
         /// </summary>
         public WindowsDefenderAdvancedThreatProtectionConfiguration() : base() {
             OdataType = "#microsoft.graph.windowsDefenderAdvancedThreatProtectionConfiguration";

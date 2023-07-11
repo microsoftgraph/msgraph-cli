@@ -35,7 +35,7 @@ namespace ApiSdk.Models {
         public string Proxy { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new ProxiedDomain and sets the default values.
+        /// Instantiates a new proxiedDomain and sets the default values.
         /// </summary>
         public ProxiedDomain() {
             AdditionalData = new Dictionary<string, object>();

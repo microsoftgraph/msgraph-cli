@@ -73,12 +73,11 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
             return command;
         }
         /// <summary>
-        /// Deletes a managedDevice.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-manageddevice-delete?view=graph-rest-1.0" />
+        /// Delete navigation property managedDevices for deviceManagement
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Deletes a managedDevice.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-manageddevice-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property managedDevices for deviceManagement";
             var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "The unique identifier of managedDevice") {
             };
             managedDeviceIdOption.IsRequired = true;
@@ -204,12 +203,11 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the managedDevice object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-manageddevice-get?view=graph-rest-1.0" />
+        /// The list of managed devices.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the managedDevice object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-manageddevice-get?view=graph-rest-1.0";
+            command.Description = "The list of managed devices.";
             var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "The unique identifier of managedDevice") {
             };
             managedDeviceIdOption.IsRequired = true;
@@ -321,12 +319,11 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a managedDevice object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-manageddevice-update?view=graph-rest-1.0" />
+        /// Update the navigation property managedDevices in deviceManagement
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a managedDevice object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-manageddevice-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property managedDevices in deviceManagement";
             var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "The unique identifier of managedDevice") {
             };
             managedDeviceIdOption.IsRequired = true;
@@ -603,7 +600,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
         public ManagedDeviceItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Deletes a managedDevice.
+        /// Delete navigation property managedDevices for deviceManagement
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -628,7 +625,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the managedDevice object.
+        /// The list of managed devices.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -654,7 +651,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a managedDevice object.
+        /// Update the navigation property managedDevices in deviceManagement
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -682,7 +679,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the managedDevice object.
+        /// The list of managed devices.
         /// </summary>
         public class ManagedDeviceItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
         public ResponseStatus Status { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new Attendee and sets the default values.
+        /// Instantiates a new attendee and sets the default values.
         /// </summary>
         public Attendee() : base() {
             OdataType = "#microsoft.graph.attendee";

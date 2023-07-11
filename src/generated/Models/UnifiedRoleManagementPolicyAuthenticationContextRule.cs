@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
         /// <summary>Whether this rule is enabled.</summary>
         public bool? IsEnabled { get; set; }
         /// <summary>
-        /// Instantiates a new UnifiedRoleManagementPolicyAuthenticationContextRule and sets the default values.
+        /// Instantiates a new unifiedRoleManagementPolicyAuthenticationContextRule and sets the default values.
         /// </summary>
         public UnifiedRoleManagementPolicyAuthenticationContextRule() : base() {
             OdataType = "#microsoft.graph.unifiedRoleManagementPolicyAuthenticationContextRule";

@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// Allows IT admins to set a default search engine for MDM-Controlled devices. Users can override this and change their default search engine provided the AllowSearchEngineCustomization policy is not set.
+    /// </summary>
     public class EdgeSearchEngineCustom : EdgeSearchEngineBase, IParsable {
         /// <summary>Points to a https link containing the OpenSearch xml file that contains, at minimum, the short name and the URL to the search Engine.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -14,7 +17,7 @@ namespace ApiSdk.Models {
         public string EdgeSearchEngineOpenSearchXmlUrl { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new EdgeSearchEngineCustom and sets the default values.
+        /// Instantiates a new edgeSearchEngineCustom and sets the default values.
         /// </summary>
         public EdgeSearchEngineCustom() : base() {
             OdataType = "#microsoft.graph.edgeSearchEngineCustom";

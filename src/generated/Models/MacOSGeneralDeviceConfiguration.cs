@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// This topic provides descriptions of the declared methods, properties and relationships exposed by the macOSGeneralDeviceConfiguration resource.
+    /// </summary>
     public class MacOSGeneralDeviceConfiguration : DeviceConfiguration, IParsable {
         /// <summary>Possible values of the compliance app list.</summary>
         public AppListType? CompliantAppListType { get; set; }
@@ -42,7 +45,7 @@ namespace ApiSdk.Models {
         /// <summary>Possible values of required passwords.</summary>
         public RequiredPasswordType? PasswordRequiredType { get; set; }
         /// <summary>
-        /// Instantiates a new MacOSGeneralDeviceConfiguration and sets the default values.
+        /// Instantiates a new macOSGeneralDeviceConfiguration and sets the default values.
         /// </summary>
         public MacOSGeneralDeviceConfiguration() : base() {
             OdataType = "#microsoft.graph.macOSGeneralDeviceConfiguration";

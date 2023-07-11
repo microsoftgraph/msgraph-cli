@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         public string ChatId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new ChatMembersNotificationRecipient and sets the default values.
+        /// Instantiates a new chatMembersNotificationRecipient and sets the default values.
         /// </summary>
         public ChatMembersNotificationRecipient() : base() {
             OdataType = "#microsoft.graph.chatMembersNotificationRecipient";

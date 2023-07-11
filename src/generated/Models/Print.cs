@@ -72,7 +72,7 @@ namespace ApiSdk.Models {
         public List<PrintTaskDefinition> TaskDefinitions { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new Print and sets the default values.
+        /// Instantiates a new print and sets the default values.
         /// </summary>
         public Print() {
             AdditionalData = new Dictionary<string, object>();

@@ -157,12 +157,12 @@ namespace ApiSdk.Organization {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the organization objects.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-onboarding-organization-list?view=graph-rest-1.0" />
+        /// Retrieve a list of organization objects.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/organization-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the organization objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-onboarding-organization-list?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of organization objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/organization-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -283,7 +283,7 @@ namespace ApiSdk.Organization {
         public OrganizationRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/organization{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// List properties and relationships of the organization objects.
+        /// Retrieve a list of organization objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -337,7 +337,7 @@ namespace ApiSdk.Organization {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the organization objects.
+        /// Retrieve a list of organization objects.
         /// </summary>
         public class OrganizationRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

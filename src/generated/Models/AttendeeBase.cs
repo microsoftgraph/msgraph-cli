@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
         /// <summary>The type of attendee. The possible values are: required, optional, resource. Currently if the attendee is a person, findMeetingTimes always considers the person is of the Required type.</summary>
         public AttendeeType? Type { get; set; }
         /// <summary>
-        /// Instantiates a new AttendeeBase and sets the default values.
+        /// Instantiates a new attendeeBase and sets the default values.
         /// </summary>
         public AttendeeBase() : base() {
             OdataType = "#microsoft.graph.attendeeBase";

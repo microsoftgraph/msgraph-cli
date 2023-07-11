@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
         public string Passcode { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new JoinMeetingIdMeetingInfo and sets the default values.
+        /// Instantiates a new joinMeetingIdMeetingInfo and sets the default values.
         /// </summary>
         public JoinMeetingIdMeetingInfo() : base() {
             OdataType = "#microsoft.graph.joinMeetingIdMeetingInfo";

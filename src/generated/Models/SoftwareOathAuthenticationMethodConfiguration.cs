@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         public List<AuthenticationMethodTarget> IncludeTargets { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new SoftwareOathAuthenticationMethodConfiguration and sets the default values.
+        /// Instantiates a new softwareOathAuthenticationMethodConfiguration and sets the default values.
         /// </summary>
         public SoftwareOathAuthenticationMethodConfiguration() : base() {
             OdataType = "#microsoft.graph.softwareOathAuthenticationMethodConfiguration";

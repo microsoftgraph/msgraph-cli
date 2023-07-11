@@ -19,11 +19,10 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.Retire {
     public class RetireRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Retire a device
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-manageddevice-retire?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Retire a device\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-manageddevice-retire?view=graph-rest-1.0";
+            command.Description = "Retire a device";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;

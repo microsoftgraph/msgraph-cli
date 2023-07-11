@@ -16,7 +16,7 @@ namespace ApiSdk.Models.Security {
         /// <summary>Specifies which sources are included in this group. Possible values are: mailbox, site.</summary>
         public SourceType? IncludedSources { get; set; }
         /// <summary>
-        /// Instantiates a new UnifiedGroupSource and sets the default values.
+        /// Instantiates a new unifiedGroupSource and sets the default values.
         /// </summary>
         public UnifiedGroupSource() : base() {
             OdataType = "#microsoft.graph.security.unifiedGroupSource";

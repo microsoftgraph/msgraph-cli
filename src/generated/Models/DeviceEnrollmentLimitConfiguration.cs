@@ -4,11 +4,14 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// Device Enrollment Configuration that restricts the number of devices a user can enroll
+    /// </summary>
     public class DeviceEnrollmentLimitConfiguration : DeviceEnrollmentConfiguration, IParsable {
         /// <summary>The maximum number of devices that a user can enroll</summary>
         public int? Limit { get; set; }
         /// <summary>
-        /// Instantiates a new DeviceEnrollmentLimitConfiguration and sets the default values.
+        /// Instantiates a new deviceEnrollmentLimitConfiguration and sets the default values.
         /// </summary>
         public DeviceEnrollmentLimitConfiguration() : base() {
             OdataType = "#microsoft.graph.deviceEnrollmentLimitConfiguration";

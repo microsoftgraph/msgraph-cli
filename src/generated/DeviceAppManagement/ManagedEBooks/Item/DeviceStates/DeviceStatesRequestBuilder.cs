@@ -47,12 +47,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.DeviceStates {
             return command;
         }
         /// <summary>
-        /// Create a new deviceInstallState object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-books-deviceinstallstate-create?view=graph-rest-1.0" />
+        /// Create new navigation property to deviceStates for deviceAppManagement
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new deviceInstallState object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-books-deviceinstallstate-create?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to deviceStates for deviceAppManagement";
             var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
@@ -105,12 +104,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.DeviceStates {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the deviceInstallState objects.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-books-deviceinstallstate-list?view=graph-rest-1.0" />
+        /// The list of installation states for this eBook.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the deviceInstallState objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-books-deviceinstallstate-list?view=graph-rest-1.0";
+            command.Description = "The list of installation states for this eBook.";
             var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
@@ -222,7 +220,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.DeviceStates {
         public DeviceStatesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/managedEBooks/{managedEBook%2Did}/deviceStates{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// List properties and relationships of the deviceInstallState objects.
+        /// The list of installation states for this eBook.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -248,7 +246,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.DeviceStates {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new deviceInstallState object.
+        /// Create new navigation property to deviceStates for deviceAppManagement
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -276,7 +274,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.DeviceStates {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the deviceInstallState objects.
+        /// The list of installation states for this eBook.
         /// </summary>
         public class DeviceStatesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

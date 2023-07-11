@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// OMA Settings definition.
+    /// </summary>
     public class OmaSettingBase64 : OmaSetting, IParsable {
         /// <summary>File name associated with the Value property (.cer</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -22,7 +25,7 @@ namespace ApiSdk.Models {
         public string Value { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new OmaSettingBase64 and sets the default values.
+        /// Instantiates a new omaSettingBase64 and sets the default values.
         /// </summary>
         public OmaSettingBase64() : base() {
             OdataType = "#microsoft.graph.omaSettingBase64";

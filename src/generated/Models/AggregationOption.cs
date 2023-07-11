@@ -34,7 +34,7 @@ namespace ApiSdk.Models {
         /// <summary>The number of searchBucket resources to be returned. This is not required when the range is provided manually in the search request. Optional.</summary>
         public int? Size { get; set; }
         /// <summary>
-        /// Instantiates a new AggregationOption and sets the default values.
+        /// Instantiates a new aggregationOption and sets the default values.
         /// </summary>
         public AggregationOption() {
             AdditionalData = new Dictionary<string, object>();

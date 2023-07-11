@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// Base type for assignment targets.
+    /// </summary>
     public class ConfigurationManagerCollectionAssignmentTarget : DeviceAndAppManagementAssignmentTarget, IParsable {
         /// <summary>The collection Id that is the target of the assignment.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -14,7 +17,7 @@ namespace ApiSdk.Models {
         public string CollectionId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new ConfigurationManagerCollectionAssignmentTarget and sets the default values.
+        /// Instantiates a new configurationManagerCollectionAssignmentTarget and sets the default values.
         /// </summary>
         public ConfigurationManagerCollectionAssignmentTarget() : base() {
             OdataType = "#microsoft.graph.configurationManagerCollectionAssignmentTarget";

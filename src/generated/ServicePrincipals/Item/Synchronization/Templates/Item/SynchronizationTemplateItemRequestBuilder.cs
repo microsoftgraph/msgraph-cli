@@ -59,11 +59,11 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item {
             return command;
         }
         /// <summary>
-        /// Get templates from servicePrincipals
+        /// Pre-configured synchronization settings for a particular application.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get templates from servicePrincipals";
+            command.Description = "Pre-configured synchronization settings for a particular application.";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -126,11 +126,12 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item {
             return command;
         }
         /// <summary>
-        /// Update the navigation property templates in servicePrincipals
+        /// Update (override) the synchronization template associated with a given application.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/synchronization-synchronizationtemplate-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the navigation property templates in servicePrincipals";
+            command.Description = "Update (override) the synchronization template associated with a given application.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/synchronization-synchronizationtemplate-update?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -246,7 +247,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get templates from servicePrincipals
+        /// Pre-configured synchronization settings for a particular application.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -272,7 +273,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the navigation property templates in servicePrincipals
+        /// Update (override) the synchronization template associated with a given application.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -300,7 +301,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get templates from servicePrincipals
+        /// Pre-configured synchronization settings for a particular application.
         /// </summary>
         public class SynchronizationTemplateItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
         /// <summary>Type of user. Possible values are: aadUser, onPremiseAadUser, anonymousGuest, federatedUser, personalMicrosoftAccountUser, skypeUser, phoneUser, unknownFutureValue and emailUser.</summary>
         public TeamworkUserIdentityType? UserIdentityType { get; set; }
         /// <summary>
-        /// Instantiates a new TeamworkUserIdentity and sets the default values.
+        /// Instantiates a new teamworkUserIdentity and sets the default values.
         /// </summary>
         public TeamworkUserIdentity() : base() {
             OdataType = "#microsoft.graph.teamworkUserIdentity";

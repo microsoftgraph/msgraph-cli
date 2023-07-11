@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
         /// <summary>Manager level, between 1 and 4. The direct manager is 1.</summary>
         public int? ManagerLevel { get; set; }
         /// <summary>
-        /// Instantiates a new TargetManager and sets the default values.
+        /// Instantiates a new targetManager and sets the default values.
         /// </summary>
         public TargetManager() : base() {
             OdataType = "#microsoft.graph.targetManager";

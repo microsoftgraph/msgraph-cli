@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// Contains properties and inherited properties for web apps.
+    /// </summary>
     public class WebApp : MobileApp, IParsable {
         /// <summary>The web app URL. This property cannot be PATCHed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -16,7 +19,7 @@ namespace ApiSdk.Models {
         /// <summary>Whether or not to use managed browser. This property is only applicable for Android and IOS.</summary>
         public bool? UseManagedBrowser { get; set; }
         /// <summary>
-        /// Instantiates a new WebApp and sets the default values.
+        /// Instantiates a new webApp and sets the default values.
         /// </summary>
         public WebApp() : base() {
             OdataType = "#microsoft.graph.webApp";

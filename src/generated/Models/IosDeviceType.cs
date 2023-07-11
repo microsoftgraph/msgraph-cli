@@ -23,7 +23,7 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new IosDeviceType and sets the default values.
+        /// Instantiates a new iosDeviceType and sets the default values.
         /// </summary>
         public IosDeviceType() {
             AdditionalData = new Dictionary<string, object>();

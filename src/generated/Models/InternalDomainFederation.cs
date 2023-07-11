@@ -44,7 +44,7 @@ namespace ApiSdk.Models {
         public string SignOutUri { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new InternalDomainFederation and sets the default values.
+        /// Instantiates a new internalDomainFederation and sets the default values.
         /// </summary>
         public InternalDomainFederation() : base() {
             OdataType = "#microsoft.graph.internalDomainFederation";

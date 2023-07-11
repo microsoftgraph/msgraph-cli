@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
         public string QueryTemplate { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new SearchQuery and sets the default values.
+        /// Instantiates a new searchQuery and sets the default values.
         /// </summary>
         public SearchQuery() {
             AdditionalData = new Dictionary<string, object>();

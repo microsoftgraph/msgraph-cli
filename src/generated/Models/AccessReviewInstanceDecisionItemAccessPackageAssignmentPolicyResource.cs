@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
         public string AccessPackageId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new AccessReviewInstanceDecisionItemAccessPackageAssignmentPolicyResource and sets the default values.
+        /// Instantiates a new accessReviewInstanceDecisionItemAccessPackageAssignmentPolicyResource and sets the default values.
         /// </summary>
         public AccessReviewInstanceDecisionItemAccessPackageAssignmentPolicyResource() : base() {
             OdataType = "#microsoft.graph.accessReviewInstanceDecisionItemAccessPackageAssignmentPolicyResource";

@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
         /// <summary>true if users can register office phones, otherwise, false.</summary>
         public bool? IsOfficePhoneAllowed { get; set; }
         /// <summary>
-        /// Instantiates a new VoiceAuthenticationMethodConfiguration and sets the default values.
+        /// Instantiates a new voiceAuthenticationMethodConfiguration and sets the default values.
         /// </summary>
         public VoiceAuthenticationMethodConfiguration() : base() {
             OdataType = "#microsoft.graph.voiceAuthenticationMethodConfiguration";

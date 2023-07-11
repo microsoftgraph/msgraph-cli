@@ -5,7 +5,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class SynchronizationTaskExecution : IAdditionalDataHolder, IParsable {
-        /// <summary>The activityIdentifier property</summary>
+        /// <summary>Identifier of the job run.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ActivityIdentifier { get; set; }
@@ -15,25 +15,25 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The countEntitled property</summary>
+        /// <summary>Count of processed entries that were assigned for this application.</summary>
         public long? CountEntitled { get; set; }
-        /// <summary>The countEntitledForProvisioning property</summary>
+        /// <summary>Count of processed entries that were assigned for provisioning.</summary>
         public long? CountEntitledForProvisioning { get; set; }
-        /// <summary>The countEscrowed property</summary>
+        /// <summary>Count of entries that were escrowed (errors).</summary>
         public long? CountEscrowed { get; set; }
-        /// <summary>The countEscrowedRaw property</summary>
+        /// <summary>Count of entries that were escrowed, including system-generated escrows.</summary>
         public long? CountEscrowedRaw { get; set; }
-        /// <summary>The countExported property</summary>
+        /// <summary>Count of exported entries.</summary>
         public long? CountExported { get; set; }
-        /// <summary>The countExports property</summary>
+        /// <summary>Count of entries that were expected to be exported.</summary>
         public long? CountExports { get; set; }
-        /// <summary>The countImported property</summary>
+        /// <summary>Count of imported entries.</summary>
         public long? CountImported { get; set; }
-        /// <summary>The countImportedDeltas property</summary>
+        /// <summary>Count of imported delta-changes.</summary>
         public long? CountImportedDeltas { get; set; }
-        /// <summary>The countImportedReferenceDeltas property</summary>
+        /// <summary>Count of imported delta-changes pertaining to reference changes.</summary>
         public long? CountImportedReferenceDeltas { get; set; }
-        /// <summary>The error property</summary>
+        /// <summary>If an error was encountered, contains a synchronizationError object with details.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public SynchronizationError? Error { get; set; }
@@ -51,9 +51,9 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>The state property</summary>
         public SynchronizationTaskExecutionResult? State { get; set; }
-        /// <summary>The timeBegan property</summary>
+        /// <summary>Time when this job run began. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? TimeBegan { get; set; }
-        /// <summary>The timeEnded property</summary>
+        /// <summary>Time when this job run ended. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? TimeEnded { get; set; }
         /// <summary>
         /// Instantiates a new synchronizationTaskExecution and sets the default values.

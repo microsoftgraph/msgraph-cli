@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
         public string DomainName { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new DomainIdentitySource and sets the default values.
+        /// Instantiates a new domainIdentitySource and sets the default values.
         /// </summary>
         public DomainIdentitySource() : base() {
             OdataType = "#microsoft.graph.domainIdentitySource";

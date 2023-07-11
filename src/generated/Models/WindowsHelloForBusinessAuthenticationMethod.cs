@@ -26,7 +26,7 @@ namespace ApiSdk.Models {
         /// <summary>Key strength of this Windows Hello for Business key. Possible values are: normal, weak, unknown.</summary>
         public AuthenticationMethodKeyStrength? KeyStrength { get; set; }
         /// <summary>
-        /// Instantiates a new WindowsHelloForBusinessAuthenticationMethod and sets the default values.
+        /// Instantiates a new windowsHelloForBusinessAuthenticationMethod and sets the default values.
         /// </summary>
         public WindowsHelloForBusinessAuthenticationMethod() : base() {
             OdataType = "#microsoft.graph.windowsHelloForBusinessAuthenticationMethod";

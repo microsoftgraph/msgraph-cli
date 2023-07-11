@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// IPv6 Range definition.
+    /// </summary>
     public class IPv6Range : IpRange, IParsable {
         /// <summary>Lower address.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -22,7 +25,7 @@ namespace ApiSdk.Models {
         public string UpperAddress { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new IPv6Range and sets the default values.
+        /// Instantiates a new iPv6Range and sets the default values.
         /// </summary>
         public IPv6Range() : base() {
             OdataType = "#microsoft.graph.iPv6Range";

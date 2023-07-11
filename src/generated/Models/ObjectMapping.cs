@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class ObjectMapping : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The attributeMappings property</summary>
+        /// <summary>Attribute mappings define which attributes to map from the source object into the target object and how they should flow. A number of functions are available to support the transformation of the original source values.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<AttributeMapping>? AttributeMappings { get; set; }
@@ -15,11 +15,11 @@ namespace ApiSdk.Models {
 #else
         public List<AttributeMapping> AttributeMappings { get; set; }
 #endif
-        /// <summary>The enabled property</summary>
+        /// <summary>When true, this object mapping will be processed during synchronization. When false, this object mapping will be skipped.</summary>
         public bool? Enabled { get; set; }
         /// <summary>The flowTypes property</summary>
         public ObjectFlowTypes? FlowTypes { get; set; }
-        /// <summary>The metadata property</summary>
+        /// <summary>Additional extension properties. Unless mentioned explicitly, metadata values should not be changed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<ObjectMappingMetadataEntry>? Metadata { get; set; }
@@ -27,7 +27,7 @@ namespace ApiSdk.Models {
 #else
         public List<ObjectMappingMetadataEntry> Metadata { get; set; }
 #endif
-        /// <summary>The name property</summary>
+        /// <summary>Human-friendly name of the object mapping.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -43,7 +43,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The scope property</summary>
+        /// <summary>Defines a filter to be used when deciding whether a given object should be provisioned. For example, you might want to only provision users that are located in the US.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public Filter? Scope { get; set; }
@@ -51,7 +51,7 @@ namespace ApiSdk.Models {
 #else
         public Filter Scope { get; set; }
 #endif
-        /// <summary>The sourceObjectName property</summary>
+        /// <summary>Name of the object in the source directory. Must match the object name from the source directory definition.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? SourceObjectName { get; set; }
@@ -59,7 +59,7 @@ namespace ApiSdk.Models {
 #else
         public string SourceObjectName { get; set; }
 #endif
-        /// <summary>The targetObjectName property</summary>
+        /// <summary>Name of the object in target directory. Must match the object name from the target directory definition.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TargetObjectName { get; set; }

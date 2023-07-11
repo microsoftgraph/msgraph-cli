@@ -30,7 +30,7 @@ namespace ApiSdk.Models {
         public string TeamsAppId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new TeamsAppRemovedEventMessageDetail and sets the default values.
+        /// Instantiates a new teamsAppRemovedEventMessageDetail and sets the default values.
         /// </summary>
         public TeamsAppRemovedEventMessageDetail() : base() {
             OdataType = "#microsoft.graph.teamsAppRemovedEventMessageDetail";

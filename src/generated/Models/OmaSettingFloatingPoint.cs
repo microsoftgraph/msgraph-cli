@@ -4,11 +4,14 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// OMA Settings definition.
+    /// </summary>
     public class OmaSettingFloatingPoint : OmaSetting, IParsable {
         /// <summary>Value.</summary>
         public float? Value { get; set; }
         /// <summary>
-        /// Instantiates a new OmaSettingFloatingPoint and sets the default values.
+        /// Instantiates a new omaSettingFloatingPoint and sets the default values.
         /// </summary>
         public OmaSettingFloatingPoint() : base() {
             OdataType = "#microsoft.graph.omaSettingFloatingPoint";

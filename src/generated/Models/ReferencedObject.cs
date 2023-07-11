@@ -15,7 +15,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The referencedObjectName property</summary>
+        /// <summary>Name of the referenced object. Must match one of the objects in the directory definition.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ReferencedObjectName { get; set; }
@@ -23,7 +23,7 @@ namespace ApiSdk.Models {
 #else
         public string ReferencedObjectName { get; set; }
 #endif
-        /// <summary>The referencedProperty property</summary>
+        /// <summary>Currently not supported. Name of the property in the referenced object, the value for which is used as the reference.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ReferencedProperty { get; set; }

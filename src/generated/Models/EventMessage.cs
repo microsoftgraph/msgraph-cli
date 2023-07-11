@@ -56,7 +56,7 @@ namespace ApiSdk.Models {
         /// <summary>The type property</summary>
         public EventType? Type { get; set; }
         /// <summary>
-        /// Instantiates a new EventMessage and sets the default values.
+        /// Instantiates a new eventMessage and sets the default values.
         /// </summary>
         public EventMessage() : base() {
             OdataType = "#microsoft.graph.eventMessage";

@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// A base complex type to store the detection or requirement rule data for a Win32 LOB app.
+    /// </summary>
     public class Win32LobAppRegistryRule : Win32LobAppRule, IParsable {
         /// <summary>A value indicating whether to search the 32-bit registry on 64-bit systems.</summary>
         public bool? Check32BitOn64System { get; set; }
@@ -36,7 +39,7 @@ namespace ApiSdk.Models {
         public string ValueName { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new Win32LobAppRegistryRule and sets the default values.
+        /// Instantiates a new win32LobAppRegistryRule and sets the default values.
         /// </summary>
         public Win32LobAppRegistryRule() : base() {
             OdataType = "#microsoft.graph.win32LobAppRegistryRule";

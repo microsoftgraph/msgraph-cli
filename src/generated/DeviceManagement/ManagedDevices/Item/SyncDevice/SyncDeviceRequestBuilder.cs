@@ -18,12 +18,11 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.SyncDevice {
     /// </summary>
     public class SyncDeviceRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Not yet documented
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-manageddevice-syncdevice?view=graph-rest-1.0" />
+        /// Invoke action syncDevice
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Not yet documented\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-manageddevice-syncdevice?view=graph-rest-1.0";
+            command.Description = "Invoke action syncDevice";
             var managedDeviceIdOption = new Option<string>("--managed-device-id", description: "The unique identifier of managedDevice") {
             };
             managedDeviceIdOption.IsRequired = true;
@@ -51,7 +50,7 @@ namespace ApiSdk.DeviceManagement.ManagedDevices.Item.SyncDevice {
         public SyncDeviceRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/managedDevices/{managedDevice%2Did}/syncDevice", pathParameters) {
         }
         /// <summary>
-        /// Not yet documented
+        /// Invoke action syncDevice
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

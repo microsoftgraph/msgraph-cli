@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// Contains properties and inherited properties for Windows Mobile MSI Line Of Business apps.
+    /// </summary>
     public class WindowsMobileMSI : MobileLobApp, IParsable {
         /// <summary>The command line.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -32,7 +35,7 @@ namespace ApiSdk.Models {
         public string ProductVersion { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new WindowsMobileMSI and sets the default values.
+        /// Instantiates a new windowsMobileMSI and sets the default values.
         /// </summary>
         public WindowsMobileMSI() : base() {
             OdataType = "#microsoft.graph.windowsMobileMSI";

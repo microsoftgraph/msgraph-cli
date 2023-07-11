@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         public List<string> Members { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new ConditionalAccessEnumeratedExternalTenants and sets the default values.
+        /// Instantiates a new conditionalAccessEnumeratedExternalTenants and sets the default values.
         /// </summary>
         public ConditionalAccessEnumeratedExternalTenants() : base() {
             OdataType = "#microsoft.graph.conditionalAccessEnumeratedExternalTenants";

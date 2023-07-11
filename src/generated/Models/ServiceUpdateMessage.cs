@@ -64,7 +64,7 @@ namespace ApiSdk.Models {
         public ServiceUpdateMessageViewpoint ViewPoint { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new ServiceUpdateMessage and sets the default values.
+        /// Instantiates a new serviceUpdateMessage and sets the default values.
         /// </summary>
         public ServiceUpdateMessage() : base() {
             OdataType = "#microsoft.graph.serviceUpdateMessage";

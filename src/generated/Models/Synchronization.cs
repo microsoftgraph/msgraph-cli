@@ -5,7 +5,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class Synchronization : Entity, IParsable {
-        /// <summary>The jobs property</summary>
+        /// <summary>Performs synchronization by periodically running in the background, polling for changes in one directory, and pushing them to another directory.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<SynchronizationJob>? Jobs { get; set; }
@@ -13,7 +13,7 @@ namespace ApiSdk.Models {
 #else
         public List<SynchronizationJob> Jobs { get; set; }
 #endif
-        /// <summary>The secrets property</summary>
+        /// <summary>Represents a collection of credentials to access provisioned cloud applications.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<SynchronizationSecretKeyStringValuePair>? Secrets { get; set; }
@@ -21,7 +21,7 @@ namespace ApiSdk.Models {
 #else
         public List<SynchronizationSecretKeyStringValuePair> Secrets { get; set; }
 #endif
-        /// <summary>The templates property</summary>
+        /// <summary>Pre-configured synchronization settings for a particular application.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<SynchronizationTemplate>? Templates { get; set; }

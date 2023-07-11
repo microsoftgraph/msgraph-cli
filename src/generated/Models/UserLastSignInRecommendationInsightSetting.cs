@@ -10,7 +10,7 @@ namespace ApiSdk.Models {
         /// <summary>Indicates whether inactivity is calculated based on the user&apos;s inactivity in the tenant or in the application. The possible values are tenant, application, unknownFutureValue. application is only relevant when the access review is a review of an assignment to an application.</summary>
         public UserSignInRecommendationScope? SignInScope { get; set; }
         /// <summary>
-        /// Instantiates a new UserLastSignInRecommendationInsightSetting and sets the default values.
+        /// Instantiates a new userLastSignInRecommendationInsightSetting and sets the default values.
         /// </summary>
         public UserLastSignInRecommendationInsightSetting() : base() {
             OdataType = "#microsoft.graph.userLastSignInRecommendationInsightSetting";

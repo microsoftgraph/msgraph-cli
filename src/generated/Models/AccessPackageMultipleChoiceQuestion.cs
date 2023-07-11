@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
         /// <summary>Indicates whether requestor can select multiple choices as their answer.</summary>
         public bool? IsMultipleSelectionAllowed { get; set; }
         /// <summary>
-        /// Instantiates a new AccessPackageMultipleChoiceQuestion and sets the default values.
+        /// Instantiates a new accessPackageMultipleChoiceQuestion and sets the default values.
         /// </summary>
         public AccessPackageMultipleChoiceQuestion() : base() {
             OdataType = "#microsoft.graph.accessPackageMultipleChoiceQuestion";

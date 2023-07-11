@@ -32,7 +32,7 @@ namespace ApiSdk.Models.Security {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new IntelligenceProfileCountryOrRegionOfOrigin and sets the default values.
+        /// Instantiates a new intelligenceProfileCountryOrRegionOfOrigin and sets the default values.
         /// </summary>
         public IntelligenceProfileCountryOrRegionOfOrigin() {
             AdditionalData = new Dictionary<string, object>();

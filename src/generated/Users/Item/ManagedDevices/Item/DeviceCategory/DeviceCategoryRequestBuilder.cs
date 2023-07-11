@@ -58,12 +58,11 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.DeviceCategory {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the deviceCategory object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-devicecategory-get?view=graph-rest-1.0" />
+        /// Device category
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the deviceCategory object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-devicecategory-get?view=graph-rest-1.0";
+            command.Description = "Device category";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -126,12 +125,11 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.DeviceCategory {
             return command;
         }
         /// <summary>
-        /// Update the properties of a deviceCategory object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-devicecategory-update?view=graph-rest-1.0" />
+        /// Update the navigation property deviceCategory in users
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a deviceCategory object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-devicecategory-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property deviceCategory in users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -221,7 +219,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.DeviceCategory {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the deviceCategory object.
+        /// Device category
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -247,7 +245,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.DeviceCategory {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a deviceCategory object.
+        /// Update the navigation property deviceCategory in users
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -275,7 +273,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.DeviceCategory {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the deviceCategory object.
+        /// Device category
         /// </summary>
         public class DeviceCategoryRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

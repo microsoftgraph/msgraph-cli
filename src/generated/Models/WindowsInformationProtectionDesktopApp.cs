@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// App for Windows information protection
+    /// </summary>
     public class WindowsInformationProtectionDesktopApp : WindowsInformationProtectionApp, IParsable {
         /// <summary>The binary name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -30,7 +33,7 @@ namespace ApiSdk.Models {
         public string BinaryVersionLow { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new WindowsInformationProtectionDesktopApp and sets the default values.
+        /// Instantiates a new windowsInformationProtectionDesktopApp and sets the default values.
         /// </summary>
         public WindowsInformationProtectionDesktopApp() : base() {
             OdataType = "#microsoft.graph.windowsInformationProtectionDesktopApp";

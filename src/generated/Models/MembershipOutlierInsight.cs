@@ -50,7 +50,7 @@ namespace ApiSdk.Models {
         /// <summary>The outlierMemberType property</summary>
         public ApiSdk.Models.OutlierMemberType? OutlierMemberType { get; set; }
         /// <summary>
-        /// Instantiates a new MembershipOutlierInsight and sets the default values.
+        /// Instantiates a new membershipOutlierInsight and sets the default values.
         /// </summary>
         public MembershipOutlierInsight() : base() {
             OdataType = "#microsoft.graph.membershipOutlierInsight";

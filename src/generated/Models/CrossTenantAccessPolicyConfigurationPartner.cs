@@ -82,7 +82,7 @@ namespace ApiSdk.Models {
         public string TenantId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new CrossTenantAccessPolicyConfigurationPartner and sets the default values.
+        /// Instantiates a new crossTenantAccessPolicyConfigurationPartner and sets the default values.
         /// </summary>
         public CrossTenantAccessPolicyConfigurationPartner() {
             AdditionalData = new Dictionary<string, object>();

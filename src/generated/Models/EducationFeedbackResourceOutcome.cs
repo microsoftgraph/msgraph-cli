@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
         /// <summary>The status of the feedback resource. The possible values are: notPublished, pendingPublish, published, failedPublish, unknownFutureValue.</summary>
         public EducationFeedbackResourceOutcomeStatus? ResourceStatus { get; set; }
         /// <summary>
-        /// Instantiates a new EducationFeedbackResourceOutcome and sets the default values.
+        /// Instantiates a new educationFeedbackResourceOutcome and sets the default values.
         /// </summary>
         public EducationFeedbackResourceOutcome() : base() {
             OdataType = "#microsoft.graph.educationFeedbackResourceOutcome";

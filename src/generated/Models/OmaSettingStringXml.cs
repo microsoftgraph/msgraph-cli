@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// OMA Settings definition.
+    /// </summary>
     public class OmaSettingStringXml : OmaSetting, IParsable {
         /// <summary>File name associated with the Value property (.xml).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -22,7 +25,7 @@ namespace ApiSdk.Models {
         public byte[] Value { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new OmaSettingStringXml and sets the default values.
+        /// Instantiates a new omaSettingStringXml and sets the default values.
         /// </summary>
         public OmaSettingStringXml() : base() {
             OdataType = "#microsoft.graph.omaSettingStringXml";

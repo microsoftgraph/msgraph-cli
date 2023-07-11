@@ -64,12 +64,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
             return command;
         }
         /// <summary>
-        /// Deletes a iosVppEBook.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-books-iosvppebook-delete?view=graph-rest-1.0" />
+        /// Delete navigation property managedEBooks for deviceAppManagement
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Deletes a iosVppEBook.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-books-iosvppebook-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property managedEBooks for deviceAppManagement";
             var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
@@ -123,12 +122,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the iosVppEBook object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-books-iosvppebook-get?view=graph-rest-1.0" />
+        /// The Managed eBook.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the iosVppEBook object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-books-iosvppebook-get?view=graph-rest-1.0";
+            command.Description = "The Managed eBook.";
             var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
@@ -202,12 +200,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a iosVppEBook object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-books-iosvppebook-update?view=graph-rest-1.0" />
+        /// Update the navigation property managedEBooks in deviceAppManagement
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a iosVppEBook object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-books-iosvppebook-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property managedEBooks in deviceAppManagement";
             var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
@@ -291,7 +288,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
         public ManagedEBookItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/managedEBooks/{managedEBook%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Deletes a iosVppEBook.
+        /// Delete navigation property managedEBooks for deviceAppManagement
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -316,7 +313,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the iosVppEBook object.
+        /// The Managed eBook.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -342,7 +339,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a iosVppEBook object.
+        /// Update the navigation property managedEBooks in deviceAppManagement
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -370,7 +367,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the iosVppEBook object.
+        /// The Managed eBook.
         /// </summary>
         public class ManagedEBookItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

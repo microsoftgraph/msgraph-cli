@@ -6,7 +6,7 @@ using System;
 namespace ApiSdk.Models {
     public class OutgoingCallOptions : CallOptions, IParsable {
         /// <summary>
-        /// Instantiates a new OutgoingCallOptions and sets the default values.
+        /// Instantiates a new outgoingCallOptions and sets the default values.
         /// </summary>
         public OutgoingCallOptions() : base() {
             OdataType = "#microsoft.graph.outgoingCallOptions";

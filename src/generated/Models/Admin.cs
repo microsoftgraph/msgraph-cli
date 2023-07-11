@@ -40,7 +40,7 @@ namespace ApiSdk.Models {
         public ApiSdk.Models.Sharepoint Sharepoint { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new Admin and sets the default values.
+        /// Instantiates a new admin and sets the default values.
         /// </summary>
         public Admin() {
             AdditionalData = new Dictionary<string, object>();

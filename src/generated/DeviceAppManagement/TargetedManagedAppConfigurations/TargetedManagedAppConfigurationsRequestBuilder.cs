@@ -53,12 +53,11 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations {
             return command;
         }
         /// <summary>
-        /// Create a new targetedManagedAppConfiguration object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-mam-targetedmanagedappconfiguration-create?view=graph-rest-1.0" />
+        /// Create new navigation property to targetedManagedAppConfigurations for deviceAppManagement
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new targetedManagedAppConfiguration object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-mam-targetedmanagedappconfiguration-create?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to targetedManagedAppConfigurations for deviceAppManagement";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -105,12 +104,11 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the targetedManagedAppConfiguration objects.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-mam-targetedmanagedappconfiguration-list?view=graph-rest-1.0" />
+        /// Targeted managed app configurations.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the targetedManagedAppConfiguration objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-mam-targetedmanagedappconfiguration-list?view=graph-rest-1.0";
+            command.Description = "Targeted managed app configurations.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -216,7 +214,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations {
         public TargetedManagedAppConfigurationsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/targetedManagedAppConfigurations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// List properties and relationships of the targetedManagedAppConfiguration objects.
+        /// Targeted managed app configurations.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -242,7 +240,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new targetedManagedAppConfiguration object.
+        /// Create new navigation property to targetedManagedAppConfigurations for deviceAppManagement
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -270,7 +268,7 @@ namespace ApiSdk.DeviceAppManagement.TargetedManagedAppConfigurations {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the targetedManagedAppConfiguration objects.
+        /// Targeted managed app configurations.
         /// </summary>
         public class TargetedManagedAppConfigurationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

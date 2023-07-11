@@ -24,7 +24,7 @@ namespace ApiSdk.Models {
         /// <summary>The timestamp that denotes how far back a conversation&apos;s history is shared with the conversation members.</summary>
         public DateTimeOffset? VisibleHistoryStartDateTime { get; set; }
         /// <summary>
-        /// Instantiates a new MembersAddedEventMessageDetail and sets the default values.
+        /// Instantiates a new membersAddedEventMessageDetail and sets the default values.
         /// </summary>
         public MembersAddedEventMessageDetail() : base() {
             OdataType = "#microsoft.graph.membersAddedEventMessageDetail";

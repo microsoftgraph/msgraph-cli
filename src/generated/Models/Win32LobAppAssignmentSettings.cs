@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// Abstract class to contain properties used to assign a mobile app to a group.
+    /// </summary>
     public class Win32LobAppAssignmentSettings : MobileAppAssignmentSettings, IParsable {
         /// <summary>Contains value for delivery optimization priority.</summary>
         public Win32LobAppDeliveryOptimizationPriority? DeliveryOptimizationPriority { get; set; }
@@ -26,7 +29,7 @@ namespace ApiSdk.Models {
         public Win32LobAppRestartSettings RestartSettings { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new Win32LobAppAssignmentSettings and sets the default values.
+        /// Instantiates a new win32LobAppAssignmentSettings and sets the default values.
         /// </summary>
         public Win32LobAppAssignmentSettings() : base() {
             OdataType = "#microsoft.graph.win32LobAppAssignmentSettings";

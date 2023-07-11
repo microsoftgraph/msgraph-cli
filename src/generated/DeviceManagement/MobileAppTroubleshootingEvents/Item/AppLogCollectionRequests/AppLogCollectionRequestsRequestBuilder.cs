@@ -49,12 +49,11 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
             return command;
         }
         /// <summary>
-        /// Create a new appLogCollectionRequest object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-applogcollectionrequest-create?view=graph-rest-1.0" />
+        /// Create new navigation property to appLogCollectionRequests for deviceManagement
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new appLogCollectionRequest object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-applogcollectionrequest-create?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to appLogCollectionRequests for deviceManagement";
             var mobileAppTroubleshootingEventIdOption = new Option<string>("--mobile-app-troubleshooting-event-id", description: "The unique identifier of mobileAppTroubleshootingEvent") {
             };
             mobileAppTroubleshootingEventIdOption.IsRequired = true;
@@ -107,12 +106,11 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the appLogCollectionRequest objects.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-applogcollectionrequest-list?view=graph-rest-1.0" />
+        /// Indicates collection of App Log Upload Request.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the appLogCollectionRequest objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-applogcollectionrequest-list?view=graph-rest-1.0";
+            command.Description = "Indicates collection of App Log Upload Request.";
             var mobileAppTroubleshootingEventIdOption = new Option<string>("--mobile-app-troubleshooting-event-id", description: "The unique identifier of mobileAppTroubleshootingEvent") {
             };
             mobileAppTroubleshootingEventIdOption.IsRequired = true;
@@ -224,7 +222,7 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
         public AppLogCollectionRequestsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/mobileAppTroubleshootingEvents/{mobileAppTroubleshootingEvent%2Did}/appLogCollectionRequests{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// List properties and relationships of the appLogCollectionRequest objects.
+        /// Indicates collection of App Log Upload Request.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -250,7 +248,7 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
             return requestInfo;
         }
         /// <summary>
-        /// Create a new appLogCollectionRequest object.
+        /// Create new navigation property to appLogCollectionRequests for deviceManagement
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -278,7 +276,7 @@ namespace ApiSdk.DeviceManagement.MobileAppTroubleshootingEvents.Item.AppLogColl
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the appLogCollectionRequest objects.
+        /// Indicates collection of App Log Upload Request.
         /// </summary>
         public class AppLogCollectionRequestsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
