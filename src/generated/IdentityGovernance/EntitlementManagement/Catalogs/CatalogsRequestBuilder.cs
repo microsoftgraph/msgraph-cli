@@ -28,9 +28,13 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs {
             var commands = new List<Command>();
             var builder = new AccessPackageCatalogItemRequestBuilder(PathParameters);
             commands.Add(builder.BuildAccessPackagesNavCommand());
+            commands.Add(builder.BuildCustomWorkflowExtensionsNavCommand());
             executables.Add(builder.BuildDeleteCommand());
             executables.Add(builder.BuildGetCommand());
             executables.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildResourceRolesNavCommand());
+            commands.Add(builder.BuildResourceScopesNavCommand());
+            commands.Add(builder.BuildResourcesNavCommand());
             return new(executables, commands);
         }
         /// <summary>

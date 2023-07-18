@@ -71,11 +71,11 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization {
             return command;
         }
         /// <summary>
-        /// Get synchronization from servicePrincipals
+        /// Represents the capability for Azure Active Directory (Azure AD) identity synchronization through the Microsoft Graph API.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get synchronization from servicePrincipals";
+            command.Description = "Represents the capability for Azure Active Directory (Azure AD) identity synchronization through the Microsoft Graph API.";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -292,7 +292,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization {
             return requestInfo;
         }
         /// <summary>
-        /// Get synchronization from servicePrincipals
+        /// Represents the capability for Azure Active Directory (Azure AD) identity synchronization through the Microsoft Graph API.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -346,7 +346,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization {
             return requestInfo;
         }
         /// <summary>
-        /// Get synchronization from servicePrincipals
+        /// Represents the capability for Azure Active Directory (Azure AD) identity synchronization through the Microsoft Graph API.
         /// </summary>
         public class SynchronizationRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

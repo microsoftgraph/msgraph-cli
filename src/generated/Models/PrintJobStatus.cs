@@ -36,7 +36,7 @@ namespace ApiSdk.Models {
         /// <summary>The state property</summary>
         public PrintJobProcessingState? State { get; set; }
         /// <summary>
-        /// Instantiates a new PrintJobStatus and sets the default values.
+        /// Instantiates a new printJobStatus and sets the default values.
         /// </summary>
         public PrintJobStatus() {
             AdditionalData = new Dictionary<string, object>();

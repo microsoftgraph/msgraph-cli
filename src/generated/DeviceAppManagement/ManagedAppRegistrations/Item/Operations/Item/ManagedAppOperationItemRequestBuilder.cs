@@ -19,12 +19,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.Ite
     /// </summary>
     public class ManagedAppOperationItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Deletes a managedAppOperation.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-mam-managedappoperation-delete?view=graph-rest-1.0" />
+        /// Delete navigation property operations for deviceAppManagement
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Deletes a managedAppOperation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-mam-managedappoperation-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property operations for deviceAppManagement";
             var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "The unique identifier of managedAppRegistration") {
             };
             managedAppRegistrationIdOption.IsRequired = true;
@@ -59,12 +58,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.Ite
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the managedAppOperation object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-mam-managedappoperation-get?view=graph-rest-1.0" />
+        /// Zero or more long running operations triggered on the app registration.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the managedAppOperation object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-mam-managedappoperation-get?view=graph-rest-1.0";
+            command.Description = "Zero or more long running operations triggered on the app registration.";
             var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "The unique identifier of managedAppRegistration") {
             };
             managedAppRegistrationIdOption.IsRequired = true;
@@ -127,12 +125,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.Ite
             return command;
         }
         /// <summary>
-        /// Update the properties of a managedAppOperation object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-mam-managedappoperation-update?view=graph-rest-1.0" />
+        /// Update the navigation property operations in deviceAppManagement
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a managedAppOperation object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-mam-managedappoperation-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property operations in deviceAppManagement";
             var managedAppRegistrationIdOption = new Option<string>("--managed-app-registration-id", description: "The unique identifier of managedAppRegistration") {
             };
             managedAppRegistrationIdOption.IsRequired = true;
@@ -197,7 +194,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.Ite
         public ManagedAppOperationItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/managedAppRegistrations/{managedAppRegistration%2Did}/operations/{managedAppOperation%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Deletes a managedAppOperation.
+        /// Delete navigation property operations for deviceAppManagement
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -222,7 +219,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the managedAppOperation object.
+        /// Zero or more long running operations triggered on the app registration.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -248,7 +245,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a managedAppOperation object.
+        /// Update the navigation property operations in deviceAppManagement
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -276,7 +273,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppRegistrations.Item.Operations.Ite
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the managedAppOperation object.
+        /// Zero or more long running operations triggered on the app registration.
         /// </summary>
         public class ManagedAppOperationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -24,7 +24,7 @@ namespace ApiSdk.Models {
         /// <summary>Minimum lifetime in minutes for any Temporary Access Pass created in the tenant. Value can be between 10 and 43200 minutes (equivalent to 30 days).</summary>
         public int? MinimumLifetimeInMinutes { get; set; }
         /// <summary>
-        /// Instantiates a new TemporaryAccessPassAuthenticationMethodConfiguration and sets the default values.
+        /// Instantiates a new temporaryAccessPassAuthenticationMethodConfiguration and sets the default values.
         /// </summary>
         public TemporaryAccessPassAuthenticationMethodConfiguration() : base() {
             OdataType = "#microsoft.graph.temporaryAccessPassAuthenticationMethodConfiguration";

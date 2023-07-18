@@ -24,7 +24,7 @@ namespace ApiSdk.Models {
         public StandardTimeZoneOffset StandardOffset { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new CustomTimeZone and sets the default values.
+        /// Instantiates a new customTimeZone and sets the default values.
         /// </summary>
         public CustomTimeZone() : base() {
             OdataType = "#microsoft.graph.customTimeZone";

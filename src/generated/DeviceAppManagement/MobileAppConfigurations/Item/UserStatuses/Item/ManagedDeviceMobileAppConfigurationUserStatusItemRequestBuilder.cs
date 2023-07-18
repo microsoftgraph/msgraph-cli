@@ -19,12 +19,11 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatuses.I
     /// </summary>
     public class ManagedDeviceMobileAppConfigurationUserStatusItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Deletes a managedDeviceMobileAppConfigurationUserStatus.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-apps-manageddevicemobileappconfigurationuserstatus-delete?view=graph-rest-1.0" />
+        /// Delete navigation property userStatuses for deviceAppManagement
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Deletes a managedDeviceMobileAppConfigurationUserStatus.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-apps-manageddevicemobileappconfigurationuserstatus-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property userStatuses for deviceAppManagement";
             var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--managed-device-mobile-app-configuration-id", description: "The unique identifier of managedDeviceMobileAppConfiguration") {
             };
             managedDeviceMobileAppConfigurationIdOption.IsRequired = true;
@@ -59,12 +58,11 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatuses.I
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the managedDeviceMobileAppConfigurationUserStatus object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-apps-manageddevicemobileappconfigurationuserstatus-get?view=graph-rest-1.0" />
+        /// List of ManagedDeviceMobileAppConfigurationUserStatus.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the managedDeviceMobileAppConfigurationUserStatus object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-apps-manageddevicemobileappconfigurationuserstatus-get?view=graph-rest-1.0";
+            command.Description = "List of ManagedDeviceMobileAppConfigurationUserStatus.";
             var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--managed-device-mobile-app-configuration-id", description: "The unique identifier of managedDeviceMobileAppConfiguration") {
             };
             managedDeviceMobileAppConfigurationIdOption.IsRequired = true;
@@ -127,12 +125,11 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatuses.I
             return command;
         }
         /// <summary>
-        /// Update the properties of a managedDeviceMobileAppConfigurationUserStatus object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-apps-manageddevicemobileappconfigurationuserstatus-update?view=graph-rest-1.0" />
+        /// Update the navigation property userStatuses in deviceAppManagement
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a managedDeviceMobileAppConfigurationUserStatus object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-apps-manageddevicemobileappconfigurationuserstatus-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property userStatuses in deviceAppManagement";
             var managedDeviceMobileAppConfigurationIdOption = new Option<string>("--managed-device-mobile-app-configuration-id", description: "The unique identifier of managedDeviceMobileAppConfiguration") {
             };
             managedDeviceMobileAppConfigurationIdOption.IsRequired = true;
@@ -197,7 +194,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatuses.I
         public ManagedDeviceMobileAppConfigurationUserStatusItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileAppConfigurations/{managedDeviceMobileAppConfiguration%2Did}/userStatuses/{managedDeviceMobileAppConfigurationUserStatus%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Deletes a managedDeviceMobileAppConfigurationUserStatus.
+        /// Delete navigation property userStatuses for deviceAppManagement
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -222,7 +219,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatuses.I
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the managedDeviceMobileAppConfigurationUserStatus object.
+        /// List of ManagedDeviceMobileAppConfigurationUserStatus.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -248,7 +245,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatuses.I
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a managedDeviceMobileAppConfigurationUserStatus object.
+        /// Update the navigation property userStatuses in deviceAppManagement
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -276,7 +273,7 @@ namespace ApiSdk.DeviceAppManagement.MobileAppConfigurations.Item.UserStatuses.I
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the managedDeviceMobileAppConfigurationUserStatus object.
+        /// List of ManagedDeviceMobileAppConfigurationUserStatus.
         /// </summary>
         public class ManagedDeviceMobileAppConfigurationUserStatusItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

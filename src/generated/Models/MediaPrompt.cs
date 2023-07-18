@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         public ApiSdk.Models.MediaInfo MediaInfo { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new MediaPrompt and sets the default values.
+        /// Instantiates a new mediaPrompt and sets the default values.
         /// </summary>
         public MediaPrompt() : base() {
             OdataType = "#microsoft.graph.mediaPrompt";

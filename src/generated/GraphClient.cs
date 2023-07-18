@@ -4,6 +4,7 @@ using ApiSdk.Agreements;
 using ApiSdk.AppCatalogs;
 using ApiSdk.ApplicationTemplates;
 using ApiSdk.Applications;
+using ApiSdk.ApplicationsWithAppId;
 using ApiSdk.AuditLogs;
 using ApiSdk.AuthenticationMethodConfigurations;
 using ApiSdk.AuthenticationMethodsPolicy;
@@ -18,10 +19,12 @@ using ApiSdk.DataPolicyOperations;
 using ApiSdk.DeviceAppManagement;
 using ApiSdk.DeviceManagement;
 using ApiSdk.Devices;
+using ApiSdk.DevicesWithDeviceId;
 using ApiSdk.DirectoryNamespace;
 using ApiSdk.DirectoryObjects;
 using ApiSdk.DirectoryRoleTemplates;
 using ApiSdk.DirectoryRoles;
+using ApiSdk.DirectoryRolesWithRoleTemplateId;
 using ApiSdk.DomainDnsRecords;
 using ApiSdk.Domains;
 using ApiSdk.Drives;
@@ -56,6 +59,7 @@ using ApiSdk.ScopedRoleMemberships;
 using ApiSdk.Search;
 using ApiSdk.Security;
 using ApiSdk.ServicePrincipals;
+using ApiSdk.ServicePrincipalsWithAppId;
 using ApiSdk.Shares;
 using ApiSdk.Sites;
 using ApiSdk.Solutions;
@@ -203,6 +207,23 @@ namespace ApiSdk {
                 command.AddCommand(cmd);
             }
             foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the collection of application entities.
+        /// </summary>
+        public Command BuildApplicationsWithAppIdRbCommand() {
+            var command = new Command("applications-with-app-id");
+            command.Description = "Provides operations to manage the collection of application entities.";
+            var builder = new ApplicationsWithAppIdRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
@@ -650,6 +671,23 @@ namespace ApiSdk {
             return command;
         }
         /// <summary>
+        /// Provides operations to manage the collection of device entities.
+        /// </summary>
+        public Command BuildDevicesWithDeviceIdRbCommand() {
+            var command = new Command("devices-with-device-id");
+            command.Description = "Provides operations to manage the collection of device entities.";
+            var builder = new DevicesWithDeviceIdRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the directory singleton.
         /// </summary>
         public Command BuildDirectoryNavCommand() {
@@ -729,6 +767,23 @@ namespace ApiSdk {
                 command.AddCommand(cmd);
             }
             foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the collection of directoryRole entities.
+        /// </summary>
+        public Command BuildDirectoryRolesWithRoleTemplateIdRbCommand() {
+            var command = new Command("directory-roles-with-role-template-id");
+            command.Description = "Provides operations to manage the collection of directoryRole entities.";
+            var builder = new DirectoryRolesWithRoleTemplateIdRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
@@ -1618,6 +1673,7 @@ namespace ApiSdk {
             command.AddCommand(BuildAgreementsNavCommand());
             command.AddCommand(BuildAppCatalogsNavCommand());
             command.AddCommand(BuildApplicationsNavCommand());
+            command.AddCommand(BuildApplicationsWithAppIdRbCommand());
             command.AddCommand(BuildApplicationTemplatesNavCommand());
             command.AddCommand(BuildAuditLogsNavCommand());
             command.AddCommand(BuildAuthenticationMethodConfigurationsNavCommand());
@@ -1633,9 +1689,11 @@ namespace ApiSdk {
             command.AddCommand(BuildDeviceAppManagementNavCommand());
             command.AddCommand(BuildDeviceManagementNavCommand());
             command.AddCommand(BuildDevicesNavCommand());
+            command.AddCommand(BuildDevicesWithDeviceIdRbCommand());
             command.AddCommand(BuildDirectoryNavCommand());
             command.AddCommand(BuildDirectoryObjectsNavCommand());
             command.AddCommand(BuildDirectoryRolesNavCommand());
+            command.AddCommand(BuildDirectoryRolesWithRoleTemplateIdRbCommand());
             command.AddCommand(BuildDirectoryRoleTemplatesNavCommand());
             command.AddCommand(BuildDomainDnsRecordsNavCommand());
             command.AddCommand(BuildDomainsNavCommand());
@@ -1671,6 +1729,7 @@ namespace ApiSdk {
             command.AddCommand(BuildSearchNavCommand());
             command.AddCommand(BuildSecurityNavCommand());
             command.AddCommand(BuildServicePrincipalsNavCommand());
+            command.AddCommand(BuildServicePrincipalsWithAppIdRbCommand());
             command.AddCommand(BuildSharesNavCommand());
             command.AddCommand(BuildSitesNavCommand());
             command.AddCommand(BuildSolutionsNavCommand());
@@ -1764,8 +1823,8 @@ namespace ApiSdk {
             var builder = new SecurityRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
-            nonExecCommands.Add(builder.BuildAlerts_v2NavCommand());
             nonExecCommands.Add(builder.BuildAlertsNavCommand());
+            nonExecCommands.Add(builder.BuildAlerts_v2NavCommand());
             nonExecCommands.Add(builder.BuildAttackSimulationNavCommand());
             nonExecCommands.Add(builder.BuildCasesNavCommand());
             execCommands.Add(builder.BuildGetCommand());
@@ -1811,6 +1870,23 @@ namespace ApiSdk {
                 command.AddCommand(cmd);
             }
             foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the collection of servicePrincipal entities.
+        /// </summary>
+        public Command BuildServicePrincipalsWithAppIdRbCommand() {
+            var command = new Command("service-principals-with-app-id");
+            command.Description = "Provides operations to manage the collection of servicePrincipal entities.";
+            var builder = new ServicePrincipalsWithAppIdRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }
@@ -2025,6 +2101,8 @@ namespace ApiSdk {
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildDelegatedAdminCustomersNavCommand());
             nonExecCommands.Add(builder.BuildDelegatedAdminRelationshipsNavCommand());
+            nonExecCommands.Add(builder.BuildFindTenantInformationByDomainNameWithDomainNameRbCommand());
+            nonExecCommands.Add(builder.BuildFindTenantInformationByTenantIdWithTenantIdRbCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPatchCommand());
             foreach (var cmd in execCommands)

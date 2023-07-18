@@ -26,7 +26,7 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new DelegatedAdminAccessContainer and sets the default values.
+        /// Instantiates a new delegatedAdminAccessContainer and sets the default values.
         /// </summary>
         public DelegatedAdminAccessContainer() {
             AdditionalData = new Dictionary<string, object>();

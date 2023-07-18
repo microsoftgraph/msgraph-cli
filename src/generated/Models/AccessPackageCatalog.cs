@@ -17,6 +17,14 @@ namespace ApiSdk.Models {
         public AccessPackageCatalogType? CatalogType { get; set; }
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
+        /// <summary>The customWorkflowExtensions property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<CustomCalloutExtension>? CustomWorkflowExtensions { get; set; }
+#nullable restore
+#else
+        public List<CustomCalloutExtension> CustomWorkflowExtensions { get; set; }
+#endif
         /// <summary>The description of the access package catalog.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -37,6 +45,30 @@ namespace ApiSdk.Models {
         public bool? IsExternallyVisible { get; set; }
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
         public DateTimeOffset? ModifiedDateTime { get; set; }
+        /// <summary>The resourceRoles property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AccessPackageResourceRole>? ResourceRoles { get; set; }
+#nullable restore
+#else
+        public List<AccessPackageResourceRole> ResourceRoles { get; set; }
+#endif
+        /// <summary>The resources property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AccessPackageResource>? Resources { get; set; }
+#nullable restore
+#else
+        public List<AccessPackageResource> Resources { get; set; }
+#endif
+        /// <summary>The resourceScopes property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AccessPackageResourceScope>? ResourceScopes { get; set; }
+#nullable restore
+#else
+        public List<AccessPackageResourceScope> ResourceScopes { get; set; }
+#endif
         /// <summary>Has the value published if the access packages are available for management. The possible values are: unpublished, published, unknownFutureValue.</summary>
         public AccessPackageCatalogState? State { get; set; }
         /// <summary>
@@ -55,10 +87,14 @@ namespace ApiSdk.Models {
                 {"accessPackages", n => { AccessPackages = n.GetCollectionOfObjectValues<AccessPackage>(AccessPackage.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"catalogType", n => { CatalogType = n.GetEnumValue<AccessPackageCatalogType>(); } },
                 {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
+                {"customWorkflowExtensions", n => { CustomWorkflowExtensions = n.GetCollectionOfObjectValues<CustomCalloutExtension>(CustomCalloutExtension.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"description", n => { Description = n.GetStringValue(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"isExternallyVisible", n => { IsExternallyVisible = n.GetBoolValue(); } },
                 {"modifiedDateTime", n => { ModifiedDateTime = n.GetDateTimeOffsetValue(); } },
+                {"resourceRoles", n => { ResourceRoles = n.GetCollectionOfObjectValues<AccessPackageResourceRole>(AccessPackageResourceRole.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"resources", n => { Resources = n.GetCollectionOfObjectValues<AccessPackageResource>(AccessPackageResource.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"resourceScopes", n => { ResourceScopes = n.GetCollectionOfObjectValues<AccessPackageResourceScope>(AccessPackageResourceScope.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"state", n => { State = n.GetEnumValue<AccessPackageCatalogState>(); } },
             };
         }
@@ -72,10 +108,14 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<AccessPackage>("accessPackages", AccessPackages);
             writer.WriteEnumValue<AccessPackageCatalogType>("catalogType", CatalogType);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
+            writer.WriteCollectionOfObjectValues<CustomCalloutExtension>("customWorkflowExtensions", CustomWorkflowExtensions);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteBoolValue("isExternallyVisible", IsExternallyVisible);
             writer.WriteDateTimeOffsetValue("modifiedDateTime", ModifiedDateTime);
+            writer.WriteCollectionOfObjectValues<AccessPackageResourceRole>("resourceRoles", ResourceRoles);
+            writer.WriteCollectionOfObjectValues<AccessPackageResource>("resources", Resources);
+            writer.WriteCollectionOfObjectValues<AccessPackageResourceScope>("resourceScopes", ResourceScopes);
             writer.WriteEnumValue<AccessPackageCatalogState>("state", State);
         }
     }

@@ -45,7 +45,7 @@ namespace ApiSdk.Models {
         public List<UserExperienceAnalyticsInsightValue> Values { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new UserExperienceAnalyticsInsight and sets the default values.
+        /// Instantiates a new userExperienceAnalyticsInsight and sets the default values.
         /// </summary>
         public UserExperienceAnalyticsInsight() {
             AdditionalData = new Dictionary<string, object>();

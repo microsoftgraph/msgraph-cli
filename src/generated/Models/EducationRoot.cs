@@ -48,7 +48,7 @@ namespace ApiSdk.Models {
         public List<EducationUser> Users { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new EducationRoot and sets the default values.
+        /// Instantiates a new educationRoot and sets the default values.
         /// </summary>
         public EducationRoot() {
             AdditionalData = new Dictionary<string, object>();

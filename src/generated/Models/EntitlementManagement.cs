@@ -61,6 +61,38 @@ namespace ApiSdk.Models {
 #else
         public List<ConnectedOrganization> ConnectedOrganizations { get; set; }
 #endif
+        /// <summary>The resourceEnvironments property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AccessPackageResourceEnvironment>? ResourceEnvironments { get; set; }
+#nullable restore
+#else
+        public List<AccessPackageResourceEnvironment> ResourceEnvironments { get; set; }
+#endif
+        /// <summary>The resourceRequests property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AccessPackageResourceRequest>? ResourceRequests { get; set; }
+#nullable restore
+#else
+        public List<AccessPackageResourceRequest> ResourceRequests { get; set; }
+#endif
+        /// <summary>The resourceRoleScopes property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AccessPackageResourceRoleScope>? ResourceRoleScopes { get; set; }
+#nullable restore
+#else
+        public List<AccessPackageResourceRoleScope> ResourceRoleScopes { get; set; }
+#endif
+        /// <summary>The resources property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AccessPackageResource>? Resources { get; set; }
+#nullable restore
+#else
+        public List<AccessPackageResource> Resources { get; set; }
+#endif
         /// <summary>The settings that control the behavior of Azure AD entitlement management.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -89,6 +121,10 @@ namespace ApiSdk.Models {
                 {"assignments", n => { Assignments = n.GetCollectionOfObjectValues<AccessPackageAssignment>(AccessPackageAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"catalogs", n => { Catalogs = n.GetCollectionOfObjectValues<AccessPackageCatalog>(AccessPackageCatalog.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"connectedOrganizations", n => { ConnectedOrganizations = n.GetCollectionOfObjectValues<ConnectedOrganization>(ConnectedOrganization.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"resourceEnvironments", n => { ResourceEnvironments = n.GetCollectionOfObjectValues<AccessPackageResourceEnvironment>(AccessPackageResourceEnvironment.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"resourceRequests", n => { ResourceRequests = n.GetCollectionOfObjectValues<AccessPackageResourceRequest>(AccessPackageResourceRequest.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"resourceRoleScopes", n => { ResourceRoleScopes = n.GetCollectionOfObjectValues<AccessPackageResourceRoleScope>(AccessPackageResourceRoleScope.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"resources", n => { Resources = n.GetCollectionOfObjectValues<AccessPackageResource>(AccessPackageResource.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"settings", n => { Settings = n.GetObjectValue<EntitlementManagementSettings>(EntitlementManagementSettings.CreateFromDiscriminatorValue); } },
             };
         }
@@ -106,6 +142,10 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<AccessPackageAssignment>("assignments", Assignments);
             writer.WriteCollectionOfObjectValues<AccessPackageCatalog>("catalogs", Catalogs);
             writer.WriteCollectionOfObjectValues<ConnectedOrganization>("connectedOrganizations", ConnectedOrganizations);
+            writer.WriteCollectionOfObjectValues<AccessPackageResourceEnvironment>("resourceEnvironments", ResourceEnvironments);
+            writer.WriteCollectionOfObjectValues<AccessPackageResourceRequest>("resourceRequests", ResourceRequests);
+            writer.WriteCollectionOfObjectValues<AccessPackageResourceRoleScope>("resourceRoleScopes", ResourceRoleScopes);
+            writer.WriteCollectionOfObjectValues<AccessPackageResource>("resources", Resources);
             writer.WriteObjectValue<EntitlementManagementSettings>("settings", Settings);
         }
     }

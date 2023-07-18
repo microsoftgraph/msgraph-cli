@@ -118,7 +118,7 @@ namespace ApiSdk.Models {
         public List<EducationUser> Users { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new EducationSchool and sets the default values.
+        /// Instantiates a new educationSchool and sets the default values.
         /// </summary>
         public EducationSchool() : base() {
             OdataType = "#microsoft.graph.educationSchool";

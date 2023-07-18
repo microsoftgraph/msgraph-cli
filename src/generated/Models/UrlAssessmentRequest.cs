@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         public string Url { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new UrlAssessmentRequest and sets the default values.
+        /// Instantiates a new urlAssessmentRequest and sets the default values.
         /// </summary>
         public UrlAssessmentRequest() : base() {
             OdataType = "#microsoft.graph.urlAssessmentRequest";

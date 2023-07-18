@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         public List<Pkcs12CertificateInformation> CertificateList { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new ClientCertificateAuthentication and sets the default values.
+        /// Instantiates a new clientCertificateAuthentication and sets the default values.
         /// </summary>
         public ClientCertificateAuthentication() : base() {
             OdataType = "#microsoft.graph.clientCertificateAuthentication";

@@ -15,9 +15,9 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The totalUserCount property</summary>
+        /// <summary>Total number of users accounts, excluding those that are blocked.</summary>
         public long? TotalUserCount { get; set; }
-        /// <summary>The userRegistrationFeatureCounts property</summary>
+        /// <summary>Number of users registered or capable for multi-factor authentication, self-service password reset, and passwordless authentication.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<UserRegistrationFeatureCount>? UserRegistrationFeatureCounts { get; set; }
@@ -25,12 +25,12 @@ namespace ApiSdk.Models {
 #else
         public List<UserRegistrationFeatureCount> UserRegistrationFeatureCounts { get; set; }
 #endif
-        /// <summary>The userRoles property</summary>
+        /// <summary>The role type of the user. Possible values are: all, privilegedAdmin, admin, user, unknownFutureValue.</summary>
         public IncludedUserRoles? UserRoles { get; set; }
-        /// <summary>The userTypes property</summary>
+        /// <summary>User type. Possible values are: all, member, guest, unknownFutureValue.</summary>
         public IncludedUserTypes? UserTypes { get; set; }
         /// <summary>
-        /// Instantiates a new UserRegistrationFeatureSummary and sets the default values.
+        /// Instantiates a new userRegistrationFeatureSummary and sets the default values.
         /// </summary>
         public UserRegistrationFeatureSummary() {
             AdditionalData = new Dictionary<string, object>();

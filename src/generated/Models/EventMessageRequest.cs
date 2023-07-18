@@ -36,7 +36,7 @@ namespace ApiSdk.Models {
         /// <summary>Set to true if the sender would like the invitee to send a response to the requested meeting.</summary>
         public bool? ResponseRequested { get; set; }
         /// <summary>
-        /// Instantiates a new EventMessageRequest and sets the default values.
+        /// Instantiates a new eventMessageRequest and sets the default values.
         /// </summary>
         public EventMessageRequest() : base() {
             OdataType = "#microsoft.graph.eventMessageRequest";

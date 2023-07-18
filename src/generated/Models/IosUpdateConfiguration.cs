@@ -5,6 +5,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// IOS Update Configuration, allows you to configure time window within week to install iOS updates
+    /// </summary>
     public class IosUpdateConfiguration : DeviceConfiguration, IParsable {
         /// <summary>Active Hours End (active hours mean the time window when updates install should not happen)</summary>
         public Time? ActiveHoursEnd { get; set; }
@@ -21,7 +24,7 @@ namespace ApiSdk.Models {
         /// <summary>UTC Time Offset indicated in minutes</summary>
         public int? UtcTimeOffsetInMinutes { get; set; }
         /// <summary>
-        /// Instantiates a new IosUpdateConfiguration and sets the default values.
+        /// Instantiates a new iosUpdateConfiguration and sets the default values.
         /// </summary>
         public IosUpdateConfiguration() : base() {
             OdataType = "#microsoft.graph.iosUpdateConfiguration";

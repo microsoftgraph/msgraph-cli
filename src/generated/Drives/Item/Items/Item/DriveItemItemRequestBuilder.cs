@@ -17,6 +17,7 @@ using ApiSdk.Drives.Item.Items.Item.GetActivitiesByIntervalWithStartDateTimeWith
 using ApiSdk.Drives.Item.Items.Item.Invite;
 using ApiSdk.Drives.Item.Items.Item.LastModifiedByUser;
 using ApiSdk.Drives.Item.Items.Item.ListItem;
+using ApiSdk.Drives.Item.Items.Item.PermanentDelete;
 using ApiSdk.Drives.Item.Items.Item.Permissions;
 using ApiSdk.Drives.Item.Items.Item.Preview;
 using ApiSdk.Drives.Item.Items.Item.Restore;
@@ -473,12 +474,12 @@ namespace ApiSdk.Drives.Item.Items.Item {
             return command;
         }
         /// <summary>
-        /// To move a DriveItem to a new parent item, your app requests to update the **parentReference** of the DriveItem to move. This is a special case of the Update method.Your app can combine moving an item to a new container and updating other properties of the item into a single request. Items cannot be moved between Drives using this request.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/driveitem-move?view=graph-rest-1.0" />
+        /// Update the metadata for a driveItem by ID or path. You can also use update to move an item to another parent by updating the item&apos;s **parentReference** property.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/driveitem-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "To move a DriveItem to a new parent item, your app requests to update the **parentReference** of the DriveItem to move. This is a special case of the Update method.Your app can combine moving an item to a new container and updating other properties of the item into a single request. Items cannot be moved between Drives using this request.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitem-move?view=graph-rest-1.0";
+            command.Description = "Update the metadata for a driveItem by ID or path. You can also use update to move an item to another parent by updating the item's **parentReference** property.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/driveitem-update?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -534,6 +535,21 @@ namespace ApiSdk.Drives.Item.Items.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the permanentDelete method.
+        /// </summary>
+        public Command BuildPermanentDeleteNavCommand() {
+            var command = new Command("permanent-delete");
+            command.Description = "Provides operations to call the permanentDelete method.";
+            var builder = new PermanentDeleteRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
@@ -803,7 +819,7 @@ namespace ApiSdk.Drives.Item.Items.Item {
             return requestInfo;
         }
         /// <summary>
-        /// To move a DriveItem to a new parent item, your app requests to update the **parentReference** of the DriveItem to move. This is a special case of the Update method.Your app can combine moving an item to a new container and updating other properties of the item into a single request. Items cannot be moved between Drives using this request.
+        /// Update the metadata for a driveItem by ID or path. You can also use update to move an item to another parent by updating the item&apos;s **parentReference** property.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         /// <summary>The average outbound stream video frame rate per second.</summary>
         public double? AverageOutboundFrameRate { get; set; }
         /// <summary>
-        /// Instantiates a new TeleconferenceDeviceVideoQuality and sets the default values.
+        /// Instantiates a new teleconferenceDeviceVideoQuality and sets the default values.
         /// </summary>
         public TeleconferenceDeviceVideoQuality() : base() {
             OdataType = "#microsoft.graph.teleconferenceDeviceVideoQuality";

@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// Policy used to configure detailed management settings for a specified set of apps
+    /// </summary>
     public class ManagedAppProtection : ManagedAppPolicy, IParsable {
         /// <summary>Data storage locations where a user may store managed data.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -90,7 +93,7 @@ namespace ApiSdk.Models {
         /// <summary>Indicates whether simplePin is blocked.</summary>
         public bool? SimplePinBlocked { get; set; }
         /// <summary>
-        /// Instantiates a new ManagedAppProtection and sets the default values.
+        /// Instantiates a new managedAppProtection and sets the default values.
         /// </summary>
         public ManagedAppProtection() : base() {
             OdataType = "#microsoft.graph.managedAppProtection";

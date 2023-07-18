@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// This topic provides descriptions of the declared methods, properties and relationships exposed by the androidCustomConfiguration resource.
+    /// </summary>
     public class AndroidCustomConfiguration : DeviceConfiguration, IParsable {
         /// <summary>OMA settings. This collection can contain a maximum of 1000 elements.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -14,7 +17,7 @@ namespace ApiSdk.Models {
         public List<OmaSetting> OmaSettings { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new AndroidCustomConfiguration and sets the default values.
+        /// Instantiates a new androidCustomConfiguration and sets the default values.
         /// </summary>
         public AndroidCustomConfiguration() : base() {
             OdataType = "#microsoft.graph.androidCustomConfiguration";

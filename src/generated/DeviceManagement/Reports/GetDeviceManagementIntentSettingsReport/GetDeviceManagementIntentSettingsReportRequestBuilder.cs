@@ -18,12 +18,11 @@ namespace ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentSettingsRepor
     /// </summary>
     public class GetDeviceManagementIntentSettingsReportRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Not yet documented
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-reporting-devicemanagementreports-getdevicemanagementintentsettingsreport?view=graph-rest-1.0" />
+        /// Invoke action getDeviceManagementIntentSettingsReport
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Not yet documented\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-reporting-devicemanagementreports-getdevicemanagementintentsettingsreport?view=graph-rest-1.0";
+            command.Description = "Invoke action getDeviceManagementIntentSettingsReport";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -67,7 +66,7 @@ namespace ApiSdk.DeviceManagement.Reports.GetDeviceManagementIntentSettingsRepor
         public GetDeviceManagementIntentSettingsReportRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/reports/getDeviceManagementIntentSettingsReport", pathParameters) {
         }
         /// <summary>
-        /// Not yet documented
+        /// Invoke action getDeviceManagementIntentSettingsReport
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

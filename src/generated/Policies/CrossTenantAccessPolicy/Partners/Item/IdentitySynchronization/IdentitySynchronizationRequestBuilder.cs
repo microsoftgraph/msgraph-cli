@@ -115,12 +115,12 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item.IdentitySynchron
             return command;
         }
         /// <summary>
-        /// Create a cross-tenant user synchronization policy for a partner-specific configuration.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationpartner-put-identitysynchronization?view=graph-rest-1.0" />
+        /// Update the user synchronization policy of a partner-specific configuration.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/crosstenantidentitysyncpolicypartner-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Create a cross-tenant user synchronization policy for a partner-specific configuration.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationpartner-put-identitysynchronization?view=graph-rest-1.0";
+            command.Description = "Update the user synchronization policy of a partner-specific configuration.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/crosstenantidentitysyncpolicypartner-update?view=graph-rest-1.0";
             var crossTenantAccessPolicyConfigurationPartnerTenantIdOption = new Option<string>("--cross-tenant-access-policy-configuration-partner-tenant-id", description: "The unique identifier of crossTenantAccessPolicyConfigurationPartner") {
             };
             crossTenantAccessPolicyConfigurationPartnerTenantIdOption.IsRequired = true;
@@ -230,7 +230,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item.IdentitySynchron
             return requestInfo;
         }
         /// <summary>
-        /// Create a cross-tenant user synchronization policy for a partner-specific configuration.
+        /// Update the user synchronization policy of a partner-specific configuration.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

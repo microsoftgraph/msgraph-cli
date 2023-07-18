@@ -94,11 +94,11 @@ namespace ApiSdk.Reports.Security {
             return command;
         }
         /// <summary>
-        /// Get security from reports
+        /// Represents an abstract type that contains resources for attack simulation and training reports.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get security from reports";
+            command.Description = "Represents an abstract type that contains resources for attack simulation and training reports.";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -231,7 +231,7 @@ namespace ApiSdk.Reports.Security {
             return requestInfo;
         }
         /// <summary>
-        /// Get security from reports
+        /// Represents an abstract type that contains resources for attack simulation and training reports.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -285,7 +285,7 @@ namespace ApiSdk.Reports.Security {
             return requestInfo;
         }
         /// <summary>
-        /// Get security from reports
+        /// Represents an abstract type that contains resources for attack simulation and training reports.
         /// </summary>
         public class SecurityRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

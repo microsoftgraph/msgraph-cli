@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
         public string Username { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new BasicAuthentication and sets the default values.
+        /// Instantiates a new basicAuthentication and sets the default values.
         /// </summary>
         public BasicAuthentication() : base() {
             OdataType = "#microsoft.graph.basicAuthentication";

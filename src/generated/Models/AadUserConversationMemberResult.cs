@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         public string UserId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new AadUserConversationMemberResult and sets the default values.
+        /// Instantiates a new aadUserConversationMemberResult and sets the default values.
         /// </summary>
         public AadUserConversationMemberResult() : base() {
             OdataType = "#microsoft.graph.aadUserConversationMemberResult";

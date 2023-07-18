@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// Contains properties and inherited properties for the macOS LOB App.
+    /// </summary>
     public class MacOSLobApp : MobileLobApp, IParsable {
         /// <summary>The build number of the package. This should match the package CFBundleShortVersionString of the .pkg file.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -60,7 +63,7 @@ namespace ApiSdk.Models {
         public string VersionNumber { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new MacOSLobApp and sets the default values.
+        /// Instantiates a new macOSLobApp and sets the default values.
         /// </summary>
         public MacOSLobApp() : base() {
             OdataType = "#microsoft.graph.macOSLobApp";

@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// Represents a staff member who provides services in a business.
+    /// </summary>
     public class BookingStaffMember : BookingStaffMemberBase, IParsable {
         /// <summary>True means that if the staff member is a Microsoft 365 user, the Bookings API would verify the staff member&apos;s availability in their personal calendar in Microsoft 365, before making a booking.</summary>
         public bool? AvailabilityIsAffectedByPersonalCalendar { get; set; }
@@ -46,7 +49,7 @@ namespace ApiSdk.Models {
         public List<BookingWorkHours> WorkingHours { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new BookingStaffMember and sets the default values.
+        /// Instantiates a new bookingStaffMember and sets the default values.
         /// </summary>
         public BookingStaffMember() : base() {
             OdataType = "#microsoft.graph.bookingStaffMember";

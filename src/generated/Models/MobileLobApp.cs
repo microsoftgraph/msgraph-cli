@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// An abstract base class containing properties for all mobile line of business apps.
+    /// </summary>
     public class MobileLobApp : MobileApp, IParsable {
         /// <summary>The internal committed content version.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -32,7 +35,7 @@ namespace ApiSdk.Models {
         /// <summary>The total size, including all uploaded files.</summary>
         public long? Size { get; set; }
         /// <summary>
-        /// Instantiates a new MobileLobApp and sets the default values.
+        /// Instantiates a new mobileLobApp and sets the default values.
         /// </summary>
         public MobileLobApp() : base() {
             OdataType = "#microsoft.graph.mobileLobApp";

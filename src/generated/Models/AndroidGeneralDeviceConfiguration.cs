@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// This topic provides descriptions of the declared methods, properties and relationships exposed by the androidGeneralDeviceConfiguration resource.
+    /// </summary>
     public class AndroidGeneralDeviceConfiguration : DeviceConfiguration, IParsable {
         /// <summary>Indicates whether or not to block clipboard sharing to copy and paste between applications.</summary>
         public bool? AppsBlockClipboardSharing { get; set; }
@@ -132,7 +135,7 @@ namespace ApiSdk.Models {
         /// <summary>Indicates whether or not to block syncing Wi-Fi.</summary>
         public bool? WiFiBlocked { get; set; }
         /// <summary>
-        /// Instantiates a new AndroidGeneralDeviceConfiguration and sets the default values.
+        /// Instantiates a new androidGeneralDeviceConfiguration and sets the default values.
         /// </summary>
         public AndroidGeneralDeviceConfiguration() : base() {
             OdataType = "#microsoft.graph.androidGeneralDeviceConfiguration";

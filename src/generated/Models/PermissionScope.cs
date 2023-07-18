@@ -76,7 +76,7 @@ namespace ApiSdk.Models {
         public string Value { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new PermissionScope and sets the default values.
+        /// Instantiates a new permissionScope and sets the default values.
         /// </summary>
         public PermissionScope() {
             AdditionalData = new Dictionary<string, object>();

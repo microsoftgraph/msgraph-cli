@@ -25,7 +25,7 @@ namespace ApiSdk.Models {
         /// <summary>Windows version 8.1 or later.</summary>
         public bool? V8_1 { get; set; }
         /// <summary>
-        /// Instantiates a new WindowsMinimumOperatingSystem and sets the default values.
+        /// Instantiates a new windowsMinimumOperatingSystem and sets the default values.
         /// </summary>
         public WindowsMinimumOperatingSystem() {
             AdditionalData = new Dictionary<string, object>();

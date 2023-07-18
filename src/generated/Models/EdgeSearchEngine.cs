@@ -4,11 +4,14 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// Allows IT admins to set a predefined default search engine for MDM-Controlled devices.
+    /// </summary>
     public class EdgeSearchEngine : EdgeSearchEngineBase, IParsable {
         /// <summary>Allows IT admind to set a predefined default search engine for MDM-Controlled devices</summary>
         public ApiSdk.Models.EdgeSearchEngineType? EdgeSearchEngineType { get; set; }
         /// <summary>
-        /// Instantiates a new EdgeSearchEngine and sets the default values.
+        /// Instantiates a new edgeSearchEngine and sets the default values.
         /// </summary>
         public EdgeSearchEngine() : base() {
             OdataType = "#microsoft.graph.edgeSearchEngine";

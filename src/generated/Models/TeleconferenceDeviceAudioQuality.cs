@@ -6,7 +6,7 @@ using System;
 namespace ApiSdk.Models {
     public class TeleconferenceDeviceAudioQuality : TeleconferenceDeviceMediaQuality, IParsable {
         /// <summary>
-        /// Instantiates a new TeleconferenceDeviceAudioQuality and sets the default values.
+        /// Instantiates a new teleconferenceDeviceAudioQuality and sets the default values.
         /// </summary>
         public TeleconferenceDeviceAudioQuality() : base() {
             OdataType = "#microsoft.graph.teleconferenceDeviceAudioQuality";

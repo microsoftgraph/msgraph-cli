@@ -54,7 +54,7 @@ namespace ApiSdk.Models {
         public string SuggestionReason { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new MeetingTimeSuggestion and sets the default values.
+        /// Instantiates a new meetingTimeSuggestion and sets the default values.
         /// </summary>
         public MeetingTimeSuggestion() {
             AdditionalData = new Dictionary<string, object>();

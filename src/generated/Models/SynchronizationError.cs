@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class SynchronizationError : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The code property</summary>
+        /// <summary>The error code. For example, AzureDirectoryB2BManagementPolicyCheckFailure.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Code { get; set; }
@@ -15,7 +15,7 @@ namespace ApiSdk.Models {
 #else
         public string Code { get; set; }
 #endif
-        /// <summary>The message property</summary>
+        /// <summary>The error message. For example, Policy permitting auto-redemption of invitations not configured.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Message { get; set; }
@@ -31,7 +31,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The tenantActionable property</summary>
+        /// <summary>The action to take to resolve the error. For example, false.</summary>
         public bool? TenantActionable { get; set; }
         /// <summary>
         /// Instantiates a new synchronizationError and sets the default values.

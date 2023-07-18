@@ -11,7 +11,7 @@ namespace ApiSdk.Models {
         /// <summary>Active Hours Start</summary>
         public Time? ActiveHoursStart { get; set; }
         /// <summary>
-        /// Instantiates a new WindowsUpdateActiveHoursInstall and sets the default values.
+        /// Instantiates a new windowsUpdateActiveHoursInstall and sets the default values.
         /// </summary>
         public WindowsUpdateActiveHoursInstall() : base() {
             OdataType = "#microsoft.graph.windowsUpdateActiveHoursInstall";

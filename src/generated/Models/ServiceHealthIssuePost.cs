@@ -28,7 +28,7 @@ namespace ApiSdk.Models {
         /// <summary>The post type of the service issue historical post. Possible values are: regular, quick, strategic, unknownFutureValue.</summary>
         public ApiSdk.Models.PostType? PostType { get; set; }
         /// <summary>
-        /// Instantiates a new ServiceHealthIssuePost and sets the default values.
+        /// Instantiates a new serviceHealthIssuePost and sets the default values.
         /// </summary>
         public ServiceHealthIssuePost() {
             AdditionalData = new Dictionary<string, object>();

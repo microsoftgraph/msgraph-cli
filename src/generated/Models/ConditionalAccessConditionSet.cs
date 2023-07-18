@@ -96,7 +96,7 @@ namespace ApiSdk.Models {
         public ConditionalAccessUsers Users { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new ConditionalAccessConditionSet and sets the default values.
+        /// Instantiates a new conditionalAccessConditionSet and sets the default values.
         /// </summary>
         public ConditionalAccessConditionSet() {
             AdditionalData = new Dictionary<string, object>();

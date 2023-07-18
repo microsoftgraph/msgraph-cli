@@ -14,7 +14,7 @@ namespace ApiSdk.Models.IdentityGovernance {
         public List<ApiSdk.Models.Application> AuthorizedApps { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new CustomTaskExtensionCallbackConfiguration and sets the default values.
+        /// Instantiates a new customTaskExtensionCallbackConfiguration and sets the default values.
         /// </summary>
         public CustomTaskExtensionCallbackConfiguration() : base() {
             OdataType = "#microsoft.graph.identityGovernance.customTaskExtensionCallbackConfiguration";

@@ -18,12 +18,11 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assign {
     /// </summary>
     public class AssignRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Not yet documented
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecompliancepolicy-assign?view=graph-rest-1.0" />
+        /// Invoke action assign
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Not yet documented\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-deviceconfig-devicecompliancepolicy-assign?view=graph-rest-1.0";
+            command.Description = "Invoke action assign";
             var deviceCompliancePolicyIdOption = new Option<string>("--device-compliance-policy-id", description: "The unique identifier of deviceCompliancePolicy") {
             };
             deviceCompliancePolicyIdOption.IsRequired = true;
@@ -94,7 +93,7 @@ namespace ApiSdk.DeviceManagement.DeviceCompliancePolicies.Item.Assign {
         public AssignRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/deviceCompliancePolicies/{deviceCompliancePolicy%2Did}/assign", pathParameters) {
         }
         /// <summary>
-        /// Not yet documented
+        /// Invoke action assign
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

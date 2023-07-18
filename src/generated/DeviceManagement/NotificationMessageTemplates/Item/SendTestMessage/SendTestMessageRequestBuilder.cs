@@ -19,11 +19,10 @@ namespace ApiSdk.DeviceManagement.NotificationMessageTemplates.Item.SendTestMess
     public class SendTestMessageRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Sends test message using the specified notificationMessageTemplate in the default locale
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-notification-notificationmessagetemplate-sendtestmessage?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Sends test message using the specified notificationMessageTemplate in the default locale\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-notification-notificationmessagetemplate-sendtestmessage?view=graph-rest-1.0";
+            command.Description = "Sends test message using the specified notificationMessageTemplate in the default locale";
             var notificationMessageTemplateIdOption = new Option<string>("--notification-message-template-id", description: "The unique identifier of notificationMessageTemplate") {
             };
             notificationMessageTemplateIdOption.IsRequired = true;

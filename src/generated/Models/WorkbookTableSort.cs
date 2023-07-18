@@ -18,10 +18,10 @@ namespace ApiSdk.Models {
         /// <summary>Represents Chinese character ordering method last used to sort the table. The possible values are: PinYin, StrokeCount. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Method { get; set; }
+        public string? MethodEscaped { get; set; }
 #nullable restore
 #else
-        public string Method { get; set; }
+        public string MethodEscaped { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,7 +38,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"fields", n => { Fields = n.GetCollectionOfObjectValues<WorkbookSortField>(WorkbookSortField.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"matchCase", n => { MatchCase = n.GetBoolValue(); } },
-                {"method", n => { Method = n.GetStringValue(); } },
+                {"method", n => { MethodEscaped = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -50,7 +50,7 @@ namespace ApiSdk.Models {
             base.Serialize(writer);
             writer.WriteCollectionOfObjectValues<WorkbookSortField>("fields", Fields);
             writer.WriteBoolValue("matchCase", MatchCase);
-            writer.WriteStringValue("method", Method);
+            writer.WriteStringValue("method", MethodEscaped);
         }
     }
 }

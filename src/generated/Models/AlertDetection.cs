@@ -18,10 +18,10 @@ namespace ApiSdk.Models {
         /// <summary>The method property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Method { get; set; }
+        public string? MethodEscaped { get; set; }
 #nullable restore
 #else
-        public string Method { get; set; }
+        public string MethodEscaped { get; set; }
 #endif
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -40,7 +40,7 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new AlertDetection and sets the default values.
+        /// Instantiates a new alertDetection and sets the default values.
         /// </summary>
         public AlertDetection() {
             AdditionalData = new Dictionary<string, object>();
@@ -59,7 +59,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"detectionType", n => { DetectionType = n.GetStringValue(); } },
-                {"method", n => { Method = n.GetStringValue(); } },
+                {"method", n => { MethodEscaped = n.GetStringValue(); } },
                 {"name", n => { Name = n.GetStringValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
@@ -71,7 +71,7 @@ namespace ApiSdk.Models {
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("detectionType", DetectionType);
-            writer.WriteStringValue("method", Method);
+            writer.WriteStringValue("method", MethodEscaped);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("@odata.type", OdataType);
             writer.WriteAdditionalData(AdditionalData);

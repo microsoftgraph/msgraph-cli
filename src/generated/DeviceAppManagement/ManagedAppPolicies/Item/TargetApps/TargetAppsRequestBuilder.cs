@@ -18,12 +18,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item.TargetApps {
     /// </summary>
     public class TargetAppsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Not yet documented
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-mam-managedappprotection-targetapps?view=graph-rest-1.0" />
+        /// Invoke action targetApps
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Not yet documented\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-mam-managedappprotection-targetapps?view=graph-rest-1.0";
+            command.Description = "Invoke action targetApps";
             var managedAppPolicyIdOption = new Option<string>("--managed-app-policy-id", description: "The unique identifier of managedAppPolicy") {
             };
             managedAppPolicyIdOption.IsRequired = true;
@@ -61,7 +60,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies.Item.TargetApps {
         public TargetAppsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/managedAppPolicies/{managedAppPolicy%2Did}/targetApps", pathParameters) {
         }
         /// <summary>
-        /// Not yet documented
+        /// Invoke action targetApps
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

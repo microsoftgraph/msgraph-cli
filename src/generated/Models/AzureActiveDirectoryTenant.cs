@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
         public string TenantId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new AzureActiveDirectoryTenant and sets the default values.
+        /// Instantiates a new azureActiveDirectoryTenant and sets the default values.
         /// </summary>
         public AzureActiveDirectoryTenant() : base() {
             OdataType = "#microsoft.graph.azureActiveDirectoryTenant";

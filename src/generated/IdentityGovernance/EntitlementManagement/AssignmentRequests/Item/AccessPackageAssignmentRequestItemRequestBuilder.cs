@@ -3,6 +3,7 @@ using ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.As
 using ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.Cancel;
 using ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.Reprocess;
 using ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.Requestor;
+using ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Item.Resume;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -245,6 +246,21 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests.Ite
             var builder = new RequestorRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the resume method.
+        /// </summary>
+        public Command BuildResumeNavCommand() {
+            var command = new Command("resume");
+            command.Description = "Provides operations to call the resume method.";
+            var builder = new ResumeRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);

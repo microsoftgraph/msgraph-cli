@@ -50,12 +50,11 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions {
             return command;
         }
         /// <summary>
-        /// Create a new termsAndConditions object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-companyterms-termsandconditions-create?view=graph-rest-1.0" />
+        /// Create new navigation property to termsAndConditions for deviceManagement
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new termsAndConditions object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-companyterms-termsandconditions-create?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to termsAndConditions for deviceManagement";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -102,12 +101,11 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the termsAndConditions objects.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-companyterms-termsandconditions-list?view=graph-rest-1.0" />
+        /// The terms and conditions associated with device management of the company.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the termsAndConditions objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-companyterms-termsandconditions-list?view=graph-rest-1.0";
+            command.Description = "The terms and conditions associated with device management of the company.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -213,7 +211,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions {
         public TermsAndConditionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/termsAndConditions{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// List properties and relationships of the termsAndConditions objects.
+        /// The terms and conditions associated with device management of the company.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -239,7 +237,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new termsAndConditions object.
+        /// Create new navigation property to termsAndConditions for deviceManagement
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -267,7 +265,7 @@ namespace ApiSdk.DeviceManagement.TermsAndConditions {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the termsAndConditions objects.
+        /// The terms and conditions associated with device management of the company.
         /// </summary>
         public class TermsAndConditionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

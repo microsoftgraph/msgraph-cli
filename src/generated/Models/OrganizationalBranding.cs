@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         public List<OrganizationalBrandingLocalization> Localizations { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new OrganizationalBranding and sets the default values.
+        /// Instantiates a new organizationalBranding and sets the default values.
         /// </summary>
         public OrganizationalBranding() : base() {
             OdataType = "#microsoft.graph.organizationalBranding";

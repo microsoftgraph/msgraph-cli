@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// This class contains compliance settings for Mac OS.
+    /// </summary>
     public class MacOSCompliancePolicy : DeviceCompliancePolicy, IParsable {
         /// <summary>Require that devices have enabled device threat protection.</summary>
         public bool? DeviceThreatProtectionEnabled { get; set; }
@@ -52,7 +55,7 @@ namespace ApiSdk.Models {
         /// <summary>Require that devices have enabled system integrity protection.</summary>
         public bool? SystemIntegrityProtectionEnabled { get; set; }
         /// <summary>
-        /// Instantiates a new MacOSCompliancePolicy and sets the default values.
+        /// Instantiates a new macOSCompliancePolicy and sets the default values.
         /// </summary>
         public MacOSCompliancePolicy() : base() {
             OdataType = "#microsoft.graph.macOSCompliancePolicy";

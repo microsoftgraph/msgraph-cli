@@ -20,12 +20,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item {
     /// </summary>
     public class UserInstallStateSummaryItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Deletes a userInstallStateSummary.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-books-userinstallstatesummary-delete?view=graph-rest-1.0" />
+        /// Delete navigation property userStateSummary for deviceAppManagement
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Deletes a userInstallStateSummary.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-books-userinstallstatesummary-delete?view=graph-rest-1.0";
+            command.Description = "Delete navigation property userStateSummary for deviceAppManagement";
             var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
@@ -85,12 +84,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the userInstallStateSummary object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-books-userinstallstatesummary-get?view=graph-rest-1.0" />
+        /// The list of installation states for this eBook.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the userInstallStateSummary object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-books-userinstallstatesummary-get?view=graph-rest-1.0";
+            command.Description = "The list of installation states for this eBook.";
             var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
@@ -153,12 +151,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a userInstallStateSummary object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-books-userinstallstatesummary-update?view=graph-rest-1.0" />
+        /// Update the navigation property userStateSummary in deviceAppManagement
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a userInstallStateSummary object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-books-userinstallstatesummary-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property userStateSummary in deviceAppManagement";
             var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
@@ -223,7 +220,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item {
         public UserInstallStateSummaryItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/managedEBooks/{managedEBook%2Did}/userStateSummary/{userInstallStateSummary%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Deletes a userInstallStateSummary.
+        /// Delete navigation property userStateSummary for deviceAppManagement
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -248,7 +245,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the userInstallStateSummary object.
+        /// The list of installation states for this eBook.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -274,7 +271,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a userInstallStateSummary object.
+        /// Update the navigation property userStateSummary in deviceAppManagement
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -302,7 +299,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.UserStateSummary.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the userInstallStateSummary object.
+        /// The list of installation states for this eBook.
         /// </summary>
         public class UserInstallStateSummaryItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

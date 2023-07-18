@@ -8,7 +8,7 @@ namespace ApiSdk.Models.CallRecords {
         /// <summary>The role property</summary>
         public ServiceRole? Role { get; set; }
         /// <summary>
-        /// Instantiates a new ServiceUserAgent and sets the default values.
+        /// Instantiates a new serviceUserAgent and sets the default values.
         /// </summary>
         public ServiceUserAgent() : base() {
             OdataType = "#microsoft.graph.callRecords.serviceUserAgent";

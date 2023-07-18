@@ -19,11 +19,10 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.DeleteUserFromSharedAppleDevice 
     public class DeleteUserFromSharedAppleDeviceRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
         /// Delete user from shared Apple device
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-manageddevice-deleteuserfromsharedappledevice?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Delete user from shared Apple device\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-manageddevice-deleteuserfromsharedappledevice?view=graph-rest-1.0";
+            command.Description = "Delete user from shared Apple device";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;

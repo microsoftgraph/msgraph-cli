@@ -56,7 +56,7 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new VisualInfo and sets the default values.
+        /// Instantiates a new visualInfo and sets the default values.
         /// </summary>
         public VisualInfo() {
             AdditionalData = new Dictionary<string, object>();

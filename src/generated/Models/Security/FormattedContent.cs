@@ -26,7 +26,7 @@ namespace ApiSdk.Models.Security {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new FormattedContent and sets the default values.
+        /// Instantiates a new formattedContent and sets the default values.
         /// </summary>
         public FormattedContent() {
             AdditionalData = new Dictionary<string, object>();

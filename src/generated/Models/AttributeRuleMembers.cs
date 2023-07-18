@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
         public string MembershipRule { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new AttributeRuleMembers and sets the default values.
+        /// Instantiates a new attributeRuleMembers and sets the default values.
         /// </summary>
         public AttributeRuleMembers() : base() {
             OdataType = "#microsoft.graph.attributeRuleMembers";

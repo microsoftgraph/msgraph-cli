@@ -51,12 +51,11 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections {
             return command;
         }
         /// <summary>
-        /// Create a new androidManagedAppProtection object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-mam-androidmanagedappprotection-create?view=graph-rest-1.0" />
+        /// Create new navigation property to androidManagedAppProtections for deviceAppManagement
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new androidManagedAppProtection object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-mam-androidmanagedappprotection-create?view=graph-rest-1.0";
+            command.Description = "Create new navigation property to androidManagedAppProtections for deviceAppManagement";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -103,12 +102,11 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the androidManagedAppProtection objects.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-mam-androidmanagedappprotection-list?view=graph-rest-1.0" />
+        /// Android managed app policies.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the androidManagedAppProtection objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-mam-androidmanagedappprotection-list?view=graph-rest-1.0";
+            command.Description = "Android managed app policies.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -214,7 +212,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections {
         public AndroidManagedAppProtectionsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/androidManagedAppProtections{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// List properties and relationships of the androidManagedAppProtection objects.
+        /// Android managed app policies.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -240,7 +238,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new androidManagedAppProtection object.
+        /// Create new navigation property to androidManagedAppProtections for deviceAppManagement
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -268,7 +266,7 @@ namespace ApiSdk.DeviceAppManagement.AndroidManagedAppProtections {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the androidManagedAppProtection objects.
+        /// Android managed app policies.
         /// </summary>
         public class AndroidManagedAppProtectionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

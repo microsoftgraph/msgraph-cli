@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
         public List<AuthenticationMethodTarget> IncludeTargets { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new EmailAuthenticationMethodConfiguration and sets the default values.
+        /// Instantiates a new emailAuthenticationMethodConfiguration and sets the default values.
         /// </summary>
         public EmailAuthenticationMethodConfiguration() : base() {
             OdataType = "#microsoft.graph.emailAuthenticationMethodConfiguration";

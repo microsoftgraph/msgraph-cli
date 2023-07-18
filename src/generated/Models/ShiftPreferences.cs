@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         public List<ShiftAvailability> Availability { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new ShiftPreferences and sets the default values.
+        /// Instantiates a new shiftPreferences and sets the default values.
         /// </summary>
         public ShiftPreferences() : base() {
             OdataType = "#microsoft.graph.shiftPreferences";

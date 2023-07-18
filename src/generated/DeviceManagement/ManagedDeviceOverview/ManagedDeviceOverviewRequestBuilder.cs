@@ -19,12 +19,11 @@ namespace ApiSdk.DeviceManagement.ManagedDeviceOverview {
     /// </summary>
     public class ManagedDeviceOverviewRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Read properties and relationships of the managedDeviceOverview object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-devices-manageddeviceoverview-get?view=graph-rest-1.0" />
+        /// Device overview
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the managedDeviceOverview object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-devices-manageddeviceoverview-get?view=graph-rest-1.0";
+            command.Description = "Device overview";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -81,7 +80,7 @@ namespace ApiSdk.DeviceManagement.ManagedDeviceOverview {
         public ManagedDeviceOverviewRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceManagement/managedDeviceOverview{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Read properties and relationships of the managedDeviceOverview object.
+        /// Device overview
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -107,7 +106,7 @@ namespace ApiSdk.DeviceManagement.ManagedDeviceOverview {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the managedDeviceOverview object.
+        /// Device overview
         /// </summary>
         public class ManagedDeviceOverviewRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

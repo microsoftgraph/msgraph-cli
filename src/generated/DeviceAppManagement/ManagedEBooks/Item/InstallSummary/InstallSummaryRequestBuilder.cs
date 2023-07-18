@@ -52,12 +52,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.InstallSummary {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the eBookInstallSummary object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-books-ebookinstallsummary-get?view=graph-rest-1.0" />
+        /// Mobile App Install Summary.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the eBookInstallSummary object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-books-ebookinstallsummary-get?view=graph-rest-1.0";
+            command.Description = "Mobile App Install Summary.";
             var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
@@ -114,12 +113,11 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.InstallSummary {
             return command;
         }
         /// <summary>
-        /// Update the properties of a eBookInstallSummary object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-books-ebookinstallsummary-update?view=graph-rest-1.0" />
+        /// Update the navigation property installSummary in deviceAppManagement
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a eBookInstallSummary object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-books-ebookinstallsummary-update?view=graph-rest-1.0";
+            command.Description = "Update the navigation property installSummary in deviceAppManagement";
             var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
@@ -203,7 +201,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.InstallSummary {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the eBookInstallSummary object.
+        /// Mobile App Install Summary.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -229,7 +227,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.InstallSummary {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a eBookInstallSummary object.
+        /// Update the navigation property installSummary in deviceAppManagement
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -257,7 +255,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.InstallSummary {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the eBookInstallSummary object.
+        /// Mobile App Install Summary.
         /// </summary>
         public class InstallSummaryRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

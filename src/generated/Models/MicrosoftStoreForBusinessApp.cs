@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// Microsoft Store for Business Apps. This class does not support Create, Delete, or Update.
+    /// </summary>
     public class MicrosoftStoreForBusinessApp : MobileApp, IParsable {
         /// <summary>The licenseType property</summary>
         public MicrosoftStoreForBusinessLicenseType? LicenseType { get; set; }
@@ -28,7 +31,7 @@ namespace ApiSdk.Models {
         /// <summary>The number of Microsoft Store for Business licenses in use.</summary>
         public int? UsedLicenseCount { get; set; }
         /// <summary>
-        /// Instantiates a new MicrosoftStoreForBusinessApp and sets the default values.
+        /// Instantiates a new microsoftStoreForBusinessApp and sets the default values.
         /// </summary>
         public MicrosoftStoreForBusinessApp() : base() {
             OdataType = "#microsoft.graph.microsoftStoreForBusinessApp";

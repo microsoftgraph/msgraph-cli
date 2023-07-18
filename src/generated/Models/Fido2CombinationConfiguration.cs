@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         public List<string> AllowedAAGUIDs { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new Fido2CombinationConfiguration and sets the default values.
+        /// Instantiates a new fido2CombinationConfiguration and sets the default values.
         /// </summary>
         public Fido2CombinationConfiguration() : base() {
             OdataType = "#microsoft.graph.fido2CombinationConfiguration";

@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
         public string UserPrincipalName { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new UserIdentity and sets the default values.
+        /// Instantiates a new userIdentity and sets the default values.
         /// </summary>
         public UserIdentity() : base() {
             OdataType = "#microsoft.graph.userIdentity";

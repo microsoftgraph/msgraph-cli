@@ -32,7 +32,7 @@ namespace ApiSdk.Models.TermStore {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new LocalizedName and sets the default values.
+        /// Instantiates a new localizedName and sets the default values.
         /// </summary>
         public LocalizedName() {
             AdditionalData = new Dictionary<string, object>();

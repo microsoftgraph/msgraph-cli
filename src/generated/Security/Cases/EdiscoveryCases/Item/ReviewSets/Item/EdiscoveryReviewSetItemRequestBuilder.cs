@@ -1,6 +1,7 @@
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models.Security;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.MicrosoftGraphSecurityAddToReviewSet;
+using ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.MicrosoftGraphSecurityExport;
 using ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item.Queries;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
@@ -134,6 +135,21 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item {
             var command = new Command("microsoft-graph-security-add-to-review-set");
             command.Description = "Provides operations to call the addToReviewSet method.";
             var builder = new MicrosoftGraphSecurityAddToReviewSetRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the export method.
+        /// </summary>
+        public Command BuildMicrosoftGraphSecurityExportNavCommand() {
+            var command = new Command("microsoft-graph-security-export");
+            command.Description = "Provides operations to call the export method.";
+            var builder = new MicrosoftGraphSecurityExportRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
             foreach (var cmd in execCommands)

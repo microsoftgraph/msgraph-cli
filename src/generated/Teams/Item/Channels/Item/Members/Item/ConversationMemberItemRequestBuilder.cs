@@ -139,12 +139,12 @@ namespace ApiSdk.Teams.Item.Channels.Item.Members.Item {
             return command;
         }
         /// <summary>
-        /// Update the role of a conversationMember in a channel. This operation is allowed only for channels with a **membershipType** value of `private` or `shared`.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/channel-update-members?view=graph-rest-1.0" />
+        /// Update the role of a conversationMember in a team or channel.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/conversationmember-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the role of a conversationMember in a channel. This operation is allowed only for channels with a **membershipType** value of `private` or `shared`.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/channel-update-members?view=graph-rest-1.0";
+            command.Description = "Update the role of a conversationMember in a team or channel.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/conversationmember-update?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -266,7 +266,7 @@ namespace ApiSdk.Teams.Item.Channels.Item.Members.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the role of a conversationMember in a channel. This operation is allowed only for channels with a **membershipType** value of `private` or `shared`.
+        /// Update the role of a conversationMember in a team or channel.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

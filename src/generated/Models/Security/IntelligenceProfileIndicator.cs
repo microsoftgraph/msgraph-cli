@@ -10,7 +10,7 @@ namespace ApiSdk.Models.Security {
         /// <summary>Designate when an artifact was most recently used actively in an attack, when a particular sample was compiled, or if neither of those could be ascertained when the file was first seen in public repositories (for example, VirusTotal, ANY.RUN, Hybrid Analysis) or reported publicly.</summary>
         public DateTimeOffset? LastSeenDateTime { get; set; }
         /// <summary>
-        /// Instantiates a new IntelligenceProfileIndicator and sets the default values.
+        /// Instantiates a new intelligenceProfileIndicator and sets the default values.
         /// </summary>
         public IntelligenceProfileIndicator() : base() {
             OdataType = "#microsoft.graph.security.intelligenceProfileIndicator";

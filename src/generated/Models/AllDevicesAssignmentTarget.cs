@@ -4,9 +4,12 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// Represents an assignment to all managed devices in the tenant.
+    /// </summary>
     public class AllDevicesAssignmentTarget : DeviceAndAppManagementAssignmentTarget, IParsable {
         /// <summary>
-        /// Instantiates a new AllDevicesAssignmentTarget and sets the default values.
+        /// Instantiates a new allDevicesAssignmentTarget and sets the default values.
         /// </summary>
         public AllDevicesAssignmentTarget() : base() {
             OdataType = "#microsoft.graph.allDevicesAssignmentTarget";

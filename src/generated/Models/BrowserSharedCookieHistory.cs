@@ -62,7 +62,7 @@ namespace ApiSdk.Models {
         /// <summary>Specifies how the cookies are shared between Microsoft Edge and Internet Explorer. The possible values are: microsoftEdge, internetExplorer11, both, unknownFutureValue.</summary>
         public BrowserSharedCookieSourceEnvironment? SourceEnvironment { get; set; }
         /// <summary>
-        /// Instantiates a new BrowserSharedCookieHistory and sets the default values.
+        /// Instantiates a new browserSharedCookieHistory and sets the default values.
         /// </summary>
         public BrowserSharedCookieHistory() {
             AdditionalData = new Dictionary<string, object>();

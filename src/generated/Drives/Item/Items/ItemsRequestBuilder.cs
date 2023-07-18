@@ -49,6 +49,7 @@ namespace ApiSdk.Drives.Item.Items {
             commands.Add(builder.BuildLastModifiedByUserNavCommand());
             commands.Add(builder.BuildListItemNavCommand());
             executables.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildPermanentDeleteNavCommand());
             commands.Add(builder.BuildPermissionsNavCommand());
             commands.Add(builder.BuildPreviewNavCommand());
             commands.Add(builder.BuildRestoreNavCommand());

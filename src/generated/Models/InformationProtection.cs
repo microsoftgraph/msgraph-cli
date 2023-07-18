@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
         public List<ThreatAssessmentRequest> ThreatAssessmentRequests { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new InformationProtection and sets the default values.
+        /// Instantiates a new informationProtection and sets the default values.
         /// </summary>
         public InformationProtection() {
             AdditionalData = new Dictionary<string, object>();

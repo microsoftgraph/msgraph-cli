@@ -21,10 +21,10 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Sor
         /// <summary>The method property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Method { get; set; }
+        public string? MethodEscaped { get; set; }
 #nullable restore
 #else
-        public string Method { get; set; }
+        public string MethodEscaped { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new applyPostRequestBody and sets the default values.
@@ -47,7 +47,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Sor
             return new Dictionary<string, Action<IParseNode>> {
                 {"fields", n => { Fields = n.GetCollectionOfObjectValues<WorkbookSortField>(WorkbookSortField.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"matchCase", n => { MatchCase = n.GetBoolValue(); } },
-                {"method", n => { Method = n.GetStringValue(); } },
+                {"method", n => { MethodEscaped = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -58,7 +58,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Worksheets.Item.Tables.Item.Sor
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<WorkbookSortField>("fields", Fields);
             writer.WriteBoolValue("matchCase", MatchCase);
-            writer.WriteStringValue("method", Method);
+            writer.WriteStringValue("method", MethodEscaped);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

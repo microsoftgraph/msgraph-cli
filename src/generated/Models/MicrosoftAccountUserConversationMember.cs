@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         public string UserId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new MicrosoftAccountUserConversationMember and sets the default values.
+        /// Instantiates a new microsoftAccountUserConversationMember and sets the default values.
         /// </summary>
         public MicrosoftAccountUserConversationMember() : base() {
             OdataType = "#microsoft.graph.microsoftAccountUserConversationMember";

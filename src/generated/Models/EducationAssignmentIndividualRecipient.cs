@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         public List<string> Recipients { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new EducationAssignmentIndividualRecipient and sets the default values.
+        /// Instantiates a new educationAssignmentIndividualRecipient and sets the default values.
         /// </summary>
         public EducationAssignmentIndividualRecipient() : base() {
             OdataType = "#microsoft.graph.educationAssignmentIndividualRecipient";
