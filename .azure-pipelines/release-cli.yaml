@@ -163,7 +163,7 @@ stages:
               artifact: build-output-$(rid)
               path: $(outputDir)-$(rid)
 
-      - job: nuget-pack
+      - job: nugetPack
         displayName: Package .NET Tool
         steps:
           - task: UseDotNet@2
