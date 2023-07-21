@@ -203,7 +203,7 @@ stages:
               pwsh: true
               targetType: inline
               script: |
-                $hasArchive = Test-Path $(outputDir)/Microsoft.Graph.Cli.*.nupkg" -PathType Leaf
+                $hasArchive = Test-Path "$(outputDir)/Microsoft.Graph.Cli.*.nupkg" -PathType Leaf
                 Write-Host "##vso[task.setvariable variable=HAS_ARTIFACTS]$hasArchive"
               verbosePreference: '$(OUTPUT_PREFERENCE)'
               debugPreference: '$(OUTPUT_PREFERENCE)'
