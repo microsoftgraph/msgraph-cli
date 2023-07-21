@@ -118,6 +118,7 @@ stages:
           - ${{ if ne(parameters.simulate, 'true') }}:
             - template: templates/nuget-packages.yaml
               parameters:
+                extraRestoreArgs: -p:PublishReadyToRun=true --runtime $(rid)
                 vstsFeedName: ${{variables.internalFeed}}
 
           - pwsh: dotnet publish ./src/msgraph-cli.csproj -p:PublishSingleFile=true -p:PublishReadyToRun=true --no-restore --runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)
@@ -181,6 +182,8 @@ stages:
             workingDirectory: $(Build.SourcesDirectory)
             condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
             displayName: DotNet pack
+
+          - template: templates/setup-powershell-environment.yml
 
           - task: PowerShell@2
             inputs:
