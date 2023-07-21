@@ -217,7 +217,7 @@ stages:
             condition: and(succeeded(), eq(variables['HAS_ARTIFACTS'], 'True'))
             inputs:
               artifact: build-output-nuget
-              path: $(outputDir)/*.nupkg
+              path: $(outputDir)
 
     # Format takes a long time. keep it in its own stage
   - stage: checkFormat
