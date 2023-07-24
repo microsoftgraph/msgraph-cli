@@ -43,7 +43,7 @@ parameters:
     type: boolean
     default: false
   - name: notarizeAfterSign
-    displayName: Notarize Build Output
+    displayName: Notarize Build Output (MacOS only)
     type: boolean
     default: true
   - name: simulate
@@ -569,6 +569,8 @@ stages:
               debugPreference: '$(OUTPUT_PREFERENCE)'
               informationPreference: '$(OUTPUT_PREFERENCE)'
             displayName: Setup variables
+
+          - checkout: none
 
           - task: DownloadPipelineArtifact@2
             inputs:
