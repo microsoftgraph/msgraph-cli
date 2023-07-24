@@ -574,7 +574,7 @@ stages:
 
           - task: DownloadPipelineArtifact@2
             inputs:
-              patterns: build-output-nuget/*
+              artifactName: build-output-nuget
               path: $(WORKING_DIR)
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
