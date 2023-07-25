@@ -28,7 +28,7 @@ namespace ApiSdk.Models.Security {
         public string VectorString { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new CvssSummary and sets the default values.
+        /// Instantiates a new cvssSummary and sets the default values.
         /// </summary>
         public CvssSummary() {
             AdditionalData = new Dictionary<string, object>();

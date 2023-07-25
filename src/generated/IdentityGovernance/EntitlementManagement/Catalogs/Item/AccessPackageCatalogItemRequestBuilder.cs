@@ -1,4 +1,8 @@
 using ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.AccessPackages;
+using ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.CustomWorkflowExtensions;
+using ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.ResourceRoles;
+using ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.ResourceScopes;
+using ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item.Resources;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -29,6 +33,31 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the customWorkflowExtensions property of the microsoft.graph.accessPackageCatalog entity.
+        /// </summary>
+        public Command BuildCustomWorkflowExtensionsNavCommand() {
+            var command = new Command("custom-workflow-extensions");
+            command.Description = "Provides operations to manage the customWorkflowExtensions property of the microsoft.graph.accessPackageCatalog entity.";
+            var builder = new CustomWorkflowExtensionsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
             execCommands.AddRange(cmds.Item1);
@@ -195,6 +224,81 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the resourceRoles property of the microsoft.graph.accessPackageCatalog entity.
+        /// </summary>
+        public Command BuildResourceRolesNavCommand() {
+            var command = new Command("resource-roles");
+            command.Description = "Provides operations to manage the resourceRoles property of the microsoft.graph.accessPackageCatalog entity.";
+            var builder = new ResourceRolesRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the resourceScopes property of the microsoft.graph.accessPackageCatalog entity.
+        /// </summary>
+        public Command BuildResourceScopesNavCommand() {
+            var command = new Command("resource-scopes");
+            command.Description = "Provides operations to manage the resourceScopes property of the microsoft.graph.accessPackageCatalog entity.";
+            var builder = new ResourceScopesRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the resources property of the microsoft.graph.accessPackageCatalog entity.
+        /// </summary>
+        public Command BuildResourcesNavCommand() {
+            var command = new Command("resources");
+            command.Description = "Provides operations to manage the resources property of the microsoft.graph.accessPackageCatalog entity.";
+            var builder = new ResourcesRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>

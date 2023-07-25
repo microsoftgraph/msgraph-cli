@@ -88,12 +88,12 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             return command;
         }
         /// <summary>
-        /// Deletes a macOSLobApp.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-apps-macoslobapp-delete?view=graph-rest-1.0" />
+        /// Deletes a androidStoreApp.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-apps-androidstoreapp-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Deletes a macOSLobApp.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-apps-macoslobapp-delete?view=graph-rest-1.0";
+            command.Description = "Deletes a androidStoreApp.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-apps-androidstoreapp-delete?view=graph-rest-1.0";
             var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "The unique identifier of mobileApp") {
             };
             mobileAppIdOption.IsRequired = true;
@@ -122,12 +122,12 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the managedIOSLobApp object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-apps-managedioslobapp-get?view=graph-rest-1.0" />
+        /// Read properties and relationships of the iosLobApp object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-apps-ioslobapp-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the managedIOSLobApp object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-apps-managedioslobapp-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the iosLobApp object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-apps-ioslobapp-get?view=graph-rest-1.0";
             var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "The unique identifier of mobileApp") {
             };
             mobileAppIdOption.IsRequired = true;
@@ -214,12 +214,12 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a androidStoreApp object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-apps-androidstoreapp-update?view=graph-rest-1.0" />
+        /// Update the properties of a managedIOSLobApp object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-apps-managedioslobapp-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a androidStoreApp object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-apps-androidstoreapp-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a managedIOSLobApp object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-apps-managedioslobapp-update?view=graph-rest-1.0";
             var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "The unique identifier of mobileApp") {
             };
             mobileAppIdOption.IsRequired = true;
@@ -278,7 +278,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         public MobileAppItemRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Deletes a macOSLobApp.
+        /// Deletes a androidStoreApp.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -303,7 +303,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the managedIOSLobApp object.
+        /// Read properties and relationships of the iosLobApp object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -329,7 +329,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a androidStoreApp object.
+        /// Update the properties of a managedIOSLobApp object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -357,7 +357,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the managedIOSLobApp object.
+        /// Read properties and relationships of the iosLobApp object.
         /// </summary>
         public class MobileAppItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

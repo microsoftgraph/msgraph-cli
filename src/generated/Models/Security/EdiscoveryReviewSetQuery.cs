@@ -6,7 +6,7 @@ using System;
 namespace ApiSdk.Models.Security {
     public class EdiscoveryReviewSetQuery : Search, IParsable {
         /// <summary>
-        /// Instantiates a new EdiscoveryReviewSetQuery and sets the default values.
+        /// Instantiates a new ediscoveryReviewSetQuery and sets the default values.
         /// </summary>
         public EdiscoveryReviewSetQuery() : base() {
             OdataType = "#microsoft.graph.security.ediscoveryReviewSetQuery";

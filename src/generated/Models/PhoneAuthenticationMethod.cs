@@ -18,7 +18,7 @@ namespace ApiSdk.Models {
         /// <summary>Whether a phone is ready to be used for SMS sign-in or not. Possible values are: notSupported, notAllowedByPolicy, notEnabled, phoneNumberNotUnique, ready, or notConfigured, unknownFutureValue.</summary>
         public AuthenticationMethodSignInState? SmsSignInState { get; set; }
         /// <summary>
-        /// Instantiates a new PhoneAuthenticationMethod and sets the default values.
+        /// Instantiates a new phoneAuthenticationMethod and sets the default values.
         /// </summary>
         public PhoneAuthenticationMethod() : base() {
             OdataType = "#microsoft.graph.phoneAuthenticationMethod";

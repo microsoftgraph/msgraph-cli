@@ -36,6 +36,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests {
             executables.Add(builder.BuildPatchCommand());
             commands.Add(builder.BuildReprocessNavCommand());
             commands.Add(builder.BuildRequestorNavCommand());
+            commands.Add(builder.BuildResumeNavCommand());
             return new(executables, commands);
         }
         /// <summary>

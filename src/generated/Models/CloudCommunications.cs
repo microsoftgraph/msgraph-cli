@@ -49,7 +49,7 @@ namespace ApiSdk.Models {
         public List<Presence> Presences { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new CloudCommunications and sets the default values.
+        /// Instantiates a new cloudCommunications and sets the default values.
         /// </summary>
         public CloudCommunications() {
             AdditionalData = new Dictionary<string, object>();

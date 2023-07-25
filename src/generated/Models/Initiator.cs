@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
         /// <summary>Type of initiator. Possible values are: user, application, system, unknownFutureValue.</summary>
         public ApiSdk.Models.InitiatorType? InitiatorType { get; set; }
         /// <summary>
-        /// Instantiates a new Initiator and sets the default values.
+        /// Instantiates a new initiator and sets the default values.
         /// </summary>
         public Initiator() : base() {
             OdataType = "#microsoft.graph.initiator";

@@ -52,7 +52,7 @@ namespace ApiSdk.Models {
         /// <summary>Possible values are: Owner, Contributor, Reader, None. Owner represents owner-level access to the notebook. Contributor represents read/write access to the notebook. Reader represents read-only access to the notebook. Read-only.</summary>
         public OnenoteUserRole? UserRole { get; set; }
         /// <summary>
-        /// Instantiates a new Notebook and sets the default values.
+        /// Instantiates a new notebook and sets the default values.
         /// </summary>
         public Notebook() : base() {
             OdataType = "#microsoft.graph.notebook";

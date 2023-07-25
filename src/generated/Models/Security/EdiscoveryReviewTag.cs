@@ -24,7 +24,7 @@ namespace ApiSdk.Models.Security {
         public EdiscoveryReviewTag Parent { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new EdiscoveryReviewTag and sets the default values.
+        /// Instantiates a new ediscoveryReviewTag and sets the default values.
         /// </summary>
         public EdiscoveryReviewTag() : base() {
             OdataType = "#microsoft.graph.security.ediscoveryReviewTag";

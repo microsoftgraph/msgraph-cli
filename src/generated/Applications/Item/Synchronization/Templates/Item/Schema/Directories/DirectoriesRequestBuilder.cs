@@ -112,11 +112,11 @@ namespace ApiSdk.Applications.Item.Synchronization.Templates.Item.Schema.Directo
             return command;
         }
         /// <summary>
-        /// Get directories from applications
+        /// Contains the collection of directories and all of their objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get directories from applications";
+            command.Description = "Contains the collection of directories and all of their objects.";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -234,7 +234,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Templates.Item.Schema.Directo
         public DirectoriesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/synchronization/templates/{synchronizationTemplate%2Did}/schema/directories{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get directories from applications
+        /// Contains the collection of directories and all of their objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -288,7 +288,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Templates.Item.Schema.Directo
             return requestInfo;
         }
         /// <summary>
-        /// Get directories from applications
+        /// Contains the collection of directories and all of their objects.
         /// </summary>
         public class DirectoriesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
         /// <summary>Possible values are: always, never.</summary>
         public PersistentBrowserSessionMode? Mode { get; set; }
         /// <summary>
-        /// Instantiates a new PersistentBrowserSessionControl and sets the default values.
+        /// Instantiates a new persistentBrowserSessionControl and sets the default values.
         /// </summary>
         public PersistentBrowserSessionControl() : base() {
             OdataType = "#microsoft.graph.persistentBrowserSessionControl";

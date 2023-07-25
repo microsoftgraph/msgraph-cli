@@ -56,6 +56,12 @@ namespace ApiSdk.Models.Security {
         public ApiSdk.Models.Security.UserAccount UserAccount { get; set; }
 #endif
         /// <summary>
+        /// Instantiates a new processEvidence and sets the default values.
+        /// </summary>
+        public ProcessEvidence() : base() {
+            OdataType = "#microsoft.graph.security.processEvidence";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

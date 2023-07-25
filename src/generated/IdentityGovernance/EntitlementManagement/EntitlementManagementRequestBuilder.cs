@@ -5,6 +5,10 @@ using ApiSdk.IdentityGovernance.EntitlementManagement.AssignmentRequests;
 using ApiSdk.IdentityGovernance.EntitlementManagement.Assignments;
 using ApiSdk.IdentityGovernance.EntitlementManagement.Catalogs;
 using ApiSdk.IdentityGovernance.EntitlementManagement.ConnectedOrganizations;
+using ApiSdk.IdentityGovernance.EntitlementManagement.ResourceEnvironments;
+using ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRequests;
+using ApiSdk.IdentityGovernance.EntitlementManagement.ResourceRoleScopes;
+using ApiSdk.IdentityGovernance.EntitlementManagement.Resources;
 using ApiSdk.IdentityGovernance.EntitlementManagement.Settings;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
@@ -338,6 +342,106 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the resourceEnvironments property of the microsoft.graph.entitlementManagement entity.
+        /// </summary>
+        public Command BuildResourceEnvironmentsNavCommand() {
+            var command = new Command("resource-environments");
+            command.Description = "Provides operations to manage the resourceEnvironments property of the microsoft.graph.entitlementManagement entity.";
+            var builder = new ResourceEnvironmentsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the resourceRequests property of the microsoft.graph.entitlementManagement entity.
+        /// </summary>
+        public Command BuildResourceRequestsNavCommand() {
+            var command = new Command("resource-requests");
+            command.Description = "Provides operations to manage the resourceRequests property of the microsoft.graph.entitlementManagement entity.";
+            var builder = new ResourceRequestsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the resourceRoleScopes property of the microsoft.graph.entitlementManagement entity.
+        /// </summary>
+        public Command BuildResourceRoleScopesNavCommand() {
+            var command = new Command("resource-role-scopes");
+            command.Description = "Provides operations to manage the resourceRoleScopes property of the microsoft.graph.entitlementManagement entity.";
+            var builder = new ResourceRoleScopesRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the resources property of the microsoft.graph.entitlementManagement entity.
+        /// </summary>
+        public Command BuildResourcesNavCommand() {
+            var command = new Command("resources");
+            command.Description = "Provides operations to manage the resources property of the microsoft.graph.entitlementManagement entity.";
+            var builder = new ResourcesRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>

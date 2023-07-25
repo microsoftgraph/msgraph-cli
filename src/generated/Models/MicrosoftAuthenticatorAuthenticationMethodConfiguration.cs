@@ -24,7 +24,7 @@ namespace ApiSdk.Models {
         /// <summary>The isSoftwareOathEnabled property</summary>
         public bool? IsSoftwareOathEnabled { get; set; }
         /// <summary>
-        /// Instantiates a new MicrosoftAuthenticatorAuthenticationMethodConfiguration and sets the default values.
+        /// Instantiates a new microsoftAuthenticatorAuthenticationMethodConfiguration and sets the default values.
         /// </summary>
         public MicrosoftAuthenticatorAuthenticationMethodConfiguration() : base() {
             OdataType = "#microsoft.graph.microsoftAuthenticatorAuthenticationMethodConfiguration";

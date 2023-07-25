@@ -34,7 +34,7 @@ namespace ApiSdk.Models {
         /// <summary>The state property</summary>
         public PrinterProcessingState? State { get; set; }
         /// <summary>
-        /// Instantiates a new PrinterStatus and sets the default values.
+        /// Instantiates a new printerStatus and sets the default values.
         /// </summary>
         public PrinterStatus() {
             AdditionalData = new Dictionary<string, object>();

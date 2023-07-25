@@ -26,7 +26,7 @@ namespace ApiSdk.Models {
         /// <summary>The unique identifier for the SKU.</summary>
         public Guid? SkuId { get; set; }
         /// <summary>
-        /// Instantiates a new AssignedLicense and sets the default values.
+        /// Instantiates a new assignedLicense and sets the default values.
         /// </summary>
         public AssignedLicense() {
             AdditionalData = new Dictionary<string, object>();

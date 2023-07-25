@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// Contains properties and inherited properties for Android store apps that you can manage with an Intune app protection policy.
+    /// </summary>
     public class ManagedAndroidStoreApp : ManagedApp, IParsable {
         /// <summary>The Android AppStoreUrl.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -30,7 +33,7 @@ namespace ApiSdk.Models {
         public string PackageId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new ManagedAndroidStoreApp and sets the default values.
+        /// Instantiates a new managedAndroidStoreApp and sets the default values.
         /// </summary>
         public ManagedAndroidStoreApp() : base() {
             OdataType = "#microsoft.graph.managedAndroidStoreApp";

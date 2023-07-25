@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// Contains properties for the installation summary of a book for a device.
+    /// </summary>
     public class EBookInstallSummary : Entity, IParsable {
         /// <summary>Number of Devices that have failed to install this book.</summary>
         public int? FailedDeviceCount { get; set; }

@@ -742,12 +742,12 @@ namespace ApiSdk.Users.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of user object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/user-get?view=graph-rest-1.0" />
+        /// Read properties and relationships of the user object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-mam-user-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of user object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/user-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the user object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-mam-user-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -1115,6 +1115,7 @@ namespace ApiSdk.Users.Item {
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
             nonExecCommands.Add(builder.BuildGraphAdministrativeUnitNavCommand());
+            nonExecCommands.Add(builder.BuildGraphDirectoryRoleNavCommand());
             nonExecCommands.Add(builder.BuildGraphGroupNavCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
@@ -1314,11 +1315,11 @@ namespace ApiSdk.Users.Item {
         }
         /// <summary>
         /// Update the properties of a user object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-mam-user-update?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-onboarding-user-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a user object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-mam-user-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a user object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-onboarding-user-update?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -1715,6 +1716,7 @@ namespace ApiSdk.Users.Item {
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
             nonExecCommands.Add(builder.BuildGraphAdministrativeUnitNavCommand());
+            nonExecCommands.Add(builder.BuildGraphDirectoryRoleNavCommand());
             nonExecCommands.Add(builder.BuildGraphGroupNavCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
@@ -1792,7 +1794,7 @@ namespace ApiSdk.Users.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of user object.
+        /// Read properties and relationships of the user object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -1846,7 +1848,7 @@ namespace ApiSdk.Users.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of user object.
+        /// Read properties and relationships of the user object.
         /// </summary>
         public class UserItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

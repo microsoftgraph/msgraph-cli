@@ -55,11 +55,12 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs {
             return command;
         }
         /// <summary>
-        /// Create new navigation property to jobs for servicePrincipals
+        /// Create new synchronization job with a default synchronization schema. The job is created in a disabled state. Call Start job to start synchronization.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/synchronization-synchronization-post-jobs?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create new navigation property to jobs for servicePrincipals";
+            command.Description = "Create new synchronization job with a default synchronization schema. The job is created in a disabled state. Call Start job to start synchronization.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/synchronization-synchronization-post-jobs?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -112,11 +113,12 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs {
             return command;
         }
         /// <summary>
-        /// Get jobs from servicePrincipals
+        /// List existing jobs for a given application instance (service principal).
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/synchronization-synchronization-list-jobs?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get jobs from servicePrincipals";
+            command.Description = "List existing jobs for a given application instance (service principal).\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/synchronization-synchronization-list-jobs?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -243,7 +245,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs {
         public JobsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/synchronization/jobs{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get jobs from servicePrincipals
+        /// List existing jobs for a given application instance (service principal).
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -269,7 +271,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs {
             return requestInfo;
         }
         /// <summary>
-        /// Create new navigation property to jobs for servicePrincipals
+        /// Create new synchronization job with a default synchronization schema. The job is created in a disabled state. Call Start job to start synchronization.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -297,7 +299,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Jobs {
             return requestInfo;
         }
         /// <summary>
-        /// Get jobs from servicePrincipals
+        /// List existing jobs for a given application instance (service principal).
         /// </summary>
         public class JobsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

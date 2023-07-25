@@ -47,12 +47,12 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Attachments {
             return command;
         }
         /// <summary>
-        /// Use this API to add an attachment to a message.  An attachment can be one of the following types: All these types of attachment resources are derived from the attachmentresource.  You can add an attachment to an existing message by posting to its attachments collection, or you can add an attachment to a message that is being created and sent on the fly. This operation limits the size of the attachment you can add to under 3 MB.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/message-post-attachments?view=graph-rest-1.0" />
+        /// Use this API to create a new Attachment. An attachment can be one of the following types: All these types of attachment resources are derived from the attachmentresource. 
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/eventmessage-post-attachments?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to add an attachment to a message.  An attachment can be one of the following types: All these types of attachment resources are derived from the attachmentresource.  You can add an attachment to an existing message by posting to its attachments collection, or you can add an attachment to a message that is being created and sent on the fly. This operation limits the size of the attachment you can add to under 3 MB.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/message-post-attachments?view=graph-rest-1.0";
+            command.Description = "Use this API to create a new Attachment. An attachment can be one of the following types: All these types of attachment resources are derived from the attachmentresource. \n\nFind more info here:\n  https://docs.microsoft.com/graph/api/eventmessage-post-attachments?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -269,7 +269,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Attachments {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to add an attachment to a message.  An attachment can be one of the following types: All these types of attachment resources are derived from the attachmentresource.  You can add an attachment to an existing message by posting to its attachments collection, or you can add an attachment to a message that is being created and sent on the fly. This operation limits the size of the attachment you can add to under 3 MB.
+        /// Use this API to create a new Attachment. An attachment can be one of the following types: All these types of attachment resources are derived from the attachmentresource. 
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

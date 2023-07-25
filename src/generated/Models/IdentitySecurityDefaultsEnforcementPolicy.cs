@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
         /// <summary>If set to true, Azure Active Directory security defaults is enabled for the tenant.</summary>
         public bool? IsEnabled { get; set; }
         /// <summary>
-        /// Instantiates a new IdentitySecurityDefaultsEnforcementPolicy and sets the default values.
+        /// Instantiates a new identitySecurityDefaultsEnforcementPolicy and sets the default values.
         /// </summary>
         public IdentitySecurityDefaultsEnforcementPolicy() : base() {
             OdataType = "#microsoft.graph.identitySecurityDefaultsEnforcementPolicy";

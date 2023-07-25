@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class AttributeDefinition : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The anchor property</summary>
+        /// <summary>true if the attribute should be used as the anchor for the object. Anchor attributes must have a unique value identifying an object, and must be immutable. Default is false. One, and only one, of the object&apos;s attributes must be designated as the anchor to support synchronization.</summary>
         public bool? Anchor { get; set; }
         /// <summary>The apiExpressions property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -17,7 +17,7 @@ namespace ApiSdk.Models {
 #else
         public List<StringKeyStringValuePair> ApiExpressions { get; set; }
 #endif
-        /// <summary>The caseExact property</summary>
+        /// <summary>true if value of this attribute should be treated as case-sensitive. This setting affects how the synchronization engine detects changes for the attribute.</summary>
         public bool? CaseExact { get; set; }
         /// <summary>The defaultValue property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -27,9 +27,9 @@ namespace ApiSdk.Models {
 #else
         public string DefaultValue { get; set; }
 #endif
-        /// <summary>The flowNullValues property</summary>
+        /// <summary>&apos;true&apos; to allow null values for attributes.</summary>
         public bool? FlowNullValues { get; set; }
-        /// <summary>The metadata property</summary>
+        /// <summary>Metadata for the given object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<AttributeDefinitionMetadataEntry>? Metadata { get; set; }
@@ -37,11 +37,11 @@ namespace ApiSdk.Models {
 #else
         public List<AttributeDefinitionMetadataEntry> Metadata { get; set; }
 #endif
-        /// <summary>The multivalued property</summary>
+        /// <summary>true if an attribute can have multiple values. Default is false.</summary>
         public bool? Multivalued { get; set; }
         /// <summary>The mutability property</summary>
         public ApiSdk.Models.Mutability? Mutability { get; set; }
-        /// <summary>The name property</summary>
+        /// <summary>Name of the attribute. Must be unique within the object definition. Not nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -57,7 +57,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The referencedObjects property</summary>
+        /// <summary>For attributes with reference type, lists referenced objects (for example, the manager attribute would list User as the referenced object).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<ReferencedObject>? ReferencedObjects { get; set; }
@@ -65,7 +65,7 @@ namespace ApiSdk.Models {
 #else
         public List<ReferencedObject> ReferencedObjects { get; set; }
 #endif
-        /// <summary>The required property</summary>
+        /// <summary>true if attribute is required. Object can not be created if any of the required attributes are missing. If during synchronization, the required attribute has no value, the default value will be used. If default the value was not set, synchronization will record an error.</summary>
         public bool? Required { get; set; }
         /// <summary>The type property</summary>
         public AttributeType? Type { get; set; }

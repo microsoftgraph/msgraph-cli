@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class AttributeMapping : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The defaultValue property</summary>
+        /// <summary>Default value to be used in case the source property was evaluated to null. Optional.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DefaultValue { get; set; }
@@ -15,13 +15,13 @@ namespace ApiSdk.Models {
 #else
         public string DefaultValue { get; set; }
 #endif
-        /// <summary>The exportMissingReferences property</summary>
+        /// <summary>For internal use only.</summary>
         public bool? ExportMissingReferences { get; set; }
         /// <summary>The flowBehavior property</summary>
         public AttributeFlowBehavior? FlowBehavior { get; set; }
         /// <summary>The flowType property</summary>
         public AttributeFlowType? FlowType { get; set; }
-        /// <summary>The matchingPriority property</summary>
+        /// <summary>If higher than 0, this attribute will be used to perform an initial match of the objects between source and target directories. The synchronization engine will try to find the matching object using attribute with lowest value of matching priority first. If not found, the attribute with the next matching priority will be used, and so on a until match is found or no more matching attributes are left. Only attributes that are expected to have unique values, such as email, should be used as matching attributes.</summary>
         public int? MatchingPriority { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -31,7 +31,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The source property</summary>
+        /// <summary>Defines how a value should be extracted (or transformed) from the source object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public AttributeMappingSource? Source { get; set; }
@@ -39,7 +39,7 @@ namespace ApiSdk.Models {
 #else
         public AttributeMappingSource Source { get; set; }
 #endif
-        /// <summary>The targetAttributeName property</summary>
+        /// <summary>Name of the attribute on the target object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TargetAttributeName { get; set; }

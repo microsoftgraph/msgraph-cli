@@ -100,12 +100,12 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the managedAppConfiguration objects.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-mam-managedappconfiguration-list?view=graph-rest-1.0" />
+        /// List properties and relationships of the targetedManagedAppProtection objects.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-mam-targetedmanagedappprotection-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the managedAppConfiguration objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-mam-managedappconfiguration-list?view=graph-rest-1.0";
+            command.Description = "List properties and relationships of the targetedManagedAppProtection objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-mam-targetedmanagedappprotection-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -211,7 +211,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies {
         public ManagedAppPoliciesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/managedAppPolicies{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// List properties and relationships of the managedAppConfiguration objects.
+        /// List properties and relationships of the targetedManagedAppProtection objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -265,7 +265,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppPolicies {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the managedAppConfiguration objects.
+        /// List properties and relationships of the targetedManagedAppProtection objects.
         /// </summary>
         public class ManagedAppPoliciesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

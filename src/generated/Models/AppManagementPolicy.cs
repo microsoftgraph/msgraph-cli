@@ -24,7 +24,7 @@ namespace ApiSdk.Models {
         public AppManagementConfiguration Restrictions { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new AppManagementPolicy and sets the default values.
+        /// Instantiates a new appManagementPolicy and sets the default values.
         /// </summary>
         public AppManagementPolicy() : base() {
             OdataType = "#microsoft.graph.appManagementPolicy";

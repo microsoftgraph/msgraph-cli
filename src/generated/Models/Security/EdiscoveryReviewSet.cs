@@ -14,7 +14,7 @@ namespace ApiSdk.Models.Security {
         public List<EdiscoveryReviewSetQuery> Queries { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new EdiscoveryReviewSet and sets the default values.
+        /// Instantiates a new ediscoveryReviewSet and sets the default values.
         /// </summary>
         public EdiscoveryReviewSet() : base() {
             OdataType = "#microsoft.graph.security.ediscoveryReviewSet";

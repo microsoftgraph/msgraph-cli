@@ -70,7 +70,7 @@ namespace ApiSdk.Models {
         public ApiSdk.Models.Site Site { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new SharedDriveItem and sets the default values.
+        /// Instantiates a new sharedDriveItem and sets the default values.
         /// </summary>
         public SharedDriveItem() : base() {
             OdataType = "#microsoft.graph.sharedDriveItem";

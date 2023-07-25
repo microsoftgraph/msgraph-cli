@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
         public string TeamId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new ChannelMembersNotificationRecipient and sets the default values.
+        /// Instantiates a new channelMembersNotificationRecipient and sets the default values.
         /// </summary>
         public ChannelMembersNotificationRecipient() : base() {
             OdataType = "#microsoft.graph.channelMembersNotificationRecipient";

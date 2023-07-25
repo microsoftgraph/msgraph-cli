@@ -46,7 +46,7 @@ namespace ApiSdk.Models {
         public List<ScopedRoleMembership> ScopedMembers { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new DirectoryRole and sets the default values.
+        /// Instantiates a new directoryRole and sets the default values.
         /// </summary>
         public DirectoryRole() : base() {
             OdataType = "#microsoft.graph.directoryRole";

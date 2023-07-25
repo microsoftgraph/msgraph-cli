@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         public string UserPrincipalName { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new WindowsDeviceAzureADAccount and sets the default values.
+        /// Instantiates a new windowsDeviceAzureADAccount and sets the default values.
         /// </summary>
         public WindowsDeviceAzureADAccount() : base() {
             OdataType = "#microsoft.graph.windowsDeviceAzureADAccount";

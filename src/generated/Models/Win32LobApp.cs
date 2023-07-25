@@ -4,6 +4,9 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
+    /// <summary>
+    /// Contains properties and inherited properties for Win32 apps.
+    /// </summary>
     public class Win32LobApp : MobileLobApp, IParsable {
         /// <summary>Contains properties for Windows architecture.</summary>
         public WindowsArchitecture? ApplicableArchitectures { get; set; }
@@ -80,7 +83,7 @@ namespace ApiSdk.Models {
         public string UninstallCommandLine { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new Win32LobApp and sets the default values.
+        /// Instantiates a new win32LobApp and sets the default values.
         /// </summary>
         public Win32LobApp() : base() {
             OdataType = "#microsoft.graph.win32LobApp";

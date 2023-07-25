@@ -48,7 +48,7 @@ namespace ApiSdk.Models {
         public List<ServicePrincipalRiskDetection> ServicePrincipalRiskDetections { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new IdentityProtectionRoot and sets the default values.
+        /// Instantiates a new identityProtectionRoot and sets the default values.
         /// </summary>
         public IdentityProtectionRoot() {
             AdditionalData = new Dictionary<string, object>();

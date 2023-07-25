@@ -34,7 +34,7 @@ namespace ApiSdk.Models {
         /// <summary>The targetType property</summary>
         public AuthenticationMethodTargetType? TargetType { get; set; }
         /// <summary>
-        /// Instantiates a new AuthenticationMethodsRegistrationCampaignIncludeTarget and sets the default values.
+        /// Instantiates a new authenticationMethodsRegistrationCampaignIncludeTarget and sets the default values.
         /// </summary>
         public AuthenticationMethodsRegistrationCampaignIncludeTarget() {
             AdditionalData = new Dictionary<string, object>();

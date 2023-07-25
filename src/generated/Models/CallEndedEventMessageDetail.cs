@@ -34,7 +34,7 @@ namespace ApiSdk.Models {
         public IdentitySet Initiator { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new CallEndedEventMessageDetail and sets the default values.
+        /// Instantiates a new callEndedEventMessageDetail and sets the default values.
         /// </summary>
         public CallEndedEventMessageDetail() : base() {
             OdataType = "#microsoft.graph.callEndedEventMessageDetail";

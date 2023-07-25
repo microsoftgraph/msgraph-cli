@@ -9,7 +9,7 @@ namespace ApiSdk.Models {
         public ScopeOperatorType? Arity { get; set; }
         /// <summary>The multivaluedComparisonType property</summary>
         public ScopeOperatorMultiValuedComparisonType? MultivaluedComparisonType { get; set; }
-        /// <summary>The supportedAttributeTypes property</summary>
+        /// <summary>Attribute types supported by the operator. Possible values are: Boolean, Binary, Reference, Integer, String.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<AttributeType?>? SupportedAttributeTypes { get; set; }

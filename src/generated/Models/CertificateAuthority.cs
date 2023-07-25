@@ -58,7 +58,7 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new CertificateAuthority and sets the default values.
+        /// Instantiates a new certificateAuthority and sets the default values.
         /// </summary>
         public CertificateAuthority() {
             AdditionalData = new Dictionary<string, object>();

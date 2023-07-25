@@ -47,12 +47,12 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments {
             return command;
         }
         /// <summary>
-        /// Create a new iosVppEBookAssignment object.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-books-iosvppebookassignment-create?view=graph-rest-1.0" />
+        /// Create a new managedEBookAssignment object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-books-managedebookassignment-create?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new iosVppEBookAssignment object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-books-iosvppebookassignment-create?view=graph-rest-1.0";
+            command.Description = "Create a new managedEBookAssignment object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-books-managedebookassignment-create?view=graph-rest-1.0";
             var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
@@ -105,12 +105,12 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the managedEBookAssignment objects.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-books-managedebookassignment-list?view=graph-rest-1.0" />
+        /// List properties and relationships of the iosVppEBookAssignment objects.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/intune-books-iosvppebookassignment-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the managedEBookAssignment objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-books-managedebookassignment-list?view=graph-rest-1.0";
+            command.Description = "List properties and relationships of the iosVppEBookAssignment objects.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/intune-books-iosvppebookassignment-list?view=graph-rest-1.0";
             var managedEBookIdOption = new Option<string>("--managed-ebook-id", description: "The unique identifier of managedEBook") {
             };
             managedEBookIdOption.IsRequired = true;
@@ -222,7 +222,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments {
         public AssignmentsRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/managedEBooks/{managedEBook%2Did}/assignments{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// List properties and relationships of the managedEBookAssignment objects.
+        /// List properties and relationships of the iosVppEBookAssignment objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -248,7 +248,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new iosVppEBookAssignment object.
+        /// Create a new managedEBookAssignment object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -276,7 +276,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedEBooks.Item.Assignments {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the managedEBookAssignment objects.
+        /// List properties and relationships of the iosVppEBookAssignment objects.
         /// </summary>
         public class AssignmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

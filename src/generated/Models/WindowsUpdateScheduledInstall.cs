@@ -11,7 +11,7 @@ namespace ApiSdk.Models {
         /// <summary>Scheduled Install Time during day</summary>
         public Time? ScheduledInstallTime { get; set; }
         /// <summary>
-        /// Instantiates a new WindowsUpdateScheduledInstall and sets the default values.
+        /// Instantiates a new windowsUpdateScheduledInstall and sets the default values.
         /// </summary>
         public WindowsUpdateScheduledInstall() : base() {
             OdataType = "#microsoft.graph.windowsUpdateScheduledInstall";

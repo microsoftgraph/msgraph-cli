@@ -2,6 +2,7 @@ using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
 using ApiSdk.Users.Item.TransitiveMemberOf.Count;
 using ApiSdk.Users.Item.TransitiveMemberOf.GraphAdministrativeUnit;
+using ApiSdk.Users.Item.TransitiveMemberOf.GraphDirectoryRole;
 using ApiSdk.Users.Item.TransitiveMemberOf.GraphGroup;
 using ApiSdk.Users.Item.TransitiveMemberOf.Item;
 using Microsoft.Kiota.Abstractions.Serialization;
@@ -31,6 +32,7 @@ namespace ApiSdk.Users.Item.TransitiveMemberOf {
             var builder = new DirectoryObjectItemRequestBuilder(PathParameters);
             executables.Add(builder.BuildGetCommand());
             commands.Add(builder.BuildGraphAdministrativeUnitByIdNavCommand());
+            commands.Add(builder.BuildGraphDirectoryRoleByIdNavCommand());
             commands.Add(builder.BuildGraphGroupByIdNavCommand());
             return new(executables, commands);
         }
@@ -56,6 +58,27 @@ namespace ApiSdk.Users.Item.TransitiveMemberOf {
             var command = new Command("graph-administrative-unit");
             command.Description = "Casts the previous resource to administrativeUnit.";
             var builder = new GraphAdministrativeUnitRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to directoryRole.
+        /// </summary>
+        public Command BuildGraphDirectoryRoleNavCommand() {
+            var command = new Command("graph-directory-role");
+            command.Description = "Casts the previous resource to directoryRole.";
+            var builder = new GraphDirectoryRoleRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());

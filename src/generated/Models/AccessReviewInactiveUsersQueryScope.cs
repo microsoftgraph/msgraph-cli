@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
         /// <summary>Defines the duration of inactivity. Inactivity is based on the last sign in date of the user compared to the access review instance&apos;s start date. If this property is not specified, it&apos;s assigned the default value PT0S.</summary>
         public TimeSpan? InactiveDuration { get; set; }
         /// <summary>
-        /// Instantiates a new AccessReviewInactiveUsersQueryScope and sets the default values.
+        /// Instantiates a new accessReviewInactiveUsersQueryScope and sets the default values.
         /// </summary>
         public AccessReviewInactiveUsersQueryScope() : base() {
             OdataType = "#microsoft.graph.accessReviewInactiveUsersQueryScope";

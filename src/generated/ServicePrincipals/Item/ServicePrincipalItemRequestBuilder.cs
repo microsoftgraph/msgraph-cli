@@ -481,6 +481,7 @@ namespace ApiSdk.ServicePrincipals.Item {
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
             nonExecCommands.Add(builder.BuildGraphAdministrativeUnitNavCommand());
+            nonExecCommands.Add(builder.BuildGraphDirectoryRoleNavCommand());
             nonExecCommands.Add(builder.BuildGraphGroupNavCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
@@ -765,6 +766,7 @@ namespace ApiSdk.ServicePrincipals.Item {
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
             nonExecCommands.Add(builder.BuildGraphAdministrativeUnitNavCommand());
+            nonExecCommands.Add(builder.BuildGraphDirectoryRoleNavCommand());
             nonExecCommands.Add(builder.BuildGraphGroupNavCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();

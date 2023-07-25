@@ -94,7 +94,7 @@ namespace ApiSdk.Models {
         public SystemFacet System { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new Drive and sets the default values.
+        /// Instantiates a new drive and sets the default values.
         /// </summary>
         public Drive() : base() {
             OdataType = "#microsoft.graph.drive";

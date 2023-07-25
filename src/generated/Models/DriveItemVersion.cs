@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
         /// <summary>Indicates the size of the content stream for this version of the item.</summary>
         public long? Size { get; set; }
         /// <summary>
-        /// Instantiates a new DriveItemVersion and sets the default values.
+        /// Instantiates a new driveItemVersion and sets the default values.
         /// </summary>
         public DriveItemVersion() : base() {
             OdataType = "#microsoft.graph.driveItemVersion";

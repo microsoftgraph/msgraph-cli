@@ -26,7 +26,7 @@ namespace ApiSdk.Models {
         public string Uri { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new RedirectUriSettings and sets the default values.
+        /// Instantiates a new redirectUriSettings and sets the default values.
         /// </summary>
         public RedirectUriSettings() {
             AdditionalData = new Dictionary<string, object>();

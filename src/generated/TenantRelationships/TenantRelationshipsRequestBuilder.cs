@@ -2,6 +2,8 @@ using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
 using ApiSdk.TenantRelationships.DelegatedAdminCustomers;
 using ApiSdk.TenantRelationships.DelegatedAdminRelationships;
+using ApiSdk.TenantRelationships.FindTenantInformationByDomainNameWithDomainName;
+using ApiSdk.TenantRelationships.FindTenantInformationByTenantIdWithTenantId;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Microsoft.Kiota.Cli.Commons.Extensions;
@@ -65,6 +67,36 @@ namespace ApiSdk.TenantRelationships {
                 command.AddCommand(cmd);
             }
             foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the findTenantInformationByDomainName method.
+        /// </summary>
+        public Command BuildFindTenantInformationByDomainNameWithDomainNameRbCommand() {
+            var command = new Command("find-tenant-information-by-domain-name-with-domain-name");
+            command.Description = "Provides operations to call the findTenantInformationByDomainName method.";
+            var builder = new FindTenantInformationByDomainNameWithDomainNameRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the findTenantInformationByTenantId method.
+        /// </summary>
+        public Command BuildFindTenantInformationByTenantIdWithTenantIdRbCommand() {
+            var command = new Command("find-tenant-information-by-tenant-id-with-tenant-id");
+            command.Description = "Provides operations to call the findTenantInformationByTenantId method.";
+            var builder = new FindTenantInformationByTenantIdWithTenantIdRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);
             }

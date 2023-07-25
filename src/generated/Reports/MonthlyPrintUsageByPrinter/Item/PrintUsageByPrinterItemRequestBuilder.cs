@@ -52,11 +52,11 @@ namespace ApiSdk.Reports.MonthlyPrintUsageByPrinter.Item {
             return command;
         }
         /// <summary>
-        /// Get monthlyPrintUsageByPrinter from reports
+        /// Retrieve a list of monthly print usage summaries, grouped by printer.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get monthlyPrintUsageByPrinter from reports";
+            command.Description = "Retrieve a list of monthly print usage summaries, grouped by printer.";
             var printUsageByPrinterIdOption = new Option<string>("--print-usage-by-printer-id", description: "The unique identifier of printUsageByPrinter") {
             };
             printUsageByPrinterIdOption.IsRequired = true;
@@ -201,7 +201,7 @@ namespace ApiSdk.Reports.MonthlyPrintUsageByPrinter.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get monthlyPrintUsageByPrinter from reports
+        /// Retrieve a list of monthly print usage summaries, grouped by printer.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -255,7 +255,7 @@ namespace ApiSdk.Reports.MonthlyPrintUsageByPrinter.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get monthlyPrintUsageByPrinter from reports
+        /// Retrieve a list of monthly print usage summaries, grouped by printer.
         /// </summary>
         public class PrintUsageByPrinterItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

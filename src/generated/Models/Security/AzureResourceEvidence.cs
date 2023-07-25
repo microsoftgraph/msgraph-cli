@@ -30,6 +30,12 @@ namespace ApiSdk.Models.Security {
         public string ResourceType { get; set; }
 #endif
         /// <summary>
+        /// Instantiates a new azureResourceEvidence and sets the default values.
+        /// </summary>
+        public AzureResourceEvidence() : base() {
+            OdataType = "#microsoft.graph.security.azureResourceEvidence";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

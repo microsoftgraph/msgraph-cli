@@ -53,12 +53,12 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders {
             return command;
         }
         /// <summary>
-        /// Create a new mailSearchFolder in the specified user&apos;s mailbox.
-        /// Find more info here <see href="https://docs.microsoft.com/graph/api/mailsearchfolder-post?view=graph-rest-1.0" />
+        /// Use this API to create a new child mailFolder. If you intend a new folder to be hidden, you must set the **isHidden** property to `true` on creation.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/mailfolder-post-childfolders?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new mailSearchFolder in the specified user's mailbox.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/mailsearchfolder-post?view=graph-rest-1.0";
+            command.Description = "Use this API to create a new child mailFolder. If you intend a new folder to be hidden, you must set the **isHidden** property to `true` on creation.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/mailfolder-post-childfolders?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -132,12 +132,12 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders {
             return command;
         }
         /// <summary>
-        /// Get the folder collection under the specified folder. You can use the `.../me/mailFolders` shortcut to get the top-level folder collection and navigate to another folder. By default, this operation does not return hidden folders. Use a query parameter _includeHiddenFolders_ to include them in the response.
+        /// The collection of child folders in the mailFolder.
         /// Find more info here <see href="https://docs.microsoft.com/graph/api/mailfolder-list-childfolders?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the folder collection under the specified folder. You can use the `.../me/mailFolders` shortcut to get the top-level folder collection and navigate to another folder. By default, this operation does not return hidden folders. Use a query parameter _includeHiddenFolders_ to include them in the response.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/mailfolder-list-childfolders?view=graph-rest-1.0";
+            command.Description = "The collection of child folders in the mailFolder.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/mailfolder-list-childfolders?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -146,6 +146,10 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders {
             };
             mailFolderIdOption.IsRequired = true;
             command.AddOption(mailFolderIdOption);
+            var includeHiddenFoldersOption = new Option<string>("--include-hidden-folders", description: "Include Hidden Folders") {
+            };
+            includeHiddenFoldersOption.IsRequired = false;
+            command.AddOption(includeHiddenFoldersOption);
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -195,6 +199,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders {
             command.SetHandler(async (invocationContext) => {
                 var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
                 var mailFolderId = invocationContext.ParseResult.GetValueForOption(mailFolderIdOption);
+                var includeHiddenFolders = invocationContext.ParseResult.GetValueForOption(includeHiddenFoldersOption);
                 var top = invocationContext.ParseResult.GetValueForOption(topOption);
                 var skip = invocationContext.ParseResult.GetValueForOption(skipOption);
                 var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
@@ -212,6 +217,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders {
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
+                    if (!string.IsNullOrEmpty(includeHiddenFolders)) q.QueryParameters.IncludeHiddenFolders = includeHiddenFolders;
                     q.QueryParameters.Top = top;
                     q.QueryParameters.Skip = skip;
                     if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
@@ -246,10 +252,10 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders {
         /// Instantiates a new ChildFoldersRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public ChildFoldersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/childFolders{?%24top,%24skip,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
+        public ChildFoldersRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/childFolders{?includeHiddenFolders*,%24top,%24skip,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get the folder collection under the specified folder. You can use the `.../me/mailFolders` shortcut to get the top-level folder collection and navigate to another folder. By default, this operation does not return hidden folders. Use a query parameter _includeHiddenFolders_ to include them in the response.
+        /// The collection of child folders in the mailFolder.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -275,7 +281,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new mailSearchFolder in the specified user&apos;s mailbox.
+        /// Use this API to create a new child mailFolder. If you intend a new folder to be hidden, you must set the **isHidden** property to `true` on creation.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -303,7 +309,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders {
             return requestInfo;
         }
         /// <summary>
-        /// Get the folder collection under the specified folder. You can use the `.../me/mailFolders` shortcut to get the top-level folder collection and navigate to another folder. By default, this operation does not return hidden folders. Use a query parameter _includeHiddenFolders_ to include them in the response.
+        /// The collection of child folders in the mailFolder.
         /// </summary>
         public class ChildFoldersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>
@@ -328,6 +334,14 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders {
 #else
             [QueryParameter("%24filter")]
             public string Filter { get; set; }
+#endif
+            /// <summary>Include Hidden Folders</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            public string? IncludeHiddenFolders { get; set; }
+#nullable restore
+#else
+            public string IncludeHiddenFolders { get; set; }
 #endif
             /// <summary>Order items by property values</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

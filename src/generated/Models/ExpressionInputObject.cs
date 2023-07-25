@@ -7,7 +7,7 @@ namespace ApiSdk.Models {
     public class ExpressionInputObject : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The definition property</summary>
+        /// <summary>Definition of the test object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ObjectDefinition? Definition { get; set; }
@@ -23,7 +23,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The properties property</summary>
+        /// <summary>Property values of the test object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<StringKeyObjectValuePair>? Properties { get; set; }

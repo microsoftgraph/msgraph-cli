@@ -40,7 +40,7 @@ namespace ApiSdk.Models {
         public ConditionalAccessSessionControls SessionControls { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new ConditionalAccessPolicyDetail and sets the default values.
+        /// Instantiates a new conditionalAccessPolicyDetail and sets the default values.
         /// </summary>
         public ConditionalAccessPolicyDetail() {
             AdditionalData = new Dictionary<string, object>();

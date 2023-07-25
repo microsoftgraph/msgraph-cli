@@ -30,7 +30,7 @@ namespace ApiSdk.Models {
         public string TeamsAppId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new TeamsAppInstalledEventMessageDetail and sets the default values.
+        /// Instantiates a new teamsAppInstalledEventMessageDetail and sets the default values.
         /// </summary>
         public TeamsAppInstalledEventMessageDetail() : base() {
             OdataType = "#microsoft.graph.teamsAppInstalledEventMessageDetail";

@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
         public string ResourceAppId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new RequiredResourceAccess and sets the default values.
+        /// Instantiates a new requiredResourceAccess and sets the default values.
         /// </summary>
         public RequiredResourceAccess() {
             AdditionalData = new Dictionary<string, object>();

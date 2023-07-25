@@ -24,7 +24,7 @@ namespace ApiSdk.Models {
         public List<UnifiedRole> UnifiedRoles { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new DelegatedAdminAccessDetails and sets the default values.
+        /// Instantiates a new delegatedAdminAccessDetails and sets the default values.
         /// </summary>
         public DelegatedAdminAccessDetails() {
             AdditionalData = new Dictionary<string, object>();

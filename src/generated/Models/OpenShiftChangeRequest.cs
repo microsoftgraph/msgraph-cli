@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         public string OpenShiftId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new OpenShiftChangeRequest and sets the default values.
+        /// Instantiates a new openShiftChangeRequest and sets the default values.
         /// </summary>
         public OpenShiftChangeRequest() : base() {
             OdataType = "#microsoft.graph.openShiftChangeRequest";

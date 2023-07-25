@@ -26,7 +26,7 @@ namespace ApiSdk.Models {
         public Fido2KeyRestrictions KeyRestrictions { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new Fido2AuthenticationMethodConfiguration and sets the default values.
+        /// Instantiates a new fido2AuthenticationMethodConfiguration and sets the default values.
         /// </summary>
         public Fido2AuthenticationMethodConfiguration() : base() {
             OdataType = "#microsoft.graph.fido2AuthenticationMethodConfiguration";

@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
         public string Description { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new ConnectedOrganizationMembers and sets the default values.
+        /// Instantiates a new connectedOrganizationMembers and sets the default values.
         /// </summary>
         public ConnectedOrganizationMembers() : base() {
             OdataType = "#microsoft.graph.connectedOrganizationMembers";

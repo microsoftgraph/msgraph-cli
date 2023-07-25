@@ -112,11 +112,11 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item.Schema.Di
             return command;
         }
         /// <summary>
-        /// Get directories from servicePrincipals
+        /// Contains the collection of directories and all of their objects.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get directories from servicePrincipals";
+            command.Description = "Contains the collection of directories and all of their objects.";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -234,7 +234,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item.Schema.Di
         public DirectoriesRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/synchronization/templates/{synchronizationTemplate%2Did}/schema/directories{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Get directories from servicePrincipals
+        /// Contains the collection of directories and all of their objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -288,7 +288,7 @@ namespace ApiSdk.ServicePrincipals.Item.Synchronization.Templates.Item.Schema.Di
             return requestInfo;
         }
         /// <summary>
-        /// Get directories from servicePrincipals
+        /// Contains the collection of directories and all of their objects.
         /// </summary>
         public class DirectoriesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

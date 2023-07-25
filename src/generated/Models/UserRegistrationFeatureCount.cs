@@ -17,10 +17,10 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The userCount property</summary>
+        /// <summary>Number of users.</summary>
         public long? UserCount { get; set; }
         /// <summary>
-        /// Instantiates a new UserRegistrationFeatureCount and sets the default values.
+        /// Instantiates a new userRegistrationFeatureCount and sets the default values.
         /// </summary>
         public UserRegistrationFeatureCount() {
             AdditionalData = new Dictionary<string, object>();

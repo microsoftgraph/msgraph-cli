@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         public string AppId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new AccessReviewInstanceDecisionItemServicePrincipalResource and sets the default values.
+        /// Instantiates a new accessReviewInstanceDecisionItemServicePrincipalResource and sets the default values.
         /// </summary>
         public AccessReviewInstanceDecisionItemServicePrincipalResource() : base() {
             OdataType = "#microsoft.graph.accessReviewInstanceDecisionItemServicePrincipalResource";

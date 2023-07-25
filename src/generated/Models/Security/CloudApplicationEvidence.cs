@@ -28,6 +28,12 @@ namespace ApiSdk.Models.Security {
         /// <summary>The identifier of the SaaS application.</summary>
         public long? SaasAppId { get; set; }
         /// <summary>
+        /// Instantiates a new cloudApplicationEvidence and sets the default values.
+        /// </summary>
+        public CloudApplicationEvidence() : base() {
+            OdataType = "#microsoft.graph.security.cloudApplicationEvidence";
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>

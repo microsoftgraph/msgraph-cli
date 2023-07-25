@@ -38,7 +38,7 @@ namespace ApiSdk.Models {
         public string ServiceId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new AppleManagedIdentityProvider and sets the default values.
+        /// Instantiates a new appleManagedIdentityProvider and sets the default values.
         /// </summary>
         public AppleManagedIdentityProvider() : base() {
             OdataType = "#microsoft.graph.appleManagedIdentityProvider";

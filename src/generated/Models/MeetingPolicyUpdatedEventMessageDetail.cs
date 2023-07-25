@@ -24,7 +24,7 @@ namespace ApiSdk.Models {
         public string MeetingChatId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new MeetingPolicyUpdatedEventMessageDetail and sets the default values.
+        /// Instantiates a new meetingPolicyUpdatedEventMessageDetail and sets the default values.
         /// </summary>
         public MeetingPolicyUpdatedEventMessageDetail() : base() {
             OdataType = "#microsoft.graph.meetingPolicyUpdatedEventMessageDetail";

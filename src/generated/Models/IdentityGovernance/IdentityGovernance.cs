@@ -56,7 +56,7 @@ namespace ApiSdk.Models.IdentityGovernance {
         public ApiSdk.Models.TermsOfUseContainer TermsOfUse { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new IdentityGovernance and sets the default values.
+        /// Instantiates a new identityGovernance and sets the default values.
         /// </summary>
         public IdentityGovernance() {
             AdditionalData = new Dictionary<string, object>();

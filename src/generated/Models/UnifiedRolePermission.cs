@@ -40,7 +40,7 @@ namespace ApiSdk.Models {
         public string OdataType { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new UnifiedRolePermission and sets the default values.
+        /// Instantiates a new unifiedRolePermission and sets the default values.
         /// </summary>
         public UnifiedRolePermission() {
             AdditionalData = new Dictionary<string, object>();

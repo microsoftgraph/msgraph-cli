@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         public IdentitySet Organizer { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new OrganizerMeetingInfo and sets the default values.
+        /// Instantiates a new organizerMeetingInfo and sets the default values.
         /// </summary>
         public OrganizerMeetingInfo() : base() {
             OdataType = "#microsoft.graph.organizerMeetingInfo";

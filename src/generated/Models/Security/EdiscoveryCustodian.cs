@@ -48,7 +48,7 @@ namespace ApiSdk.Models.Security {
         public List<UserSource> UserSources { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new EdiscoveryCustodian and sets the default values.
+        /// Instantiates a new ediscoveryCustodian and sets the default values.
         /// </summary>
         public EdiscoveryCustodian() : base() {
             OdataType = "#microsoft.graph.security.ediscoveryCustodian";

@@ -42,7 +42,7 @@ namespace ApiSdk.Models {
         public string ServicePlanName { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new ServicePlanInfo and sets the default values.
+        /// Instantiates a new servicePlanInfo and sets the default values.
         /// </summary>
         public ServicePlanInfo() {
             AdditionalData = new Dictionary<string, object>();

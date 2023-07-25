@@ -5,7 +5,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class SynchronizationSchema : Entity, IParsable {
-        /// <summary>The directories property</summary>
+        /// <summary>Contains the collection of directories and all of their objects.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<DirectoryDefinition>? Directories { get; set; }
@@ -13,7 +13,7 @@ namespace ApiSdk.Models {
 #else
         public List<DirectoryDefinition> Directories { get; set; }
 #endif
-        /// <summary>The synchronizationRules property</summary>
+        /// <summary>A collection of synchronization rules configured for the synchronizationJob or synchronizationTemplate.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<SynchronizationRule>? SynchronizationRules { get; set; }
@@ -21,7 +21,7 @@ namespace ApiSdk.Models {
 #else
         public List<SynchronizationRule> SynchronizationRules { get; set; }
 #endif
-        /// <summary>The version property</summary>
+        /// <summary>The version of the schema, updated automatically with every schema change.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Version { get; set; }

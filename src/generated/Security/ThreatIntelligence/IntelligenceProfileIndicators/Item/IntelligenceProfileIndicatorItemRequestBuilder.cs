@@ -68,11 +68,12 @@ namespace ApiSdk.Security.ThreatIntelligence.IntelligenceProfileIndicators.Item 
             return command;
         }
         /// <summary>
-        /// Get intelligenceProfileIndicators from security
+        /// Read the properties and relationships of a intelligenceProfileIndicator object.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/security-intelligenceprofileindicator-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get intelligenceProfileIndicators from security";
+            command.Description = "Read the properties and relationships of a intelligenceProfileIndicator object.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/security-intelligenceprofileindicator-get?view=graph-rest-1.0";
             var intelligenceProfileIndicatorIdOption = new Option<string>("--intelligence-profile-indicator-id", description: "The unique identifier of intelligenceProfileIndicator") {
             };
             intelligenceProfileIndicatorIdOption.IsRequired = true;
@@ -217,7 +218,7 @@ namespace ApiSdk.Security.ThreatIntelligence.IntelligenceProfileIndicators.Item 
             return requestInfo;
         }
         /// <summary>
-        /// Get intelligenceProfileIndicators from security
+        /// Read the properties and relationships of a intelligenceProfileIndicator object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -271,7 +272,7 @@ namespace ApiSdk.Security.ThreatIntelligence.IntelligenceProfileIndicators.Item 
             return requestInfo;
         }
         /// <summary>
-        /// Get intelligenceProfileIndicators from security
+        /// Read the properties and relationships of a intelligenceProfileIndicator object.
         /// </summary>
         public class IntelligenceProfileIndicatorItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -13,6 +13,14 @@ namespace ApiSdk.Models {
 #else
         public List<DeletedTeam> DeletedTeams { get; set; }
 #endif
+        /// <summary>The teamsAppSettings property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.TeamsAppSettings? TeamsAppSettings { get; set; }
+#nullable restore
+#else
+        public ApiSdk.Models.TeamsAppSettings TeamsAppSettings { get; set; }
+#endif
         /// <summary>The workforceIntegrations property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -35,6 +43,7 @@ namespace ApiSdk.Models {
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"deletedTeams", n => { DeletedTeams = n.GetCollectionOfObjectValues<DeletedTeam>(DeletedTeam.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"teamsAppSettings", n => { TeamsAppSettings = n.GetObjectValue<ApiSdk.Models.TeamsAppSettings>(ApiSdk.Models.TeamsAppSettings.CreateFromDiscriminatorValue); } },
                 {"workforceIntegrations", n => { WorkforceIntegrations = n.GetCollectionOfObjectValues<WorkforceIntegration>(WorkforceIntegration.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
@@ -46,6 +55,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteCollectionOfObjectValues<DeletedTeam>("deletedTeams", DeletedTeams);
+            writer.WriteObjectValue<ApiSdk.Models.TeamsAppSettings>("teamsAppSettings", TeamsAppSettings);
             writer.WriteCollectionOfObjectValues<WorkforceIntegration>("workforceIntegrations", WorkforceIntegrations);
         }
     }

@@ -62,7 +62,7 @@ namespace ApiSdk.Models {
         public string Usage { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new KeyCredential and sets the default values.
+        /// Instantiates a new keyCredential and sets the default values.
         /// </summary>
         public KeyCredential() {
             AdditionalData = new Dictionary<string, object>();

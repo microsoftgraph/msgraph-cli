@@ -2,6 +2,7 @@ using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
 using ApiSdk.Teamwork.DeletedTeams;
 using ApiSdk.Teamwork.SendActivityNotificationToRecipients;
+using ApiSdk.Teamwork.TeamsAppSettings;
 using ApiSdk.Teamwork.WorkforceIntegrations;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
@@ -162,6 +163,23 @@ namespace ApiSdk.Teamwork {
             var builder = new SendActivityNotificationToRecipientsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the teamsAppSettings property of the microsoft.graph.teamwork entity.
+        /// </summary>
+        public Command BuildTeamsAppSettingsNavCommand() {
+            var command = new Command("teams-app-settings");
+            command.Description = "Provides operations to manage the teamsAppSettings property of the microsoft.graph.teamwork entity.";
+            var builder = new TeamsAppSettingsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
             foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);

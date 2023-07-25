@@ -1,8 +1,8 @@
 {
-  "descriptionHash": "A194780C4D61925A25070B0B7968B3828890426A03C597ABAFB30A23ADB45DDF885288E58579A36CE2BCE146BB7632F0C1C10081740DE6601BA52B0E85BF3900",
+  "descriptionHash": "4C2618DABD4BD4E92273CFCA4DA6B8A4936D86620DDCFA24960D9F037DA1953B3A49C942B890476568758EC3B0619A2A805D25EB5AA134F4EA097BDF74BA024F",
   "descriptionLocation": "/mnt/vss/_work/1/s/msgraph-metadata/clean_v10_openapi/openapi.yaml",
   "lockFileVersion": "1.0.0",
-  "kiotaVersion": "1.3.0",
+  "kiotaVersion": "1.5.0",
   "clientClassName": "GraphClient",
   "clientNamespaceName": "ApiSdk",
   "language": "Shell",

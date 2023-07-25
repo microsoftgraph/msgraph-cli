@@ -192,7 +192,7 @@ namespace ApiSdk.Models {
         public List<VerifiedDomain> VerifiedDomains { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new Organization and sets the default values.
+        /// Instantiates a new organization and sets the default values.
         /// </summary>
         public Organization() : base() {
             OdataType = "#microsoft.graph.organization";

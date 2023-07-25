@@ -42,7 +42,7 @@ namespace ApiSdk.Models.CallRecords {
         public string Name { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new ParticipantEndpoint and sets the default values.
+        /// Instantiates a new participantEndpoint and sets the default values.
         /// </summary>
         public ParticipantEndpoint() : base() {
             OdataType = "#microsoft.graph.callRecords.participantEndpoint";

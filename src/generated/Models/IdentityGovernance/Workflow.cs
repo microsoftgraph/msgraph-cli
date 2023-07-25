@@ -60,7 +60,7 @@ namespace ApiSdk.Models.IdentityGovernance {
         public List<WorkflowVersion> Versions { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new Workflow and sets the default values.
+        /// Instantiates a new workflow and sets the default values.
         /// </summary>
         public Workflow() : base() {
             OdataType = "#microsoft.graph.identityGovernance.workflow";

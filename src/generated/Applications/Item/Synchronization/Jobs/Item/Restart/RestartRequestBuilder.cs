@@ -18,11 +18,12 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Restart {
     /// </summary>
     public class RestartRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action restart
+        /// Restart a stopped synchronization job, forcing it to reprocess all the objects in the directory. Optionally clears existing the synchronization state and previous errors.
+        /// Find more info here <see href="https://docs.microsoft.com/graph/api/synchronization-synchronizationjob-restart?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action restart";
+            command.Description = "Restart a stopped synchronization job, forcing it to reprocess all the objects in the directory. Optionally clears existing the synchronization state and previous errors.\n\nFind more info here:\n  https://docs.microsoft.com/graph/api/synchronization-synchronizationjob-restart?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -66,7 +67,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.Restart {
         public RestartRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/applications/{application%2Did}/synchronization/jobs/{synchronizationJob%2Did}/restart", pathParameters) {
         }
         /// <summary>
-        /// Invoke action restart
+        /// Restart a stopped synchronization job, forcing it to reprocess all the objects in the directory. Optionally clears existing the synchronization state and previous errors.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         public string AnonymousGuestId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new AnonymousGuestConversationMember and sets the default values.
+        /// Instantiates a new anonymousGuestConversationMember and sets the default values.
         /// </summary>
         public AnonymousGuestConversationMember() : base() {
             OdataType = "#microsoft.graph.anonymousGuestConversationMember";

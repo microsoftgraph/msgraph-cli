@@ -7,6 +7,14 @@ namespace ApiSdk.Models {
     public class ConditionalAccessApplications : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The applicationFilter property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ConditionalAccessFilter? ApplicationFilter { get; set; }
+#nullable restore
+#else
+        public ConditionalAccessFilter ApplicationFilter { get; set; }
+#endif
         /// <summary>Can be one of the following:  The list of client IDs (appId) explicitly excluded from the policy. Office365 - For the list of apps included in Office365, see Conditional Access target apps: Office 365</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -66,6 +74,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"applicationFilter", n => { ApplicationFilter = n.GetObjectValue<ConditionalAccessFilter>(ConditionalAccessFilter.CreateFromDiscriminatorValue); } },
                 {"excludeApplications", n => { ExcludeApplications = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"includeApplications", n => { IncludeApplications = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"includeAuthenticationContextClassReferences", n => { IncludeAuthenticationContextClassReferences = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
@@ -79,6 +88,7 @@ namespace ApiSdk.Models {
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
+            writer.WriteObjectValue<ConditionalAccessFilter>("applicationFilter", ApplicationFilter);
             writer.WriteCollectionOfPrimitiveValues<string>("excludeApplications", ExcludeApplications);
             writer.WriteCollectionOfPrimitiveValues<string>("includeApplications", IncludeApplications);
             writer.WriteCollectionOfPrimitiveValues<string>("includeAuthenticationContextClassReferences", IncludeAuthenticationContextClassReferences);

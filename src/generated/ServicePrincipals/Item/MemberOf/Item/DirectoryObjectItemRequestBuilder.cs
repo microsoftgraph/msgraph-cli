@@ -1,6 +1,7 @@
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
 using ApiSdk.ServicePrincipals.Item.MemberOf.Item.GraphAdministrativeUnit;
+using ApiSdk.ServicePrincipals.Item.MemberOf.Item.GraphDirectoryRole;
 using ApiSdk.ServicePrincipals.Item.MemberOf.Item.GraphGroup;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
@@ -101,6 +102,21 @@ namespace ApiSdk.ServicePrincipals.Item.MemberOf.Item {
             var command = new Command("graph-administrative-unit-by-id");
             command.Description = "Casts the previous resource to administrativeUnit.";
             var builder = new GraphAdministrativeUnitRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildGetCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Casts the previous resource to directoryRole.
+        /// </summary>
+        public Command BuildGraphDirectoryRoleByIdNavCommand() {
+            var command = new Command("graph-directory-role-by-id");
+            command.Description = "Casts the previous resource to directoryRole.";
+            var builder = new GraphDirectoryRoleRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)

@@ -28,7 +28,7 @@ namespace ApiSdk.Models {
         public string Suggestion { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new AlteredQueryToken and sets the default values.
+        /// Instantiates a new alteredQueryToken and sets the default values.
         /// </summary>
         public AlteredQueryToken() {
             AdditionalData = new Dictionary<string, object>();

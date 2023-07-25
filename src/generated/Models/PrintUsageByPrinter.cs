@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
         public string PrinterId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new PrintUsageByPrinter and sets the default values.
+        /// Instantiates a new printUsageByPrinter and sets the default values.
         /// </summary>
         public PrintUsageByPrinter() : base() {
             OdataType = "#microsoft.graph.printUsageByPrinter";

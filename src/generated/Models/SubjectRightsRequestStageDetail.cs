@@ -28,7 +28,7 @@ namespace ApiSdk.Models {
         /// <summary>Status of the current stage. Possible values are: notStarted, current, completed, failed, unknownFutureValue.</summary>
         public SubjectRightsRequestStageStatus? Status { get; set; }
         /// <summary>
-        /// Instantiates a new SubjectRightsRequestStageDetail and sets the default values.
+        /// Instantiates a new subjectRightsRequestStageDetail and sets the default values.
         /// </summary>
         public SubjectRightsRequestStageDetail() {
             AdditionalData = new Dictionary<string, object>();

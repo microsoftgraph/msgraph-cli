@@ -17,6 +17,7 @@ using ApiSdk.Drives.Item.Items.Item.GetActivitiesByIntervalWithStartDateTimeWith
 using ApiSdk.Drives.Item.Items.Item.Invite;
 using ApiSdk.Drives.Item.Items.Item.LastModifiedByUser;
 using ApiSdk.Drives.Item.Items.Item.ListItem;
+using ApiSdk.Drives.Item.Items.Item.PermanentDelete;
 using ApiSdk.Drives.Item.Items.Item.Permissions;
 using ApiSdk.Drives.Item.Items.Item.Preview;
 using ApiSdk.Drives.Item.Items.Item.Restore;
@@ -534,6 +535,21 @@ namespace ApiSdk.Drives.Item.Items.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to call the permanentDelete method.
+        /// </summary>
+        public Command BuildPermanentDeleteNavCommand() {
+            var command = new Command("permanent-delete");
+            command.Description = "Provides operations to call the permanentDelete method.";
+            var builder = new PermanentDeleteRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            execCommands.Add(builder.BuildPostCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>

@@ -67,6 +67,14 @@ namespace ApiSdk.Models {
         public bool? IsHidden { get; set; }
         /// <summary>The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. Read-only.</summary>
         public DateTimeOffset? ModifiedDateTime { get; set; }
+        /// <summary>The resourceRoleScopes property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<AccessPackageResourceRoleScope>? ResourceRoleScopes { get; set; }
+#nullable restore
+#else
+        public List<AccessPackageResourceRoleScope> ResourceRoleScopes { get; set; }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -90,6 +98,7 @@ namespace ApiSdk.Models {
                 {"incompatibleGroups", n => { IncompatibleGroups = n.GetCollectionOfObjectValues<Group>(Group.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"isHidden", n => { IsHidden = n.GetBoolValue(); } },
                 {"modifiedDateTime", n => { ModifiedDateTime = n.GetDateTimeOffsetValue(); } },
+                {"resourceRoleScopes", n => { ResourceRoleScopes = n.GetCollectionOfObjectValues<AccessPackageResourceRoleScope>(AccessPackageResourceRoleScope.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -109,6 +118,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<Group>("incompatibleGroups", IncompatibleGroups);
             writer.WriteBoolValue("isHidden", IsHidden);
             writer.WriteDateTimeOffsetValue("modifiedDateTime", ModifiedDateTime);
+            writer.WriteCollectionOfObjectValues<AccessPackageResourceRoleScope>("resourceRoleScopes", ResourceRoleScopes);
         }
     }
 }

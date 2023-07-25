@@ -30,7 +30,7 @@ namespace ApiSdk.Models {
         public IdentitySet MeetingOrganizer { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new CallTranscriptEventMessageDetail and sets the default values.
+        /// Instantiates a new callTranscriptEventMessageDetail and sets the default values.
         /// </summary>
         public CallTranscriptEventMessageDetail() : base() {
             OdataType = "#microsoft.graph.callTranscriptEventMessageDetail";

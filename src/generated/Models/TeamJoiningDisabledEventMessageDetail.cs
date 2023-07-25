@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
         public string TeamId { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new TeamJoiningDisabledEventMessageDetail and sets the default values.
+        /// Instantiates a new teamJoiningDisabledEventMessageDetail and sets the default values.
         /// </summary>
         public TeamJoiningDisabledEventMessageDetail() : base() {
             OdataType = "#microsoft.graph.teamJoiningDisabledEventMessageDetail";

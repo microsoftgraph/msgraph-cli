@@ -26,7 +26,7 @@ namespace ApiSdk.Models.CallRecords {
         /// <summary>The productFamily property</summary>
         public ApiSdk.Models.CallRecords.ProductFamily? ProductFamily { get; set; }
         /// <summary>
-        /// Instantiates a new ClientUserAgent and sets the default values.
+        /// Instantiates a new clientUserAgent and sets the default values.
         /// </summary>
         public ClientUserAgent() : base() {
             OdataType = "#microsoft.graph.callRecords.clientUserAgent";
