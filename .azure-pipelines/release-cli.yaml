@@ -654,7 +654,7 @@ stages:
         displayName: Deploy Nuget
         dependsOn: []
         environment: microsoftgraph-nuget-org
-        condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), or(startsWith(variables['Build.SourceBranch'], 'refs/tags/v')), eq('${{ parameters.forceNugetPublish }}', 'true'))
+        condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), or(startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq('${{ parameters.forceNugetPublish }}', 'true'))
         strategy:
           runOnce:
             deploy:
