@@ -50,6 +50,10 @@ parameters:
     displayName: Simulate operations (faster)
     type: boolean
     default: false
+  - name: forceNugetPublish
+    displayName: Force Publishing the Nuget output
+    type: boolean
+    default: false
 
 # test ----------> | build ->   |            |
 #                  |            | sign       |
@@ -617,11 +621,11 @@ stages:
 
   - stage: upload
     dependsOn: [binaryScan, sign]
-    # Only upload release if we're building a tag.
-    condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'))
     jobs:
       - job: uploadGitHub
         displayName: Upload binaries (GitHub)
+        # Only upload release if we're building a tag.
+        condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'))
         steps:
           - checkout: none
           - task: DownloadPipelineArtifact@2
@@ -650,6 +654,7 @@ stages:
         displayName: Deploy Nuget
         dependsOn: []
         environment: microsoftgraph-nuget-org
+        condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), or(startsWith(variables['Build.SourceBranch'], 'refs/tags/v')), eq('${{ parameters.forceNugetPublish }}', 'true'))
         strategy:
           runOnce:
             deploy:
@@ -661,11 +666,12 @@ stages:
                   inputs:
                     artifact: sign-output-nuget
                     source: current
+                    path: $(artifactsDownloadLocation)/nuget
                 - task: NuGetCommand@2
                   displayName: "NuGet push"
                   inputs:
                     command: push
-                    packagesToPush: "$(Pipeline.Workspace)/Nugets/Microsoft.Graph.Cli.*.nupkg"
+                    packagesToPush: "$(artifactsDownloadLocation)/nuget/Microsoft.Graph.Cli.*.nupkg"
                     nuGetFeedType: external
                     publishFeedCredentials: "microsoftgraph NuGet connection"
 
