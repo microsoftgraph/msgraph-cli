@@ -608,7 +608,7 @@ stages:
     pool:
       vmImage: windows-latest
     # Only scan binaries if we're building a tag, building main, or building a PR targeting main
-    condition: and(succeeded(), or(startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['System.PullRequest.TargetBranch'], 'main')))
+    condition: and(succeeded(), or(startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['System.PullRequest.TargetBranch'], 'main'), eq('${{ parameters.forceNugetPublish }}', 'true')))
     jobs:
       - job: scan
         displayName: Scanning binaries
