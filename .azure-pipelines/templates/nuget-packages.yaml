@@ -15,8 +15,8 @@ parameters:
     type: boolean
     default: true
 
-${{ if eq(parameters.enabled, true) }}:
-  steps:
+steps:
+  - ${{ if eq(parameters.enabled, true) }}:
     - pwsh: |
         Write-Verbose -Verbose "useCache = '${{parameters.useCache}}'"
         Write-Verbose -Verbose "restorePath = '${{parameters.restorePath}}'"
