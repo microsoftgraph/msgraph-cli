@@ -468,9 +468,10 @@ stages:
               targetType: inline
               script: |
                 Write-Verbose 'Checking if $(WORKING_DIR) has files'
-                $hasArtifacts = Test-Path $(WORKING_DIR)/* -PathType Leaf
+                $downloadDir = Join-Path -Path '$(WORKING_DIR)' -ChildPath 'build-output-$(rid)'
+                $hasArtifacts = Test-Path $downloadDir -PathType Leaf
                 Write-Verbose "Result $hasArtifacts"
-                Get-ChildItem $(WORKING_DIR)/*
+                Get-ChildItem $downloadDir
                 $shouldSign = '$(SHOULD_SIGN)'.ToLower() -eq 'true'
                 if ($shouldSign) {
                   $shouldSign = $shouldSign -and $hasArtifacts
@@ -577,10 +578,10 @@ stages:
               SessionTimeout: 20
             condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['SHOULD_SIGN'], 'True'), eq(variables['RUNTIME_ID'], 'nuget'))
 
-          - pwsh: |
-              $artifactsPath = '$(ARTIFACTS_PATH)'
-              Write-Host "##vso[task.setvariable variable=WORKING_DIR]$artifactsPath"
-            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['SHOULD_SIGN'], 'True'), eq(variables['RUNTIME_ID'], 'nuget'))
+          # - pwsh: |
+          #     $artifactsPath = '$(ARTIFACTS_PATH)'
+          #     Write-Host "##vso[task.setvariable variable=WORKING_DIR]$artifactsPath"
+          #   condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['SHOULD_SIGN'], 'True'), eq(variables['RUNTIME_ID'], 'nuget'))
 
           - task: PowerShell@2
             displayName: Simulate ESRP
