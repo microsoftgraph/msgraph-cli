@@ -33,7 +33,7 @@ steps:
           nuget | "$(Agent.OS)"
           nuget
         path: '${{parameters.restorePath}}'
-      condition: and(succeeded(), eq(parameters.enabled, true))
+      condition: and(succeeded(), eq('${{ parameters.enabled }}', true))
     - task: DotNetCoreCLI@2
       displayName: Restore packages (Cache enabled)
       inputs:
@@ -45,7 +45,7 @@ steps:
         workingDirectory: $(Build.SourcesDirectory)
         restoreArguments: --use-lock-file --locked-mode ${{parameters.extraRestoreArgs}}
         restoreDirectory: ${{parameters.restorePath}}
-      condition: and(succeeded(), eq(parameters.enabled, true))
+      condition: and(succeeded(), eq('${{ parameters.enabled }}', true))
   - ${{ else }}:
     - task: DotNetCoreCLI@2
       displayName: Restore packages (No cache)
@@ -58,4 +58,4 @@ steps:
         workingDirectory: $(Build.SourcesDirectory)
         noCache: true
         restoreArguments: --use-lock-file --locked-mode ${{parameters.extraRestoreArgs}}
-      condition: and(succeeded(), eq(parameters.enabled, true))
+      condition: and(succeeded(), eq('${{ parameters.enabled }}', true))
