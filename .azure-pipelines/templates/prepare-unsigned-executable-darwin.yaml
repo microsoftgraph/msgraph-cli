@@ -22,14 +22,18 @@ parameters:
 # The built zip has been downloaded already
 steps:
   - pwsh: |
+      Write-Host "##vso[task.setvariable variable=IS_ENABLED]${{ parameters.enabled }}"
+    displayName: Check enabled
+    condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
+
+  - pwsh: |
       Write-Host "##vso[task.setvariable variable=TARGET_RUNTIME]${{ parameters.targetRuntime }}"
       Write-Host "##vso[task.setvariable variable=CERTIFICATE_NAME]${{ parameters.certificateName }}"
       Write-Host "##vso[task.setvariable variable=EXECUTABLE_PATH]${{ parameters.executablePath }}"
       Write-Host "##vso[task.setvariable variable=EXECUTABLE_NAME]${{ parameters.executableName }}"
       Write-Host "##vso[task.setvariable variable=ZIP_NAME]${{ parameters.zipName }}"
-      Write-Host "##vso[task.setvariable variable=IS_ENABLED]${{ parameters.enabled }}"
     displayName: Resolve parameters
-    condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
+    condition: and(succeeded(), eq(variables['IS_ENABLED'], 'true'), eq(variables['SHOULD_SIGN'], 'True'))
 
   - task: PowerShell@2
     inputs:

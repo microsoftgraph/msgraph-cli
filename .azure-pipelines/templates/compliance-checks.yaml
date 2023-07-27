@@ -50,19 +50,27 @@ steps:
           path: $(artifactsDownloadLocation)
       displayName: Download binaries
 
+    - pwsh: |
+        Write-Verbose 'Checking if there's files matching $(artifactsDownloadLocation)/build-output-*/*.zip'
+        $hasArtifacts = Test-Path $(artifactsDownloadLocation)/build-output-*/*.zip -PathType Leaf
+        Write-Verbose "Result $hasArtifacts"
+        Write-Host "##vso[task.setvariable variable=HAS_ARTIFACTS]$hasArtifacts"
+      displayName: Checking for binaries
+
     - ${{ if gt(length(parameters.artifactsDownloadLocation), 0) }}:
       - pwsh: |
           Get-ChildItem $(artifactsDownloadLocation)/build-output-*/*.zip | ForEach-Object -Begin $null -End $null -Process { Write-Host "Extracting $($_.FullName)" }, { Expand-Archive -LiteralPath "$($_.FullName)" -PassThru }, { Remove-Item "$($_.FullName)" }
           Get-ChildItem $(artifactsDownloadLocation)/build-output-* -Recurse
         workingDirectory: $(artifactsDownloadLocation)
         displayName: Extracting binaries
+        condition: and(succeeded(), eq(variables['HAS_ARTIFACTS'], 'true'))
     - ${{ else }}:
       - pwsh: |
           Get-ChildItem $(Pipeline.Workspace)/build-output-*/*.zip | ForEach-Object -Begin $null -End $null -Process { Write-Host "Extracting $($_.FullName)" }, { Expand-Archive -LiteralPath "$($_.FullName)" -PassThru }, { Remove-Item "$($_.FullName)" }
           Get-ChildItem $(Pipeline.Workspace)/build-output-* -Recurse
         workingDirectory: $(artifactsDownloadLocation)
         displayName: Extracting binaries
-
+        condition: and(succeeded(), eq(variables['HAS_ARTIFACTS'], 'true'))
 
     - task: AntiMalware@4
       displayName: 'Run MpCmdRun.exe - Product Binaries'
@@ -72,7 +80,7 @@ steps:
           FileDirPath: $(artifactsDownloadLocation)
         ${{ else }}:
           FileDirPath: $(Pipeline.Workspace)
-
+      condition: and(succeeded(), eq(variables['HAS_ARTIFACTS'], 'true'))
 
     - task: BinSkim@4
       displayName: 'Run BinSkim - Product Binaries'
@@ -88,6 +96,7 @@ steps:
         AnalyzeHashes: true
         AnalyzeRecurse: true
         AnalyzeStatistics: true
+      condition: and(succeeded(), eq(variables['HAS_ARTIFACTS'], 'true'))
 
   - task: PublishSecurityAnalysisLogs@3
     displayName: 'Publish Security Analysis Logs'
@@ -95,9 +104,11 @@ steps:
     inputs:
       ArtifactName: CodeAnalysisLogs
       AllTools: true
+    condition: and(succeeded(), eq(variables['HAS_ARTIFACTS'], 'true'))
 
   - task: PostAnalysis@2
     displayName: 'Post Analysis'
     enabled: true
     inputs:
       GdnBreakAllTools: true
+    condition: and(succeeded(), eq(variables['HAS_ARTIFACTS'], 'true'))
