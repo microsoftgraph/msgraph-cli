@@ -413,7 +413,6 @@ stages:
               inlineSignOperation: ${{ variables.macSignOp }}
               inlineNotarizeOperation: ${{ variables.macNotarizeOp }}
         displayName: ESRP Signing
-        condition: or(eq('${{ parameters.forceSignOutput }}', 'true'), and(eq(variables['rid'], 'nuget'), eq('${{ parameters.forceNugetPublish }}', 'true')))
         pool:
           vmImage: $(vmImage)
         steps:
@@ -428,12 +427,16 @@ stages:
                 Write-Verbose 'fileNameTemplate = ''$(fileNameTemplate)'''
                 Write-Verbose 'artifactsDownloadLocation = ''$(artifactsDownloadLocation)'''
                 Write-Verbose 'sign = ''$(sign)'''
+                Write-Verbose 'forceNugetPublish = ''$(forceNugetPublish)'''
                 Write-Verbose 'notarize = ''$(notarize)'''
                 Write-Verbose 'inlineSignOperation = ''$(inlineSignOperation)'''
                 Write-Verbose 'inlineNotarizeOperation = ''$(inlineNotarizeOperation)'''
                 Write-Verbose 'inlineNugetSignOperation = ''$(inlineNugetSignOperation)'''
                 $rid = '$(rid)'
                 $shouldSign = '$(sign)'
+                if ($shouldSign.ToLower() -eq 'true' -and $(rid)' -eq 'nuget') {
+                  $shouldSign = '$(forceNugetPublish)'
+                }
                 $shouldNotarize = '$(notarize)'
                 $notarizeOp = '$(inlineNotarizeOperation)'
                 Write-Host "##vso[task.setvariable variable=RUNTIME_ID]$rid"
