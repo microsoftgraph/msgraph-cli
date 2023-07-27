@@ -460,6 +460,7 @@ stages:
                 if ($shouldSign) {
                   $shouldSign = $shouldSign -and $hasArtifacts
                 }
+                Write-Host "##vso[task.setvariable variable=SIGN_PATH]$path"
                 Write-Host "##vso[task.setvariable variable=SHOULD_SIGN]$shouldSign"
               verbosePreference: '$(OUTPUT_PREFERENCE)'
               debugPreference: '$(OUTPUT_PREFERENCE)'
@@ -529,7 +530,7 @@ stages:
             inputs:
               # Pipeline validation can't expand service name from matrix variables
               ConnectedServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
-              FolderPath: $(ARTIFACTS_PATH)
+              FolderPath: $(SIGN_PATH)
               signConfigType: inlineSignParams
               UseMinimatch: true
               Pattern: $(ESRP_FILE_PATTERN)
@@ -542,19 +543,13 @@ stages:
             inputs:
               # Pipeline validation can't expand service name from matrix variables
               ConnectedServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
-              FolderPath: $(ARTIFACTS_PATH)
+              FolderPath: $(SIGN_PATH)
               signConfigType: inlineSignParams
               UseMinimatch: true
               Pattern: $(ESRP_FILE_PATTERN)
               inlineOperation: $(inlineNotarizeOperation)
               SessionTimeout: 20
             condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), gt(length(variables['NOTARIZE_OPERATION']), 0), ne(variables['NOTARIZE_OPERATION'], '$(inlineNotarizeOperation)'), and(eq(variables['SHOULD_SIGN'], 'True'), eq(variables['SHOULD_NOTARIZE'], 'True')))
-
-          - task: UseDotNet@2
-            displayName: 'Change to .NET 7'
-            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['IS_NUGET'], 'true'))
-            inputs:
-              version: 7.x
 
           - pwsh: |
               dotnet pack ./src/msgraph-cli.csproj --configuration $(buildConfiguration) --output $(ARTIFACTS_PATH) --no-build --include-symbols --include-source /p:SymbolPackageFormat=snupkg
@@ -590,7 +585,7 @@ stages:
                 . $(powershellScriptsDir)/BuildTools.ps1
 
                 if ($IsMacOS) {
-                  $zipPath = Join-Path -Path '$(ARTIFACTS_PATH)' -ChildPath '$(ZIP_NAME)'
+                  $zipPath = Join-Path -Path '$(SIGN_PATH)' -ChildPath '$(ZIP_NAME)'
                   Write-Verbose "Expanding $zipPath"
                   $output = Split-Path -Path $zipPath -Parent
                   $output = Join-Path $output "out"
@@ -598,7 +593,7 @@ stages:
                   Expand-Archive -Path "$zipPath" -DestinationPath "$output"
                   Remove-Item $zipPath
                 }
-                echo "Success" > $(ARTIFACTS_PATH)/Sign-Summary.md
+                echo "Success" > $(SIGN_PATH)/Sign-Summary.md
                 if ($IsMacOS) {
                   Write-Verbose "Compressing updated source"
                   Compress-Archive -Path "$output/*" -DestinationPath $zipPath -Force
