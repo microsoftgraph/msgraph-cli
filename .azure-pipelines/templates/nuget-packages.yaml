@@ -12,11 +12,11 @@ parameters:
     type: "string"
     default:
   - name: enabled
-    type: boolean
-    default: true
+    type: string
+    default: 'true'
 
 steps:
-  - ${{ if eq(parameters.enabled, true) }}:
+  - ${{ if eq(parameters.enabled, 'true') }}:
     - pwsh: |
         Write-Verbose -Verbose "useCache = '${{parameters.useCache}}'"
         Write-Verbose -Verbose "restorePath = '${{parameters.restorePath}}'"
