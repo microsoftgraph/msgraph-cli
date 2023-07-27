@@ -170,59 +170,6 @@ stages:
               artifact: build-output-$(rid)
               path: $(outputDir)-$(rid)
 
-      - job: nugetBuild
-        displayName: Build .NET Tool
-        steps:
-          - task: UseDotNet@2
-            displayName: 'Use .NET 7'
-            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
-            inputs:
-              version: 7.x
-
-          - ${{ if ne(parameters.simulate, 'true') }}:
-            - template: templates/nuget-packages.yaml
-              parameters:
-                vstsFeedName: ${{variables.internalFeed}}
-
-          - template: templates/setup-powershell-environment.yml
-
-          - task: DotNetCoreCLI@2
-            displayName: "build"
-            inputs:
-              projects: './src/msgraph-cli.csproj'
-              arguments: " --no-restore --configuration $(buildConfiguration) --output $(outputDir) --no-incremental"
-            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
-
-          - pwsh: |
-              New-Item '$(outputDir)' -ItemType Directory -Force
-              echo "Test file" > $(outputDir)/mgc.dll
-              echo "Test file2" > $(outputDir)/mgc.txt
-            condition: and(succeeded(), eq('${{ parameters.simulate }}', 'true'))
-            displayName: Simulate build
-
-          - task: PowerShell@2
-            inputs:
-              pwsh: true
-              targetType: inline
-              script: |
-                . $(powershellScriptsDir)/BuildTools.ps1
-                $archive = Compress-BuildOutput -OutputDir '$(outputDir)-nuget' -Source '$(outputDir)/*' -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier 'nuget' -PackageType 'zip' -TarCompression none -Cleanup
-                $hasArchive = Test-Path $archive -PathType Leaf
-                Write-Host "##vso[task.setvariable variable=HAS_ARTIFACTS]$hasArchive"
-              verbosePreference: '$(OUTPUT_PREFERENCE)'
-              debugPreference: '$(OUTPUT_PREFERENCE)'
-              informationPreference: '$(OUTPUT_PREFERENCE)'
-            # Only create artifacts if we're building a tag, building main, or building a PR targeting main
-            condition: and(succeeded(), or(eq('${{ parameters.forceSignOutput }}', 'true'), eq('${{ parameters.forceNugetPublish }}', 'true'), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['System.PullRequest.TargetBranch'], 'main')))
-            displayName: Compress published output
-
-          - task: PublishPipelineArtifact@1
-            # Only publish artifacts if they exist
-            condition: and(succeeded(), eq(variables['HAS_ARTIFACTS'], 'True'))
-            inputs:
-              artifact: build-output-nuget
-              path: $(outputDir)-nuget
-
     # Format takes a long time. keep it in its own stage
   - stage: checkFormat
     displayName: Check formatting
@@ -441,11 +388,16 @@ stages:
                 }
                 $shouldNotarize = '$(notarize)'
                 $notarizeOp = '$(inlineNotarizeOperation)'
+                $isNuget = $rid -eq 'nuget'
+                $workDir = Join-Path -Path '$(artifactsDownloadLocation)' -ChildPath '$(rid)'
+                $downloadDir = Join-Path -Path $workDir -ChildPath 'build-output-$(rid)'
                 Write-Host "##vso[task.setvariable variable=RUNTIME_ID]$rid"
+                Write-Host "##vso[task.setvariable variable=IS_NUGET]$isNuget"
                 Write-Host "##vso[task.setvariable variable=SHOULD_SIGN]$shouldSign"
                 Write-Host "##vso[task.setvariable variable=SHOULD_NOTARIZE]$shouldNotarize"
                 Write-Host "##vso[task.setvariable variable=NOTARIZE_OPERATION]$notarizeOp"
-                Write-Host "##vso[task.setvariable variable=WORKING_DIR]$(artifactsDownloadLocation)/$(rid)"
+                Write-Host "##vso[task.setvariable variable=WORKING_DIR]$workDir"
+                Write-Host "##vso[task.setvariable variable=ARTIFACTS_PATH]$downloadDir"
               verbosePreference: '$(OUTPUT_PREFERENCE)'
               debugPreference: '$(OUTPUT_PREFERENCE)'
               informationPreference: '$(OUTPUT_PREFERENCE)'
@@ -456,20 +408,46 @@ stages:
 
           - checkout: self
 
+          # Nuget tool doesn't work with multi-stage builds
+          - task: UseDotNet@2
+            displayName: 'Use .NET 7'
+            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['IS_NUGET'], 'true'))
+            inputs:
+              version: 7.x
+
+          - ${{ if ne(parameters.simulate, 'true') }}:
+            - template: templates/nuget-packages.yaml
+              parameters:
+                vstsFeedName: ${{variables.internalFeed}}
+                enabled: $(IS_NUGET)
+
+          - task: DotNetCoreCLI@2
+            displayName: "build nuget tool"
+            inputs:
+              projects: './src/msgraph-cli.csproj'
+              arguments: " --no-restore --configuration $(buildConfiguration) --output $(ARTIFACTS_PATH) --no-incremental"
+            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['IS_NUGET'], 'true'))
+
+          - pwsh: |
+              New-Item '$(ARTIFACTS_PATH)' -ItemType Directory -Force
+              echo "Test file" > $(outputDir)/mgc.dll
+              echo "Test file2" > $(outputDir)/mgc.txt
+            condition: and(succeeded(), eq('${{ parameters.simulate }}', 'true'), eq(variables['IS_NUGET'], 'true'))
+            displayName: Simulate nuget build
+
           - task: DownloadPipelineArtifact@2
             inputs:
               patterns: build-output-$(rid)/**/*
               path: $(WORKING_DIR)
-            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
+            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), ne(variables['IS_NUGET'], 'true'))
 
           - task: PowerShell@2
             inputs:
               pwsh: true
               targetType: inline
               script: |
-                Write-Verbose 'Checking if $(WORKING_DIR) has files'
-                $downloadDir = Join-Path -Path '$(WORKING_DIR)' -ChildPath 'build-output-$(rid)'
-                $hasArtifacts = Test-Path $downloadDir/* -PathType Leaf
+                Write-Verbose 'Checking if $(ARTIFACTS_PATH) has files'
+                $hasArtifacts = Test-Path $(ARTIFACTS_PATH)/* -PathType Leaf
                 Write-Verbose "Result $hasArtifacts"
 
                 $shouldSign = '$(SHOULD_SIGN)'.ToLower() -eq 'true'
@@ -480,7 +458,7 @@ stages:
               verbosePreference: '$(OUTPUT_PREFERENCE)'
               debugPreference: '$(OUTPUT_PREFERENCE)'
               informationPreference: '$(OUTPUT_PREFERENCE)'
-            displayName: Check downloaded artifacts
+            displayName: Check for artifacts
 
           - task: PowerShell@2
             inputs:
@@ -494,7 +472,7 @@ stages:
               debugPreference: '$(OUTPUT_PREFERENCE)'
               informationPreference: '$(OUTPUT_PREFERENCE)'
             displayName: Compute zip name
-            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
+            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), ne(variables['IS_NUGET'], 'true'))
 
           - task: PowerShell@2
             inputs:
@@ -503,19 +481,17 @@ stages:
               script: |
                 . $(powershellScriptsDir)/BuildTools.ps1
 
-                $downloadDir = Join-Path -Path '$(WORKING_DIR)' -ChildPath 'build-output-$(rid)'
+                $downloadDir = '$(ARTIFACTS_PATH)'
                 $extractPath = Join-Path -Path '$(WORKING_DIR)' -ChildPath artifacts
                 Expand-EsrpArtifacts -SourceDir $downloadDir -OutputDir $extractPath -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -PackageType $(packageType) -TarCompression $(compressionProgram) -Cleanup
 
-                if ('$(rid)' -ne 'nuget') {
-                  Move-NonExecutableItems -SourcePath $extractPath -ExecutableItemNames mgc,mgc.exe
-                }
+                Move-NonExecutableItems -SourcePath $extractPath -ExecutableItemNames mgc,mgc.exe
                 Write-Host "##vso[task.setvariable variable=ARTIFACTS_PATH]$extractPath"
               verbosePreference: '$(OUTPUT_PREFERENCE)'
               debugPreference: '$(OUTPUT_PREFERENCE)'
               informationPreference: '$(OUTPUT_PREFERENCE)'
             displayName: Extract archive
-            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
+            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), ne(variables['IS_NUGET'], 'True'))
 
           - template: templates/prepare-unsigned-executable-darwin.yaml
             parameters:
@@ -560,10 +536,11 @@ stages:
               SessionTimeout: 20
             condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), gt(length(variables['NOTARIZE_OPERATION']), 0), ne(variables['NOTARIZE_OPERATION'], '$(inlineNotarizeOperation)'), and(eq(variables['SHOULD_SIGN'], 'True'), eq(variables['SHOULD_NOTARIZE'], 'True')))
 
-          - pwsh: dotnet pack ./src/msgraph-cli.csproj --configuration $(buildConfiguration) --output $(ARTIFACTS_PATH) --no-build --include-symbols --include-source /p:SymbolPackageFormat=snupkg
+          - pwsh: |
+              dotnet pack ./src/msgraph-cli.csproj --configuration $(buildConfiguration) --output $(ARTIFACTS_PATH) --no-build --include-symbols --include-source /p:SymbolPackageFormat=snupkg
             workingDirectory: $(Build.SourcesDirectory)
             displayName: DotNet pack (nuget)
-            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), ne('${{ parameters.simulate }}', 'true'), eq(variables['RUNTIME_ID'], 'nuget'))
+            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), ne('${{ parameters.simulate }}', 'true'), eq(variables['Is_NUGET'], 'true'))
 
           - task: EsrpCodeSigning@2
             displayName: 'ESRP CodeSigning (Sign Nuget)'
@@ -576,12 +553,12 @@ stages:
               Pattern: "*.nupkg"
               inlineOperation: $(inlineNugetSignOperation)
               SessionTimeout: 20
-            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['SHOULD_SIGN'], 'True'), eq(variables['RUNTIME_ID'], 'nuget'))
+            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['SHOULD_SIGN'], 'True'), eq(variables['IS_NUGET'], 'true'))
 
           - pwsh: |
               $artifactsPath = '$(ARTIFACTS_PATH)'
               Write-Host "##vso[task.setvariable variable=WORKING_DIR]$artifactsPath"
-            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['SHOULD_SIGN'], 'True'), eq(variables['RUNTIME_ID'], 'nuget'))
+            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['SHOULD_SIGN'], 'True'), eq(variables['IS_NUGET'], 'true'))
 
           - task: PowerShell@2
             displayName: Simulate ESRP

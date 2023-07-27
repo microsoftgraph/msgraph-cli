@@ -11,43 +11,47 @@ parameters:
   - name: extraRestoreArgs
     type: "string"
     default:
+  - name: enabled
+    type: boolean
+    default: true
 
-steps:
-  - pwsh: |
-      Write-Verbose -Verbose "useCache = '${{parameters.useCache}}'"
-      Write-Verbose -Verbose "restorePath = '${{parameters.restorePath}}'"
-      Write-Verbose -Verbose "extraRestoreArgs = '${{parameters.extraRestoreArgs}}'"
-    displayName: Testing parameters
+${{ if eq(parameters.enabled, true) }}:
+  steps:
+    - pwsh: |
+        Write-Verbose -Verbose "useCache = '${{parameters.useCache}}'"
+        Write-Verbose -Verbose "restorePath = '${{parameters.restorePath}}'"
+        Write-Verbose -Verbose "extraRestoreArgs = '${{parameters.extraRestoreArgs}}'"
+      displayName: Testing parameters
 
-  - ${{ if eq(parameters.useCache, true) }}:
-    - task: Cache@2
-      displayName: 'Load NuGet Cache'
-      inputs:
-        key: 'nuget | "$(Agent.OS)" | **/packages.lock.json,!**/bin/**,!**/obj/**'
-        restoreKeys: |
-          nuget | "$(Agent.OS)"
-          nuget
-        path: '${{parameters.restorePath}}'
-    - task: DotNetCoreCLI@2
-      displayName: Restore packages (Cache enabled)
-      inputs:
-        command: restore
-        ${{ if gt(length(parameters.vstsFeedName), 0) }}:
-          feedsToUse: select
-          feedRestore: ${{parameters.vstsFeedName}}
-        includeNuGetOrg: true
-        workingDirectory: $(Build.SourcesDirectory)
-        restoreArguments: --use-lock-file --locked-mode ${{parameters.extraRestoreArgs}}
-        restoreDirectory: ${{parameters.restorePath}}
-  - ${{ else }}:
-    - task: DotNetCoreCLI@2
-      displayName: Restore packages (No cache)
-      inputs:
-        command: restore
-        ${{ if gt(length(parameters.vstsFeedName), 0) }}:
-          feedsToUse: select
-          feedRestore: ${{parameters.vstsFeedName}}
-        includeNuGetOrg: true
-        workingDirectory: $(Build.SourcesDirectory)
-        noCache: true
-        restoreArguments: --use-lock-file --locked-mode ${{parameters.extraRestoreArgs}}
+    - ${{ if eq(parameters.useCache, true) }}:
+      - task: Cache@2
+        displayName: 'Load NuGet Cache'
+        inputs:
+          key: 'nuget | "$(Agent.OS)" | **/packages.lock.json,!**/bin/**,!**/obj/**'
+          restoreKeys: |
+            nuget | "$(Agent.OS)"
+            nuget
+          path: '${{parameters.restorePath}}'
+      - task: DotNetCoreCLI@2
+        displayName: Restore packages (Cache enabled)
+        inputs:
+          command: restore
+          ${{ if gt(length(parameters.vstsFeedName), 0) }}:
+            feedsToUse: select
+            feedRestore: ${{parameters.vstsFeedName}}
+          includeNuGetOrg: true
+          workingDirectory: $(Build.SourcesDirectory)
+          restoreArguments: --use-lock-file --locked-mode ${{parameters.extraRestoreArgs}}
+          restoreDirectory: ${{parameters.restorePath}}
+    - ${{ else }}:
+      - task: DotNetCoreCLI@2
+        displayName: Restore packages (No cache)
+        inputs:
+          command: restore
+          ${{ if gt(length(parameters.vstsFeedName), 0) }}:
+            feedsToUse: select
+            feedRestore: ${{parameters.vstsFeedName}}
+          includeNuGetOrg: true
+          workingDirectory: $(Build.SourcesDirectory)
+          noCache: true
+          restoreArguments: --use-lock-file --locked-mode ${{parameters.extraRestoreArgs}}
