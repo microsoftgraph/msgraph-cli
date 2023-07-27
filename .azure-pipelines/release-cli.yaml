@@ -286,7 +286,7 @@ stages:
               sign: true
               forceNugetPublish: ${{ parameters.forceNugetPublish }}
               pattern: |
-                **\mgc.dll
+                mgc.dll
               inlineSignOperation: |
                 [
                     {
