@@ -24,7 +24,7 @@ steps:
     displayName: Testing parameters
 
   - pwsh: |
-      Write-Host "##vso[task.setvariable variable=IS_ENABLED]'${{ parameters.enabled }}'"
+      Write-Host "##vso[task.setvariable variable=IS_ENABLED]${{ parameters.enabled }}"
     displayName: Initialize parameters
 
   - ${{ if eq(parameters.useCache, true) }}:
