@@ -469,9 +469,9 @@ stages:
               script: |
                 Write-Verbose 'Checking if $(WORKING_DIR) has files'
                 $downloadDir = Join-Path -Path '$(WORKING_DIR)' -ChildPath 'build-output-$(rid)'
-                $hasArtifacts = Test-Path $downloadDir -PathType Leaf
+                $hasArtifacts = Test-Path $downloadDir/* -PathType Leaf
                 Write-Verbose "Result $hasArtifacts"
-                Get-ChildItem $downloadDir
+
                 $shouldSign = '$(SHOULD_SIGN)'.ToLower() -eq 'true'
                 if ($shouldSign) {
                   $shouldSign = $shouldSign -and $hasArtifacts
