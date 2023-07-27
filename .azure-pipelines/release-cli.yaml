@@ -513,6 +513,13 @@ stages:
             displayName: Compute ESRP filter pattern Windows/Nuget
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), or(startsWith(variables['RUNTIME_ID'], 'win'), eq(variables['IS_NUGET'], 'true')))
 
+          # ESRP needs .NET 6
+          - task: UseDotNet@2
+            displayName: 'Change to .NET 6'
+            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['IS_NUGET'], 'true'))
+            inputs:
+              version: 6.x
+
           - task: EsrpCodeSigning@2
             displayName: 'ESRP CodeSigning (Sign Build output)'
             inputs:
@@ -539,11 +546,23 @@ stages:
               SessionTimeout: 20
             condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), gt(length(variables['NOTARIZE_OPERATION']), 0), ne(variables['NOTARIZE_OPERATION'], '$(inlineNotarizeOperation)'), and(eq(variables['SHOULD_SIGN'], 'True'), eq(variables['SHOULD_NOTARIZE'], 'True')))
 
+          - task: UseDotNet@2
+            displayName: 'Change to .NET 7'
+            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['IS_NUGET'], 'true'))
+            inputs:
+              version: 7.x
+
           - pwsh: |
               dotnet pack ./src/msgraph-cli.csproj --configuration $(buildConfiguration) --output $(ARTIFACTS_PATH) --no-build --include-symbols --include-source /p:SymbolPackageFormat=snupkg
             workingDirectory: $(Build.SourcesDirectory)
             displayName: DotNet pack (nuget)
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), ne('${{ parameters.simulate }}', 'true'), eq(variables['Is_NUGET'], 'true'))
+
+          - task: UseDotNet@2
+            displayName: 'Change to .NET 6'
+            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['IS_NUGET'], 'true'))
+            inputs:
+              version: 6.x
 
           - task: EsrpCodeSigning@2
             displayName: 'ESRP CodeSigning (Sign Nuget)'
