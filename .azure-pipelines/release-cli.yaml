@@ -667,11 +667,12 @@ stages:
 
   - stage: upload
     dependsOn: [binaryScan, sign]
+    condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
     jobs:
       - job: uploadGitHub
         displayName: Upload binaries (GitHub)
         # Only upload release if we're building a tag.
-        condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'))
+        condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'))
         steps:
           - checkout: none
           - task: DownloadPipelineArtifact@2
@@ -700,7 +701,7 @@ stages:
         displayName: Deploy Nuget
         dependsOn: []
         environment: microsoftgraph-nuget-org
-        condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), or(startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq('${{ parameters.forceNugetPublish }}', 'true')))
+        condition: and(succeeded(), or(startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq('${{ parameters.forceNugetPublish }}', 'true')))
         strategy:
           runOnce:
             deploy:
