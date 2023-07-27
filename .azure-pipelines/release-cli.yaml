@@ -336,6 +336,7 @@ stages:
               packageType: "zip"
               compressionProgram: "none"
               sign: true
+              forceNugetPublish: ${{ parameters.forceNugetPublish }}
               pattern: |
                 **\mgc.dll
               inlineSignOperation: |
@@ -460,6 +461,16 @@ stages:
               path: $(WORKING_DIR)
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
+          - pwsh: |
+              $hasArtifacts = Test-Path $(WORKING_DIR)/* -PathType Leaf
+              # Expands to $shouldSign = $True or $shouldSign = $False
+              $shouldSign = $'$(SHOULD_SIGN)'
+              if ($shouldSign) {
+                $shouldSign = $shouldSign -and $hasArtifacts
+              }
+              Write-Host "##vso[task.setvariable variable=SHOULD_SIGN]$shouldSign"
+            displayName: Check downloaded artifacts
+
           - task: PowerShell@2
             inputs:
               pwsh: true
@@ -472,6 +483,7 @@ stages:
               debugPreference: '$(OUTPUT_PREFERENCE)'
               informationPreference: '$(OUTPUT_PREFERENCE)'
             displayName: Compute zip name
+            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
           - task: PowerShell@2
             inputs:
@@ -504,12 +516,12 @@ stages:
           - pwsh: |
               Write-Host "##vso[task.setvariable variable=ESRP_FILE_PATTERN]$(ZIP_NAME)"
             displayName: Compute ESRP filter pattern osx
-            condition: and(succeeded(), startsWith(variables['RUNTIME_ID'], 'osx'))
+            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['RUNTIME_ID'], 'osx'))
 
           - pwsh: |
               Write-Host "##vso[task.setvariable variable=ESRP_FILE_PATTERN]$(pattern)"
             displayName: Compute ESRP filter pattern Windows
-            condition: and(succeeded(), or(startsWith(variables['RUNTIME_ID'], 'win'), eq(variables['RUNTIME_ID'], 'nuget')))
+            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), or(startsWith(variables['RUNTIME_ID'], 'win'), eq(variables['RUNTIME_ID'], 'nuget')))
 
           - task: EsrpCodeSigning@2
             displayName: 'ESRP CodeSigning (Sign Build output)'
@@ -540,7 +552,7 @@ stages:
           - pwsh: dotnet pack ./src/msgraph-cli.csproj --configuration $(buildConfiguration) --output $(ARTIFACTS_PATH) --no-build --include-symbols --include-source /p:SymbolPackageFormat=snupkg
             workingDirectory: $(Build.SourcesDirectory)
             displayName: DotNet pack (nuget)
-            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['RUNTIME_ID'], 'nuget'))
+            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), ne('${{ parameters.simulate }}', 'true'), eq(variables['RUNTIME_ID'], 'nuget'))
 
           - task: EsrpCodeSigning@2
             displayName: 'ESRP CodeSigning (Sign Nuget)'
@@ -588,7 +600,7 @@ stages:
               verbosePreference: '$(OUTPUT_PREFERENCE)'
               debugPreference: '$(OUTPUT_PREFERENCE)'
               informationPreference: '$(OUTPUT_PREFERENCE)'
-            condition: and(succeeded(), eq('${{ parameters.simulate }}', 'true'))
+            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), eq('${{ parameters.simulate }}', 'true'))
 
           - task: PowerShell@2
             inputs:
