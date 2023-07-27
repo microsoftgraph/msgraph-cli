@@ -519,7 +519,7 @@ stages:
               Pattern: $(ESRP_FILE_PATTERN)
               inlineOperation: $(inlineSignOperation)
               SessionTimeout: 20
-            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), or(eq(variables['SHOULD_SIGN'], 'True')))
+            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['SHOULD_SIGN'], 'True'))
 
           - task: EsrpCodeSigning@2
             displayName: 'ESRP CodeSigning (Notarize)'
