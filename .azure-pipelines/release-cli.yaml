@@ -389,10 +389,12 @@ stages:
                 $shouldNotarize = '$(notarize)'
                 $notarizeOp = '$(inlineNotarizeOperation)'
                 $isNuget = $rid -eq 'nuget'
+                $isMacOs = $rid.StartsWith('osx')
                 $workDir = Join-Path -Path '$(artifactsDownloadLocation)' -ChildPath '$(rid)'
                 $downloadDir = Join-Path -Path $workDir -ChildPath 'build-output-$(rid)'
                 Write-Host "##vso[task.setvariable variable=RUNTIME_ID]$rid"
                 Write-Host "##vso[task.setvariable variable=IS_NUGET]$isNuget"
+                Write-Host "##vso[task.setvariable variable=IS_MACOS]$isMacOs"
                 Write-Host "##vso[task.setvariable variable=SHOULD_SIGN]$shouldSign"
                 Write-Host "##vso[task.setvariable variable=SHOULD_NOTARIZE]$shouldNotarize"
                 Write-Host "##vso[task.setvariable variable=NOTARIZE_OPERATION]$notarizeOp"
@@ -499,16 +501,17 @@ stages:
               executableName: mgc
               zipName: $(ZIP_NAME)
               targetRuntime: $(rid)
+              enabled: $(IS_MACOS)
 
           - pwsh: |
               Write-Host "##vso[task.setvariable variable=ESRP_FILE_PATTERN]$(ZIP_NAME)"
             displayName: Compute ESRP filter pattern osx
-            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['RUNTIME_ID'], 'osx'))
+            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), eq(variables['IS_MACOS'], 'true'))
 
           - pwsh: |
               Write-Host "##vso[task.setvariable variable=ESRP_FILE_PATTERN]$(pattern)"
-            displayName: Compute ESRP filter pattern Windows
-            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), or(startsWith(variables['RUNTIME_ID'], 'win'), eq(variables['RUNTIME_ID'], 'nuget')))
+            displayName: Compute ESRP filter pattern Windows/Nuget
+            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), or(startsWith(variables['RUNTIME_ID'], 'win'), eq(variables['IS_NUGET'], 'true')))
 
           - task: EsrpCodeSigning@2
             displayName: 'ESRP CodeSigning (Sign Build output)'
