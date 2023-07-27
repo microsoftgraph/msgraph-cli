@@ -462,13 +462,23 @@ stages:
               path: $(WORKING_DIR)
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
 
-          - pwsh: |
-              $hasArtifacts = Test-Path $(WORKING_DIR)/* -PathType Leaf
-              $shouldSign = '$(SHOULD_SIGN)'.ToLower() -eq 'true'
-              if ($shouldSign) {
-                $shouldSign = $shouldSign -and $hasArtifacts
-              }
-              Write-Host "##vso[task.setvariable variable=SHOULD_SIGN]$shouldSign"
+          - task: PowerShell@2
+            inputs:
+              pwsh: true
+              targetType: inline
+              script: |
+                Write-Verbose 'Checking if $(WORKING_DIR) has files'
+                $hasArtifacts = Test-Path $(WORKING_DIR)/* -PathType Leaf
+                Write-Verbose "Result $hasArtifacts"
+                Get-ChildItem $(WORKING_DIR)/*
+                $shouldSign = '$(SHOULD_SIGN)'.ToLower() -eq 'true'
+                if ($shouldSign) {
+                  $shouldSign = $shouldSign -and $hasArtifacts
+                }
+                Write-Host "##vso[task.setvariable variable=SHOULD_SIGN]$shouldSign"
+              verbosePreference: '$(OUTPUT_PREFERENCE)'
+              debugPreference: '$(OUTPUT_PREFERENCE)'
+              informationPreference: '$(OUTPUT_PREFERENCE)'
             displayName: Check downloaded artifacts
 
           - task: PowerShell@2
