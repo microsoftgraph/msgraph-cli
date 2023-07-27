@@ -463,8 +463,7 @@ stages:
 
           - pwsh: |
               $hasArtifacts = Test-Path $(WORKING_DIR)/* -PathType Leaf
-              # Expands to $shouldSign = $True or $shouldSign = $False
-              $shouldSign = $'$(SHOULD_SIGN)'
+              $shouldSign = '$(SHOULD_SIGN)'.ToLower() -eq 'true'
               if ($shouldSign) {
                 $shouldSign = $shouldSign -and $hasArtifacts
               }
