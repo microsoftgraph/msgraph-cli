@@ -431,9 +431,9 @@ stages:
             condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['IS_NUGET'], 'true'))
 
           - pwsh: |
-              New-Item '$(ARTIFACTS_PATH)' -ItemType Directory -Force
-              echo "Test file" > $(ARTIFACTS_PATH)/mgc.dll
-              echo "Test file2" > $(ARTIFACTS_PATH)/mgc.txt
+              New-Item './src/bin/$(buildConfiguration)/net7.0' -ItemType Directory -Force
+              echo "Test file" > './src/bin/$(buildConfiguration)/net7.0/mgc.dll'
+              echo "Test file2" > './src/bin/$(buildConfiguration)/net7.0/mgc.txt'
             condition: and(succeeded(), eq('${{ parameters.simulate }}', 'true'), eq(variables['IS_NUGET'], 'true'))
             displayName: Simulate nuget build
 
@@ -448,7 +448,7 @@ stages:
               pwsh: true
               targetType: inline
               script: |
-                $path = $(ARTIFACTS_PATH)
+                $path = '$(ARTIFACTS_PATH)'
                 if ('$(IS_NUGET)'.ToLower() -eq 'true') {
                   $path = './src/bin/$(buildConfiguration)/net7.0'
                 }
