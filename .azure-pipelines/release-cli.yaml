@@ -427,7 +427,7 @@ stages:
             displayName: "build nuget tool"
             inputs:
               projects: './src/msgraph-cli.csproj'
-              arguments: " --no-restore --configuration $(buildConfiguration) --output $(ARTIFACTS_PATH) --no-incremental"
+              arguments: " --no-restore --configuration $(buildConfiguration) --no-incremental"
             condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['IS_NUGET'], 'true'))
 
           - pwsh: |
@@ -448,8 +448,12 @@ stages:
               pwsh: true
               targetType: inline
               script: |
-                Write-Verbose 'Checking if $(ARTIFACTS_PATH) has files'
-                $hasArtifacts = Test-Path $(ARTIFACTS_PATH)/* -PathType Leaf
+                $path = $(ARTIFACTS_PATH)
+                if ('$(IS_NUGET)'.ToLower() -eq 'true') {
+                  $path = './src/bin/$(buildConfiguration)/net7.0'
+                }
+                Write-Verbose "Checking if $path has files"
+                $hasArtifacts = Test-Path $path/* -PathType Leaf
                 Write-Verbose "Result $hasArtifacts"
 
                 $shouldSign = '$(SHOULD_SIGN)'.ToLower() -eq 'true'
@@ -557,12 +561,6 @@ stages:
             workingDirectory: $(Build.SourcesDirectory)
             displayName: DotNet pack (nuget)
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), ne('${{ parameters.simulate }}', 'true'), eq(variables['Is_NUGET'], 'true'))
-
-          - task: UseDotNet@2
-            displayName: 'Change to .NET 6'
-            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['IS_NUGET'], 'true'))
-            inputs:
-              version: 6.x
 
           - task: EsrpCodeSigning@2
             displayName: 'ESRP CodeSigning (Sign Nuget)'

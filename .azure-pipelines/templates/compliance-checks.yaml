@@ -51,8 +51,8 @@ steps:
       displayName: Download binaries
 
     - pwsh: |
-        Write-Verbose 'Checking if there's files matching $(artifactsDownloadLocation)/build-output-*/*.zip'
-        $hasArtifacts = Test-Path '$(artifactsDownloadLocation)/build-output-*/*.zip' -PathType Leaf
+        Write-Verbose 'Checking if there are files matching $(artifactsDownloadLocation)/build-output-*/*.zip'
+        $hasArtifacts = Test-Path $(artifactsDownloadLocation)/build-output-*/*.zip -PathType Leaf
         Write-Verbose "Result $hasArtifacts"
         Write-Host "##vso[task.setvariable variable=HAS_ARTIFACTS]$hasArtifacts"
       displayName: Checking for binaries
