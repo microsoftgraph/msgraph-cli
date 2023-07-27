@@ -195,8 +195,8 @@ stages:
 
           - pwsh: |
               New-Item '$(outputDir)' -ItemType Directory -Force
-              echo "Test file" > '$(outputDir)'/mgc.dll
-              echo "Test file2" > '$(outputDir)'/mgc.txt
+              echo "Test file" > $(outputDir)/mgc.dll
+              echo "Test file2" > $(outputDir)/mgc.txt
             condition: and(succeeded(), eq('${{ parameters.simulate }}', 'true'))
             displayName: Simulate build
 
