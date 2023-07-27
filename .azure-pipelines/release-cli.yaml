@@ -430,8 +430,8 @@ stages:
 
           - pwsh: |
               New-Item '$(ARTIFACTS_PATH)' -ItemType Directory -Force
-              echo "Test file" > $(outputDir)/mgc.dll
-              echo "Test file2" > $(outputDir)/mgc.txt
+              echo "Test file" > $(ARTIFACTS_PATH)/mgc.dll
+              echo "Test file2" > $(ARTIFACTS_PATH)/mgc.txt
             condition: and(succeeded(), eq('${{ parameters.simulate }}', 'true'), eq(variables['IS_NUGET'], 'true'))
             displayName: Simulate nuget build
 
