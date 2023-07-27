@@ -573,7 +573,7 @@ stages:
           - pwsh: |
               $artifactsPath = '$(ARTIFACTS_PATH)'
               Write-Host "##vso[task.setvariable variable=WORKING_DIR]$artifactsPath"
-            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['SHOULD_SIGN'], 'True'), eq(variables['IS_NUGET'], 'true'))
+            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), eq(variables['IS_NUGET'], 'true'))
 
           - task: PowerShell@2
             displayName: Simulate ESRP
