@@ -449,7 +449,7 @@ stages:
               targetType: inline
               script: |
                 $path = '$(ARTIFACTS_PATH)'
-                if ('$(IS_NUGET)'.ToLower() -eq 'true') {
+                if ('$(IS_NUGET)'.ToLower() -eq 'true' -and ('${{ parameters.simulate }}'.ToLower() -ne 'true')) {
                   $path = './src/bin/$(buildConfiguration)/net7.0'
                 }
                 Write-Verbose "Checking if $path has files"
