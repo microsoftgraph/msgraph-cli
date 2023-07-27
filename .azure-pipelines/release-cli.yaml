@@ -585,7 +585,7 @@ stages:
                 . $(powershellScriptsDir)/BuildTools.ps1
 
                 if ($IsMacOS) {
-                  $zipPath = Join-Path -Path '$(SIGN_PATH)' -ChildPath '$(ZIP_NAME)'
+                  $zipPath = Join-Path -Path '$(ARTIFACTS_PATH)' -ChildPath '$(ZIP_NAME)'
                   Write-Verbose "Expanding $zipPath"
                   $output = Split-Path -Path $zipPath -Parent
                   $output = Join-Path $output "out"
@@ -593,7 +593,7 @@ stages:
                   Expand-Archive -Path "$zipPath" -DestinationPath "$output"
                   Remove-Item $zipPath
                 }
-                echo "Success" > $(SIGN_PATH)/Sign-Summary.md
+                echo "Success" > $(ARTIFACTS_PATH)/Sign-Summary.md
                 if ($IsMacOS) {
                   Write-Verbose "Compressing updated source"
                   Compress-Archive -Path "$output/*" -DestinationPath $zipPath -Force
