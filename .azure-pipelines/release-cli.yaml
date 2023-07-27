@@ -191,6 +191,7 @@ stages:
             inputs:
               projects: './src/msgraph-cli.csproj'
               arguments: " --no-restore --configuration $(buildConfiguration) --output $(outputDir) --no-incremental"
+            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
 
           - pwsh: |
               New-Item '$(outputDir)' -ItemType Directory -Force
