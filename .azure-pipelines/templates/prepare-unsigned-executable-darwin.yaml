@@ -21,6 +21,10 @@ parameters:
 # Assumptions:
 # The built zip has been downloaded already
 steps:
+  - pwsh: |
+      Write-Verbose -Verbose "enabled = '${{parameters.enabled}}'"
+    displayName: Show parameters
+
   - ${{ if eq(parameters.enabled, 'true') }}:
     - pwsh: |
         Write-Host "##vso[task.setvariable variable=TARGET_RUNTIME]${{ parameters.targetRuntime }}"
@@ -30,6 +34,7 @@ steps:
         Write-Host "##vso[task.setvariable variable=ZIP_NAME]${{ parameters.zipName }}"
       displayName: Resolve parameters
       condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
+
     - task: PowerShell@2
       inputs:
         pwsh: true

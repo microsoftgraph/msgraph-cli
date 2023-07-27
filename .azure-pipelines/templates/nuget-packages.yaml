@@ -16,13 +16,15 @@ parameters:
     default: 'true'
 
 steps:
-  - ${{ if eq(parameters.enabled, 'true') }}:
-    - pwsh: |
-        Write-Verbose -Verbose "useCache = '${{parameters.useCache}}'"
-        Write-Verbose -Verbose "restorePath = '${{parameters.restorePath}}'"
-        Write-Verbose -Verbose "extraRestoreArgs = '${{parameters.extraRestoreArgs}}'"
-      displayName: Testing parameters
 
+  - pwsh: |
+      Write-Verbose -Verbose "useCache = '${{parameters.useCache}}'"
+      Write-Verbose -Verbose "restorePath = '${{parameters.restorePath}}'"
+      Write-Verbose -Verbose "extraRestoreArgs = '${{parameters.extraRestoreArgs}}'"
+      Write-Verbose -Verbose "enabled = '${{parameters.enabled}}'"
+    displayName: Testing parameters
+
+  - ${{ if eq(parameters.enabled, 'true') }}:
     - ${{ if eq(parameters.useCache, true) }}:
       - task: Cache@2
         displayName: 'Load NuGet Cache'

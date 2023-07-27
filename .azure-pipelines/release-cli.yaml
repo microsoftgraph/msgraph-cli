@@ -389,12 +389,12 @@ stages:
                 $shouldNotarize = '$(notarize)'
                 $notarizeOp = '$(inlineNotarizeOperation)'
                 $isNuget = $rid -eq 'nuget'
-                $isMacOs = $rid.StartsWith('osx')
+                $isDarwin = $rid.StartsWith('osx')
                 $workDir = Join-Path -Path '$(artifactsDownloadLocation)' -ChildPath '$(rid)'
                 $downloadDir = Join-Path -Path $workDir -ChildPath 'build-output-$(rid)'
                 Write-Host "##vso[task.setvariable variable=RUNTIME_ID]$rid"
                 Write-Host "##vso[task.setvariable variable=IS_NUGET]$isNuget"
-                Write-Host "##vso[task.setvariable variable=IS_MACOS]$isMacOs"
+                Write-Host "##vso[task.setvariable variable=IS_MACOS]$isDarwin"
                 Write-Host "##vso[task.setvariable variable=SHOULD_SIGN]$shouldSign"
                 Write-Host "##vso[task.setvariable variable=SHOULD_NOTARIZE]$shouldNotarize"
                 Write-Host "##vso[task.setvariable variable=NOTARIZE_OPERATION]$notarizeOp"
