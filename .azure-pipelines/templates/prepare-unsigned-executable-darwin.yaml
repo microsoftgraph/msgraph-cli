@@ -14,10 +14,18 @@ parameters:
   - name: targetRuntime
     type: "string"
     default: ''
+  - name: enabled
+    type: string
+    default: 'false'
 
 # Assumptions:
 # The built zip has been downloaded already
 steps:
+  - pwsh: |
+      Write-Host "##vso[task.setvariable variable=IS_ENABLED]${{ parameters.enabled }}"
+    displayName: Check enabled
+    condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
+
   - pwsh: |
       Write-Host "##vso[task.setvariable variable=TARGET_RUNTIME]${{ parameters.targetRuntime }}"
       Write-Host "##vso[task.setvariable variable=CERTIFICATE_NAME]${{ parameters.certificateName }}"
@@ -25,6 +33,8 @@ steps:
       Write-Host "##vso[task.setvariable variable=EXECUTABLE_NAME]${{ parameters.executableName }}"
       Write-Host "##vso[task.setvariable variable=ZIP_NAME]${{ parameters.zipName }}"
     displayName: Resolve parameters
+    condition: and(succeeded(), eq(variables['IS_ENABLED'], 'true'), eq(variables['SHOULD_SIGN'], 'True'))
+
   - task: PowerShell@2
     inputs:
       pwsh: true
@@ -39,7 +49,7 @@ steps:
       debugPreference: '$(OUTPUT_PREFERENCE)'
       informationPreference: '$(OUTPUT_PREFERENCE)'
     displayName: Validate executable path location
-    condition: and(succeeded(), startsWith(variables['TARGET_RUNTIME'], 'osx'))
+    condition: and(succeeded(), eq(variables['IS_ENABLED'], 'true'), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['TARGET_RUNTIME'], 'osx'))
 
   - task: AzureKeyVault@2
     displayName: "Azure Key Vault: Get Secrets"
@@ -47,7 +57,7 @@ steps:
       azureSubscription: "MicrosofGraphKeyVault connection"
       KeyVaultName: MicrosofGraphKeyVault
       SecretsFilter: "graph-cli-apple-developer-certificate,graph-cli-apple-developer-certificate-password"
-    condition: and(succeeded(), startsWith(variables['TARGET_RUNTIME'], 'osx'))
+    condition: and(succeeded(), eq(variables['IS_ENABLED'], 'true'), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['TARGET_RUNTIME'], 'osx'))
 
   # Setting hardened entitlements is a requirement for Apple notarization
   - script: |
@@ -60,10 +70,10 @@ steps:
       security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k pwd $(agent.tempdirectory)/buildagent.keychain
       codesign -s $(CERTIFICATE_NAME) --deep --force --options runtime --entitlements .azure-pipelines/darwin/entitlements.plist $(EXECUTABLE_PATH)/$(EXECUTABLE_NAME)
     displayName: Set Hardened Entitlements
-    condition: and(succeeded(), startsWith(variables['TARGET_RUNTIME'], 'osx'))
+    condition: and(succeeded(), eq(variables['IS_ENABLED'], 'true'), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['TARGET_RUNTIME'], 'osx'))
 
   - script: |
       set -e
       pushd $(EXECUTABLE_PATH) && zip -r -X $(EXECUTABLE_PATH)/$(ZIP_NAME) * && rm $(EXECUTABLE_NAME) && popd
     displayName: Archive build for submission
-    condition: and(succeeded(), startsWith(variables['TARGET_RUNTIME'], 'osx'))
+    condition: and(succeeded(), eq(variables['IS_ENABLED'], 'true'), eq(variables['SHOULD_SIGN'], 'True'), startsWith(variables['TARGET_RUNTIME'], 'osx'))

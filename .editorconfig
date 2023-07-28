@@ -14,6 +14,9 @@ insert_final_newline = true
 [*.{y[a]ml,json}]
 indent_size = 2
 
+[*.csproj]
+indent_size = 2
+
 # VSCode generates files with 4 spaces
 [.vscode/*.json]
 indent_size = 4

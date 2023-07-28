@@ -43,11 +43,15 @@ parameters:
     type: boolean
     default: false
   - name: notarizeAfterSign
-    displayName: Notarize Build Output
+    displayName: Notarize Build Output (MacOS only)
     type: boolean
     default: true
   - name: simulate
     displayName: Simulate operations (faster)
+    type: boolean
+    default: false
+  - name: forceNugetPublish
+    displayName: Force Publishing the Nuget output
     type: boolean
     default: false
 
@@ -118,9 +122,10 @@ stages:
           - ${{ if ne(parameters.simulate, 'true') }}:
             - template: templates/nuget-packages.yaml
               parameters:
+                extraRestoreArgs: -p:PublishReadyToRun=true
                 vstsFeedName: ${{variables.internalFeed}}
 
-          - pwsh: dotnet publish ./src/msgraph-cli.csproj --no-restore --runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)
+          - pwsh: dotnet publish ./src/msgraph-cli.csproj -p:PublishSingleFile=true -p:PublishReadyToRun=true --no-restore --runtime $(rid) --self-contained true --configuration $(buildConfiguration) --output $(outputDir)
             workingDirectory: $(Build.SourcesDirectory)
             condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
             displayName: DotNet publish
@@ -207,7 +212,7 @@ stages:
       vmImage: windows-latest
     dependsOn: [build]
     # Only sign binaries if we're building a tag.
-    condition: and(succeeded(), or(eq('${{ parameters.forceSignOutput }}', 'true'), startsWith(variables['Build.SourceBranch'], 'refs/tags/v')))
+    condition: and(succeeded(), or(eq('${{ parameters.forceSignOutput }}', 'true'), eq('${{ parameters.forceNugetPublish }}', 'true'), startsWith(variables['Build.SourceBranch'], 'refs/tags/v')))
     jobs:
       - job: esrpSign
         dependsOn: []
@@ -271,6 +276,71 @@ stages:
                   }
                 ]
               inlineNotarizeOperation: ""
+            nuget:
+              rid: nuget
+              vmImage: windows-latest
+              packageType: "zip"
+              compressionProgram: "none"
+              sign: true
+              forceNugetPublish: ${{ parameters.forceNugetPublish }}
+              pattern: |
+                mgc.dll
+              inlineSignOperation: |
+                [
+                    {
+                        "keyCode": "CP-230012",
+                        "operationSetCode": "SigntoolSign",
+                        "parameters": [
+                        {
+                            "parameterName": "OpusName",
+                            "parameterValue": "Microsoft"
+                        },
+                        {
+                            "parameterName": "OpusInfo",
+                            "parameterValue": "http://www.microsoft.com"
+                        },
+                        {
+                            "parameterName": "FileDigest",
+                            "parameterValue": "/fd \"SHA256\""
+                        },
+                        {
+                            "parameterName": "PageHash",
+                            "parameterValue": "/NPH"
+                        },
+                        {
+                            "parameterName": "TimeStamp",
+                            "parameterValue": "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
+                        }
+                        ],
+                        "toolName": "sign",
+                        "toolVersion": "1.0"
+                    },
+                    {
+                        "keyCode": "CP-230012",
+                        "operationSetCode": "SigntoolVerify",
+                        "parameters": [ ],
+                        "toolName": "sign",
+                        "toolVersion": "1.0"
+                    }
+                ]
+              inlineNugetSignOperation: |
+                [
+                    {
+                        "keyCode": "CP-401405",
+                        "operationSetCode": "NuGetSign",
+                        "parameters": [ ],
+                        "toolName": "sign",
+                        "toolVersion": "1.0"
+                    },
+                    {
+                        "keyCode": "CP-401405",
+                        "operationSetCode": "NuGetVerify",
+                        "parameters": [ ],
+                        "toolName": "sign",
+                        "toolVersion": "1.0"
+                    }
+                ]
+
             'MacOS-x64':
               rid: osx-x64
               vmImage: macOS-11
@@ -304,18 +374,30 @@ stages:
                 Write-Verbose 'fileNameTemplate = ''$(fileNameTemplate)'''
                 Write-Verbose 'artifactsDownloadLocation = ''$(artifactsDownloadLocation)'''
                 Write-Verbose 'sign = ''$(sign)'''
+                Write-Verbose 'forceNugetPublish = ''$(forceNugetPublish)'''
                 Write-Verbose 'notarize = ''$(notarize)'''
                 Write-Verbose 'inlineSignOperation = ''$(inlineSignOperation)'''
                 Write-Verbose 'inlineNotarizeOperation = ''$(inlineNotarizeOperation)'''
+                Write-Verbose 'inlineNugetSignOperation = ''$(inlineNugetSignOperation)'''
                 $rid = '$(rid)'
                 $shouldSign = '$(sign)'
+                if ($shouldSign.ToLower() -eq 'true' -and '$(rid)' -eq 'nuget') {
+                  $shouldSign = '$(forceNugetPublish)'
+                }
                 $shouldNotarize = '$(notarize)'
                 $notarizeOp = '$(inlineNotarizeOperation)'
+                $isNuget = $rid -eq 'nuget'
+                $isDarwin = $rid.StartsWith('osx')
+                $workDir = Join-Path -Path '$(artifactsDownloadLocation)' -ChildPath '$(rid)'
+                $downloadDir = Join-Path -Path $workDir -ChildPath 'build-output-$(rid)'
                 Write-Host "##vso[task.setvariable variable=RUNTIME_ID]$rid"
+                Write-Host "##vso[task.setvariable variable=IS_NUGET]$isNuget"
+                Write-Host "##vso[task.setvariable variable=IS_MACOS]$isDarwin"
                 Write-Host "##vso[task.setvariable variable=SHOULD_SIGN]$shouldSign"
                 Write-Host "##vso[task.setvariable variable=SHOULD_NOTARIZE]$shouldNotarize"
                 Write-Host "##vso[task.setvariable variable=NOTARIZE_OPERATION]$notarizeOp"
-                Write-Host "##vso[task.setvariable variable=WORKING_DIR]$(artifactsDownloadLocation)/$(rid)"
+                Write-Host "##vso[task.setvariable variable=WORKING_DIR]$workDir"
+                Write-Host "##vso[task.setvariable variable=ARTIFACTS_PATH]$downloadDir"
               verbosePreference: '$(OUTPUT_PREFERENCE)'
               debugPreference: '$(OUTPUT_PREFERENCE)'
               informationPreference: '$(OUTPUT_PREFERENCE)'
@@ -326,11 +408,62 @@ stages:
 
           - checkout: self
 
+          # Nuget tool doesn't work with multi-stage builds
+          - task: UseDotNet@2
+            displayName: 'Use .NET 7'
+            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['IS_NUGET'], 'true'))
+            inputs:
+              version: 7.x
+
+          - ${{ if ne(parameters.simulate, 'true') }}:
+            - template: templates/nuget-packages.yaml
+              parameters:
+                vstsFeedName: ${{variables.internalFeed}}
+                enabled: $(IS_NUGET)
+
+          - task: DotNetCoreCLI@2
+            displayName: "build nuget tool"
+            inputs:
+              projects: './src/msgraph-cli.csproj'
+              arguments: " --no-restore --configuration $(buildConfiguration) --no-incremental"
+            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['IS_NUGET'], 'true'))
+
+          - pwsh: |
+              New-Item '$(ARTIFACTS_PATH)' -ItemType Directory -Force
+              echo "Test file" > '$(ARTIFACTS_PATH)/mgc.dll'
+              echo "Test file2" > '$(ARTIFACTS_PATH)/mgc.txt'
+            condition: and(succeeded(), eq('${{ parameters.simulate }}', 'true'), eq(variables['IS_NUGET'], 'true'))
+            displayName: Simulate nuget build
+
           - task: DownloadPipelineArtifact@2
             inputs:
               patterns: build-output-$(rid)/**/*
               path: $(WORKING_DIR)
-            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
+            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), ne(variables['IS_NUGET'], 'true'))
+
+          - task: PowerShell@2
+            inputs:
+              pwsh: true
+              targetType: inline
+              script: |
+                $path = '$(ARTIFACTS_PATH)'
+                if ('$(IS_NUGET)'.ToLower() -eq 'true' -and ('${{ parameters.simulate }}'.ToLower() -ne 'true')) {
+                  $path = './src/obj/$(buildConfiguration)/net7.0'
+                }
+                Write-Verbose "Checking if $path has files"
+                $hasArtifacts = Test-Path $path/* -PathType Leaf
+                Write-Verbose "Result $hasArtifacts"
+
+                $shouldSign = '$(SHOULD_SIGN)'.ToLower() -eq 'true'
+                if ($shouldSign) {
+                  $shouldSign = $shouldSign -and $hasArtifacts
+                }
+                Write-Host "##vso[task.setvariable variable=SIGN_PATH]$path"
+                Write-Host "##vso[task.setvariable variable=SHOULD_SIGN]$shouldSign"
+              verbosePreference: '$(OUTPUT_PREFERENCE)'
+              debugPreference: '$(OUTPUT_PREFERENCE)'
+              informationPreference: '$(OUTPUT_PREFERENCE)'
+            displayName: Check for artifacts
 
           - task: PowerShell@2
             inputs:
@@ -344,6 +477,7 @@ stages:
               debugPreference: '$(OUTPUT_PREFERENCE)'
               informationPreference: '$(OUTPUT_PREFERENCE)'
             displayName: Compute zip name
+            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), ne(variables['IS_NUGET'], 'true'))
 
           - task: PowerShell@2
             inputs:
@@ -352,7 +486,7 @@ stages:
               script: |
                 . $(powershellScriptsDir)/BuildTools.ps1
 
-                $downloadDir = Join-Path -Path '$(WORKING_DIR)' -ChildPath 'build-output-$(rid)'
+                $downloadDir = '$(ARTIFACTS_PATH)'
                 $extractPath = Join-Path -Path '$(WORKING_DIR)' -ChildPath artifacts
                 Expand-EsrpArtifacts -SourceDir $downloadDir -OutputDir $extractPath -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -PackageType $(packageType) -TarCompression $(compressionProgram) -Cleanup
 
@@ -362,7 +496,7 @@ stages:
               debugPreference: '$(OUTPUT_PREFERENCE)'
               informationPreference: '$(OUTPUT_PREFERENCE)'
             displayName: Extract archive
-            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'))
+            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), ne(variables['IS_NUGET'], 'True'))
 
           - template: templates/prepare-unsigned-executable-darwin.yaml
             parameters:
@@ -370,23 +504,31 @@ stages:
               executableName: mgc
               zipName: $(ZIP_NAME)
               targetRuntime: $(rid)
+              enabled: $(IS_MACOS)
 
           - pwsh: |
               Write-Host "##vso[task.setvariable variable=ESRP_FILE_PATTERN]$(ZIP_NAME)"
             displayName: Compute ESRP filter pattern osx
-            condition: and(succeeded(), startsWith(variables['RUNTIME_ID'], 'osx'))
+            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), eq(variables['IS_MACOS'], 'true'))
 
           - pwsh: |
               Write-Host "##vso[task.setvariable variable=ESRP_FILE_PATTERN]$(pattern)"
-            displayName: Compute ESRP filter pattern Windows
-            condition: and(succeeded(), startsWith(variables['RUNTIME_ID'], 'win'))
+            displayName: Compute ESRP filter pattern Windows/Nuget
+            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), or(startsWith(variables['RUNTIME_ID'], 'win'), eq(variables['IS_NUGET'], 'true')))
+
+          # ESRP needs .NET 6
+          - task: UseDotNet@2
+            displayName: 'Change to .NET 6'
+            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['IS_NUGET'], 'true'))
+            inputs:
+              version: 6.x
 
           - task: EsrpCodeSigning@2
-            displayName: 'ESRP CodeSigning (Sign)'
+            displayName: 'ESRP CodeSigning (Sign Build output)'
             inputs:
               # Pipeline validation can't expand service name from matrix variables
               ConnectedServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
-              FolderPath: $(ARTIFACTS_PATH)
+              FolderPath: $(SIGN_PATH)
               signConfigType: inlineSignParams
               UseMinimatch: true
               Pattern: $(ESRP_FILE_PATTERN)
@@ -399,13 +541,37 @@ stages:
             inputs:
               # Pipeline validation can't expand service name from matrix variables
               ConnectedServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
-              FolderPath: $(ARTIFACTS_PATH)
+              FolderPath: $(SIGN_PATH)
               signConfigType: inlineSignParams
               UseMinimatch: true
               Pattern: $(ESRP_FILE_PATTERN)
               inlineOperation: $(inlineNotarizeOperation)
               SessionTimeout: 20
             condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), gt(length(variables['NOTARIZE_OPERATION']), 0), ne(variables['NOTARIZE_OPERATION'], '$(inlineNotarizeOperation)'), and(eq(variables['SHOULD_SIGN'], 'True'), eq(variables['SHOULD_NOTARIZE'], 'True')))
+
+          - pwsh: |
+              dotnet pack ./src/msgraph-cli.csproj --configuration $(buildConfiguration) --output $(ARTIFACTS_PATH) --no-build --include-symbols --include-source /p:SymbolPackageFormat=snupkg -v d
+            workingDirectory: $(Build.SourcesDirectory)
+            displayName: DotNet pack (nuget)
+            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), ne('${{ parameters.simulate }}', 'true'), eq(variables['Is_NUGET'], 'true'))
+
+          - task: EsrpCodeSigning@2
+            displayName: 'ESRP CodeSigning (Sign Nuget)'
+            inputs:
+              # Pipeline validation can't expand service name from matrix variables
+              ConnectedServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
+              FolderPath: $(ARTIFACTS_PATH)
+              signConfigType: inlineSignParams
+              UseMinimatch: true
+              Pattern: "*.nupkg"
+              inlineOperation: $(inlineNugetSignOperation)
+              SessionTimeout: 20
+            condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['SHOULD_SIGN'], 'True'), eq(variables['IS_NUGET'], 'true'))
+
+          - pwsh: |
+              $artifactsPath = '$(ARTIFACTS_PATH)'
+              Write-Host "##vso[task.setvariable variable=WORKING_DIR]$artifactsPath"
+            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), eq(variables['IS_NUGET'], 'true'))
 
           - task: PowerShell@2
             displayName: Simulate ESRP
@@ -435,7 +601,7 @@ stages:
               verbosePreference: '$(OUTPUT_PREFERENCE)'
               debugPreference: '$(OUTPUT_PREFERENCE)'
               informationPreference: '$(OUTPUT_PREFERENCE)'
-            condition: and(succeeded(), eq('${{ parameters.simulate }}', 'true'))
+            condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), eq('${{ parameters.simulate }}', 'true'))
 
           - task: PowerShell@2
             inputs:
@@ -478,7 +644,7 @@ stages:
     pool:
       vmImage: windows-latest
     # Only scan binaries if we're building a tag, building main, or building a PR targeting main
-    condition: and(succeeded(), or(startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['System.PullRequest.TargetBranch'], 'main')))
+    condition: and(succeeded(), or(startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq(variables['Build.SourceBranch'], 'refs/heads/main'), eq(variables['System.PullRequest.TargetBranch'], 'main'), eq('${{ parameters.forceNugetPublish }}', 'true')))
     jobs:
       - job: scan
         displayName: Scanning binaries
@@ -491,11 +657,12 @@ stages:
 
   - stage: upload
     dependsOn: [binaryScan, sign]
-    # Only upload release if we're building a tag.
-    condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'))
+    condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'))
     jobs:
-      - job: upload
-        displayName: Upload binaries
+      - job: uploadGitHub
+        displayName: Upload binaries (GitHub)
+        # Only upload release if we're building a tag.
+        condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/tags/v'))
         steps:
           - checkout: none
           - task: DownloadPipelineArtifact@2
@@ -519,3 +686,29 @@ stages:
                 $(artifactsDownloadLocation)/sign-output-*/*.tar*
                 $(artifactsDownloadLocation)/sign-output-*/*.zip
               isPreRelease: $(IS_PREVIEW)
+
+      - deployment: deployNuget
+        displayName: Deploy Nuget
+        dependsOn: []
+        environment: microsoftgraph-nuget-org
+        condition: and(succeeded(), or(startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq('${{ parameters.forceNugetPublish }}', 'true')))
+        strategy:
+          runOnce:
+            deploy:
+              pool:
+                vmImage: ubuntu-latest
+              steps:
+                - task: DownloadPipelineArtifact@2
+                  displayName: Download nupkg from artifacts
+                  inputs:
+                    artifact: sign-output-nuget
+                    source: current
+                    path: $(artifactsDownloadLocation)/nuget
+                - task: NuGetCommand@2
+                  displayName: "NuGet push"
+                  inputs:
+                    command: push
+                    packagesToPush: "$(artifactsDownloadLocation)/nuget/Microsoft.Graph.Cli.*.nupkg;$(artifactsDownloadLocation)/nuget/Microsoft.Graph.Cli.*.snupkg;"
+                    nuGetFeedType: external
+                    publishFeedCredentials: "microsoftgraph NuGet connection"
+

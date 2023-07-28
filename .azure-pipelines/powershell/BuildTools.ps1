@@ -372,7 +372,7 @@ function Compress-BuildOutput {
     if ($Cleanup) {
         foreach ($path in $Source) {
             Write-Verbose "Compress-BuildOutput: Cleaning up $path"
-            Remove-Item $path -Force
+            Remove-Item $path -Force -Recurse
         }
     }
 

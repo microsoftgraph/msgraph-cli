@@ -11,13 +11,21 @@ parameters:
   - name: extraRestoreArgs
     type: "string"
     default:
+  - name: enabled
+    type: string
+    default: 'true'
 
 steps:
   - pwsh: |
       Write-Verbose -Verbose "useCache = '${{parameters.useCache}}'"
       Write-Verbose -Verbose "restorePath = '${{parameters.restorePath}}'"
       Write-Verbose -Verbose "extraRestoreArgs = '${{parameters.extraRestoreArgs}}'"
+      Write-Verbose -Verbose "enabled = '${{parameters.enabled}}'"
     displayName: Testing parameters
+
+  - pwsh: |
+      Write-Host "##vso[task.setvariable variable=IS_ENABLED]${{ parameters.enabled }}"
+    displayName: Initialize parameters
 
   - ${{ if eq(parameters.useCache, true) }}:
     - task: Cache@2
@@ -28,6 +36,7 @@ steps:
           nuget | "$(Agent.OS)"
           nuget
         path: '${{parameters.restorePath}}'
+      condition: and(succeeded(), eq(variables['IS_ENABLED'], 'true'))
     - task: DotNetCoreCLI@2
       displayName: Restore packages (Cache enabled)
       inputs:
@@ -39,6 +48,7 @@ steps:
         workingDirectory: $(Build.SourcesDirectory)
         restoreArguments: --use-lock-file --locked-mode ${{parameters.extraRestoreArgs}}
         restoreDirectory: ${{parameters.restorePath}}
+      condition: and(succeeded(), eq(variables['IS_ENABLED'], 'true'))
   - ${{ else }}:
     - task: DotNetCoreCLI@2
       displayName: Restore packages (No cache)
@@ -51,3 +61,4 @@ steps:
         workingDirectory: $(Build.SourcesDirectory)
         noCache: true
         restoreArguments: --use-lock-file --locked-mode ${{parameters.extraRestoreArgs}}
+      condition: and(succeeded(), eq(variables['IS_ENABLED'], 'true'))

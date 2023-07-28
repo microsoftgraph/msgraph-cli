@@ -11,11 +11,42 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PublishSingleFile>true</PublishSingleFile>
+    <PublishSingleFile>false</PublishSingleFile>
     <SelfContained>false</SelfContained>
-    <PublishReadyToRun>true</PublishReadyToRun>
+    <PublishReadyToRun>false</PublishReadyToRun>
     <RuntimeIdentifiers>win-x64;linux-x64;osx-x64;osx-arm64</RuntimeIdentifiers>
     <PublishAot>false</PublishAot>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <Description>
+      Microsoft Graph CLI SDK provides convenient methods to access Microsoft
+      Graph capabilities using a simplistic command line interface experience on any operating
+      system and any shell.
+    </Description>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <AssemblyTitle>Microsoft Graph CLI tool</AssemblyTitle>
+    <PackAsTool>true</PackAsTool>
+    <PackageIconUrl>https://go.microsoft.com/fwlink/?LinkID=288890</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/microsoftgraph/msgraph-cli</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <ToolCommandName>mgc</ToolCommandName>
+    <Authors>Microsoft</Authors>
+    <Company>Microsoft</Company>
+    <PackageId>Microsoft.Graph.Cli</PackageId>
+    <PackageOutputPath>./nupkg</PackageOutputPath>
+    <Deterministic>true</Deterministic>
+    <AssemblyOriginatorKeyFile>../35MSSharedLib1024.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>false</SignAssembly>
+    <DelaySign>false</DelaySign>
+
+    <PackageReleaseNotes>
+      https://github.com/microsoftgraph/msgraph-cli/releases
+    </PackageReleaseNotes>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <RepositoryUrl>https://github.com/microsoftgraph/msgraph-cli</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -28,5 +59,10 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="7.0.0" />
     <PackageReference Include="Microsoft.Graph.Cli.Core" Version="1.0.0-preview.1" />
     <PackageReference Include="System.CommandLine.Hosting" Version="0.4.0-alpha.22272.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../LICENSE" Pack="true" PackagePath="" />
+    <None Include="../README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 </Project>
