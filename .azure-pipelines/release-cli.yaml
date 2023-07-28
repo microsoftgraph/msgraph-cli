@@ -93,8 +93,6 @@ stages:
     jobs:
       - job: build
         displayName: Build and publish
-        # TODO: reset
-        condition: false
         strategy:
           matrix:
             'Windows-x64':
