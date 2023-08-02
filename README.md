@@ -167,7 +167,7 @@ See the [shell script](docker/init.sh) used for docker in this repository
 Find docker instructions in the docker folder [here](docker)
 
 ## Uninstalling
-### Docker
+### Dotnet tool
 
 ```
 dotnet tool uninstall Microsoft.Graph.Cli
