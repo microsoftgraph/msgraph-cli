@@ -9,16 +9,25 @@ A commandline tool should work on any terminal. We recommend:
 - PowerShell version 7.3.2
 
 ## Installation
-Download the CLI SDK to get started for
-Windows, Mac, or Linux here on the assets link of the latest release: [CLI SDK Download](https://github.com/microsoftgraph/msgraph-cli/releases)
+
+### DotNet Tool
+
+```
+dotnet tool install --global Microsoft.Graph.Cli --prerelease
+```
+
+### Manual
+
+To download the CLI SDK to get started for Windows, Mac, or Linux.
+ here on the assets link of the latest release: [CLI SDK Download](https://github.com/microsoftgraph/msgraph-cli/releases)
 
 
-### Windows
+#### Windows
 1. Extract downloaded CLI tool for Windows to folder
 2. Execute program using **mgc** (on Windows CMD) or **./mgc** (on Windows PowerShell) command.
 
 
-#### Windows environment setup (Optional)
+##### Windows environment setup (Optional)
 
 To allow executing the mgc command without prefixing it with `./`, you can add the executable's directory to the OS Path environment variable.
 On Windows PowerShell, you can add the current directory to the path by running:
@@ -50,7 +59,7 @@ You can find it by either using windows search (it appears as _view advanced sys
 > The Environment Variables screen should have 2 sections that both have a Path entry. The _User variables_ section adds to the current user's path and other users' environments should remain unchanged. The _System variables_ section will make the changes for all users in the computer.
 
 
-### MacOS
+#### MacOS
 
 1. Download the CLI archive for your Mac.
     - If you have an M1 Mac computer, download the `msgraph-cli-osx-arm64...` package.
@@ -59,7 +68,7 @@ You can find it by either using windows search (it appears as _view advanced sys
 3. Open a terminal in the new folder
 4. Execute the program using **./mgc** command.
 
-#### Mac environment setup (Optional)
+##### Mac environment setup (Optional)
 
 If you'd like to run the CLI from any folder, you need to either update the PATH environment variable for your shell,
 or add a symbolic link to the CLI into a location in the PATH (e.g. /usr/bin). Adding a symbolic link will need
@@ -86,7 +95,7 @@ sudo ln -s [path-to-the-cli-folder]/mgc /usr/bin
 ```
 
 
-### Linux
+#### Linux
 
 Download from browser OR via Curl
 
@@ -94,7 +103,7 @@ Download from browser OR via Curl
 curl -LO <link> && tar -xzf <filename>
 ```
 
-#### Linux (Ubuntu) environment setup (Required)
+##### Linux (Ubuntu) environment setup (Required)
 
 The linux environment setup is similar to the Mac setup, but with one difference. For headless linux environments,
 there's an additional step to configure the keyring for access token encryption.
@@ -158,6 +167,14 @@ See the [shell script](docker/init.sh) used for docker in this repository
 Find docker instructions in the docker folder [here](docker)
 
 ## Uninstalling
+### Dotnet tool
+
+```
+dotnet tool uninstall Microsoft.Graph.Cli
+```
+
+### Manual
+
 1. Delete the CLI installation folder
 2. If path enviroment variable had been set, remove it.
 
