@@ -24,7 +24,7 @@ To allow executing the mgc command without prefixing it with `./`, you can add t
 On Windows PowerShell, you can add the current directory to the path by running:
 
 ```powershell
-$env:Path += ";$(pwd)`
+$env:Path += ";$(pwd)"
 ```
 
 On CMD, the command becomes:
