@@ -1,9 +1,9 @@
 # Microsoft Graph CLI
 
-Microsoft Graph CLI SDK provides convenient methods to access Microsoft Graph capabilities using a simplistic command line interface experience on any operating system and any shell.
+Microsoft Graph CLI provides convenient methods to access Microsoft Graph capabilities using a simplistic command line interface experience on any operating system and any shell.
 
 ## Required tools
-A commandline tool should work on any terminal. We recommend:
+A command line tool should work on any terminal. We recommend:
 - [Windows Terminal + version](https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=en-us&gl=us)
 - MacOS (Minimum version: 10.12 Sierra) terminal
 - PowerShell version 7.3.2
@@ -18,8 +18,8 @@ dotnet tool install --global Microsoft.Graph.Cli --prerelease
 
 ### Manual
 
-To download the CLI SDK to get started for Windows, Mac, or Linux.
- here on the assets link of the latest release: [CLI SDK Download](https://github.com/microsoftgraph/msgraph-cli/releases)
+To download the CLI to get started for Windows, Mac, or Linux.
+ here on the assets link of the latest release: [CLI Download](https://github.com/microsoftgraph/msgraph-cli/releases)
 
 
 #### Windows
@@ -187,12 +187,12 @@ Follow the instructions in [Register an application for Microsoft identity platf
 Replace `YOUR_CLIENT_ID` with the client ID from your app registration.
 
 ## Executing the application
-Navigate to your download folder and use the **mgc** (on Windows/Mac) or **./mgc** (on WSL or Linux) command to run commands on the CLI SDK.
+Navigate to your download folder and use the **mgc** (on Windows/Mac) or **./mgc** (on WSL or Linux) command to run commands on the CLI.
 
 Add -h to your commands to view additional commands.
 
 ## Authenticating on the CLI tool
-The SDK supports both delegeted and app-only authentication strategies. Run the command below to see supported authentication strategies.
+CLI supports both delegeted and app-only authentication strategies. Run the command below to see supported authentication strategies.
 
 ``` bash
 #View supported authentication strategies. Default is Device Code
@@ -250,7 +250,7 @@ Qn: Why am I not getting a response back after running a command?
 Ans:add --debug to your command
 
 ## Samples
-You can find additional samples here (contains sample commands for CMD, PowerShell & Bash) [CLI SDK samples](https://github.com/microsoftgraph/msgraph-cli/tree/main/samples)
+You can find additional samples here (contains sample commands for CMD, PowerShell & Bash) [CLI samples](https://github.com/microsoftgraph/msgraph-cli/tree/main/samples)
 
 
 > Note: This repository is for the .NET CLI. If you are looking for the Python CLI, it's been moved to the [msgraph-cli-archived](https://github.com/microsoftgraph/msgraph-cli-archived) repository
