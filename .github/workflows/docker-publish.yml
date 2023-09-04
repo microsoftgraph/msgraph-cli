@@ -26,7 +26,7 @@ jobs:
           PACKAGE_VERSION=$(echo $PACKAGE_VERSION | sed s/^v//)
           echo "::set-output name=version::$PACKAGE_VERSION"
       - name: Check out the repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: true
           ref: ${{github.event.inputs.tag || ''}}
