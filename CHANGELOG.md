@@ -8,9 +8,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
+### Changed
+
+
+## [1.0.0-preview.2] - 2023-09-06
+
+### Added
+
 - Added headers support via the `--headers` option.
 
 ### Changed
+
+- Fixed issue with command conflicts in the parser.
+
 
 ## [1.0.0-preview.1] - 2023-06-16
 
