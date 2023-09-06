@@ -446,8 +446,7 @@ stages:
               pwsh: true
               targetType: inline
               script: |
-                $path = '$(ARTIFACTS_PATH)-src'
-                Move-Item -Path '$(ARTIFACTS_PATH)' -Destination '$(ARTIFACTS_PATH)-src'
+                $path = '$(ARTIFACTS_PATH)'
                 if ('$(IS_NUGET)'.ToLower() -eq 'true' -and ('${{ parameters.simulate }}'.ToLower() -ne 'true')) {
                   $path = './src/obj/$(buildConfiguration)/net7.0'
                 }
@@ -487,11 +486,12 @@ stages:
               script: |
                 . $(powershellScriptsDir)/BuildTools.ps1
 
-                $downloadDir = '$(ARTIFACTS_PATH)'
-                $sourceDir = '$(ARTIFACTS_PATH)-src'
-                Expand-EsrpArtifacts -SourceDir $sourceDir -OutputDir $downloadDir -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -PackageType $(packageType) -TarCompression $(compressionProgram) -Cleanup
+                $destDir = '$(ARTIFACTS_PATH)-src'
+                $sourceDir = '$(ARTIFACTS_PATH)'
+                Expand-EsrpArtifacts -SourceDir $sourceDir -OutputDir $destDir -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -PackageType $(packageType) -TarCompression $(compressionProgram) -Cleanup
+                Move-Item -Path $destDir -Destination $sourceDir
 
-                Move-NonExecutableItems -SourcePath $downloadDir -ExecutableItemNames mgc,mgc.exe
+                Move-NonExecutableItems -SourcePath $sourceDir -ExecutableItemNames mgc,mgc.exe
               verbosePreference: '$(OUTPUT_PREFERENCE)'
               debugPreference: '$(OUTPUT_PREFERENCE)'
               informationPreference: '$(OUTPUT_PREFERENCE)'
