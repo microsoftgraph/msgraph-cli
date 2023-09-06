@@ -446,7 +446,8 @@ stages:
               pwsh: true
               targetType: inline
               script: |
-                $path = '$(ARTIFACTS_PATH)'
+                $path = '$(ARTIFACTS_PATH)-src'
+                Move-Item -Path '$(ARTIFACTS_PATH)' -Destination '$(ARTIFACTS_PATH)-src'
                 if ('$(IS_NUGET)'.ToLower() -eq 'true' -and ('${{ parameters.simulate }}'.ToLower() -ne 'true')) {
                   $path = './src/obj/$(buildConfiguration)/net7.0'
                 }
@@ -487,11 +488,10 @@ stages:
                 . $(powershellScriptsDir)/BuildTools.ps1
 
                 $downloadDir = '$(ARTIFACTS_PATH)'
-                $extractPath = Join-Path -Path '$(WORKING_DIR)' -ChildPath artifacts
-                Expand-EsrpArtifacts -SourceDir $downloadDir -OutputDir $extractPath -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -PackageType $(packageType) -TarCompression $(compressionProgram) -Cleanup
+                $sourceDir = '$(ARTIFACTS_PATH)-src'
+                Expand-EsrpArtifacts -SourceDir $sourceDir -OutputDir $downloadDir -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)' -PackageType $(packageType) -TarCompression $(compressionProgram) -Cleanup
 
-                Move-NonExecutableItems -SourcePath $extractPath -ExecutableItemNames mgc,mgc.exe
-                Write-Host "##vso[task.setvariable variable=ARTIFACTS_PATH]$extractPath"
+                Move-NonExecutableItems -SourcePath $downloadDir -ExecutableItemNames mgc,mgc.exe
               verbosePreference: '$(OUTPUT_PREFERENCE)'
               debugPreference: '$(OUTPUT_PREFERENCE)'
               informationPreference: '$(OUTPUT_PREFERENCE)'
@@ -500,7 +500,7 @@ stages:
 
           - template: templates/prepare-unsigned-executable-darwin.yaml
             parameters:
-              executablePath: $(ARTIFACTS_PATH)
+              executablePath: $(SIGN_PATH)
               executableName: mgc
               zipName: $(ZIP_NAME)
               targetRuntime: $(rid)
@@ -550,7 +550,7 @@ stages:
             condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), gt(length(variables['NOTARIZE_OPERATION']), 0), ne(variables['NOTARIZE_OPERATION'], '$(inlineNotarizeOperation)'), and(eq(variables['SHOULD_SIGN'], 'True'), eq(variables['SHOULD_NOTARIZE'], 'True')))
 
           - pwsh: |
-              dotnet pack ./src/msgraph-cli.csproj --configuration $(buildConfiguration) --output $(ARTIFACTS_PATH) --no-build --include-symbols --include-source /p:SymbolPackageFormat=snupkg -v d
+              dotnet pack ./src/msgraph-cli.csproj --configuration $(buildConfiguration) --output $(SIGN_PATH) --no-build --include-symbols --include-source /p:SymbolPackageFormat=snupkg -v d
             workingDirectory: $(Build.SourcesDirectory)
             displayName: DotNet pack (nuget)
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), ne('${{ parameters.simulate }}', 'true'), eq(variables['Is_NUGET'], 'true'))
@@ -560,7 +560,7 @@ stages:
             inputs:
               # Pipeline validation can't expand service name from matrix variables
               ConnectedServiceName: "microsoftgraph ESRP CodeSign DLL and NuGet (AKV)"
-              FolderPath: $(ARTIFACTS_PATH)
+              FolderPath: $(SIGN_PATH)
               signConfigType: inlineSignParams
               UseMinimatch: true
               Pattern: "*.nupkg"
@@ -569,7 +569,7 @@ stages:
             condition: and(succeeded(), ne('${{ parameters.simulate }}', 'true'), eq(variables['SHOULD_SIGN'], 'True'), eq(variables['IS_NUGET'], 'true'))
 
           - pwsh: |
-              $artifactsPath = '$(ARTIFACTS_PATH)'
+              $artifactsPath = '$(SIGN_PATH)'
               Write-Host "##vso[task.setvariable variable=WORKING_DIR]$artifactsPath"
             condition: and(succeeded(), eq(variables['SHOULD_SIGN'], 'True'), eq(variables['IS_NUGET'], 'true'))
 
@@ -583,7 +583,7 @@ stages:
                 . $(powershellScriptsDir)/BuildTools.ps1
 
                 if ($IsMacOS) {
-                  $zipPath = Join-Path -Path '$(ARTIFACTS_PATH)' -ChildPath '$(ZIP_NAME)'
+                  $zipPath = Join-Path -Path '$(SIGN_PATH)' -ChildPath '$(ZIP_NAME)'
                   Write-Verbose "Expanding $zipPath"
                   $output = Split-Path -Path $zipPath -Parent
                   $output = Join-Path $output "out"
@@ -591,7 +591,7 @@ stages:
                   Expand-Archive -Path "$zipPath" -DestinationPath "$output"
                   Remove-Item $zipPath
                 }
-                echo "Success" > $(ARTIFACTS_PATH)/Sign-Summary.md
+                echo "Success" > $(SIGN_PATH)/Sign-Summary.md
                 if ($IsMacOS) {
                   Write-Verbose "Compressing updated source"
                   Compress-Archive -Path "$output/*" -DestinationPath $zipPath -Force
@@ -610,7 +610,7 @@ stages:
               script: |
                 . $(powershellScriptsDir)/BuildTools.ps1
                 $fileName = Get-FileName -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)'
-                Compress-SignedFiles -SourceDir '$(ARTIFACTS_PATH)' -ReportDir '$(WORKING_DIR)' -OutputDir '$(WORKING_DIR)' -OutputFileName $fileName -PackageType zip -Cleanup
+                Compress-SignedFiles -SourceDir '$(SIGN_PATH)' -ReportDir '$(WORKING_DIR)' -OutputDir '$(WORKING_DIR)' -OutputFileName $fileName -PackageType zip -Cleanup
               verbosePreference: '$(OUTPUT_PREFERENCE)'
               debugPreference: '$(OUTPUT_PREFERENCE)'
               informationPreference: '$(OUTPUT_PREFERENCE)'
@@ -623,7 +623,7 @@ stages:
               targetType: inline
               script: |
                 . $(powershellScriptsDir)/BuildTools.ps1
-                $zipPath = Join-Path -Path '$(ARTIFACTS_PATH)' -ChildPath '$(ZIP_NAME)'
+                $zipPath = Join-Path -Path '$(SIGN_PATH)' -ChildPath '$(ZIP_NAME)'
                 $fileName = Get-FileName -FileNameTemplate '$(fileNameTemplate)' -BranchOrTagName '$(branchOrTagName)' -RuntimeIdentifier '$(rid)'
                 Update-SignedArchive -InputFile $zipPath -ReportDir '$(WORKING_DIR)' -OutputDir '$(WORKING_DIR)' -OutputFileName "$fileName" -ExeNames mgc -Cleanup
               verbosePreference: '$(OUTPUT_PREFERENCE)'
