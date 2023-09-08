@@ -381,7 +381,7 @@ stages:
                 Write-Verbose 'inlineNugetSignOperation = ''$(inlineNugetSignOperation)'''
                 $rid = '$(rid)'
                 $shouldSign = '$(sign)'
-                if ($shouldSign.ToLower() -eq 'false' -and '$(rid)' -eq 'nuget') {
+                if ((-not [bool]::Parse($shouldSign)) -and '$(rid)' -eq 'nuget') {
                   $shouldSign = '$(forceNugetPublish)'
                 }
                 $shouldNotarize = '$(notarize)'
