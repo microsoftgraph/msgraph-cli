@@ -381,7 +381,7 @@ stages:
                 Write-Verbose 'inlineNugetSignOperation = ''$(inlineNugetSignOperation)'''
                 $rid = '$(rid)'
                 $shouldSign = '$(sign)'
-                if ($shouldSign.ToLower() -eq 'true' -and '$(rid)' -eq 'nuget') {
+                if ((-not [bool]::Parse($shouldSign)) -and '$(rid)' -eq 'nuget') {
                   $shouldSign = '$(forceNugetPublish)'
                 }
                 $shouldNotarize = '$(notarize)'
@@ -708,7 +708,7 @@ stages:
                   displayName: "NuGet push"
                   inputs:
                     command: push
-                    packagesToPush: "$(artifactsDownloadLocation)/nuget/Microsoft.Graph.Cli.*.nupkg;$(artifactsDownloadLocation)/nuget/Microsoft.Graph.Cli.*.snupkg;"
+                    packagesToPush: "$(artifactsDownloadLocation)/nuget/Microsoft.Graph.Cli.*.nupkg;!$(artifactsDownloadLocation)/nuget/Microsoft.Graph.Cli.*.symbols.nupkg;"
                     nuGetFeedType: external
                     publishFeedCredentials: "microsoftgraph NuGet connection"
 
