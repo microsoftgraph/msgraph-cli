@@ -708,7 +708,7 @@ stages:
                   displayName: "NuGet push"
                   inputs:
                     command: push
-                    packagesToPush: "$(artifactsDownloadLocation)/nuget/Microsoft.Graph.Cli.*.nupkg;$(artifactsDownloadLocation)/nuget/Microsoft.Graph.Cli.*.snupkg;"
+                    packagesToPush: "$(artifactsDownloadLocation)/nuget/Microsoft.Graph.Cli.*.nupkg;!$(artifactsDownloadLocation)/nuget/Microsoft.Graph.Cli.*.symbols.nupkg;"
                     nuGetFeedType: external
                     publishFeedCredentials: "microsoftgraph NuGet connection"
 
