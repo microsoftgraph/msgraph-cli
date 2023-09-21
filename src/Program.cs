@@ -44,8 +44,8 @@ namespace Microsoft.Graph.Cli
 
         static async Task<int> Main(string[] args)
         {
-            Console.InputEncoding = Encoding.Unicode;
-            Console.OutputEncoding = Encoding.Unicode;
+            Console.InputEncoding = Encoding.UTF8;
+            Console.OutputEncoding = Encoding.UTF8;
             var builder = BuildCommandLine()
                 .UseDefaults()
                 .UseHost(CreateHostBuilder)
