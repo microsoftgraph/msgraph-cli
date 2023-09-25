@@ -51,6 +51,7 @@ namespace ApiSdk.Models {
             return mappingValue switch {
                 "#microsoft.graph.androidLobApp" => new AndroidLobApp(),
                 "#microsoft.graph.iosLobApp" => new IosLobApp(),
+                "#microsoft.graph.macOSDmgApp" => new MacOSDmgApp(),
                 "#microsoft.graph.macOSLobApp" => new MacOSLobApp(),
                 "#microsoft.graph.win32LobApp" => new Win32LobApp(),
                 "#microsoft.graph.windowsAppX" => new WindowsAppX(),

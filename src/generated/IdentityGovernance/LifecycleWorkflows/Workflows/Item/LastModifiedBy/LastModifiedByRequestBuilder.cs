@@ -21,11 +21,11 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.LastModifi
     /// </summary>
     public class LastModifiedByRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// The unique identifier of the AAD identity that last modified the workflow.
+        /// The unique identifier of the Azure Active Directory identity that last modified the workflow.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The unique identifier of the AAD identity that last modified the workflow.";
+            command.Description = "The unique identifier of the Azure Active Directory identity that last modified the workflow.";
             var workflowIdOption = new Option<string>("--workflow-id", description: "The unique identifier of workflow") {
             };
             workflowIdOption.IsRequired = true;
@@ -110,7 +110,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.LastModifi
         public LastModifiedByRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/workflows/{workflow%2Did}/lastModifiedBy{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// The unique identifier of the AAD identity that last modified the workflow.
+        /// The unique identifier of the Azure Active Directory identity that last modified the workflow.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -136,7 +136,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.Workflows.Item.LastModifi
             return requestInfo;
         }
         /// <summary>
-        /// The unique identifier of the AAD identity that last modified the workflow.
+        /// The unique identifier of the Azure Active Directory identity that last modified the workflow.
         /// </summary>
         public class LastModifiedByRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

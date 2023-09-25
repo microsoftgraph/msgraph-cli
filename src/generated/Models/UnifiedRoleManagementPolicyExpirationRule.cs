@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
     public class UnifiedRoleManagementPolicyExpirationRule : UnifiedRoleManagementPolicyRule, IParsable {
         /// <summary>Indicates whether expiration is required or if it&apos;s a permanently active assignment or eligibility.</summary>
         public bool? IsExpirationRequired { get; set; }
-        /// <summary>The maximum duration allowed for eligibility or assignment which is not permanent. Required when isExpirationRequired is true.</summary>
+        /// <summary>The maximum duration allowed for eligibility or assignment that isn&apos;t permanent. Required when isExpirationRequired is true.</summary>
         public TimeSpan? MaximumDuration { get; set; }
         /// <summary>
         /// Instantiates a new unifiedRoleManagementPolicyExpirationRule and sets the default values.

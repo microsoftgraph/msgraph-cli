@@ -37,8 +37,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"documentConversionEnabled", n => { DocumentConversionEnabled = n.GetBoolValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"documentConversionEnabled", n => { DocumentConversionEnabled = n.GetBoolValue(); } },
             };
         }
         /// <summary>

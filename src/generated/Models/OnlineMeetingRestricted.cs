@@ -39,8 +39,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"contentSharingDisabled", n => { ContentSharingDisabled = n.GetEnumValue<OnlineMeetingContentSharingDisabledReason>(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"contentSharingDisabled", n => { ContentSharingDisabled = n.GetEnumValue<OnlineMeetingContentSharingDisabledReason>(); } },
                 {"videoDisabled", n => { VideoDisabled = n.GetEnumValue<OnlineMeetingVideoDisabledReason>(); } },
             };
         }

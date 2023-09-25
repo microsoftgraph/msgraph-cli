@@ -155,6 +155,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"extensionAttribute1", n => { ExtensionAttribute1 = n.GetStringValue(); } },
                 {"extensionAttribute10", n => { ExtensionAttribute10 = n.GetStringValue(); } },
                 {"extensionAttribute11", n => { ExtensionAttribute11 = n.GetStringValue(); } },
@@ -170,7 +171,6 @@ namespace ApiSdk.Models {
                 {"extensionAttribute7", n => { ExtensionAttribute7 = n.GetStringValue(); } },
                 {"extensionAttribute8", n => { ExtensionAttribute8 = n.GetStringValue(); } },
                 {"extensionAttribute9", n => { ExtensionAttribute9 = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

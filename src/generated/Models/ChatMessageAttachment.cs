@@ -91,12 +91,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"content", n => { Content = n.GetStringValue(); } },
                 {"contentType", n => { ContentType = n.GetStringValue(); } },
                 {"contentUrl", n => { ContentUrl = n.GetStringValue(); } },
                 {"id", n => { Id = n.GetStringValue(); } },
                 {"name", n => { Name = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"teamsAppId", n => { TeamsAppId = n.GetStringValue(); } },
                 {"thumbnailUrl", n => { ThumbnailUrl = n.GetStringValue(); } },
             };

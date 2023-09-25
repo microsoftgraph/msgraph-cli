@@ -89,6 +89,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"automaticReplies", n => { AutomaticReplies = n.GetObjectValue<AutomaticRepliesMailTips>(AutomaticRepliesMailTips.CreateFromDiscriminatorValue); } },
                 {"customMailTip", n => { CustomMailTip = n.GetStringValue(); } },
                 {"deliveryRestricted", n => { DeliveryRestricted = n.GetBoolValue(); } },
@@ -98,7 +99,6 @@ namespace ApiSdk.Models {
                 {"isModerated", n => { IsModerated = n.GetBoolValue(); } },
                 {"mailboxFull", n => { MailboxFull = n.GetBoolValue(); } },
                 {"maxMessageSize", n => { MaxMessageSize = n.GetIntValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"recipientScope", n => { RecipientScope = n.GetEnumValue<RecipientScopeType>(); } },
                 {"recipientSuggestions", n => { RecipientSuggestions = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"totalMemberCount", n => { TotalMemberCount = n.GetIntValue(); } },

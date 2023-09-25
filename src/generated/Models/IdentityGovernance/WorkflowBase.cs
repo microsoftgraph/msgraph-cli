@@ -46,9 +46,9 @@ namespace ApiSdk.Models.IdentityGovernance {
 #endif
         /// <summary>Whether the workflow is enabled or disabled. If this setting is true, the workflow can be run on demand or on schedule when isSchedulingEnabled is true.</summary>
         public bool? IsEnabled { get; set; }
-        /// <summary>If true, the Lifecycle Workflow engine executes the workflow based on the schedule defined by tenant settings. Cannot be true for a disabled workflow (where isEnabled is false).</summary>
+        /// <summary>If true, the Lifecycle Workflow engine executes the workflow based on the schedule defined by tenant settings. Can&apos;t be true for a disabled workflow (where isEnabled is false).</summary>
         public bool? IsSchedulingEnabled { get; set; }
-        /// <summary>The unique identifier of the AAD identity that last modified the workflow.</summary>
+        /// <summary>The unique identifier of the Azure Active Directory identity that last modified the workflow.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.User? LastModifiedBy { get; set; }
@@ -98,6 +98,7 @@ namespace ApiSdk.Models.IdentityGovernance {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"category", n => { Category = n.GetEnumValue<LifecycleWorkflowCategory>(); } },
                 {"createdBy", n => { CreatedBy = n.GetObjectValue<ApiSdk.Models.User>(ApiSdk.Models.User.CreateFromDiscriminatorValue); } },
                 {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
@@ -108,7 +109,6 @@ namespace ApiSdk.Models.IdentityGovernance {
                 {"isSchedulingEnabled", n => { IsSchedulingEnabled = n.GetBoolValue(); } },
                 {"lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<ApiSdk.Models.User>(ApiSdk.Models.User.CreateFromDiscriminatorValue); } },
                 {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"tasks", n => { Tasks = n.GetCollectionOfObjectValues<TaskObject>(TaskObject.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }

@@ -5,29 +5,29 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models {
-    public class MobileLobAppCollectionResponse : BaseCollectionPaginationCountResponse, IParsable {
+    public class Win32LobAppCollectionResponse : BaseCollectionPaginationCountResponse, IParsable {
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<MobileLobApp>? Value { get; set; }
+        public List<Win32LobApp>? Value { get; set; }
 #nullable restore
 #else
-        public List<MobileLobApp> Value { get; set; }
+        public List<Win32LobApp> Value { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new MobileLobAppCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode) {
+        public static new Win32LobAppCollectionResponse CreateFromDiscriminatorValue(IParseNode parseNode) {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
-            return new MobileLobAppCollectionResponse();
+            return new Win32LobAppCollectionResponse();
         }
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
-                {"value", n => { Value = n.GetCollectionOfObjectValues<MobileLobApp>(MobileLobApp.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"value", n => { Value = n.GetCollectionOfObjectValues<Win32LobApp>(Win32LobApp.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -37,7 +37,7 @@ namespace ApiSdk.Models {
         public new void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteCollectionOfObjectValues<MobileLobApp>("value", Value);
+            writer.WriteCollectionOfObjectValues<Win32LobApp>("value", Value);
         }
     }
 }

@@ -126,7 +126,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item {
             var execCommands = new List<Command>();
             execCommands.Add(builder.BuildDeleteCommand());
             execCommands.Add(builder.BuildGetCommand());
-            execCommands.Add(builder.BuildPatchCommand());
+            execCommands.Add(builder.BuildPutCommand());
             foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);

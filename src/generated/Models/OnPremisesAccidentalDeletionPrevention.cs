@@ -39,8 +39,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"alertThreshold", n => { AlertThreshold = n.GetIntValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"alertThreshold", n => { AlertThreshold = n.GetIntValue(); } },
                 {"synchronizationPreventionType", n => { SynchronizationPreventionType = n.GetEnumValue<OnPremisesDirectorySynchronizationDeletionPreventionType>(); } },
             };
         }

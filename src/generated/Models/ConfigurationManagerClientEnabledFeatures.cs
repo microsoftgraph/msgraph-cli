@@ -50,11 +50,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"compliancePolicy", n => { CompliancePolicy = n.GetBoolValue(); } },
                 {"deviceConfiguration", n => { DeviceConfiguration = n.GetBoolValue(); } },
                 {"inventory", n => { Inventory = n.GetBoolValue(); } },
                 {"modernApps", n => { ModernApps = n.GetBoolValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"resourceAccess", n => { ResourceAccess = n.GetBoolValue(); } },
                 {"windowsUpdateForBusiness", n => { WindowsUpdateForBusiness = n.GetBoolValue(); } },
             };

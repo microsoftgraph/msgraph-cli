@@ -43,10 +43,10 @@ namespace ApiSdk.Models.Security {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"dynamicallyAdjustTopicCount", n => { DynamicallyAdjustTopicCount = n.GetBoolValue(); } },
                 {"ignoreNumbers", n => { IgnoreNumbers = n.GetBoolValue(); } },
                 {"isEnabled", n => { IsEnabled = n.GetBoolValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"topicCount", n => { TopicCount = n.GetIntValue(); } },
             };
         }

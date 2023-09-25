@@ -45,8 +45,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"activityDomain", n => { ActivityDomain = n.GetEnumValue<ActivityDomain>(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"activityDomain", n => { ActivityDomain = n.GetEnumValue<ActivityDomain>(); } },
                 {"timeSlots", n => { TimeSlots = n.GetCollectionOfObjectValues<TimeSlot>(TimeSlot.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }

@@ -116,12 +116,11 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item.IdentitySynchron
             return command;
         }
         /// <summary>
-        /// Create a cross-tenant user synchronization policy for a partner-specific configuration.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationpartner-put-identitysynchronization?view=graph-rest-1.0" />
+        /// Update the navigation property identitySynchronization in policies
         /// </summary>
-        public Command BuildPatchCommand() {
-            var command = new Command("patch");
-            command.Description = "Create a cross-tenant user synchronization policy for a partner-specific configuration.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/crosstenantaccesspolicyconfigurationpartner-put-identitysynchronization?view=graph-rest-1.0";
+        public Command BuildPutCommand() {
+            var command = new Command("put");
+            command.Description = "Update the navigation property identitySynchronization in policies";
             var crossTenantAccessPolicyConfigurationPartnerTenantIdOption = new Option<string>("--cross-tenant-access-policy-configuration-partner-tenant-id", description: "The unique identifier of crossTenantAccessPolicyConfigurationPartner") {
             };
             crossTenantAccessPolicyConfigurationPartnerTenantIdOption.IsRequired = true;
@@ -157,7 +156,7 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item.IdentitySynchron
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<CrossTenantIdentitySyncPolicyPartner>(CrossTenantIdentitySyncPolicyPartner.CreateFromDiscriminatorValue);
                 if (model is null) return; // Cannot create a POST request from a null model.
-                var requestInfo = ToPatchRequestInformation(model, q => {
+                var requestInfo = ToPutRequestInformation(model, q => {
                 });
                 if (crossTenantAccessPolicyConfigurationPartnerTenantId is not null) requestInfo.PathParameters.Add("crossTenantAccessPolicyConfigurationPartner%2DtenantId", crossTenantAccessPolicyConfigurationPartnerTenantId);
                 requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
@@ -237,20 +236,20 @@ namespace ApiSdk.Policies.CrossTenantAccessPolicy.Partners.Item.IdentitySynchron
             return requestInfo;
         }
         /// <summary>
-        /// Create a cross-tenant user synchronization policy for a partner-specific configuration.
+        /// Update the navigation property identitySynchronization in policies
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPatchRequestInformation(CrossTenantIdentitySyncPolicyPartner body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToPutRequestInformation(CrossTenantIdentitySyncPolicyPartner body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToPatchRequestInformation(CrossTenantIdentitySyncPolicyPartner body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToPutRequestInformation(CrossTenantIdentitySyncPolicyPartner body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation {
-                HttpMethod = Method.PATCH,
+                HttpMethod = Method.PUT,
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };

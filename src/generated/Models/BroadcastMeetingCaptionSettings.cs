@@ -53,8 +53,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"isCaptionEnabled", n => { IsCaptionEnabled = n.GetBoolValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"isCaptionEnabled", n => { IsCaptionEnabled = n.GetBoolValue(); } },
                 {"spokenLanguage", n => { SpokenLanguage = n.GetStringValue(); } },
                 {"translationLanguages", n => { TranslationLanguages = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };

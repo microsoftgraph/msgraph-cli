@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class EducationAssignmentSettings : Entity, IParsable {
-        /// <summary>Indicates whether turn-in celebration animation will be shown. A value of true indicates that the animation will not be shown. Default value is false.</summary>
+        /// <summary>Indicates whether turn-in celebration animation is shown. A value of true indicates that the animation isn&apos;t shown. Default value is false.</summary>
         public bool? SubmissionAnimationDisabled { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

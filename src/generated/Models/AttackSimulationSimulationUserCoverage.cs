@@ -51,11 +51,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"attackSimulationUser", n => { AttackSimulationUser = n.GetObjectValue<ApiSdk.Models.AttackSimulationUser>(ApiSdk.Models.AttackSimulationUser.CreateFromDiscriminatorValue); } },
                 {"clickCount", n => { ClickCount = n.GetIntValue(); } },
                 {"compromisedCount", n => { CompromisedCount = n.GetIntValue(); } },
                 {"latestSimulationDateTime", n => { LatestSimulationDateTime = n.GetDateTimeOffsetValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"simulationCount", n => { SimulationCount = n.GetIntValue(); } },
             };
         }

@@ -221,12 +221,12 @@ namespace ApiSdk.Users {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of user objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-list?view=graph-rest-1.0" />
+        /// List properties and relationships of the user objects.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-user-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of user objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list?view=graph-rest-1.0";
+            command.Description = "List properties and relationships of the user objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-user-list?view=graph-rest-1.0";
             var consistencyLevelOption = new Option<string[]>("--consistency-level", description: "Indicates the requested consistency level. Documentation URL: https://docs.microsoft.com/graph/aad-advanced-queries") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -354,7 +354,7 @@ namespace ApiSdk.Users {
         public UsersRequestBuilder(string rawUrl) : base("{+baseurl}/users{?%24top,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve a list of user objects.
+        /// List properties and relationships of the user objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -408,7 +408,7 @@ namespace ApiSdk.Users {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of user objects.
+        /// List properties and relationships of the user objects.
         /// </summary>
         public class UsersRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -49,8 +49,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"completedUnits", n => { CompletedUnits = n.GetLongValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"completedUnits", n => { CompletedUnits = n.GetLongValue(); } },
                 {"progressObservationDateTime", n => { ProgressObservationDateTime = n.GetDateTimeOffsetValue(); } },
                 {"totalUnits", n => { TotalUnits = n.GetLongValue(); } },
                 {"units", n => { Units = n.GetStringValue(); } },

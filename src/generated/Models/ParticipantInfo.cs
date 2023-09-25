@@ -77,11 +77,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"countryCode", n => { CountryCode = n.GetStringValue(); } },
                 {"endpointType", n => { EndpointType = n.GetEnumValue<EndpointType>(); } },
                 {"identity", n => { Identity = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"languageId", n => { LanguageId = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"participantId", n => { ParticipantId = n.GetStringValue(); } },
                 {"region", n => { Region = n.GetStringValue(); } },
             };

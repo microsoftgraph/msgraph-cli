@@ -59,11 +59,11 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item.Notes.Item {
             return command;
         }
         /// <summary>
-        /// List of notes associcated with the request.
+        /// List of notes associated with the request.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "List of notes associcated with the request.";
+            command.Description = "List of notes associated with the request.";
             var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "The unique identifier of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
@@ -226,7 +226,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item.Notes.Item {
             return requestInfo;
         }
         /// <summary>
-        /// List of notes associcated with the request.
+        /// List of notes associated with the request.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -280,7 +280,7 @@ namespace ApiSdk.Security.SubjectRightsRequests.Item.Notes.Item {
             return requestInfo;
         }
         /// <summary>
-        /// List of notes associcated with the request.
+        /// List of notes associated with the request.
         /// </summary>
         public class AuthoredNoteItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

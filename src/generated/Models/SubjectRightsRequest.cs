@@ -124,7 +124,7 @@ namespace ApiSdk.Models {
 #else
         public SubjectRightsRequestMailboxLocation Mailboxlocations { get; set; }
 #endif
-        /// <summary>List of notes associcated with the request.</summary>
+        /// <summary>List of notes associated with the request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<AuthoredNote>? Notes { get; set; }
@@ -134,7 +134,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>The pauseAfterEstimate property</summary>
         public bool? PauseAfterEstimate { get; set; }
-        /// <summary>List of regulations that this request will fulfill.</summary>
+        /// <summary>List of regulations that this request fulfills.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? Regulations { get; set; }
@@ -158,7 +158,7 @@ namespace ApiSdk.Models {
 #else
         public List<SubjectRightsRequestStageDetail> Stages { get; set; }
 #endif
-        /// <summary>The status of the request.. Possible values are: active, closed, unknownFutureValue.</summary>
+        /// <summary>The status of the request. Possible values are: active, closed, unknownFutureValue.</summary>
         public SubjectRightsRequestStatus? Status { get; set; }
         /// <summary>Information about the Microsoft Teams team that was created for the request.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

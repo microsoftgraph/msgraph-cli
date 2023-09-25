@@ -40,7 +40,7 @@ namespace ApiSdk.Models.CallRecords {
 #endif
         /// <summary>Link speed in bits per second reported by the network adapter used by the media endpoint.</summary>
         public long? LinkSpeed { get; set; }
-        /// <summary>The media access control (MAC) address of the media endpoint&apos;s network device.</summary>
+        /// <summary>The media access control (MAC) address of the media endpoint&apos;s network device. This value may be missing or shown as 02:00:00:00:00:00 due to operating system privacy policies.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? MacAddress { get; set; }
@@ -159,6 +159,7 @@ namespace ApiSdk.Models.CallRecords {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"bandwidthLowEventRatio", n => { BandwidthLowEventRatio = n.GetFloatValue(); } },
                 {"basicServiceSetIdentifier", n => { BasicServiceSetIdentifier = n.GetStringValue(); } },
                 {"connectionType", n => { ConnectionType = n.GetEnumValue<NetworkConnectionType>(); } },
@@ -168,7 +169,6 @@ namespace ApiSdk.Models.CallRecords {
                 {"linkSpeed", n => { LinkSpeed = n.GetLongValue(); } },
                 {"macAddress", n => { MacAddress = n.GetStringValue(); } },
                 {"networkTransportProtocol", n => { NetworkTransportProtocol = n.GetEnumValue<NetworkTransportProtocol>(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"port", n => { Port = n.GetIntValue(); } },
                 {"receivedQualityEventRatio", n => { ReceivedQualityEventRatio = n.GetFloatValue(); } },
                 {"reflexiveIPAddress", n => { ReflexiveIPAddress = n.GetStringValue(); } },

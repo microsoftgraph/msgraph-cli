@@ -43,11 +43,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"allowCustomMemes", n => { AllowCustomMemes = n.GetBoolValue(); } },
                 {"allowGiphy", n => { AllowGiphy = n.GetBoolValue(); } },
                 {"allowStickersAndMemes", n => { AllowStickersAndMemes = n.GetBoolValue(); } },
                 {"giphyContentRating", n => { GiphyContentRating = n.GetEnumValue<GiphyRatingType>(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

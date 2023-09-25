@@ -53,9 +53,9 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"hashes", n => { Hashes = n.GetObjectValue<ApiSdk.Models.Hashes>(ApiSdk.Models.Hashes.CreateFromDiscriminatorValue); } },
                 {"mimeType", n => { MimeType = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"processingMetadata", n => { ProcessingMetadata = n.GetBoolValue(); } },
             };
         }

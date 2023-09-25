@@ -45,8 +45,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"authenticationMethod", n => { AuthenticationMethod = n.GetStringValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"authenticationMethod", n => { AuthenticationMethod = n.GetStringValue(); } },
                 {"userCount", n => { UserCount = n.GetLongValue(); } },
             };
         }

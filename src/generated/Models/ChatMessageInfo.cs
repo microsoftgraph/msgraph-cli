@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class ChatMessageInfo : Entity, IParsable {
-        /// <summary>Body of the chatMessage. This will still contain markers for @mentions and attachments even though the object does not return @mentions and attachments.</summary>
+        /// <summary>Body of the chatMessage. This will still contain markers for @mentions and attachments even though the object doesn&apos;t return @mentions and attachments.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ItemBody? Body { get; set; }
@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Date time object representing the time at which message was created.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
-        /// <summary>Read-only.  If present, represents details of an event that happened in a chat, a channel, or a team, for example, members were added, and so on. For event messages, the messageType property will be set to systemEventMessage.</summary>
+        /// <summary>Read-only.  If present, represents details of an event that happened in a chat, a channel, or a team, for example, members were added, and so on. For event messages, the messageType property is set to systemEventMessage.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public EventMessageDetail? EventDetail { get; set; }

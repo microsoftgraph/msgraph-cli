@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class DelegatedAdminCustomer : Entity, IParsable {
-        /// <summary>The Azure AD display name of the customer tenant. Read-only. Supports $orderBy.</summary>
+        /// <summary>The Azure AD display name of the customer tenant. Read-only. Supports $orderby.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }

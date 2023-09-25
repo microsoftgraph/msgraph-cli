@@ -46,8 +46,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"content", n => { Content = n.GetByteArrayValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"content", n => { Content = n.GetByteArrayValue(); } },
             };
         }
         /// <summary>

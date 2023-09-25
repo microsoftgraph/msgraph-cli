@@ -133,12 +133,12 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.Shifts.Item {
             return command;
         }
         /// <summary>
-        /// Replace an existing shift. If the specified shift doesn&apos;t exist, this method returns 404 Not found. The duration of a shift cannot be less than 1 minute or longer than 24 hours.
+        /// Replace an existing shift. If the specified shift doesn&apos;t exist, this method returns 404 Not found. The duration of a shift can&apos;t be less than 1 minute or longer than 24 hours.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/shift-put?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Replace an existing shift. If the specified shift doesn't exist, this method returns 404 Not found. The duration of a shift cannot be less than 1 minute or longer than 24 hours.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/shift-put?view=graph-rest-1.0";
+            command.Description = "Replace an existing shift. If the specified shift doesn't exist, this method returns 404 Not found. The duration of a shift can't be less than 1 minute or longer than 24 hours.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/shift-put?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -266,7 +266,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.Shifts.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Replace an existing shift. If the specified shift doesn&apos;t exist, this method returns 404 Not found. The duration of a shift cannot be less than 1 minute or longer than 24 hours.
+        /// Replace an existing shift. If the specified shift doesn&apos;t exist, this method returns 404 Not found. The duration of a shift can&apos;t be less than 1 minute or longer than 24 hours.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

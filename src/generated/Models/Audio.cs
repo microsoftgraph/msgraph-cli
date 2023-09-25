@@ -109,6 +109,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"album", n => { Album = n.GetStringValue(); } },
                 {"albumArtist", n => { AlbumArtist = n.GetStringValue(); } },
                 {"artist", n => { Artist = n.GetStringValue(); } },
@@ -121,7 +122,6 @@ namespace ApiSdk.Models {
                 {"genre", n => { Genre = n.GetStringValue(); } },
                 {"hasDrm", n => { HasDrm = n.GetBoolValue(); } },
                 {"isVariableBitrate", n => { IsVariableBitrate = n.GetBoolValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"title", n => { Title = n.GetStringValue(); } },
                 {"track", n => { Track = n.GetIntValue(); } },
                 {"trackCount", n => { TrackCount = n.GetIntValue(); } },

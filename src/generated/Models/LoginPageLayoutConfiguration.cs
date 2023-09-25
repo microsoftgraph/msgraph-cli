@@ -12,7 +12,7 @@ namespace ApiSdk.Models {
         public bool? IsFooterShown { get; set; }
         /// <summary>Option to show the header on the sign-in page.</summary>
         public bool? IsHeaderShown { get; set; }
-        /// <summary>Represents the layout template to be displayed on the login page for a tenant. The possible values are  default - Represents the default Microsoft layout with a centered lightbox.  verticalSplit - Represents a layout with a backgound on the left side and a full-height lightbox to the right.  unknownFutureValue - Evolvable enumeration sentinel value. Do not use.</summary>
+        /// <summary>Represents the layout template to be displayed on the login page for a tenant. The possible values are  default - Represents the default Microsoft layout with a centered lightbox.  verticalSplit - Represents a layout with a background on the left side and a full-height lightbox to the right.  unknownFutureValue - Evolvable enumeration sentinel value. Don&apos;t use.</summary>
         public ApiSdk.Models.LayoutTemplateType? LayoutTemplateType { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -41,10 +41,10 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"isFooterShown", n => { IsFooterShown = n.GetBoolValue(); } },
                 {"isHeaderShown", n => { IsHeaderShown = n.GetBoolValue(); } },
                 {"layoutTemplateType", n => { LayoutTemplateType = n.GetEnumValue<LayoutTemplateType>(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

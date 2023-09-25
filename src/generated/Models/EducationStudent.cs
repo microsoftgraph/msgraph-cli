@@ -72,12 +72,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"birthDate", n => { BirthDate = n.GetDateValue(); } },
                 {"externalId", n => { ExternalId = n.GetStringValue(); } },
                 {"gender", n => { Gender = n.GetEnumValue<EducationGender>(); } },
                 {"grade", n => { Grade = n.GetStringValue(); } },
                 {"graduationYear", n => { GraduationYear = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"studentNumber", n => { StudentNumber = n.GetStringValue(); } },
             };
         }

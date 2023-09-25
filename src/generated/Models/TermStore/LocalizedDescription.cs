@@ -51,9 +51,9 @@ namespace ApiSdk.Models.TermStore {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"description", n => { Description = n.GetStringValue(); } },
                 {"languageTag", n => { LanguageTag = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

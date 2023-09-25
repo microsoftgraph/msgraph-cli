@@ -116,8 +116,8 @@ namespace ApiSdk.Models.Security {
                 {"secureScores", n => { SecureScores = n.GetCollectionOfObjectValues<ApiSdk.Models.SecureScore>(ApiSdk.Models.SecureScore.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"subjectRightsRequests", n => { SubjectRightsRequests = n.GetCollectionOfObjectValues<ApiSdk.Models.SubjectRightsRequest>(ApiSdk.Models.SubjectRightsRequest.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"threatIntelligence", n => { ThreatIntelligence = n.GetObjectValue<ApiSdk.Models.Security.ThreatIntelligence>(ApiSdk.Models.Security.ThreatIntelligence.CreateFromDiscriminatorValue); } },
-                {"triggers", n => { Triggers = n.GetObjectValue<TriggersRoot>(TriggersRoot.CreateFromDiscriminatorValue); } },
                 {"triggerTypes", n => { TriggerTypes = n.GetObjectValue<TriggerTypesRoot>(TriggerTypesRoot.CreateFromDiscriminatorValue); } },
+                {"triggers", n => { Triggers = n.GetObjectValue<TriggersRoot>(TriggersRoot.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

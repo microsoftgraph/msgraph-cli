@@ -69,8 +69,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Beta_Inv {
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"a", n => { A = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                {"alpha", n => { Alpha = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
                 {"b", n => { B = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"alpha", n => { Alpha = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
                 {"beta", n => { Beta = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
                 {"probability", n => { Probability = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };

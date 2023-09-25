@@ -79,12 +79,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"browser", n => { Browser = n.GetStringValue(); } },
                 {"deviceId", n => { DeviceId = n.GetStringValue(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"isCompliant", n => { IsCompliant = n.GetBoolValue(); } },
                 {"isManaged", n => { IsManaged = n.GetBoolValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"operatingSystem", n => { OperatingSystem = n.GetStringValue(); } },
                 {"trustType", n => { TrustType = n.GetStringValue(); } },
             };

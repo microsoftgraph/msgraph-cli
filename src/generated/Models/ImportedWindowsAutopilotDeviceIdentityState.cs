@@ -55,11 +55,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"deviceErrorCode", n => { DeviceErrorCode = n.GetIntValue(); } },
                 {"deviceErrorName", n => { DeviceErrorName = n.GetStringValue(); } },
                 {"deviceImportStatus", n => { DeviceImportStatus = n.GetEnumValue<ImportedWindowsAutopilotDeviceIdentityImportStatus>(); } },
                 {"deviceRegistrationId", n => { DeviceRegistrationId = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

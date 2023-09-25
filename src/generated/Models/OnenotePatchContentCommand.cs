@@ -55,9 +55,9 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"action", n => { Action = n.GetEnumValue<OnenotePatchActionType>(); } },
                 {"content", n => { Content = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"position", n => { Position = n.GetEnumValue<OnenotePatchInsertPosition>(); } },
                 {"target", n => { Target = n.GetStringValue(); } },
             };

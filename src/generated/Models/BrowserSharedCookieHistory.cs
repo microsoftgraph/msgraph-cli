@@ -81,12 +81,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"comment", n => { Comment = n.GetStringValue(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"hostOnly", n => { HostOnly = n.GetBoolValue(); } },
                 {"hostOrDomain", n => { HostOrDomain = n.GetStringValue(); } },
                 {"lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"path", n => { Path = n.GetStringValue(); } },
                 {"publishedDateTime", n => { PublishedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"sourceEnvironment", n => { SourceEnvironment = n.GetEnumValue<BrowserSharedCookieSourceEnvironment>(); } },

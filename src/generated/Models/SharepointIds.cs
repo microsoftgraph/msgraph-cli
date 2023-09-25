@@ -91,10 +91,10 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"listId", n => { ListId = n.GetStringValue(); } },
                 {"listItemId", n => { ListItemId = n.GetStringValue(); } },
                 {"listItemUniqueId", n => { ListItemUniqueId = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"siteId", n => { SiteId = n.GetStringValue(); } },
                 {"siteUrl", n => { SiteUrl = n.GetStringValue(); } },
                 {"tenantId", n => { TenantId = n.GetStringValue(); } },

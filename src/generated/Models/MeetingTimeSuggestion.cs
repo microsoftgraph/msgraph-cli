@@ -73,11 +73,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"attendeeAvailability", n => { AttendeeAvailability = n.GetCollectionOfObjectValues<ApiSdk.Models.AttendeeAvailability>(ApiSdk.Models.AttendeeAvailability.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"confidence", n => { Confidence = n.GetDoubleValue(); } },
                 {"locations", n => { Locations = n.GetCollectionOfObjectValues<Location>(Location.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"meetingTimeSlot", n => { MeetingTimeSlot = n.GetObjectValue<TimeSlot>(TimeSlot.CreateFromDiscriminatorValue); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"order", n => { Order = n.GetIntValue(); } },
                 {"organizerAvailability", n => { OrganizerAvailability = n.GetEnumValue<FreeBusyStatus>(); } },
                 {"suggestionReason", n => { SuggestionReason = n.GetStringValue(); } },

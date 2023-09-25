@@ -55,13 +55,13 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"dayOfMonth", n => { DayOfMonth = n.GetIntValue(); } },
                 {"daysOfWeek", n => { DaysOfWeek = n.GetCollectionOfEnumValues<DayOfWeekObject>()?.ToList(); } },
                 {"firstDayOfWeek", n => { FirstDayOfWeek = n.GetEnumValue<DayOfWeekObject>(); } },
                 {"index", n => { Index = n.GetEnumValue<WeekIndex>(); } },
                 {"interval", n => { Interval = n.GetIntValue(); } },
                 {"month", n => { Month = n.GetIntValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"type", n => { Type = n.GetEnumValue<RecurrencePatternType>(); } },
             };
         }

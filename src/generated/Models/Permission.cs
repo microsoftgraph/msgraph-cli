@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class Permission : Entity, IParsable {
-        /// <summary>A format of yyyy-MM-ddTHH:mm:ssZ of DateTimeOffset indicates the expiration time of the permission. DateTime.MinValue indicates there is no expiration set for this permission. Optional.</summary>
+        /// <summary>A format of yyyy-MM-ddTHH:mm:ssZ of DateTimeOffset indicates the expiration time of the permission. DateTime.MinValue indicates there&apos;s no expiration set for this permission. Optional.</summary>
         public DateTimeOffset? ExpirationDateTime { get; set; }
         /// <summary>The grantedTo property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -42,7 +42,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Indicates whether the password is set for this permission. This property only appears in the response. Optional. Read-only. For OneDrive Personal only..</summary>
         public bool? HasPassword { get; set; }
-        /// <summary>Provides a reference to the ancestor of the current permission, if it is inherited from an ancestor. Read-only.</summary>
+        /// <summary>Provides a reference to the ancestor of the current permission, if it&apos;s inherited from an ancestor. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ItemReference? InheritedFrom { get; set; }
@@ -58,7 +58,7 @@ namespace ApiSdk.Models {
 #else
         public SharingInvitation Invitation { get; set; }
 #endif
-        /// <summary>Provides the link details of the current permission, if it is a link type permissions. Read-only.</summary>
+        /// <summary>Provides the link details of the current permission, if it&apos;s a link type permission. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public SharingLink? Link { get; set; }

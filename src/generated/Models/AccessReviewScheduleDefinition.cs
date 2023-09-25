@@ -40,7 +40,7 @@ namespace ApiSdk.Models {
 #else
         public string DescriptionForReviewers { get; set; }
 #endif
-        /// <summary>Name of the access review series. Supports $select and $orderBy. Required on create.</summary>
+        /// <summary>Name of the access review series. Supports $select and $orderby. Required on create.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }

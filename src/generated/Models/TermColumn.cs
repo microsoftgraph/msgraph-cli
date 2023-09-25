@@ -9,7 +9,7 @@ namespace ApiSdk.Models {
     public class TermColumn : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Specifies whether the column will allow more than one value.</summary>
+        /// <summary>Specifies whether the column allows more than one value.</summary>
         public bool? AllowMultipleValues { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -56,8 +56,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"allowMultipleValues", n => { AllowMultipleValues = n.GetBoolValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"allowMultipleValues", n => { AllowMultipleValues = n.GetBoolValue(); } },
                 {"parentTerm", n => { ParentTerm = n.GetObjectValue<Term>(Term.CreateFromDiscriminatorValue); } },
                 {"showFullyQualifiedName", n => { ShowFullyQualifiedName = n.GetBoolValue(); } },
                 {"termSet", n => { TermSet = n.GetObjectValue<ApiSdk.Models.TermStore.Set>(ApiSdk.Models.TermStore.Set.CreateFromDiscriminatorValue); } },

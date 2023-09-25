@@ -89,12 +89,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"fqdn", n => { Fqdn = n.GetStringValue(); } },
                 {"isAzureAdJoined", n => { IsAzureAdJoined = n.GetBoolValue(); } },
                 {"isAzureAdRegistered", n => { IsAzureAdRegistered = n.GetBoolValue(); } },
                 {"isHybridAzureDomainJoined", n => { IsHybridAzureDomainJoined = n.GetBoolValue(); } },
                 {"netBiosName", n => { NetBiosName = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"os", n => { Os = n.GetStringValue(); } },
                 {"privateIpAddress", n => { PrivateIpAddress = n.GetStringValue(); } },
                 {"publicIpAddress", n => { PublicIpAddress = n.GetStringValue(); } },

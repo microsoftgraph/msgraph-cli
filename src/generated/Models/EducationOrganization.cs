@@ -24,7 +24,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Source where this organization was created from. Possible values are: sis, manual.</summary>
         public EducationExternalSource? ExternalSource { get; set; }
-        /// <summary>The name of the external source this resources was generated from.</summary>
+        /// <summary>The name of the external source this resource was generated from.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ExternalSourceDetail { get; set; }

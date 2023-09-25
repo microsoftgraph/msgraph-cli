@@ -40,7 +40,7 @@ namespace ApiSdk.Models {
 #else
         public List<string> SystemPreferredAuthenticationMethods { get; set; }
 #endif
-        /// <summary>The user display name, such as Adele Vance. Supports $filter (eq, startsWith) and $orderBy.</summary>
+        /// <summary>The user display name, such as Adele Vance. Supports $filter (eq, startsWith) and $orderby.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? UserDisplayName { get; set; }
@@ -50,7 +50,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>The method the user selected as the default second-factor for performing multi-factor authentication. Possible values are: push, oath, voiceMobile, voiceAlternateMobile, voiceOffice, sms, none, unknownFutureValue. This property is used as preferred MFA method when isSystemPreferredAuthenticationMethodEnabled is false. Supports $filter (any with eq).</summary>
         public UserDefaultAuthenticationMethod? UserPreferredMethodForSecondaryAuthentication { get; set; }
-        /// <summary>The user principal name, such as AdeleV@contoso.com. Supports $filter (eq, startsWith) and $orderBy.</summary>
+        /// <summary>The user principal name, such as AdeleV@contoso.com. Supports $filter (eq, startsWith) and $orderby.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? UserPrincipalName { get; set; }

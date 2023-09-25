@@ -74,12 +74,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"alertType", n => { AlertType = n.GetEnumValue<IosNotificationAlertType>(); } },
                 {"appName", n => { AppName = n.GetStringValue(); } },
                 {"badgesEnabled", n => { BadgesEnabled = n.GetBoolValue(); } },
                 {"bundleID", n => { BundleID = n.GetStringValue(); } },
                 {"enabled", n => { Enabled = n.GetBoolValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"publisher", n => { Publisher = n.GetStringValue(); } },
                 {"showInNotificationCenter", n => { ShowInNotificationCenter = n.GetBoolValue(); } },
                 {"showOnLockScreen", n => { ShowOnLockScreen = n.GetBoolValue(); } },

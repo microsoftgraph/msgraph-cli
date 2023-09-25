@@ -45,8 +45,8 @@ namespace ApiSdk.Models.Security {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"algorithm", n => { Algorithm = n.GetEnumValue<FileHashAlgorithm>(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"algorithm", n => { Algorithm = n.GetEnumValue<FileHashAlgorithm>(); } },
                 {"value", n => { Value = n.GetStringValue(); } },
             };
         }

@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models.Security {
     public class EdiscoveryNoncustodialDataSource : DataSourceContainer, IParsable {
-        /// <summary>User source or SharePoint site data source as non-custodial data source.</summary>
+        /// <summary>User source or SharePoint site data source as noncustodial data source.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.Security.DataSource? DataSource { get; set; }
@@ -14,7 +14,7 @@ namespace ApiSdk.Models.Security {
 #else
         public ApiSdk.Models.Security.DataSource DataSource { get; set; }
 #endif
-        /// <summary>Operation entity that represents the latest indexing for the non-custodial data source.</summary>
+        /// <summary>Operation entity that represents the latest indexing for the noncustodial data source.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public EdiscoveryIndexOperation? LastIndexOperation { get; set; }

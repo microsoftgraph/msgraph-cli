@@ -57,6 +57,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"allowAutoFilter", n => { AllowAutoFilter = n.GetBoolValue(); } },
                 {"allowDeleteColumns", n => { AllowDeleteColumns = n.GetBoolValue(); } },
                 {"allowDeleteRows", n => { AllowDeleteRows = n.GetBoolValue(); } },
@@ -68,7 +69,6 @@ namespace ApiSdk.Models {
                 {"allowInsertRows", n => { AllowInsertRows = n.GetBoolValue(); } },
                 {"allowPivotTables", n => { AllowPivotTables = n.GetBoolValue(); } },
                 {"allowSort", n => { AllowSort = n.GetBoolValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

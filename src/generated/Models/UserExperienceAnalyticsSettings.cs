@@ -40,8 +40,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"configurationManagerDataConnectorConfigured", n => { ConfigurationManagerDataConnectorConfigured = n.GetBoolValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"configurationManagerDataConnectorConfigured", n => { ConfigurationManagerDataConnectorConfigured = n.GetBoolValue(); } },
             };
         }
         /// <summary>

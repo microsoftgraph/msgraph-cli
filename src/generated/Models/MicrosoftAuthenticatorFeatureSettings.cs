@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
     public class MicrosoftAuthenticatorFeatureSettings : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Determines whether the user&apos;s Authenticator app will show them the client app they are signing into.</summary>
+        /// <summary>Determines whether the user&apos;s Authenticator app shows them the client app they&apos;re signing into.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public AuthenticationMethodFeatureConfiguration? DisplayAppInformationRequiredState { get; set; }
@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
 #else
         public AuthenticationMethodFeatureConfiguration DisplayAppInformationRequiredState { get; set; }
 #endif
-        /// <summary>Determines whether the user&apos;s Authenticator app will show them the geographic location of where the authentication request originated from.</summary>
+        /// <summary>Determines whether the user&apos;s Authenticator app shows them the geographic location of where the authentication request originated from.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public AuthenticationMethodFeatureConfiguration? DisplayLocationInformationRequiredState { get; set; }
@@ -51,9 +51,9 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"displayAppInformationRequiredState", n => { DisplayAppInformationRequiredState = n.GetObjectValue<AuthenticationMethodFeatureConfiguration>(AuthenticationMethodFeatureConfiguration.CreateFromDiscriminatorValue); } },
                 {"displayLocationInformationRequiredState", n => { DisplayLocationInformationRequiredState = n.GetObjectValue<AuthenticationMethodFeatureConfiguration>(AuthenticationMethodFeatureConfiguration.CreateFromDiscriminatorValue); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

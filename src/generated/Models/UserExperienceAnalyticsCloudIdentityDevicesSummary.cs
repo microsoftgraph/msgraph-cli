@@ -40,8 +40,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"deviceWithoutCloudIdentityCount", n => { DeviceWithoutCloudIdentityCount = n.GetIntValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"deviceWithoutCloudIdentityCount", n => { DeviceWithoutCloudIdentityCount = n.GetIntValue(); } },
             };
         }
         /// <summary>

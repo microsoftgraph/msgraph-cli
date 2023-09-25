@@ -51,6 +51,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.locateDeviceActionResult" => new LocateDeviceActionResult(),
                 "#microsoft.graph.remoteLockActionResult" => new RemoteLockActionResult(),
                 "#microsoft.graph.resetPasscodeActionResult" => new ResetPasscodeActionResult(),
+                "#microsoft.graph.rotateBitLockerKeysDeviceActionResult" => new RotateBitLockerKeysDeviceActionResult(),
                 "#microsoft.graph.windowsDefenderScanActionResult" => new WindowsDefenderScanActionResult(),
                 _ => new DeviceActionResult(),
             };
@@ -60,10 +61,10 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"actionName", n => { ActionName = n.GetStringValue(); } },
                 {"actionState", n => { ActionState = n.GetEnumValue<ActionState>(); } },
                 {"lastUpdatedDateTime", n => { LastUpdatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
             };
         }

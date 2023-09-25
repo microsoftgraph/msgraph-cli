@@ -26,7 +26,7 @@ namespace ApiSdk.Models.Security {
 #endif
         /// <summary>The date and time when the device was first seen.</summary>
         public DateTimeOffset? FirstSeenDateTime { get; set; }
-        /// <summary>The health state of the device.The possible values are: active, inactive, impairedCommunication, noSensorData, noSensorDataImpairedCommunication, unknown, unknownFutureValue.</summary>
+        /// <summary>The health state of the device. The possible values are: active, inactive, impairedCommunication, noSensorData, noSensorDataImpairedCommunication, unknown, unknownFutureValue.</summary>
         public DeviceHealthStatus? HealthStatus { get; set; }
         /// <summary>Ip interfaces of the device during the time of the alert.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -52,7 +52,7 @@ namespace ApiSdk.Models.Security {
 #else
         public string MdeDeviceId { get; set; }
 #endif
-        /// <summary>The status of the machine onboarding to Microsoft Defender for Endpoint.The possible values are: insufficientInfo, onboarded, canBeOnboarded, unsupported, unknownFutureValue.</summary>
+        /// <summary>The status of the machine onboarding to Microsoft Defender for Endpoint. The possible values are: insufficientInfo, onboarded, canBeOnboarded, unsupported, unknownFutureValue.</summary>
         public ApiSdk.Models.Security.OnboardingStatus? OnboardingStatus { get; set; }
         /// <summary>The build version for the operating system the device is running.</summary>
         public long? OsBuild { get; set; }

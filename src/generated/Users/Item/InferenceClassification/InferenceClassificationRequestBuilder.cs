@@ -21,11 +21,11 @@ namespace ApiSdk.Users.Item.InferenceClassification {
     /// </summary>
     public class InferenceClassificationRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Relevance classification of the user&apos;s messages based on explicit designations which override inferred relevance or importance.
+        /// Relevance classification of the user&apos;s messages based on explicit designations that override inferred relevance or importance.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Relevance classification of the user's messages based on explicit designations which override inferred relevance or importance.";
+            command.Description = "Relevance classification of the user's messages based on explicit designations that override inferred relevance or importance.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -169,7 +169,7 @@ namespace ApiSdk.Users.Item.InferenceClassification {
         public InferenceClassificationRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/inferenceClassification{?%24select}", rawUrl) {
         }
         /// <summary>
-        /// Relevance classification of the user&apos;s messages based on explicit designations which override inferred relevance or importance.
+        /// Relevance classification of the user&apos;s messages based on explicit designations that override inferred relevance or importance.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -223,7 +223,7 @@ namespace ApiSdk.Users.Item.InferenceClassification {
             return requestInfo;
         }
         /// <summary>
-        /// Relevance classification of the user&apos;s messages based on explicit designations which override inferred relevance or importance.
+        /// Relevance classification of the user&apos;s messages based on explicit designations that override inferred relevance or importance.
         /// </summary>
         public class InferenceClassificationRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>

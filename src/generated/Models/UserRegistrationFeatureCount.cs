@@ -39,8 +39,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"feature", n => { Feature = n.GetEnumValue<AuthenticationMethodFeature>(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"feature", n => { Feature = n.GetEnumValue<AuthenticationMethodFeature>(); } },
                 {"userCount", n => { UserCount = n.GetLongValue(); } },
             };
         }

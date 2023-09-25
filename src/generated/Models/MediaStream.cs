@@ -57,10 +57,10 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"direction", n => { Direction = n.GetEnumValue<MediaDirection>(); } },
                 {"label", n => { Label = n.GetStringValue(); } },
                 {"mediaType", n => { MediaType = n.GetEnumValue<Modality>(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"serverMuted", n => { ServerMuted = n.GetBoolValue(); } },
                 {"sourceId", n => { SourceId = n.GetStringValue(); } },
             };

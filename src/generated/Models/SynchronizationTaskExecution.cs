@@ -75,6 +75,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"activityIdentifier", n => { ActivityIdentifier = n.GetStringValue(); } },
                 {"countEntitled", n => { CountEntitled = n.GetLongValue(); } },
                 {"countEntitledForProvisioning", n => { CountEntitledForProvisioning = n.GetLongValue(); } },
@@ -86,7 +87,6 @@ namespace ApiSdk.Models {
                 {"countImportedDeltas", n => { CountImportedDeltas = n.GetLongValue(); } },
                 {"countImportedReferenceDeltas", n => { CountImportedReferenceDeltas = n.GetLongValue(); } },
                 {"error", n => { Error = n.GetObjectValue<SynchronizationError>(SynchronizationError.CreateFromDiscriminatorValue); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"state", n => { State = n.GetEnumValue<SynchronizationTaskExecutionResult>(); } },
                 {"timeBegan", n => { TimeBegan = n.GetDateTimeOffsetValue(); } },
                 {"timeEnded", n => { TimeEnded = n.GetDateTimeOffsetValue(); } },

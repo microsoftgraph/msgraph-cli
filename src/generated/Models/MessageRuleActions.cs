@@ -93,6 +93,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"assignCategories", n => { AssignCategories = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"copyToFolder", n => { CopyToFolder = n.GetStringValue(); } },
                 {"delete", n => { Delete = n.GetBoolValue(); } },
@@ -101,7 +102,6 @@ namespace ApiSdk.Models {
                 {"markAsRead", n => { MarkAsRead = n.GetBoolValue(); } },
                 {"markImportance", n => { MarkImportance = n.GetEnumValue<Importance>(); } },
                 {"moveToFolder", n => { MoveToFolder = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"permanentDelete", n => { PermanentDelete = n.GetBoolValue(); } },
                 {"redirectTo", n => { RedirectTo = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"stopProcessingRules", n => { StopProcessingRules = n.GetBoolValue(); } },

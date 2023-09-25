@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
 #else
         public List<IdentityProvider> IdentityProviders { get; set; }
 #endif
-        /// <summary>The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign-up user flow. You cannot create custom languages in self-service sign-up user flows.</summary>
+        /// <summary>The languages supported for customization within the user flow. Language customization is enabled by default in self-service sign-up user flow. You can&apos;t create custom languages in self-service sign-up user flows.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<UserFlowLanguageConfiguration>? Languages { get; set; }

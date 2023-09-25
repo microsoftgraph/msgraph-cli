@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class BasicAuthentication : ApiAuthenticationConfigurationBase, IParsable {
-        /// <summary>The password. It is not returned in the responses.</summary>
+        /// <summary>The password. It isn&apos;t returned in the responses.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Password { get; set; }

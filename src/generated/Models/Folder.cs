@@ -45,8 +45,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"childCount", n => { ChildCount = n.GetIntValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"childCount", n => { ChildCount = n.GetIntValue(); } },
                 {"view", n => { View = n.GetObjectValue<FolderView>(FolderView.CreateFromDiscriminatorValue); } },
             };
         }

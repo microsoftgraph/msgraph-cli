@@ -6,9 +6,9 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class DelegatedPermissionClassification : Entity, IParsable {
-        /// <summary>The classification value being given. Possible value: low. Does not support $filter.</summary>
+        /// <summary>The classification value being given. Possible value: low. Doesn&apos;t support $filter.</summary>
         public PermissionClassificationType? Classification { get; set; }
-        /// <summary>The unique identifier (id) for the delegated permission listed in the oauth2PermissionScopes collection of the servicePrincipal. Required on create. Does not support $filter.</summary>
+        /// <summary>The unique identifier (id) for the delegated permission listed in the oauth2PermissionScopes collection of the servicePrincipal. Required on create. Doesn&apos;t support $filter.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PermissionId { get; set; }
@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
 #else
         public string PermissionId { get; set; }
 #endif
-        /// <summary>The claim value (value) for the delegated permission listed in the oauth2PermissionScopes collection of the servicePrincipal. Does not support $filter.</summary>
+        /// <summary>The claim value (value) for the delegated permission listed in the oauth2PermissionScopes collection of the servicePrincipal. Doesn&apos;t support $filter.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PermissionName { get; set; }

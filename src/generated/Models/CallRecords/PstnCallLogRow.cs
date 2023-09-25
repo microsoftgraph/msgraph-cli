@@ -183,11 +183,12 @@ namespace ApiSdk.Models.CallRecords {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"callDurationSource", n => { CallDurationSource = n.GetEnumValue<PstnCallDurationSource>(); } },
-                {"calleeNumber", n => { CalleeNumber = n.GetStringValue(); } },
-                {"callerNumber", n => { CallerNumber = n.GetStringValue(); } },
                 {"callId", n => { CallId = n.GetStringValue(); } },
                 {"callType", n => { CallType = n.GetStringValue(); } },
+                {"calleeNumber", n => { CalleeNumber = n.GetStringValue(); } },
+                {"callerNumber", n => { CallerNumber = n.GetStringValue(); } },
                 {"charge", n => { Charge = n.GetDecimalValue(); } },
                 {"conferenceId", n => { ConferenceId = n.GetStringValue(); } },
                 {"connectionCharge", n => { ConnectionCharge = n.GetDecimalValue(); } },
@@ -199,7 +200,6 @@ namespace ApiSdk.Models.CallRecords {
                 {"id", n => { Id = n.GetStringValue(); } },
                 {"inventoryType", n => { InventoryType = n.GetStringValue(); } },
                 {"licenseCapability", n => { LicenseCapability = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"operator", n => { Operator = n.GetStringValue(); } },
                 {"startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
                 {"tenantCountryCode", n => { TenantCountryCode = n.GetStringValue(); } },

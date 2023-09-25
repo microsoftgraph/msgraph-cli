@@ -67,12 +67,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"defaultValue", n => { DefaultValue = n.GetStringValue(); } },
                 {"exportMissingReferences", n => { ExportMissingReferences = n.GetBoolValue(); } },
                 {"flowBehavior", n => { FlowBehavior = n.GetEnumValue<AttributeFlowBehavior>(); } },
                 {"flowType", n => { FlowType = n.GetEnumValue<AttributeFlowType>(); } },
                 {"matchingPriority", n => { MatchingPriority = n.GetIntValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"source", n => { Source = n.GetObjectValue<AttributeMappingSource>(AttributeMappingSource.CreateFromDiscriminatorValue); } },
                 {"targetAttributeName", n => { TargetAttributeName = n.GetStringValue(); } },
             };

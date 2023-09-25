@@ -8,7 +8,7 @@ namespace ApiSdk.Models.CallRecords {
     public class DirectRoutingLogRow : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Number of the user or bot who received the call. E.164 format, but may include additional data.</summary>
+        /// <summary>Number of the user or bot who received the call. E.164 format, but may include other data.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CalleeNumber { get; set; }
@@ -18,7 +18,7 @@ namespace ApiSdk.Models.CallRecords {
 #endif
         /// <summary>In addition to the SIP codes, Microsoft has own subcodes that indicate the specific issue.</summary>
         public int? CallEndSubReason { get; set; }
-        /// <summary>Number of the user or bot who made the call. E.164 format, but may include additional data.</summary>
+        /// <summary>Number of the user or bot who made the call. E.164 format, but may include other data.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CallerNumber { get; set; }
@@ -48,7 +48,7 @@ namespace ApiSdk.Models.CallRecords {
         public DateTimeOffset? EndDateTime { get; set; }
         /// <summary>Only exists for failed (not fully established) calls.</summary>
         public DateTimeOffset? FailureDateTime { get; set; }
-        /// <summary>The code with which the call ended, RFC 3261.</summary>
+        /// <summary>The code with which the call ended, see RFC 3261.</summary>
         public int? FinalSipCode { get; set; }
         /// <summary>Description of the SIP code and Microsoft subcode.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -70,7 +70,7 @@ namespace ApiSdk.Models.CallRecords {
         public DateTimeOffset? InviteDateTime { get; set; }
         /// <summary>Indicates if the trunk was enabled for media bypass or not.</summary>
         public bool? MediaBypassEnabled { get; set; }
-        /// <summary>The datacenter used for media path in non-bypass call.</summary>
+        /// <summary>The datacenter used for media path in nonbypass call.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? MediaPathLocation { get; set; }
@@ -86,7 +86,7 @@ namespace ApiSdk.Models.CallRecords {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The datacenter used for signaling for both bypass and non-bypass calls.</summary>
+        /// <summary>The datacenter used for signaling for both bypass and nonbypass calls.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? SignalingLocation { get; set; }
@@ -149,10 +149,11 @@ namespace ApiSdk.Models.CallRecords {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"calleeNumber", n => { CalleeNumber = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"callEndSubReason", n => { CallEndSubReason = n.GetIntValue(); } },
-                {"callerNumber", n => { CallerNumber = n.GetStringValue(); } },
                 {"callType", n => { CallType = n.GetStringValue(); } },
+                {"calleeNumber", n => { CalleeNumber = n.GetStringValue(); } },
+                {"callerNumber", n => { CallerNumber = n.GetStringValue(); } },
                 {"correlationId", n => { CorrelationId = n.GetStringValue(); } },
                 {"duration", n => { Duration = n.GetIntValue(); } },
                 {"endDateTime", n => { EndDateTime = n.GetDateTimeOffsetValue(); } },
@@ -163,7 +164,6 @@ namespace ApiSdk.Models.CallRecords {
                 {"inviteDateTime", n => { InviteDateTime = n.GetDateTimeOffsetValue(); } },
                 {"mediaBypassEnabled", n => { MediaBypassEnabled = n.GetBoolValue(); } },
                 {"mediaPathLocation", n => { MediaPathLocation = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"signalingLocation", n => { SignalingLocation = n.GetStringValue(); } },
                 {"startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
                 {"successfulCall", n => { SuccessfulCall = n.GetBoolValue(); } },

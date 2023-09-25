@@ -86,11 +86,11 @@ namespace ApiSdk.DeviceAppManagement {
         }
         /// <summary>
         /// Read properties and relationships of the deviceAppManagement object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-policyset-deviceappmanagement-get?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-deviceappmanagement-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the deviceAppManagement object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-policyset-deviceappmanagement-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the deviceAppManagement object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-deviceappmanagement-get?view=graph-rest-1.0";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -352,8 +352,22 @@ namespace ApiSdk.DeviceAppManagement {
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());
             execCommands.Add(builder.BuildCreateCommand());
+            nonExecCommands.Add(builder.BuildGraphAndroidLobAppNavCommand());
+            nonExecCommands.Add(builder.BuildGraphAndroidStoreAppNavCommand());
+            nonExecCommands.Add(builder.BuildGraphIosLobAppNavCommand());
+            nonExecCommands.Add(builder.BuildGraphIosStoreAppNavCommand());
+            nonExecCommands.Add(builder.BuildGraphIosVppAppNavCommand());
+            nonExecCommands.Add(builder.BuildGraphMacOSDmgAppNavCommand());
+            nonExecCommands.Add(builder.BuildGraphMacOSLobAppNavCommand());
+            nonExecCommands.Add(builder.BuildGraphManagedAndroidLobAppNavCommand());
+            nonExecCommands.Add(builder.BuildGraphManagedIOSLobAppNavCommand());
             nonExecCommands.Add(builder.BuildGraphManagedMobileLobAppNavCommand());
-            nonExecCommands.Add(builder.BuildGraphMobileLobAppNavCommand());
+            nonExecCommands.Add(builder.BuildGraphMicrosoftStoreForBusinessAppNavCommand());
+            nonExecCommands.Add(builder.BuildGraphWin32LobAppNavCommand());
+            nonExecCommands.Add(builder.BuildGraphWindowsAppXNavCommand());
+            nonExecCommands.Add(builder.BuildGraphWindowsMobileMSINavCommand());
+            nonExecCommands.Add(builder.BuildGraphWindowsUniversalAppXNavCommand());
+            nonExecCommands.Add(builder.BuildGraphWindowsWebAppNavCommand());
             execCommands.Add(builder.BuildListCommand());
             var cmds = builder.BuildCommand();
             execCommands.AddRange(cmds.Item1);
