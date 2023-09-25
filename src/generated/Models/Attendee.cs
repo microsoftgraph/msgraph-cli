@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class Attendee : AttendeeBase, IParsable {
-        /// <summary>An alternate date/time proposed by the attendee for a meeting request to start and end. If the attendee hasn&apos;t proposed another time, then this property is not included in a response of a GET event.</summary>
+        /// <summary>An alternate date/time proposed by the attendee for a meeting request to start and end. If the attendee hasn&apos;t proposed another time, then this property isn&apos;t included in a response of a GET event.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public TimeSlot? ProposedNewTime { get; set; }

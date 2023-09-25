@@ -383,6 +383,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.macOSCompliancePolicy" => new MacOSCompliancePolicy(),
                 "#microsoft.graph.macOSCustomConfiguration" => new MacOSCustomConfiguration(),
                 "#microsoft.graph.macOSDeviceFeaturesConfiguration" => new MacOSDeviceFeaturesConfiguration(),
+                "#microsoft.graph.macOSDmgApp" => new MacOSDmgApp(),
                 "#microsoft.graph.macOSGeneralDeviceConfiguration" => new MacOSGeneralDeviceConfiguration(),
                 "#microsoft.graph.macOSLobApp" => new MacOSLobApp(),
                 "#microsoft.graph.macOSMicrosoftDefenderApp" => new MacOSMicrosoftDefenderApp(),
@@ -719,6 +720,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.userExperienceAnalyticsDeviceScores" => new UserExperienceAnalyticsDeviceScores(),
                 "#microsoft.graph.userExperienceAnalyticsDeviceStartupHistory" => new UserExperienceAnalyticsDeviceStartupHistory(),
                 "#microsoft.graph.userExperienceAnalyticsDeviceStartupProcess" => new UserExperienceAnalyticsDeviceStartupProcess(),
+                "#microsoft.graph.userExperienceAnalyticsDeviceStartupProcessPerformance" => new UserExperienceAnalyticsDeviceStartupProcessPerformance(),
                 "#microsoft.graph.userExperienceAnalyticsMetric" => new UserExperienceAnalyticsMetric(),
                 "#microsoft.graph.userExperienceAnalyticsMetricHistory" => new UserExperienceAnalyticsMetricHistory(),
                 "#microsoft.graph.userExperienceAnalyticsModelScores" => new UserExperienceAnalyticsModelScores(),
@@ -827,8 +829,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"id", n => { Id = n.GetStringValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"id", n => { Id = n.GetStringValue(); } },
             };
         }
         /// <summary>

@@ -235,6 +235,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"category1", n => { Category1 = n.GetStringValue(); } },
                 {"category10", n => { Category10 = n.GetStringValue(); } },
                 {"category11", n => { Category11 = n.GetStringValue(); } },
@@ -260,7 +261,6 @@ namespace ApiSdk.Models {
                 {"category7", n => { Category7 = n.GetStringValue(); } },
                 {"category8", n => { Category8 = n.GetStringValue(); } },
                 {"category9", n => { Category9 = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

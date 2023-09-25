@@ -26,7 +26,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Unique delegated permission identifier inside the collection of delegated permissions defined for a resource application.</summary>
         public Guid? Id { get; set; }
-        /// <summary>When creating or updating a permission, this property must be set to true (which is the default). To delete a permission, this property must first be set to false.  At that point, in a subsequent call, the permission may be removed.</summary>
+        /// <summary>When you create or update a permission, this property must be set to true (which is the default). To delete a permission, this property must first be set to false.  At that point, in a subsequent call, the permission may be removed.</summary>
         public bool? IsEnabled { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -68,7 +68,7 @@ namespace ApiSdk.Models {
 #else
         public string UserConsentDisplayName { get; set; }
 #endif
-        /// <summary>Specifies the value to include in the scp (scope) claim in access tokens. Must not exceed 120 characters in length. Allowed characters are : ! # $ % &amp; &apos; ( ) * + , - . / : ;  =  ? @ [ ] ^ + _  {  } ~, as well as characters in the ranges 0-9, A-Z and a-z. Any other character, including the space character, are not allowed. May not begin with ..</summary>
+        /// <summary>Specifies the value to include in the scp (scope) claim in access tokens. Must not exceed 120 characters in length. Allowed characters are : ! # $ % &amp; &apos; ( ) * + , - . / : ;  =  ? @ [ ] ^ + _  {  } ~, and characters in the ranges 0-9, A-Z and a-z. Any other character, including the space character, aren&apos;t allowed. May not begin with ..</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Value { get; set; }
@@ -95,11 +95,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"adminConsentDescription", n => { AdminConsentDescription = n.GetStringValue(); } },
                 {"adminConsentDisplayName", n => { AdminConsentDisplayName = n.GetStringValue(); } },
                 {"id", n => { Id = n.GetGuidValue(); } },
                 {"isEnabled", n => { IsEnabled = n.GetBoolValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"origin", n => { Origin = n.GetStringValue(); } },
                 {"type", n => { Type = n.GetStringValue(); } },
                 {"userConsentDescription", n => { UserConsentDescription = n.GetStringValue(); } },

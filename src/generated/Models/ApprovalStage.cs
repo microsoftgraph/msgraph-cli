@@ -66,9 +66,9 @@ namespace ApiSdk.Models {
                 {"assignedToMe", n => { AssignedToMe = n.GetBoolValue(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"justification", n => { Justification = n.GetStringValue(); } },
+                {"reviewResult", n => { ReviewResult = n.GetStringValue(); } },
                 {"reviewedBy", n => { ReviewedBy = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
                 {"reviewedDateTime", n => { ReviewedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"reviewResult", n => { ReviewResult = n.GetStringValue(); } },
                 {"status", n => { Status = n.GetStringValue(); } },
             };
         }

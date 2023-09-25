@@ -91,9 +91,9 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"hive", n => { Hive = n.GetEnumValue<RegistryHive>(); } },
                 {"key", n => { Key = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"oldKey", n => { OldKey = n.GetStringValue(); } },
                 {"oldValueData", n => { OldValueData = n.GetStringValue(); } },
                 {"oldValueName", n => { OldValueName = n.GetStringValue(); } },

@@ -53,10 +53,10 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"id", n => { Id = n.GetStringValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"targetedAuthenticationMethod", n => { TargetedAuthenticationMethod = n.GetStringValue(); } },
+                {"id", n => { Id = n.GetStringValue(); } },
                 {"targetType", n => { TargetType = n.GetEnumValue<AuthenticationMethodTargetType>(); } },
+                {"targetedAuthenticationMethod", n => { TargetedAuthenticationMethod = n.GetStringValue(); } },
             };
         }
         /// <summary>

@@ -47,8 +47,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"error", n => { Error = n.GetObjectValue<PublicError>(PublicError.CreateFromDiscriminatorValue); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"error", n => { Error = n.GetObjectValue<PublicError>(PublicError.CreateFromDiscriminatorValue); } },
                 {"stage", n => { Stage = n.GetEnumValue<SubjectRightsRequestStage>(); } },
                 {"status", n => { Status = n.GetEnumValue<SubjectRightsRequestStageStatus>(); } },
             };

@@ -39,8 +39,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"movieRating", n => { MovieRating = n.GetEnumValue<RatingFranceMoviesType>(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"movieRating", n => { MovieRating = n.GetEnumValue<RatingFranceMoviesType>(); } },
                 {"tvRating", n => { TvRating = n.GetEnumValue<RatingFranceTelevisionType>(); } },
             };
         }

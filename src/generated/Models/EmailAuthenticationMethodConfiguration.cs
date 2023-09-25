@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class EmailAuthenticationMethodConfiguration : AuthenticationMethodConfiguration, IParsable {
-        /// <summary>Determines whether email OTP is usable by external users for authentication. Possible values are: default, enabled, disabled, unknownFutureValue. Tenants in the default state who did not use public preview will automatically have email OTP enabled beginning in October 2021.</summary>
+        /// <summary>Determines whether email OTP is usable by external users for authentication. Possible values are: default, enabled, disabled, unknownFutureValue. Tenants in the default state who didn&apos;t use public preview will automatically have email OTP enabled beginning in October 2021.</summary>
         public ExternalEmailOtpState? AllowExternalIdToUseEmailOtp { get; set; }
         /// <summary>A collection of groups that are enabled to use the authentication method.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

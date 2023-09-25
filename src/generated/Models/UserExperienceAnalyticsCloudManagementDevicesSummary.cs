@@ -44,9 +44,9 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"coManagedDeviceCount", n => { CoManagedDeviceCount = n.GetIntValue(); } },
                 {"intuneDeviceCount", n => { IntuneDeviceCount = n.GetIntValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"tenantAttachDeviceCount", n => { TenantAttachDeviceCount = n.GetIntValue(); } },
             };
         }

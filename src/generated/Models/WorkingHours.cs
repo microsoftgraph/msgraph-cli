@@ -56,9 +56,9 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"daysOfWeek", n => { DaysOfWeek = n.GetCollectionOfEnumValues<DayOfWeekObject>()?.ToList(); } },
                 {"endTime", n => { EndTime = n.GetTimeValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"startTime", n => { StartTime = n.GetTimeValue(); } },
                 {"timeZone", n => { TimeZone = n.GetObjectValue<TimeZoneBase>(TimeZoneBase.CreateFromDiscriminatorValue); } },
             };

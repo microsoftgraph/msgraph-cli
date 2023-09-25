@@ -155,6 +155,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"bodyContains", n => { BodyContains = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"bodyOrSubjectContains", n => { BodyOrSubjectContains = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"categories", n => { Categories = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
@@ -175,7 +176,6 @@ namespace ApiSdk.Models {
                 {"isVoicemail", n => { IsVoicemail = n.GetBoolValue(); } },
                 {"messageActionFlag", n => { MessageActionFlag = n.GetEnumValue<MessageActionFlag>(); } },
                 {"notSentToMe", n => { NotSentToMe = n.GetBoolValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"recipientContains", n => { RecipientContains = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"senderContains", n => { SenderContains = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"sensitivity", n => { Sensitivity = n.GetEnumValue<Sensitivity>(); } },

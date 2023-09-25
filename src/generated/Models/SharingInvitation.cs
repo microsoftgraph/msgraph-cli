@@ -61,9 +61,9 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"email", n => { Email = n.GetStringValue(); } },
                 {"invitedBy", n => { InvitedBy = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"redeemedBy", n => { RedeemedBy = n.GetStringValue(); } },
                 {"signInRequired", n => { SignInRequired = n.GetBoolValue(); } },
             };

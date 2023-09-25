@@ -77,13 +77,13 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"certificate", n => { Certificate = n.GetByteArrayValue(); } },
                 {"certificateRevocationListUrl", n => { CertificateRevocationListUrl = n.GetStringValue(); } },
                 {"deltaCertificateRevocationListUrl", n => { DeltaCertificateRevocationListUrl = n.GetStringValue(); } },
                 {"isRootAuthority", n => { IsRootAuthority = n.GetBoolValue(); } },
                 {"issuer", n => { Issuer = n.GetStringValue(); } },
                 {"issuerSki", n => { IssuerSki = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

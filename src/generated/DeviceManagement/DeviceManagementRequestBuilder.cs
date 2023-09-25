@@ -44,6 +44,7 @@ using ApiSdk.DeviceManagement.UserExperienceAnalyticsCategories;
 using ApiSdk.DeviceManagement.UserExperienceAnalyticsDevicePerformance;
 using ApiSdk.DeviceManagement.UserExperienceAnalyticsDeviceScores;
 using ApiSdk.DeviceManagement.UserExperienceAnalyticsDeviceStartupHistory;
+using ApiSdk.DeviceManagement.UserExperienceAnalyticsDeviceStartupProcessPerformance;
 using ApiSdk.DeviceManagement.UserExperienceAnalyticsDeviceStartupProcesses;
 using ApiSdk.DeviceManagement.UserExperienceAnalyticsMetricHistory;
 using ApiSdk.DeviceManagement.UserExperienceAnalyticsModelScores;
@@ -406,11 +407,11 @@ namespace ApiSdk.DeviceManagement {
         }
         /// <summary>
         /// Read properties and relationships of the deviceManagement object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-reporting-devicemanagement-get?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-notification-devicemanagement-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the deviceManagement object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-reporting-devicemanagement-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the deviceManagement object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-notification-devicemanagement-get?view=graph-rest-1.0";
             var selectOption = new Option<string[]>("--select", description: "Select properties to be returned") {
                 Arity = ArgumentArity.ZeroOrMore
             };
@@ -643,11 +644,11 @@ namespace ApiSdk.DeviceManagement {
         }
         /// <summary>
         /// Update the properties of a deviceManagement object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-devicemanagement-update?view=graph-rest-1.0" />
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-notification-devicemanagement-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a deviceManagement object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-devicemanagement-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a deviceManagement object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-notification-devicemanagement-update?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -1280,6 +1281,31 @@ namespace ApiSdk.DeviceManagement {
             var command = new Command("user-experience-analytics-device-startup-processes");
             command.Description = "Provides operations to manage the userExperienceAnalyticsDeviceStartupProcesses property of the microsoft.graph.deviceManagement entity.";
             var builder = new UserExperienceAnalyticsDeviceStartupProcessesRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the userExperienceAnalyticsDeviceStartupProcessPerformance property of the microsoft.graph.deviceManagement entity.
+        /// </summary>
+        public Command BuildUserExperienceAnalyticsDeviceStartupProcessPerformanceNavCommand() {
+            var command = new Command("user-experience-analytics-device-startup-process-performance");
+            command.Description = "Provides operations to manage the userExperienceAnalyticsDeviceStartupProcessPerformance property of the microsoft.graph.deviceManagement entity.";
+            var builder = new UserExperienceAnalyticsDeviceStartupProcessPerformanceRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());

@@ -39,8 +39,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"frequency", n => { Frequency = n.GetTimeSpanValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"frequency", n => { Frequency = n.GetTimeSpanValue(); } },
                 {"startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
             };
         }

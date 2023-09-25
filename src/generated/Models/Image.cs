@@ -39,8 +39,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"height", n => { Height = n.GetIntValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"height", n => { Height = n.GetIntValue(); } },
                 {"width", n => { Width = n.GetIntValue(); } },
             };
         }

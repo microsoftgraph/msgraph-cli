@@ -171,6 +171,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"applicationName", n => { ApplicationName = n.GetStringValue(); } },
                 {"destinationAddress", n => { DestinationAddress = n.GetStringValue(); } },
                 {"destinationDomain", n => { DestinationDomain = n.GetStringValue(); } },
@@ -184,7 +185,6 @@ namespace ApiSdk.Models {
                 {"natDestinationPort", n => { NatDestinationPort = n.GetStringValue(); } },
                 {"natSourceAddress", n => { NatSourceAddress = n.GetStringValue(); } },
                 {"natSourcePort", n => { NatSourcePort = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"protocol", n => { Protocol = n.GetEnumValue<SecurityNetworkProtocol>(); } },
                 {"riskScore", n => { RiskScore = n.GetStringValue(); } },
                 {"sourceAddress", n => { SourceAddress = n.GetStringValue(); } },

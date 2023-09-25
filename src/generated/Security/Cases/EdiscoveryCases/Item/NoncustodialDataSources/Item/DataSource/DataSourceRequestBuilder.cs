@@ -59,11 +59,11 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Ite
             return command;
         }
         /// <summary>
-        /// User source or SharePoint site data source as non-custodial data source.
+        /// User source or SharePoint site data source as noncustodial data source.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "User source or SharePoint site data source as non-custodial data source.";
+            command.Description = "User source or SharePoint site data source as noncustodial data source.";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -226,7 +226,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Ite
             return requestInfo;
         }
         /// <summary>
-        /// User source or SharePoint site data source as non-custodial data source.
+        /// User source or SharePoint site data source as noncustodial data source.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -280,7 +280,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources.Ite
             return requestInfo;
         }
         /// <summary>
-        /// User source or SharePoint site data source as non-custodial data source.
+        /// User source or SharePoint site data source as noncustodial data source.
         /// </summary>
         public class DataSourceRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

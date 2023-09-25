@@ -619,6 +619,7 @@ namespace ApiSdk {
             nonExecCommands.Add(builder.BuildUserExperienceAnalyticsDeviceScoresNavCommand());
             nonExecCommands.Add(builder.BuildUserExperienceAnalyticsDeviceStartupHistoryNavCommand());
             nonExecCommands.Add(builder.BuildUserExperienceAnalyticsDeviceStartupProcessesNavCommand());
+            nonExecCommands.Add(builder.BuildUserExperienceAnalyticsDeviceStartupProcessPerformanceNavCommand());
             nonExecCommands.Add(builder.BuildUserExperienceAnalyticsMetricHistoryNavCommand());
             nonExecCommands.Add(builder.BuildUserExperienceAnalyticsModelScoresNavCommand());
             nonExecCommands.Add(builder.BuildUserExperienceAnalyticsOverviewNavCommand());

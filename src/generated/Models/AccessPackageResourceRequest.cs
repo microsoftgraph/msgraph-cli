@@ -26,7 +26,7 @@ namespace ApiSdk.Models {
 #else
         public AccessPackageResource Resource { get; set; }
 #endif
-        /// <summary>The outcome of whether the service was able to add the resource to the catalog.  The value is delivered if the resource was added or removed. Read-only.</summary>
+        /// <summary>The outcome of whether the service was able to add the resource to the catalog.  The value is delivered if the resource was added or removed, and deliveryFailed if it could not be added or removed. Read-only.</summary>
         public AccessPackageRequestState? State { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

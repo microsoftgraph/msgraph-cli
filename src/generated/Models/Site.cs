@@ -71,6 +71,8 @@ namespace ApiSdk.Models {
 #else
         public List<ColumnDefinition> ExternalColumns { get; set; }
 #endif
+        /// <summary>The isPersonalSite property</summary>
+        public bool? IsPersonalSite { get; set; }
         /// <summary>Used to address any item contained in this site. This collection can&apos;t be enumerated.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -186,6 +188,7 @@ namespace ApiSdk.Models {
                 {"drives", n => { Drives = n.GetCollectionOfObjectValues<ApiSdk.Models.Drive>(ApiSdk.Models.Drive.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"error", n => { Error = n.GetObjectValue<PublicError>(PublicError.CreateFromDiscriminatorValue); } },
                 {"externalColumns", n => { ExternalColumns = n.GetCollectionOfObjectValues<ColumnDefinition>(ColumnDefinition.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"isPersonalSite", n => { IsPersonalSite = n.GetBoolValue(); } },
                 {"items", n => { Items = n.GetCollectionOfObjectValues<BaseItem>(BaseItem.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"lists", n => { Lists = n.GetCollectionOfObjectValues<List>(List.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"onenote", n => { Onenote = n.GetObjectValue<ApiSdk.Models.Onenote>(ApiSdk.Models.Onenote.CreateFromDiscriminatorValue); } },
@@ -214,6 +217,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<ApiSdk.Models.Drive>("drives", Drives);
             writer.WriteObjectValue<PublicError>("error", Error);
             writer.WriteCollectionOfObjectValues<ColumnDefinition>("externalColumns", ExternalColumns);
+            writer.WriteBoolValue("isPersonalSite", IsPersonalSite);
             writer.WriteCollectionOfObjectValues<BaseItem>("items", Items);
             writer.WriteCollectionOfObjectValues<List>("lists", Lists);
             writer.WriteObjectValue<ApiSdk.Models.Onenote>("onenote", Onenote);

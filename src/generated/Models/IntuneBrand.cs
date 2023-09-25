@@ -132,6 +132,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"contactITEmailAddress", n => { ContactITEmailAddress = n.GetStringValue(); } },
                 {"contactITName", n => { ContactITName = n.GetStringValue(); } },
                 {"contactITNotes", n => { ContactITNotes = n.GetStringValue(); } },
@@ -139,7 +140,6 @@ namespace ApiSdk.Models {
                 {"darkBackgroundLogo", n => { DarkBackgroundLogo = n.GetObjectValue<MimeContent>(MimeContent.CreateFromDiscriminatorValue); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"lightBackgroundLogo", n => { LightBackgroundLogo = n.GetObjectValue<MimeContent>(MimeContent.CreateFromDiscriminatorValue); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"onlineSupportSiteName", n => { OnlineSupportSiteName = n.GetStringValue(); } },
                 {"onlineSupportSiteUrl", n => { OnlineSupportSiteUrl = n.GetStringValue(); } },
                 {"privacyUrl", n => { PrivacyUrl = n.GetStringValue(); } },

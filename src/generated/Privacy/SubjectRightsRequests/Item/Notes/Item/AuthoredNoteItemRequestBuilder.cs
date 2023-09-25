@@ -60,12 +60,12 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
             return command;
         }
         /// <summary>
-        /// List of notes associcated with the request.
+        /// List of notes associated with the request.
         /// </summary>
         [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate on 2022-03-22 and will be removed 2025-03-20")]
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "List of notes associcated with the request.";
+            command.Description = "List of notes associated with the request.";
             var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "The unique identifier of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
@@ -230,7 +230,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
             return requestInfo;
         }
         /// <summary>
-        /// List of notes associcated with the request.
+        /// List of notes associated with the request.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate on 2022-03-22 and will be removed 2025-03-20")]
@@ -286,7 +286,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item.Notes.Item {
             return requestInfo;
         }
         /// <summary>
-        /// List of notes associcated with the request.
+        /// List of notes associated with the request.
         /// </summary>
         public class AuthoredNoteItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

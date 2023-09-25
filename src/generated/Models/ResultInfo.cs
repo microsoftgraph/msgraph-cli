@@ -26,7 +26,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The result sub-code.</summary>
+        /// <summary>The result subcode.</summary>
         public int? Subcode { get; set; }
         /// <summary>
         /// Instantiates a new resultInfo and sets the default values.
@@ -47,9 +47,9 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"code", n => { Code = n.GetIntValue(); } },
                 {"message", n => { Message = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"subcode", n => { Subcode = n.GetIntValue(); } },
             };
         }

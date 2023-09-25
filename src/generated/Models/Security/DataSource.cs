@@ -16,7 +16,7 @@ namespace ApiSdk.Models.Security {
 #endif
         /// <summary>The date and time the dataSource was created.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
-        /// <summary>The display name of the dataSource. This will be the name of the SharePoint site.</summary>
+        /// <summary>The display name of the dataSource and is the name of the SharePoint site.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }

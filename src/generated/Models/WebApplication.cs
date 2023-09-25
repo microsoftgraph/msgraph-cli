@@ -24,7 +24,7 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.ImplicitGrantSettings ImplicitGrantSettings { get; set; }
 #endif
-        /// <summary>Specifies the URL that will be used by Microsoft&apos;s authorization service to logout an user using front-channel, back-channel or SAML logout protocols.</summary>
+        /// <summary>Specifies the URL that is used by Microsoft&apos;s authorization service to log out a user using front-channel, back-channel or SAML logout protocols.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? LogoutUrl { get; set; }
@@ -75,12 +75,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"homePageUrl", n => { HomePageUrl = n.GetStringValue(); } },
                 {"implicitGrantSettings", n => { ImplicitGrantSettings = n.GetObjectValue<ApiSdk.Models.ImplicitGrantSettings>(ApiSdk.Models.ImplicitGrantSettings.CreateFromDiscriminatorValue); } },
                 {"logoutUrl", n => { LogoutUrl = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
-                {"redirectUris", n => { RedirectUris = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"redirectUriSettings", n => { RedirectUriSettings = n.GetCollectionOfObjectValues<ApiSdk.Models.RedirectUriSettings>(ApiSdk.Models.RedirectUriSettings.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"redirectUris", n => { RedirectUris = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
             };
         }
         /// <summary>

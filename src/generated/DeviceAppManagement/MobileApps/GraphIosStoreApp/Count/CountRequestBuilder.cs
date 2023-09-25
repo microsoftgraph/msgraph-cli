@@ -13,7 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.MobileApps.GraphMobileLobApp.Count {
+namespace ApiSdk.DeviceAppManagement.MobileApps.GraphIosStoreApp.Count {
     /// <summary>
     /// Provides operations to count the resources in the collection.
     /// </summary>
@@ -56,13 +56,13 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.GraphMobileLobApp.Count {
         /// Instantiates a new CountRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CountRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/graph.mobileLobApp/$count{?%24search,%24filter}", pathParameters) {
+        public CountRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/graph.iosStoreApp/$count{?%24search,%24filter}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new CountRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public CountRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/graph.mobileLobApp/$count{?%24search,%24filter}", rawUrl) {
+        public CountRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/graph.iosStoreApp/$count{?%24search,%24filter}", rawUrl) {
         }
         /// <summary>
         /// Get the number of the resource

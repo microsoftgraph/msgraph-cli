@@ -67,8 +67,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"crc32Hash", n => { Crc32Hash = n.GetStringValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"crc32Hash", n => { Crc32Hash = n.GetStringValue(); } },
                 {"quickXorHash", n => { QuickXorHash = n.GetStringValue(); } },
                 {"sha1Hash", n => { Sha1Hash = n.GetStringValue(); } },
                 {"sha256Hash", n => { Sha256Hash = n.GetStringValue(); } },

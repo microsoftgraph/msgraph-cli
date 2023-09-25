@@ -81,12 +81,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"customKeyIdentifier", n => { CustomKeyIdentifier = n.GetByteArrayValue(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"endDateTime", n => { EndDateTime = n.GetDateTimeOffsetValue(); } },
                 {"key", n => { Key = n.GetByteArrayValue(); } },
                 {"keyId", n => { KeyId = n.GetGuidValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
                 {"type", n => { Type = n.GetStringValue(); } },
                 {"usage", n => { Usage = n.GetStringValue(); } },

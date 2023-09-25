@@ -41,10 +41,10 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"action", n => { Action = n.GetEnumValue<CalendarSharingAction>(); } },
                 {"actionType", n => { ActionType = n.GetEnumValue<CalendarSharingActionType>(); } },
                 {"importance", n => { Importance = n.GetEnumValue<CalendarSharingActionImportance>(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

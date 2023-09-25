@@ -77,8 +77,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"application", n => { Application = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"application", n => { Application = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
                 {"preventsDownload", n => { PreventsDownload = n.GetBoolValue(); } },
                 {"scope", n => { Scope = n.GetStringValue(); } },
                 {"type", n => { Type = n.GetStringValue(); } },

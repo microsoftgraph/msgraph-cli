@@ -34,7 +34,7 @@ namespace ApiSdk.Models.CallRecords {
         public float? AverageVideoFrameRate { get; set; }
         /// <summary>Average fraction of packets lost, as specified in [RFC 3550][], computed over the duration of the session.</summary>
         public float? AverageVideoPacketLossRate { get; set; }
-        /// <summary>UTC time when the stream ended. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
+        /// <summary>UTC time when the stream ended. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. This field is only available for streams that use the SIP protocol.</summary>
         public DateTimeOffset? EndDateTime { get; set; }
         /// <summary>Indicates whether the forward error correction (FEC) was used at some point during the session. The default value is null.</summary>
         public bool? IsAudioForwardErrorCorrectionUsed { get; set; }
@@ -66,7 +66,7 @@ namespace ApiSdk.Models.CallRecords {
         public float? PostForwardErrorCorrectionPacketLossRate { get; set; }
         /// <summary>Average duration of the received freezing time in the video stream represented in root mean square.</summary>
         public TimeSpan? RmsFreezeDuration { get; set; }
-        /// <summary>UTC time when the stream started. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
+        /// <summary>UTC time when the stream started. The DateTimeOffset type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z. This field is only available for streams that use the SIP protocol.</summary>
         public DateTimeOffset? StartDateTime { get; set; }
         /// <summary>The streamDirection property</summary>
         public MediaStreamDirection? StreamDirection { get; set; }
@@ -101,6 +101,7 @@ namespace ApiSdk.Models.CallRecords {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"audioCodec", n => { AudioCodec = n.GetEnumValue<AudioCodec>(); } },
                 {"averageAudioDegradation", n => { AverageAudioDegradation = n.GetFloatValue(); } },
                 {"averageAudioNetworkJitter", n => { AverageAudioNetworkJitter = n.GetTimeSpanValue(); } },
@@ -123,7 +124,6 @@ namespace ApiSdk.Models.CallRecords {
                 {"maxPacketLossRate", n => { MaxPacketLossRate = n.GetFloatValue(); } },
                 {"maxRatioOfConcealedSamples", n => { MaxRatioOfConcealedSamples = n.GetFloatValue(); } },
                 {"maxRoundTripTime", n => { MaxRoundTripTime = n.GetTimeSpanValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"packetUtilization", n => { PacketUtilization = n.GetLongValue(); } },
                 {"postForwardErrorCorrectionPacketLossRate", n => { PostForwardErrorCorrectionPacketLossRate = n.GetFloatValue(); } },
                 {"rmsFreezeDuration", n => { RmsFreezeDuration = n.GetTimeSpanValue(); } },

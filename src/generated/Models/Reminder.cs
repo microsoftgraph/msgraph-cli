@@ -56,7 +56,7 @@ namespace ApiSdk.Models {
 #else
         public string EventSubject { get; set; }
 #endif
-        /// <summary>The URL to open the event in Outlook on the web.The event will open in the browser if you are logged in to your mailbox via Outlook on the web. You will be prompted to login if you are not already logged in with the browser.This URL cannot be accessed from within an iFrame.</summary>
+        /// <summary>The URL to open the event in Outlook on the web.The event opens in the browser if you&apos;re logged in to your mailbox via Outlook on the web. You&apos;re prompted to log in if you aren&apos;t already logged in with the browser.This URL can&apos;t be accessed from within an iFrame.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? EventWebLink { get; set; }
@@ -99,6 +99,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"changeKey", n => { ChangeKey = n.GetStringValue(); } },
                 {"eventEndTime", n => { EventEndTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
                 {"eventId", n => { EventId = n.GetStringValue(); } },
@@ -106,7 +107,6 @@ namespace ApiSdk.Models {
                 {"eventStartTime", n => { EventStartTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
                 {"eventSubject", n => { EventSubject = n.GetStringValue(); } },
                 {"eventWebLink", n => { EventWebLink = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"reminderFireTime", n => { ReminderFireTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
             };
         }

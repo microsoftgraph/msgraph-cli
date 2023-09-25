@@ -44,9 +44,9 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"countdownDisplayBeforeRestartInMinutes", n => { CountdownDisplayBeforeRestartInMinutes = n.GetIntValue(); } },
                 {"gracePeriodInMinutes", n => { GracePeriodInMinutes = n.GetIntValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"restartNotificationSnoozeDurationInMinutes", n => { RestartNotificationSnoozeDurationInMinutes = n.GetIntValue(); } },
             };
         }

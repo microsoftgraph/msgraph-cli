@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
 #else
         public byte[] ContentBytes { get; set; }
 #endif
-        /// <summary>Write only. Content type. sicj as image/png, image/jpg.</summary>
+        /// <summary>Write only. Content type. such as image/png, image/jpg.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ContentType { get; set; }

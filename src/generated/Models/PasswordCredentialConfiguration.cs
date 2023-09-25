@@ -41,8 +41,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"maxLifetime", n => { MaxLifetime = n.GetTimeSpanValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"maxLifetime", n => { MaxLifetime = n.GetTimeSpanValue(); } },
                 {"restrictForAppsCreatedAfterDateTime", n => { RestrictForAppsCreatedAfterDateTime = n.GetDateTimeOffsetValue(); } },
                 {"restrictionType", n => { RestrictionType = n.GetEnumValue<AppCredentialRestrictionType>(); } },
             };

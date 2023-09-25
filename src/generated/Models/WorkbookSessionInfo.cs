@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
     public class WorkbookSessionInfo : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Id of the workbook session.</summary>
+        /// <summary>ID of the workbook session.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Id { get; set; }
@@ -45,8 +45,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"id", n => { Id = n.GetStringValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"id", n => { Id = n.GetStringValue(); } },
                 {"persistChanges", n => { PersistChanges = n.GetBoolValue(); } },
             };
         }

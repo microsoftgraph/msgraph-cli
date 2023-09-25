@@ -41,8 +41,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"gracePeriodBeforeAccessRemoval", n => { GracePeriodBeforeAccessRemoval = n.GetTimeSpanValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"gracePeriodBeforeAccessRemoval", n => { GracePeriodBeforeAccessRemoval = n.GetTimeSpanValue(); } },
                 {"removeAccessWhenTargetLeavesAllowedTargets", n => { RemoveAccessWhenTargetLeavesAllowedTargets = n.GetBoolValue(); } },
                 {"requestAccessForAllowedTargets", n => { RequestAccessForAllowedTargets = n.GetBoolValue(); } },
             };

@@ -197,9 +197,9 @@ namespace ApiSdk.Models {
                 {"voiceAssistantBlocked", n => { VoiceAssistantBlocked = n.GetBoolValue(); } },
                 {"voiceDialingBlocked", n => { VoiceDialingBlocked = n.GetBoolValue(); } },
                 {"webBrowserBlockAutofill", n => { WebBrowserBlockAutofill = n.GetBoolValue(); } },
-                {"webBrowserBlocked", n => { WebBrowserBlocked = n.GetBoolValue(); } },
                 {"webBrowserBlockJavaScript", n => { WebBrowserBlockJavaScript = n.GetBoolValue(); } },
                 {"webBrowserBlockPopups", n => { WebBrowserBlockPopups = n.GetBoolValue(); } },
+                {"webBrowserBlocked", n => { WebBrowserBlocked = n.GetBoolValue(); } },
                 {"webBrowserCookieSettings", n => { WebBrowserCookieSettings = n.GetEnumValue<WebBrowserCookieSettings>(); } },
                 {"wiFiBlocked", n => { WiFiBlocked = n.GetBoolValue(); } },
             };

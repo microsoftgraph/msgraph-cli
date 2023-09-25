@@ -79,6 +79,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"acquiredByPrinter", n => { AcquiredByPrinter = n.GetBoolValue(); } },
                 {"acquiredDateTime", n => { AcquiredDateTime = n.GetDateTimeOffsetValue(); } },
                 {"completionDateTime", n => { CompletionDateTime = n.GetDateTimeOffsetValue(); } },
@@ -86,7 +87,6 @@ namespace ApiSdk.Models {
                 {"createdBy", n => { CreatedBy = n.GetObjectValue<UserIdentity>(UserIdentity.CreateFromDiscriminatorValue); } },
                 {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"id", n => { Id = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"printerId", n => { PrinterId = n.GetStringValue(); } },
                 {"printerName", n => { PrinterName = n.GetStringValue(); } },
                 {"processingState", n => { ProcessingState = n.GetEnumValue<PrintJobProcessingState>(); } },

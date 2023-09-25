@@ -6,12 +6,12 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     /// <summary>
-    /// Contains properties and inherited properties for Windows Universal AppX Line Of Business apps.
+    /// Contains properties and inherited properties for Windows Universal AppX Line Of Business apps. Inherits from `mobileLobApp`.
     /// </summary>
     public class WindowsUniversalAppX : MobileLobApp, IParsable {
         /// <summary>Contains properties for Windows architecture.</summary>
         public WindowsArchitecture? ApplicableArchitectures { get; set; }
-        /// <summary>Contains properties for Windows device type.</summary>
+        /// <summary>Contains properties for Windows device type. Multiple values can be selected. Default value is `none`.</summary>
         public WindowsDeviceType? ApplicableDeviceTypes { get; set; }
         /// <summary>The collection of contained apps in the committed mobileAppContent of a windowsUniversalAppX app.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

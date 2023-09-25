@@ -50,10 +50,10 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"dayOccurrence", n => { DayOccurrence = n.GetIntValue(); } },
                 {"dayOfWeek", n => { DayOfWeek = n.GetEnumValue<DayOfWeekObject>(); } },
                 {"month", n => { Month = n.GetIntValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"time", n => { Time = n.GetTimeValue(); } },
                 {"year", n => { Year = n.GetIntValue(); } },
             };

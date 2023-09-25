@@ -111,12 +111,12 @@ namespace ApiSdk.Groups.Item.RejectedSenders.Ref {
             return command;
         }
         /// <summary>
-        /// Specify the user or group in @odata.id in the request body. Users in the rejected senders list cannot post to conversations of the group (identified in the POST request URL). Make sure you do not specify the same user or group in the rejected senders and accepted senders lists, otherwise you will get an error.
+        /// Specify the user or group in @odata.id in the request body. Users in the rejected senders list can&apos;t post to conversations of the group (identified in the POST request URL). Make sure you don&apos;t specify the same user or group in the rejected senders and accepted senders lists, otherwise you&apos;ll get an error.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-post-rejectedsenders?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Specify the user or group in @odata.id in the request body. Users in the rejected senders list cannot post to conversations of the group (identified in the POST request URL). Make sure you do not specify the same user or group in the rejected senders and accepted senders lists, otherwise you will get an error.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-post-rejectedsenders?view=graph-rest-1.0";
+            command.Description = "Specify the user or group in @odata.id in the request body. Users in the rejected senders list can't post to conversations of the group (identified in the POST request URL). Make sure you don't specify the same user or group in the rejected senders and accepted senders lists, otherwise you'll get an error.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-post-rejectedsenders?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -186,7 +186,7 @@ namespace ApiSdk.Groups.Item.RejectedSenders.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Specify the user or group in @odata.id in the request body. Users in the rejected senders list cannot post to conversations of the group (identified in the POST request URL). Make sure you do not specify the same user or group in the rejected senders and accepted senders lists, otherwise you will get an error.
+        /// Specify the user or group in @odata.id in the request body. Users in the rejected senders list can&apos;t post to conversations of the group (identified in the POST request URL). Make sure you don&apos;t specify the same user or group in the rejected senders and accepted senders lists, otherwise you&apos;ll get an error.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

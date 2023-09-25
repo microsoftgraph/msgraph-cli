@@ -63,11 +63,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"allowMultipleValues", n => { AllowMultipleValues = n.GetBoolValue(); } },
                 {"allowUnlimitedLength", n => { AllowUnlimitedLength = n.GetBoolValue(); } },
                 {"columnName", n => { ColumnName = n.GetStringValue(); } },
                 {"listId", n => { ListId = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"primaryLookupColumnId", n => { PrimaryLookupColumnId = n.GetStringValue(); } },
             };
         }

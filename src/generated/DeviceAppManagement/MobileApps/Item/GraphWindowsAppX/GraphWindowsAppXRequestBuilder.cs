@@ -14,17 +14,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphMobileLobApp {
+namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphWindowsAppX {
     /// <summary>
-    /// Casts the previous resource to mobileLobApp.
+    /// Casts the previous resource to windowsAppX.
     /// </summary>
-    public class GraphMobileLobAppRequestBuilder : BaseCliRequestBuilder {
+    public class GraphWindowsAppXRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Get the item of type microsoft.graph.mobileApp as microsoft.graph.mobileLobApp
+        /// Get the item of type microsoft.graph.mobileApp as microsoft.graph.windowsAppX
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get the item of type microsoft.graph.mobileApp as microsoft.graph.mobileLobApp";
+            command.Description = "Get the item of type microsoft.graph.mobileApp as microsoft.graph.windowsAppX";
             var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "The unique identifier of mobileApp") {
             };
             mobileAppIdOption.IsRequired = true;
@@ -81,27 +81,27 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphMobileLobApp {
             return command;
         }
         /// <summary>
-        /// Instantiates a new GraphMobileLobAppRequestBuilder and sets the default values.
+        /// Instantiates a new GraphWindowsAppXRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public GraphMobileLobAppRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.mobileLobApp{?%24select,%24expand}", pathParameters) {
+        public GraphWindowsAppXRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.windowsAppX{?%24select,%24expand}", pathParameters) {
         }
         /// <summary>
-        /// Instantiates a new GraphMobileLobAppRequestBuilder and sets the default values.
+        /// Instantiates a new GraphWindowsAppXRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public GraphMobileLobAppRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.mobileLobApp{?%24select,%24expand}", rawUrl) {
+        public GraphWindowsAppXRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}/graph.windowsAppX{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get the item of type microsoft.graph.mobileApp as microsoft.graph.mobileLobApp
+        /// Get the item of type microsoft.graph.mobileApp as microsoft.graph.windowsAppX
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphMobileLobAppRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphWindowsAppXRequestBuilderGetQueryParameters>>? requestConfiguration = default) {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphMobileLobAppRequestBuilderGetQueryParameters>> requestConfiguration = default) {
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<GraphWindowsAppXRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
             var requestInfo = new RequestInformation {
                 HttpMethod = Method.GET,
@@ -110,7 +110,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphMobileLobApp {
             };
             requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
-                var requestConfig = new RequestConfiguration<GraphMobileLobAppRequestBuilderGetQueryParameters>();
+                var requestConfig = new RequestConfiguration<GraphWindowsAppXRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
                 requestInfo.AddQueryParameters(requestConfig.QueryParameters);
                 requestInfo.AddRequestOptions(requestConfig.Options);
@@ -119,9 +119,9 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item.GraphMobileLobApp {
             return requestInfo;
         }
         /// <summary>
-        /// Get the item of type microsoft.graph.mobileApp as microsoft.graph.mobileLobApp
+        /// Get the item of type microsoft.graph.mobileApp as microsoft.graph.windowsAppX
         /// </summary>
-        public class GraphMobileLobAppRequestBuilderGetQueryParameters {
+        public class GraphWindowsAppXRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -43,8 +43,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"newPassword", n => { NewPassword = n.GetStringValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"newPassword", n => { NewPassword = n.GetStringValue(); } },
             };
         }
         /// <summary>

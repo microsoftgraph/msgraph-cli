@@ -2,23 +2,26 @@
 using System.Runtime.Serialization;
 using System;
 namespace ApiSdk.Models {
-    /// <summary>Contains properties for Windows device type.</summary>
+    /// <summary>Contains properties for Windows device type. Multiple values can be selected. Default value is `none`.</summary>
     [Flags]
     public enum WindowsDeviceType {
-        /// <summary>No flags set.</summary>
+        /// <summary>No device types supported. Default value.</summary>
         [EnumMember(Value = "none")]
         None = 1,
-        /// <summary>Whether or not the Desktop Windows device type is supported.</summary>
+        /// <summary>Indicates support for Desktop Windows device type.</summary>
         [EnumMember(Value = "desktop")]
         Desktop = 2,
-        /// <summary>Whether or not the Mobile Windows device type is supported.</summary>
+        /// <summary>Indicates support for Mobile Windows device type.</summary>
         [EnumMember(Value = "mobile")]
         Mobile = 4,
-        /// <summary>Whether or not the Holographic Windows device type is supported.</summary>
+        /// <summary>Indicates support for Holographic Windows device type.</summary>
         [EnumMember(Value = "holographic")]
         Holographic = 8,
-        /// <summary>Whether or not the Team Windows device type is supported.</summary>
+        /// <summary>Indicates support for Team Windows device type.</summary>
         [EnumMember(Value = "team")]
         Team = 16,
+        /// <summary>Evolvable enumeration sentinel value. Do not use.</summary>
+        [EnumMember(Value = "unknownFutureValue")]
+        UnknownFutureValue = 32,
     }
 }

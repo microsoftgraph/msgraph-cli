@@ -117,6 +117,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"aadUserId", n => { AadUserId = n.GetStringValue(); } },
                 {"accountName", n => { AccountName = n.GetStringValue(); } },
                 {"domainName", n => { DomainName = n.GetStringValue(); } },
@@ -127,7 +128,6 @@ namespace ApiSdk.Models {
                 {"logonIp", n => { LogonIp = n.GetStringValue(); } },
                 {"logonLocation", n => { LogonLocation = n.GetStringValue(); } },
                 {"logonType", n => { LogonType = n.GetEnumValue<LogonType>(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"onPremisesSecurityIdentifier", n => { OnPremisesSecurityIdentifier = n.GetStringValue(); } },
                 {"riskScore", n => { RiskScore = n.GetStringValue(); } },
                 {"userAccountType", n => { UserAccountType = n.GetEnumValue<UserAccountSecurityType>(); } },

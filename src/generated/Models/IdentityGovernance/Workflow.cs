@@ -24,7 +24,7 @@ namespace ApiSdk.Models.IdentityGovernance {
 #else
         public string Id { get; set; }
 #endif
-        /// <summary>The date time when the workflow is expected to run next based on the schedule interval, if there are any users matching the execution conditions. Supports $filter(lt,gt) and $orderBy.</summary>
+        /// <summary>The date time when the workflow is expected to run next based on the schedule interval, if there are any users matching the execution conditions. Supports $filter(lt,gt) and $orderby.</summary>
         public DateTimeOffset? NextScheduleRunDateTime { get; set; }
         /// <summary>Workflow runs.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

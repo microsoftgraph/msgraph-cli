@@ -42,8 +42,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"deviceRestartBehavior", n => { DeviceRestartBehavior = n.GetEnumValue<Win32LobAppRestartBehavior>(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"deviceRestartBehavior", n => { DeviceRestartBehavior = n.GetEnumValue<Win32LobAppRestartBehavior>(); } },
                 {"runAsAccount", n => { RunAsAccount = n.GetEnumValue<RunAsAccountType>(); } },
             };
         }

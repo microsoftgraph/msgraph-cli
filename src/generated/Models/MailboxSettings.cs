@@ -95,12 +95,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"archiveFolder", n => { ArchiveFolder = n.GetStringValue(); } },
                 {"automaticRepliesSetting", n => { AutomaticRepliesSetting = n.GetObjectValue<ApiSdk.Models.AutomaticRepliesSetting>(ApiSdk.Models.AutomaticRepliesSetting.CreateFromDiscriminatorValue); } },
                 {"dateFormat", n => { DateFormat = n.GetStringValue(); } },
                 {"delegateMeetingMessageDeliveryOptions", n => { DelegateMeetingMessageDeliveryOptions = n.GetEnumValue<DelegateMeetingMessageDeliveryOptions>(); } },
                 {"language", n => { Language = n.GetObjectValue<LocaleInfo>(LocaleInfo.CreateFromDiscriminatorValue); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"timeFormat", n => { TimeFormat = n.GetStringValue(); } },
                 {"timeZone", n => { TimeZone = n.GetStringValue(); } },
                 {"userPurpose", n => { UserPurpose = n.GetEnumValue<UserPurpose>(); } },

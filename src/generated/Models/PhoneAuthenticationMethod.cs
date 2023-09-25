@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class PhoneAuthenticationMethod : AuthenticationMethod, IParsable {
-        /// <summary>The phone number to text or call for authentication. Phone numbers use the format +{country code} {number}x{extension}, with extension optional. For example, +1 5555551234 or +1 5555551234x123 are valid. Numbers are rejected when creating or updating if they do not match the required format.</summary>
+        /// <summary>The phone number to text or call for authentication. Phone numbers use the format +{country code} {number}x{extension}, with extension optional. For example, +1 5555551234 or +1 5555551234x123 are valid. Numbers are rejected when creating or updating if they don&apos;t match the required format.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PhoneNumber { get; set; }

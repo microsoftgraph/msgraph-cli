@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class EducationSubmissionResource : Entity, IParsable {
-        /// <summary>Pointer to the assignment from which this resource was copied. If this is null, the student uploaded the resource.</summary>
+        /// <summary>Pointer to the assignment from which the resource was copied, and if null, the student uploaded the resource.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? AssignmentResourceUrl { get; set; }

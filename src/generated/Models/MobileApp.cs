@@ -119,6 +119,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.iosLobApp" => new IosLobApp(),
                 "#microsoft.graph.iosStoreApp" => new IosStoreApp(),
                 "#microsoft.graph.iosVppApp" => new IosVppApp(),
+                "#microsoft.graph.macOSDmgApp" => new MacOSDmgApp(),
                 "#microsoft.graph.macOSLobApp" => new MacOSLobApp(),
                 "#microsoft.graph.macOSMicrosoftDefenderApp" => new MacOSMicrosoftDefenderApp(),
                 "#microsoft.graph.macOSMicrosoftEdgeApp" => new MacOSMicrosoftEdgeApp(),

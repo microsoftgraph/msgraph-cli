@@ -200,10 +200,10 @@ namespace ApiSdk.Models {
         public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"audioRoutingGroups", n => { AudioRoutingGroups = n.GetCollectionOfObjectValues<AudioRoutingGroup>(AudioRoutingGroup.CreateFromDiscriminatorValue)?.ToList(); } },
-                {"callbackUri", n => { CallbackUri = n.GetStringValue(); } },
                 {"callChainId", n => { CallChainId = n.GetStringValue(); } },
                 {"callOptions", n => { CallOptions = n.GetObjectValue<ApiSdk.Models.CallOptions>(ApiSdk.Models.CallOptions.CreateFromDiscriminatorValue); } },
                 {"callRoutes", n => { CallRoutes = n.GetCollectionOfObjectValues<CallRoute>(CallRoute.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"callbackUri", n => { CallbackUri = n.GetStringValue(); } },
                 {"chatInfo", n => { ChatInfo = n.GetObjectValue<ApiSdk.Models.ChatInfo>(ApiSdk.Models.ChatInfo.CreateFromDiscriminatorValue); } },
                 {"contentSharingSessions", n => { ContentSharingSessions = n.GetCollectionOfObjectValues<ContentSharingSession>(ContentSharingSession.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"direction", n => { Direction = n.GetEnumValue<CallDirection>(); } },

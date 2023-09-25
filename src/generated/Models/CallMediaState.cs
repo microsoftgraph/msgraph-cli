@@ -37,8 +37,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"audio", n => { Audio = n.GetEnumValue<MediaState>(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"audio", n => { Audio = n.GetEnumValue<MediaState>(); } },
             };
         }
         /// <summary>

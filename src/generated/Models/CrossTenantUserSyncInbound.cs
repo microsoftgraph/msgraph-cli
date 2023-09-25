@@ -37,8 +37,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"isSyncAllowed", n => { IsSyncAllowed = n.GetBoolValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"isSyncAllowed", n => { IsSyncAllowed = n.GetBoolValue(); } },
             };
         }
         /// <summary>

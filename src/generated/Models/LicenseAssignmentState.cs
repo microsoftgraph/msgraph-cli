@@ -71,11 +71,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"assignedByGroup", n => { AssignedByGroup = n.GetStringValue(); } },
                 {"disabledPlans", n => { DisabledPlans = n.GetCollectionOfPrimitiveValues<Guid?>()?.ToList(); } },
                 {"error", n => { Error = n.GetStringValue(); } },
                 {"lastUpdatedDateTime", n => { LastUpdatedDateTime = n.GetDateTimeOffsetValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"skuId", n => { SkuId = n.GetGuidValue(); } },
                 {"state", n => { State = n.GetStringValue(); } },
             };

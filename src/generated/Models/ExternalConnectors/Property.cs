@@ -24,7 +24,7 @@ namespace ApiSdk.Models.ExternalConnectors {
         public bool? IsRetrievable { get; set; }
         /// <summary>Specifies if the property is searchable. Only properties of type String or StringCollection can be searchable. Non-searchable properties are not added to the search index. Optional.</summary>
         public bool? IsSearchable { get; set; }
-        /// <summary>Specifies one or more well-known tags added against a property. Labels help Microsoft Search understand the semantics of the data in the connection. Adding appropriate labels would result in an enhanced search experience (e.g. better relevance). The possible values are: title, url, createdBy, lastModifiedBy, authors, createdDateTime, lastModifiedDateTime, fileName, fileExtension, unknownFutureValue. Optional.</summary>
+        /// <summary>Specifies one or more well-known tags added against a property. Labels help Microsoft Search understand the semantics of the data in the connection. Adding appropriate labels would result in an enhanced search experience (e.g. better relevance). The possible values are: title, url, createdBy, lastModifiedBy, authors, createdDateTime, lastModifiedDateTime, fileName, fileExtension, iconUrl, unknownFutureValue. Optional.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<Label?>? Labels { get; set; }
@@ -69,6 +69,7 @@ namespace ApiSdk.Models.ExternalConnectors {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"aliases", n => { Aliases = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"isQueryable", n => { IsQueryable = n.GetBoolValue(); } },
                 {"isRefinable", n => { IsRefinable = n.GetBoolValue(); } },
@@ -76,7 +77,6 @@ namespace ApiSdk.Models.ExternalConnectors {
                 {"isSearchable", n => { IsSearchable = n.GetBoolValue(); } },
                 {"labels", n => { Labels = n.GetCollectionOfEnumValues<Label>()?.ToList(); } },
                 {"name", n => { Name = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"type", n => { Type = n.GetEnumValue<PropertyType>(); } },
             };
         }

@@ -273,6 +273,7 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"attestationIdentityKey", n => { AttestationIdentityKey = n.GetStringValue(); } },
                 {"bitLockerStatus", n => { BitLockerStatus = n.GetStringValue(); } },
                 {"bootAppSecurityVersion", n => { BootAppSecurityVersion = n.GetStringValue(); } },
@@ -292,7 +293,6 @@ namespace ApiSdk.Models {
                 {"healthStatusMismatchInfo", n => { HealthStatusMismatchInfo = n.GetStringValue(); } },
                 {"issuedDateTime", n => { IssuedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"lastUpdateDateTime", n => { LastUpdateDateTime = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"operatingSystemKernelDebugging", n => { OperatingSystemKernelDebugging = n.GetStringValue(); } },
                 {"operatingSystemRevListInfo", n => { OperatingSystemRevListInfo = n.GetStringValue(); } },
                 {"pcr0", n => { Pcr0 = n.GetStringValue(); } },

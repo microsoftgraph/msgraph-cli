@@ -43,10 +43,10 @@ namespace ApiSdk.Models.Security {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"isEnabled", n => { IsEnabled = n.GetBoolValue(); } },
                 {"maxWords", n => { MaxWords = n.GetIntValue(); } },
                 {"minWords", n => { MinWords = n.GetIntValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"similarityThreshold", n => { SimilarityThreshold = n.GetIntValue(); } },
             };
         }

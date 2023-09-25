@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
 #else
         public PlannerOrderHintsByAssignee OrderHintsByAssignee { get; set; }
 #endif
-        /// <summary>Hint value used to order the task on the AssignedTo view of the Task Board when the task is not assigned to anyone, or if the orderHintsByAssignee dictionary does not provide an order hint for the user the task is assigned to. The format is defined as outlined here.</summary>
+        /// <summary>Hint value used to order the task on the AssignedTo view of the Task Board when the task isn&apos;t assigned to anyone, or if the orderHintsByAssignee dictionary doesn&apos;t provide an order hint for the user the task is assigned to. The format is defined as outlined here.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? UnassignedOrderHint { get; set; }

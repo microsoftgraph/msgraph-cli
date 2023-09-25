@@ -28,7 +28,7 @@ namespace ApiSdk.Models {
 #else
         public string PrefixFilter { get; set; }
 #endif
-        /// <summary>Specifies the manual ranges to compute the aggregations. This is only valid for non-string refiners of date or numeric type. Optional.</summary>
+        /// <summary>Specifies the manual ranges to compute the aggregations. This is only valid for nonstring refiners of date or numeric type. Optional.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<BucketAggregationRange>? Ranges { get; set; }
@@ -57,9 +57,9 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"isDescending", n => { IsDescending = n.GetBoolValue(); } },
                 {"minimumCount", n => { MinimumCount = n.GetIntValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"prefixFilter", n => { PrefixFilter = n.GetStringValue(); } },
                 {"ranges", n => { Ranges = n.GetCollectionOfObjectValues<BucketAggregationRange>(BucketAggregationRange.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"sortBy", n => { SortBy = n.GetEnumValue<BucketAggregationSortProperty>(); } },

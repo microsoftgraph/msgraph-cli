@@ -68,8 +68,8 @@ namespace ApiSdk.Models {
                 {"isSignedAuthenticationRequestRequired", n => { IsSignedAuthenticationRequestRequired = n.GetBoolValue(); } },
                 {"nextSigningCertificate", n => { NextSigningCertificate = n.GetStringValue(); } },
                 {"promptLoginBehavior", n => { PromptLoginBehavior = n.GetEnumValue<PromptLoginBehavior>(); } },
-                {"signingCertificateUpdateStatus", n => { SigningCertificateUpdateStatus = n.GetObjectValue<ApiSdk.Models.SigningCertificateUpdateStatus>(ApiSdk.Models.SigningCertificateUpdateStatus.CreateFromDiscriminatorValue); } },
                 {"signOutUri", n => { SignOutUri = n.GetStringValue(); } },
+                {"signingCertificateUpdateStatus", n => { SigningCertificateUpdateStatus = n.GetObjectValue<ApiSdk.Models.SigningCertificateUpdateStatus>(ApiSdk.Models.SigningCertificateUpdateStatus.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>

@@ -40,8 +40,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"endTime", n => { EndTime = n.GetTimeValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"endTime", n => { EndTime = n.GetTimeValue(); } },
                 {"startTime", n => { StartTime = n.GetTimeValue(); } },
             };
         }

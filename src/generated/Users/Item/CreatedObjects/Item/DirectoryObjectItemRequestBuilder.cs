@@ -21,11 +21,11 @@ namespace ApiSdk.Users.Item.CreatedObjects.Item {
     /// </summary>
     public class DirectoryObjectItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Directory objects that were created by the user. Read-only. Nullable.
+        /// Directory objects that the user created. Read-only. Nullable.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Directory objects that were created by the user. Read-only. Nullable.";
+            command.Description = "Directory objects that the user created. Read-only. Nullable.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -115,7 +115,7 @@ namespace ApiSdk.Users.Item.CreatedObjects.Item {
         public DirectoryObjectItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/createdObjects/{directoryObject%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Directory objects that were created by the user. Read-only. Nullable.
+        /// Directory objects that the user created. Read-only. Nullable.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -141,7 +141,7 @@ namespace ApiSdk.Users.Item.CreatedObjects.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Directory objects that were created by the user. Read-only. Nullable.
+        /// Directory objects that the user created. Read-only. Nullable.
         /// </summary>
         public class DirectoryObjectItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

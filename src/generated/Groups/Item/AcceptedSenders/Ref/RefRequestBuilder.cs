@@ -111,12 +111,12 @@ namespace ApiSdk.Groups.Item.AcceptedSenders.Ref {
             return command;
         }
         /// <summary>
-        /// Specify the user or group in @odata.id in the request body. Users in the accepted senders list can post to conversations of the group . Make sure you do not specify the same user or group in the accepted senders and rejected senders lists, otherwise you will get an error.
+        /// Specify the user or group in @odata.id in the request body. Users in the accepted senders list can post to conversations of the group. Make sure you don&apos;t specify the same user or group in the accepted senders and rejected senders lists, otherwise you&apos;ll get an error.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-post-acceptedsenders?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Specify the user or group in @odata.id in the request body. Users in the accepted senders list can post to conversations of the group . Make sure you do not specify the same user or group in the accepted senders and rejected senders lists, otherwise you will get an error.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-post-acceptedsenders?view=graph-rest-1.0";
+            command.Description = "Specify the user or group in @odata.id in the request body. Users in the accepted senders list can post to conversations of the group. Make sure you don't specify the same user or group in the accepted senders and rejected senders lists, otherwise you'll get an error.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-post-acceptedsenders?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -186,7 +186,7 @@ namespace ApiSdk.Groups.Item.AcceptedSenders.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Specify the user or group in @odata.id in the request body. Users in the accepted senders list can post to conversations of the group . Make sure you do not specify the same user or group in the accepted senders and rejected senders lists, otherwise you will get an error.
+        /// Specify the user or group in @odata.id in the request body. Users in the accepted senders list can post to conversations of the group. Make sure you don&apos;t specify the same user or group in the accepted senders and rejected senders lists, otherwise you&apos;ll get an error.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

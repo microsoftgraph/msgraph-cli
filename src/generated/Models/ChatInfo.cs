@@ -59,8 +59,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"messageId", n => { MessageId = n.GetStringValue(); } },
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
+                {"messageId", n => { MessageId = n.GetStringValue(); } },
                 {"replyChainMessageId", n => { ReplyChainMessageId = n.GetStringValue(); } },
                 {"threadId", n => { ThreadId = n.GetStringValue(); } },
             };

@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class SignIn : Entity, IParsable {
-        /// <summary>App name displayed in the Azure Portal.  Supports $filter (eq, startsWith).</summary>
+        /// <summary>App name displayed in the Azure portal.  Supports $filter (eq, startsWith).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? AppDisplayName { get; set; }
@@ -110,13 +110,13 @@ namespace ApiSdk.Models {
 #else
         public List<string> RiskEventTypes_v2 { get; set; }
 #endif
-        /// <summary>Aggregated risk level. The possible values are: none, low, medium, high, hidden, and unknownFutureValue. The value hidden means the user or sign-in was not enabled for Azure AD Identity Protection.  Supports $filter (eq).  Note: Details for this property are only available for Azure AD Premium P2 customers. All other customers will be returned hidden.</summary>
+        /// <summary>Aggregated risk level. The possible values are: none, low, medium, high, hidden, and unknownFutureValue. The value hidden means the user or sign-in wasn&apos;t enabled for Azure AD Identity Protection.  Supports $filter (eq).  Note: Details for this property are only available for Azure AD Premium P2 customers. All other customers are returned hidden.</summary>
         public RiskLevel? RiskLevelAggregated { get; set; }
-        /// <summary>Risk level during sign-in. The possible values are: none, low, medium, high, hidden, and unknownFutureValue. The value hidden means the user or sign-in was not enabled for Azure AD Identity Protection.  Supports $filter (eq).  Note: Details for this property are only available for Azure AD Premium P2 customers. All other customers will be returned hidden.</summary>
+        /// <summary>Risk level during sign-in. The possible values are: none, low, medium, high, hidden, and unknownFutureValue. The value hidden means the user or sign-in wasn&apos;t enabled for Azure AD Identity Protection.  Supports $filter (eq).  Note: Details for this property are only available for Azure AD Premium P2 customers. All other customers are returned hidden.</summary>
         public RiskLevel? RiskLevelDuringSignIn { get; set; }
         /// <summary>Reports status of the risky user, sign-in, or a risk event. The possible values are: none, confirmedSafe, remediated, dismissed, atRisk, confirmedCompromised, unknownFutureValue.  Supports $filter (eq).</summary>
         public ApiSdk.Models.RiskState? RiskState { get; set; }
-        /// <summary>Sign-in status. Includes the error code and description of the error (in case of a sign-in failure).  Supports $filter (eq) on errorCode property.</summary>
+        /// <summary>Sign-in status. Includes the error code and description of the error (if there&apos;s a sign-in failure).  Supports $filter (eq) on errorCode property.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public SignInStatus? Status { get; set; }

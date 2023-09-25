@@ -54,13 +54,13 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"altitude", n => { Altitude = n.GetDoubleValue(); } },
                 {"heading", n => { Heading = n.GetDoubleValue(); } },
                 {"horizontalAccuracy", n => { HorizontalAccuracy = n.GetDoubleValue(); } },
                 {"lastCollectedDateTime", n => { LastCollectedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"latitude", n => { Latitude = n.GetDoubleValue(); } },
                 {"longitude", n => { Longitude = n.GetDoubleValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"speed", n => { Speed = n.GetDoubleValue(); } },
                 {"verticalAccuracy", n => { VerticalAccuracy = n.GetDoubleValue(); } },
             };

@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
 #else
         public string ConferenceId { get; set; }
 #endif
-        /// <summary>The external link that launches the online meeting. This is a URL that clients will launch into a browser and will redirect the user to join the meeting.</summary>
+        /// <summary>The external link that launches the online meeting. This is a URL that clients launch into a browser and will redirect the user to join the meeting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? JoinUrl { get; set; }
@@ -40,7 +40,7 @@ namespace ApiSdk.Models {
 #else
         public List<Phone> Phones { get; set; }
 #endif
-        /// <summary>The pre-formatted quickdial for this call.</summary>
+        /// <summary>The preformatted quick dial for this call.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? QuickDial { get; set; }
@@ -83,9 +83,9 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"conferenceId", n => { ConferenceId = n.GetStringValue(); } },
                 {"joinUrl", n => { JoinUrl = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"phones", n => { Phones = n.GetCollectionOfObjectValues<Phone>(Phone.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"quickDial", n => { QuickDial = n.GetStringValue(); } },
                 {"tollFreeNumbers", n => { TollFreeNumbers = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },

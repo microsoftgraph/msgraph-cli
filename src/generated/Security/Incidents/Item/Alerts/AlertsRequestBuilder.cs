@@ -26,9 +26,11 @@ namespace ApiSdk.Security.Incidents.Item.Alerts {
         /// </summary>
         public Tuple<List<Command>, List<Command>> BuildCommand() {
             var executables = new List<Command>();
+            var commands = new List<Command>();
             var builder = new AlertItemRequestBuilder(PathParameters);
+            commands.Add(builder.BuildCommentsNavCommand());
             executables.Add(builder.BuildGetCommand());
-            return new(executables, new(0));
+            return new(executables, commands);
         }
         /// <summary>
         /// Provides operations to count the resources in the collection.

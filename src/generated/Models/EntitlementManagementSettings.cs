@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class EntitlementManagementSettings : Entity, IParsable {
-        /// <summary>If externalUserLifecycleAction is blockSignInAndDelete, the duration, typically a number of days, after an external user is blocked from sign in before their account is deleted.</summary>
+        /// <summary>If externalUserLifecycleAction is blockSignInAndDelete, the duration, typically many days, after an external user is blocked from sign in before their account is deleted.</summary>
         public TimeSpan? DurationUntilExternalUserDeletedAfterBlocked { get; set; }
         /// <summary>Automatic action that the service should take when an external user&apos;s last access package assignment is removed. The possible values are: none, blockSignIn, blockSignInAndDelete, unknownFutureValue.</summary>
         public AccessPackageExternalUserLifecycleAction? ExternalUserLifecycleAction { get; set; }

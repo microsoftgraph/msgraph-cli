@@ -48,10 +48,10 @@ namespace ApiSdk.Models {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"allowStaffSelection", n => { AllowStaffSelection = n.GetBoolValue(); } },
                 {"maximumAdvance", n => { MaximumAdvance = n.GetTimeSpanValue(); } },
                 {"minimumLeadTime", n => { MinimumLeadTime = n.GetTimeSpanValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"sendConfirmationsToOwner", n => { SendConfirmationsToOwner = n.GetBoolValue(); } },
                 {"timeSlotInterval", n => { TimeSlotInterval = n.GetTimeSpanValue(); } },
             };

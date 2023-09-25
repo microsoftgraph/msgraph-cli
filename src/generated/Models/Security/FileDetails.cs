@@ -93,12 +93,12 @@ namespace ApiSdk.Models.Security {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"fileName", n => { FileName = n.GetStringValue(); } },
                 {"filePath", n => { FilePath = n.GetStringValue(); } },
                 {"filePublisher", n => { FilePublisher = n.GetStringValue(); } },
                 {"fileSize", n => { FileSize = n.GetLongValue(); } },
                 {"issuer", n => { Issuer = n.GetStringValue(); } },
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"sha1", n => { Sha1 = n.GetStringValue(); } },
                 {"sha256", n => { Sha256 = n.GetStringValue(); } },
                 {"signer", n => { Signer = n.GetStringValue(); } },
