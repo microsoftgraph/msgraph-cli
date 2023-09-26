@@ -11,7 +11,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-## [1.0.0-rc.0]
+## [1.0.0-rc.1] - 2023-09-26
+
+### Added
+
+- Added managed identity login. Use `mgc login --strategy ManagedIdentity` to use it.
+
+### Changed
+
+- Changed output encoding to `utf-8` for better compatibility with other tools like `jq` [#341]
+- Fix line breaks on output [#341]
+- Fix headers parsing breaking on '=' in header value. [#343]
+
+
+## [1.0.0-rc.0] - 2023-09-20
 
 ### Added
 
