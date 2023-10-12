@@ -81,6 +81,8 @@ namespace Microsoft.Graph.Cli
                     _ when ex is TaskCanceledException => string.Empty,
                     ODataError _e when ex is ODataError => $"Error {_e.ResponseStatusCode}({_e.Error?.Code}) from API:\n  {_e.Error?.Message}",
                     ApiException _e when ex is ApiException => $"Error {_e.ResponseStatusCode} from API.",
+                    AuthenticationFailedException e => $"Authentication failed: {e.Message}",
+                    Identity.Client.MsalException e => $"Authentication failed: {e.Message}",
                     _ => ex.Message
                 };
 
@@ -124,7 +126,14 @@ namespace Microsoft.Graph.Cli
             builder.AddMiddleware(async (ic, next) =>
             {
                 debugEnabled = ic.ParseResult.GetValueForOption<bool>(debugOption);
-                listener = AzureEventSourceListener.CreateConsoleLogger(debugEnabled ? EventLevel.LogAlways : EventLevel.Critical);
+                if (debugEnabled)
+                {
+                    listener = CreateStdErrLogger(EventLevel.LogAlways);
+                }
+                else
+                {
+                    listener = CreateStdErrLogger(EventLevel.Error);
+                }
                 await next(ic);
             });
 
@@ -198,6 +207,9 @@ namespace Microsoft.Graph.Cli
             }).ConfigureLogging((ctx, logBuilder) =>
             {
                 logBuilder.SetMinimumLevel(LogLevel.Warning);
+                logBuilder.ClearProviders();
+                // Log everything to stderr. Investigate if this breaks scripts that check for stderr instead of the exit code.
+                logBuilder.AddConsole(c => c.LogToStandardErrorThreshold = LogLevel.Trace);
                 // Allow runtime selection of log level
                 logBuilder.AddFilter("Microsoft.Graph.Cli", level => level >= (debugEnabled ? LogLevel.Debug : LogLevel.Warning));
             });
@@ -213,6 +225,15 @@ namespace Microsoft.Graph.Cli
             builder.AddJsonFile(userConfigPath, optional: true);
             builder.AddJsonFile(authCache.GetAuthenticationCacheFilePath(), optional: true, reloadOnChange: true);
             builder.AddEnvironmentVariables(prefix: "MGC_");
+        }
+
+        static AzureEventSourceListener CreateStdErrLogger(EventLevel level = EventLevel.Informational)
+        {
+            return new AzureEventSourceListener(delegate (EventWrittenEventArgs eventData, string text)
+            {
+                // By default, AzureEventSourceListener.CreateConsoleLogger logs to stdout. Use stderr instead.
+                Console.Error.WriteLine("[{1}] {0}: {2}", eventData.EventSource.Name, eventData.Level, text);
+            }, level);
         }
     }
 }
