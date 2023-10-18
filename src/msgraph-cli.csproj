@@ -8,14 +8,14 @@
     <Nullable>enable</Nullable>
     <AssemblyName>mgc</AssemblyName>
     <Version>1.0.0-rc.1</Version>
+    <NoWarn>$(NoWarn);CS8669;</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup>
     <PublishSingleFile>false</PublishSingleFile>
     <SelfContained>false</SelfContained>
     <PublishReadyToRun>false</PublishReadyToRun>
-    <RuntimeIdentifiers>win-x64;linux-x64;osx-x64;osx-arm64</RuntimeIdentifiers>
-    <PublishAot>false</PublishAot>
+    <PublishAot>true</PublishAot>
   </PropertyGroup>
 
   <PropertyGroup>
