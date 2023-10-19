@@ -46,12 +46,12 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.PassiveDnsReverse {
             return command;
         }
         /// <summary>
-        /// Get a list of passiveDnsRecord resources.
+        /// Get a collection of passiveDnsRecord resources from a reverse passive DNS retrieval.  A reverse DNS lookup queries the hostname of a host using an IP address. This API is available in the following national cloud deployments.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-host-list-passivednsreverse?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of passiveDnsRecord resources.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-host-list-passivednsreverse?view=graph-rest-1.0";
+            command.Description = "Get a collection of passiveDnsRecord resources from a reverse passive DNS retrieval.  A reverse DNS lookup queries the hostname of a host using an IP address. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-host-list-passivednsreverse?view=graph-rest-1.0";
             var hostIdOption = new Option<string>("--host-id", description: "The unique identifier of host") {
             };
             hostIdOption.IsRequired = true;
@@ -91,19 +91,10 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.PassiveDnsReverse {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON);
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
             command.AddOption(queryOption);
-            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
-                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
-                    return value;
-                }
-                return true;
-            }, description: "Disable indentation for the JSON output formatter.");
-            command.AddOption(jsonNoIndentOption);
             var allOption = new Option<bool>("--all");
             command.AddOption(allOption);
             command.SetHandler(async (invocationContext) => {
@@ -118,7 +109,6 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.PassiveDnsReverse {
                 var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
-                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 var all = invocationContext.ParseResult.GetValueForOption(allOption);
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
@@ -143,16 +133,14 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.PassiveDnsReverse {
                 var pagingData = new PageLinkData(requestInfo, null, itemName: "value", nextLinkName: "@odata.nextLink");
                 var pageResponse = await pagingService.GetPagedDataAsync((info, token) => reqAdapter.SendNoContentAsync(info, cancellationToken: token), pagingData, all, cancellationToken);
                 var response = pageResponse?.Response;
-                IOutputFormatterOptions? formatterOptions = null;
                 IOutputFormatter? formatter = null;
                 if (pageResponse?.StatusCode >= 200 && pageResponse?.StatusCode < 300) {
                     formatter = outputFormatterFactory.GetFormatter(output);
                     response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
-                    formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 } else {
                     formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
                 }
-                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+                await formatter.WriteOutputAsync(response, cancellationToken);
             });
             return command;
         }
@@ -169,7 +157,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.PassiveDnsReverse {
         public PassiveDnsReverseRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/passiveDnsReverse{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get a list of passiveDnsRecord resources.
+        /// Get a collection of passiveDnsRecord resources from a reverse passive DNS retrieval.  A reverse DNS lookup queries the hostname of a host using an IP address. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -184,7 +172,6 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.PassiveDnsReverse {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new RequestConfiguration<PassiveDnsReverseRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
@@ -192,10 +179,11 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.PassiveDnsReverse {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json;q=1");
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of passiveDnsRecord resources.
+        /// Get a collection of passiveDnsRecord resources from a reverse passive DNS retrieval.  A reverse DNS lookup queries the hostname of a host using an IP address. This API is available in the following national cloud deployments.
         /// </summary>
         public class PassiveDnsReverseRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

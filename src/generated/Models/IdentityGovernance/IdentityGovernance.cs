@@ -48,6 +48,14 @@ namespace ApiSdk.Models.IdentityGovernance {
 #else
         public string OdataType { get; set; }
 #endif
+        /// <summary>The privilegedAccess property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.PrivilegedAccessRoot? PrivilegedAccess { get; set; }
+#nullable restore
+#else
+        public ApiSdk.Models.PrivilegedAccessRoot PrivilegedAccess { get; set; }
+#endif
         /// <summary>The termsOfUse property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -80,6 +88,7 @@ namespace ApiSdk.Models.IdentityGovernance {
                 {"appConsent", n => { AppConsent = n.GetObjectValue<ApiSdk.Models.AppConsentApprovalRoute>(ApiSdk.Models.AppConsentApprovalRoute.CreateFromDiscriminatorValue); } },
                 {"entitlementManagement", n => { EntitlementManagement = n.GetObjectValue<ApiSdk.Models.EntitlementManagement>(ApiSdk.Models.EntitlementManagement.CreateFromDiscriminatorValue); } },
                 {"lifecycleWorkflows", n => { LifecycleWorkflows = n.GetObjectValue<LifecycleWorkflowsContainer>(LifecycleWorkflowsContainer.CreateFromDiscriminatorValue); } },
+                {"privilegedAccess", n => { PrivilegedAccess = n.GetObjectValue<ApiSdk.Models.PrivilegedAccessRoot>(ApiSdk.Models.PrivilegedAccessRoot.CreateFromDiscriminatorValue); } },
                 {"termsOfUse", n => { TermsOfUse = n.GetObjectValue<ApiSdk.Models.TermsOfUseContainer>(ApiSdk.Models.TermsOfUseContainer.CreateFromDiscriminatorValue); } },
             };
         }
@@ -94,6 +103,7 @@ namespace ApiSdk.Models.IdentityGovernance {
             writer.WriteObjectValue<ApiSdk.Models.EntitlementManagement>("entitlementManagement", EntitlementManagement);
             writer.WriteObjectValue<LifecycleWorkflowsContainer>("lifecycleWorkflows", LifecycleWorkflows);
             writer.WriteStringValue("@odata.type", OdataType);
+            writer.WriteObjectValue<ApiSdk.Models.PrivilegedAccessRoot>("privilegedAccess", PrivilegedAccess);
             writer.WriteObjectValue<ApiSdk.Models.TermsOfUseContainer>("termsOfUse", TermsOfUse);
             writer.WriteAdditionalData(AdditionalData);
         }

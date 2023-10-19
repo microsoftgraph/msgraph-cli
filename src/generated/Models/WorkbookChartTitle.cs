@@ -24,7 +24,7 @@ namespace ApiSdk.Models {
 #else
         public string Text { get; set; }
 #endif
-        /// <summary>A boolean value the represents the visibility of a chart title object.</summary>
+        /// <summary>A boolean value that represents the visibility of a chart title object.</summary>
         public bool? Visible { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

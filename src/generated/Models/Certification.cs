@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
 #else
         public string CertificationDetailsUrl { get; private set; }
 #endif
-        /// <summary>The timestamp when the current certification for the application will expire.</summary>
+        /// <summary>The timestamp when the current certification for the application expires.</summary>
         public DateTimeOffset? CertificationExpirationDateTime { get; set; }
         /// <summary>Indicates whether the application is certified by Microsoft.</summary>
         public bool? IsCertifiedByMicrosoft { get; private set; }

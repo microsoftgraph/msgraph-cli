@@ -24,6 +24,14 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
+        /// <summary>The people property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public PeopleAdminSettings? People { get; set; }
+#nullable restore
+#else
+        public PeopleAdminSettings People { get; set; }
+#endif
         /// <summary>A container for service communications resources. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -61,6 +69,7 @@ namespace ApiSdk.Models {
             return new Dictionary<string, Action<IParseNode>> {
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"edge", n => { Edge = n.GetObjectValue<ApiSdk.Models.Edge>(ApiSdk.Models.Edge.CreateFromDiscriminatorValue); } },
+                {"people", n => { People = n.GetObjectValue<PeopleAdminSettings>(PeopleAdminSettings.CreateFromDiscriminatorValue); } },
                 {"serviceAnnouncement", n => { ServiceAnnouncement = n.GetObjectValue<ApiSdk.Models.ServiceAnnouncement>(ApiSdk.Models.ServiceAnnouncement.CreateFromDiscriminatorValue); } },
                 {"sharepoint", n => { Sharepoint = n.GetObjectValue<ApiSdk.Models.Sharepoint>(ApiSdk.Models.Sharepoint.CreateFromDiscriminatorValue); } },
             };
@@ -73,6 +82,7 @@ namespace ApiSdk.Models {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<ApiSdk.Models.Edge>("edge", Edge);
             writer.WriteStringValue("@odata.type", OdataType);
+            writer.WriteObjectValue<PeopleAdminSettings>("people", People);
             writer.WriteObjectValue<ApiSdk.Models.ServiceAnnouncement>("serviceAnnouncement", ServiceAnnouncement);
             writer.WriteObjectValue<ApiSdk.Models.Sharepoint>("sharepoint", Sharepoint);
             writer.WriteAdditionalData(AdditionalData);

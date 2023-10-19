@@ -79,7 +79,10 @@ namespace ApiSdk.Organization.Item.Branding.SquareLogo {
                 var outputFile = invocationContext.ParseResult.GetValueForOption(outputFileOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
-                if (inputFile is null || !inputFile.Exists) return;
+                if (inputFile is null || !inputFile.Exists) {
+                    Console.Error.WriteLine("No available file to send.");
+                    return;
+                }
                 using var stream = inputFile.OpenRead();
                 var requestInfo = ToPutRequestInformation(stream, q => {
                 });
@@ -137,6 +140,7 @@ namespace ApiSdk.Organization.Item.Branding.SquareLogo {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/octet-stream, application/json, application/json");
             return requestInfo;
         }
         /// <summary>
@@ -157,7 +161,6 @@ namespace ApiSdk.Organization.Item.Branding.SquareLogo {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            requestInfo.SetStreamContent(body);
             if (requestConfiguration != null) {
                 var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
@@ -165,6 +168,8 @@ namespace ApiSdk.Organization.Item.Branding.SquareLogo {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json, application/json");
+            requestInfo.SetStreamContent(body, "application/octet-stream");
             return requestInfo;
         }
     }

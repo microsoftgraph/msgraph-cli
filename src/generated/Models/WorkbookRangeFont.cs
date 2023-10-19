@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
     public class WorkbookRangeFont : Entity, IParsable {
         /// <summary>Represents the bold status of font.</summary>
         public bool? Bold { get; set; }
-        /// <summary>HTML color code representation of the text color. E.g. #FF0000 represents Red.</summary>
+        /// <summary>HTML color code representation of the text color. for example #FF0000 represents Red.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Color { get; set; }
@@ -18,7 +18,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Represents the italic status of the font.</summary>
         public bool? Italic { get; set; }
-        /// <summary>Font name (e.g. &apos;Calibri&apos;)</summary>
+        /// <summary>Font name (for example &apos;Calibri&apos;)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }

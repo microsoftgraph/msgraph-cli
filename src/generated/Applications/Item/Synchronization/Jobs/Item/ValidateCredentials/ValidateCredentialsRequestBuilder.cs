@@ -19,12 +19,12 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.ValidateCredentials
     /// </summary>
     public class ValidateCredentialsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Validate that the credentials are valid in the tenant.
+        /// Validate that the credentials are valid in the tenant. This API is available in the following national cloud deployments.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-validatecredentials?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Validate that the credentials are valid in the tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-validatecredentials?view=graph-rest-1.0";
+            command.Description = "Validate that the credentials are valid in the tenant. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronizationjob-validatecredentials?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -46,7 +46,10 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.ValidateCredentials
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ValidateCredentialsPostRequestBody>(ValidateCredentialsPostRequestBody.CreateFromDiscriminatorValue);
-                if (model is null) return; // Cannot create a POST request from a null model.
+                if (model is null) {
+                    Console.Error.WriteLine("No model data to send.");
+                    return;
+                }
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (applicationId is not null) requestInfo.PathParameters.Add("application%2Did", applicationId);
@@ -74,7 +77,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.ValidateCredentials
         public ValidateCredentialsRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/synchronization/jobs/{synchronizationJob%2Did}/validateCredentials", rawUrl) {
         }
         /// <summary>
-        /// Validate that the credentials are valid in the tenant.
+        /// Validate that the credentials are valid in the tenant. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -98,6 +101,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Jobs.Item.ValidateCredentials
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json, application/json");
             return requestInfo;
         }
     }

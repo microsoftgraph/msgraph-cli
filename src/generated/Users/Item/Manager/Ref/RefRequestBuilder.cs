@@ -20,12 +20,12 @@ namespace ApiSdk.Users.Item.Manager.Ref {
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Remove a user&apos;s manager.
+        /// Remove a user&apos;s manager. This API is available in the following national cloud deployments.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-delete-manager?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Remove a user's manager.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-delete-manager?view=graph-rest-1.0";
+            command.Description = "Remove a user's manager. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-delete-manager?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -54,12 +54,12 @@ namespace ApiSdk.Users.Item.Manager.Ref {
             return command;
         }
         /// <summary>
-        /// Returns the user or organizational contact assigned as the user&apos;s manager. Optionally, you can expand the manager&apos;s chain up to the root node.
+        /// Returns the user or organizational contact assigned as the user&apos;s manager. Optionally, you can expand the manager&apos;s chain up to the root node. This API is available in the following national cloud deployments.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-list-manager?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Returns the user or organizational contact assigned as the user's manager. Optionally, you can expand the manager's chain up to the root node.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-manager?view=graph-rest-1.0";
+            command.Description = "Returns the user or organizational contact assigned as the user's manager. Optionally, you can expand the manager's chain up to the root node. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-manager?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -78,17 +78,17 @@ namespace ApiSdk.Users.Item.Manager.Ref {
                 };
                 var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 var formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
-                await formatter.WriteOutputAsync(response, null, cancellationToken);
+                await formatter.WriteOutputAsync(response, cancellationToken);
             });
             return command;
         }
         /// <summary>
-        /// Assign a user&apos;s manager.
+        /// Assign a user&apos;s manager. This API is available in the following national cloud deployments.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-post-manager?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
-            command.Description = "Assign a user's manager.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-post-manager?view=graph-rest-1.0";
+            command.Description = "Assign a user's manager. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-post-manager?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -105,7 +105,10 @@ namespace ApiSdk.Users.Item.Manager.Ref {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<ReferenceUpdate>(ReferenceUpdate.CreateFromDiscriminatorValue);
-                if (model is null) return; // Cannot create a POST request from a null model.
+                if (model is null) {
+                    Console.Error.WriteLine("No model data to send.");
+                    return;
+                }
                 var requestInfo = ToPutRequestInformation(model, q => {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
@@ -132,7 +135,7 @@ namespace ApiSdk.Users.Item.Manager.Ref {
         public RefRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/manager/$ref", rawUrl) {
         }
         /// <summary>
-        /// Remove a user&apos;s manager.
+        /// Remove a user&apos;s manager. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -154,10 +157,11 @@ namespace ApiSdk.Users.Item.Manager.Ref {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json, application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Returns the user or organizational contact assigned as the user&apos;s manager. Optionally, you can expand the manager&apos;s chain up to the root node.
+        /// Returns the user or organizational contact assigned as the user&apos;s manager. Optionally, you can expand the manager&apos;s chain up to the root node. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -172,7 +176,6 @@ namespace ApiSdk.Users.Item.Manager.Ref {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
@@ -180,10 +183,11 @@ namespace ApiSdk.Users.Item.Manager.Ref {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json;q=1");
             return requestInfo;
         }
         /// <summary>
-        /// Assign a user&apos;s manager.
+        /// Assign a user&apos;s manager. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -207,6 +211,7 @@ namespace ApiSdk.Users.Item.Manager.Ref {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json, application/json");
             return requestInfo;
         }
     }

@@ -30,7 +30,7 @@ namespace ApiSdk.Models {
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>Only present on document libraries. Allows access to the list as a [drive][] resource with [driveItems][driveItem].</summary>
+        /// <summary>Allows access to the list as a drive resource with driveItems. Only present on document libraries.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.Drive? Drive { get; set; }
@@ -46,7 +46,7 @@ namespace ApiSdk.Models {
 #else
         public List<ListItem> Items { get; set; }
 #endif
-        /// <summary>Provides additional details about the list.</summary>
+        /// <summary>Contains more details about the list.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ListInfo? ListProp { get; set; }
@@ -78,7 +78,7 @@ namespace ApiSdk.Models {
 #else
         public List<Subscription> Subscriptions { get; set; }
 #endif
-        /// <summary>If present, indicates that this is a system-managed list. Read-only.</summary>
+        /// <summary>If present, indicates that the list is system-managed. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public SystemFacet? System { get; set; }

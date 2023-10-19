@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
     public class ConvertIdResult : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>An error object indicating the reason for the conversion failure. This value is not present if the conversion succeeded.</summary>
+        /// <summary>An error object indicating the reason for the conversion failure. This value isn&apos;t present if the conversion succeeded.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public GenericError? ErrorDetails { get; set; }
@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
 #else
         public string SourceId { get; set; }
 #endif
-        /// <summary>The converted identifier. This value is not present if the conversion failed.</summary>
+        /// <summary>The converted identifier. This value isn&apos;t present if the conversion failed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TargetId { get; set; }

@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>The application that is linked to the tab. This cannot be changed after tab creation.</summary>
+        /// <summary>The application that is linked to the tab. This can&apos;t be changed after tab creation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.TeamsApp? TeamsApp { get; set; }

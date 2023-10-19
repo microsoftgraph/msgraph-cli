@@ -19,12 +19,12 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item.Upgrade {
     /// </summary>
     public class UpgradeRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Upgrade an app installation within a chat.
+        /// Upgrade an app installation within a chat. This API is available in the following national cloud deployments.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-teamsappinstallation-upgrade?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Upgrade an app installation within a chat.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-teamsappinstallation-upgrade?view=graph-rest-1.0";
+            command.Description = "Upgrade an app installation within a chat. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-teamsappinstallation-upgrade?view=graph-rest-1.0";
             var teamIdOption = new Option<string>("--team-id", description: "The unique identifier of team") {
             };
             teamIdOption.IsRequired = true;
@@ -46,7 +46,10 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item.Upgrade {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<UpgradePostRequestBody>(UpgradePostRequestBody.CreateFromDiscriminatorValue);
-                if (model is null) return; // Cannot create a POST request from a null model.
+                if (model is null) {
+                    Console.Error.WriteLine("No model data to send.");
+                    return;
+                }
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (teamId is not null) requestInfo.PathParameters.Add("team%2Did", teamId);
@@ -74,7 +77,7 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item.Upgrade {
         public UpgradeRequestBuilder(string rawUrl) : base("{+baseurl}/teams/{team%2Did}/installedApps/{teamsAppInstallation%2Did}/upgrade", rawUrl) {
         }
         /// <summary>
-        /// Upgrade an app installation within a chat.
+        /// Upgrade an app installation within a chat. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -98,6 +101,7 @@ namespace ApiSdk.Teams.Item.InstalledApps.Item.Upgrade {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json, application/json");
             return requestInfo;
         }
     }

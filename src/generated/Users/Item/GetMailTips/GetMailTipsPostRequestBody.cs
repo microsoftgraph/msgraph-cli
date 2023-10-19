@@ -38,8 +38,8 @@ namespace ApiSdk.Users.Item.GetMailTips {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"emailAddresses", n => { EmailAddresses = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"mailTipsOptions", n => { MailTipsOptions = n.GetEnumValue<MailTipsType>(); } },
+                {"EmailAddresses", n => { EmailAddresses = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"MailTipsOptions", n => { MailTipsOptions = n.GetEnumValue<MailTipsType>(); } },
             };
         }
         /// <summary>
@@ -48,8 +48,8 @@ namespace ApiSdk.Users.Item.GetMailTips {
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfPrimitiveValues<string>("emailAddresses", EmailAddresses);
-            writer.WriteEnumValue<MailTipsType>("mailTipsOptions", MailTipsOptions);
+            writer.WriteCollectionOfPrimitiveValues<string>("EmailAddresses", EmailAddresses);
+            writer.WriteEnumValue<MailTipsType>("MailTipsOptions", MailTipsOptions);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
 #else
         public List<PlannerBucket> Buckets { get; set; }
 #endif
-        /// <summary>Identifies the container of the plan. Specify only the url, the containerId and type, or all properties. After it is set, this property can’t be updated. Required.</summary>
+        /// <summary>Identifies the container of the plan. Specify only the url, the containerId and type, or all properties. After it&apos;s set, this property can’t be updated. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public PlannerPlanContainer? Container { get; set; }
@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Read-only. Date and time at which the plan is created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
-        /// <summary>Read-only. Nullable. Additional details about the plan.</summary>
+        /// <summary>Read-only. Nullable. Extra details about the plan.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public PlannerPlanDetails? Details { get; set; }

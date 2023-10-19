@@ -36,7 +36,7 @@ namespace ApiSdk.Models.Security {
 #else
         public string RemediationStatusDetails { get; set; }
 #endif
-        /// <summary>The role/s that an evidence entity represents in an alert, e.g., an IP address that is associated with an attacker will have the evidence role Attacker.</summary>
+        /// <summary>The role/s that an evidence entity represents in an alert, for example, an IP address that is associated with an attacker has the evidence role Attacker.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<EvidenceRole?>? Roles { get; set; }

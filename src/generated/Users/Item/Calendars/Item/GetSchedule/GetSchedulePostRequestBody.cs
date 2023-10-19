@@ -54,10 +54,10 @@ namespace ApiSdk.Users.Item.Calendars.Item.GetSchedule {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"availabilityViewInterval", n => { AvailabilityViewInterval = n.GetIntValue(); } },
-                {"endTime", n => { EndTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
-                {"schedules", n => { Schedules = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
-                {"startTime", n => { StartTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                {"AvailabilityViewInterval", n => { AvailabilityViewInterval = n.GetIntValue(); } },
+                {"EndTime", n => { EndTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
+                {"Schedules", n => { Schedules = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"StartTime", n => { StartTime = n.GetObjectValue<DateTimeTimeZone>(DateTimeTimeZone.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -66,10 +66,10 @@ namespace ApiSdk.Users.Item.Calendars.Item.GetSchedule {
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteIntValue("availabilityViewInterval", AvailabilityViewInterval);
-            writer.WriteObjectValue<DateTimeTimeZone>("endTime", EndTime);
-            writer.WriteCollectionOfPrimitiveValues<string>("schedules", Schedules);
-            writer.WriteObjectValue<DateTimeTimeZone>("startTime", StartTime);
+            writer.WriteIntValue("AvailabilityViewInterval", AvailabilityViewInterval);
+            writer.WriteObjectValue<DateTimeTimeZone>("EndTime", EndTime);
+            writer.WriteCollectionOfPrimitiveValues<string>("Schedules", Schedules);
+            writer.WriteObjectValue<DateTimeTimeZone>("StartTime", StartTime);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

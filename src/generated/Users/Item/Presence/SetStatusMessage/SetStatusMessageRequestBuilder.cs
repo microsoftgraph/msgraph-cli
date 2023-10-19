@@ -19,11 +19,12 @@ namespace ApiSdk.Users.Item.Presence.SetStatusMessage {
     /// </summary>
     public class SetStatusMessageRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Invoke action setStatusMessage
+        /// Set a presence status message for a user. An optional expiration date and time can be supplied. This API is available in the following national cloud deployments.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/presence-setstatusmessage?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Invoke action setStatusMessage";
+            command.Description = "Set a presence status message for a user. An optional expiration date and time can be supplied. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/presence-setstatusmessage?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -40,7 +41,10 @@ namespace ApiSdk.Users.Item.Presence.SetStatusMessage {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SetStatusMessagePostRequestBody>(SetStatusMessagePostRequestBody.CreateFromDiscriminatorValue);
-                if (model is null) return; // Cannot create a POST request from a null model.
+                if (model is null) {
+                    Console.Error.WriteLine("No model data to send.");
+                    return;
+                }
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
@@ -67,7 +71,7 @@ namespace ApiSdk.Users.Item.Presence.SetStatusMessage {
         public SetStatusMessageRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/presence/setStatusMessage", rawUrl) {
         }
         /// <summary>
-        /// Invoke action setStatusMessage
+        /// Set a presence status message for a user. An optional expiration date and time can be supplied. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -91,6 +95,7 @@ namespace ApiSdk.Users.Item.Presence.SetStatusMessage {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json, application/json");
             return requestInfo;
         }
     }

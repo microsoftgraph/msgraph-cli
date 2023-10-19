@@ -16,7 +16,7 @@ namespace ApiSdk.Models.Security {
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The user object identifier in Azure Active Directory (Azure AD).</summary>
+        /// <summary>The user object identifier in Microsoft Entra ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? AzureAdUserId { get; set; }
@@ -24,7 +24,7 @@ namespace ApiSdk.Models.Security {
 #else
         public string AzureAdUserId { get; set; }
 #endif
-        /// <summary>The user display name in Azure AD.</summary>
+        /// <summary>The user display name in Microsoft Entra ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }
@@ -48,7 +48,7 @@ namespace ApiSdk.Models.Security {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The user principal name of the account in Azure AD.</summary>
+        /// <summary>The user principal name of the account in Microsoft Entra ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? UserPrincipalName { get; set; }

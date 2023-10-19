@@ -66,7 +66,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item.Exte
                 };
                 var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 var formatter = outputFormatterFactory.GetFormatter(FormatterType.TEXT);
-                await formatter.WriteOutputAsync(response, null, cancellationToken);
+                await formatter.WriteOutputAsync(response, cancellationToken);
             });
             return command;
         }
@@ -98,7 +98,6 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item.Exte
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            requestInfo.Headers.Add("Accept", "text/plain");
             if (requestConfiguration != null) {
                 var requestConfig = new RequestConfiguration<CountRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
@@ -106,6 +105,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.CalendarView.Item.Instances.Item.Exte
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "text/plain;q=0.9");
             return requestInfo;
         }
         /// <summary>

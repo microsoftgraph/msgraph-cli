@@ -46,8 +46,42 @@ namespace ApiSdk.Models {
 #else
         public string DisplayName { get; set; }
 #endif
+        /// <summary>The durationInDays property</summary>
+        public int? DurationInDays { get; set; }
+        /// <summary>The endUserNotificationSetting property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.EndUserNotificationSetting? EndUserNotificationSetting { get; set; }
+#nullable restore
+#else
+        public ApiSdk.Models.EndUserNotificationSetting EndUserNotificationSetting { get; set; }
+#endif
+        /// <summary>The excludedAccountTarget property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public AccountTargetContent? ExcludedAccountTarget { get; set; }
+#nullable restore
+#else
+        public AccountTargetContent ExcludedAccountTarget { get; set; }
+#endif
+        /// <summary>The includedAccountTarget property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public AccountTargetContent? IncludedAccountTarget { get; set; }
+#nullable restore
+#else
+        public AccountTargetContent IncludedAccountTarget { get; set; }
+#endif
         /// <summary>Flag that represents if the attack simulation and training campaign was created from a simulation automation flow. Supports $filter and $orderby.</summary>
         public bool? IsAutomated { get; set; }
+        /// <summary>The landingPage property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.LandingPage? LandingPage { get; set; }
+#nullable restore
+#else
+        public ApiSdk.Models.LandingPage LandingPage { get; set; }
+#endif
         /// <summary>Identity of the user who most recently modified the attack simulation and training campaign.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -60,6 +94,30 @@ namespace ApiSdk.Models {
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>Date and time of the launch/start of the attack simulation and training campaign. Supports $filter and $orderby.</summary>
         public DateTimeOffset? LaunchDateTime { get; set; }
+        /// <summary>The loginPage property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.LoginPage? LoginPage { get; set; }
+#nullable restore
+#else
+        public ApiSdk.Models.LoginPage LoginPage { get; set; }
+#endif
+        /// <summary>The oAuthConsentAppDetail property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.OAuthConsentAppDetail? OAuthConsentAppDetail { get; set; }
+#nullable restore
+#else
+        public ApiSdk.Models.OAuthConsentAppDetail OAuthConsentAppDetail { get; set; }
+#endif
+        /// <summary>The payload property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.Payload? Payload { get; set; }
+#nullable restore
+#else
+        public ApiSdk.Models.Payload Payload { get; set; }
+#endif
         /// <summary>Method of delivery of the phishing payload used in the attack simulation and training campaign. Possible values are: unknown, sms, email, teams, unknownFutureValue.</summary>
         public ApiSdk.Models.PayloadDeliveryPlatform? PayloadDeliveryPlatform { get; set; }
         /// <summary>Report of the attack simulation and training campaign.</summary>
@@ -72,6 +130,14 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Status of the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, draft, running, scheduled, succeeded, failed, cancelled, excluded, unknownFutureValue.</summary>
         public SimulationStatus? Status { get; set; }
+        /// <summary>The trainingSetting property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.TrainingSetting? TrainingSetting { get; set; }
+#nullable restore
+#else
+        public ApiSdk.Models.TrainingSetting TrainingSetting { get; set; }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -93,13 +159,22 @@ namespace ApiSdk.Models {
                 {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"description", n => { Description = n.GetStringValue(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
+                {"durationInDays", n => { DurationInDays = n.GetIntValue(); } },
+                {"endUserNotificationSetting", n => { EndUserNotificationSetting = n.GetObjectValue<ApiSdk.Models.EndUserNotificationSetting>(ApiSdk.Models.EndUserNotificationSetting.CreateFromDiscriminatorValue); } },
+                {"excludedAccountTarget", n => { ExcludedAccountTarget = n.GetObjectValue<AccountTargetContent>(AccountTargetContent.CreateFromDiscriminatorValue); } },
+                {"includedAccountTarget", n => { IncludedAccountTarget = n.GetObjectValue<AccountTargetContent>(AccountTargetContent.CreateFromDiscriminatorValue); } },
                 {"isAutomated", n => { IsAutomated = n.GetBoolValue(); } },
+                {"landingPage", n => { LandingPage = n.GetObjectValue<ApiSdk.Models.LandingPage>(ApiSdk.Models.LandingPage.CreateFromDiscriminatorValue); } },
                 {"lastModifiedBy", n => { LastModifiedBy = n.GetObjectValue<EmailIdentity>(EmailIdentity.CreateFromDiscriminatorValue); } },
                 {"lastModifiedDateTime", n => { LastModifiedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"launchDateTime", n => { LaunchDateTime = n.GetDateTimeOffsetValue(); } },
+                {"loginPage", n => { LoginPage = n.GetObjectValue<ApiSdk.Models.LoginPage>(ApiSdk.Models.LoginPage.CreateFromDiscriminatorValue); } },
+                {"oAuthConsentAppDetail", n => { OAuthConsentAppDetail = n.GetObjectValue<ApiSdk.Models.OAuthConsentAppDetail>(ApiSdk.Models.OAuthConsentAppDetail.CreateFromDiscriminatorValue); } },
+                {"payload", n => { Payload = n.GetObjectValue<ApiSdk.Models.Payload>(ApiSdk.Models.Payload.CreateFromDiscriminatorValue); } },
                 {"payloadDeliveryPlatform", n => { PayloadDeliveryPlatform = n.GetEnumValue<PayloadDeliveryPlatform>(); } },
                 {"report", n => { Report = n.GetObjectValue<SimulationReport>(SimulationReport.CreateFromDiscriminatorValue); } },
                 {"status", n => { Status = n.GetEnumValue<SimulationStatus>(); } },
+                {"trainingSetting", n => { TrainingSetting = n.GetObjectValue<ApiSdk.Models.TrainingSetting>(ApiSdk.Models.TrainingSetting.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -117,13 +192,22 @@ namespace ApiSdk.Models {
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
+            writer.WriteIntValue("durationInDays", DurationInDays);
+            writer.WriteObjectValue<ApiSdk.Models.EndUserNotificationSetting>("endUserNotificationSetting", EndUserNotificationSetting);
+            writer.WriteObjectValue<AccountTargetContent>("excludedAccountTarget", ExcludedAccountTarget);
+            writer.WriteObjectValue<AccountTargetContent>("includedAccountTarget", IncludedAccountTarget);
             writer.WriteBoolValue("isAutomated", IsAutomated);
+            writer.WriteObjectValue<ApiSdk.Models.LandingPage>("landingPage", LandingPage);
             writer.WriteObjectValue<EmailIdentity>("lastModifiedBy", LastModifiedBy);
             writer.WriteDateTimeOffsetValue("lastModifiedDateTime", LastModifiedDateTime);
             writer.WriteDateTimeOffsetValue("launchDateTime", LaunchDateTime);
+            writer.WriteObjectValue<ApiSdk.Models.LoginPage>("loginPage", LoginPage);
+            writer.WriteObjectValue<ApiSdk.Models.OAuthConsentAppDetail>("oAuthConsentAppDetail", OAuthConsentAppDetail);
+            writer.WriteObjectValue<ApiSdk.Models.Payload>("payload", Payload);
             writer.WriteEnumValue<PayloadDeliveryPlatform>("payloadDeliveryPlatform", PayloadDeliveryPlatform);
             writer.WriteObjectValue<SimulationReport>("report", Report);
             writer.WriteEnumValue<SimulationStatus>("status", Status);
+            writer.WriteObjectValue<ApiSdk.Models.TrainingSetting>("trainingSetting", TrainingSetting);
         }
     }
 }

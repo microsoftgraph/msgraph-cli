@@ -102,19 +102,10 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Sections.Item.Pages.Item.Content
             };
             inputFileOption.IsRequired = true;
             command.AddOption(inputFileOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON);
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
             command.AddOption(queryOption);
-            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
-                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
-                    return value;
-                }
-                return true;
-            }, description: "Disable indentation for the JSON output formatter.");
-            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var groupId = invocationContext.ParseResult.GetValueForOption(groupIdOption);
                 var siteId = invocationContext.ParseResult.GetValueForOption(siteIdOption);
@@ -123,12 +114,14 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Sections.Item.Pages.Item.Content
                 var inputFile = invocationContext.ParseResult.GetValueForOption(inputFileOption);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
-                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
-                if (inputFile is null || !inputFile.Exists) return;
+                if (inputFile is null || !inputFile.Exists) {
+                    Console.Error.WriteLine("No available file to send.");
+                    return;
+                }
                 using var stream = inputFile.OpenRead();
                 var requestInfo = ToPutRequestInformation(stream, q => {
                 });
@@ -142,9 +135,8 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Sections.Item.Pages.Item.Content
                 };
                 var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
-                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+                await formatter.WriteOutputAsync(response, cancellationToken);
             });
             return command;
         }
@@ -183,6 +175,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Sections.Item.Pages.Item.Content
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/octet-stream, application/json, application/json");
             return requestInfo;
         }
         /// <summary>
@@ -203,8 +196,6 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Sections.Item.Pages.Item.Content
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            requestInfo.Headers.Add("Accept", "application/json");
-            requestInfo.SetStreamContent(body);
             if (requestConfiguration != null) {
                 var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
@@ -212,6 +203,8 @@ namespace ApiSdk.Groups.Item.Sites.Item.Onenote.Sections.Item.Pages.Item.Content
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json;q=1");
+            requestInfo.SetStreamContent(body, "application/octet-stream");
             return requestInfo;
         }
     }

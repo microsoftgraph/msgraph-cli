@@ -19,12 +19,12 @@ namespace ApiSdk.Education.Me.Assignments.Item.Categories.Item.Ref {
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Remove an educationCategory from an educationAssignment. Only teachers can perform this operation.
+        /// Remove an educationCategory from an educationAssignment. Only teachers can perform this operation. This API is available in the following national cloud deployments.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationassignment-remove-category?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Remove an educationCategory from an educationAssignment. Only teachers can perform this operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignment-remove-category?view=graph-rest-1.0";
+            command.Description = "Remove an educationCategory from an educationAssignment. Only teachers can perform this operation. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationassignment-remove-category?view=graph-rest-1.0";
             var educationAssignmentIdOption = new Option<string>("--education-assignment-id", description: "The unique identifier of educationAssignment") {
             };
             educationAssignmentIdOption.IsRequired = true;
@@ -77,7 +77,7 @@ namespace ApiSdk.Education.Me.Assignments.Item.Categories.Item.Ref {
         public RefRequestBuilder(string rawUrl) : base("{+baseurl}/education/me/assignments/{educationAssignment%2Did}/categories/{educationCategory%2Did}/$ref{?%40id*}", rawUrl) {
         }
         /// <summary>
-        /// Remove an educationCategory from an educationAssignment. Only teachers can perform this operation.
+        /// Remove an educationCategory from an educationAssignment. Only teachers can perform this operation. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -99,10 +99,11 @@ namespace ApiSdk.Education.Me.Assignments.Item.Categories.Item.Ref {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json, application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Remove an educationCategory from an educationAssignment. Only teachers can perform this operation.
+        /// Remove an educationCategory from an educationAssignment. Only teachers can perform this operation. This API is available in the following national cloud deployments.
         /// </summary>
         public class RefRequestBuilderDeleteQueryParameters {
             /// <summary>Delete Uri</summary>

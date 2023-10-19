@@ -50,9 +50,9 @@ namespace ApiSdk.Models {
 #else
         public AccessPackageSubject Requestor { get; set; }
 #endif
-        /// <summary>The type of the request. The possible values are: notSpecified, userAdd, UserExtend, userUpdate, userRemove, adminAdd, adminUpdate, adminRemove, systemAdd, systemUpdate, systemRemove, onBehalfAdd (not supported), unknownFutureValue. A request from the user themselves would have requestType of userAdd, userUpdate or userRemove. This property cannot be changed once set.</summary>
+        /// <summary>The type of the request. The possible values are: notSpecified, userAdd, UserExtend, userUpdate, userRemove, adminAdd, adminUpdate, adminRemove, systemAdd, systemUpdate, systemRemove, onBehalfAdd (not supported), unknownFutureValue. A request from the user themselves would have requestType of userAdd, userUpdate or userRemove. This property can&apos;t be changed once set.</summary>
         public AccessPackageRequestType? RequestType { get; set; }
-        /// <summary>The range of dates that access is to be assigned to the requestor. This property cannot be changed once set.</summary>
+        /// <summary>The range of dates that access is to be assigned to the requestor. This property can&apos;t be changed once set.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public EntitlementManagementSchedule? Schedule { get; set; }

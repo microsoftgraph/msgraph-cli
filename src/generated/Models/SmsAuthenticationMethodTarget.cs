@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class SmsAuthenticationMethodTarget : AuthenticationMethodTarget, IParsable {
-        /// <summary>Determines if users can use this authentication method to sign in to Azure AD. true if users can use this method for primary authentication, otherwise false.</summary>
+        /// <summary>Determines if users can use this authentication method to sign in to Microsoft Entra ID. true if users can use this method for primary authentication, otherwise false.</summary>
         public bool? IsUsableForSignIn { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

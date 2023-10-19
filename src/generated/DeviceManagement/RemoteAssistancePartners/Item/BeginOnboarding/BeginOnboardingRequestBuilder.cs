@@ -80,6 +80,7 @@ namespace ApiSdk.DeviceManagement.RemoteAssistancePartners.Item.BeginOnboarding 
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json, application/json");
             return requestInfo;
         }
     }

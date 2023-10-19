@@ -142,7 +142,7 @@ namespace ApiSdk.Models {
 #else
         public string CustomTermsOfUseUrl { get; set; }
 #endif
-        /// <summary>A custom icon (favicon) to replace a default Microsoft product favicon on an Azure AD tenant.</summary>
+        /// <summary>A custom icon (favicon) to replace a default Microsoft product favicon on a Microsoft Entra tenant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public byte[]? Favicon { get; set; }

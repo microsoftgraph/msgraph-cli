@@ -36,7 +36,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ErfC_Precise {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"x", n => { X = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"X", n => { X = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -45,7 +45,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.ErfC_Precise {
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("x", X);
+            writer.WriteObjectValue<Json>("X", X);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

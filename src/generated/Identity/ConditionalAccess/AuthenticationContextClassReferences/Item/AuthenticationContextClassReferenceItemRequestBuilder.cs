@@ -20,12 +20,12 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
     /// </summary>
     public class AuthenticationContextClassReferenceItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete an authenticationContextClassReference object that&apos;s not published or used by a conditional access policy.
+        /// Delete an authenticationContextClassReference object that&apos;s not published or used by a conditional access policy. This API is available in the following national cloud deployments.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/authenticationcontextclassreference-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete an authenticationContextClassReference object that's not published or used by a conditional access policy.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/authenticationcontextclassreference-delete?view=graph-rest-1.0";
+            command.Description = "Delete an authenticationContextClassReference object that's not published or used by a conditional access policy. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/authenticationcontextclassreference-delete?view=graph-rest-1.0";
             var authenticationContextClassReferenceIdOption = new Option<string>("--authentication-context-class-reference-id", description: "The unique identifier of authenticationContextClassReference") {
             };
             authenticationContextClassReferenceIdOption.IsRequired = true;
@@ -54,12 +54,12 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a authenticationContextClassReference object.
+        /// Retrieve the properties and relationships of a authenticationContextClassReference object. This API is available in the following national cloud deployments.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/authenticationcontextclassreference-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a authenticationContextClassReference object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/authenticationcontextclassreference-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of a authenticationContextClassReference object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/authenticationcontextclassreference-get?view=graph-rest-1.0";
             var authenticationContextClassReferenceIdOption = new Option<string>("--authentication-context-class-reference-id", description: "The unique identifier of authenticationContextClassReference") {
             };
             authenticationContextClassReferenceIdOption.IsRequired = true;
@@ -74,26 +74,16 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON);
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
             command.AddOption(queryOption);
-            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
-                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
-                    return value;
-                }
-                return true;
-            }, description: "Disable indentation for the JSON output formatter.");
-            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var authenticationContextClassReferenceId = invocationContext.ParseResult.GetValueForOption(authenticationContextClassReferenceIdOption);
                 var select = invocationContext.ParseResult.GetValueForOption(selectOption);
                 var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
-                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
@@ -109,19 +99,18 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
                 };
                 var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
-                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+                await formatter.WriteOutputAsync(response, cancellationToken);
             });
             return command;
         }
         /// <summary>
-        /// Create an authenticationContextClassReference object, if the ID has not been used. If ID has been used, this call updates the authenticationContextClassReference object.
+        /// Create an authenticationContextClassReference object, if the ID has not been used. If ID has been used, this call updates the authenticationContextClassReference object. This API is available in the following national cloud deployments.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/authenticationcontextclassreference-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Create an authenticationContextClassReference object, if the ID has not been used. If ID has been used, this call updates the authenticationContextClassReference object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/authenticationcontextclassreference-update?view=graph-rest-1.0";
+            command.Description = "Create an authenticationContextClassReference object, if the ID has not been used. If ID has been used, this call updates the authenticationContextClassReference object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/authenticationcontextclassreference-update?view=graph-rest-1.0";
             var authenticationContextClassReferenceIdOption = new Option<string>("--authentication-context-class-reference-id", description: "The unique identifier of authenticationContextClassReference") {
             };
             authenticationContextClassReferenceIdOption.IsRequired = true;
@@ -130,25 +119,15 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON);
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
             command.AddOption(queryOption);
-            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
-                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
-                    return value;
-                }
-                return true;
-            }, description: "Disable indentation for the JSON output formatter.");
-            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var authenticationContextClassReferenceId = invocationContext.ParseResult.GetValueForOption(authenticationContextClassReferenceIdOption);
                 var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
-                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
@@ -156,7 +135,10 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AuthenticationContextClassReference>(AuthenticationContextClassReference.CreateFromDiscriminatorValue);
-                if (model is null) return; // Cannot create a POST request from a null model.
+                if (model is null) {
+                    Console.Error.WriteLine("No model data to send.");
+                    return;
+                }
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (authenticationContextClassReferenceId is not null) requestInfo.PathParameters.Add("authenticationContextClassReference%2Did", authenticationContextClassReferenceId);
@@ -167,9 +149,8 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
                 };
                 var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
-                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+                await formatter.WriteOutputAsync(response, cancellationToken);
             });
             return command;
         }
@@ -186,7 +167,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
         public AuthenticationContextClassReferenceItemRequestBuilder(string rawUrl) : base("{+baseurl}/identity/conditionalAccess/authenticationContextClassReferences/{authenticationContextClassReference%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete an authenticationContextClassReference object that&apos;s not published or used by a conditional access policy.
+        /// Delete an authenticationContextClassReference object that&apos;s not published or used by a conditional access policy. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -208,10 +189,11 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json, application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a authenticationContextClassReference object.
+        /// Retrieve the properties and relationships of a authenticationContextClassReference object. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -226,7 +208,6 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new RequestConfiguration<AuthenticationContextClassReferenceItemRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
@@ -234,10 +215,11 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json;q=1");
             return requestInfo;
         }
         /// <summary>
-        /// Create an authenticationContextClassReference object, if the ID has not been used. If ID has been used, this call updates the authenticationContextClassReference object.
+        /// Create an authenticationContextClassReference object, if the ID has not been used. If ID has been used, this call updates the authenticationContextClassReference object. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -254,7 +236,6 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
@@ -262,10 +243,11 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json;q=1");
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a authenticationContextClassReference object.
+        /// Retrieve the properties and relationships of a authenticationContextClassReference object. This API is available in the following national cloud deployments.
         /// </summary>
         public class AuthenticationContextClassReferenceItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

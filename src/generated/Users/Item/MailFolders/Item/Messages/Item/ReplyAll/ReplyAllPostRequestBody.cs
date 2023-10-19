@@ -44,8 +44,8 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.ReplyAll {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"comment", n => { Comment = n.GetStringValue(); } },
-                {"message", n => { Message = n.GetObjectValue<ApiSdk.Models.Message>(ApiSdk.Models.Message.CreateFromDiscriminatorValue); } },
+                {"Comment", n => { Comment = n.GetStringValue(); } },
+                {"Message", n => { Message = n.GetObjectValue<ApiSdk.Models.Message>(ApiSdk.Models.Message.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -54,8 +54,8 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.ReplyAll {
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("comment", Comment);
-            writer.WriteObjectValue<ApiSdk.Models.Message>("message", Message);
+            writer.WriteStringValue("Comment", Comment);
+            writer.WriteObjectValue<ApiSdk.Models.Message>("Message", Message);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

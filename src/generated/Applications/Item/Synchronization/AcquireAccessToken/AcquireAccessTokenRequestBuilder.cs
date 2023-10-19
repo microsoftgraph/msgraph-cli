@@ -19,12 +19,12 @@ namespace ApiSdk.Applications.Item.Synchronization.AcquireAccessToken {
     /// </summary>
     public class AcquireAccessTokenRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Acquire an OAuth access token to authorize the Azure AD provisioning service to provision users into an application.
+        /// Acquire an OAuth access token to authorize the Microsoft Entra provisioning service to provision users into an application. This API is available in the following national cloud deployments.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-synchronization-acquireaccesstoken?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Acquire an OAuth access token to authorize the Azure AD provisioning service to provision users into an application.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronization-acquireaccesstoken?view=graph-rest-1.0";
+            command.Description = "Acquire an OAuth access token to authorize the Microsoft Entra provisioning service to provision users into an application. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronization-acquireaccesstoken?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -41,7 +41,10 @@ namespace ApiSdk.Applications.Item.Synchronization.AcquireAccessToken {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AcquireAccessTokenPostRequestBody>(AcquireAccessTokenPostRequestBody.CreateFromDiscriminatorValue);
-                if (model is null) return; // Cannot create a POST request from a null model.
+                if (model is null) {
+                    Console.Error.WriteLine("No model data to send.");
+                    return;
+                }
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (applicationId is not null) requestInfo.PathParameters.Add("application%2Did", applicationId);
@@ -68,7 +71,7 @@ namespace ApiSdk.Applications.Item.Synchronization.AcquireAccessToken {
         public AcquireAccessTokenRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/synchronization/acquireAccessToken", rawUrl) {
         }
         /// <summary>
-        /// Acquire an OAuth access token to authorize the Azure AD provisioning service to provision users into an application.
+        /// Acquire an OAuth access token to authorize the Microsoft Entra provisioning service to provision users into an application. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -92,6 +95,7 @@ namespace ApiSdk.Applications.Item.Synchronization.AcquireAccessToken {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json, application/json");
             return requestInfo;
         }
     }

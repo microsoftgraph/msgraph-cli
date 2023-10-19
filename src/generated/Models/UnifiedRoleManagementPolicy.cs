@@ -58,7 +58,7 @@ namespace ApiSdk.Models {
 #else
         public string ScopeId { get; set; }
 #endif
-        /// <summary>The type of the scope where the policy is created. One of Directory, DirectoryRole. Required.</summary>
+        /// <summary>The type of the scope where the policy is created. One of Directory, DirectoryRole, Group. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ScopeType { get; set; }

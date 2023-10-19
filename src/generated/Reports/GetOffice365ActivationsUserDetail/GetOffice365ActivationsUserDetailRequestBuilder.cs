@@ -85,6 +85,7 @@ namespace ApiSdk.Reports.GetOffice365ActivationsUserDetail {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/octet-stream, application/json, application/json");
             return requestInfo;
         }
     }

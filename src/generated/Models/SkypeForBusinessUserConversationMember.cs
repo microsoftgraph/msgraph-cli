@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
 #else
         public string TenantId { get; set; }
 #endif
-        /// <summary>Azure Active Directory ID of the user.</summary>
+        /// <summary>Microsoft Entra ID of the user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? UserId { get; set; }

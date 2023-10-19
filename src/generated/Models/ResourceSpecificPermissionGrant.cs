@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class ResourceSpecificPermissionGrant : DirectoryObject, IParsable {
-        /// <summary>ID of the service principal of the Azure AD app that has been granted access. Read-only.</summary>
+        /// <summary>ID of the service principal of the Microsoft Entra app that has been granted access. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ClientAppId { get; set; }
@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
 #else
         public string ClientAppId { get; set; }
 #endif
-        /// <summary>ID of the Azure AD app that has been granted access. Read-only.</summary>
+        /// <summary>ID of the Microsoft Entra app that has been granted access. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ClientId { get; set; }
@@ -38,7 +38,7 @@ namespace ApiSdk.Models {
 #else
         public string PermissionType { get; set; }
 #endif
-        /// <summary>ID of the Azure AD app that is hosting the resource. Read-only.</summary>
+        /// <summary>ID of the Microsoft Entra app that is hosting the resource. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ResourceAppId { get; set; }

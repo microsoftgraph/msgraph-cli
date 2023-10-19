@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
 #else
         public string Availability { get; set; }
 #endif
-        /// <summary>The statusMessage property</summary>
+        /// <summary>The presence status message of a user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public PresenceStatusMessage? StatusMessage { get; set; }

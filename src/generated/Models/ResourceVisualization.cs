@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
 #else
         public string ContainerWebUrl { get; set; }
 #endif
-        /// <summary>The item&apos;s media type. Can be used for filtering for a specific type of file based on supported IANA Media Mime Types. Note that not all Media Mime Types are supported.</summary>
+        /// <summary>The item&apos;s media type. Can be used for filtering for a specific type of file based on supported IANA Media Mime Types. Not all Media Mime Types are supported.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? MediaType { get; set; }
@@ -72,7 +72,7 @@ namespace ApiSdk.Models {
 #else
         public string Title { get; set; }
 #endif
-        /// <summary>The item&apos;s media type. Can be used for filtering for a specific file based on a specific type. See below for supported types.</summary>
+        /// <summary>The item&apos;s media type. Can be used for filtering for a specific file based on a specific type. See the section Type property values for supported types.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Type { get; set; }

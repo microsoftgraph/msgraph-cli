@@ -50,7 +50,7 @@ namespace ApiSdk.Models {
 #else
         public List<ModifiedProperty> ModifiedProperties { get; set; }
 #endif
-        /// <summary>Indicates the activity name or the operation name. Possible values are: create, update, delete, stageddelete, disable, other and unknownFutureValue. For a list of activities logged, refer to Azure AD activity list. Supports $filter (eq, contains).</summary>
+        /// <summary>Indicates the activity name or the operation name. Possible values are: create, update, delete, stageddelete, disable, other and unknownFutureValue. For a list of activities logged, refer to Microsoft Entra activity list. Supports $filter (eq, contains).</summary>
         public ApiSdk.Models.ProvisioningAction? ProvisioningAction { get; set; }
         /// <summary>Details of provisioning status.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -108,7 +108,7 @@ namespace ApiSdk.Models {
 #else
         public ProvisioningSystem TargetSystem { get; set; }
 #endif
-        /// <summary>Unique Azure AD tenant ID. Supports $filter (eq, contains).</summary>
+        /// <summary>Unique Microsoft Entra tenant ID. Supports $filter (eq, contains).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TenantId { get; set; }
