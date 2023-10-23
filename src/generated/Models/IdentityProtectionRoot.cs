@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>Risk detection in Azure AD Identity Protection and the associated information about the detection.</summary>
+        /// <summary>Risk detection in Microsoft Entra ID Protection and the associated information about the detection.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<RiskDetection>? RiskDetections { get; set; }
@@ -24,7 +24,7 @@ namespace ApiSdk.Models {
 #else
         public List<RiskDetection> RiskDetections { get; set; }
 #endif
-        /// <summary>Azure AD service principals that are at risk.</summary>
+        /// <summary>Microsoft Entra service principals that are at risk.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<RiskyServicePrincipal>? RiskyServicePrincipals { get; set; }
@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
 #else
         public List<RiskyServicePrincipal> RiskyServicePrincipals { get; set; }
 #endif
-        /// <summary>Users that are flagged as at-risk by Azure AD Identity Protection.</summary>
+        /// <summary>Users that are flagged as at-risk by Microsoft Entra ID Protection.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<RiskyUser>? RiskyUsers { get; set; }
@@ -40,7 +40,7 @@ namespace ApiSdk.Models {
 #else
         public List<RiskyUser> RiskyUsers { get; set; }
 #endif
-        /// <summary>Represents information about detected at-risk service principals in an Azure AD tenant.</summary>
+        /// <summary>Represents information about detected at-risk service principals in a Microsoft Entra tenant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<ServicePrincipalRiskDetection>? ServicePrincipalRiskDetections { get; set; }

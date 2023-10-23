@@ -8,9 +8,9 @@ namespace ApiSdk.Models {
     public class AccessPackageAssignmentApprovalSettings : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>If false, then approval is not required for new requests in this policy.</summary>
+        /// <summary>If false, then approval isn&apos;t required for new requests in this policy.</summary>
         public bool? IsApprovalRequiredForAdd { get; set; }
-        /// <summary>If false, then approval is not required for updates to requests in this policy.</summary>
+        /// <summary>If false, then approval isn&apos;t required for updates to requests in this policy.</summary>
         public bool? IsApprovalRequiredForUpdate { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

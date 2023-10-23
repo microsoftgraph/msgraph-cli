@@ -36,6 +36,7 @@ namespace ApiSdk.Models {
             _ = parseNode ?? throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("@odata.type")?.GetStringValue();
             return mappingValue switch {
+                "#microsoft.graph.attackSimulationOperation" => new AttackSimulationOperation(),
                 "#microsoft.graph.richLongRunningOperation" => new RichLongRunningOperation(),
                 _ => new LongRunningOperation(),
             };

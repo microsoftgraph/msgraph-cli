@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>Represents the risk history of Azure AD service principals.</summary>
+        /// <summary>Represents the risk history of Microsoft Entra service principals.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<RiskyServicePrincipalHistoryItem>? History { get; set; }
@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>true if the service principal account is enabled; otherwise, false.</summary>
         public bool? IsEnabled { get; set; }
-        /// <summary>Indicates whether Azure AD is currently processing the service principal&apos;s risky state.</summary>
+        /// <summary>Indicates whether Microsoft Entra ID is currently processing the service principal&apos;s risky state.</summary>
         public bool? IsProcessing { get; set; }
         /// <summary>Details of the detected risk. Note: Details for this property are only available for Workload Identities Premium customers. Events in tenants without this license will be returned hidden. The possible values are: none, hidden,  unknownFutureValue, adminConfirmedServicePrincipalCompromised, adminDismissedAllRiskForServicePrincipal. Note that you must use the Prefer: include-unknown-enum-members request header to get the following value(s) in this evolvable enum: adminConfirmedServicePrincipalCompromised , adminDismissedAllRiskForServicePrincipal.</summary>
         public ApiSdk.Models.RiskDetail? RiskDetail { get; set; }
@@ -42,7 +42,7 @@ namespace ApiSdk.Models {
         public ApiSdk.Models.RiskLevel? RiskLevel { get; set; }
         /// <summary>State of the service principal&apos;s risk. The possible values are: none, confirmedSafe, remediated, dismissed, atRisk, confirmedCompromised, unknownFutureValue.</summary>
         public ApiSdk.Models.RiskState? RiskState { get; set; }
-        /// <summary>Identifies whether the service principal represents an Application, a ManagedIdentity, or a legacy application (socialIdp). This is set by Azure AD internally and is inherited from servicePrincipal.</summary>
+        /// <summary>Identifies whether the service principal represents an Application, a ManagedIdentity, or a legacy application (socialIdp). This is set by Microsoft Entra ID internally and is inherited from servicePrincipal.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ServicePrincipalType { get; set; }

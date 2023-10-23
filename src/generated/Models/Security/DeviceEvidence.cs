@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models.Security {
     public class DeviceEvidence : AlertEvidence, IParsable {
-        /// <summary>A unique identifier assigned to a device by Azure Active Directory (Azure AD) when device is Azure AD-joined.</summary>
+        /// <summary>A unique identifier assigned to a device by Microsoft Entra ID when device is Microsoft Entra joined.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? AzureAdDeviceId { get; set; }

@@ -18,7 +18,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>Indicates whether it is mandatory to answer the custom question.</summary>
+        /// <summary>Indicates whether it&apos;s mandatory to answer the custom question.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? QuestionId { get; set; }

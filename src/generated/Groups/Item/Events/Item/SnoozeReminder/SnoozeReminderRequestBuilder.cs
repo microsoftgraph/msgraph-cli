@@ -19,12 +19,12 @@ namespace ApiSdk.Groups.Item.Events.Item.SnoozeReminder {
     /// </summary>
     public class SnoozeReminderRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Postpone a reminder for an event in a user calendar until a new time.
+        /// Postpone a reminder for an event in a user calendar until a new time. This API is available in the following national cloud deployments.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/event-snoozereminder?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Postpone a reminder for an event in a user calendar until a new time.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-snoozereminder?view=graph-rest-1.0";
+            command.Description = "Postpone a reminder for an event in a user calendar until a new time. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-snoozereminder?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -46,7 +46,10 @@ namespace ApiSdk.Groups.Item.Events.Item.SnoozeReminder {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<SnoozeReminderPostRequestBody>(SnoozeReminderPostRequestBody.CreateFromDiscriminatorValue);
-                if (model is null) return; // Cannot create a POST request from a null model.
+                if (model is null) {
+                    Console.Error.WriteLine("No model data to send.");
+                    return;
+                }
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
@@ -74,7 +77,7 @@ namespace ApiSdk.Groups.Item.Events.Item.SnoozeReminder {
         public SnoozeReminderRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/events/{event%2Did}/snoozeReminder", rawUrl) {
         }
         /// <summary>
-        /// Postpone a reminder for an event in a user calendar until a new time.
+        /// Postpone a reminder for an event in a user calendar until a new time. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -98,6 +101,7 @@ namespace ApiSdk.Groups.Item.Events.Item.SnoozeReminder {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json, application/json");
             return requestInfo;
         }
     }

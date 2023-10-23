@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>This is the id property value of the user resource that represents the user in the Azure Active Directory tenant.</summary>
+        /// <summary>This is the id property value of the user resource that represents the user in the Microsoft Entra tenant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? UserId { get; set; }

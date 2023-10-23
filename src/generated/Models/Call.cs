@@ -62,7 +62,7 @@ namespace ApiSdk.Models {
 #else
         public List<ContentSharingSession> ContentSharingSessions { get; set; }
 #endif
-        /// <summary>The direction of the call. The possible value are incoming or outgoing. Read-only.</summary>
+        /// <summary>The direction of the call. The possible values are incoming or outgoing. Read-only.</summary>
         public CallDirection? Direction { get; set; }
         /// <summary>Call context associated with an incoming call.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -128,7 +128,7 @@ namespace ApiSdk.Models {
 #else
         public List<Modality?> RequestedModalities { get; set; }
 #endif
-        /// <summary>The result information. For example can hold termination reason. Read-only.</summary>
+        /// <summary>The result information. For example, the result can hold termination reason. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.ResultInfo? ResultInfo { get; set; }

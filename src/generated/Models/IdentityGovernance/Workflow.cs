@@ -8,7 +8,7 @@ namespace ApiSdk.Models.IdentityGovernance {
     public class Workflow : WorkflowBase, IParsable {
         /// <summary>When the workflow was deleted.Supports $filter(lt, le, gt, ge, eq, ne) and $orderby.</summary>
         public DateTimeOffset? DeletedDateTime { get; set; }
-        /// <summary>The unique identifier of the Azure AD identity that last modified the workflow object.</summary>
+        /// <summary>The unique identifier of the Microsoft Entra identity that last modified the workflow object.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<UserProcessingResult>? ExecutionScope { get; set; }

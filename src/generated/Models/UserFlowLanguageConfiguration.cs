@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class UserFlowLanguageConfiguration : Entity, IParsable {
-        /// <summary>Collection of pages with the default content to display in a user flow for a specified language. This collection does not allow any kind of modification.</summary>
+        /// <summary>Collection of pages with the default content to display in a user flow for a specified language. This collection doesn&apos;t allow any kind of modification.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<UserFlowLanguagePage>? DefaultPages { get; set; }
@@ -24,7 +24,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Indicates whether the language is enabled within the user flow.</summary>
         public bool? IsEnabled { get; set; }
-        /// <summary>Collection of pages with the overrides messages to display in a user flow for a specified language. This collection only allows to modify the content of the page, any other modification is not allowed (creation or deletion of pages).</summary>
+        /// <summary>Collection of pages with the overrides messages to display in a user flow for a specified language. This collection only allows you to modify the content of the page, any other modification isn&apos;t allowed (creation or deletion of pages).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<UserFlowLanguagePage>? OverridesPages { get; set; }

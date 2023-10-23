@@ -10,7 +10,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>If true, indicates that content types are enabled for this list.</summary>
         public bool? ContentTypesEnabled { get; set; }
-        /// <summary>If true, indicates that the list is not normally visible in the SharePoint user experience.</summary>
+        /// <summary>If true, indicates that the list isn&apos;t normally visible in the SharePoint user experience.</summary>
         public bool? Hidden { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

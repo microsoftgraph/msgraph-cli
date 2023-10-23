@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.ContainerFilter ContainerFilter { get; set; }
 #endif
-        /// <summary>true if the synchronization rule can be customized; false if this rule is read-only and should not be changed.</summary>
+        /// <summary>true if the synchronization rule can be customized; false if this rule is read-only and shouldn&apos;t be changed.</summary>
         public bool? Editable { get; set; }
         /// <summary>The groupFilter property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -34,7 +34,7 @@ namespace ApiSdk.Models {
 #else
         public string Id { get; set; }
 #endif
-        /// <summary>Additional extension properties. Unless instructed explicitly by the support team, metadata values should not be changed.</summary>
+        /// <summary>Additional extension properties. Unless instructed explicitly by the support team, metadata values shouldn&apos;t be changed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<StringKeyStringValuePair>? Metadata { get; set; }

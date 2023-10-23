@@ -11,5 +11,7 @@ namespace ApiSdk.Models {
         Terminate,
         [EnumMember(Value = "unknownFutureValue")]
         UnknownFutureValue,
+        [EnumMember(Value = "reject")]
+        Reject,
     }
 }

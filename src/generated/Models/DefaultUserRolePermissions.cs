@@ -8,11 +8,11 @@ namespace ApiSdk.Models {
     public class DefaultUserRolePermissions : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Indicates whether the default user role can create applications. This setting corresponds to the Users can register applications setting in the User settings menu in the Azure portal.</summary>
+        /// <summary>Indicates whether the default user role can create applications. This setting corresponds to the Users can register applications setting in the User settings menu in the Microsoft Entra admin center.</summary>
         public bool? AllowedToCreateApps { get; set; }
-        /// <summary>Indicates whether the default user role can create security groups. This setting corresponds to the following menus in the Azure portal:  The Users can create security groups in Azure portals, API or PowerShell setting in the Group settings menu.  Users can create security groups setting in the User settings menu.</summary>
+        /// <summary>Indicates whether the default user role can create security groups. This setting corresponds to the following menus in the Microsoft Entra admin center:  The Users can create security groups in Microsoft Entra admin centers, API or PowerShell setting in the Group settings menu.  Users can create security groups setting in the User settings menu.</summary>
         public bool? AllowedToCreateSecurityGroups { get; set; }
-        /// <summary>Indicates whether the default user role can create tenants. This setting corresponds to the Restrict non-admin users from creating tenants setting in the User settings menu in the Azure portal.  When this setting is false, users assigned the Tenant Creator role can still create tenants.</summary>
+        /// <summary>Indicates whether the default user role can create tenants. This setting corresponds to the Restrict non-admin users from creating tenants setting in the User settings menu in the Microsoft Entra admin center.  When this setting is false, users assigned the Tenant Creator role can still create tenants.</summary>
         public bool? AllowedToCreateTenants { get; set; }
         /// <summary>Indicates whether the registered owners of a device can read their own BitLocker recovery keys with default user role.</summary>
         public bool? AllowedToReadBitlockerKeysForOwnedDevice { get; set; }

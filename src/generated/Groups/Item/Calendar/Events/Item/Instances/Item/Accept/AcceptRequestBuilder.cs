@@ -19,12 +19,12 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Instances.Item.Accept {
     /// </summary>
     public class AcceptRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Accept the specified event in a user calendar.
+        /// Accept the specified event in a user calendar. This API is available in the following national cloud deployments.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/event-accept?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Accept the specified event in a user calendar.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-accept?view=graph-rest-1.0";
+            command.Description = "Accept the specified event in a user calendar. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-accept?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -51,7 +51,10 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Instances.Item.Accept {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<AcceptPostRequestBody>(AcceptPostRequestBody.CreateFromDiscriminatorValue);
-                if (model is null) return; // Cannot create a POST request from a null model.
+                if (model is null) {
+                    Console.Error.WriteLine("No model data to send.");
+                    return;
+                }
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (groupId is not null) requestInfo.PathParameters.Add("group%2Did", groupId);
@@ -80,7 +83,7 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Instances.Item.Accept {
         public AcceptRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/calendar/events/{event%2Did}/instances/{event%2Did1}/accept", rawUrl) {
         }
         /// <summary>
-        /// Accept the specified event in a user calendar.
+        /// Accept the specified event in a user calendar. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -104,6 +107,7 @@ namespace ApiSdk.Groups.Item.Calendar.Events.Item.Instances.Item.Accept {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json, application/json");
             return requestInfo;
         }
     }

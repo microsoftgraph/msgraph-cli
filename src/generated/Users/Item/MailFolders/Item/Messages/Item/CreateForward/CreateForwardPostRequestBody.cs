@@ -52,9 +52,9 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.CreateForward {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"comment", n => { Comment = n.GetStringValue(); } },
-                {"message", n => { Message = n.GetObjectValue<ApiSdk.Models.Message>(ApiSdk.Models.Message.CreateFromDiscriminatorValue); } },
-                {"toRecipients", n => { ToRecipients = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"Comment", n => { Comment = n.GetStringValue(); } },
+                {"Message", n => { Message = n.GetObjectValue<ApiSdk.Models.Message>(ApiSdk.Models.Message.CreateFromDiscriminatorValue); } },
+                {"ToRecipients", n => { ToRecipients = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -63,9 +63,9 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.CreateForward {
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("comment", Comment);
-            writer.WriteObjectValue<ApiSdk.Models.Message>("message", Message);
-            writer.WriteCollectionOfObjectValues<Recipient>("toRecipients", ToRecipients);
+            writer.WriteStringValue("Comment", Comment);
+            writer.WriteObjectValue<ApiSdk.Models.Message>("Message", Message);
+            writer.WriteCollectionOfObjectValues<Recipient>("ToRecipients", ToRecipients);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

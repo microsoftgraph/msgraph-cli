@@ -19,12 +19,12 @@ namespace ApiSdk.Education.Schools.Item.Users.Item.Ref {
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete a user from a school.
+        /// Delete a user from a school. This API is available in the following national cloud deployments.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationschool-delete-users?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a user from a school.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-delete-users?view=graph-rest-1.0";
+            command.Description = "Delete a user from a school. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationschool-delete-users?view=graph-rest-1.0";
             var educationSchoolIdOption = new Option<string>("--education-school-id", description: "The unique identifier of educationSchool") {
             };
             educationSchoolIdOption.IsRequired = true;
@@ -77,7 +77,7 @@ namespace ApiSdk.Education.Schools.Item.Users.Item.Ref {
         public RefRequestBuilder(string rawUrl) : base("{+baseurl}/education/schools/{educationSchool%2Did}/users/{educationUser%2Did}/$ref{?%40id*}", rawUrl) {
         }
         /// <summary>
-        /// Delete a user from a school.
+        /// Delete a user from a school. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -99,10 +99,11 @@ namespace ApiSdk.Education.Schools.Item.Users.Item.Ref {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json, application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Delete a user from a school.
+        /// Delete a user from a school. This API is available in the following national cloud deployments.
         /// </summary>
         public class RefRequestBuilderDeleteQueryParameters {
             /// <summary>Delete Uri</summary>

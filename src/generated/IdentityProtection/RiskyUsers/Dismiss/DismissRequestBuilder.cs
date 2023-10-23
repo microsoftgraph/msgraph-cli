@@ -19,12 +19,12 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Dismiss {
     /// </summary>
     public class DismissRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Dismiss the risk of one or more riskyUser objects. This action sets the targeted user&apos;s risk level to none.
+        /// Dismiss the risk of one or more riskyUser objects. This action sets the targeted user&apos;s risk level to none. This API is available in the following national cloud deployments.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/riskyuser-dismiss?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Dismiss the risk of one or more riskyUser objects. This action sets the targeted user's risk level to none.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/riskyuser-dismiss?view=graph-rest-1.0";
+            command.Description = "Dismiss the risk of one or more riskyUser objects. This action sets the targeted user's risk level to none. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/riskyuser-dismiss?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -36,7 +36,10 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Dismiss {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<DismissPostRequestBody>(DismissPostRequestBody.CreateFromDiscriminatorValue);
-                if (model is null) return; // Cannot create a POST request from a null model.
+                if (model is null) {
+                    Console.Error.WriteLine("No model data to send.");
+                    return;
+                }
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 requestInfo.SetContentFromParsable(reqAdapter, "application/json", model);
@@ -62,7 +65,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Dismiss {
         public DismissRequestBuilder(string rawUrl) : base("{+baseurl}/identityProtection/riskyUsers/dismiss", rawUrl) {
         }
         /// <summary>
-        /// Dismiss the risk of one or more riskyUser objects. This action sets the targeted user&apos;s risk level to none.
+        /// Dismiss the risk of one or more riskyUser objects. This action sets the targeted user&apos;s risk level to none. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -86,6 +89,7 @@ namespace ApiSdk.IdentityProtection.RiskyUsers.Dismiss {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json, application/json");
             return requestInfo;
         }
     }

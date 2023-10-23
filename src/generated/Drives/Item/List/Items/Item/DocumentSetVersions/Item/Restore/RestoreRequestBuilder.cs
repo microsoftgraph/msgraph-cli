@@ -19,12 +19,12 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DocumentSetVersions.Item.Restore {
     /// </summary>
     public class RestoreRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Restore a document set version.
+        /// Restore a document set version. This API is available in the following national cloud deployments.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/documentsetversion-restore?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Restore a document set version.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/documentsetversion-restore?view=graph-rest-1.0";
+            command.Description = "Restore a document set version. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/documentsetversion-restore?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -70,7 +70,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DocumentSetVersions.Item.Restore {
         public RestoreRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/list/items/{listItem%2Did}/documentSetVersions/{documentSetVersion%2Did}/restore", rawUrl) {
         }
         /// <summary>
-        /// Restore a document set version.
+        /// Restore a document set version. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -92,6 +92,7 @@ namespace ApiSdk.Drives.Item.List.Items.Item.DocumentSetVersions.Item.Restore {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json, application/json");
             return requestInfo;
         }
     }

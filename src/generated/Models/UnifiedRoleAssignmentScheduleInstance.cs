@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
 #else
         public string MemberType { get; set; }
 #endif
-        /// <summary>The identifier of the role assignment in Azure AD. Supports $filter (eq, ne).</summary>
+        /// <summary>The identifier of the role assignment in Microsoft Entra. Supports $filter (eq, ne).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? RoleAssignmentOriginId { get; set; }

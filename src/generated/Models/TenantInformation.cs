@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
     public class TenantInformation : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Primary domain name of an Azure AD tenant.</summary>
+        /// <summary>Primary domain name of a Microsoft Entra tenant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DefaultDomainName { get; set; }
@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
 #else
         public string DefaultDomainName { get; set; }
 #endif
-        /// <summary>Display name of an Azure AD tenant.</summary>
+        /// <summary>Display name of a Microsoft Entra tenant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }
@@ -24,7 +24,7 @@ namespace ApiSdk.Models {
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>Name shown to users that sign in to an Azure AD tenant.</summary>
+        /// <summary>Name shown to users that sign in to a Microsoft Entra tenant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? FederationBrandName { get; set; }
@@ -40,7 +40,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>Unique identifier of an Azure AD tenant.</summary>
+        /// <summary>Unique identifier of a Microsoft Entra tenant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TenantId { get; set; }

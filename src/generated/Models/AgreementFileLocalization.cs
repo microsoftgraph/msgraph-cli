@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class AgreementFileLocalization : AgreementFileProperties, IParsable {
-        /// <summary>Read-only. Customized versions of the terms of use agreement in the Azure AD tenant.</summary>
+        /// <summary>Read-only. Customized versions of the terms of use agreement in the Microsoft Entra tenant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<AgreementFileVersion>? Versions { get; set; }

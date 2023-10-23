@@ -10,7 +10,7 @@ namespace ApiSdk.Models {
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The type of attachment. Possible values are: file, item, reference. Required.</summary>
         public ApiSdk.Models.AttachmentType? AttachmentType { get; set; }
-        /// <summary>The CID or Content-Id of the attachment for referencing in case of in-line attachments using &lt;img src=&apos;cid:contentId&apos;&gt; tag in HTML messages. Optional.</summary>
+        /// <summary>The CID or Content-Id of the attachment for referencing for the in-line attachments using the &lt;img src=&apos;cid:contentId&apos;&gt; tag in HTML messages. Optional.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ContentId { get; set; }
@@ -28,7 +28,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>true if the attachment is an inline attachment; otherwise, false. Optional.</summary>
         public bool? IsInline { get; set; }
-        /// <summary>The display name of the attachment. This can be a descriptive string and does not have to be the actual file name. Required.</summary>
+        /// <summary>The display name of the attachment. This can be a descriptive string and doesn&apos;t have to be the actual file name. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }

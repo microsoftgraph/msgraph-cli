@@ -40,7 +40,7 @@ namespace ApiSdk.Models {
 #else
         public PlannerAssignments Assignments { get; set; }
 #endif
-        /// <summary>Bucket ID to which the task belongs. The bucket needs to be in the plan that the task is in. It is 28 characters long and case-sensitive. Format validation is done on the service.</summary>
+        /// <summary>Bucket ID to which the task belongs. The bucket needs to be in the plan that the task is in. It&apos;s 28 characters long and case-sensitive. Format validation is done on the service.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? BucketId { get; set; }
@@ -86,7 +86,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Read-only. Date and time at which the task is created. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
-        /// <summary>Read-only. Nullable. Additional details about the task.</summary>
+        /// <summary>Read-only. Nullable. More details about the task.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public PlannerTaskDetails? Details { get; set; }
@@ -96,7 +96,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Date and time at which the task is due. The Timestamp type represents date and time information using ISO 8601 format and is always in UTC time. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z</summary>
         public DateTimeOffset? DueDateTime { get; set; }
-        /// <summary>Read-only. Value is true if the details object of the task has a non-empty description and false otherwise.</summary>
+        /// <summary>Read-only. Value is true if the details object of the task has a nonempty description and false otherwise.</summary>
         public bool? HasDescription { get; set; }
         /// <summary>Hint used to order items of this type in a list view. The format is defined as outlined here.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

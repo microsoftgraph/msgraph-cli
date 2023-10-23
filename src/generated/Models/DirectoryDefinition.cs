@@ -28,7 +28,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Whether this object is read-only.</summary>
         public bool? ReadOnly { get; set; }
-        /// <summary>Read only value that indicates version discovered. null if discovery has not yet occurred.</summary>
+        /// <summary>Read only value that indicates version discovered. null if discovery hasn&apos;t yet occurred.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Version { get; set; }

@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
 #else
         public string ClaimValue { get; set; }
 #endif
-        /// <summary>Whether this rule is enabled.</summary>
+        /// <summary>Determines whether this rule is enabled.</summary>
         public bool? IsEnabled { get; set; }
         /// <summary>
         /// Instantiates a new unifiedRoleManagementPolicyAuthenticationContextRule and sets the default values.

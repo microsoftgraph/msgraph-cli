@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
 #else
         public List<WorkbookRangeBorder> Borders { get; set; }
 #endif
-        /// <summary>Gets or sets the width of all colums within the range. If the column widths are not uniform, null will be returned.</summary>
+        /// <summary>Gets or sets the width of all columns within the range. If the column widths aren&apos;t uniform, null will be returned.</summary>
         public double? ColumnWidth { get; set; }
         /// <summary>Returns the fill object defined on the overall range. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -48,7 +48,7 @@ namespace ApiSdk.Models {
 #else
         public WorkbookFormatProtection Protection { get; set; }
 #endif
-        /// <summary>Gets or sets the height of all rows in the range. If the row heights are not uniform null will be returned.</summary>
+        /// <summary>Gets or sets the height of all rows in the range. If the row heights aren&apos;t uniform null will be returned.</summary>
         public double? RowHeight { get; set; }
         /// <summary>Represents the vertical alignment for the specified object. The possible values are: Top, Center, Bottom, Justify, Distributed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

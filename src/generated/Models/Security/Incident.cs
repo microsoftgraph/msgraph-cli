@@ -42,6 +42,14 @@ namespace ApiSdk.Models.Security {
 #else
         public List<string> CustomTags { get; set; }
 #endif
+        /// <summary>The description property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Description { get; set; }
+#nullable restore
+#else
+        public string Description { get; set; }
+#endif
         /// <summary>Specifies the determination of the incident. Possible values are: unknown, apt, malware, securityPersonnel, securityTesting, unwantedSoftware, other, multiStagedAttack, compromisedUser, phishing, maliciousUserActivity, clean, insufficientData, confirmedUserActivity, lineOfBusinessApplication, unknownFutureValue.</summary>
         public AlertDetermination? Determination { get; set; }
         /// <summary>The incident name.</summary>
@@ -82,7 +90,15 @@ namespace ApiSdk.Models.Security {
         public AlertSeverity? Severity { get; set; }
         /// <summary>The status property</summary>
         public IncidentStatus? Status { get; set; }
-        /// <summary>The Azure Active Directory tenant in which the alert was created.</summary>
+        /// <summary>The systemTags property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? SystemTags { get; set; }
+#nullable restore
+#else
+        public List<string> SystemTags { get; set; }
+#endif
+        /// <summary>The Microsoft Entra tenant in which the alert was created.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TenantId { get; set; }
@@ -109,6 +125,7 @@ namespace ApiSdk.Models.Security {
                 {"comments", n => { Comments = n.GetCollectionOfObjectValues<AlertComment>(AlertComment.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"customTags", n => { CustomTags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"description", n => { Description = n.GetStringValue(); } },
                 {"determination", n => { Determination = n.GetEnumValue<AlertDetermination>(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"incidentWebUrl", n => { IncidentWebUrl = n.GetStringValue(); } },
@@ -117,6 +134,7 @@ namespace ApiSdk.Models.Security {
                 {"redirectIncidentId", n => { RedirectIncidentId = n.GetStringValue(); } },
                 {"severity", n => { Severity = n.GetEnumValue<AlertSeverity>(); } },
                 {"status", n => { Status = n.GetEnumValue<IncidentStatus>(); } },
+                {"systemTags", n => { SystemTags = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"tenantId", n => { TenantId = n.GetStringValue(); } },
             };
         }
@@ -133,6 +151,7 @@ namespace ApiSdk.Models.Security {
             writer.WriteCollectionOfObjectValues<AlertComment>("comments", Comments);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteCollectionOfPrimitiveValues<string>("customTags", CustomTags);
+            writer.WriteStringValue("description", Description);
             writer.WriteEnumValue<AlertDetermination>("determination", Determination);
             writer.WriteStringValue("displayName", DisplayName);
             writer.WriteStringValue("incidentWebUrl", IncidentWebUrl);
@@ -141,6 +160,7 @@ namespace ApiSdk.Models.Security {
             writer.WriteStringValue("redirectIncidentId", RedirectIncidentId);
             writer.WriteEnumValue<AlertSeverity>("severity", Severity);
             writer.WriteEnumValue<IncidentStatus>("status", Status);
+            writer.WriteCollectionOfPrimitiveValues<string>("systemTags", SystemTags);
             writer.WriteStringValue("tenantId", TenantId);
         }
     }

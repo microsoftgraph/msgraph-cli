@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
 #else
         public List<DeletedTeam> DeletedTeams { get; set; }
 #endif
-        /// <summary>The teamsAppSettings property</summary>
+        /// <summary>Represents tenant-wide settings for all Teams apps in the tenant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.TeamsAppSettings? TeamsAppSettings { get; set; }

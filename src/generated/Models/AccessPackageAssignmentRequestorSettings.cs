@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
     public class AccessPackageAssignmentRequestorSettings : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>False indicates that the requestor is not permitted to include a schedule in their request.</summary>
+        /// <summary>False indicates that the requestor isn&apos;t permitted to include a schedule in their request.</summary>
         public bool? AllowCustomAssignmentSchedule { get; set; }
         /// <summary>True allows on-behalf-of requestors to create a request to add access for another principal.</summary>
         public bool? EnableOnBehalfRequestorsToAddAccess { get; set; }

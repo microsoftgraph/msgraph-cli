@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class TeamsAppSettings : Entity, IParsable {
-        /// <summary>The allowUserRequestsForAppAccess property</summary>
+        /// <summary>Indicates whether users are allowed to request access to the unavailable Teams apps.</summary>
         public bool? AllowUserRequestsForAppAccess { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

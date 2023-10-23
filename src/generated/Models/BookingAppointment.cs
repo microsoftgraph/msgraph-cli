@@ -25,7 +25,7 @@ namespace ApiSdk.Models {
 #else
         public string AnonymousJoinWebUrl { get; set; }
 #endif
-        /// <summary>A collection of customer properties for an appointment. An appointment will contain a list of customer information and each unit will indicate the properties of a customer who is part of that appointment. Optional.</summary>
+        /// <summary>A collection of customer properties for an appointment. An appointment contains a list of customer information and each unit will indicate the properties of a customer who is part of that appointment. Optional.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<BookingCustomerInformationBase>? Customers { get; set; }
@@ -65,7 +65,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>The maximum number of customers allowed in an appointment. If maximumAttendeesCount of the service is greater than 1, pass valid customer IDs while creating or updating an appointment. To create a customer, use the Create bookingCustomer operation.</summary>
         public int? MaximumAttendeesCount { get; set; }
-        /// <summary>If true indicates that the bookingCustomer for this appointment does not wish to receive a confirmation for this appointment.</summary>
+        /// <summary>If true indicates that the bookingCustomer for this appointment doesn&apos;t wish to receive a confirmation for this appointment.</summary>
         public bool? OptOutOfCustomerEmail { get; set; }
         /// <summary>The amount of time to reserve after the appointment ends, for cleaning up, as an example. The value is expressed in ISO8601 format.</summary>
         public TimeSpan? PostBuffer { get; set; }
@@ -107,7 +107,7 @@ namespace ApiSdk.Models {
 #else
         public Location ServiceLocation { get; set; }
 #endif
-        /// <summary>The name of the bookingService associated with this appointment.This property is optional when creating a new appointment. If not specified, it is computed from the service associated with the appointment by the serviceId property.</summary>
+        /// <summary>The name of the bookingService associated with this appointment.This property is optional when creating a new appointment. If not specified, it&apos;s computed from the service associated with the appointment by the serviceId property.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ServiceName { get; set; }

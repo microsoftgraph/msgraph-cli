@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
     public class WorkbookChartFont : Entity, IParsable {
         /// <summary>Represents the bold status of font.</summary>
         public bool? Bold { get; set; }
-        /// <summary>HTML color code representation of the text color. E.g. #FF0000 represents Red.</summary>
+        /// <summary>HTML color code representation of the text color. for example #FF0000 represents Red.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Color { get; set; }
@@ -18,7 +18,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Represents the italic status of the font.</summary>
         public bool? Italic { get; set; }
-        /// <summary>Font name (e.g. &apos;Calibri&apos;)</summary>
+        /// <summary>Font name (for example &apos;Calibri&apos;)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -26,7 +26,7 @@ namespace ApiSdk.Models {
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>Size of the font (e.g. 11)</summary>
+        /// <summary>Size of the font (for example 11)</summary>
         public double? Size { get; set; }
         /// <summary>Type of underline applied to the font. The possible values are: None, Single.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

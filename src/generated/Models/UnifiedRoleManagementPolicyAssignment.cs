@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
 #else
         public string PolicyId { get; set; }
 #endif
-        /// <summary>The identifier of the role definition object where the policy applies. If not specified, the policy applies to all roles. Supports $filter (eq).</summary>
+        /// <summary>For Microsoft Entra roles policy, it&apos;s the identifier of the role definition object where the policy applies. For PIM for groups membership and ownership, it&apos;s either member or owner. Supports $filter (eq).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? RoleDefinitionId { get; set; }
@@ -38,7 +38,7 @@ namespace ApiSdk.Models {
 #else
         public string ScopeId { get; set; }
 #endif
-        /// <summary>The type of the scope where the policy is assigned. One of Directory, DirectoryRole. Required.</summary>
+        /// <summary>The type of the scope where the policy is assigned. One of Directory, DirectoryRole, Group. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ScopeType { get; set; }

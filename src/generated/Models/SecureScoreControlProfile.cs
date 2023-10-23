@@ -86,7 +86,7 @@ namespace ApiSdk.Models {
 #else
         public string RemediationImpact { get; set; }
 #endif
-        /// <summary>Service that owns the control (Exchange, Sharepoint, Azure AD).</summary>
+        /// <summary>Service that owns the control (Exchange, Sharepoint, Microsoft Entra ID).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Service { get; set; }

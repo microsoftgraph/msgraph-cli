@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
         public ApiSdk.Models.AllowInvitesFrom? AllowInvitesFrom { get; set; }
         /// <summary>Indicates whether user consent for risky apps is allowed. We recommend keeping allowUserConsentForRiskyApps as false. Default value is false.</summary>
         public bool? AllowUserConsentForRiskyApps { get; set; }
-        /// <summary>To disable the use of MSOL PowerShell, set this property to true. This also disables user-based access to the legacy service endpoint used by MSOL PowerShell. This doesn&apos;t affect Azure Active Directory Connect or Microsoft Graph.</summary>
+        /// <summary>To disable the use of MSOL PowerShell, set this property to true. This also disables user-based access to the legacy service endpoint used by MSOL PowerShell. This doesn&apos;t affect Microsoft Entra Connect or Microsoft Graph.</summary>
         public bool? BlockMsolPowerShell { get; set; }
         /// <summary>The defaultUserRolePermissions property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

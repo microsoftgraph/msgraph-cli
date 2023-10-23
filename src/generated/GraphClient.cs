@@ -102,6 +102,7 @@ namespace ApiSdk {
             nonExecCommands.Add(builder.BuildEdgeNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildPeopleNavCommand());
             nonExecCommands.Add(builder.BuildServiceAnnouncementNavCommand());
             nonExecCommands.Add(builder.BuildSharepointNavCommand());
             foreach (var cmd in execCommands)
@@ -1137,6 +1138,7 @@ namespace ApiSdk {
             execCommands.Add(builder.BuildGetCommand());
             nonExecCommands.Add(builder.BuildLifecycleWorkflowsNavCommand());
             execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildPrivilegedAccessNavCommand());
             nonExecCommands.Add(builder.BuildTermsOfUseNavCommand());
             foreach (var cmd in execCommands)
             {

@@ -19,12 +19,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.ClearFilters {
     /// </summary>
     public class ClearFiltersRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Clears all the filters currently applied on the table.
+        /// Clears all the filters currently applied on the table. This API is available in the following national cloud deployments.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/table-clearfilters?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Clears all the filters currently applied on the table.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/table-clearfilters?view=graph-rest-1.0";
+            command.Description = "Clears all the filters currently applied on the table. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/table-clearfilters?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -70,7 +70,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.ClearFilters {
         public ClearFiltersRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/workbook/tables/{workbookTable%2Did}/clearFilters", rawUrl) {
         }
         /// <summary>
-        /// Clears all the filters currently applied on the table.
+        /// Clears all the filters currently applied on the table. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -92,6 +92,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Tables.Item.ClearFilters {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json, application/json");
             return requestInfo;
         }
     }

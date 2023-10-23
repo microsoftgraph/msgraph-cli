@@ -103,12 +103,12 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             return command;
         }
         /// <summary>
-        /// Deletes a managedIOSStoreApp.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-managediosstoreapp-delete?view=graph-rest-1.0" />
+        /// Deletes a windowsUniversalAppX.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-windowsuniversalappx-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Deletes a managedIOSStoreApp.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-managediosstoreapp-delete?view=graph-rest-1.0";
+            command.Description = "Deletes a windowsUniversalAppX.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-windowsuniversalappx-delete?view=graph-rest-1.0";
             var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "The unique identifier of mobileApp") {
             };
             mobileAppIdOption.IsRequired = true;
@@ -137,12 +137,12 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             return command;
         }
         /// <summary>
-        /// Read properties and relationships of the iosVppApp object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-iosvppapp-get?view=graph-rest-1.0" />
+        /// Read properties and relationships of the windowsWebApp object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-windowswebapp-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read properties and relationships of the iosVppApp object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-iosvppapp-get?view=graph-rest-1.0";
+            command.Description = "Read properties and relationships of the windowsWebApp object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-windowswebapp-get?view=graph-rest-1.0";
             var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "The unique identifier of mobileApp") {
             };
             mobileAppIdOption.IsRequired = true;
@@ -157,26 +157,16 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON);
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
             command.AddOption(queryOption);
-            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
-                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
-                    return value;
-                }
-                return true;
-            }, description: "Disable indentation for the JSON output formatter.");
-            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var mobileAppId = invocationContext.ParseResult.GetValueForOption(mobileAppIdOption);
                 var select = invocationContext.ParseResult.GetValueForOption(selectOption);
                 var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
-                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
@@ -192,9 +182,8 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
                 };
                 var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
-                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+                await formatter.WriteOutputAsync(response, cancellationToken);
             });
             return command;
         }
@@ -206,8 +195,16 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             command.Description = "Casts the previous resource to androidLobApp.";
             var builder = new GraphAndroidLobAppRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAssignmentsNavCommand());
+            nonExecCommands.Add(builder.BuildCategoriesNavCommand());
+            nonExecCommands.Add(builder.BuildContentVersionsNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }
@@ -221,8 +218,15 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             command.Description = "Casts the previous resource to androidStoreApp.";
             var builder = new GraphAndroidStoreAppRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAssignmentsNavCommand());
+            nonExecCommands.Add(builder.BuildCategoriesNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }
@@ -236,8 +240,16 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             command.Description = "Casts the previous resource to iosLobApp.";
             var builder = new GraphIosLobAppRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAssignmentsNavCommand());
+            nonExecCommands.Add(builder.BuildCategoriesNavCommand());
+            nonExecCommands.Add(builder.BuildContentVersionsNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }
@@ -251,8 +263,15 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             command.Description = "Casts the previous resource to iosStoreApp.";
             var builder = new GraphIosStoreAppRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAssignmentsNavCommand());
+            nonExecCommands.Add(builder.BuildCategoriesNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }
@@ -266,8 +285,15 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             command.Description = "Casts the previous resource to iosVppApp.";
             var builder = new GraphIosVppAppRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAssignmentsNavCommand());
+            nonExecCommands.Add(builder.BuildCategoriesNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }
@@ -281,8 +307,16 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             command.Description = "Casts the previous resource to macOSDmgApp.";
             var builder = new GraphMacOSDmgAppRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAssignmentsNavCommand());
+            nonExecCommands.Add(builder.BuildCategoriesNavCommand());
+            nonExecCommands.Add(builder.BuildContentVersionsNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }
@@ -296,8 +330,16 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             command.Description = "Casts the previous resource to macOSLobApp.";
             var builder = new GraphMacOSLobAppRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAssignmentsNavCommand());
+            nonExecCommands.Add(builder.BuildCategoriesNavCommand());
+            nonExecCommands.Add(builder.BuildContentVersionsNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }
@@ -311,8 +353,16 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             command.Description = "Casts the previous resource to managedAndroidLobApp.";
             var builder = new GraphManagedAndroidLobAppRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAssignmentsNavCommand());
+            nonExecCommands.Add(builder.BuildCategoriesNavCommand());
+            nonExecCommands.Add(builder.BuildContentVersionsNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }
@@ -326,8 +376,16 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             command.Description = "Casts the previous resource to managedIOSLobApp.";
             var builder = new GraphManagedIOSLobAppRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAssignmentsNavCommand());
+            nonExecCommands.Add(builder.BuildCategoriesNavCommand());
+            nonExecCommands.Add(builder.BuildContentVersionsNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }
@@ -341,8 +399,16 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             command.Description = "Casts the previous resource to managedMobileLobApp.";
             var builder = new GraphManagedMobileLobAppRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAssignmentsNavCommand());
+            nonExecCommands.Add(builder.BuildCategoriesNavCommand());
+            nonExecCommands.Add(builder.BuildContentVersionsNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }
@@ -356,8 +422,15 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             command.Description = "Casts the previous resource to microsoftStoreForBusinessApp.";
             var builder = new GraphMicrosoftStoreForBusinessAppRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAssignmentsNavCommand());
+            nonExecCommands.Add(builder.BuildCategoriesNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }
@@ -371,8 +444,16 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             command.Description = "Casts the previous resource to win32LobApp.";
             var builder = new GraphWin32LobAppRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAssignmentsNavCommand());
+            nonExecCommands.Add(builder.BuildCategoriesNavCommand());
+            nonExecCommands.Add(builder.BuildContentVersionsNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }
@@ -386,8 +467,16 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             command.Description = "Casts the previous resource to windowsAppX.";
             var builder = new GraphWindowsAppXRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAssignmentsNavCommand());
+            nonExecCommands.Add(builder.BuildCategoriesNavCommand());
+            nonExecCommands.Add(builder.BuildContentVersionsNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }
@@ -401,8 +490,16 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             command.Description = "Casts the previous resource to windowsMobileMSI.";
             var builder = new GraphWindowsMobileMSIRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAssignmentsNavCommand());
+            nonExecCommands.Add(builder.BuildCategoriesNavCommand());
+            nonExecCommands.Add(builder.BuildContentVersionsNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }
@@ -416,8 +513,17 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             command.Description = "Casts the previous resource to windowsUniversalAppX.";
             var builder = new GraphWindowsUniversalAppXRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAssignmentsNavCommand());
+            nonExecCommands.Add(builder.BuildCategoriesNavCommand());
+            nonExecCommands.Add(builder.BuildCommittedContainedAppsNavCommand());
+            nonExecCommands.Add(builder.BuildContentVersionsNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }
@@ -431,20 +537,27 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             command.Description = "Casts the previous resource to windowsWebApp.";
             var builder = new GraphWindowsWebAppRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildAssignmentsNavCommand());
+            nonExecCommands.Add(builder.BuildCategoriesNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
             {
                 command.AddCommand(cmd);
             }
             return command;
         }
         /// <summary>
-        /// Update the properties of a managedIOSStoreApp object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-managediosstoreapp-update?view=graph-rest-1.0" />
+        /// Update the properties of a windowsMicrosoftEdgeApp object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-windowsmicrosoftedgeapp-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a managedIOSStoreApp object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-managediosstoreapp-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a windowsMicrosoftEdgeApp object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-windowsmicrosoftedgeapp-update?view=graph-rest-1.0";
             var mobileAppIdOption = new Option<string>("--mobile-app-id", description: "The unique identifier of mobileApp") {
             };
             mobileAppIdOption.IsRequired = true;
@@ -453,25 +566,15 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
             };
             bodyOption.IsRequired = true;
             command.AddOption(bodyOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON);
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
             command.AddOption(queryOption);
-            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
-                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
-                    return value;
-                }
-                return true;
-            }, description: "Disable indentation for the JSON output formatter.");
-            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var mobileAppId = invocationContext.ParseResult.GetValueForOption(mobileAppIdOption);
                 var body = invocationContext.ParseResult.GetValueForOption(bodyOption) ?? string.Empty;
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
-                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
@@ -479,7 +582,10 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<MobileApp>(MobileApp.CreateFromDiscriminatorValue);
-                if (model is null) return; // Cannot create a POST request from a null model.
+                if (model is null) {
+                    Console.Error.WriteLine("No model data to send.");
+                    return;
+                }
                 var requestInfo = ToPatchRequestInformation(model, q => {
                 });
                 if (mobileAppId is not null) requestInfo.PathParameters.Add("mobileApp%2Did", mobileAppId);
@@ -490,9 +596,8 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
                 };
                 var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
-                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+                await formatter.WriteOutputAsync(response, cancellationToken);
             });
             return command;
         }
@@ -509,7 +614,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
         public MobileAppItemRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps/{mobileApp%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Deletes a managedIOSStoreApp.
+        /// Deletes a windowsUniversalAppX.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -531,10 +636,11 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json, application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the iosVppApp object.
+        /// Read properties and relationships of the windowsWebApp object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -549,7 +655,6 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new RequestConfiguration<MobileAppItemRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
@@ -557,10 +662,11 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json;q=1");
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a managedIOSStoreApp object.
+        /// Update the properties of a windowsMicrosoftEdgeApp object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -577,7 +683,6 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
@@ -585,10 +690,11 @@ namespace ApiSdk.DeviceAppManagement.MobileApps.Item {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json;q=1");
             return requestInfo;
         }
         /// <summary>
-        /// Read properties and relationships of the iosVppApp object.
+        /// Read properties and relationships of the windowsWebApp object.
         /// </summary>
         public class MobileAppItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
