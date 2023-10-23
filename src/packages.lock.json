@@ -41,16 +41,16 @@
       },
       "Microsoft.Graph.Cli.Core": {
         "type": "Direct",
-        "requested": "[1.0.0-preview.7, )",
-        "resolved": "1.0.0-preview.7",
-        "contentHash": "bbhLA/CJa1iffE/+/bXDw/mq8ky+TIw723s0gNH+ikSYxnsqlcuPNaMtawK3P1KbP7vkbMPKBdrARdrgsouhsQ==",
+        "requested": "[1.0.0-preview.8, )",
+        "resolved": "1.0.0-preview.8",
+        "contentHash": "vz+FuYzHyGuiDmoUVSl7YEH1rxNCWcxZeRzhx5I+k5aR4JcudDsec/kY1k6+YxAp49JQnw1p+cQ0TwApvoLN+Q==",
         "dependencies": {
           "Azure.Identity": "1.10.3",
           "JmesPath.Net": "1.0.308",
           "Microsoft.Extensions.Hosting": "7.0.1",
           "Microsoft.Extensions.Http": "7.0.0",
           "Microsoft.Graph.Core": "3.0.11",
-          "Microsoft.Kiota.Cli.Commons": "0.5.0-preview.1",
+          "Microsoft.Kiota.Cli.Commons": "0.5.1-preview.1",
           "Microsoft.Kiota.Http.HttpClientLibrary": "1.1.1",
           "Spectre.Console": "0.47.0",
           "System.CommandLine": "2.0.0-beta4.22272.1"
@@ -452,8 +452,8 @@
       },
       "Microsoft.Kiota.Abstractions": {
         "type": "Transitive",
-        "resolved": "1.3.4",
-        "contentHash": "gykLxH7zCl2dt+sDftA6wJBIBNiZdFLs0hdb85rtZcYZv8HY7tryc+tGpquXyhvbBr4B6UiGmxEApwqMuyY7QQ==",
+        "resolved": "1.4.0",
+        "contentHash": "ugEQNWiu86OrEdjVvCVInBIgbw/Cn6oZqJrcSbgfcmfvWOJfFPTrioVTl7Qj/R1uCPaGawbkxvpNg3rRwu89xg==",
         "dependencies": {
           "Std.UriTemplate": "0.0.42",
           "System.Diagnostics.DiagnosticSource": "[6.0.0, 8.0.0)"
@@ -471,12 +471,12 @@
       },
       "Microsoft.Kiota.Cli.Commons": {
         "type": "Transitive",
-        "resolved": "0.5.0-preview.1",
-        "contentHash": "5s/bx+X2bwgX03Q6zTZheLt9svlZsjbjjr6szYWENjHFbPJ+MGAanSG1Fy2qvRAU3+zM0OocpZPeutVhBTzkKQ==",
+        "resolved": "0.5.1-preview.1",
+        "contentHash": "kIChXZyyR+RMP0xyAup/+/PPgFNAmQfcJdMKW64bghkHhlK0pCAgqqxONNcPxV6EAoVZvds+3Nwo4xburgNirA==",
         "dependencies": {
           "JmesPath.Net": "1.0.308",
           "Microsoft.Extensions.Logging.Abstractions": "7.0.1",
-          "Microsoft.Kiota.Abstractions": "1.3.4",
+          "Microsoft.Kiota.Abstractions": "1.4.0",
           "Spectre.Console": "0.47.0",
           "System.CommandLine": "2.0.0-beta4.22272.1",
           "System.Text.Json": "7.0.3"
