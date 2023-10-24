@@ -11,6 +11,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+## [1.0.0-rc.2] - 2023-10-24
+
+### Added
+
+### Changed
+
+- Use stderr for log output. [#359]
+- Fix token refresh on incremental consent. [#352]
+- Convert `--json-no-indent` flag to `raw_json` output option. Use it via `--output raw_json`. [#362]
+- Improve error messages on authentication failure. [#369]
+- Remove `REQUIRED` text from output option description. [#362]
+- Always allow account selection on login.
+
 ## [1.0.0-rc.1] - 2023-09-26
 
 ### Added
