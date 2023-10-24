@@ -57,12 +57,12 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations {
             return command;
         }
         /// <summary>
-        /// Create a new windows10EndpointProtectionConfiguration object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-windows10endpointprotectionconfiguration-create?view=graph-rest-1.0" />
+        /// Create a new macOSGeneralDeviceConfiguration object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-macosgeneraldeviceconfiguration-create?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new windows10EndpointProtectionConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-windows10endpointprotectionconfiguration-create?view=graph-rest-1.0";
+            command.Description = "Create a new macOSGeneralDeviceConfiguration object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-macosgeneraldeviceconfiguration-create?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -101,12 +101,12 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the windowsUpdateForBusinessConfiguration objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-windowsupdateforbusinessconfiguration-list?view=graph-rest-1.0" />
+        /// List properties and relationships of the androidWorkProfileGeneralDeviceConfiguration objects.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-deviceconfig-androidworkprofilegeneraldeviceconfiguration-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the windowsUpdateForBusinessConfiguration objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-windowsupdateforbusinessconfiguration-list?view=graph-rest-1.0";
+            command.Description = "List properties and relationships of the androidWorkProfileGeneralDeviceConfiguration objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-deviceconfig-androidworkprofilegeneraldeviceconfiguration-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -206,7 +206,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations {
         public DeviceConfigurationsRequestBuilder(string rawUrl) : base("{+baseurl}/deviceManagement/deviceConfigurations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// List properties and relationships of the windowsUpdateForBusinessConfiguration objects.
+        /// List properties and relationships of the androidWorkProfileGeneralDeviceConfiguration objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -232,7 +232,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new windows10EndpointProtectionConfiguration object.
+        /// Create a new macOSGeneralDeviceConfiguration object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -260,7 +260,7 @@ namespace ApiSdk.DeviceManagement.DeviceConfigurations {
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the windowsUpdateForBusinessConfiguration objects.
+        /// List properties and relationships of the androidWorkProfileGeneralDeviceConfiguration objects.
         /// </summary>
         public class DeviceConfigurationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

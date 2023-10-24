@@ -116,6 +116,14 @@ namespace ApiSdk.Models.Security {
 #else
         public List<string> MitreTechniques { get; set; }
 #endif
+        /// <summary>The productName property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ProductName { get; set; }
+#nullable restore
+#else
+        public string ProductName { get; set; }
+#endif
         /// <summary>The ID of the alert as it appears in the security provider product that generated the alert.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -183,7 +191,7 @@ namespace ApiSdk.Models.Security {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"actorDisplayName", n => { ActorDisplayName = n.GetStringValue(); } },
                 {"alertPolicyId", n => { AlertPolicyId = n.GetStringValue(); } },
@@ -204,6 +212,7 @@ namespace ApiSdk.Models.Security {
                 {"lastActivityDateTime", n => { LastActivityDateTime = n.GetDateTimeOffsetValue(); } },
                 {"lastUpdateDateTime", n => { LastUpdateDateTime = n.GetDateTimeOffsetValue(); } },
                 {"mitreTechniques", n => { MitreTechniques = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"productName", n => { ProductName = n.GetStringValue(); } },
                 {"providerAlertId", n => { ProviderAlertId = n.GetStringValue(); } },
                 {"recommendedActions", n => { RecommendedActions = n.GetStringValue(); } },
                 {"resolvedDateTime", n => { ResolvedDateTime = n.GetDateTimeOffsetValue(); } },
@@ -220,7 +229,7 @@ namespace ApiSdk.Models.Security {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public new void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("actorDisplayName", ActorDisplayName);
@@ -242,6 +251,7 @@ namespace ApiSdk.Models.Security {
             writer.WriteDateTimeOffsetValue("lastActivityDateTime", LastActivityDateTime);
             writer.WriteDateTimeOffsetValue("lastUpdateDateTime", LastUpdateDateTime);
             writer.WriteCollectionOfPrimitiveValues<string>("mitreTechniques", MitreTechniques);
+            writer.WriteStringValue("productName", ProductName);
             writer.WriteStringValue("providerAlertId", ProviderAlertId);
             writer.WriteStringValue("recommendedActions", RecommendedActions);
             writer.WriteDateTimeOffsetValue("resolvedDateTime", ResolvedDateTime);

@@ -41,5 +41,15 @@ namespace ApiSdk.Models.Security {
         UnknownFutureValue,
         [EnumMember(Value = "microsoftDefenderForCloud")]
         MicrosoftDefenderForCloud,
+        [EnumMember(Value = "nrtAlerts")]
+        NrtAlerts,
+        [EnumMember(Value = "scheduledAlerts")]
+        ScheduledAlerts,
+        [EnumMember(Value = "microsoftDefenderThreatIntelligenceAnalytics")]
+        MicrosoftDefenderThreatIntelligenceAnalytics,
+        [EnumMember(Value = "builtInMl")]
+        BuiltInMl,
+        [EnumMember(Value = "microsoftSentinel")]
+        MicrosoftSentinel,
     }
 }

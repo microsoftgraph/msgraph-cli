@@ -71,12 +71,12 @@ namespace ApiSdk.Connections.Item.Schema {
             return command;
         }
         /// <summary>
-        /// Create a new schema object.
+        /// Create a new schema object. This API is available in the following national cloud deployments.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/externalconnectors-externalconnection-patch-schema?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Create a new schema object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/externalconnectors-externalconnection-patch-schema?view=graph-rest-1.0";
+            command.Description = "Create a new schema object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/externalconnectors-externalconnection-patch-schema?view=graph-rest-1.0";
             var externalConnectionIdOption = new Option<string>("--external-connection-id", description: "The unique identifier of externalConnection") {
             };
             externalConnectionIdOption.IsRequired = true;
@@ -159,7 +159,7 @@ namespace ApiSdk.Connections.Item.Schema {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new schema object.
+        /// Create a new schema object. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -64,12 +64,12 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.Members {
             return command;
         }
         /// <summary>
-        /// Add a conversationMember to a channel. This API is available in the following national cloud deployments.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/conversationmember-add?view=graph-rest-1.0" />
+        /// Add a conversationMember to a channel. This operation is allowed only for channels with a membershipType value of private or shared. This API is available in the following national cloud deployments.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/channel-post-members?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Add a conversationMember to a channel. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conversationmember-add?view=graph-rest-1.0";
+            command.Description = "Add a conversationMember to a channel. This operation is allowed only for channels with a membershipType value of private or shared. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-post-members?view=graph-rest-1.0";
             var deletedTeamIdOption = new Option<string>("--deleted-team-id", description: "The unique identifier of deletedTeam") {
             };
             deletedTeamIdOption.IsRequired = true;
@@ -263,7 +263,7 @@ namespace ApiSdk.Teamwork.DeletedTeams.Item.Channels.Item.Members {
             return requestInfo;
         }
         /// <summary>
-        /// Add a conversationMember to a channel. This API is available in the following national cloud deployments.
+        /// Add a conversationMember to a channel. This operation is allowed only for channels with a membershipType value of private or shared. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

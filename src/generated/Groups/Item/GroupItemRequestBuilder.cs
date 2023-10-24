@@ -955,6 +955,7 @@ namespace ApiSdk.Groups.Item {
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildAddNavCommand());
             nonExecCommands.Add(builder.BuildCountNavCommand());
+            nonExecCommands.Add(builder.BuildDeltaNavCommand());
             nonExecCommands.Add(builder.BuildGetAllSitesNavCommand());
             execCommands.Add(builder.BuildListCommand());
             nonExecCommands.Add(builder.BuildRemoveNavCommand());

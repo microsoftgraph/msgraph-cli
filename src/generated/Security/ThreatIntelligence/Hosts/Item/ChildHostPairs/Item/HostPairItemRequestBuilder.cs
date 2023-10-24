@@ -20,11 +20,11 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.ChildHostPairs.Item {
     /// </summary>
     public class HostPairItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// The hostPairs that are resources associated with a host, where that host is the parentHost and has an outgoing pairing to a cihldHost.
+        /// The hostPairs that are resources associated with a host, where that host is the parentHost and has an outgoing pairing to a childHost.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The hostPairs that are resources associated with a host, where that host is the parentHost and has an outgoing pairing to a cihldHost.";
+            command.Description = "The hostPairs that are resources associated with a host, where that host is the parentHost and has an outgoing pairing to a childHost.";
             var hostIdOption = new Option<string>("--host-id", description: "The unique identifier of host") {
             };
             hostIdOption.IsRequired = true;
@@ -88,7 +88,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.ChildHostPairs.Item {
         public HostPairItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/hosts/{host%2Did}/childHostPairs/{hostPair%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// The hostPairs that are resources associated with a host, where that host is the parentHost and has an outgoing pairing to a cihldHost.
+        /// The hostPairs that are resources associated with a host, where that host is the parentHost and has an outgoing pairing to a childHost.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -114,7 +114,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item.ChildHostPairs.Item {
             return requestInfo;
         }
         /// <summary>
-        /// The hostPairs that are resources associated with a host, where that host is the parentHost and has an outgoing pairing to a cihldHost.
+        /// The hostPairs that are resources associated with a host, where that host is the parentHost and has an outgoing pairing to a childHost.
         /// </summary>
         public class HostPairItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>
