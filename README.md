@@ -239,10 +239,12 @@ mgc login --strategy ClientCertificate
 Add -h to your command to view information that contains documentation links with permissions
 
 ## Check logged in user
-You can access the logged in user's details using:
+You can access the your user's details using:
 ```bash
-mgc me get
+mgc users get --user-id 'your_email@example.com'
 ```
+
+This will also display your User ID which is required for many queries involving your user (the "me" concept has been removed from Microsoft Graph CLI).
 
 ## FAQs
 Qn: Why am I not getting a response back after running a command?
