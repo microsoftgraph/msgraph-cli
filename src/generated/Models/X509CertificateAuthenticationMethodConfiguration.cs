@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
 #else
         public X509CertificateAuthenticationModeConfiguration AuthenticationModeConfiguration { get; set; }
 #endif
-        /// <summary>Defines fields in the X.509 certificate that map to attributes of the Azure AD user object in order to bind the certificate to the user. The priority of the object determines the order in which the binding is carried out. The first binding that matches will be used and the rest ignored.</summary>
+        /// <summary>Defines fields in the X.509 certificate that map to attributes of the Microsoft Entra user object in order to bind the certificate to the user. The priority of the object determines the order in which the binding is carried out. The first binding that matches will be used and the rest ignored.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<X509CertificateUserBinding>? CertificateUserBindings { get; set; }

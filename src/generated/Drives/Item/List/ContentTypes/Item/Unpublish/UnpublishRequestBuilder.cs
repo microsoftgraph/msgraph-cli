@@ -19,12 +19,12 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Unpublish {
     /// </summary>
     public class UnpublishRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Unpublish a [contentType][] from a content type hub site.
+        /// Unpublish a contentType][] from a content type hub site. This API is available in the following [national cloud deployments.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/contenttype-unpublish?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Unpublish a [contentType][] from a content type hub site.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-unpublish?view=graph-rest-1.0";
+            command.Description = "Unpublish a contentType][] from a content type hub site. This API is available in the following [national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-unpublish?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -64,7 +64,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Unpublish {
         public UnpublishRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/list/contentTypes/{contentType%2Did}/unpublish", rawUrl) {
         }
         /// <summary>
-        /// Unpublish a [contentType][] from a content type hub site.
+        /// Unpublish a contentType][] from a content type hub site. This API is available in the following [national cloud deployments.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -86,6 +86,7 @@ namespace ApiSdk.Drives.Item.List.ContentTypes.Item.Unpublish {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json, application/json");
             return requestInfo;
         }
     }

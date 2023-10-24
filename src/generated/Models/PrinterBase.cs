@@ -30,7 +30,7 @@ namespace ApiSdk.Models {
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>Whether the printer/printerShare is currently accepting new print jobs.</summary>
+        /// <summary>Specifies whether the printer/printerShare is currently accepting new print jobs.</summary>
         public bool? IsAcceptingJobs { get; set; }
         /// <summary>The list of jobs that are queued for printing by the printer/printerShare.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

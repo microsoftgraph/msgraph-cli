@@ -19,12 +19,12 @@ namespace ApiSdk.Applications.Item.RemovePassword {
     /// </summary>
     public class RemovePasswordRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Remove a password from an application.
+        /// Remove a password from an application. This API is available in the following national cloud deployments.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-removepassword?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Remove a password from an application.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-removepassword?view=graph-rest-1.0";
+            command.Description = "Remove a password from an application. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-removepassword?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -41,7 +41,10 @@ namespace ApiSdk.Applications.Item.RemovePassword {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<RemovePasswordPostRequestBody>(RemovePasswordPostRequestBody.CreateFromDiscriminatorValue);
-                if (model is null) return; // Cannot create a POST request from a null model.
+                if (model is null) {
+                    Console.Error.WriteLine("No model data to send.");
+                    return;
+                }
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (applicationId is not null) requestInfo.PathParameters.Add("application%2Did", applicationId);
@@ -68,7 +71,7 @@ namespace ApiSdk.Applications.Item.RemovePassword {
         public RemovePasswordRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/removePassword", rawUrl) {
         }
         /// <summary>
-        /// Remove a password from an application.
+        /// Remove a password from an application. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -92,6 +95,7 @@ namespace ApiSdk.Applications.Item.RemovePassword {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json, application/json");
             return requestInfo;
         }
     }

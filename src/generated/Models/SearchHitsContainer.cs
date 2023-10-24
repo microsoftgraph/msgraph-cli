@@ -34,7 +34,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The total number of results. Note this is not the number of results on the page, but the total number of results satisfying the query.</summary>
+        /// <summary>The total number of results. Note this isn&apos;t the number of results on the page, but the total number of results satisfying the query.</summary>
         public int? Total { get; set; }
         /// <summary>
         /// Instantiates a new searchHitsContainer and sets the default values.

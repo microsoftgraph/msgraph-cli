@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
 #else
         public List<AgreementAcceptance> AgreementAcceptances { get; set; }
 #endif
-        /// <summary>Represents a tenant&apos;s customizable terms of use agreement that&apos;s created and managed with Azure Active Directory (Azure AD).</summary>
+        /// <summary>Represents a tenant&apos;s customizable terms of use agreement that&apos;s created and managed with Microsoft Entra ID Governance.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<Agreement>? Agreements { get; set; }

@@ -38,7 +38,7 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.AuthenticationFlowsPolicy AuthenticationFlowsPolicy { get; set; }
 #endif
-        /// <summary>The authentication methods and the users that are allowed to use them to sign in and perform multifactor authentication (MFA) in Azure Active Directory (Azure AD).</summary>
+        /// <summary>The authentication methods and the users that are allowed to use them to sign in and perform multifactor authentication (MFA) in Microsoft Entra ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.AuthenticationMethodsPolicy? AuthenticationMethodsPolicy { get; set; }
@@ -46,7 +46,7 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.AuthenticationMethodsPolicy AuthenticationMethodsPolicy { get; set; }
 #endif
-        /// <summary>The authentication method combinations that are to be used in scenarios defined by Azure AD Conditional Access.</summary>
+        /// <summary>The authentication method combinations that are to be used in scenarios defined by Microsoft Entra Conditional Access.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<AuthenticationStrengthPolicy>? AuthenticationStrengthPolicies { get; set; }
@@ -54,7 +54,7 @@ namespace ApiSdk.Models {
 #else
         public List<AuthenticationStrengthPolicy> AuthenticationStrengthPolicies { get; set; }
 #endif
-        /// <summary>The policy that controls Azure AD authorization settings.</summary>
+        /// <summary>The policy that controls Microsoft Entra authorization settings.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.AuthorizationPolicy? AuthorizationPolicy { get; set; }
@@ -78,7 +78,7 @@ namespace ApiSdk.Models {
 #else
         public List<ConditionalAccessPolicy> ConditionalAccessPolicies { get; set; }
 #endif
-        /// <summary>The custom rules that define an access scenario when interacting with external Azure AD tenants.</summary>
+        /// <summary>The custom rules that define an access scenario when interacting with external Microsoft Entra tenants.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.CrossTenantAccessPolicy? CrossTenantAccessPolicy { get; set; }
@@ -102,7 +102,7 @@ namespace ApiSdk.Models {
 #else
         public List<FeatureRolloutPolicy> FeatureRolloutPolicies { get; set; }
 #endif
-        /// <summary>The policy to control Azure AD authentication behavior for federated users.</summary>
+        /// <summary>The policy to control Microsoft Entra authentication behavior for federated users.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<HomeRealmDiscoveryPolicy>? HomeRealmDiscoveryPolicies { get; set; }
@@ -142,7 +142,7 @@ namespace ApiSdk.Models {
 #else
         public List<UnifiedRoleManagementPolicyAssignment> RoleManagementPolicyAssignments { get; set; }
 #endif
-        /// <summary>The policy that specifies the characteristics of SAML tokens issued by Azure AD.</summary>
+        /// <summary>The policy that specifies the characteristics of SAML tokens issued by Microsoft Entra ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<TokenIssuancePolicy>? TokenIssuancePolicies { get; set; }
@@ -150,7 +150,7 @@ namespace ApiSdk.Models {
 #else
         public List<TokenIssuancePolicy> TokenIssuancePolicies { get; set; }
 #endif
-        /// <summary>The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Azure AD.</summary>
+        /// <summary>The policy that controls the lifetime of a JWT access token, an ID token, or a SAML 1.1/2.0 token issued by Microsoft Entra ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<TokenLifetimePolicy>? TokenLifetimePolicies { get; set; }

@@ -19,12 +19,12 @@ namespace ApiSdk.Groups.Item.RemoveFavorite {
     /// </summary>
     public class RemoveFavoriteRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Remove the group from the list of the current user&apos;s favorite groups. Supported for Microsoft 365 groups only.
+        /// Remove the group from the list of the current user&apos;s favorite groups. Supported for Microsoft 365 groups only. This API is available in the following national cloud deployments.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-removefavorite?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Remove the group from the list of the current user's favorite groups. Supported for Microsoft 365 groups only.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-removefavorite?view=graph-rest-1.0";
+            command.Description = "Remove the group from the list of the current user's favorite groups. Supported for Microsoft 365 groups only. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-removefavorite?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -58,7 +58,7 @@ namespace ApiSdk.Groups.Item.RemoveFavorite {
         public RemoveFavoriteRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/removeFavorite", rawUrl) {
         }
         /// <summary>
-        /// Remove the group from the list of the current user&apos;s favorite groups. Supported for Microsoft 365 groups only.
+        /// Remove the group from the list of the current user&apos;s favorite groups. Supported for Microsoft 365 groups only. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -80,6 +80,7 @@ namespace ApiSdk.Groups.Item.RemoveFavorite {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json, application/json");
             return requestInfo;
         }
     }

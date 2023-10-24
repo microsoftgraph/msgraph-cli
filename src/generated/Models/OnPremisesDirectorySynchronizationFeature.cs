@@ -12,7 +12,7 @@ namespace ApiSdk.Models {
         public bool? BlockCloudObjectTakeoverThroughHardMatchEnabled { get; set; }
         /// <summary>Use to block soft match for all objects if enabled for the  tenant. Customers are encouraged to enable this feature and keep it enabled until soft matching is required again for their tenancy. This flag should be enabled again after any soft matching has been completed and is no longer needed.</summary>
         public bool? BlockSoftMatchEnabled { get; set; }
-        /// <summary>When true, persists the values of Mobile and OtherMobile in on-premises AD during sync cycles instead of values of MobilePhone or AlternateMobilePhones in Azure AD.</summary>
+        /// <summary>When true, persists the values of Mobile and OtherMobile in on-premises AD during sync cycles instead of values of MobilePhone or AlternateMobilePhones in Microsoft Entra ID.</summary>
         public bool? BypassDirSyncOverridesEnabled { get; set; }
         /// <summary>Used to indicate that cloud password policy applies to users whose passwords are synchronized from on-premises.</summary>
         public bool? CloudPasswordPolicyForPasswordSyncedUsersEnabled { get; set; }
@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
         public bool? ConcurrentOrgIdProvisioningEnabled { get; set; }
         /// <summary>Used to indicate that device write-back is enabled.</summary>
         public bool? DeviceWritebackEnabled { get; set; }
-        /// <summary>Used to indicate that directory extensions are being synced from on-premises AD to Azure AD.</summary>
+        /// <summary>Used to indicate that directory extensions are being synced from on-premises AD to Microsoft Entra ID.</summary>
         public bool? DirectoryExtensionsEnabled { get; set; }
         /// <summary>Used to indicate that for a Microsoft Forefront Online Protection for Exchange (FOPE) migrated tenant, the conflicting proxy address should be migrated over.</summary>
         public bool? FopeConflictResolutionEnabled { get; set; }
@@ -38,7 +38,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Used to indicate on-premise password synchronization is enabled.</summary>
         public bool? PasswordSyncEnabled { get; set; }
-        /// <summary>Used to indicate that writeback of password resets from Azure AD to on-premises AD is enabled.</summary>
+        /// <summary>Used to indicate that writeback of password resets from Microsoft Entra ID to on-premises AD is enabled.</summary>
         public bool? PasswordWritebackEnabled { get; set; }
         /// <summary>Used to indicate that we should quarantine objects with conflicting proxy address.</summary>
         public bool? QuarantineUponProxyAddressesConflictEnabled { get; set; }

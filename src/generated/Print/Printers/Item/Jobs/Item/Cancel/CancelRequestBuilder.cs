@@ -19,12 +19,12 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item.Cancel {
     /// </summary>
     public class CancelRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Cancel a print job. Print jobs can be canceled only on behalf of a user, using delegated permissions.
+        /// Cancel a print job. Print jobs can be canceled only on behalf of a user, using delegated permissions. This API is available in the following national cloud deployments.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printjob-cancel?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Cancel a print job. Print jobs can be canceled only on behalf of a user, using delegated permissions.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printjob-cancel?view=graph-rest-1.0";
+            command.Description = "Cancel a print job. Print jobs can be canceled only on behalf of a user, using delegated permissions. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printjob-cancel?view=graph-rest-1.0";
             var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
             };
             printerIdOption.IsRequired = true;
@@ -64,7 +64,7 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item.Cancel {
         public CancelRequestBuilder(string rawUrl) : base("{+baseurl}/print/printers/{printer%2Did}/jobs/{printJob%2Did}/cancel", rawUrl) {
         }
         /// <summary>
-        /// Cancel a print job. Print jobs can be canceled only on behalf of a user, using delegated permissions.
+        /// Cancel a print job. Print jobs can be canceled only on behalf of a user, using delegated permissions. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -86,6 +86,7 @@ namespace ApiSdk.Print.Printers.Item.Jobs.Item.Cancel {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json, application/json");
             return requestInfo;
         }
     }

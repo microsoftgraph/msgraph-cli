@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class IdentitySecurityDefaultsEnforcementPolicy : PolicyBase, IParsable {
-        /// <summary>If set to true, Azure Active Directory security defaults is enabled for the tenant.</summary>
+        /// <summary>If set to true, Microsoft Entra security defaults are enabled for the tenant.</summary>
         public bool? IsEnabled { get; set; }
         /// <summary>
         /// Instantiates a new identitySecurityDefaultsEnforcementPolicy and sets the default values.

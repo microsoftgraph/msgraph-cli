@@ -38,7 +38,7 @@ namespace ApiSdk.Models {
 #else
         public string AzureSubscriptionId { get; set; }
 #endif
-        /// <summary>Azure Active Directory tenant ID. Required.</summary>
+        /// <summary>Microsoft Entra tenant ID. Required.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? AzureTenantId { get; set; }

@@ -44,8 +44,8 @@ namespace ApiSdk.Users.Item.CalendarView.Item.Instances.Item.Forward {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"comment", n => { Comment = n.GetStringValue(); } },
-                {"toRecipients", n => { ToRecipients = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"Comment", n => { Comment = n.GetStringValue(); } },
+                {"ToRecipients", n => { ToRecipients = n.GetCollectionOfObjectValues<Recipient>(Recipient.CreateFromDiscriminatorValue)?.ToList(); } },
             };
         }
         /// <summary>
@@ -54,8 +54,8 @@ namespace ApiSdk.Users.Item.CalendarView.Item.Instances.Item.Forward {
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("comment", Comment);
-            writer.WriteCollectionOfObjectValues<Recipient>("toRecipients", ToRecipients);
+            writer.WriteStringValue("Comment", Comment);
+            writer.WriteCollectionOfObjectValues<Recipient>("ToRecipients", ToRecipients);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

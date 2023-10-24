@@ -38,8 +38,8 @@ namespace ApiSdk.Users.Item.SendMail {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"message", n => { Message = n.GetObjectValue<ApiSdk.Models.Message>(ApiSdk.Models.Message.CreateFromDiscriminatorValue); } },
-                {"saveToSentItems", n => { SaveToSentItems = n.GetBoolValue(); } },
+                {"Message", n => { Message = n.GetObjectValue<ApiSdk.Models.Message>(ApiSdk.Models.Message.CreateFromDiscriminatorValue); } },
+                {"SaveToSentItems", n => { SaveToSentItems = n.GetBoolValue(); } },
             };
         }
         /// <summary>
@@ -48,8 +48,8 @@ namespace ApiSdk.Users.Item.SendMail {
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<ApiSdk.Models.Message>("message", Message);
-            writer.WriteBoolValue("saveToSentItems", SaveToSentItems);
+            writer.WriteObjectValue<ApiSdk.Models.Message>("Message", Message);
+            writer.WriteBoolValue("SaveToSentItems", SaveToSentItems);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

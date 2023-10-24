@@ -22,9 +22,9 @@ namespace ApiSdk.Models.Security {
 #else
         public List<ApiSdk.Models.Security.ExportFileMetadata> ExportFileMetadata { get; set; }
 #endif
-        /// <summary>The options provided for the export. For more details, see reviewSet: export. Possible values are: originalFiles, text, pdfReplacement,  tags.</summary>
+        /// <summary>The options provided for the export. For more information, see reviewSet: export. Possible values are: originalFiles, text, pdfReplacement,  tags.</summary>
         public ApiSdk.Models.Security.ExportOptions? ExportOptions { get; set; }
-        /// <summary>The options provided that specify the structure of the export. For more details, see reviewSet: export. Possible values are: none, directory, pst.</summary>
+        /// <summary>The options that specify the structure of the export. For more information, see reviewSet: export. Possible values are: none, directory, pst.</summary>
         public ExportFileStructure? ExportStructure { get; set; }
         /// <summary>The name provided for the export.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -42,7 +42,7 @@ namespace ApiSdk.Models.Security {
 #else
         public EdiscoveryReviewSet ReviewSet { get; set; }
 #endif
-        /// <summary>The review set query which is used to filter the documents for export.</summary>
+        /// <summary>The review set query that is used to filter the documents for export.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public EdiscoveryReviewSetQuery? ReviewSetQuery { get; set; }

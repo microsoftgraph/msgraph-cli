@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
     public class PresenceStatusMessage : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The expiryDateTime property</summary>
+        /// <summary>Time in which the status message expires.If not provided, the status message doesn&apos;t expire.expiryDateTime.dateTime shouldn&apos;t include time zone.expiryDateTime isn&apos;t available when you request the presence of another user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public DateTimeTimeZone? ExpiryDateTime { get; set; }
@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
 #else
         public DateTimeTimeZone ExpiryDateTime { get; set; }
 #endif
-        /// <summary>The message property</summary>
+        /// <summary>Status message item. The only supported format currently is message.contentType = &apos;text&apos;.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ItemBody? Message { get; set; }
@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The publishedDateTime property</summary>
+        /// <summary>Time in which the status message was published.Read-only.publishedDateTime isn&apos;t available when you request the presence of another user.</summary>
         public DateTimeOffset? PublishedDateTime { get; set; }
         /// <summary>
         /// Instantiates a new presenceStatusMessage and sets the default values.

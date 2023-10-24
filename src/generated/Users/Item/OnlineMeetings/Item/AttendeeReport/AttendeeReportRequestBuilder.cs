@@ -19,12 +19,12 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport {
     /// </summary>
     public class AttendeeReportRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// The content stream of the attendee report of a Microsoft Teams live event. Read-only.
+        /// Get attendeeReport for the navigation property onlineMeetings from users
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/onlinemeeting-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "The content stream of the attendee report of a Microsoft Teams live event. Read-only.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/onlinemeeting-get?view=graph-rest-1.0";
+            command.Description = "Get attendeeReport for the navigation property onlineMeetings from users\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/onlinemeeting-get?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -64,11 +64,11 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport {
             return command;
         }
         /// <summary>
-        /// The content stream of the attendee report of a Microsoft Teams live event. Read-only.
+        /// Update attendeeReport for the navigation property onlineMeetings in users
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
-            command.Description = "The content stream of the attendee report of a Microsoft Teams live event. Read-only.";
+            command.Description = "Update attendeeReport for the navigation property onlineMeetings in users";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -90,7 +90,10 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport {
                 var outputFile = invocationContext.ParseResult.GetValueForOption(outputFileOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
-                if (inputFile is null || !inputFile.Exists) return;
+                if (inputFile is null || !inputFile.Exists) {
+                    Console.Error.WriteLine("No available file to send.");
+                    return;
+                }
                 using var stream = inputFile.OpenRead();
                 var requestInfo = ToPutRequestInformation(stream, q => {
                 });
@@ -127,7 +130,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport {
         public AttendeeReportRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/onlineMeetings/{onlineMeeting%2Did}/attendeeReport", rawUrl) {
         }
         /// <summary>
-        /// The content stream of the attendee report of a Microsoft Teams live event. Read-only.
+        /// Get attendeeReport for the navigation property onlineMeetings from users
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -149,10 +152,11 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/octet-stream, application/json, application/json");
             return requestInfo;
         }
         /// <summary>
-        /// The content stream of the attendee report of a Microsoft Teams live event. Read-only.
+        /// Update attendeeReport for the navigation property onlineMeetings in users
         /// </summary>
         /// <param name="body">Binary request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -169,7 +173,6 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            requestInfo.SetStreamContent(body);
             if (requestConfiguration != null) {
                 var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
@@ -177,6 +180,8 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendeeReport {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json, application/json");
+            requestInfo.SetStreamContent(body, "application/octet-stream");
             return requestInfo;
         }
     }

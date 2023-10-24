@@ -20,11 +20,11 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition {
     /// </summary>
     public class DefinitionRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// An abstract definition that will be used to create a printTask when triggered by a print event. Read-only.
+        /// An abstract definition that is used to create a printTask when triggered by a print event. Read-only.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "An abstract definition that will be used to create a printTask when triggered by a print event. Read-only.";
+            command.Description = "An abstract definition that is used to create a printTask when triggered by a print event. Read-only.";
             var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
             };
             printerIdOption.IsRequired = true;
@@ -43,19 +43,10 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition {
             };
             expandOption.IsRequired = false;
             command.AddOption(expandOption);
-            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON){
-                IsRequired = true
-            };
+            var outputOption = new Option<FormatterType>("--output", () => FormatterType.JSON);
             command.AddOption(outputOption);
             var queryOption = new Option<string>("--query");
             command.AddOption(queryOption);
-            var jsonNoIndentOption = new Option<bool>("--json-no-indent", r => {
-                if (bool.TryParse(r.Tokens.Select(t => t.Value).LastOrDefault(), out var value)) {
-                    return value;
-                }
-                return true;
-            }, description: "Disable indentation for the JSON output formatter.");
-            command.AddOption(jsonNoIndentOption);
             command.SetHandler(async (invocationContext) => {
                 var printerId = invocationContext.ParseResult.GetValueForOption(printerIdOption);
                 var printTaskTriggerId = invocationContext.ParseResult.GetValueForOption(printTaskTriggerIdOption);
@@ -63,7 +54,6 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition {
                 var expand = invocationContext.ParseResult.GetValueForOption(expandOption);
                 var output = invocationContext.ParseResult.GetValueForOption(outputOption);
                 var query = invocationContext.ParseResult.GetValueForOption(queryOption);
-                var jsonNoIndent = invocationContext.ParseResult.GetValueForOption(jsonNoIndentOption);
                 IOutputFilter outputFilter = invocationContext.BindingContext.GetService(typeof(IOutputFilter)) as IOutputFilter ?? throw new ArgumentNullException("outputFilter");
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
@@ -80,9 +70,8 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition {
                 };
                 var response = await reqAdapter.SendPrimitiveAsync<Stream>(requestInfo, errorMapping: errorMapping, cancellationToken: cancellationToken) ?? Stream.Null;
                 response = (response != Stream.Null) ? await outputFilter.FilterOutputAsync(response, query, cancellationToken) : response;
-                var formatterOptions = output.GetOutputFormatterOptions(new FormatterOptionsModel(!jsonNoIndent));
                 var formatter = outputFormatterFactory.GetFormatter(output);
-                await formatter.WriteOutputAsync(response, formatterOptions, cancellationToken);
+                await formatter.WriteOutputAsync(response, cancellationToken);
             });
             return command;
         }
@@ -99,7 +88,7 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition {
         public DefinitionRequestBuilder(string rawUrl) : base("{+baseurl}/print/printers/{printer%2Did}/taskTriggers/{printTaskTrigger%2Did}/definition{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// An abstract definition that will be used to create a printTask when triggered by a print event. Read-only.
+        /// An abstract definition that is used to create a printTask when triggered by a print event. Read-only.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -114,7 +103,6 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            requestInfo.Headers.Add("Accept", "application/json");
             if (requestConfiguration != null) {
                 var requestConfig = new RequestConfiguration<DefinitionRequestBuilderGetQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
@@ -122,10 +110,11 @@ namespace ApiSdk.Print.Printers.Item.TaskTriggers.Item.Definition {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json;q=1");
             return requestInfo;
         }
         /// <summary>
-        /// An abstract definition that will be used to create a printTask when triggered by a print event. Read-only.
+        /// An abstract definition that is used to create a printTask when triggered by a print event. Read-only.
         /// </summary>
         public class DefinitionRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

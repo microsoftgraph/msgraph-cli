@@ -19,12 +19,12 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Unpublish {
     /// </summary>
     public class UnpublishRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Make the scheduling page of this business not available to external customers. Set the isPublished property to false, and the publicUrl property to null.
+        /// Make the scheduling page of this business not available to external customers. Set the isPublished property to false, and the publicUrl property to null. This API is available in the following national cloud deployments.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/bookingbusiness-unpublish?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Make the scheduling page of this business not available to external customers. Set the isPublished property to false, and the publicUrl property to null.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingbusiness-unpublish?view=graph-rest-1.0";
+            command.Description = "Make the scheduling page of this business not available to external customers. Set the isPublished property to false, and the publicUrl property to null. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bookingbusiness-unpublish?view=graph-rest-1.0";
             var bookingBusinessIdOption = new Option<string>("--booking-business-id", description: "The unique identifier of bookingBusiness") {
             };
             bookingBusinessIdOption.IsRequired = true;
@@ -58,7 +58,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Unpublish {
         public UnpublishRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/bookingBusinesses/{bookingBusiness%2Did}/unpublish", rawUrl) {
         }
         /// <summary>
-        /// Make the scheduling page of this business not available to external customers. Set the isPublished property to false, and the publicUrl property to null.
+        /// Make the scheduling page of this business not available to external customers. Set the isPublished property to false, and the publicUrl property to null. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -80,6 +80,7 @@ namespace ApiSdk.Solutions.BookingBusinesses.Item.Unpublish {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json, application/json");
             return requestInfo;
         }
     }

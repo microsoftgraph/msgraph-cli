@@ -6,9 +6,9 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class AccessPackageTextInputQuestion : AccessPackageQuestion, IParsable {
-        /// <summary>Indicates whether the answer will be in single or multiple line format.</summary>
+        /// <summary>Indicates whether the answer is in single or multiple line format.</summary>
         public bool? IsSingleLineQuestion { get; set; }
-        /// <summary>The regular expression pattern which any answer to this question must match.</summary>
+        /// <summary>The regular expression pattern that any answer to this question must match.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? RegexPattern { get; set; }

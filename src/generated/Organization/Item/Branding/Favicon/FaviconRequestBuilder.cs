@@ -19,12 +19,12 @@ namespace ApiSdk.Organization.Item.Branding.Favicon {
     /// </summary>
     public class FaviconRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// A custom icon (favicon) to replace a default Microsoft product favicon on an Azure AD tenant.
+        /// A custom icon (favicon) to replace a default Microsoft product favicon on a Microsoft Entra tenant.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/organizationalbranding-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "A custom icon (favicon) to replace a default Microsoft product favicon on an Azure AD tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/organizationalbranding-get?view=graph-rest-1.0";
+            command.Description = "A custom icon (favicon) to replace a default Microsoft product favicon on a Microsoft Entra tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/organizationalbranding-get?view=graph-rest-1.0";
             var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
             };
             organizationIdOption.IsRequired = true;
@@ -58,11 +58,11 @@ namespace ApiSdk.Organization.Item.Branding.Favicon {
             return command;
         }
         /// <summary>
-        /// A custom icon (favicon) to replace a default Microsoft product favicon on an Azure AD tenant.
+        /// A custom icon (favicon) to replace a default Microsoft product favicon on a Microsoft Entra tenant.
         /// </summary>
         public Command BuildPutCommand() {
             var command = new Command("put");
-            command.Description = "A custom icon (favicon) to replace a default Microsoft product favicon on an Azure AD tenant.";
+            command.Description = "A custom icon (favicon) to replace a default Microsoft product favicon on a Microsoft Entra tenant.";
             var organizationIdOption = new Option<string>("--organization-id", description: "The unique identifier of organization") {
             };
             organizationIdOption.IsRequired = true;
@@ -79,7 +79,10 @@ namespace ApiSdk.Organization.Item.Branding.Favicon {
                 var outputFile = invocationContext.ParseResult.GetValueForOption(outputFileOption);
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
-                if (inputFile is null || !inputFile.Exists) return;
+                if (inputFile is null || !inputFile.Exists) {
+                    Console.Error.WriteLine("No available file to send.");
+                    return;
+                }
                 using var stream = inputFile.OpenRead();
                 var requestInfo = ToPutRequestInformation(stream, q => {
                 });
@@ -115,7 +118,7 @@ namespace ApiSdk.Organization.Item.Branding.Favicon {
         public FaviconRequestBuilder(string rawUrl) : base("{+baseurl}/organization/{organization%2Did}/branding/favicon", rawUrl) {
         }
         /// <summary>
-        /// A custom icon (favicon) to replace a default Microsoft product favicon on an Azure AD tenant.
+        /// A custom icon (favicon) to replace a default Microsoft product favicon on a Microsoft Entra tenant.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -137,10 +140,11 @@ namespace ApiSdk.Organization.Item.Branding.Favicon {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/octet-stream, application/json, application/json");
             return requestInfo;
         }
         /// <summary>
-        /// A custom icon (favicon) to replace a default Microsoft product favicon on an Azure AD tenant.
+        /// A custom icon (favicon) to replace a default Microsoft product favicon on a Microsoft Entra tenant.
         /// </summary>
         /// <param name="body">Binary request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -157,7 +161,6 @@ namespace ApiSdk.Organization.Item.Branding.Favicon {
                 UrlTemplate = UrlTemplate,
                 PathParameters = PathParameters,
             };
-            requestInfo.SetStreamContent(body);
             if (requestConfiguration != null) {
                 var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
                 requestConfiguration.Invoke(requestConfig);
@@ -165,6 +168,8 @@ namespace ApiSdk.Organization.Item.Branding.Favicon {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json, application/json");
+            requestInfo.SetStreamContent(body, "application/octet-stream");
             return requestInfo;
         }
     }

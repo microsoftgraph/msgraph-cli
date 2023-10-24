@@ -19,12 +19,12 @@ namespace ApiSdk.ServicePrincipals.Item.RemovePassword {
     /// </summary>
     public class RemovePasswordRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Remove a password from a servicePrincipal object.
+        /// Remove a password from a servicePrincipal object. This API is available in the following national cloud deployments.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/serviceprincipal-removepassword?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Remove a password from a servicePrincipal object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-removepassword?view=graph-rest-1.0";
+            command.Description = "Remove a password from a servicePrincipal object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/serviceprincipal-removepassword?view=graph-rest-1.0";
             var servicePrincipalIdOption = new Option<string>("--service-principal-id", description: "The unique identifier of servicePrincipal") {
             };
             servicePrincipalIdOption.IsRequired = true;
@@ -41,7 +41,10 @@ namespace ApiSdk.ServicePrincipals.Item.RemovePassword {
                 using var stream = new MemoryStream(Encoding.UTF8.GetBytes(body));
                 var parseNode = ParseNodeFactoryRegistry.DefaultInstance.GetRootParseNode("application/json", stream);
                 var model = parseNode.GetObjectValue<RemovePasswordPostRequestBody>(RemovePasswordPostRequestBody.CreateFromDiscriminatorValue);
-                if (model is null) return; // Cannot create a POST request from a null model.
+                if (model is null) {
+                    Console.Error.WriteLine("No model data to send.");
+                    return;
+                }
                 var requestInfo = ToPostRequestInformation(model, q => {
                 });
                 if (servicePrincipalId is not null) requestInfo.PathParameters.Add("servicePrincipal%2Did", servicePrincipalId);
@@ -68,7 +71,7 @@ namespace ApiSdk.ServicePrincipals.Item.RemovePassword {
         public RemovePasswordRequestBuilder(string rawUrl) : base("{+baseurl}/servicePrincipals/{servicePrincipal%2Did}/removePassword", rawUrl) {
         }
         /// <summary>
-        /// Remove a password from a servicePrincipal object.
+        /// Remove a password from a servicePrincipal object. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -92,6 +95,7 @@ namespace ApiSdk.ServicePrincipals.Item.RemovePassword {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json, application/json");
             return requestInfo;
         }
     }

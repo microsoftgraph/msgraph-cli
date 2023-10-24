@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
     public class AppIdentity : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Refers to the Unique GUID representing Application Id in the Azure Active Directory.</summary>
+        /// <summary>Refers to the unique ID representing application in Microsoft Entra ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? AppId { get; set; }
@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
 #else
         public string AppId { get; set; }
 #endif
-        /// <summary>Refers to the Application Name displayed in the Azure Portal.</summary>
+        /// <summary>Refers to the application name displayed in the Microsoft Entra admin center.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }
@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>Refers to the Unique GUID indicating Service Principal Id in Azure Active Directory for the corresponding App.</summary>
+        /// <summary>Refers to the unique ID for the service principal in Microsoft Entra ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ServicePrincipalId { get; set; }

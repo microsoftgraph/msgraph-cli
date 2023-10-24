@@ -22,9 +22,9 @@ namespace ApiSdk.Models {
 #else
         public List<string> ClientApplicationPublisherIds { get; set; }
 #endif
-        /// <summary>Set to true to only match on client applications with a verified publisher. Set to false to match on any client app, even if it does not have a verified publisher. Default is false.</summary>
+        /// <summary>Set to true to only match on client applications with a verified publisher. Set to false to match on any client app, even if it doesn&apos;t have a verified publisher. Default is false.</summary>
         public bool? ClientApplicationsFromVerifiedPublisherOnly { get; set; }
-        /// <summary>A list of Azure Active Directory tenant IDs in which the client application is registered, or a list with the single value all to match with client apps registered in any tenant. Default is the single value all.</summary>
+        /// <summary>A list of Microsoft Entra tenant IDs in which the client application is registered, or a list with the single value all to match with client apps registered in any tenant. Default is the single value all.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? ClientApplicationTenantIds { get; set; }
@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
 #else
         public List<string> ClientApplicationTenantIds { get; set; }
 #endif
-        /// <summary>The permission classification for the permission being granted, or all to match with any permission classification (including permissions which are not classified). Default is all.</summary>
+        /// <summary>The permission classification for the permission being granted, or all to match with any permission classification (including permissions that aren&apos;t classified). Default is all.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PermissionClassification { get; set; }
@@ -48,9 +48,9 @@ namespace ApiSdk.Models {
 #else
         public List<string> Permissions { get; set; }
 #endif
-        /// <summary>The permission type of the permission being granted. Possible values: application for application permissions (e.g. app roles), or delegated for delegated permissions. The value delegatedUserConsentable indicates delegated permissions which have not been configured by the API publisher to require admin consent—this value may be used in built-in permission grant policies, but cannot be used in custom permission grant policies. Required.</summary>
+        /// <summary>The permission type of the permission being granted. Possible values: application for application permissions (for example app roles), or delegated for delegated permissions. The value delegatedUserConsentable indicates delegated permissions that haven&apos;t been configured by the API publisher to require admin consent—this value may be used in built-in permission grant policies, but can&apos;t be used in custom permission grant policies. Required.</summary>
         public ApiSdk.Models.PermissionType? PermissionType { get; set; }
-        /// <summary>The appId of the resource application (e.g. the API) for which a permission is being granted, or any to match with any resource application or API. Default is any.</summary>
+        /// <summary>The appId of the resource application (for example the API) for which a permission is being granted, or any to match with any resource application or API. Default is any.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ResourceApplication { get; set; }

@@ -48,7 +48,7 @@ namespace ApiSdk.Models {
 #else
         public CrossTenantAccessPolicyB2BSetting B2bDirectConnectOutbound { get; set; }
 #endif
-        /// <summary>Defines the cross-tenant policy for the synchronization of users from a partner tenant. Use this user synchronization policy to streamline collaboration between users in a multi-tenant organization by automating the creation, update, and deletion of users from one tenant to another.</summary>
+        /// <summary>Defines the cross-tenant policy for the synchronization of users from a partner tenant. Use this user synchronization policy to streamline collaboration between users in a multitenant organization by automating the creation, update, and deletion of users from one tenant to another.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public CrossTenantIdentitySyncPolicyPartner? IdentitySynchronization { get; set; }

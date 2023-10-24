@@ -26,7 +26,7 @@ namespace ApiSdk.Models {
 #else
         public List<MeetingAttendanceReport> AttendanceReports { get; set; }
 #endif
-        /// <summary>The content stream of the attendee report of a Microsoft Teams live event. Read-only.</summary>
+        /// <summary>The attendeeReport property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public byte[]? AttendeeReport { get; set; }
@@ -42,7 +42,7 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.AudioConferencing AudioConferencing { get; set; }
 #endif
-        /// <summary>Settings related to a live event.</summary>
+        /// <summary>The broadcastSettings property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public BroadcastMeetingSettings? BroadcastSettings { get; set; }
@@ -70,7 +70,7 @@ namespace ApiSdk.Models {
 #else
         public string ExternalId { get; set; }
 #endif
-        /// <summary>Indicates if this is a Teams live event.</summary>
+        /// <summary>The isBroadcast property</summary>
         public bool? IsBroadcast { get; set; }
         /// <summary>Indicates whether to announce when callers join or leave.</summary>
         public bool? IsEntryExitAnnounced { get; set; }
@@ -128,6 +128,14 @@ namespace ApiSdk.Models {
 #else
         public string Subject { get; set; }
 #endif
+        /// <summary>The transcripts of an online meeting. Read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<CallTranscript>? Transcripts { get; set; }
+#nullable restore
+#else
+        public List<CallTranscript> Transcripts { get; set; }
+#endif
         /// <summary>The video teleconferencing ID. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -182,6 +190,7 @@ namespace ApiSdk.Models {
                 {"shareMeetingChatHistoryDefault", n => { ShareMeetingChatHistoryDefault = n.GetEnumValue<MeetingChatHistoryDefaultMode>(); } },
                 {"startDateTime", n => { StartDateTime = n.GetDateTimeOffsetValue(); } },
                 {"subject", n => { Subject = n.GetStringValue(); } },
+                {"transcripts", n => { Transcripts = n.GetCollectionOfObjectValues<CallTranscript>(CallTranscript.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"videoTeleconferenceId", n => { VideoTeleconferenceId = n.GetStringValue(); } },
                 {"watermarkProtection", n => { WatermarkProtection = n.GetObjectValue<WatermarkProtectionValues>(WatermarkProtectionValues.CreateFromDiscriminatorValue); } },
             };
@@ -218,6 +227,7 @@ namespace ApiSdk.Models {
             writer.WriteEnumValue<MeetingChatHistoryDefaultMode>("shareMeetingChatHistoryDefault", ShareMeetingChatHistoryDefault);
             writer.WriteDateTimeOffsetValue("startDateTime", StartDateTime);
             writer.WriteStringValue("subject", Subject);
+            writer.WriteCollectionOfObjectValues<CallTranscript>("transcripts", Transcripts);
             writer.WriteStringValue("videoTeleconferenceId", VideoTeleconferenceId);
             writer.WriteObjectValue<WatermarkProtectionValues>("watermarkProtection", WatermarkProtection);
         }

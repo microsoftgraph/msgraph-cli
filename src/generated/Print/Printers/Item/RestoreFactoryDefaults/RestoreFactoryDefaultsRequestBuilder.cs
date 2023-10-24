@@ -19,12 +19,12 @@ namespace ApiSdk.Print.Printers.Item.RestoreFactoryDefaults {
     /// </summary>
     public class RestoreFactoryDefaultsRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Restore a printer&apos;s default settings to the values specified by the manufacturer.
+        /// Restore a printer&apos;s default settings to the values specified by the manufacturer. This API is available in the following national cloud deployments.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printer-restorefactorydefaults?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Restore a printer's default settings to the values specified by the manufacturer.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printer-restorefactorydefaults?view=graph-rest-1.0";
+            command.Description = "Restore a printer's default settings to the values specified by the manufacturer. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printer-restorefactorydefaults?view=graph-rest-1.0";
             var printerIdOption = new Option<string>("--printer-id", description: "The unique identifier of printer") {
             };
             printerIdOption.IsRequired = true;
@@ -58,7 +58,7 @@ namespace ApiSdk.Print.Printers.Item.RestoreFactoryDefaults {
         public RestoreFactoryDefaultsRequestBuilder(string rawUrl) : base("{+baseurl}/print/printers/{printer%2Did}/restoreFactoryDefaults", rawUrl) {
         }
         /// <summary>
-        /// Restore a printer&apos;s default settings to the values specified by the manufacturer.
+        /// Restore a printer&apos;s default settings to the values specified by the manufacturer. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -80,6 +80,7 @@ namespace ApiSdk.Print.Printers.Item.RestoreFactoryDefaults {
                 requestInfo.AddRequestOptions(requestConfig.Options);
                 requestInfo.AddHeaders(requestConfig.Headers);
             }
+            requestInfo.Headers.TryAdd("Accept", "application/json, application/json");
             return requestInfo;
         }
     }

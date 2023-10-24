@@ -57,6 +57,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.chatMessageFromIdentitySet" => new ChatMessageFromIdentitySet(),
                 "#microsoft.graph.chatMessageMentionedIdentitySet" => new ChatMessageMentionedIdentitySet(),
                 "#microsoft.graph.chatMessageReactionIdentitySet" => new ChatMessageReactionIdentitySet(),
+                "#microsoft.graph.communicationsIdentitySet" => new CommunicationsIdentitySet(),
                 "#microsoft.graph.sharePointIdentitySet" => new SharePointIdentitySet(),
                 _ => new IdentitySet(),
             };

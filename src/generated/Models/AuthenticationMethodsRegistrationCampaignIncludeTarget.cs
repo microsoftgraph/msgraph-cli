@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
     public class AuthenticationMethodsRegistrationCampaignIncludeTarget : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The object identifier of an Azure Active Directory user or group.</summary>
+        /// <summary>The object identifier of a Microsoft Entra user or group.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Id { get; set; }

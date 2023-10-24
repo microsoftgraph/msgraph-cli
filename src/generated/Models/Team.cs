@@ -188,7 +188,7 @@ namespace ApiSdk.Models {
 #else
         public TeamsTemplate Template { get; set; }
 #endif
-        /// <summary>The ID of the Azure Active Directory tenant.</summary>
+        /// <summary>The ID of the Microsoft Entra tenant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TenantId { get; set; }

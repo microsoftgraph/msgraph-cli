@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>Optional. Used to uniquely identity the resource. If passed in, the prompt uri will be cached against this resourceId as a key.</summary>
+        /// <summary>Optional. Used to uniquely identity the resource. If passed in, the prompt uri is against this resourceId as a key.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ResourceId { get; set; }
@@ -24,7 +24,7 @@ namespace ApiSdk.Models {
 #else
         public string ResourceId { get; set; }
 #endif
-        /// <summary>Path to the prompt that will be played. Currently supports only Wave file (.wav) format, single-channel, 16-bit samples with a 16,000 (16KHz) sampling rate.</summary>
+        /// <summary>Path to the prompt that will be played. Currently supports only Wave file (.wav) format, single-channel, 16-bit samples with a 16,000 (16 KHz) sampling rate.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Uri { get; set; }

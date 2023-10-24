@@ -68,8 +68,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Beta_Inv {
         /// </summary>
         public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"a", n => { A = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                {"b", n => { B = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"A", n => { A = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"B", n => { B = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
                 {"alpha", n => { Alpha = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
                 {"beta", n => { Beta = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
                 {"probability", n => { Probability = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
@@ -81,9 +81,9 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Beta_Inv {
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<Json>("a", A);
+            writer.WriteObjectValue<Json>("A", A);
             writer.WriteObjectValue<Json>("alpha", Alpha);
-            writer.WriteObjectValue<Json>("b", B);
+            writer.WriteObjectValue<Json>("B", B);
             writer.WriteObjectValue<Json>("beta", Beta);
             writer.WriteObjectValue<Json>("probability", Probability);
             writer.WriteAdditionalData(AdditionalData);
