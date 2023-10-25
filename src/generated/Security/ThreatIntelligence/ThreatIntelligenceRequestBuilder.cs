@@ -6,6 +6,7 @@ using ApiSdk.Security.ThreatIntelligence.Articles;
 using ApiSdk.Security.ThreatIntelligence.HostComponents;
 using ApiSdk.Security.ThreatIntelligence.HostCookies;
 using ApiSdk.Security.ThreatIntelligence.HostPairs;
+using ApiSdk.Security.ThreatIntelligence.HostPorts;
 using ApiSdk.Security.ThreatIntelligence.HostSslCertificates;
 using ApiSdk.Security.ThreatIntelligence.HostTrackers;
 using ApiSdk.Security.ThreatIntelligence.Hosts;
@@ -213,6 +214,31 @@ namespace ApiSdk.Security.ThreatIntelligence {
             var command = new Command("host-pairs");
             command.Description = "Provides operations to manage the hostPairs property of the microsoft.graph.security.threatIntelligence entity.";
             var builder = new HostPairsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the hostPorts property of the microsoft.graph.security.threatIntelligence entity.
+        /// </summary>
+        public Command BuildHostPortsNavCommand() {
+            var command = new Command("host-ports");
+            command.Description = "Provides operations to manage the hostPorts property of the microsoft.graph.security.threatIntelligence entity.";
+            var builder = new HostPortsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildCountNavCommand());

@@ -98,11 +98,12 @@ namespace ApiSdk.Domains.Item.FederationConfiguration {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of an internalDomainFederation object. This API is available in the following national cloud deployments.
+        /// Read the properties of the internalDomainFederation objects for the domain. This API returns only one object in the collection. This API is available in the following national cloud deployments.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/domain-list-federationconfiguration?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Read the properties and relationships of an internalDomainFederation object. This API is available in the following national cloud deployments.";
+            command.Description = "Read the properties of the internalDomainFederation objects for the domain. This API returns only one object in the collection. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/domain-list-federationconfiguration?view=graph-rest-1.0";
             var domainIdOption = new Option<string>("--domain-id", description: "The unique identifier of domain") {
             };
             domainIdOption.IsRequired = true;
@@ -208,7 +209,7 @@ namespace ApiSdk.Domains.Item.FederationConfiguration {
         public FederationConfigurationRequestBuilder(string rawUrl) : base("{+baseurl}/domains/{domain%2Did}/federationConfiguration{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Read the properties and relationships of an internalDomainFederation object. This API is available in the following national cloud deployments.
+        /// Read the properties of the internalDomainFederation objects for the domain. This API returns only one object in the collection. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -262,7 +263,7 @@ namespace ApiSdk.Domains.Item.FederationConfiguration {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an internalDomainFederation object. This API is available in the following national cloud deployments.
+        /// Read the properties of the internalDomainFederation objects for the domain. This API returns only one object in the collection. This API is available in the following national cloud deployments.
         /// </summary>
         public class FederationConfigurationRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

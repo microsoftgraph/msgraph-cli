@@ -55,6 +55,7 @@ namespace ApiSdk.ServicePrincipals {
             commands.Add(builder.BuildOwnedObjectsNavCommand());
             commands.Add(builder.BuildOwnersNavCommand());
             executables.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildRemoteDesktopSecurityConfigurationNavCommand());
             commands.Add(builder.BuildRemoveKeyNavCommand());
             commands.Add(builder.BuildRemovePasswordNavCommand());
             commands.Add(builder.BuildRestoreNavCommand());

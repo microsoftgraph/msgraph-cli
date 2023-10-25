@@ -38,6 +38,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts {
             commands.Add(builder.BuildPassiveDnsNavCommand());
             commands.Add(builder.BuildPassiveDnsReverseNavCommand());
             executables.Add(builder.BuildPatchCommand());
+            commands.Add(builder.BuildPortsNavCommand());
             commands.Add(builder.BuildReputationNavCommand());
             commands.Add(builder.BuildSslCertificatesNavCommand());
             commands.Add(builder.BuildSubdomainsNavCommand());

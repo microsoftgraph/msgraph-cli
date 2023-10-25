@@ -20,12 +20,12 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
     /// </summary>
     public class NamedLocationItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete a namedLocation object. This API is available in the following national cloud deployments.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/namedlocation-delete?view=graph-rest-1.0" />
+        /// Delete a countryNamedLocation object. This API is available in the following national cloud deployments.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/countrynamedlocation-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a namedLocation object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/namedlocation-delete?view=graph-rest-1.0";
+            command.Description = "Delete a countryNamedLocation object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/countrynamedlocation-delete?view=graph-rest-1.0";
             var namedLocationIdOption = new Option<string>("--named-location-id", description: "The unique identifier of namedLocation") {
             };
             namedLocationIdOption.IsRequired = true;
@@ -54,12 +54,12 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an ipNamedLocation object. This API is available in the following national cloud deployments.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/ipnamedlocation-get?view=graph-rest-1.0" />
+        /// Retrieve the properties and relationships of a countryNamedLocation object. This API is available in the following national cloud deployments.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/countrynamedlocation-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of an ipNamedLocation object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/ipnamedlocation-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of a countryNamedLocation object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/countrynamedlocation-get?view=graph-rest-1.0";
             var namedLocationIdOption = new Option<string>("--named-location-id", description: "The unique identifier of namedLocation") {
             };
             namedLocationIdOption.IsRequired = true;
@@ -167,7 +167,7 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
         public NamedLocationItemRequestBuilder(string rawUrl) : base("{+baseurl}/identity/conditionalAccess/namedLocations/{namedLocation%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete a namedLocation object. This API is available in the following national cloud deployments.
+        /// Delete a countryNamedLocation object. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -193,7 +193,7 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an ipNamedLocation object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a countryNamedLocation object. This API is available in the following national cloud deployments.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -247,7 +247,7 @@ namespace ApiSdk.Identity.ConditionalAccess.NamedLocations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an ipNamedLocation object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a countryNamedLocation object. This API is available in the following national cloud deployments.
         /// </summary>
         public class NamedLocationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

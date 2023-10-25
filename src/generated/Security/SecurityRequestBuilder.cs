@@ -352,6 +352,7 @@ namespace ApiSdk.Security {
             nonExecCommands.Add(builder.BuildHostComponentsNavCommand());
             nonExecCommands.Add(builder.BuildHostCookiesNavCommand());
             nonExecCommands.Add(builder.BuildHostPairsNavCommand());
+            nonExecCommands.Add(builder.BuildHostPortsNavCommand());
             nonExecCommands.Add(builder.BuildHostsNavCommand());
             nonExecCommands.Add(builder.BuildHostSslCertificatesNavCommand());
             nonExecCommands.Add(builder.BuildHostTrackersNavCommand());

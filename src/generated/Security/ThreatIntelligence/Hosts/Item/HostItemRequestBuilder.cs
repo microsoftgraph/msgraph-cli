@@ -8,6 +8,7 @@ using ApiSdk.Security.ThreatIntelligence.Hosts.Item.HostPairs;
 using ApiSdk.Security.ThreatIntelligence.Hosts.Item.ParentHostPairs;
 using ApiSdk.Security.ThreatIntelligence.Hosts.Item.PassiveDns;
 using ApiSdk.Security.ThreatIntelligence.Hosts.Item.PassiveDnsReverse;
+using ApiSdk.Security.ThreatIntelligence.Hosts.Item.Ports;
 using ApiSdk.Security.ThreatIntelligence.Hosts.Item.Reputation;
 using ApiSdk.Security.ThreatIntelligence.Hosts.Item.SslCertificates;
 using ApiSdk.Security.ThreatIntelligence.Hosts.Item.Subdomains;
@@ -330,6 +331,30 @@ namespace ApiSdk.Security.ThreatIntelligence.Hosts.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the ports property of the microsoft.graph.security.host entity.
+        /// </summary>
+        public Command BuildPortsNavCommand() {
+            var command = new Command("ports");
+            command.Description = "Provides operations to manage the ports property of the microsoft.graph.security.host entity.";
+            var builder = new PortsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>

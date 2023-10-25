@@ -8,7 +8,7 @@ namespace ApiSdk.Models.CallRecords {
     public class PstnCallLogRow : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The source of the call duration data. If the call uses a third-party telecommunications operator via the Operator Connect Program, the operator may provide their own call duration data. In this case, the property value is operator. Otherwise, the value is microsoft.</summary>
+        /// <summary>The source of the call duration data. If the call uses a third-party telecommunications operator via the Operator Connect Program, the operator can provide their own call duration data. In this case, the property value is operator. Otherwise, the value is microsoft.</summary>
         public PstnCallDurationSource? CallDurationSource { get; set; }
         /// <summary>Number dialed in E.164 format.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -34,7 +34,7 @@ namespace ApiSdk.Models.CallRecords {
 #else
         public string CallId { get; set; }
 #endif
-        /// <summary>Whether the call was a PSTN outbound or inbound call and the type of call such as a call placed by a user or an audio conference.</summary>
+        /// <summary>Indicates whether the call was a PSTN outbound or inbound call and the type of call, such as a call placed by a user or an audio conference.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CallType { get; set; }
@@ -62,7 +62,7 @@ namespace ApiSdk.Models.CallRecords {
 #else
         public string Currency { get; set; }
 #endif
-        /// <summary>Whether the call was domestic (within a country or region) or international (outside a country or region) based on the user&apos;s location.</summary>
+        /// <summary>Whether the call was domestic (within a country or region) or international (outside a country or region), based on the user&apos;s location.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DestinationContext { get; set; }
@@ -114,7 +114,7 @@ namespace ApiSdk.Models.CallRecords {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The telecommunications operator which provided PSTN services for this call. This may be Microsoft, or it may be a third-party operator via the Operator Connect Program.</summary>
+        /// <summary>The telecommunications operator which provided PSTN services for this call. This might be Microsoft, or it might be a third-party operator via the Operator Connect Program.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Operator { get; set; }
@@ -148,7 +148,7 @@ namespace ApiSdk.Models.CallRecords {
 #else
         public string UserDisplayName { get; set; }
 #endif
-        /// <summary>Calling user&apos;s ID in Graph. GUID. This and other user info will be null/empty for bot call types (ucapin, ucapout).</summary>
+        /// <summary>Calling user&apos;s ID in Microsoft Graph. GUID. This and other user info will be null/empty for bot call types (ucapin, ucapout).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? UserId { get; set; }
@@ -156,7 +156,7 @@ namespace ApiSdk.Models.CallRecords {
 #else
         public string UserId { get; set; }
 #endif
-        /// <summary>The user principal name (sign-in name) in Azure Active Directory. This is usually the same as the user&apos;s SIP address, and can be same as the user&apos;s e-mail address.</summary>
+        /// <summary>The user principal name (sign-in name) in Microsoft Entra ID. This is usually the same as the user&apos;s SIP address, and can be the same as the user&apos;s email address.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? UserPrincipalName { get; set; }
@@ -181,7 +181,7 @@ namespace ApiSdk.Models.CallRecords {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"callDurationSource", n => { CallDurationSource = n.GetEnumValue<PstnCallDurationSource>(); } },
@@ -213,7 +213,7 @@ namespace ApiSdk.Models.CallRecords {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public void Serialize(ISerializationWriter writer) {
+        public virtual void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<PstnCallDurationSource>("callDurationSource", CallDurationSource);
             writer.WriteStringValue("calleeNumber", CalleeNumber);

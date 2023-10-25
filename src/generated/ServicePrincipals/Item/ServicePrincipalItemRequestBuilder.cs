@@ -21,6 +21,7 @@ using ApiSdk.ServicePrincipals.Item.MemberOf;
 using ApiSdk.ServicePrincipals.Item.Oauth2PermissionGrants;
 using ApiSdk.ServicePrincipals.Item.OwnedObjects;
 using ApiSdk.ServicePrincipals.Item.Owners;
+using ApiSdk.ServicePrincipals.Item.RemoteDesktopSecurityConfiguration;
 using ApiSdk.ServicePrincipals.Item.RemoveKey;
 using ApiSdk.ServicePrincipals.Item.RemovePassword;
 using ApiSdk.ServicePrincipals.Item.Restore;
@@ -616,6 +617,29 @@ namespace ApiSdk.ServicePrincipals.Item {
                 var formatter = outputFormatterFactory.GetFormatter(output);
                 await formatter.WriteOutputAsync(response, cancellationToken);
             });
+            return command;
+        }
+        /// <summary>
+        /// Provides operations to manage the remoteDesktopSecurityConfiguration property of the microsoft.graph.servicePrincipal entity.
+        /// </summary>
+        public Command BuildRemoteDesktopSecurityConfigurationNavCommand() {
+            var command = new Command("remote-desktop-security-configuration");
+            command.Description = "Provides operations to manage the remoteDesktopSecurityConfiguration property of the microsoft.graph.servicePrincipal entity.";
+            var builder = new RemoteDesktopSecurityConfigurationRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            execCommands.Add(builder.BuildDeleteCommand());
+            execCommands.Add(builder.BuildGetCommand());
+            execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildTargetDeviceGroupsNavCommand());
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands)
+            {
+                command.AddCommand(cmd);
+            }
             return command;
         }
         /// <summary>
