@@ -46,6 +46,24 @@ namespace Microsoft.Graph.Cli
         {
             Console.InputEncoding = Encoding.UTF8;
             Console.OutputEncoding = Encoding.UTF8;
+            // Replace `me ...` with `users ... --user-id me`
+            if (args[0] == "me")
+            {
+                var hasHelp = Array.Exists(args, static x => x == "--help" || x == "-h" || x == "/?");
+                var newArgs = hasHelp ? args : new string[args.Length + 2];
+                newArgs[0] = "users";
+                for (var i = 1; i < args.Length; i++)
+                {
+                    newArgs[i] = args[i];
+                }
+                if (newArgs.Length > args.Length)
+                {
+                    newArgs[args.Length] = "--user-id";
+                    newArgs[args.Length + 1] = "me";
+                    args = newArgs;
+                }
+            }
+
             var builder = BuildCommandLine()
                 .UseDefaults()
                 .UseHost(CreateHostBuilder)
