@@ -97,7 +97,7 @@ sudo ln -s [path-to-the-cli-folder]/mgc /usr/bin
 
 #### Linux
 
-Download from browser OR via Curl
+Download installation package from your browser OR via Curl
 
 ``` bash
 curl -LO <link> && tar -xzf <filename>
@@ -105,8 +105,7 @@ curl -LO <link> && tar -xzf <filename>
 
 ##### Linux (Ubuntu) environment setup (Required)
 
-The linux environment setup is similar to the Mac setup, but with one difference. For headless linux environments,
-there's an additional step to configure the keyring for access token encryption.
+>**Note:** For headless Linux environments, there's an additional step to configure the keyring for access token encryption.
 
 To set up the PATH environment variable for your current session, run the following command from your terminal
 in the directory of the CLI:
@@ -129,8 +128,8 @@ sudo ln -s [path-to-the-cli-folder]/mgc /usr/bin
 ```
 
 
->**Note:** The following step is **Required** if your linux distribution does not have a desktop environment e.g. WSL, Docker
-Failure to set this up will result in authentication failures.
+_**Required if your Linux distribution does not have a desktop environment e.g. WSL, Docker**_
+>**Note:** Not setting this up for this environment will result in authentication failures.
 
 Required packages:
 
@@ -161,10 +160,8 @@ printf '%s' "$KEYRING_PASSWORD" | gnome-keyring-daemon --daemonize --components=
 mgc login
 ```
 
-See the [shell script](docker/init.sh) used for docker in this repository
-
 ### Using Docker
-Find docker instructions in the docker folder [here](docker)
+Find docker instructions in the docker folder [here](docker). See the [shell script](docker/init.sh) used for docker in this repository
 
 ## Uninstalling
 ### Dotnet tool
