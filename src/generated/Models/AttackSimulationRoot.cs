@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class AttackSimulationRoot : Entity, IParsable {
-        /// <summary>The endUserNotifications property</summary>
+        /// <summary>Represents an end user&apos;s notification for an attack simulation training.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<EndUserNotification>? EndUserNotifications { get; set; }
@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
 #else
         public List<EndUserNotification> EndUserNotifications { get; set; }
 #endif
-        /// <summary>The landingPages property</summary>
+        /// <summary>Represents an attack simulation training landing page.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<LandingPage>? LandingPages { get; set; }
@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
 #else
         public List<LandingPage> LandingPages { get; set; }
 #endif
-        /// <summary>The loginPages property</summary>
+        /// <summary>Represents an attack simulation training login page.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<LoginPage>? LoginPages { get; set; }
@@ -30,7 +30,7 @@ namespace ApiSdk.Models {
 #else
         public List<LoginPage> LoginPages { get; set; }
 #endif
-        /// <summary>The operations property</summary>
+        /// <summary>Represents an attack simulation training operation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<AttackSimulationOperation>? Operations { get; set; }
@@ -38,7 +38,7 @@ namespace ApiSdk.Models {
 #else
         public List<AttackSimulationOperation> Operations { get; set; }
 #endif
-        /// <summary>The payloads property</summary>
+        /// <summary>Represents an attack simulation training campaign payload in a tenant.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<Payload>? Payloads { get; set; }
@@ -62,7 +62,7 @@ namespace ApiSdk.Models {
 #else
         public List<Simulation> Simulations { get; set; }
 #endif
-        /// <summary>The trainings property</summary>
+        /// <summary>Represents details about attack simulation trainings.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<Training>? Trainings { get; set; }
@@ -81,7 +81,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"endUserNotifications", n => { EndUserNotifications = n.GetCollectionOfObjectValues<EndUserNotification>(EndUserNotification.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"landingPages", n => { LandingPages = n.GetCollectionOfObjectValues<LandingPage>(LandingPage.CreateFromDiscriminatorValue)?.ToList(); } },
@@ -97,7 +97,7 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public new void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteCollectionOfObjectValues<EndUserNotification>("endUserNotifications", EndUserNotifications);

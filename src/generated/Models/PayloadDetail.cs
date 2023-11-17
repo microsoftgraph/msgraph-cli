@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
     public class PayloadDetail : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The coachmarks property</summary>
+        /// <summary>Payload coachmark details.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<PayloadCoachmark>? Coachmarks { get; set; }
@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
 #else
         public List<PayloadCoachmark> Coachmarks { get; set; }
 #endif
-        /// <summary>The content property</summary>
+        /// <summary>Payload content details.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Content { get; set; }
@@ -32,7 +32,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The phishingUrl property</summary>
+        /// <summary>The phishing URL used to target a user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? PhishingUrl { get; set; }
@@ -61,7 +61,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"coachmarks", n => { Coachmarks = n.GetCollectionOfObjectValues<PayloadCoachmark>(PayloadCoachmark.CreateFromDiscriminatorValue)?.ToList(); } },
@@ -73,7 +73,7 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public void Serialize(ISerializationWriter writer) {
+        public virtual void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<PayloadCoachmark>("coachmarks", Coachmarks);
             writer.WriteStringValue("content", Content);

@@ -93,11 +93,12 @@ namespace ApiSdk.Security.AttackSimulation.EndUserNotifications {
             return command;
         }
         /// <summary>
-        /// Get endUserNotifications from security
+        /// Get a list of endUserNotification objects and their properties.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/attacksimulationroot-list-endusernotifications?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get endUserNotifications from security";
+            command.Description = "Get a list of endUserNotification objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/attacksimulationroot-list-endusernotifications?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -197,7 +198,7 @@ namespace ApiSdk.Security.AttackSimulation.EndUserNotifications {
         public EndUserNotificationsRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/endUserNotifications{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get endUserNotifications from security
+        /// Get a list of endUserNotification objects and their properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -207,19 +208,9 @@ namespace ApiSdk.Security.AttackSimulation.EndUserNotifications {
 #else
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<EndUserNotificationsRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.GET,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new RequestConfiguration<EndUserNotificationsRequestBuilderGetQueryParameters>();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            requestInfo.Headers.TryAdd("Accept", "application/json;q=1");
+            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
@@ -235,23 +226,13 @@ namespace ApiSdk.Security.AttackSimulation.EndUserNotifications {
         public RequestInformation ToPostRequestInformation(EndUserNotification body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.POST,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            requestInfo.Headers.TryAdd("Accept", "application/json;q=1");
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Get endUserNotifications from security
+        /// Get a list of endUserNotification objects and their properties.
         /// </summary>
         public class EndUserNotificationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

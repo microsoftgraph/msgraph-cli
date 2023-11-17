@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System;
 namespace ApiSdk.Models.ExternalConnectors {
-    public class ConnectionOperation : Entity, IParsable {
+    public class ConnectionOperation : ApiSdk.Models.Entity, IParsable {
         /// <summary>If status is failed, provides more information about the error that caused the failure.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -27,7 +27,7 @@ namespace ApiSdk.Models.ExternalConnectors {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"error", n => { Error = n.GetObjectValue<ApiSdk.Models.PublicError>(ApiSdk.Models.PublicError.CreateFromDiscriminatorValue); } },
                 {"status", n => { Status = n.GetEnumValue<ConnectionOperationStatus>(); } },
@@ -37,7 +37,7 @@ namespace ApiSdk.Models.ExternalConnectors {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public new void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteObjectValue<ApiSdk.Models.PublicError>("error", Error);

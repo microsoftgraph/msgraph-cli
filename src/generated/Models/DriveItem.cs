@@ -46,7 +46,7 @@ namespace ApiSdk.Models {
 #else
         public byte[] Content { get; set; }
 #endif
-        /// <summary>An eTag for the content of the item. This eTag is not changed if only the metadata is changed. Note This property is not returned if the item is a folder. Read-only.</summary>
+        /// <summary>An eTag for the content of the item. This eTag isn&apos;t changed if only the metadata is changed. Note This property isn&apos;t returned if the item is a folder. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CTag { get; set; }
@@ -150,7 +150,7 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.Photo Photo { get; set; }
 #endif
-        /// <summary>Provides information about the published or checked-out state of an item, in locations that support such actions. This property is not returned by default. Read-only.</summary>
+        /// <summary>Provides information about the published or checked-out state of an item, in locations that support such actions. This property isn&apos;t returned by default. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public PublicationFacet? Publication { get; set; }
@@ -165,6 +165,14 @@ namespace ApiSdk.Models {
 #nullable restore
 #else
         public ApiSdk.Models.RemoteItem RemoteItem { get; set; }
+#endif
+        /// <summary>Information about retention label and settings enforced on the driveItem. Read-write.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ItemRetentionLabel? RetentionLabel { get; set; }
+#nullable restore
+#else
+        public ItemRetentionLabel RetentionLabel { get; set; }
 #endif
         /// <summary>If this property is non-null, it indicates that the driveItem is the top-most driveItem in the drive.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -182,7 +190,7 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.SearchResult SearchResult { get; set; }
 #endif
-        /// <summary>Indicates that the item has been shared with others and provides information about the shared state of the item. Read-only.</summary>
+        /// <summary>Indicates that the item was shared with others and provides information about the shared state of the item. Read-only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.Shared? Shared { get; set; }
@@ -216,7 +224,7 @@ namespace ApiSdk.Models {
 #else
         public List<Subscription> Subscriptions { get; set; }
 #endif
-        /// <summary>Collection containing [ThumbnailSet][] objects associated with the item. For more info, see [getting thumbnails][]. Read-only. Nullable.</summary>
+        /// <summary>Collection of [thumbnailSet][] objects associated with the item. For more information, see [getting thumbnails][]. Read-only. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<ThumbnailSet>? Thumbnails { get; set; }
@@ -248,7 +256,7 @@ namespace ApiSdk.Models {
 #else
         public string WebDavUrl { get; set; }
 #endif
-        /// <summary>For files that are Excel spreadsheets, accesses the workbook API to work with the spreadsheet&apos;s contents. Nullable.</summary>
+        /// <summary>For files that are Excel spreadsheets, access to the workbook API to work with the spreadsheet&apos;s contents. Nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.Workbook? Workbook { get; set; }
@@ -273,7 +281,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"analytics", n => { Analytics = n.GetObjectValue<ItemAnalytics>(ItemAnalytics.CreateFromDiscriminatorValue); } },
                 {"audio", n => { Audio = n.GetObjectValue<ApiSdk.Models.Audio>(ApiSdk.Models.Audio.CreateFromDiscriminatorValue); } },
@@ -295,6 +303,7 @@ namespace ApiSdk.Models {
                 {"photo", n => { Photo = n.GetObjectValue<ApiSdk.Models.Photo>(ApiSdk.Models.Photo.CreateFromDiscriminatorValue); } },
                 {"publication", n => { Publication = n.GetObjectValue<PublicationFacet>(PublicationFacet.CreateFromDiscriminatorValue); } },
                 {"remoteItem", n => { RemoteItem = n.GetObjectValue<ApiSdk.Models.RemoteItem>(ApiSdk.Models.RemoteItem.CreateFromDiscriminatorValue); } },
+                {"retentionLabel", n => { RetentionLabel = n.GetObjectValue<ItemRetentionLabel>(ItemRetentionLabel.CreateFromDiscriminatorValue); } },
                 {"root", n => { Root = n.GetObjectValue<ApiSdk.Models.Root>(ApiSdk.Models.Root.CreateFromDiscriminatorValue); } },
                 {"searchResult", n => { SearchResult = n.GetObjectValue<ApiSdk.Models.SearchResult>(ApiSdk.Models.SearchResult.CreateFromDiscriminatorValue); } },
                 {"shared", n => { Shared = n.GetObjectValue<ApiSdk.Models.Shared>(ApiSdk.Models.Shared.CreateFromDiscriminatorValue); } },
@@ -313,7 +322,7 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public new void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteObjectValue<ItemAnalytics>("analytics", Analytics);
@@ -336,6 +345,7 @@ namespace ApiSdk.Models {
             writer.WriteObjectValue<ApiSdk.Models.Photo>("photo", Photo);
             writer.WriteObjectValue<PublicationFacet>("publication", Publication);
             writer.WriteObjectValue<ApiSdk.Models.RemoteItem>("remoteItem", RemoteItem);
+            writer.WriteObjectValue<ItemRetentionLabel>("retentionLabel", RetentionLabel);
             writer.WriteObjectValue<ApiSdk.Models.Root>("root", Root);
             writer.WriteObjectValue<ApiSdk.Models.SearchResult>("searchResult", SearchResult);
             writer.WriteObjectValue<ApiSdk.Models.Shared>("shared", Shared);

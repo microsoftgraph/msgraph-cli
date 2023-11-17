@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class CommunicationsApplicationIdentity : Identity, IParsable {
-        /// <summary>The applicationType property</summary>
+        /// <summary>First-party Microsoft application that presents this identity.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ApplicationType { get; set; }
@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
 #else
         public string ApplicationType { get; set; }
 #endif
-        /// <summary>The hidden property</summary>
+        /// <summary>True if the participant shouldn&apos;t be shown in other participants&apos; rosters.</summary>
         public bool? Hidden { get; set; }
         /// <summary>
         /// Instantiates a new communicationsApplicationIdentity and sets the default values.
@@ -33,7 +33,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"applicationType", n => { ApplicationType = n.GetStringValue(); } },
                 {"hidden", n => { Hidden = n.GetBoolValue(); } },
@@ -43,7 +43,7 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public new void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("applicationType", ApplicationType);

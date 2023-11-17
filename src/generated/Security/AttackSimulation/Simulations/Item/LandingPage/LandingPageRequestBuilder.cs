@@ -20,11 +20,11 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item.LandingPage {
     /// </summary>
     public class LandingPageRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Get landingPage from security
+        /// The landing page associated with a simulation during its creation.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get landingPage from security";
+            command.Description = "The landing page associated with a simulation during its creation.";
             var simulationIdOption = new Option<string>("--simulation-id", description: "The unique identifier of simulation") {
             };
             simulationIdOption.IsRequired = true;
@@ -82,7 +82,7 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item.LandingPage {
         public LandingPageRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/simulations/{simulation%2Did}/landingPage{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get landingPage from security
+        /// The landing page associated with a simulation during its creation.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -92,23 +92,13 @@ namespace ApiSdk.Security.AttackSimulation.Simulations.Item.LandingPage {
 #else
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<LandingPageRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.GET,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new RequestConfiguration<LandingPageRequestBuilderGetQueryParameters>();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            requestInfo.Headers.TryAdd("Accept", "application/json;q=1");
+            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Get landingPage from security
+        /// The landing page associated with a simulation during its creation.
         /// </summary>
         public class LandingPageRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -91,12 +91,12 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the managedAppStatus objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-managedappstatus-list?view=graph-rest-1.0" />
+        /// List properties and relationships of the managedAppStatusRaw objects.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-mam-managedappstatusraw-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the managedAppStatus objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-managedappstatus-list?view=graph-rest-1.0";
+            command.Description = "List properties and relationships of the managedAppStatusRaw objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-mam-managedappstatusraw-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -196,7 +196,7 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses {
         public ManagedAppStatusesRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/managedAppStatuses{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// List properties and relationships of the managedAppStatus objects.
+        /// List properties and relationships of the managedAppStatusRaw objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -206,19 +206,9 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses {
 #else
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ManagedAppStatusesRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.GET,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new RequestConfiguration<ManagedAppStatusesRequestBuilderGetQueryParameters>();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            requestInfo.Headers.TryAdd("Accept", "application/json;q=1");
+            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
@@ -234,23 +224,13 @@ namespace ApiSdk.DeviceAppManagement.ManagedAppStatuses {
         public RequestInformation ToPostRequestInformation(ManagedAppStatus body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.POST,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            requestInfo.Headers.TryAdd("Accept", "application/json;q=1");
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the managedAppStatus objects.
+        /// List properties and relationships of the managedAppStatusRaw objects.
         /// </summary>
         public class ManagedAppStatusesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

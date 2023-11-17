@@ -97,11 +97,11 @@ namespace ApiSdk.Security.AttackSimulation.LandingPages.Item.Details {
             return command;
         }
         /// <summary>
-        /// Get details from security
+        /// The detail information for a landing page associated with a simulation during its creation.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get details from security";
+            command.Description = "The detail information for a landing page associated with a simulation during its creation.";
             var landingPageIdOption = new Option<string>("--landing-page-id", description: "The unique identifier of landingPage") {
             };
             landingPageIdOption.IsRequired = true;
@@ -207,7 +207,7 @@ namespace ApiSdk.Security.AttackSimulation.LandingPages.Item.Details {
         public DetailsRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/landingPages/{landingPage%2Did}/details{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get details from security
+        /// The detail information for a landing page associated with a simulation during its creation.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -217,19 +217,9 @@ namespace ApiSdk.Security.AttackSimulation.LandingPages.Item.Details {
 #else
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DetailsRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.GET,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new RequestConfiguration<DetailsRequestBuilderGetQueryParameters>();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            requestInfo.Headers.TryAdd("Accept", "application/json;q=1");
+            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
@@ -245,23 +235,13 @@ namespace ApiSdk.Security.AttackSimulation.LandingPages.Item.Details {
         public RequestInformation ToPostRequestInformation(LandingPageDetail body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.POST,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            requestInfo.Headers.TryAdd("Accept", "application/json;q=1");
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Get details from security
+        /// The detail information for a landing page associated with a simulation during its creation.
         /// </summary>
         public class DetailsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

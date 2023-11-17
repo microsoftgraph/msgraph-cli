@@ -37,11 +37,11 @@ namespace ApiSdk.Users.Item.Photos.Item {
             return command;
         }
         /// <summary>
-        /// Get photos from users
+        /// The collection of the user&apos;s profile photos in different sizes. Read-only.
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get photos from users";
+            command.Description = "The collection of the user's profile photos in different sizes. Read-only.";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
             };
             userIdOption.IsRequired = true;
@@ -98,7 +98,7 @@ namespace ApiSdk.Users.Item.Photos.Item {
         public ProfilePhotoItemRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/photos/{profilePhoto%2Did}{?%24select}", rawUrl) {
         }
         /// <summary>
-        /// Get photos from users
+        /// The collection of the user&apos;s profile photos in different sizes. Read-only.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -108,23 +108,13 @@ namespace ApiSdk.Users.Item.Photos.Item {
 #else
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<ProfilePhotoItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.GET,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new RequestConfiguration<ProfilePhotoItemRequestBuilderGetQueryParameters>();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            requestInfo.Headers.TryAdd("Accept", "application/json;q=1");
+            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Get photos from users
+        /// The collection of the user&apos;s profile photos in different sizes. Read-only.
         /// </summary>
         public class ProfilePhotoItemRequestBuilderGetQueryParameters {
             /// <summary>Select properties to be returned</summary>

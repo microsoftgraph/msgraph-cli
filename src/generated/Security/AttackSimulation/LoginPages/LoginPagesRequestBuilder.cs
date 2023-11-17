@@ -91,11 +91,12 @@ namespace ApiSdk.Security.AttackSimulation.LoginPages {
             return command;
         }
         /// <summary>
-        /// Get loginPages from security
+        /// Get a list of the loginPage objects and their properties.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/attacksimulationroot-list-loginpage?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get loginPages from security";
+            command.Description = "Get a list of the loginPage objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/attacksimulationroot-list-loginpage?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -195,7 +196,7 @@ namespace ApiSdk.Security.AttackSimulation.LoginPages {
         public LoginPagesRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/loginPages{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get loginPages from security
+        /// Get a list of the loginPage objects and their properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -205,19 +206,9 @@ namespace ApiSdk.Security.AttackSimulation.LoginPages {
 #else
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<LoginPagesRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.GET,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new RequestConfiguration<LoginPagesRequestBuilderGetQueryParameters>();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            requestInfo.Headers.TryAdd("Accept", "application/json;q=1");
+            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
@@ -233,23 +224,13 @@ namespace ApiSdk.Security.AttackSimulation.LoginPages {
         public RequestInformation ToPostRequestInformation(ApiSdk.Models.LoginPage body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.POST,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            requestInfo.Headers.TryAdd("Accept", "application/json;q=1");
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Get loginPages from security
+        /// Get a list of the loginPage objects and their properties.
         /// </summary>
         public class LoginPagesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

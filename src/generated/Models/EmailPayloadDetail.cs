@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class EmailPayloadDetail : PayloadDetail, IParsable {
-        /// <summary>The fromEmail property</summary>
+        /// <summary>Email address of the user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? FromEmail { get; set; }
@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
 #else
         public string FromEmail { get; set; }
 #endif
-        /// <summary>The fromName property</summary>
+        /// <summary>Display name of the user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? FromName { get; set; }
@@ -22,9 +22,9 @@ namespace ApiSdk.Models {
 #else
         public string FromName { get; set; }
 #endif
-        /// <summary>The isExternalSender property</summary>
+        /// <summary>Indicates whether the sender isn&apos;t from the user&apos;s organization.</summary>
         public bool? IsExternalSender { get; set; }
-        /// <summary>The subject property</summary>
+        /// <summary>The subject of the email address sent to the user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Subject { get; set; }
@@ -49,7 +49,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"fromEmail", n => { FromEmail = n.GetStringValue(); } },
                 {"fromName", n => { FromName = n.GetStringValue(); } },
@@ -61,7 +61,7 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public new void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("fromEmail", FromEmail);

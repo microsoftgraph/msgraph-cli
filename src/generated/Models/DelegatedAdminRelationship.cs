@@ -24,6 +24,8 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>The date and time in ISO 8601 format and in UTC time when the relationship became active. Read-only.</summary>
         public DateTimeOffset? ActivatedDateTime { get; set; }
+        /// <summary>The duration by which the validity of the relationship is automatically extended, denoted in ISO 8601 format. Supported values are: P0D, PT0S, P180D. The default value is PT0S. PT0S indicates that the relationship expires when the endDateTime is reached and it isn&apos;t automatically extended.</summary>
+        public TimeSpan? AutoExtendDuration { get; set; }
         /// <summary>The date and time in ISO 8601 format and in UTC time when the relationship was created. Read-only.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
         /// <summary>The display name and unique identifier of the customer of the relationship. This is configured either by the partner at the time the relationship is created or by the system after the customer approves the relationship. Can&apos;t be changed by the customer.</summary>
@@ -81,11 +83,12 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"accessAssignments", n => { AccessAssignments = n.GetCollectionOfObjectValues<DelegatedAdminAccessAssignment>(DelegatedAdminAccessAssignment.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"accessDetails", n => { AccessDetails = n.GetObjectValue<DelegatedAdminAccessDetails>(DelegatedAdminAccessDetails.CreateFromDiscriminatorValue); } },
                 {"activatedDateTime", n => { ActivatedDateTime = n.GetDateTimeOffsetValue(); } },
+                {"autoExtendDuration", n => { AutoExtendDuration = n.GetTimeSpanValue(); } },
                 {"createdDateTime", n => { CreatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"customer", n => { Customer = n.GetObjectValue<DelegatedAdminRelationshipCustomerParticipant>(DelegatedAdminRelationshipCustomerParticipant.CreateFromDiscriminatorValue); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
@@ -101,12 +104,13 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public new void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteCollectionOfObjectValues<DelegatedAdminAccessAssignment>("accessAssignments", AccessAssignments);
             writer.WriteObjectValue<DelegatedAdminAccessDetails>("accessDetails", AccessDetails);
             writer.WriteDateTimeOffsetValue("activatedDateTime", ActivatedDateTime);
+            writer.WriteTimeSpanValue("autoExtendDuration", AutoExtendDuration);
             writer.WriteDateTimeOffsetValue("createdDateTime", CreatedDateTime);
             writer.WriteObjectValue<DelegatedAdminRelationshipCustomerParticipant>("customer", Customer);
             writer.WriteStringValue("displayName", DisplayName);

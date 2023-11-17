@@ -292,6 +292,14 @@ namespace ApiSdk.Models {
 #else
         public string PreferredTokenSigningKeyThumbprint { get; set; }
 #endif
+        /// <summary>The remoteDesktopSecurityConfiguration object applied to this service principal. Supports $filter (eq) for isRemoteDesktopProtocolEnabled property.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public ApiSdk.Models.RemoteDesktopSecurityConfiguration? RemoteDesktopSecurityConfiguration { get; set; }
+#nullable restore
+#else
+        public ApiSdk.Models.RemoteDesktopSecurityConfiguration RemoteDesktopSecurityConfiguration { get; set; }
+#endif
         /// <summary>The URLs that user tokens are sent to for sign in with the associated application, or the redirect URIs that OAuth 2.0 authorization codes and access tokens are sent to for the associated application. Not nullable.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -407,7 +415,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"accountEnabled", n => { AccountEnabled = n.GetBoolValue(); } },
                 {"addIns", n => { AddIns = n.GetCollectionOfObjectValues<AddIn>(AddIn.CreateFromDiscriminatorValue)?.ToList(); } },
@@ -447,6 +455,7 @@ namespace ApiSdk.Models {
                 {"passwordCredentials", n => { PasswordCredentials = n.GetCollectionOfObjectValues<PasswordCredential>(PasswordCredential.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"preferredSingleSignOnMode", n => { PreferredSingleSignOnMode = n.GetStringValue(); } },
                 {"preferredTokenSigningKeyThumbprint", n => { PreferredTokenSigningKeyThumbprint = n.GetStringValue(); } },
+                {"remoteDesktopSecurityConfiguration", n => { RemoteDesktopSecurityConfiguration = n.GetObjectValue<ApiSdk.Models.RemoteDesktopSecurityConfiguration>(ApiSdk.Models.RemoteDesktopSecurityConfiguration.CreateFromDiscriminatorValue); } },
                 {"replyUrls", n => { ReplyUrls = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"resourceSpecificApplicationPermissions", n => { ResourceSpecificApplicationPermissions = n.GetCollectionOfObjectValues<ResourceSpecificPermission>(ResourceSpecificPermission.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"samlSingleSignOnSettings", n => { SamlSingleSignOnSettings = n.GetObjectValue<ApiSdk.Models.SamlSingleSignOnSettings>(ApiSdk.Models.SamlSingleSignOnSettings.CreateFromDiscriminatorValue); } },
@@ -466,7 +475,7 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public new void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteBoolValue("accountEnabled", AccountEnabled);
@@ -507,6 +516,7 @@ namespace ApiSdk.Models {
             writer.WriteCollectionOfObjectValues<PasswordCredential>("passwordCredentials", PasswordCredentials);
             writer.WriteStringValue("preferredSingleSignOnMode", PreferredSingleSignOnMode);
             writer.WriteStringValue("preferredTokenSigningKeyThumbprint", PreferredTokenSigningKeyThumbprint);
+            writer.WriteObjectValue<ApiSdk.Models.RemoteDesktopSecurityConfiguration>("remoteDesktopSecurityConfiguration", RemoteDesktopSecurityConfiguration);
             writer.WriteCollectionOfPrimitiveValues<string>("replyUrls", ReplyUrls);
             writer.WriteCollectionOfObjectValues<ResourceSpecificPermission>("resourceSpecificApplicationPermissions", ResourceSpecificApplicationPermissions);
             writer.WriteObjectValue<ApiSdk.Models.SamlSingleSignOnSettings>("samlSingleSignOnSettings", SamlSingleSignOnSettings);

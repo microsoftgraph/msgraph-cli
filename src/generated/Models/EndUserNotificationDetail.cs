@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class EndUserNotificationDetail : Entity, IParsable {
-        /// <summary>The emailContent property</summary>
+        /// <summary>Email HTML content.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? EmailContent { get; set; }
@@ -14,9 +14,9 @@ namespace ApiSdk.Models {
 #else
         public string EmailContent { get; set; }
 #endif
-        /// <summary>The isDefaultLangauge property</summary>
+        /// <summary>Indicates whether this language is default.</summary>
         public bool? IsDefaultLangauge { get; set; }
-        /// <summary>The language property</summary>
+        /// <summary>Notification language.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Language { get; set; }
@@ -24,7 +24,7 @@ namespace ApiSdk.Models {
 #else
         public string Language { get; set; }
 #endif
-        /// <summary>The locale property</summary>
+        /// <summary>Notification locale.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Locale { get; set; }
@@ -40,7 +40,7 @@ namespace ApiSdk.Models {
 #else
         public EmailIdentity SentFrom { get; set; }
 #endif
-        /// <summary>The subject property</summary>
+        /// <summary>Mail subject.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Subject { get; set; }
@@ -59,7 +59,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"emailContent", n => { EmailContent = n.GetStringValue(); } },
                 {"isDefaultLangauge", n => { IsDefaultLangauge = n.GetBoolValue(); } },
@@ -73,7 +73,7 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public new void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteStringValue("emailContent", EmailContent);

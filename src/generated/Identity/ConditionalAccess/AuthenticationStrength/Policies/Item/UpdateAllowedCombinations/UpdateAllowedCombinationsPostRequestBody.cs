@@ -34,7 +34,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength.Policies.Item
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"allowedCombinations", n => { AllowedCombinations = n.GetCollectionOfEnumValues<ApiSdk.Models.AuthenticationMethodModes>()?.ToList(); } },
             };
@@ -43,7 +43,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationStrength.Policies.Item
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public void Serialize(ISerializationWriter writer) {
+        public virtual void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfEnumValues<ApiSdk.Models.AuthenticationMethodModes>("allowedCombinations", AllowedCombinations);
             writer.WriteAdditionalData(AdditionalData);

@@ -8,7 +8,7 @@ namespace ApiSdk.Models.CallRecords {
     public class DirectRoutingLogRow : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Number of the user or bot who received the call. E.164 format, but may include other data.</summary>
+        /// <summary>Number of the user or bot who received the call. E.164 format, but might include other data.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CalleeNumber { get; set; }
@@ -16,9 +16,9 @@ namespace ApiSdk.Models.CallRecords {
 #else
         public string CalleeNumber { get; set; }
 #endif
-        /// <summary>In addition to the SIP codes, Microsoft has own subcodes that indicate the specific issue.</summary>
+        /// <summary>In addition to the SIP codes, Microsoft has subcodes that indicate the specific issue.</summary>
         public int? CallEndSubReason { get; set; }
-        /// <summary>Number of the user or bot who made the call. E.164 format, but may include other data.</summary>
+        /// <summary>Number of the user or bot who made the call. E.164 format, but might include other data.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CallerNumber { get; set; }
@@ -48,7 +48,7 @@ namespace ApiSdk.Models.CallRecords {
         public DateTimeOffset? EndDateTime { get; set; }
         /// <summary>Only exists for failed (not fully established) calls.</summary>
         public DateTimeOffset? FailureDateTime { get; set; }
-        /// <summary>The code with which the call ended, see RFC 3261.</summary>
+        /// <summary>The code with which the call ended. For more information, see RFC 3261.</summary>
         public int? FinalSipCode { get; set; }
         /// <summary>Description of the SIP code and Microsoft subcode.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -68,9 +68,9 @@ namespace ApiSdk.Models.CallRecords {
 #endif
         /// <summary>When the initial invite was sent.</summary>
         public DateTimeOffset? InviteDateTime { get; set; }
-        /// <summary>Indicates if the trunk was enabled for media bypass or not.</summary>
+        /// <summary>Indicates whether the trunk was enabled for media bypass.</summary>
         public bool? MediaBypassEnabled { get; set; }
-        /// <summary>The datacenter used for media path in nonbypass call.</summary>
+        /// <summary>The datacenter used for media path in a nonbypass call.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? MediaPathLocation { get; set; }
@@ -94,7 +94,7 @@ namespace ApiSdk.Models.CallRecords {
 #else
         public string SignalingLocation { get; set; }
 #endif
-        /// <summary>Call start time.For failed and unanswered calls, this can be equal to invite or failure time.</summary>
+        /// <summary>Call start time.For failed and unanswered calls, this can be equal to the invite or failure time.</summary>
         public DateTimeOffset? StartDateTime { get; set; }
         /// <summary>Success or attempt.</summary>
         public bool? SuccessfulCall { get; set; }
@@ -114,7 +114,7 @@ namespace ApiSdk.Models.CallRecords {
 #else
         public string UserDisplayName { get; set; }
 #endif
-        /// <summary>Calling user&apos;s ID in Graph. This and other user info will be null/empty for bot call types. GUID.</summary>
+        /// <summary>Calling user&apos;s ID in Microsoft Graph. This and other user information is null/empty for bot call types. GUID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? UserId { get; set; }
@@ -122,7 +122,7 @@ namespace ApiSdk.Models.CallRecords {
 #else
         public string UserId { get; set; }
 #endif
-        /// <summary>UserPrincipalName (sign-in name) in Azure Active Directory. This is usually the same as user&apos;s SIP Address, and can be same as user&apos;s e-mail address.</summary>
+        /// <summary>UserPrincipalName (sign-in name) in Microsoft Entra ID. This is usually the same as the user&apos;s SIP Address, and can be the same as the user&apos;s email address.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? UserPrincipalName { get; set; }
@@ -147,7 +147,7 @@ namespace ApiSdk.Models.CallRecords {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"callEndSubReason", n => { CallEndSubReason = n.GetIntValue(); } },
@@ -177,7 +177,7 @@ namespace ApiSdk.Models.CallRecords {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public void Serialize(ISerializationWriter writer) {
+        public virtual void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("calleeNumber", CalleeNumber);
             writer.WriteIntValue("callEndSubReason", CallEndSubReason);

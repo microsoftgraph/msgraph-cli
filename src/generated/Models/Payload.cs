@@ -6,11 +6,11 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class Payload : Entity, IParsable {
-        /// <summary>The brand property</summary>
+        /// <summary>The branch of a payload. Possible values are: unknown, other, americanExpress, capitalOne, dhl, docuSign, dropbox, facebook, firstAmerican, microsoft, netflix, scotiabank, sendGrid, stewartTitle, tesco, wellsFargo, syrinxCloud, adobe, teams, zoom, unknownFutureValue.</summary>
         public PayloadBrand? Brand { get; set; }
-        /// <summary>The complexity property</summary>
+        /// <summary>The complexity of a payload. Possible values are: unknown, low, medium, high, unknownFutureValue.</summary>
         public PayloadComplexity? Complexity { get; set; }
-        /// <summary>The createdBy property</summary>
+        /// <summary>Identity of the user who created the attack simulation and training campaign payload.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public EmailIdentity? CreatedBy { get; set; }
@@ -18,9 +18,9 @@ namespace ApiSdk.Models {
 #else
         public EmailIdentity CreatedBy { get; set; }
 #endif
-        /// <summary>The createdDateTime property</summary>
+        /// <summary>Date and time when the attack simulation and training campaign payload. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
-        /// <summary>The description property</summary>
+        /// <summary>Description of the attack simulation and training campaign payload.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }
@@ -28,7 +28,7 @@ namespace ApiSdk.Models {
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>The detail property</summary>
+        /// <summary>Additional details about the payload.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public PayloadDetail? Detail { get; set; }
@@ -36,7 +36,7 @@ namespace ApiSdk.Models {
 #else
         public PayloadDetail Detail { get; set; }
 #endif
-        /// <summary>The displayName property</summary>
+        /// <summary>Display name of the attack simulation and training campaign payload. Supports $filter and $orderby.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }
@@ -44,15 +44,15 @@ namespace ApiSdk.Models {
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>The industry property</summary>
+        /// <summary>Industry of a payload. Possible values are: unknown, other, banking, businessServices, consumerServices, education, energy, construction, consulting, financialServices, government, hospitality, insurance, legal, courierServices, IT, healthcare, manufacturing, retail, telecom, realEstate, unknownFutureValue.</summary>
         public PayloadIndustry? Industry { get; set; }
-        /// <summary>The isAutomated property</summary>
+        /// <summary>Indicates whether the attack simulation and training campaign payload was created from an automation flow. Supports $filter and $orderby.</summary>
         public bool? IsAutomated { get; set; }
-        /// <summary>The isControversial property</summary>
+        /// <summary>Indicates whether the payload is controversial.</summary>
         public bool? IsControversial { get; set; }
-        /// <summary>The isCurrentEvent property</summary>
+        /// <summary>Indicates whether the payload is from any recent event.</summary>
         public bool? IsCurrentEvent { get; set; }
-        /// <summary>The language property</summary>
+        /// <summary>Payload language.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Language { get; set; }
@@ -60,7 +60,7 @@ namespace ApiSdk.Models {
 #else
         public string Language { get; set; }
 #endif
-        /// <summary>The lastModifiedBy property</summary>
+        /// <summary>Identity of the user who most recently modified the attack simulation and training campaign payload.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public EmailIdentity? LastModifiedBy { get; set; }
@@ -68,9 +68,9 @@ namespace ApiSdk.Models {
 #else
         public EmailIdentity LastModifiedBy { get; set; }
 #endif
-        /// <summary>The lastModifiedDateTime property</summary>
+        /// <summary>Date and time when the attack simulation and training campaign payload was last modified. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
-        /// <summary>The payloadTags property</summary>
+        /// <summary>Free text tags for a payload.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? PayloadTags { get; set; }
@@ -78,19 +78,19 @@ namespace ApiSdk.Models {
 #else
         public List<string> PayloadTags { get; set; }
 #endif
-        /// <summary>The platform property</summary>
+        /// <summary>The payload delivery platform for a simulation. Possible values are: unknown, sms, email, teams, unknownFutureValue.</summary>
         public PayloadDeliveryPlatform? Platform { get; set; }
-        /// <summary>The predictedCompromiseRate property</summary>
+        /// <summary>Predicted probability for a payload to phish a targeted user.</summary>
         public double? PredictedCompromiseRate { get; set; }
-        /// <summary>The simulationAttackType property</summary>
+        /// <summary>Attack type of the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, social, cloud, endpoint, unknownFutureValue.</summary>
         public ApiSdk.Models.SimulationAttackType? SimulationAttackType { get; set; }
         /// <summary>The source property</summary>
         public SimulationContentSource? Source { get; set; }
-        /// <summary>The status property</summary>
+        /// <summary>Simulation content status. Supports $filter and $orderby. Possible values are: unknown, draft, ready, archive, delete, unknownFutureValue.</summary>
         public SimulationContentStatus? Status { get; set; }
-        /// <summary>The technique property</summary>
+        /// <summary>The social engineering technique used in the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, credentialHarvesting, attachmentMalware, driveByUrl, linkInAttachment, linkToMalwareFile, unknownFutureValue, oAuthConsentGrant. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: oAuthConsentGrant. For more information on the types of social engineering attack techniques, see simulations.</summary>
         public SimulationAttackTechnique? Technique { get; set; }
-        /// <summary>The theme property</summary>
+        /// <summary>The theme of a payload. Possible values are: unknown, other, accountActivation, accountVerification, billing, cleanUpMail, controversial, documentReceived, expense, fax, financeReport, incomingMessages, invoice, itemReceived, loginAlert, mailReceived, password, payment, payroll, personalizedOffer, quarantine, remoteWork, reviewMessage, securityUpdate, serviceSuspended, signatureRequired, upgradeMailboxStorage, verifyMailbox, voicemail, advertisement, employeeEngagement, unknownFutureValue.</summary>
         public PayloadTheme? Theme { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -103,7 +103,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"brand", n => { Brand = n.GetEnumValue<PayloadBrand>(); } },
                 {"complexity", n => { Complexity = n.GetEnumValue<PayloadComplexity>(); } },
@@ -133,7 +133,7 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public new void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteEnumValue<PayloadBrand>("brand", Brand);
