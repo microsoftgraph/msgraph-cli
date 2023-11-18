@@ -150,12 +150,12 @@ namespace ApiSdk.Organization {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of organization objects. There&apos;s only one organization object in the collection. This API is available in the following national cloud deployments.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/organization-list?view=graph-rest-1.0" />
+        /// List properties and relationships of the organization objects.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-onboarding-organization-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of organization objects. There's only one organization object in the collection. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/organization-list?view=graph-rest-1.0";
+            command.Description = "List properties and relationships of the organization objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-onboarding-organization-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -270,7 +270,7 @@ namespace ApiSdk.Organization {
         public OrganizationRequestBuilder(string rawUrl) : base("{+baseurl}/organization{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve a list of organization objects. There&apos;s only one organization object in the collection. This API is available in the following national cloud deployments.
+        /// List properties and relationships of the organization objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -280,19 +280,9 @@ namespace ApiSdk.Organization {
 #else
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<OrganizationRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.GET,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new RequestConfiguration<OrganizationRequestBuilderGetQueryParameters>();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            requestInfo.Headers.TryAdd("Accept", "application/json;q=1");
+            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
@@ -308,23 +298,13 @@ namespace ApiSdk.Organization {
         public RequestInformation ToPostRequestInformation(ApiSdk.Models.Organization body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.POST,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            requestInfo.Headers.TryAdd("Accept", "application/json;q=1");
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of organization objects. There&apos;s only one organization object in the collection. This API is available in the following national cloud deployments.
+        /// List properties and relationships of the organization objects.
         /// </summary>
         public class OrganizationRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

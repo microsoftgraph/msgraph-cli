@@ -84,12 +84,12 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
             return command;
         }
         /// <summary>
-        /// Create a new iosVppApp object.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-iosvppapp-create?view=graph-rest-1.0" />
+        /// Create a new macOSLobApp object.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-macoslobapp-create?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new iosVppApp object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-iosvppapp-create?view=graph-rest-1.0";
+            command.Description = "Create a new macOSLobApp object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-macoslobapp-create?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -464,12 +464,12 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
             return command;
         }
         /// <summary>
-        /// List properties and relationships of the microsoftStoreForBusinessApp objects.
-        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-microsoftstoreforbusinessapp-list?view=graph-rest-1.0" />
+        /// List properties and relationships of the windowsWebApp objects.
+        /// Find more info here <see href="https://learn.microsoft.com/graph/api/intune-apps-windowswebapp-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List properties and relationships of the microsoftStoreForBusinessApp objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-microsoftstoreforbusinessapp-list?view=graph-rest-1.0";
+            command.Description = "List properties and relationships of the windowsWebApp objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/intune-apps-windowswebapp-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -569,7 +569,7 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
         public MobileAppsRequestBuilder(string rawUrl) : base("{+baseurl}/deviceAppManagement/mobileApps{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// List properties and relationships of the microsoftStoreForBusinessApp objects.
+        /// List properties and relationships of the windowsWebApp objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -579,23 +579,13 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
 #else
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<MobileAppsRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.GET,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new RequestConfiguration<MobileAppsRequestBuilderGetQueryParameters>();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            requestInfo.Headers.TryAdd("Accept", "application/json;q=1");
+            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Create a new iosVppApp object.
+        /// Create a new macOSLobApp object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -607,23 +597,13 @@ namespace ApiSdk.DeviceAppManagement.MobileApps {
         public RequestInformation ToPostRequestInformation(MobileApp body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.POST,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            requestInfo.Headers.TryAdd("Accept", "application/json;q=1");
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// List properties and relationships of the microsoftStoreForBusinessApp objects.
+        /// List properties and relationships of the windowsWebApp objects.
         /// </summary>
         public class MobileAppsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -703,6 +703,7 @@ namespace ApiSdk {
             nonExecCommands.Add(builder.BuildAttributeSetsNavCommand());
             nonExecCommands.Add(builder.BuildCustomSecurityAttributeDefinitionsNavCommand());
             nonExecCommands.Add(builder.BuildDeletedItemsNavCommand());
+            nonExecCommands.Add(builder.BuildDeviceLocalCredentialsNavCommand());
             nonExecCommands.Add(builder.BuildFederationConfigurationsNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             nonExecCommands.Add(builder.BuildOnPremisesSynchronizationNavCommand());
@@ -1907,6 +1908,7 @@ namespace ApiSdk {
             var nonExecCommands = new List<Command>();
             nonExecCommands.Add(builder.BuildAddNavCommand());
             nonExecCommands.Add(builder.BuildCountNavCommand());
+            nonExecCommands.Add(builder.BuildDeltaNavCommand());
             nonExecCommands.Add(builder.BuildGetAllSitesNavCommand());
             execCommands.Add(builder.BuildListCommand());
             nonExecCommands.Add(builder.BuildRemoveNavCommand());
@@ -1936,6 +1938,7 @@ namespace ApiSdk {
             nonExecCommands.Add(builder.BuildBookingCurrenciesNavCommand());
             execCommands.Add(builder.BuildGetCommand());
             execCommands.Add(builder.BuildPatchCommand());
+            nonExecCommands.Add(builder.BuildVirtualEventsNavCommand());
             foreach (var cmd in execCommands)
             {
                 command.AddCommand(cmd);

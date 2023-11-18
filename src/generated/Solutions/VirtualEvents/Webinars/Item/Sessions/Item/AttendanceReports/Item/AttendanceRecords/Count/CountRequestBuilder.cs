@@ -13,7 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace ApiSdk.Users.Item.Photos.Count {
+namespace ApiSdk.Solutions.VirtualEvents.Webinars.Item.Sessions.Item.AttendanceReports.Item.AttendanceRecords.Count {
     /// <summary>
     /// Provides operations to count the resources in the collection.
     /// </summary>
@@ -24,24 +24,42 @@ namespace ApiSdk.Users.Item.Photos.Count {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var virtualEventWebinarIdOption = new Option<string>("--virtual-event-webinar-id", description: "The unique identifier of virtualEventWebinar") {
             };
-            userIdOption.IsRequired = true;
-            command.AddOption(userIdOption);
+            virtualEventWebinarIdOption.IsRequired = true;
+            command.AddOption(virtualEventWebinarIdOption);
+            var virtualEventSessionIdOption = new Option<string>("--virtual-event-session-id", description: "The unique identifier of virtualEventSession") {
+            };
+            virtualEventSessionIdOption.IsRequired = true;
+            command.AddOption(virtualEventSessionIdOption);
+            var meetingAttendanceReportIdOption = new Option<string>("--meeting-attendance-report-id", description: "The unique identifier of meetingAttendanceReport") {
+            };
+            meetingAttendanceReportIdOption.IsRequired = true;
+            command.AddOption(meetingAttendanceReportIdOption);
+            var searchOption = new Option<string>("--search", description: "Search items by search phrases") {
+            };
+            searchOption.IsRequired = false;
+            command.AddOption(searchOption);
             var filterOption = new Option<string>("--filter", description: "Filter items by property values") {
             };
             filterOption.IsRequired = false;
             command.AddOption(filterOption);
             command.SetHandler(async (invocationContext) => {
-                var userId = invocationContext.ParseResult.GetValueForOption(userIdOption);
+                var virtualEventWebinarId = invocationContext.ParseResult.GetValueForOption(virtualEventWebinarIdOption);
+                var virtualEventSessionId = invocationContext.ParseResult.GetValueForOption(virtualEventSessionIdOption);
+                var meetingAttendanceReportId = invocationContext.ParseResult.GetValueForOption(meetingAttendanceReportIdOption);
+                var search = invocationContext.ParseResult.GetValueForOption(searchOption);
                 var filter = invocationContext.ParseResult.GetValueForOption(filterOption);
                 IOutputFormatterFactory outputFormatterFactory = invocationContext.BindingContext.GetService(typeof(IOutputFormatterFactory)) as IOutputFormatterFactory ?? throw new ArgumentNullException("outputFormatterFactory");
                 var cancellationToken = invocationContext.GetCancellationToken();
                 var reqAdapter = invocationContext.GetRequestAdapter();
                 var requestInfo = ToGetRequestInformation(q => {
+                    if (!string.IsNullOrEmpty(search)) q.QueryParameters.Search = search;
                     if (!string.IsNullOrEmpty(filter)) q.QueryParameters.Filter = filter;
                 });
-                if (userId is not null) requestInfo.PathParameters.Add("user%2Did", userId);
+                if (virtualEventWebinarId is not null) requestInfo.PathParameters.Add("virtualEventWebinar%2Did", virtualEventWebinarId);
+                if (virtualEventSessionId is not null) requestInfo.PathParameters.Add("virtualEventSession%2Did", virtualEventSessionId);
+                if (meetingAttendanceReportId is not null) requestInfo.PathParameters.Add("meetingAttendanceReport%2Did", meetingAttendanceReportId);
                 var errorMapping = new Dictionary<string, ParsableFactory<IParsable>> {
                     {"4XX", ODataError.CreateFromDiscriminatorValue},
                     {"5XX", ODataError.CreateFromDiscriminatorValue},
@@ -56,13 +74,13 @@ namespace ApiSdk.Users.Item.Photos.Count {
         /// Instantiates a new CountRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
-        public CountRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/users/{user%2Did}/photos/$count{?%24filter}", pathParameters) {
+        public CountRequestBuilder(Dictionary<string, object> pathParameters) : base("{+baseurl}/solutions/virtualEvents/webinars/{virtualEventWebinar%2Did}/sessions/{virtualEventSession%2Did}/attendanceReports/{meetingAttendanceReport%2Did}/attendanceRecords/$count{?%24search,%24filter}", pathParameters) {
         }
         /// <summary>
         /// Instantiates a new CountRequestBuilder and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public CountRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/photos/$count{?%24filter}", rawUrl) {
+        public CountRequestBuilder(string rawUrl) : base("{+baseurl}/solutions/virtualEvents/webinars/{virtualEventWebinar%2Did}/sessions/{virtualEventSession%2Did}/attendanceReports/{meetingAttendanceReport%2Did}/attendanceRecords/$count{?%24search,%24filter}", rawUrl) {
         }
         /// <summary>
         /// Get the number of the resource
@@ -75,18 +93,8 @@ namespace ApiSdk.Users.Item.Photos.Count {
 #else
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<CountRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.GET,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new RequestConfiguration<CountRequestBuilderGetQueryParameters>();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
+            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "text/plain;q=0.9");
             return requestInfo;
         }
@@ -103,6 +111,16 @@ namespace ApiSdk.Users.Item.Photos.Count {
 #else
             [QueryParameter("%24filter")]
             public string Filter { get; set; }
+#endif
+            /// <summary>Search items by search phrases</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("%24search")]
+            public string? Search { get; set; }
+#nullable restore
+#else
+            [QueryParameter("%24search")]
+            public string Search { get; set; }
 #endif
         }
     }

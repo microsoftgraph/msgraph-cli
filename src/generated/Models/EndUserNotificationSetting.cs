@@ -8,7 +8,7 @@ namespace ApiSdk.Models {
     public class EndUserNotificationSetting : IAdditionalDataHolder, IParsable {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The notificationPreference property</summary>
+        /// <summary>Notification preference. Possible values are: unknown, microsoft, custom, unknownFutureValue.</summary>
         public EndUserNotificationPreference? NotificationPreference { get; set; }
         /// <summary>The OdataType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -18,7 +18,7 @@ namespace ApiSdk.Models {
 #else
         public string OdataType { get; set; }
 #endif
-        /// <summary>The positiveReinforcement property</summary>
+        /// <summary>Positive reinforcement detail.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public PositiveReinforcementNotification? PositiveReinforcement { get; set; }
@@ -26,7 +26,7 @@ namespace ApiSdk.Models {
 #else
         public PositiveReinforcementNotification PositiveReinforcement { get; set; }
 #endif
-        /// <summary>The settingType property</summary>
+        /// <summary>End user notification type. Possible values are: unknown, noTraining, trainingSelected, noNotification, unknownFutureValue.</summary>
         public EndUserNotificationSettingType? SettingType { get; set; }
         /// <summary>
         /// Instantiates a new endUserNotificationSetting and sets the default values.
@@ -50,7 +50,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"notificationPreference", n => { NotificationPreference = n.GetEnumValue<EndUserNotificationPreference>(); } },
@@ -62,7 +62,7 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public void Serialize(ISerializationWriter writer) {
+        public virtual void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<EndUserNotificationPreference>("notificationPreference", NotificationPreference);
             writer.WriteStringValue("@odata.type", OdataType);

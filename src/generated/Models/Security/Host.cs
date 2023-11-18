@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models.Security {
     public class Host : Artifact, IParsable {
-        /// <summary>The hostPairs that are resources associated with a host, where that host is the parentHost and has an outgoing pairing to a cihldHost.</summary>
+        /// <summary>The hostPairs that are resources associated with a host, where that host is the parentHost and has an outgoing pairing to a childHost.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<HostPair>? ChildHostPairs { get; set; }
@@ -65,6 +65,14 @@ namespace ApiSdk.Models.Security {
 #nullable restore
 #else
         public List<PassiveDnsRecord> PassiveDnsReverse { get; set; }
+#endif
+        /// <summary>The hostPorts associated with a host.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<HostPort>? Ports { get; set; }
+#nullable restore
+#else
+        public List<HostPort> Ports { get; set; }
 #endif
         /// <summary>Represents a calculated reputation of this host.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -128,7 +136,7 @@ namespace ApiSdk.Models.Security {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"childHostPairs", n => { ChildHostPairs = n.GetCollectionOfObjectValues<HostPair>(HostPair.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"components", n => { Components = n.GetCollectionOfObjectValues<HostComponent>(HostComponent.CreateFromDiscriminatorValue)?.ToList(); } },
@@ -139,6 +147,7 @@ namespace ApiSdk.Models.Security {
                 {"parentHostPairs", n => { ParentHostPairs = n.GetCollectionOfObjectValues<HostPair>(HostPair.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"passiveDns", n => { PassiveDns = n.GetCollectionOfObjectValues<PassiveDnsRecord>(PassiveDnsRecord.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"passiveDnsReverse", n => { PassiveDnsReverse = n.GetCollectionOfObjectValues<PassiveDnsRecord>(PassiveDnsRecord.CreateFromDiscriminatorValue)?.ToList(); } },
+                {"ports", n => { Ports = n.GetCollectionOfObjectValues<HostPort>(HostPort.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"reputation", n => { Reputation = n.GetObjectValue<HostReputation>(HostReputation.CreateFromDiscriminatorValue); } },
                 {"sslCertificates", n => { SslCertificates = n.GetCollectionOfObjectValues<HostSslCertificate>(HostSslCertificate.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"subdomains", n => { Subdomains = n.GetCollectionOfObjectValues<Subdomain>(Subdomain.CreateFromDiscriminatorValue)?.ToList(); } },
@@ -150,7 +159,7 @@ namespace ApiSdk.Models.Security {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public new void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteCollectionOfObjectValues<HostPair>("childHostPairs", ChildHostPairs);
@@ -162,6 +171,7 @@ namespace ApiSdk.Models.Security {
             writer.WriteCollectionOfObjectValues<HostPair>("parentHostPairs", ParentHostPairs);
             writer.WriteCollectionOfObjectValues<PassiveDnsRecord>("passiveDns", PassiveDns);
             writer.WriteCollectionOfObjectValues<PassiveDnsRecord>("passiveDnsReverse", PassiveDnsReverse);
+            writer.WriteCollectionOfObjectValues<HostPort>("ports", Ports);
             writer.WriteObjectValue<HostReputation>("reputation", Reputation);
             writer.WriteCollectionOfObjectValues<HostSslCertificate>("sslCertificates", SslCertificates);
             writer.WriteCollectionOfObjectValues<Subdomain>("subdomains", Subdomains);

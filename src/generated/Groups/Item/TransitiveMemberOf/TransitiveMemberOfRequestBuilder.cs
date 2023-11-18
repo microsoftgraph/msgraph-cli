@@ -93,12 +93,12 @@ namespace ApiSdk.Groups.Item.TransitiveMemberOf {
             return command;
         }
         /// <summary>
-        /// The groups that a group is a member of, either directly and through nested membership. Nullable.
+        /// The groups that a group is a member of, either directly or through nested membership. Nullable.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-list-transitivememberof?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "The groups that a group is a member of, either directly and through nested membership. Nullable.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-list-transitivememberof?view=graph-rest-1.0";
+            command.Description = "The groups that a group is a member of, either directly or through nested membership. Nullable.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-list-transitivememberof?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -211,7 +211,7 @@ namespace ApiSdk.Groups.Item.TransitiveMemberOf {
         public TransitiveMemberOfRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/transitiveMemberOf{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// The groups that a group is a member of, either directly and through nested membership. Nullable.
+        /// The groups that a group is a member of, either directly or through nested membership. Nullable.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -221,23 +221,13 @@ namespace ApiSdk.Groups.Item.TransitiveMemberOf {
 #else
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<TransitiveMemberOfRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.GET,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new RequestConfiguration<TransitiveMemberOfRequestBuilderGetQueryParameters>();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            requestInfo.Headers.TryAdd("Accept", "application/json;q=1");
+            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// The groups that a group is a member of, either directly and through nested membership. Nullable.
+        /// The groups that a group is a member of, either directly or through nested membership. Nullable.
         /// </summary>
         public class TransitiveMemberOfRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

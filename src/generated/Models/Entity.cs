@@ -157,6 +157,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.calendarPermission" => new CalendarPermission(),
                 "#microsoft.graph.calendarSharingMessage" => new CalendarSharingMessage(),
                 "#microsoft.graph.call" => new Call(),
+                "#microsoft.graph.callRecording" => new CallRecording(),
                 "#microsoft.graph.callRecords.callRecord" => new CallRecord(),
                 "#microsoft.graph.callRecords.segment" => new Segment(),
                 "#microsoft.graph.callRecords.session" => new Session(),
@@ -235,6 +236,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.deviceEnrollmentPlatformRestrictionsConfiguration" => new DeviceEnrollmentPlatformRestrictionsConfiguration(),
                 "#microsoft.graph.deviceEnrollmentWindowsHelloForBusinessConfiguration" => new DeviceEnrollmentWindowsHelloForBusinessConfiguration(),
                 "#microsoft.graph.deviceInstallState" => new DeviceInstallState(),
+                "#microsoft.graph.deviceLocalCredentialInfo" => new DeviceLocalCredentialInfo(),
                 "#microsoft.graph.deviceLogCollectionResponse" => new DeviceLogCollectionResponse(),
                 "#microsoft.graph.deviceManagement" => new DeviceManagement(),
                 "#microsoft.graph.deviceManagementExchangeConnector" => new DeviceManagementExchangeConnector(),
@@ -372,6 +374,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.itemActivityStat" => new ItemActivityStat(),
                 "#microsoft.graph.itemAnalytics" => new ItemAnalytics(),
                 "#microsoft.graph.itemAttachment" => new ItemAttachment(),
+                "#microsoft.graph.itemRetentionLabel" => new ItemRetentionLabel(),
                 "#microsoft.graph.landingPage" => new LandingPage(),
                 "#microsoft.graph.landingPageDetail" => new LandingPageDetail(),
                 "#microsoft.graph.learningAssignment" => new LearningAssignment(),
@@ -461,6 +464,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.onenoteResource" => new OnenoteResource(),
                 "#microsoft.graph.onenoteSection" => new OnenoteSection(),
                 "#microsoft.graph.onlineMeeting" => new OnlineMeeting(),
+                "#microsoft.graph.onlineMeetingBase" => new OnlineMeetingBase(),
                 "#microsoft.graph.onPremisesConditionalAccessSettings" => new OnPremisesConditionalAccessSettings(),
                 "#microsoft.graph.onPremisesDirectorySynchronization" => new OnPremisesDirectorySynchronization(),
                 "#microsoft.graph.openShift" => new OpenShift(),
@@ -538,6 +542,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.recordOperation" => new RecordOperation(),
                 "#microsoft.graph.referenceAttachment" => new ReferenceAttachment(),
                 "#microsoft.graph.remoteAssistancePartner" => new RemoteAssistancePartner(),
+                "#microsoft.graph.remoteDesktopSecurityConfiguration" => new RemoteDesktopSecurityConfiguration(),
                 "#microsoft.graph.request" => new Request(),
                 "#microsoft.graph.resellerDelegatedAdminRelationship" => new ResellerDelegatedAdminRelationship(),
                 "#microsoft.graph.resourceOperation" => new ResourceOperation(),
@@ -594,6 +599,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.security.hostCookie" => new HostCookie(),
                 "#microsoft.graph.security.hostname" => new Hostname(),
                 "#microsoft.graph.security.hostPair" => new HostPair(),
+                "#microsoft.graph.security.hostPort" => new HostPort(),
                 "#microsoft.graph.security.hostReputation" => new HostReputation(),
                 "#microsoft.graph.security.hostSslCertificate" => new HostSslCertificate(),
                 "#microsoft.graph.security.hostTracker" => new HostTracker(),
@@ -665,6 +671,7 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.synchronizationJob" => new SynchronizationJob(),
                 "#microsoft.graph.synchronizationSchema" => new SynchronizationSchema(),
                 "#microsoft.graph.synchronizationTemplate" => new SynchronizationTemplate(),
+                "#microsoft.graph.targetDeviceGroup" => new TargetDeviceGroup(),
                 "#microsoft.graph.targetedManagedAppConfiguration" => new TargetedManagedAppConfiguration(),
                 "#microsoft.graph.targetedManagedAppPolicyAssignment" => new TargetedManagedAppPolicyAssignment(),
                 "#microsoft.graph.targetedManagedAppProtection" => new TargetedManagedAppProtection(),
@@ -769,6 +776,11 @@ namespace ApiSdk.Models {
                 "#microsoft.graph.userSettings" => new UserSettings(),
                 "#microsoft.graph.userSignInInsight" => new UserSignInInsight(),
                 "#microsoft.graph.userTeamwork" => new UserTeamwork(),
+                "#microsoft.graph.virtualEvent" => new VirtualEvent(),
+                "#microsoft.graph.virtualEventRegistration" => new VirtualEventRegistration(),
+                "#microsoft.graph.virtualEventSession" => new VirtualEventSession(),
+                "#microsoft.graph.virtualEventsRoot" => new VirtualEventsRoot(),
+                "#microsoft.graph.virtualEventWebinar" => new VirtualEventWebinar(),
                 "#microsoft.graph.voiceAuthenticationMethodConfiguration" => new VoiceAuthenticationMethodConfiguration(),
                 "#microsoft.graph.vppToken" => new VppToken(),
                 "#microsoft.graph.webApp" => new WebApp(),
@@ -858,7 +870,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"id", n => { Id = n.GetStringValue(); } },
@@ -868,7 +880,7 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public void Serialize(ISerializationWriter writer) {
+        public virtual void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("@odata.type", OdataType);

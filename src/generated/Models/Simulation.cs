@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class Simulation : Entity, IParsable {
-        /// <summary>The social engineering technique used in the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, credentialHarvesting, attachmentMalware, driveByUrl, linkInAttachment, linkToMalwareFile, unknownFutureValue. For more information on the types of social engineering attack techniques, see simulations.</summary>
+        /// <summary>The social engineering technique used in the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, credentialHarvesting, attachmentMalware, driveByUrl, linkInAttachment, linkToMalwareFile, unknownFutureValue, oAuthConsentGrant. Note that you must use the Prefer: include-unknown-enum-members request header to get the following values from this evolvable enum: oAuthConsentGrant. For more information on the types of social engineering attack techniques, see simulations.</summary>
         public SimulationAttackTechnique? AttackTechnique { get; set; }
         /// <summary>Attack type of the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, social, cloud, endpoint, unknownFutureValue.</summary>
         public SimulationAttackType? AttackType { get; set; }
@@ -46,9 +46,9 @@ namespace ApiSdk.Models {
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>The durationInDays property</summary>
+        /// <summary>Simulation duration in days.</summary>
         public int? DurationInDays { get; set; }
-        /// <summary>The endUserNotificationSetting property</summary>
+        /// <summary>Details about the end user notification setting.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.EndUserNotificationSetting? EndUserNotificationSetting { get; set; }
@@ -56,7 +56,7 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.EndUserNotificationSetting EndUserNotificationSetting { get; set; }
 #endif
-        /// <summary>The excludedAccountTarget property</summary>
+        /// <summary>Users excluded from the simulation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public AccountTargetContent? ExcludedAccountTarget { get; set; }
@@ -64,7 +64,7 @@ namespace ApiSdk.Models {
 #else
         public AccountTargetContent ExcludedAccountTarget { get; set; }
 #endif
-        /// <summary>The includedAccountTarget property</summary>
+        /// <summary>Users targeted in the simulation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public AccountTargetContent? IncludedAccountTarget { get; set; }
@@ -74,7 +74,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Flag that represents if the attack simulation and training campaign was created from a simulation automation flow. Supports $filter and $orderby.</summary>
         public bool? IsAutomated { get; set; }
-        /// <summary>The landingPage property</summary>
+        /// <summary>The landing page associated with a simulation during its creation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.LandingPage? LandingPage { get; set; }
@@ -94,7 +94,7 @@ namespace ApiSdk.Models {
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         /// <summary>Date and time of the launch/start of the attack simulation and training campaign. Supports $filter and $orderby.</summary>
         public DateTimeOffset? LaunchDateTime { get; set; }
-        /// <summary>The loginPage property</summary>
+        /// <summary>The login page associated with a simulation during its creation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.LoginPage? LoginPage { get; set; }
@@ -102,7 +102,7 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.LoginPage LoginPage { get; set; }
 #endif
-        /// <summary>The oAuthConsentAppDetail property</summary>
+        /// <summary>OAuth app details for the OAuth technique.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.OAuthConsentAppDetail? OAuthConsentAppDetail { get; set; }
@@ -110,7 +110,7 @@ namespace ApiSdk.Models {
 #else
         public ApiSdk.Models.OAuthConsentAppDetail OAuthConsentAppDetail { get; set; }
 #endif
-        /// <summary>The payload property</summary>
+        /// <summary>The payload associated with a simulation during its creation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.Payload? Payload { get; set; }
@@ -130,7 +130,7 @@ namespace ApiSdk.Models {
 #endif
         /// <summary>Status of the attack simulation and training campaign. Supports $filter and $orderby. Possible values are: unknown, draft, running, scheduled, succeeded, failed, cancelled, excluded, unknownFutureValue.</summary>
         public SimulationStatus? Status { get; set; }
-        /// <summary>The trainingSetting property</summary>
+        /// <summary>Details about the training settings for a simulation.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public ApiSdk.Models.TrainingSetting? TrainingSetting { get; set; }
@@ -149,7 +149,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"attackTechnique", n => { AttackTechnique = n.GetEnumValue<SimulationAttackTechnique>(); } },
                 {"attackType", n => { AttackType = n.GetEnumValue<SimulationAttackType>(); } },
@@ -181,7 +181,7 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public new void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteEnumValue<SimulationAttackTechnique>("attackTechnique", AttackTechnique);

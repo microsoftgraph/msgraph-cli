@@ -97,11 +97,11 @@ namespace ApiSdk.Security.AttackSimulation.Trainings.Item.LanguageDetails {
             return command;
         }
         /// <summary>
-        /// Get languageDetails from security
+        /// Language specific details on a training.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get languageDetails from security";
+            command.Description = "Language specific details on a training.";
             var trainingIdOption = new Option<string>("--training-id", description: "The unique identifier of training") {
             };
             trainingIdOption.IsRequired = true;
@@ -207,7 +207,7 @@ namespace ApiSdk.Security.AttackSimulation.Trainings.Item.LanguageDetails {
         public LanguageDetailsRequestBuilder(string rawUrl) : base("{+baseurl}/security/attackSimulation/trainings/{training%2Did}/languageDetails{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get languageDetails from security
+        /// Language specific details on a training.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -217,19 +217,9 @@ namespace ApiSdk.Security.AttackSimulation.Trainings.Item.LanguageDetails {
 #else
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<LanguageDetailsRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.GET,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new RequestConfiguration<LanguageDetailsRequestBuilderGetQueryParameters>();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            requestInfo.Headers.TryAdd("Accept", "application/json;q=1");
+            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
@@ -245,23 +235,13 @@ namespace ApiSdk.Security.AttackSimulation.Trainings.Item.LanguageDetails {
         public RequestInformation ToPostRequestInformation(TrainingLanguageDetail body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.POST,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            requestInfo.Headers.TryAdd("Accept", "application/json;q=1");
+            var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
-        /// Get languageDetails from security
+        /// Language specific details on a training.
         /// </summary>
         public class LanguageDetailsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

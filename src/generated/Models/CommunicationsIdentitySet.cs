@@ -6,7 +6,7 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class CommunicationsIdentitySet : IdentitySet, IParsable {
-        /// <summary>The applicationInstance property</summary>
+        /// <summary>The application instance associated with this action.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public Identity? ApplicationInstance { get; set; }
@@ -14,7 +14,7 @@ namespace ApiSdk.Models {
 #else
         public Identity ApplicationInstance { get; set; }
 #endif
-        /// <summary>The assertedIdentity property</summary>
+        /// <summary>An identity the participant would like to present itself as to the other participants in the call.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public Identity? AssertedIdentity { get; set; }
@@ -22,7 +22,7 @@ namespace ApiSdk.Models {
 #else
         public Identity AssertedIdentity { get; set; }
 #endif
-        /// <summary>The azureCommunicationServicesUser property</summary>
+        /// <summary>The Azure Communication Services user associated with this action.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public Identity? AzureCommunicationServicesUser { get; set; }
@@ -30,7 +30,7 @@ namespace ApiSdk.Models {
 #else
         public Identity AzureCommunicationServicesUser { get; set; }
 #endif
-        /// <summary>The encrypted property</summary>
+        /// <summary>The encrypted user associated with this action.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public Identity? Encrypted { get; set; }
@@ -38,9 +38,9 @@ namespace ApiSdk.Models {
 #else
         public Identity Encrypted { get; set; }
 #endif
-        /// <summary>The endpointType property</summary>
+        /// <summary>Type of endpoint that the participant uses. Possible values are: default, voicemail, skypeForBusiness, skypeForBusinessVoipPhone, unknownFutureValue.</summary>
         public ApiSdk.Models.EndpointType? EndpointType { get; set; }
-        /// <summary>The guest property</summary>
+        /// <summary>The guest user associated with this action.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public Identity? Guest { get; set; }
@@ -48,7 +48,7 @@ namespace ApiSdk.Models {
 #else
         public Identity Guest { get; set; }
 #endif
-        /// <summary>The onPremises property</summary>
+        /// <summary>The Skype for Business on-premises user associated with this action.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public Identity? OnPremises { get; set; }
@@ -56,7 +56,7 @@ namespace ApiSdk.Models {
 #else
         public Identity OnPremises { get; set; }
 #endif
-        /// <summary>The phone property</summary>
+        /// <summary>The phone user associated with this action.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public Identity? Phone { get; set; }
@@ -81,7 +81,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"applicationInstance", n => { ApplicationInstance = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
                 {"assertedIdentity", n => { AssertedIdentity = n.GetObjectValue<Identity>(Identity.CreateFromDiscriminatorValue); } },
@@ -97,7 +97,7 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public new void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteObjectValue<Identity>("applicationInstance", ApplicationInstance);

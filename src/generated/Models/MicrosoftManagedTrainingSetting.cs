@@ -6,9 +6,9 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class MicrosoftManagedTrainingSetting : TrainingSetting, IParsable {
-        /// <summary>The completionDateTime property</summary>
+        /// <summary>The completion date for the training. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? CompletionDateTime { get; set; }
-        /// <summary>The trainingCompletionDuration property</summary>
+        /// <summary>The training completion duration that needs to be provided before scheduling the training. The possible values are: week, fortnite, month, unknownFutureValue.</summary>
         public ApiSdk.Models.TrainingCompletionDuration? TrainingCompletionDuration { get; set; }
         /// <summary>
         /// Instantiates a new microsoftManagedTrainingSetting and sets the default values.
@@ -27,7 +27,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"completionDateTime", n => { CompletionDateTime = n.GetDateTimeOffsetValue(); } },
                 {"trainingCompletionDuration", n => { TrainingCompletionDuration = n.GetEnumValue<TrainingCompletionDuration>(); } },
@@ -37,7 +37,7 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public new void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteDateTimeOffsetValue("completionDateTime", CompletionDateTime);

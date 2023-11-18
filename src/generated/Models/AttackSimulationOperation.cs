@@ -6,9 +6,9 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class AttackSimulationOperation : LongRunningOperation, IParsable {
-        /// <summary>The percentageCompleted property</summary>
+        /// <summary>Percentage of completion of the respective operation.</summary>
         public int? PercentageCompleted { get; set; }
-        /// <summary>The tenantId property</summary>
+        /// <summary>Tenant identifier.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? TenantId { get; set; }
@@ -16,7 +16,7 @@ namespace ApiSdk.Models {
 #else
         public string TenantId { get; set; }
 #endif
-        /// <summary>The type property</summary>
+        /// <summary>The attack simulation operation type. Possible values are: createSimulation, updateSimulation, unknownFutureValue.</summary>
         public AttackSimulationOperationType? Type { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -29,7 +29,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"percentageCompleted", n => { PercentageCompleted = n.GetIntValue(); } },
                 {"tenantId", n => { TenantId = n.GetStringValue(); } },
@@ -40,7 +40,7 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public new void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteIntValue("percentageCompleted", PercentageCompleted);

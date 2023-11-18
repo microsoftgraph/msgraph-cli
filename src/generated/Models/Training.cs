@@ -6,9 +6,9 @@ using System.Linq;
 using System;
 namespace ApiSdk.Models {
     public class Training : Entity, IParsable {
-        /// <summary>The availabilityStatus property</summary>
+        /// <summary>Training availability status. Possible values are: unknown, notAvailable, available, archive, delete, unknownFutureValue.</summary>
         public TrainingAvailabilityStatus? AvailabilityStatus { get; set; }
-        /// <summary>The createdBy property</summary>
+        /// <summary>Identity of the user who created the training.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public EmailIdentity? CreatedBy { get; set; }
@@ -16,9 +16,9 @@ namespace ApiSdk.Models {
 #else
         public EmailIdentity CreatedBy { get; set; }
 #endif
-        /// <summary>The createdDateTime property</summary>
+        /// <summary>Date and time when the training was created. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? CreatedDateTime { get; set; }
-        /// <summary>The description property</summary>
+        /// <summary>The description for the training.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }
@@ -26,7 +26,7 @@ namespace ApiSdk.Models {
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>The displayName property</summary>
+        /// <summary>The display name for the training.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? DisplayName { get; set; }
@@ -34,11 +34,11 @@ namespace ApiSdk.Models {
 #else
         public string DisplayName { get; set; }
 #endif
-        /// <summary>The durationInMinutes property</summary>
+        /// <summary>Training duration.</summary>
         public int? DurationInMinutes { get; set; }
-        /// <summary>The hasEvaluation property</summary>
+        /// <summary>Indicates whether the training has any evaluation.</summary>
         public bool? HasEvaluation { get; set; }
-        /// <summary>The languageDetails property</summary>
+        /// <summary>Language specific details on a training.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<TrainingLanguageDetail>? LanguageDetails { get; set; }
@@ -46,7 +46,7 @@ namespace ApiSdk.Models {
 #else
         public List<TrainingLanguageDetail> LanguageDetails { get; set; }
 #endif
-        /// <summary>The lastModifiedBy property</summary>
+        /// <summary>Identity of the user who last modified the training.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public EmailIdentity? LastModifiedBy { get; set; }
@@ -54,11 +54,11 @@ namespace ApiSdk.Models {
 #else
         public EmailIdentity LastModifiedBy { get; set; }
 #endif
-        /// <summary>The lastModifiedDateTime property</summary>
+        /// <summary>Date and time when the training was last modified. The timestamp type represents date and time information using ISO 8601 format and is always in UTC. For example, midnight UTC on Jan 1, 2014 is 2014-01-01T00:00:00Z.</summary>
         public DateTimeOffset? LastModifiedDateTime { get; set; }
-        /// <summary>The source property</summary>
+        /// <summary>Training content source. Possible values are: unknown, global, tenant, unknownFutureValue.</summary>
         public SimulationContentSource? Source { get; set; }
-        /// <summary>The supportedLocales property</summary>
+        /// <summary>Supported locales for content for the associated training.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? SupportedLocales { get; set; }
@@ -66,7 +66,7 @@ namespace ApiSdk.Models {
 #else
         public List<string> SupportedLocales { get; set; }
 #endif
-        /// <summary>The tags property</summary>
+        /// <summary>Training tags.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? Tags { get; set; }
@@ -74,7 +74,7 @@ namespace ApiSdk.Models {
 #else
         public List<string> Tags { get; set; }
 #endif
-        /// <summary>The type property</summary>
+        /// <summary>The type of training. Possible values are: unknown, phishing, unknownFutureValue.</summary>
         public TrainingType? Type { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -87,7 +87,7 @@ namespace ApiSdk.Models {
         /// <summary>
         /// The deserialization information for the current model
         /// </summary>
-        public new IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
+        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers()) {
                 {"availabilityStatus", n => { AvailabilityStatus = n.GetEnumValue<TrainingAvailabilityStatus>(); } },
                 {"createdBy", n => { CreatedBy = n.GetObjectValue<EmailIdentity>(EmailIdentity.CreateFromDiscriminatorValue); } },
@@ -109,7 +109,7 @@ namespace ApiSdk.Models {
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public new void Serialize(ISerializationWriter writer) {
+        public override void Serialize(ISerializationWriter writer) {
             _ = writer ?? throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
             writer.WriteEnumValue<TrainingAvailabilityStatus>("availabilityStatus", AvailabilityStatus);

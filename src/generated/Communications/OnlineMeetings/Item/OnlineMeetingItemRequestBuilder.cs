@@ -2,6 +2,7 @@
 using ApiSdk.Communications.OnlineMeetings.Item.AttendanceReports;
 using ApiSdk.Communications.OnlineMeetings.Item.AttendeeReport;
 using ApiSdk.Communications.OnlineMeetings.Item.GetVirtualAppointmentJoinWebUrl;
+using ApiSdk.Communications.OnlineMeetings.Item.Recordings;
 using ApiSdk.Communications.OnlineMeetings.Item.Transcripts;
 using ApiSdk.Models.ODataErrors;
 using ApiSdk.Models;
@@ -24,11 +25,11 @@ namespace ApiSdk.Communications.OnlineMeetings.Item {
     /// </summary>
     public class OnlineMeetingItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Provides operations to manage the attendanceReports property of the microsoft.graph.onlineMeeting entity.
+        /// Provides operations to manage the attendanceReports property of the microsoft.graph.onlineMeetingBase entity.
         /// </summary>
         public Command BuildAttendanceReportsNavCommand() {
             var command = new Command("attendance-reports");
-            command.Description = "Provides operations to manage the attendanceReports property of the microsoft.graph.onlineMeeting entity.";
+            command.Description = "Provides operations to manage the attendanceReports property of the microsoft.graph.onlineMeetingBase entity.";
             var builder = new AttendanceReportsRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
             var nonExecCommands = new List<Command>();
@@ -212,6 +213,31 @@ namespace ApiSdk.Communications.OnlineMeetings.Item {
             return command;
         }
         /// <summary>
+        /// Provides operations to manage the recordings property of the microsoft.graph.onlineMeeting entity.
+        /// </summary>
+        public Command BuildRecordingsNavCommand() {
+            var command = new Command("recordings");
+            command.Description = "Provides operations to manage the recordings property of the microsoft.graph.onlineMeeting entity.";
+            var builder = new RecordingsRequestBuilder(PathParameters);
+            var execCommands = new List<Command>();
+            var nonExecCommands = new List<Command>();
+            nonExecCommands.Add(builder.BuildCountNavCommand());
+            execCommands.Add(builder.BuildCreateCommand());
+            execCommands.Add(builder.BuildListCommand());
+            var cmds = builder.BuildCommand();
+            execCommands.AddRange(cmds.Item1);
+            nonExecCommands.AddRange(cmds.Item2);
+            foreach (var cmd in execCommands)
+            {
+                command.AddCommand(cmd);
+            }
+            foreach (var cmd in nonExecCommands.OrderBy(static c => c.Name, StringComparer.Ordinal))
+            {
+                command.AddCommand(cmd);
+            }
+            return command;
+        }
+        /// <summary>
         /// Provides operations to manage the transcripts property of the microsoft.graph.onlineMeeting entity.
         /// </summary>
         public Command BuildTranscriptsNavCommand() {
@@ -259,19 +285,9 @@ namespace ApiSdk.Communications.OnlineMeetings.Item {
 #else
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.DELETE,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            requestInfo.Headers.TryAdd("Accept", "application/json, application/json");
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
@@ -285,19 +301,9 @@ namespace ApiSdk.Communications.OnlineMeetings.Item {
 #else
         public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<OnlineMeetingItemRequestBuilderGetQueryParameters>> requestConfiguration = default) {
 #endif
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.GET,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new RequestConfiguration<OnlineMeetingItemRequestBuilderGetQueryParameters>();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            requestInfo.Headers.TryAdd("Accept", "application/json;q=1");
+            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
@@ -313,19 +319,9 @@ namespace ApiSdk.Communications.OnlineMeetings.Item {
         public RequestInformation ToPatchRequestInformation(OnlineMeeting body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default) {
 #endif
             _ = body ?? throw new ArgumentNullException(nameof(body));
-            var requestInfo = new RequestInformation {
-                HttpMethod = Method.PATCH,
-                UrlTemplate = UrlTemplate,
-                PathParameters = PathParameters,
-            };
-            if (requestConfiguration != null) {
-                var requestConfig = new RequestConfiguration<DefaultQueryParameters>();
-                requestConfiguration.Invoke(requestConfig);
-                requestInfo.AddQueryParameters(requestConfig.QueryParameters);
-                requestInfo.AddRequestOptions(requestConfig.Options);
-                requestInfo.AddHeaders(requestConfig.Headers);
-            }
-            requestInfo.Headers.TryAdd("Accept", "application/json;q=1");
+            var requestInfo = new RequestInformation(Method.PATCH, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;
         }
         /// <summary>
