@@ -26,7 +26,7 @@ namespace ApiSdk.Users.Item.Manager.Ref {
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Remove a user's manager. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-delete-manager?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -60,7 +60,7 @@ namespace ApiSdk.Users.Item.Manager.Ref {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Returns the user or organizational contact assigned as the user's manager. Optionally, you can expand the manager's chain up to the root node. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-manager?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -89,7 +89,7 @@ namespace ApiSdk.Users.Item.Manager.Ref {
         public Command BuildPutCommand() {
             var command = new Command("put");
             command.Description = "Assign a user's manager. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-post-manager?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

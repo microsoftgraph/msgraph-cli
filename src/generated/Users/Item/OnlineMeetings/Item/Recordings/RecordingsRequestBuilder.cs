@@ -55,7 +55,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.Recordings {
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create new navigation property to recordings for users";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -110,7 +110,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.Recordings {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get a callRecording object associated with a scheduled onlineMeeting. This API doesn't support getting call recordings from channel meetings. For a recording, this API returns the metadata of the single recording associated with the online meeting. For the content of a recording, this API returns the stream of bytes associated with the recording.";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

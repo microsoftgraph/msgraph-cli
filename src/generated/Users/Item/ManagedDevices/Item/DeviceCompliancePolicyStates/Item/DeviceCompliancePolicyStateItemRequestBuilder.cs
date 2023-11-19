@@ -25,7 +25,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.DeviceCompliancePolicyStates.Ite
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property deviceCompliancePolicyStates for users";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -70,7 +70,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.DeviceCompliancePolicyStates.Ite
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Device compliance policy states for this device.";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -132,7 +132,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.DeviceCompliancePolicyStates.Ite
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property deviceCompliancePolicyStates in users";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

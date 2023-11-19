@@ -70,7 +70,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Members {
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Add a conversationMember to a channel. This operation is allowed only for channels with a membershipType value of private or shared. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-post-members?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -132,7 +132,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Members {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Retrieve a list of conversationMembers from a channel. This method supports federation. Only a user who is a member of the shared channel can retrieve the channel member list. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-list-members?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

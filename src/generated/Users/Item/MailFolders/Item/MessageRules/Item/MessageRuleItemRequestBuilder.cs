@@ -26,7 +26,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.MessageRules.Item {
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete the specified messageRule object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/messagerule-delete?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -72,7 +72,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.MessageRules.Item {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the properties and relationships of a messageRule object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/messagerule-get?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -128,7 +128,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.MessageRules.Item {
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Change writable properties on a messageRule object and save the changes. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/messagerule-update?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

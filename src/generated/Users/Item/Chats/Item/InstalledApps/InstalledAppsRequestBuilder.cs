@@ -58,7 +58,7 @@ namespace ApiSdk.Users.Item.Chats.Item.InstalledApps {
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Install a teamsApp to the specified chat. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-post-installedapps?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -114,7 +114,7 @@ namespace ApiSdk.Users.Item.Chats.Item.InstalledApps {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "List all app installations within a chat. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-list-installedapps?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

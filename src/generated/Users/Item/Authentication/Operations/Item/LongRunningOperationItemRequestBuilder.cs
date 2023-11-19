@@ -25,7 +25,7 @@ namespace ApiSdk.Users.Item.Authentication.Operations.Item {
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property operations for users";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.Users.Item.Authentication.Operations.Item {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Retrieve the status of a long-running operation, represented by a longRunningOperation object. A long-running operation is initiated when you reset a user's password. This resource type is also the base type for the richLongRunningOperation object that represents the status of a long-running operation on a site or a list. The possible states of the long-running operation are notStarted, running, succeeded, failed, unknownFutureValue where succeeded and failed are terminal states. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/longrunningoperation-get?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -121,7 +121,7 @@ namespace ApiSdk.Users.Item.Authentication.Operations.Item {
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property operations in users";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

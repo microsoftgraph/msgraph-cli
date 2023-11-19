@@ -25,7 +25,7 @@ namespace ApiSdk.Users.Item.Onenote.Notebooks.Item.SectionGroups.Item.Sections.I
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "The section group that contains the section.  Read-only.";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

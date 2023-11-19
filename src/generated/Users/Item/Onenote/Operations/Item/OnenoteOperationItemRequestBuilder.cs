@@ -25,7 +25,7 @@ namespace ApiSdk.Users.Item.Onenote.Operations.Item {
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property operations for users";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.Users.Item.Onenote.Operations.Item {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the status of a long-running OneNote operation. This applies to operations that return the Operation-Location header in the response, such as CopyNotebook, CopyToNotebook, CopyToSectionGroup, and CopyToSection.    You can poll the Operation-Location endpoint until the status property returns completed or failed.  If the status is completed, the resourceLocation property contains the resource endpoint URI.  If the status is failed, the error and @api.diagnostics properties provide error information. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/onenoteoperation-get?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -121,7 +121,7 @@ namespace ApiSdk.Users.Item.Onenote.Operations.Item {
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property operations in users";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

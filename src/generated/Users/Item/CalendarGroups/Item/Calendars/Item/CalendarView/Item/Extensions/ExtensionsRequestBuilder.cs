@@ -54,7 +54,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create an open extension (openTypeExtension object) and add custom properties in a new or existing instance of a resource. You can create an open extension in a resource instance and store custom data to it all in the same operation, except for specific resources. The table in the Permissions section lists the resources that support open extensions. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/opentypeextension-post-opentypeextension?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -121,7 +121,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars.Item.CalendarView.Item
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get an open extension (openTypeExtension object) identified by name or fully qualified name. The table in the Permissions section lists the resources that support open extensions. The following table lists the three scenarios where you can get an open extension from a supported resource instance. This API is available in the following national cloud deployments.";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

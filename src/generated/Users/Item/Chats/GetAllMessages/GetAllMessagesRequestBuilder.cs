@@ -24,7 +24,7 @@ namespace ApiSdk.Users.Item.Chats.GetAllMessages {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Invoke function getAllMessages";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

@@ -24,7 +24,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Messages.Item.Replie
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Invoke action setReaction";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

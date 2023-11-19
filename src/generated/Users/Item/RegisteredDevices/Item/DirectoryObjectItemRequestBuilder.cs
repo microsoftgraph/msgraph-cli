@@ -28,7 +28,7 @@ namespace ApiSdk.Users.Item.RegisteredDevices.Item {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Devices that are registered for the user. Read-only. Nullable. Supports $expand and returns up to 100 objects.";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

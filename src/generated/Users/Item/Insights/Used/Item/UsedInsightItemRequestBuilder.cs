@@ -26,7 +26,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item {
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property used for users";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -65,7 +65,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Calculated relationship identifying the latest documents viewed or modified by a user, including OneDrive for Business and SharePoint documents, ranked by recency of use.";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -121,7 +121,7 @@ namespace ApiSdk.Users.Item.Insights.Used.Item {
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property used in users";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

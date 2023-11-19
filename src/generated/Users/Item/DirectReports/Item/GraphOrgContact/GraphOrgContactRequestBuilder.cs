@@ -25,7 +25,7 @@ namespace ApiSdk.Users.Item.DirectReports.Item.GraphOrgContact {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the item of type microsoft.graph.directoryObject as microsoft.graph.orgContact";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

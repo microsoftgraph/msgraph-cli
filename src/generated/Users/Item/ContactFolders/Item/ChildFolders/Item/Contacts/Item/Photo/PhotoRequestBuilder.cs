@@ -42,7 +42,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.Contacts.Item.
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Optional contact picture. You can get or set a photo for a contact.";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -103,7 +103,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders.Item.Contacts.Item.
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property photo in users";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

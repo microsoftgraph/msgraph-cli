@@ -41,7 +41,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Group.ServiceProvisioningErrors {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get serviceProvisioningErrors property value";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

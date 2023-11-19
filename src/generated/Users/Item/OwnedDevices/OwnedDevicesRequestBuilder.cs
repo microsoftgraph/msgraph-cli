@@ -122,7 +122,7 @@ namespace ApiSdk.Users.Item.OwnedDevices {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Devices that are owned by the user. Read-only. Nullable. Supports $expand and $filter (/$count eq 0, /$count ne 0, /$count eq 1, /$count ne 1).\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-list-owneddevices?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

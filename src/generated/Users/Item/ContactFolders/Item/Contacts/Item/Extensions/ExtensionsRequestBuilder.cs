@@ -53,7 +53,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.Extensions {
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create new navigation property to extensions for users";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -114,7 +114,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts.Item.Extensions {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "The collection of open extensions defined for the contact. Read-only. Nullable.";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

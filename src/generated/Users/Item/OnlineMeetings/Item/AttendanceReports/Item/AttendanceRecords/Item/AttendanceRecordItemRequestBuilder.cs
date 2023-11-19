@@ -25,7 +25,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item.Attendanc
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Delete navigation property attendanceRecords for users";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -76,7 +76,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item.Attendanc
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "List of attendance records of an attendance report. Read-only.";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -144,7 +144,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item.Attendanc
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update the navigation property attendanceRecords in users";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

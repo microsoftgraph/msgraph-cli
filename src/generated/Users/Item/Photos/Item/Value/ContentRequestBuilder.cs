@@ -24,7 +24,7 @@ namespace ApiSdk.Users.Item.Photos.Item.Value {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get media content for the navigation property photos from users";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -68,7 +68,7 @@ namespace ApiSdk.Users.Item.Photos.Item.Value {
         public Command BuildPutCommand() {
             var command = new Command("put");
             command.Description = "Update media content for the navigation property photos in users";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

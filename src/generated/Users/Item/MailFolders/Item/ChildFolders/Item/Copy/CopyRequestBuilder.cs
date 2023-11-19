@@ -26,7 +26,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.ChildFolders.Item.Copy {
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Copy a mailfolder and its contents to another mailfolder. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/mailfolder-copy?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

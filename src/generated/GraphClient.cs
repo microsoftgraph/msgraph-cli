@@ -2103,6 +2103,7 @@ namespace ApiSdk {
         /// </summary>
         public Command BuildUsersNavCommand() {
             var command = new Command("users");
+            command.AddAlias("me");
             command.Description = "Provides operations to manage the collection of user entities.";
             var builder = new UsersRequestBuilder(PathParameters);
             var execCommands = new List<Command>();
