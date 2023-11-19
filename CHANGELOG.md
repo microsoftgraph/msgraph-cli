@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+## [1.0.0] - 2023-11-20
+
+### Added
+
+- Added `me` command. Use `mgc me get` to fetch the currently logged in user.
+
+### Changed
+
 ## [1.0.0-rc.2] - 2023-10-24
 
 ### Added
