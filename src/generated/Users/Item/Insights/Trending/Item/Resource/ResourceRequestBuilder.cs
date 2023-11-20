@@ -25,7 +25,7 @@ namespace ApiSdk.Users.Item.Insights.Trending.Item.Resource {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Used for navigating to the trending document.";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

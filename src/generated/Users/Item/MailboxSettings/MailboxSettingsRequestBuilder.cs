@@ -25,7 +25,7 @@ namespace ApiSdk.Users.Item.MailboxSettings {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Settings for the primary mailbox of the signed-in user. You can get or update settings for sending automatic replies to incoming messages, locale and time zone. Returned only on $select.";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -75,7 +75,7 @@ namespace ApiSdk.Users.Item.MailboxSettings {
         public Command BuildPatchCommand() {
             var command = new Command("patch");
             command.Description = "Update property mailboxSettings value.";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

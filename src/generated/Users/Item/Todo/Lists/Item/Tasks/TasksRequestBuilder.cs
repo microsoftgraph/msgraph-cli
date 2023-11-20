@@ -61,7 +61,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create a new task object in a specified todoTaskList. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todotasklist-post-tasks?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -132,7 +132,7 @@ namespace ApiSdk.Users.Item.Todo.Lists.Item.Tasks {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get the todoTask resources from the tasks navigation property of a specified todoTaskList. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todotasklist-list-tasks?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

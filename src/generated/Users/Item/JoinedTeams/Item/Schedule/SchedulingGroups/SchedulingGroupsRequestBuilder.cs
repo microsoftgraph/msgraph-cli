@@ -54,7 +54,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.SchedulingGroups {
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create a new schedulingGroup. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/schedule-post-schedulinggroups?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -110,7 +110,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.SchedulingGroups {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get the list of schedulingGroups in this schedule. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/schedule-list-schedulinggroups?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

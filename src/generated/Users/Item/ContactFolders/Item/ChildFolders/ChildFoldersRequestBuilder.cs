@@ -57,7 +57,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders {
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create a new contactFolder as a child of a specified folder.  You can also create a new contactFolder under the user's default contact folder. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contactfolder-post-childfolders?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -128,7 +128,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.ChildFolders {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get a collection of child folders under the specified contact folder. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contactfolder-list-childfolders?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

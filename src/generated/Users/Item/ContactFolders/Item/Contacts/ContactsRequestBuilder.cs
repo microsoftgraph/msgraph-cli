@@ -58,7 +58,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Add a contact to the root Contacts folder or to the contacts endpoint of another contact folder. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contactfolder-post-contacts?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -129,7 +129,7 @@ namespace ApiSdk.Users.Item.ContactFolders.Item.Contacts {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get a contact collection from the default Contacts folder of the signed-in user (.../me/contacts), or from the specified contact folder. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contactfolder-list-contacts?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

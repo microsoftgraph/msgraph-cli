@@ -55,7 +55,7 @@ namespace ApiSdk.Users.Item.Teamwork.AssociatedTeams {
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create new navigation property to associatedTeams for users";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -105,7 +105,7 @@ namespace ApiSdk.Users.Item.Teamwork.AssociatedTeams {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get the list of teams in Microsoft Teams that a user is associated with.Currently, a user can be associated with a team in two different ways: This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/associatedteaminfo-list?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

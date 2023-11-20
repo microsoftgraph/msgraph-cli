@@ -55,7 +55,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.LogCollectionRequests {
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create new navigation property to logCollectionRequests for users";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -110,7 +110,7 @@ namespace ApiSdk.Users.Item.ManagedDevices.Item.LogCollectionRequests {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "List of log collection requests";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

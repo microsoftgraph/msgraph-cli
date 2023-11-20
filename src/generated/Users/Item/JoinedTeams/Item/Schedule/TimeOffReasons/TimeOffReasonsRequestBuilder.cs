@@ -54,7 +54,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimeOffReasons {
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create a new timeOffReason. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/schedule-post-timeoffreasons?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -110,7 +110,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Schedule.TimeOffReasons {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get the list of timeOffReasons in a schedule. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/schedule-list-timeoffreasons?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

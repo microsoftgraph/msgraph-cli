@@ -51,7 +51,7 @@ namespace ApiSdk.Users.Item.ManagedAppRegistrations {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Zero or more managed app registrations that belong to the user.";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
