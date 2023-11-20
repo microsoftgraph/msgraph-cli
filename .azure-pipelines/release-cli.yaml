@@ -691,7 +691,9 @@ stages:
         displayName: Deploy Nuget
         dependsOn: []
         environment: microsoftgraph-nuget-org
-        condition: and(succeeded(), or(startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq('${{ parameters.forceNugetPublish }}', 'true')))
+        # Disable nuget deployment until performance is improved.
+        condition: false
+        # condition: and(succeeded(), or(startsWith(variables['Build.SourceBranch'], 'refs/tags/v'), eq('${{ parameters.forceNugetPublish }}', 'true')))
         strategy:
           runOnce:
             deploy:
