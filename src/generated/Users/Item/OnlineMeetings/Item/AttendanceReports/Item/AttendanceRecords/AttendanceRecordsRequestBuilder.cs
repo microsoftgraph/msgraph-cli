@@ -53,7 +53,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item.Attendanc
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create new navigation property to attendanceRecords for users";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -115,7 +115,7 @@ namespace ApiSdk.Users.Item.OnlineMeetings.Item.AttendanceReports.Item.Attendanc
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get a list of attendanceRecord objects and their properties. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/attendancerecord-list?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

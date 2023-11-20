@@ -56,7 +56,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Tabs {
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Adds (pins) a tab to the specified channel within a team. The corresponding app must already be installed in the team. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-post-tabs?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -118,7 +118,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.Channels.Item.Tabs {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Retrieve the list of tabs in the specified channel within a team.  This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/channel-list-tabs?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

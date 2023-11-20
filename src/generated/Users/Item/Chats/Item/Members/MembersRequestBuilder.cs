@@ -70,7 +70,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Members {
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Add a conversationMember to a chat. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-post-members?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -126,7 +126,7 @@ namespace ApiSdk.Users.Item.Chats.Item.Members {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "List all conversation members in a chat or channel. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conversationmember-list?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

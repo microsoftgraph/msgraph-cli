@@ -24,7 +24,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.PrimaryChannel.Members.Count {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "Get the number of the resource";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

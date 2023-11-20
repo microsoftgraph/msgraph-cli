@@ -26,7 +26,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.IncomingChannels.Item {
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
             command.Description = "Remove an incoming channel (a channel shared with a team) from a team.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/team-delete-incomingchannels?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -71,7 +71,7 @@ namespace ApiSdk.Users.Item.JoinedTeams.Item.IncomingChannels.Item {
         public Command BuildGetCommand() {
             var command = new Command("get");
             command.Description = "List of channels shared with the team.";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

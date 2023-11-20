@@ -55,7 +55,7 @@ namespace ApiSdk.Users.Item.Insights.Trending {
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Create new navigation property to trending for users";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -105,7 +105,7 @@ namespace ApiSdk.Users.Item.Insights.Trending {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Calculated insight that includes a list of documents trending around the user. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/insights-list-trending?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

@@ -68,7 +68,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages {
         public Command BuildCreateCommand() {
             var command = new Command("create");
             command.Description = "Use this API to create a new Message in a mailfolder. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/mailfolder-post-messages?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);
@@ -139,7 +139,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "Get all the messages in the specified user's mailbox, or those messages in a specified folder in the mailbox. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/mailfolder-list-messages?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

@@ -25,7 +25,7 @@ namespace ApiSdk.Users.Item.Presence.ClearUserPreferredPresence {
         public Command BuildPostCommand() {
             var command = new Command("post");
             command.Description = "Clear the preferred availability and activity status for a user. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/presence-clearuserpreferredpresence?view=graph-rest-1.0";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

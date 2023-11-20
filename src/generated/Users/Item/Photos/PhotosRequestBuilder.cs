@@ -37,7 +37,7 @@ namespace ApiSdk.Users.Item.Photos {
         public Command BuildListCommand() {
             var command = new Command("list");
             command.Description = "The collection of the user's profile photos in different sizes. Read-only.";
-            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user") {
+            var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
             command.AddOption(userIdOption);

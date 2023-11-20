@@ -238,7 +238,7 @@ Add -h to your command to view information that contains documentation links wit
 ## Check logged in user
 You can access the your user's details using:
 ```bash
-mgc users get --user-id 'your_email@example.com'
+mgc me get
 ```
 
 This will also display your User ID which is required for many queries involving your user (the "me" concept has been removed from Microsoft Graph CLI).
