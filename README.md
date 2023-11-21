@@ -10,14 +10,6 @@ A command line tool should work on any terminal. We recommend:
 
 ## Installation
 
-### DotNet Tool
-
-```
-dotnet tool install --global Microsoft.Graph.Cli --prerelease
-```
-
-### Manual
-
 To download the CLI to get started for Windows, Mac, or Linux.
  here on the assets link of the latest release: [CLI Download](https://github.com/microsoftgraph/msgraph-cli/releases)
 
@@ -164,13 +156,6 @@ mgc login
 Find docker instructions in the docker folder [here](docker). See the [shell script](docker/init.sh) used for docker in this repository
 
 ## Uninstalling
-### Dotnet tool
-
-```
-dotnet tool uninstall Microsoft.Graph.Cli
-```
-
-### Manual
 
 1. Delete the CLI installation folder
 2. If path enviroment variable had been set, remove it.
