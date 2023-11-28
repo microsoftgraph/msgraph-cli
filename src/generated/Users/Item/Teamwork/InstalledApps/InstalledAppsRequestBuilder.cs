@@ -52,12 +52,12 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps {
             return command;
         }
         /// <summary>
-        /// Install an app in the personal scope of the specified user. This API is available in the following national cloud deployments.
+        /// Install an app in the personal scope of the specified user.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/userteamwork-post-installedapps?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Install an app in the personal scope of the specified user. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/userteamwork-post-installedapps?view=graph-rest-1.0";
+            command.Description = "Install an app in the personal scope of the specified user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/userteamwork-post-installedapps?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -102,12 +102,12 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps {
             return command;
         }
         /// <summary>
-        /// Retrieve the list of apps installed in the personal scope of the specified user. This API is available in the following national cloud deployments.
+        /// Retrieve the list of apps installed in the personal scope of the specified user.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/userteamwork-list-installedapps?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the list of apps installed in the personal scope of the specified user. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/userteamwork-list-installedapps?view=graph-rest-1.0";
+            command.Description = "Retrieve the list of apps installed in the personal scope of the specified user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/userteamwork-list-installedapps?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -213,7 +213,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps {
         public InstalledAppsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/teamwork/installedApps{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve the list of apps installed in the personal scope of the specified user. This API is available in the following national cloud deployments.
+        /// Retrieve the list of apps installed in the personal scope of the specified user.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -229,7 +229,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps {
             return requestInfo;
         }
         /// <summary>
-        /// Install an app in the personal scope of the specified user. This API is available in the following national cloud deployments.
+        /// Install an app in the personal scope of the specified user.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -247,7 +247,7 @@ namespace ApiSdk.Users.Item.Teamwork.InstalledApps {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the list of apps installed in the personal scope of the specified user. This API is available in the following national cloud deployments.
+        /// Retrieve the list of apps installed in the personal scope of the specified user.
         /// </summary>
         public class InstalledAppsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

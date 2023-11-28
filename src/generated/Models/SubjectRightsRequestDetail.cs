@@ -61,11 +61,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"excludedItemCount", n => { ExcludedItemCount = n.GetLongValue(); } },
                 {"insightCounts", n => { InsightCounts = n.GetCollectionOfObjectValues<KeyValuePair>(KeyValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"itemCount", n => { ItemCount = n.GetLongValue(); } },
                 {"itemNeedReview", n => { ItemNeedReview = n.GetLongValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"productItemCounts", n => { ProductItemCounts = n.GetCollectionOfObjectValues<KeyValuePair>(KeyValuePair.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"signedOffItemCount", n => { SignedOffItemCount = n.GetLongValue(); } },
                 {"totalItemSize", n => { TotalItemSize = n.GetLongValue(); } },

@@ -57,12 +57,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources {
             return command;
         }
         /// <summary>
-        /// Create a new ediscoveryNoncustodialDataSource object. This API is available in the following national cloud deployments.
+        /// Create a new ediscoveryNoncustodialDataSource object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoverycase-post-noncustodialdatasources?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new ediscoveryNoncustodialDataSource object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverycase-post-noncustodialdatasources?view=graph-rest-1.0";
+            command.Description = "Create a new ediscoveryNoncustodialDataSource object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoverycase-post-noncustodialdatasources?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -263,7 +263,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.NoncustodialDataSources {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new ediscoveryNoncustodialDataSource object. This API is available in the following national cloud deployments.
+        /// Create a new ediscoveryNoncustodialDataSource object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

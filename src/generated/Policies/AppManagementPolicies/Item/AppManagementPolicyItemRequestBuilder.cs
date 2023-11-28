@@ -45,12 +45,12 @@ namespace ApiSdk.Policies.AppManagementPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Delete an appManagementPolicy object. This API is available in the following national cloud deployments.
+        /// Delete an appManagementPolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/appmanagementpolicy-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete an appManagementPolicy object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/appmanagementpolicy-delete?view=graph-rest-1.0";
+            command.Description = "Delete an appManagementPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/appmanagementpolicy-delete?view=graph-rest-1.0";
             var appManagementPolicyIdOption = new Option<string>("--app-management-policy-id", description: "The unique identifier of appManagementPolicy") {
             };
             appManagementPolicyIdOption.IsRequired = true;
@@ -79,12 +79,12 @@ namespace ApiSdk.Policies.AppManagementPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties of an appManagementPolicy object. This API is available in the following national cloud deployments.
+        /// Read the properties of an appManagementPolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/appmanagementpolicy-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties of an appManagementPolicy object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/appmanagementpolicy-get?view=graph-rest-1.0";
+            command.Description = "Read the properties of an appManagementPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/appmanagementpolicy-get?view=graph-rest-1.0";
             var appManagementPolicyIdOption = new Option<string>("--app-management-policy-id", description: "The unique identifier of appManagementPolicy") {
             };
             appManagementPolicyIdOption.IsRequired = true;
@@ -130,12 +130,12 @@ namespace ApiSdk.Policies.AppManagementPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Update an appManagementPolicy object. This API is available in the following national cloud deployments.
+        /// Update an appManagementPolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/appmanagementpolicy-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update an appManagementPolicy object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/appmanagementpolicy-update?view=graph-rest-1.0";
+            command.Description = "Update an appManagementPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/appmanagementpolicy-update?view=graph-rest-1.0";
             var appManagementPolicyIdOption = new Option<string>("--app-management-policy-id", description: "The unique identifier of appManagementPolicy") {
             };
             appManagementPolicyIdOption.IsRequired = true;
@@ -192,7 +192,7 @@ namespace ApiSdk.Policies.AppManagementPolicies.Item {
         public AppManagementPolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/policies/appManagementPolicies/{appManagementPolicy%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete an appManagementPolicy object. This API is available in the following national cloud deployments.
+        /// Delete an appManagementPolicy object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -208,7 +208,7 @@ namespace ApiSdk.Policies.AppManagementPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties of an appManagementPolicy object. This API is available in the following national cloud deployments.
+        /// Read the properties of an appManagementPolicy object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -224,7 +224,7 @@ namespace ApiSdk.Policies.AppManagementPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update an appManagementPolicy object. This API is available in the following national cloud deployments.
+        /// Update an appManagementPolicy object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -242,7 +242,7 @@ namespace ApiSdk.Policies.AppManagementPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties of an appManagementPolicy object. This API is available in the following national cloud deployments.
+        /// Read the properties of an appManagementPolicy object.
         /// </summary>
         public class AppManagementPolicyItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

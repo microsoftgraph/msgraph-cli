@@ -20,12 +20,12 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.AddCopy {
     /// </summary>
     public class AddCopyRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Add a copy of a content type][contentType] from a [site][site] to a [list][list]. This API is available in the following [national cloud deployments.
+        /// Add a copy of a [content type][contentType] from a [site][site] to a [list][list].
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/contenttype-addcopy?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Add a copy of a content type][contentType] from a [site][site] to a [list][list]. This API is available in the following [national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-addcopy?view=graph-rest-1.0";
+            command.Description = "Add a copy of a [content type][contentType] from a [site][site] to a [list][list].\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/contenttype-addcopy?view=graph-rest-1.0";
             var sharedDriveItemIdOption = new Option<string>("--shared-drive-item-id", description: "The unique identifier of sharedDriveItem") {
             };
             sharedDriveItemIdOption.IsRequired = true;
@@ -82,7 +82,7 @@ namespace ApiSdk.Shares.Item.List.ContentTypes.AddCopy {
         public AddCopyRequestBuilder(string rawUrl) : base("{+baseurl}/shares/{sharedDriveItem%2Did}/list/contentTypes/addCopy", rawUrl) {
         }
         /// <summary>
-        /// Add a copy of a content type][contentType] from a [site][site] to a [list][list]. This API is available in the following [national cloud deployments.
+        /// Add a copy of a [content type][contentType] from a [site][site] to a [list][list].
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

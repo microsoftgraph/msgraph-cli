@@ -62,7 +62,6 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"androidCorporateWorkProfileCount", n => { AndroidCorporateWorkProfileCount = n.GetIntValue(); } },
                 {"androidCount", n => { AndroidCount = n.GetIntValue(); } },
                 {"androidDedicatedCount", n => { AndroidDedicatedCount = n.GetIntValue(); } },
@@ -72,6 +71,7 @@ namespace ApiSdk.Models {
                 {"configMgrDeviceCount", n => { ConfigMgrDeviceCount = n.GetIntValue(); } },
                 {"iosCount", n => { IosCount = n.GetIntValue(); } },
                 {"macOSCount", n => { MacOSCount = n.GetIntValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"unknownCount", n => { UnknownCount = n.GetIntValue(); } },
                 {"windowsCount", n => { WindowsCount = n.GetIntValue(); } },
                 {"windowsMobileCount", n => { WindowsMobileCount = n.GetIntValue(); } },

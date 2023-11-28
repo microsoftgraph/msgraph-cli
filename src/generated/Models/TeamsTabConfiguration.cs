@@ -67,9 +67,9 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"contentUrl", n => { ContentUrl = n.GetStringValue(); } },
                 {"entityId", n => { EntityId = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"removeUrl", n => { RemoveUrl = n.GetStringValue(); } },
                 {"websiteUrl", n => { WebsiteUrl = n.GetStringValue(); } },
             };

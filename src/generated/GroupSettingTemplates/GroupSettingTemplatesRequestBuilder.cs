@@ -146,12 +146,12 @@ namespace ApiSdk.GroupSettingTemplates {
             return command;
         }
         /// <summary>
-        /// Group setting templates represents a set of templates from which group settings may be created and used within a tenant. This operation retrieves the list of available groupSettingTemplates objects. This API is available in the following national cloud deployments.
+        /// Group setting templates represents a set of templates from which group settings may be created and used within a tenant. This operation retrieves the list of available groupSettingTemplates objects.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/groupsettingtemplate-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Group setting templates represents a set of templates from which group settings may be created and used within a tenant. This operation retrieves the list of available groupSettingTemplates objects. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/groupsettingtemplate-list?view=graph-rest-1.0";
+            command.Description = "Group setting templates represents a set of templates from which group settings may be created and used within a tenant. This operation retrieves the list of available groupSettingTemplates objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/groupsettingtemplate-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -266,7 +266,7 @@ namespace ApiSdk.GroupSettingTemplates {
         public GroupSettingTemplatesRequestBuilder(string rawUrl) : base("{+baseurl}/groupSettingTemplates{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Group setting templates represents a set of templates from which group settings may be created and used within a tenant. This operation retrieves the list of available groupSettingTemplates objects. This API is available in the following national cloud deployments.
+        /// Group setting templates represents a set of templates from which group settings may be created and used within a tenant. This operation retrieves the list of available groupSettingTemplates objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -300,7 +300,7 @@ namespace ApiSdk.GroupSettingTemplates {
             return requestInfo;
         }
         /// <summary>
-        /// Group setting templates represents a set of templates from which group settings may be created and used within a tenant. This operation retrieves the list of available groupSettingTemplates objects. This API is available in the following national cloud deployments.
+        /// Group setting templates represents a set of templates from which group settings may be created and used within a tenant. This operation retrieves the list of available groupSettingTemplates objects.
         /// </summary>
         public class GroupSettingTemplatesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

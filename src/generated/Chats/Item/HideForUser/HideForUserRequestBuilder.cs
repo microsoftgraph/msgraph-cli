@@ -19,12 +19,12 @@ namespace ApiSdk.Chats.Item.HideForUser {
     /// </summary>
     public class HideForUserRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Hide a chat for a user. This API is available in the following national cloud deployments.
+        /// Hide a chat for a user.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-hideforuser?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Hide a chat for a user. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-hideforuser?view=graph-rest-1.0";
+            command.Description = "Hide a chat for a user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-hideforuser?view=graph-rest-1.0";
             var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
@@ -71,7 +71,7 @@ namespace ApiSdk.Chats.Item.HideForUser {
         public HideForUserRequestBuilder(string rawUrl) : base("{+baseurl}/chats/{chat%2Did}/hideForUser", rawUrl) {
         }
         /// <summary>
-        /// Hide a chat for a user. This API is available in the following national cloud deployments.
+        /// Hide a chat for a user.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

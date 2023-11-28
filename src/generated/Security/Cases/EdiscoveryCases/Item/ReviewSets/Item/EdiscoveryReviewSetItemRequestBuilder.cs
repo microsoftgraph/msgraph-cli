@@ -62,12 +62,12 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of an ediscoveryReviewSet object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of an ediscoveryReviewSet object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-ediscoveryreviewset-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of an ediscoveryReviewSet object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoveryreviewset-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of an ediscoveryReviewSet object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-ediscoveryreviewset-get?view=graph-rest-1.0";
             var ediscoveryCaseIdOption = new Option<string>("--ediscovery-case-id", description: "The unique identifier of ediscoveryCase") {
             };
             ediscoveryCaseIdOption.IsRequired = true;
@@ -257,7 +257,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an ediscoveryReviewSet object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of an ediscoveryReviewSet object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -291,7 +291,7 @@ namespace ApiSdk.Security.Cases.EdiscoveryCases.Item.ReviewSets.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of an ediscoveryReviewSet object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of an ediscoveryReviewSet object.
         /// </summary>
         public class EdiscoveryReviewSetItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

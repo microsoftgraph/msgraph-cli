@@ -48,12 +48,12 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarView.Item.Attachments {
             return command;
         }
         /// <summary>
-        /// Use this API to add an attachment to an existing event. This operation limits the size of the attachment you can add to under 3 MB. If an organizer adds an attachment to a meeting event, the organizer can subsequently update the event to send the attachment and update the event for each attendee as well. This API is available in the following national cloud deployments.
+        /// Use this API to add an attachment to an existing event. This operation limits the size of the attachment you can add to under 3 MB. If an organizer adds an attachment to a meeting event, the organizer can subsequently update the event to send the attachment and update the event for each attendee as well.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/event-post-attachments?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to add an attachment to an existing event. This operation limits the size of the attachment you can add to under 3 MB. If an organizer adds an attachment to a meeting event, the organizer can subsequently update the event to send the attachment and update the event for each attendee as well. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-post-attachments?view=graph-rest-1.0";
+            command.Description = "Use this API to add an attachment to an existing event. This operation limits the size of the attachment you can add to under 3 MB. If an organizer adds an attachment to a meeting event, the organizer can subsequently update the event to send the attachment and update the event for each attendee as well.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-post-attachments?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -119,12 +119,12 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarView.Item.Attachments {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of attachment objects attached to an event. This API is available in the following national cloud deployments.
+        /// Retrieve a list of attachment objects attached to an event.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/event-list-attachments?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of attachment objects attached to an event. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-list-attachments?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of attachment objects attached to an event.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-list-attachments?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -230,7 +230,7 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarView.Item.Attachments {
         public AttachmentsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/calendar/calendarView/{event%2Did}/attachments{?%24top,%24skip,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve a list of attachment objects attached to an event. This API is available in the following national cloud deployments.
+        /// Retrieve a list of attachment objects attached to an event.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -246,7 +246,7 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarView.Item.Attachments {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to add an attachment to an existing event. This operation limits the size of the attachment you can add to under 3 MB. If an organizer adds an attachment to a meeting event, the organizer can subsequently update the event to send the attachment and update the event for each attendee as well. This API is available in the following national cloud deployments.
+        /// Use this API to add an attachment to an existing event. This operation limits the size of the attachment you can add to under 3 MB. If an organizer adds an attachment to a meeting event, the organizer can subsequently update the event to send the attachment and update the event for each attendee as well.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -264,7 +264,7 @@ namespace ApiSdk.Groups.Item.Calendar.CalendarView.Item.Attachments {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of attachment objects attached to an event. This API is available in the following national cloud deployments.
+        /// Retrieve a list of attachment objects attached to an event.
         /// </summary>
         public class AttachmentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

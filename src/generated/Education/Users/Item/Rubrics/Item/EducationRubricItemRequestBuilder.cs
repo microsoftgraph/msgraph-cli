@@ -20,12 +20,12 @@ namespace ApiSdk.Education.Users.Item.Rubrics.Item {
     /// </summary>
     public class EducationRubricItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete an educationRubric object. Only teachers can perform this operation. This API is available in the following national cloud deployments.
+        /// Delete an educationRubric object. Only teachers can perform this operation.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationrubric-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete an educationRubric object. Only teachers can perform this operation. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationrubric-delete?view=graph-rest-1.0";
+            command.Description = "Delete an educationRubric object. Only teachers can perform this operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationrubric-delete?view=graph-rest-1.0";
             var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
@@ -60,12 +60,12 @@ namespace ApiSdk.Education.Users.Item.Rubrics.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an educationRubric object. Only teachers and students can perform this operation. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of an educationRubric object. Only teachers and students can perform this operation.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationrubric-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of an educationRubric object. Only teachers and students can perform this operation. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationrubric-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of an educationRubric object. Only teachers and students can perform this operation.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationrubric-get?view=graph-rest-1.0";
             var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
@@ -117,12 +117,12 @@ namespace ApiSdk.Education.Users.Item.Rubrics.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of an educationRubric object. Only teachers can perform this operation. Updating a rubric attached to an assignment (PATCH /education/classes/{class-id}/assignments/{assignment-id}/rubric) is only possible before the assignment is published, and what is updated is actually the original rubric that exists under /education/users/{id}/rubrics. After the assignment is published, an immutable copy of the rubric is made that is attached to that specific assignment. That rubric can be retrieved using GET /education/classes/{class-id}/assignments/{assignment-id}/rubric, but it cannot be updated. This API is available in the following national cloud deployments.
+        /// Update the properties of an educationRubric object. Only teachers can perform this operation. Updating a rubric attached to an assignment (PATCH /education/classes/{class-id}/assignments/{assignment-id}/rubric) is only possible before the assignment is published, and what is updated is actually the original rubric that exists under /education/users/{id}/rubrics. After the assignment is published, an immutable copy of the rubric is made that is attached to that specific assignment. That rubric can be retrieved using GET /education/classes/{class-id}/assignments/{assignment-id}/rubric, but it cannot be updated.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/educationrubric-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of an educationRubric object. Only teachers can perform this operation. Updating a rubric attached to an assignment (PATCH /education/classes/{class-id}/assignments/{assignment-id}/rubric) is only possible before the assignment is published, and what is updated is actually the original rubric that exists under /education/users/{id}/rubrics. After the assignment is published, an immutable copy of the rubric is made that is attached to that specific assignment. That rubric can be retrieved using GET /education/classes/{class-id}/assignments/{assignment-id}/rubric, but it cannot be updated. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationrubric-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of an educationRubric object. Only teachers can perform this operation. Updating a rubric attached to an assignment (PATCH /education/classes/{class-id}/assignments/{assignment-id}/rubric) is only possible before the assignment is published, and what is updated is actually the original rubric that exists under /education/users/{id}/rubrics. After the assignment is published, an immutable copy of the rubric is made that is attached to that specific assignment. That rubric can be retrieved using GET /education/classes/{class-id}/assignments/{assignment-id}/rubric, but it cannot be updated.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/educationrubric-update?view=graph-rest-1.0";
             var educationUserIdOption = new Option<string>("--education-user-id", description: "The unique identifier of educationUser") {
             };
             educationUserIdOption.IsRequired = true;
@@ -185,7 +185,7 @@ namespace ApiSdk.Education.Users.Item.Rubrics.Item {
         public EducationRubricItemRequestBuilder(string rawUrl) : base("{+baseurl}/education/users/{educationUser%2Did}/rubrics/{educationRubric%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete an educationRubric object. Only teachers can perform this operation. This API is available in the following national cloud deployments.
+        /// Delete an educationRubric object. Only teachers can perform this operation.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -201,7 +201,7 @@ namespace ApiSdk.Education.Users.Item.Rubrics.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an educationRubric object. Only teachers and students can perform this operation. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of an educationRubric object. Only teachers and students can perform this operation.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -217,7 +217,7 @@ namespace ApiSdk.Education.Users.Item.Rubrics.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of an educationRubric object. Only teachers can perform this operation. Updating a rubric attached to an assignment (PATCH /education/classes/{class-id}/assignments/{assignment-id}/rubric) is only possible before the assignment is published, and what is updated is actually the original rubric that exists under /education/users/{id}/rubrics. After the assignment is published, an immutable copy of the rubric is made that is attached to that specific assignment. That rubric can be retrieved using GET /education/classes/{class-id}/assignments/{assignment-id}/rubric, but it cannot be updated. This API is available in the following national cloud deployments.
+        /// Update the properties of an educationRubric object. Only teachers can perform this operation. Updating a rubric attached to an assignment (PATCH /education/classes/{class-id}/assignments/{assignment-id}/rubric) is only possible before the assignment is published, and what is updated is actually the original rubric that exists under /education/users/{id}/rubrics. After the assignment is published, an immutable copy of the rubric is made that is attached to that specific assignment. That rubric can be retrieved using GET /education/classes/{class-id}/assignments/{assignment-id}/rubric, but it cannot be updated.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -235,7 +235,7 @@ namespace ApiSdk.Education.Users.Item.Rubrics.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of an educationRubric object. Only teachers and students can perform this operation. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of an educationRubric object. Only teachers and students can perform this operation.
         /// </summary>
         public class EducationRubricItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

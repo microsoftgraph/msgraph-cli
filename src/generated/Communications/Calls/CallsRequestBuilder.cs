@@ -68,12 +68,12 @@ namespace ApiSdk.Communications.Calls {
             return command;
         }
         /// <summary>
-        /// Create call enables your bot to create a new outgoing peer-to-peer or group call, or join an existing meeting. You will need to register the calling bot and go through the list of permissions needed as mentioned below. This API is available in the following national cloud deployments.
+        /// Create call enables your bot to create a new outgoing peer-to-peer or group call, or join an existing meeting. You will need to register the calling bot and go through the list of permissions needed as mentioned below.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-post-calls?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create call enables your bot to create a new outgoing peer-to-peer or group call, or join an existing meeting. You will need to register the calling bot and go through the list of permissions needed as mentioned below. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-post-calls?view=graph-rest-1.0";
+            command.Description = "Create call enables your bot to create a new outgoing peer-to-peer or group call, or join an existing meeting. You will need to register the calling bot and go through the list of permissions needed as mentioned below.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-post-calls?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -112,11 +112,11 @@ namespace ApiSdk.Communications.Calls {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a call object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a call object.
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the properties and relationships of a call object. This API is available in the following national cloud deployments.";
+            command.Description = "Retrieve the properties and relationships of a call object.";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -231,7 +231,7 @@ namespace ApiSdk.Communications.Calls {
         public CallsRequestBuilder(string rawUrl) : base("{+baseurl}/communications/calls{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a call object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a call object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -247,7 +247,7 @@ namespace ApiSdk.Communications.Calls {
             return requestInfo;
         }
         /// <summary>
-        /// Create call enables your bot to create a new outgoing peer-to-peer or group call, or join an existing meeting. You will need to register the calling bot and go through the list of permissions needed as mentioned below. This API is available in the following national cloud deployments.
+        /// Create call enables your bot to create a new outgoing peer-to-peer or group call, or join an existing meeting. You will need to register the calling bot and go through the list of permissions needed as mentioned below.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -265,7 +265,7 @@ namespace ApiSdk.Communications.Calls {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a call object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a call object.
         /// </summary>
         public class CallsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -46,12 +46,12 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.SharedWithTeams.Item {
             return command;
         }
         /// <summary>
-        /// Unshare a channel with a team by deleting the corresponding sharedWithChannelTeamInfo resource. This operation is allowed only for channels with a membershipType value of shared. This API is available in the following national cloud deployments.
+        /// Unshare a channel with a team by deleting the corresponding sharedWithChannelTeamInfo resource. This operation is allowed only for channels with a membershipType value of shared.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/sharedwithchannelteaminfo-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Unshare a channel with a team by deleting the corresponding sharedWithChannelTeamInfo resource. This operation is allowed only for channels with a membershipType value of shared. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/sharedwithchannelteaminfo-delete?view=graph-rest-1.0";
+            command.Description = "Unshare a channel with a team by deleting the corresponding sharedWithChannelTeamInfo resource. This operation is allowed only for channels with a membershipType value of shared.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/sharedwithchannelteaminfo-delete?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -86,12 +86,12 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.SharedWithTeams.Item {
             return command;
         }
         /// <summary>
-        /// Get a team that has been shared with a specified channel. This operation is allowed only for channels with a membershipType value of shared. This API is available in the following national cloud deployments.
+        /// Get a team that has been shared with a specified channel. This operation is allowed only for channels with a membershipType value of shared.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/sharedwithchannelteaminfo-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get a team that has been shared with a specified channel. This operation is allowed only for channels with a membershipType value of shared. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/sharedwithchannelteaminfo-get?view=graph-rest-1.0";
+            command.Description = "Get a team that has been shared with a specified channel. This operation is allowed only for channels with a membershipType value of shared.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/sharedwithchannelteaminfo-get?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -225,7 +225,7 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.SharedWithTeams.Item {
         public SharedWithChannelTeamInfoItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/primaryChannel/sharedWithTeams/{sharedWithChannelTeamInfo%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Unshare a channel with a team by deleting the corresponding sharedWithChannelTeamInfo resource. This operation is allowed only for channels with a membershipType value of shared. This API is available in the following national cloud deployments.
+        /// Unshare a channel with a team by deleting the corresponding sharedWithChannelTeamInfo resource. This operation is allowed only for channels with a membershipType value of shared.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -241,7 +241,7 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.SharedWithTeams.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get a team that has been shared with a specified channel. This operation is allowed only for channels with a membershipType value of shared. This API is available in the following national cloud deployments.
+        /// Get a team that has been shared with a specified channel. This operation is allowed only for channels with a membershipType value of shared.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -275,7 +275,7 @@ namespace ApiSdk.Groups.Item.Team.PrimaryChannel.SharedWithTeams.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get a team that has been shared with a specified channel. This operation is allowed only for channels with a membershipType value of shared. This API is available in the following national cloud deployments.
+        /// Get a team that has been shared with a specified channel. This operation is allowed only for channels with a membershipType value of shared.
         /// </summary>
         public class SharedWithChannelTeamInfoItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

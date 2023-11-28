@@ -20,12 +20,12 @@ namespace ApiSdk.Users.Item.ReprocessLicenseAssignment {
     /// </summary>
     public class ReprocessLicenseAssignmentRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Reprocess all group-based license assignments for the user. To learn more about group-based licensing, see What is group-based licensing in Microsoft Entra ID. Also see Identify and resolve license assignment problems for a group in Microsoft Entra ID for more details. This API is available in the following national cloud deployments.
+        /// Reprocess all group-based license assignments for the user. To learn more about group-based licensing, see What is group-based licensing in Microsoft Entra ID. Also see Identify and resolve license assignment problems for a group in Microsoft Entra ID for more details.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/user-reprocesslicenseassignment?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Reprocess all group-based license assignments for the user. To learn more about group-based licensing, see What is group-based licensing in Microsoft Entra ID. Also see Identify and resolve license assignment problems for a group in Microsoft Entra ID for more details. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-reprocesslicenseassignment?view=graph-rest-1.0";
+            command.Description = "Reprocess all group-based license assignments for the user. To learn more about group-based licensing, see What is group-based licensing in Microsoft Entra ID. Also see Identify and resolve license assignment problems for a group in Microsoft Entra ID for more details.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/user-reprocesslicenseassignment?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -69,7 +69,7 @@ namespace ApiSdk.Users.Item.ReprocessLicenseAssignment {
         public ReprocessLicenseAssignmentRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/reprocessLicenseAssignment", rawUrl) {
         }
         /// <summary>
-        /// Reprocess all group-based license assignments for the user. To learn more about group-based licensing, see What is group-based licensing in Microsoft Entra ID. Also see Identify and resolve license assignment problems for a group in Microsoft Entra ID for more details. This API is available in the following national cloud deployments.
+        /// Reprocess all group-based license assignments for the user. To learn more about group-based licensing, see What is group-based licensing in Microsoft Entra ID. Also see Identify and resolve license assignment problems for a group in Microsoft Entra ID for more details.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

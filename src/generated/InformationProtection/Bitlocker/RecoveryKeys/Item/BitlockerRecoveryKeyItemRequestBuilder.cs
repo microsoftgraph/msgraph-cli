@@ -20,12 +20,12 @@ namespace ApiSdk.InformationProtection.Bitlocker.RecoveryKeys.Item {
     /// </summary>
     public class BitlockerRecoveryKeyItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Retrieve the properties and relationships of a bitlockerRecoveryKey object.  By default, this operation doesn&apos;t return the key property that represents the actual recovery key. To include the key property in the response, use the $select OData query parameter. Including the $select query parameter triggers a Microsoft Entra audit of the operation and generates an audit log. For more information on audit logs for bitlocker recovery keys, see the KeyManagement category filter of Microsoft Entra audit logs. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a bitlockerRecoveryKey object.  By default, this operation doesn&apos;t return the key property that represents the actual recovery key. To include the key property in the response, use the $select OData query parameter. Including the $select query parameter triggers a Microsoft Entra audit of the operation and generates an audit log. For more information on audit logs for bitlocker recovery keys, see the KeyManagement category filter of Microsoft Entra audit logs.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/bitlockerrecoverykey-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a bitlockerRecoveryKey object.  By default, this operation doesn't return the key property that represents the actual recovery key. To include the key property in the response, use the $select OData query parameter. Including the $select query parameter triggers a Microsoft Entra audit of the operation and generates an audit log. For more information on audit logs for bitlocker recovery keys, see the KeyManagement category filter of Microsoft Entra audit logs. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bitlockerrecoverykey-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of a bitlockerRecoveryKey object.  By default, this operation doesn't return the key property that represents the actual recovery key. To include the key property in the response, use the $select OData query parameter. Including the $select query parameter triggers a Microsoft Entra audit of the operation and generates an audit log. For more information on audit logs for bitlocker recovery keys, see the KeyManagement category filter of Microsoft Entra audit logs.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/bitlockerrecoverykey-get?view=graph-rest-1.0";
             var bitlockerRecoveryKeyIdOption = new Option<string>("--bitlocker-recovery-key-id", description: "The unique identifier of bitlockerRecoveryKey") {
             };
             bitlockerRecoveryKeyIdOption.IsRequired = true;
@@ -83,7 +83,7 @@ namespace ApiSdk.InformationProtection.Bitlocker.RecoveryKeys.Item {
         public BitlockerRecoveryKeyItemRequestBuilder(string rawUrl) : base("{+baseurl}/informationProtection/bitlocker/recoveryKeys/{bitlockerRecoveryKey%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a bitlockerRecoveryKey object.  By default, this operation doesn&apos;t return the key property that represents the actual recovery key. To include the key property in the response, use the $select OData query parameter. Including the $select query parameter triggers a Microsoft Entra audit of the operation and generates an audit log. For more information on audit logs for bitlocker recovery keys, see the KeyManagement category filter of Microsoft Entra audit logs. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a bitlockerRecoveryKey object.  By default, this operation doesn&apos;t return the key property that represents the actual recovery key. To include the key property in the response, use the $select OData query parameter. Including the $select query parameter triggers a Microsoft Entra audit of the operation and generates an audit log. For more information on audit logs for bitlocker recovery keys, see the KeyManagement category filter of Microsoft Entra audit logs.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -99,7 +99,7 @@ namespace ApiSdk.InformationProtection.Bitlocker.RecoveryKeys.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a bitlockerRecoveryKey object.  By default, this operation doesn&apos;t return the key property that represents the actual recovery key. To include the key property in the response, use the $select OData query parameter. Including the $select query parameter triggers a Microsoft Entra audit of the operation and generates an audit log. For more information on audit logs for bitlocker recovery keys, see the KeyManagement category filter of Microsoft Entra audit logs. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a bitlockerRecoveryKey object.  By default, this operation doesn&apos;t return the key property that represents the actual recovery key. To include the key property in the response, use the $select OData query parameter. Including the $select query parameter triggers a Microsoft Entra audit of the operation and generates an audit log. For more information on audit logs for bitlocker recovery keys, see the KeyManagement category filter of Microsoft Entra audit logs.
         /// </summary>
         public class BitlockerRecoveryKeyItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

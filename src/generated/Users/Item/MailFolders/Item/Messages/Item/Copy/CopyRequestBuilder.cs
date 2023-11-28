@@ -20,12 +20,12 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Copy {
     /// </summary>
     public class CopyRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Copy a message to a folder within the user&apos;s mailbox. This API is available in the following national cloud deployments.
+        /// Copy a message to a folder within the user&apos;s mailbox.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/message-copy?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Copy a message to a folder within the user's mailbox. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/message-copy?view=graph-rest-1.0";
+            command.Description = "Copy a message to a folder within the user's mailbox.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/message-copy?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -94,7 +94,7 @@ namespace ApiSdk.Users.Item.MailFolders.Item.Messages.Item.Copy {
         public CopyRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/mailFolders/{mailFolder%2Did}/messages/{message%2Did}/copy", rawUrl) {
         }
         /// <summary>
-        /// Copy a message to a folder within the user&apos;s mailbox. This API is available in the following national cloud deployments.
+        /// Copy a message to a folder within the user&apos;s mailbox.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

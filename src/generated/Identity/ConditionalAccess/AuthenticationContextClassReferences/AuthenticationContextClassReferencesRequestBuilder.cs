@@ -91,12 +91,12 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
             return command;
         }
         /// <summary>
-        /// Retrieve a list of authenticationContextClassReference objects. This API is available in the following national cloud deployments.
+        /// Retrieve a list of authenticationContextClassReference objects.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/conditionalaccessroot-list-authenticationcontextclassreferences?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of authenticationContextClassReference objects. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conditionalaccessroot-list-authenticationcontextclassreferences?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of authenticationContextClassReference objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/conditionalaccessroot-list-authenticationcontextclassreferences?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -196,7 +196,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
         public AuthenticationContextClassReferencesRequestBuilder(string rawUrl) : base("{+baseurl}/identity/conditionalAccess/authenticationContextClassReferences{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve a list of authenticationContextClassReference objects. This API is available in the following national cloud deployments.
+        /// Retrieve a list of authenticationContextClassReference objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -230,7 +230,7 @@ namespace ApiSdk.Identity.ConditionalAccess.AuthenticationContextClassReferences
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of authenticationContextClassReference objects. This API is available in the following national cloud deployments.
+        /// Retrieve a list of authenticationContextClassReference objects.
         /// </summary>
         public class AuthenticationContextClassReferencesRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

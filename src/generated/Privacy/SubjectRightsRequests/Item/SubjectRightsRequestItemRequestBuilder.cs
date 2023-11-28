@@ -108,13 +108,13 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a subjectRightsRequest object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a subjectRightsRequest object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/subjectrightsrequest-get?view=graph-rest-1.0" />
         /// </summary>
         [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate on 2022-03-22 and will be removed 2025-03-20")]
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a subjectRightsRequest object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/subjectrightsrequest-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of a subjectRightsRequest object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/subjectrightsrequest-get?view=graph-rest-1.0";
             var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "The unique identifier of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
@@ -215,13 +215,13 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a subjectRightsRequest object. This API is available in the following national cloud deployments.
+        /// Update the properties of a subjectRightsRequest object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/subjectrightsrequest-update?view=graph-rest-1.0" />
         /// </summary>
         [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate on 2022-03-22 and will be removed 2025-03-20")]
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a subjectRightsRequest object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/subjectrightsrequest-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a subjectRightsRequest object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/subjectrightsrequest-update?view=graph-rest-1.0";
             var subjectRightsRequestIdOption = new Option<string>("--subject-rights-request-id", description: "The unique identifier of subjectRightsRequest") {
             };
             subjectRightsRequestIdOption.IsRequired = true;
@@ -310,7 +310,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a subjectRightsRequest object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a subjectRightsRequest object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         [Obsolete("The subject rights request API under Privacy is deprecated and will stop working on  March 22, 2025. Please use the new API under Security. as of 2022-02/PrivacyDeprecate on 2022-03-22 and will be removed 2025-03-20")]
@@ -327,7 +327,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a subjectRightsRequest object. This API is available in the following national cloud deployments.
+        /// Update the properties of a subjectRightsRequest object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -346,7 +346,7 @@ namespace ApiSdk.Privacy.SubjectRightsRequests.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a subjectRightsRequest object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a subjectRightsRequest object.
         /// </summary>
         public class SubjectRightsRequestItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

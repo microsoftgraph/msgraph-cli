@@ -20,12 +20,12 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StopHoldMusic {
     /// </summary>
     public class StopHoldMusicRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Reincorporate a participant previously put on hold to the call. This API is available in the following national cloud deployments.
+        /// Reincorporate a participant previously put on hold to the call.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/participant-stopholdmusic?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Reincorporate a participant previously put on hold to the call. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/participant-stopholdmusic?view=graph-rest-1.0";
+            command.Description = "Reincorporate a participant previously put on hold to the call.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/participant-stopholdmusic?view=graph-rest-1.0";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -88,7 +88,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StopHoldMusic {
         public StopHoldMusicRequestBuilder(string rawUrl) : base("{+baseurl}/communications/calls/{call%2Did}/participants/{participant%2Did}/stopHoldMusic", rawUrl) {
         }
         /// <summary>
-        /// Reincorporate a participant previously put on hold to the call. This API is available in the following national cloud deployments.
+        /// Reincorporate a participant previously put on hold to the call.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

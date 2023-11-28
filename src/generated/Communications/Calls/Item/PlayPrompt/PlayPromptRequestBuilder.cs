@@ -20,12 +20,12 @@ namespace ApiSdk.Communications.Calls.Item.PlayPrompt {
     /// </summary>
     public class PlayPromptRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Play a prompt in the call. For more information about how to handle operations, see commsOperation This API is available in the following national cloud deployments.
+        /// Play a prompt in the call. For more information about how to handle operations, see commsOperation
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/call-playprompt?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Play a prompt in the call. For more information about how to handle operations, see commsOperation This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/call-playprompt?view=graph-rest-1.0";
+            command.Description = "Play a prompt in the call. For more information about how to handle operations, see commsOperation\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/call-playprompt?view=graph-rest-1.0";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -82,7 +82,7 @@ namespace ApiSdk.Communications.Calls.Item.PlayPrompt {
         public PlayPromptRequestBuilder(string rawUrl) : base("{+baseurl}/communications/calls/{call%2Did}/playPrompt", rawUrl) {
         }
         /// <summary>
-        /// Play a prompt in the call. For more information about how to handle operations, see commsOperation This API is available in the following national cloud deployments.
+        /// Play a prompt in the call. For more information about how to handle operations, see commsOperation
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

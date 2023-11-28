@@ -48,12 +48,12 @@ namespace ApiSdk.Groups.Item.Team.Schedule.Shifts {
             return command;
         }
         /// <summary>
-        /// Create a new shift instance in a schedule. The duration of a shift cannot be less than 1 minute or longer than 24 hours. This API is available in the following national cloud deployments.
+        /// Create a new shift instance in a schedule. The duration of a shift cannot be less than 1 minute or longer than 24 hours.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/schedule-post-shifts?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new shift instance in a schedule. The duration of a shift cannot be less than 1 minute or longer than 24 hours. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/schedule-post-shifts?view=graph-rest-1.0";
+            command.Description = "Create a new shift instance in a schedule. The duration of a shift cannot be less than 1 minute or longer than 24 hours.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/schedule-post-shifts?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -98,12 +98,12 @@ namespace ApiSdk.Groups.Item.Team.Schedule.Shifts {
             return command;
         }
         /// <summary>
-        /// Get the list of shift instances in a schedule. This API is available in the following national cloud deployments.
+        /// Get the list of shift instances in a schedule.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/schedule-list-shifts?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the list of shift instances in a schedule. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/schedule-list-shifts?view=graph-rest-1.0";
+            command.Description = "Get the list of shift instances in a schedule.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/schedule-list-shifts?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -202,7 +202,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.Shifts {
         public ShiftsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/team/schedule/shifts{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select}", rawUrl) {
         }
         /// <summary>
-        /// Get the list of shift instances in a schedule. This API is available in the following national cloud deployments.
+        /// Get the list of shift instances in a schedule.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -218,7 +218,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.Shifts {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new shift instance in a schedule. The duration of a shift cannot be less than 1 minute or longer than 24 hours. This API is available in the following national cloud deployments.
+        /// Create a new shift instance in a schedule. The duration of a shift cannot be less than 1 minute or longer than 24 hours.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -236,7 +236,7 @@ namespace ApiSdk.Groups.Item.Team.Schedule.Shifts {
             return requestInfo;
         }
         /// <summary>
-        /// Get the list of shift instances in a schedule. This API is available in the following national cloud deployments.
+        /// Get the list of shift instances in a schedule.
         /// </summary>
         public class ShiftsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

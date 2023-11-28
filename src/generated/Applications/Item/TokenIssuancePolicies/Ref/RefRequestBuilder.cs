@@ -20,12 +20,12 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies.Ref {
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// List the tokenIssuancePolicy objects that are assigned to an application. This API is available in the following national cloud deployments.
+        /// List the tokenIssuancePolicy objects that are assigned to an application.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-list-tokenissuancepolicies?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "List the tokenIssuancePolicy objects that are assigned to an application. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-list-tokenissuancepolicies?view=graph-rest-1.0";
+            command.Description = "List the tokenIssuancePolicy objects that are assigned to an application.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-list-tokenissuancepolicies?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -105,12 +105,12 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies.Ref {
             return command;
         }
         /// <summary>
-        /// Assign a tokenIssuancePolicy to an application. This API is available in the following national cloud deployments.
+        /// Assign a tokenIssuancePolicy to an application.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/application-post-tokenissuancepolicies?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Assign a tokenIssuancePolicy to an application. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-post-tokenissuancepolicies?view=graph-rest-1.0";
+            command.Description = "Assign a tokenIssuancePolicy to an application.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/application-post-tokenissuancepolicies?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -157,7 +157,7 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies.Ref {
         public RefRequestBuilder(string rawUrl) : base("{+baseurl}/applications/{application%2Did}/tokenIssuancePolicies/$ref{?%24top,%24skip,%24search,%24filter,%24count,%24orderby}", rawUrl) {
         }
         /// <summary>
-        /// List the tokenIssuancePolicy objects that are assigned to an application. This API is available in the following national cloud deployments.
+        /// List the tokenIssuancePolicy objects that are assigned to an application.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -173,7 +173,7 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// Assign a tokenIssuancePolicy to an application. This API is available in the following national cloud deployments.
+        /// Assign a tokenIssuancePolicy to an application.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -191,7 +191,7 @@ namespace ApiSdk.Applications.Item.TokenIssuancePolicies.Ref {
             return requestInfo;
         }
         /// <summary>
-        /// List the tokenIssuancePolicy objects that are assigned to an application. This API is available in the following national cloud deployments.
+        /// List the tokenIssuancePolicy objects that are assigned to an application.
         /// </summary>
         public class RefRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

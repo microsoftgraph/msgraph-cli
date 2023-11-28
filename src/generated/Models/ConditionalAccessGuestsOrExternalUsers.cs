@@ -45,9 +45,9 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"externalTenants", n => { ExternalTenants = n.GetObjectValue<ConditionalAccessExternalTenants>(ConditionalAccessExternalTenants.CreateFromDiscriminatorValue); } },
                 {"guestOrExternalUserTypes", n => { GuestOrExternalUserTypes = n.GetEnumValue<ConditionalAccessGuestOrExternalUserTypes>(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

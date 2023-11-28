@@ -23,12 +23,12 @@ namespace ApiSdk.Chats.Item.InstalledApps.Item {
     /// </summary>
     public class TeamsAppInstallationItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Uninstall an app installed within a chat. This API is available in the following national cloud deployments.
+        /// Uninstall an app installed within a chat.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-delete-installedapps?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Uninstall an app installed within a chat. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-delete-installedapps?view=graph-rest-1.0";
+            command.Description = "Uninstall an app installed within a chat.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-delete-installedapps?view=graph-rest-1.0";
             var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
@@ -63,12 +63,12 @@ namespace ApiSdk.Chats.Item.InstalledApps.Item {
             return command;
         }
         /// <summary>
-        /// Get an app installed in a chat. This API is available in the following national cloud deployments.
+        /// Get an app installed in a chat.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/chat-get-installedapps?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get an app installed in a chat. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-get-installedapps?view=graph-rest-1.0";
+            command.Description = "Get an app installed in a chat.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/chat-get-installedapps?view=graph-rest-1.0";
             var chatIdOption = new Option<string>("--chat-id", description: "The unique identifier of chat") {
             };
             chatIdOption.IsRequired = true;
@@ -232,7 +232,7 @@ namespace ApiSdk.Chats.Item.InstalledApps.Item {
         public TeamsAppInstallationItemRequestBuilder(string rawUrl) : base("{+baseurl}/chats/{chat%2Did}/installedApps/{teamsAppInstallation%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Uninstall an app installed within a chat. This API is available in the following national cloud deployments.
+        /// Uninstall an app installed within a chat.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -248,7 +248,7 @@ namespace ApiSdk.Chats.Item.InstalledApps.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get an app installed in a chat. This API is available in the following national cloud deployments.
+        /// Get an app installed in a chat.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -282,7 +282,7 @@ namespace ApiSdk.Chats.Item.InstalledApps.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get an app installed in a chat. This API is available in the following national cloud deployments.
+        /// Get an app installed in a chat.
         /// </summary>
         public class TeamsAppInstallationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -45,12 +45,12 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Delete a homeRealmDiscoveryPolicy object. This API is available in the following national cloud deployments.
+        /// Delete a homeRealmDiscoveryPolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/homerealmdiscoverypolicy-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a homeRealmDiscoveryPolicy object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/homerealmdiscoverypolicy-delete?view=graph-rest-1.0";
+            command.Description = "Delete a homeRealmDiscoveryPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/homerealmdiscoverypolicy-delete?view=graph-rest-1.0";
             var homeRealmDiscoveryPolicyIdOption = new Option<string>("--home-realm-discovery-policy-id", description: "The unique identifier of homeRealmDiscoveryPolicy") {
             };
             homeRealmDiscoveryPolicyIdOption.IsRequired = true;
@@ -79,12 +79,12 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a homeRealmDiscoveryPolicy object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a homeRealmDiscoveryPolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/homerealmdiscoverypolicy-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties and relationships of a homeRealmDiscoveryPolicy object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/homerealmdiscoverypolicy-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties and relationships of a homeRealmDiscoveryPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/homerealmdiscoverypolicy-get?view=graph-rest-1.0";
             var homeRealmDiscoveryPolicyIdOption = new Option<string>("--home-realm-discovery-policy-id", description: "The unique identifier of homeRealmDiscoveryPolicy") {
             };
             homeRealmDiscoveryPolicyIdOption.IsRequired = true;
@@ -130,12 +130,12 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a homeRealmDiscoveryPolicy object. This API is available in the following national cloud deployments.
+        /// Update the properties of a homeRealmDiscoveryPolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/homerealmdiscoverypolicy-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a homeRealmDiscoveryPolicy object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/homerealmdiscoverypolicy-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a homeRealmDiscoveryPolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/homerealmdiscoverypolicy-update?view=graph-rest-1.0";
             var homeRealmDiscoveryPolicyIdOption = new Option<string>("--home-realm-discovery-policy-id", description: "The unique identifier of homeRealmDiscoveryPolicy") {
             };
             homeRealmDiscoveryPolicyIdOption.IsRequired = true;
@@ -192,7 +192,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
         public HomeRealmDiscoveryPolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/policies/homeRealmDiscoveryPolicies/{homeRealmDiscoveryPolicy%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete a homeRealmDiscoveryPolicy object. This API is available in the following national cloud deployments.
+        /// Delete a homeRealmDiscoveryPolicy object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -208,7 +208,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a homeRealmDiscoveryPolicy object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a homeRealmDiscoveryPolicy object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -224,7 +224,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a homeRealmDiscoveryPolicy object. This API is available in the following national cloud deployments.
+        /// Update the properties of a homeRealmDiscoveryPolicy object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -242,7 +242,7 @@ namespace ApiSdk.Policies.HomeRealmDiscoveryPolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties and relationships of a homeRealmDiscoveryPolicy object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties and relationships of a homeRealmDiscoveryPolicy object.
         /// </summary>
         public class HomeRealmDiscoveryPolicyItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

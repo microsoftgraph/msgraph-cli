@@ -52,12 +52,12 @@ namespace ApiSdk.Users.Item.Todo.Lists {
             return command;
         }
         /// <summary>
-        /// Create a new lists object. This API is available in the following national cloud deployments.
+        /// Create a new lists object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/todo-post-lists?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new lists object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todo-post-lists?view=graph-rest-1.0";
+            command.Description = "Create a new lists object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todo-post-lists?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -117,12 +117,12 @@ namespace ApiSdk.Users.Item.Todo.Lists {
             return command;
         }
         /// <summary>
-        /// Get a list of the todoTaskList objects and their properties. This API is available in the following national cloud deployments.
+        /// Get a list of the todoTaskList objects and their properties.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/todo-list-lists?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of the todoTaskList objects and their properties. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todo-list-lists?view=graph-rest-1.0";
+            command.Description = "Get a list of the todoTaskList objects and their properties.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/todo-list-lists?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -228,7 +228,7 @@ namespace ApiSdk.Users.Item.Todo.Lists {
         public ListsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/todo/lists{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get a list of the todoTaskList objects and their properties. This API is available in the following national cloud deployments.
+        /// Get a list of the todoTaskList objects and their properties.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -244,7 +244,7 @@ namespace ApiSdk.Users.Item.Todo.Lists {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new lists object. This API is available in the following national cloud deployments.
+        /// Create a new lists object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -262,7 +262,7 @@ namespace ApiSdk.Users.Item.Todo.Lists {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of the todoTaskList objects and their properties. This API is available in the following national cloud deployments.
+        /// Get a list of the todoTaskList objects and their properties.
         /// </summary>
         public class ListsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

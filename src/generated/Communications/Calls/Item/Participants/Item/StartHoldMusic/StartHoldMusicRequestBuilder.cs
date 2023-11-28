@@ -20,12 +20,12 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic {
     /// </summary>
     public class StartHoldMusicRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Put a participant on hold and play music in the background. This API is available in the following national cloud deployments.
+        /// Put a participant on hold and play music in the background.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/participant-startholdmusic?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Put a participant on hold and play music in the background. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/participant-startholdmusic?view=graph-rest-1.0";
+            command.Description = "Put a participant on hold and play music in the background.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/participant-startholdmusic?view=graph-rest-1.0";
             var callIdOption = new Option<string>("--call-id", description: "The unique identifier of call") {
             };
             callIdOption.IsRequired = true;
@@ -88,7 +88,7 @@ namespace ApiSdk.Communications.Calls.Item.Participants.Item.StartHoldMusic {
         public StartHoldMusicRequestBuilder(string rawUrl) : base("{+baseurl}/communications/calls/{call%2Did}/participants/{participant%2Did}/startHoldMusic", rawUrl) {
         }
         /// <summary>
-        /// Put a participant on hold and play music in the background. This API is available in the following national cloud deployments.
+        /// Put a participant on hold and play music in the background.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

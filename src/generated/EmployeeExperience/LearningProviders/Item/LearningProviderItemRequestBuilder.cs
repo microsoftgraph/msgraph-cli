@@ -56,12 +56,12 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a learningProvider object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a learningProvider object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/learningprovider-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a learningProvider object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/learningprovider-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of a learningProvider object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/learningprovider-get?view=graph-rest-1.0";
             var learningProviderIdOption = new Option<string>("--learning-provider-id", description: "The unique identifier of learningProvider") {
             };
             learningProviderIdOption.IsRequired = true;
@@ -157,12 +157,12 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a learningProvider object. This API is available in the following national cloud deployments.
+        /// Update the properties of a learningProvider object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/learningprovider-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a learningProvider object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/learningprovider-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a learningProvider object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/learningprovider-update?view=graph-rest-1.0";
             var learningProviderIdOption = new Option<string>("--learning-provider-id", description: "The unique identifier of learningProvider") {
             };
             learningProviderIdOption.IsRequired = true;
@@ -235,7 +235,7 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a learningProvider object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a learningProvider object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -251,7 +251,7 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a learningProvider object. This API is available in the following national cloud deployments.
+        /// Update the properties of a learningProvider object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -269,7 +269,7 @@ namespace ApiSdk.EmployeeExperience.LearningProviders.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a learningProvider object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a learningProvider object.
         /// </summary>
         public class LearningProviderItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

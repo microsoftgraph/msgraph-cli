@@ -73,11 +73,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"appId", n => { AppId = n.GetStringValue(); } },
                 {"assignedTo", n => { AssignedTo = n.GetStringValue(); } },
                 {"comments", n => { Comments = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"feedback", n => { Feedback = n.GetEnumValue<AlertFeedback>(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"status", n => { Status = n.GetEnumValue<AlertStatus>(); } },
                 {"updatedDateTime", n => { UpdatedDateTime = n.GetDateTimeOffsetValue(); } },
                 {"user", n => { User = n.GetStringValue(); } },

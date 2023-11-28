@@ -101,7 +101,6 @@ namespace ApiSdk.Models.CallRecords {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"audioCodec", n => { AudioCodec = n.GetEnumValue<AudioCodec>(); } },
                 {"averageAudioDegradation", n => { AverageAudioDegradation = n.GetFloatValue(); } },
                 {"averageAudioNetworkJitter", n => { AverageAudioNetworkJitter = n.GetTimeSpanValue(); } },
@@ -124,6 +123,7 @@ namespace ApiSdk.Models.CallRecords {
                 {"maxPacketLossRate", n => { MaxPacketLossRate = n.GetFloatValue(); } },
                 {"maxRatioOfConcealedSamples", n => { MaxRatioOfConcealedSamples = n.GetFloatValue(); } },
                 {"maxRoundTripTime", n => { MaxRoundTripTime = n.GetTimeSpanValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"packetUtilization", n => { PacketUtilization = n.GetLongValue(); } },
                 {"postForwardErrorCorrectionPacketLossRate", n => { PostForwardErrorCorrectionPacketLossRate = n.GetFloatValue(); } },
                 {"rmsFreezeDuration", n => { RmsFreezeDuration = n.GetTimeSpanValue(); } },

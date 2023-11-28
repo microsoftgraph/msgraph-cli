@@ -53,12 +53,12 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
             return command;
         }
         /// <summary>
-        /// Delete a workflow object. This API is available in the following national cloud deployments.
+        /// Delete a workflow object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-deletedItemcontainer-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a workflow object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-deletedItemcontainer-delete?view=graph-rest-1.0";
+            command.Description = "Delete a workflow object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-deletedItemcontainer-delete?view=graph-rest-1.0";
             var workflowIdOption = new Option<string>("--workflow-id", description: "The unique identifier of workflow") {
             };
             workflowIdOption.IsRequired = true;
@@ -111,12 +111,12 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
             return command;
         }
         /// <summary>
-        /// Retrieve a deleted workflow object. This API is available in the following national cloud deployments.
+        /// Retrieve a deleted workflow object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identitygovernance-deleteditemcontainer-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve a deleted workflow object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-deleteditemcontainer-get?view=graph-rest-1.0";
+            command.Description = "Retrieve a deleted workflow object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identitygovernance-deleteditemcontainer-get?view=graph-rest-1.0";
             var workflowIdOption = new Option<string>("--workflow-id", description: "The unique identifier of workflow") {
             };
             workflowIdOption.IsRequired = true;
@@ -365,7 +365,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
         public WorkflowItemRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/lifecycleWorkflows/deletedItems/workflows/{workflow%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete a workflow object. This API is available in the following national cloud deployments.
+        /// Delete a workflow object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -381,7 +381,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a deleted workflow object. This API is available in the following national cloud deployments.
+        /// Retrieve a deleted workflow object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -397,7 +397,7 @@ namespace ApiSdk.IdentityGovernance.LifecycleWorkflows.DeletedItems.Workflows.It
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a deleted workflow object. This API is available in the following national cloud deployments.
+        /// Retrieve a deleted workflow object.
         /// </summary>
         public class WorkflowItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -65,12 +65,12 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             return command;
         }
         /// <summary>
-        /// Retrieve the properties of an approvalStage object. An approval stage is contained within an approval object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties of an approvalStage object. An approval stage is contained within an approval object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/approvalstage-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the properties of an approvalStage object. An approval stage is contained within an approval object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/approvalstage-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties of an approvalStage object. An approval stage is contained within an approval object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/approvalstage-get?view=graph-rest-1.0";
             var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "The unique identifier of appConsentRequest") {
             };
             appConsentRequestIdOption.IsRequired = true;
@@ -128,12 +128,12 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             return command;
         }
         /// <summary>
-        /// Approve or deny an approvalStage object in an approval. This API is available in the following national cloud deployments.
+        /// Approve or deny an approvalStage object in an approval.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/approvalstage-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Approve or deny an approvalStage object in an approval. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/approvalstage-update?view=graph-rest-1.0";
+            command.Description = "Approve or deny an approvalStage object in an approval.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/approvalstage-update?view=graph-rest-1.0";
             var appConsentRequestIdOption = new Option<string>("--app-consent-request-id", description: "The unique identifier of appConsentRequest") {
             };
             appConsentRequestIdOption.IsRequired = true;
@@ -218,7 +218,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties of an approvalStage object. An approval stage is contained within an approval object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties of an approvalStage object. An approval stage is contained within an approval object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -234,7 +234,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             return requestInfo;
         }
         /// <summary>
-        /// Approve or deny an approvalStage object in an approval. This API is available in the following national cloud deployments.
+        /// Approve or deny an approvalStage object in an approval.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -252,7 +252,7 @@ namespace ApiSdk.IdentityGovernance.AppConsent.AppConsentRequests.Item.UserConse
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties of an approvalStage object. An approval stage is contained within an approval object. This API is available in the following national cloud deployments.
+        /// Retrieve the properties of an approvalStage object. An approval stage is contained within an approval object.
         /// </summary>
         public class ApprovalStageItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

@@ -19,12 +19,12 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.Accept {
     /// </summary>
     public class AcceptRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Accept the specified event in a user calendar. This API is available in the following national cloud deployments.
+        /// Accept the specified event in a user calendar.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/event-accept?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Accept the specified event in a user calendar. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-accept?view=graph-rest-1.0";
+            command.Description = "Accept the specified event in a user calendar.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/event-accept?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -83,7 +83,7 @@ namespace ApiSdk.Users.Item.Calendars.Item.Events.Item.Accept {
         public AcceptRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/calendars/{calendar%2Did}/events/{event%2Did}/accept", rawUrl) {
         }
         /// <summary>
-        /// Accept the specified event in a user calendar. This API is available in the following national cloud deployments.
+        /// Accept the specified event in a user calendar.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

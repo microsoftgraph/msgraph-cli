@@ -83,7 +83,7 @@ namespace ApiSdk.Organization.Item.Branding.Localizations.Item.CustomCSS {
             command.AddOption(inputFileOption);
             var contentTypeOption = new Option<string>("--content-type", getDefaultValue: ()=> "image/bmp", description: "The request body content type.\nAllowed values: \n  - image/bmp\n  - image/jpg\n  - image/jpeg\n  - image/gif\n  - image/vnd.microsoft.icon\n  - image/png\n  - image/tiff") {
             };
-            contentTypeOption.IsRequired = true;
+            contentTypeOption.IsRequired = false;
             command.AddOption(contentTypeOption);
             var outputFileOption = new Option<FileInfo>("--output-file");
             command.AddOption(outputFileOption);

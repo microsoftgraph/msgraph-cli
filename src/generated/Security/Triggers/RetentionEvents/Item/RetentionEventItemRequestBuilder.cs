@@ -21,12 +21,12 @@ namespace ApiSdk.Security.Triggers.RetentionEvents.Item {
     /// </summary>
     public class RetentionEventItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Delete a retentionEvent object. This API is available in the following national cloud deployments.
+        /// Delete a retentionEvent object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-retentionevent-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a retentionEvent object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-retentionevent-delete?view=graph-rest-1.0";
+            command.Description = "Delete a retentionEvent object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-retentionevent-delete?view=graph-rest-1.0";
             var retentionEventIdOption = new Option<string>("--retention-event-id", description: "The unique identifier of retentionEvent") {
             };
             retentionEventIdOption.IsRequired = true;
@@ -55,12 +55,12 @@ namespace ApiSdk.Security.Triggers.RetentionEvents.Item {
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a retentionEvent object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a retentionEvent object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-retentionevent-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a retentionEvent object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-retentionevent-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of a retentionEvent object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-retentionevent-get?view=graph-rest-1.0";
             var retentionEventIdOption = new Option<string>("--retention-event-id", description: "The unique identifier of retentionEvent") {
             };
             retentionEventIdOption.IsRequired = true;
@@ -182,7 +182,7 @@ namespace ApiSdk.Security.Triggers.RetentionEvents.Item {
         public RetentionEventItemRequestBuilder(string rawUrl) : base("{+baseurl}/security/triggers/retentionEvents/{retentionEvent%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete a retentionEvent object. This API is available in the following national cloud deployments.
+        /// Delete a retentionEvent object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -198,7 +198,7 @@ namespace ApiSdk.Security.Triggers.RetentionEvents.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a retentionEvent object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a retentionEvent object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -232,7 +232,7 @@ namespace ApiSdk.Security.Triggers.RetentionEvents.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a retentionEvent object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a retentionEvent object.
         /// </summary>
         public class RetentionEventItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

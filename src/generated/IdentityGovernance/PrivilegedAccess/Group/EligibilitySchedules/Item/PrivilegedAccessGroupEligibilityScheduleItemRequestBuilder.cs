@@ -55,12 +55,12 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.EligibilitySchedules.
             return command;
         }
         /// <summary>
-        /// Read the properties and relationships of a privilegedAccessGroupEligibilitySchedule object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a privilegedAccessGroupEligibilitySchedule object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/privilegedaccessgroupeligibilityschedule-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Read the properties and relationships of a privilegedAccessGroupEligibilitySchedule object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/privilegedaccessgroupeligibilityschedule-get?view=graph-rest-1.0";
+            command.Description = "Read the properties and relationships of a privilegedAccessGroupEligibilitySchedule object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/privilegedaccessgroupeligibilityschedule-get?view=graph-rest-1.0";
             var privilegedAccessGroupEligibilityScheduleIdOption = new Option<string>("--privileged-access-group-eligibility-schedule-id", description: "The unique identifier of privilegedAccessGroupEligibilitySchedule") {
             };
             privilegedAccessGroupEligibilityScheduleIdOption.IsRequired = true;
@@ -219,7 +219,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.EligibilitySchedules.
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a privilegedAccessGroupEligibilitySchedule object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a privilegedAccessGroupEligibilitySchedule object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -253,7 +253,7 @@ namespace ApiSdk.IdentityGovernance.PrivilegedAccess.Group.EligibilitySchedules.
             return requestInfo;
         }
         /// <summary>
-        /// Read the properties and relationships of a privilegedAccessGroupEligibilitySchedule object. This API is available in the following national cloud deployments.
+        /// Read the properties and relationships of a privilegedAccessGroupEligibilitySchedule object.
         /// </summary>
         public class PrivilegedAccessGroupEligibilityScheduleItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

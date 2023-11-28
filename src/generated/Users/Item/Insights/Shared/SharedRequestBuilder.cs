@@ -100,12 +100,12 @@ namespace ApiSdk.Users.Item.Insights.Shared {
             return command;
         }
         /// <summary>
-        /// Calculated insight that includes the list of documents shared with a user. This insight includes documents hosted on OneDrive/SharePoint in the user&apos;s Microsoft 365 tenant that are shared with the user, and documents that are attached as files and sent to the user. This API is available in the following national cloud deployments.
+        /// Calculated insight that includes the list of documents shared with a user. This insight includes documents hosted on OneDrive/SharePoint in the user&apos;s Microsoft 365 tenant that are shared with the user, and documents that are attached as files and sent to the user.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/insights-list-shared?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Calculated insight that includes the list of documents shared with a user. This insight includes documents hosted on OneDrive/SharePoint in the user's Microsoft 365 tenant that are shared with the user, and documents that are attached as files and sent to the user. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/insights-list-shared?view=graph-rest-1.0";
+            command.Description = "Calculated insight that includes the list of documents shared with a user. This insight includes documents hosted on OneDrive/SharePoint in the user's Microsoft 365 tenant that are shared with the user, and documents that are attached as files and sent to the user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/insights-list-shared?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -211,7 +211,7 @@ namespace ApiSdk.Users.Item.Insights.Shared {
         public SharedRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/insights/shared{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Calculated insight that includes the list of documents shared with a user. This insight includes documents hosted on OneDrive/SharePoint in the user&apos;s Microsoft 365 tenant that are shared with the user, and documents that are attached as files and sent to the user. This API is available in the following national cloud deployments.
+        /// Calculated insight that includes the list of documents shared with a user. This insight includes documents hosted on OneDrive/SharePoint in the user&apos;s Microsoft 365 tenant that are shared with the user, and documents that are attached as files and sent to the user.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -245,7 +245,7 @@ namespace ApiSdk.Users.Item.Insights.Shared {
             return requestInfo;
         }
         /// <summary>
-        /// Calculated insight that includes the list of documents shared with a user. This insight includes documents hosted on OneDrive/SharePoint in the user&apos;s Microsoft 365 tenant that are shared with the user, and documents that are attached as files and sent to the user. This API is available in the following national cloud deployments.
+        /// Calculated insight that includes the list of documents shared with a user. This insight includes documents hosted on OneDrive/SharePoint in the user&apos;s Microsoft 365 tenant that are shared with the user, and documents that are attached as files and sent to the user.
         /// </summary>
         public class SharedRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

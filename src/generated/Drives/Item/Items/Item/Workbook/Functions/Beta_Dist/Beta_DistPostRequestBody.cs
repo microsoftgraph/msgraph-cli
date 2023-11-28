@@ -77,8 +77,8 @@ namespace ApiSdk.Drives.Item.Items.Item.Workbook.Functions.Beta_Dist {
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
                 {"A", n => { A = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
-                {"B", n => { B = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
                 {"alpha", n => { Alpha = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
+                {"B", n => { B = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
                 {"beta", n => { Beta = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
                 {"cumulative", n => { Cumulative = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },
                 {"x", n => { X = n.GetObjectValue<Json>(Json.CreateFromDiscriminatorValue); } },

@@ -68,12 +68,12 @@ namespace ApiSdk.Teams {
             return command;
         }
         /// <summary>
-        /// Create a new team. This API is available in the following national cloud deployments.
+        /// Create a new team.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/team-post?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Create a new team. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/team-post?view=graph-rest-1.0";
+            command.Description = "Create a new team.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/team-post?view=graph-rest-1.0";
             var bodyOption = new Option<string>("--body", description: "The request body") {
             };
             bodyOption.IsRequired = true;
@@ -127,12 +127,12 @@ namespace ApiSdk.Teams {
             return command;
         }
         /// <summary>
-        /// List all teams in an organization. This API is available in the following national cloud deployments.
+        /// List all teams in an organization.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/teams-list?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "List all teams in an organization. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/teams-list?view=graph-rest-1.0";
+            command.Description = "List all teams in an organization.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/teams-list?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -232,7 +232,7 @@ namespace ApiSdk.Teams {
         public TeamsRequestBuilder(string rawUrl) : base("{+baseurl}/teams{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// List all teams in an organization. This API is available in the following national cloud deployments.
+        /// List all teams in an organization.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -248,7 +248,7 @@ namespace ApiSdk.Teams {
             return requestInfo;
         }
         /// <summary>
-        /// Create a new team. This API is available in the following national cloud deployments.
+        /// Create a new team.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -266,7 +266,7 @@ namespace ApiSdk.Teams {
             return requestInfo;
         }
         /// <summary>
-        /// List all teams in an organization. This API is available in the following national cloud deployments.
+        /// List all teams in an organization.
         /// </summary>
         public class TeamsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

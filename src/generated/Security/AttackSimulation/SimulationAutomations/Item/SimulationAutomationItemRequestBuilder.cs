@@ -54,12 +54,12 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item {
             return command;
         }
         /// <summary>
-        /// Get an attack simulation automation for a tenant. This API is available in the following national cloud deployments.
+        /// Get an attack simulation automation for a tenant.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/simulationautomation-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Get an attack simulation automation for a tenant. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/simulationautomation-get?view=graph-rest-1.0";
+            command.Description = "Get an attack simulation automation for a tenant.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/simulationautomation-get?view=graph-rest-1.0";
             var simulationAutomationIdOption = new Option<string>("--simulation-automation-id", description: "The unique identifier of simulationAutomation") {
             };
             simulationAutomationIdOption.IsRequired = true;
@@ -207,7 +207,7 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get an attack simulation automation for a tenant. This API is available in the following national cloud deployments.
+        /// Get an attack simulation automation for a tenant.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -241,7 +241,7 @@ namespace ApiSdk.Security.AttackSimulation.SimulationAutomations.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Get an attack simulation automation for a tenant. This API is available in the following national cloud deployments.
+        /// Get an attack simulation automation for a tenant.
         /// </summary>
         public class SimulationAutomationItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

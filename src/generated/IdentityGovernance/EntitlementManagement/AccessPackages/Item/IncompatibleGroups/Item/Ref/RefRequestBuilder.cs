@@ -19,12 +19,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.In
     /// </summary>
     public class RefRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Remove a group from the list of groups that have been marked as incompatible on an accessPackage.   This API is available in the following national cloud deployments.
+        /// Remove a group from the list of groups that have been marked as incompatible on an accessPackage.  
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackage-delete-incompatiblegroup?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Remove a group from the list of groups that have been marked as incompatible on an accessPackage.   This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-delete-incompatiblegroup?view=graph-rest-1.0";
+            command.Description = "Remove a group from the list of groups that have been marked as incompatible on an accessPackage.  \n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackage-delete-incompatiblegroup?view=graph-rest-1.0";
             var accessPackageIdOption = new Option<string>("--access-package-id", description: "The unique identifier of accessPackage") {
             };
             accessPackageIdOption.IsRequired = true;
@@ -77,7 +77,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.In
         public RefRequestBuilder(string rawUrl) : base("{+baseurl}/identityGovernance/entitlementManagement/accessPackages/{accessPackage%2Did}/incompatibleGroups/{group%2Did}/$ref{?%40id*}", rawUrl) {
         }
         /// <summary>
-        /// Remove a group from the list of groups that have been marked as incompatible on an accessPackage.   This API is available in the following national cloud deployments.
+        /// Remove a group from the list of groups that have been marked as incompatible on an accessPackage.  
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -93,7 +93,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.AccessPackages.Item.In
             return requestInfo;
         }
         /// <summary>
-        /// Remove a group from the list of groups that have been marked as incompatible on an accessPackage.   This API is available in the following national cloud deployments.
+        /// Remove a group from the list of groups that have been marked as incompatible on an accessPackage.  
         /// </summary>
         public class RefRequestBuilderDeleteQueryParameters {
             /// <summary>Delete Uri</summary>

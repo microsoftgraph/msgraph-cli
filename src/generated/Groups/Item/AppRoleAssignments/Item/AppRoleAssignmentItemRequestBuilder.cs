@@ -20,12 +20,12 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments.Item {
     /// </summary>
     public class AppRoleAssignmentItemRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Deletes an appRoleAssignment that a group has been granted. This API is available in the following national cloud deployments.
+        /// Deletes an appRoleAssignment that a group has been granted.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/group-delete-approleassignments?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Deletes an appRoleAssignment that a group has been granted. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-delete-approleassignments?view=graph-rest-1.0";
+            command.Description = "Deletes an appRoleAssignment that a group has been granted.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/group-delete-approleassignments?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -190,7 +190,7 @@ namespace ApiSdk.Groups.Item.AppRoleAssignments.Item {
         public AppRoleAssignmentItemRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/appRoleAssignments/{appRoleAssignment%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Deletes an appRoleAssignment that a group has been granted. This API is available in the following national cloud deployments.
+        /// Deletes an appRoleAssignment that a group has been granted.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

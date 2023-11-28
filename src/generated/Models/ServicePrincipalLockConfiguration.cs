@@ -45,11 +45,11 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"allProperties", n => { AllProperties = n.GetBoolValue(); } },
                 {"credentialsWithUsageSign", n => { CredentialsWithUsageSign = n.GetBoolValue(); } },
                 {"credentialsWithUsageVerify", n => { CredentialsWithUsageVerify = n.GetBoolValue(); } },
                 {"isEnabled", n => { IsEnabled = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"tokenEncryptionKeyId", n => { TokenEncryptionKeyId = n.GetBoolValue(); } },
             };
         }

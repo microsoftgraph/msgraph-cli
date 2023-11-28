@@ -45,8 +45,8 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"key", n => { Key = n.GetEnumValue<ObjectMappingMetadata>(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"value", n => { Value = n.GetStringValue(); } },
             };
         }

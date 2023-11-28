@@ -125,7 +125,6 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"createdBy", n => { CreatedBy = n.GetStringValue(); } },
                 {"createdByIdentity", n => { CreatedByIdentity = n.GetObjectValue<IdentitySet>(IdentitySet.CreateFromDiscriminatorValue); } },
                 {"createdTime", n => { CreatedTime = n.GetDateTimeOffsetValue(); } },
@@ -137,6 +136,7 @@ namespace ApiSdk.Models {
                 {"lastModifiedTime", n => { LastModifiedTime = n.GetDateTimeOffsetValue(); } },
                 {"links", n => { Links = n.GetObjectValue<NotebookLinks>(NotebookLinks.CreateFromDiscriminatorValue); } },
                 {"name", n => { Name = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"sectionGroupsUrl", n => { SectionGroupsUrl = n.GetStringValue(); } },
                 {"sectionsUrl", n => { SectionsUrl = n.GetStringValue(); } },
                 {"self", n => { Self = n.GetStringValue(); } },

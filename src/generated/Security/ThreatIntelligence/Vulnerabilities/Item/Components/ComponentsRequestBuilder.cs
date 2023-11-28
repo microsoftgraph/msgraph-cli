@@ -97,12 +97,12 @@ namespace ApiSdk.Security.ThreatIntelligence.Vulnerabilities.Item.Components {
             return command;
         }
         /// <summary>
-        /// Get a list of vulnerabilityComponent objects related to a known vulnerability. This API is available in the following national cloud deployments.
+        /// Get a list of vulnerabilityComponent objects related to a known vulnerability.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/security-vulnerability-list-components?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get a list of vulnerabilityComponent objects related to a known vulnerability. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-vulnerability-list-components?view=graph-rest-1.0";
+            command.Description = "Get a list of vulnerabilityComponent objects related to a known vulnerability.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/security-vulnerability-list-components?view=graph-rest-1.0";
             var vulnerabilityIdOption = new Option<string>("--vulnerability-id", description: "The unique identifier of vulnerability") {
             };
             vulnerabilityIdOption.IsRequired = true;
@@ -208,7 +208,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Vulnerabilities.Item.Components {
         public ComponentsRequestBuilder(string rawUrl) : base("{+baseurl}/security/threatIntelligence/vulnerabilities/{vulnerability%2Did}/components{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get a list of vulnerabilityComponent objects related to a known vulnerability. This API is available in the following national cloud deployments.
+        /// Get a list of vulnerabilityComponent objects related to a known vulnerability.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -242,7 +242,7 @@ namespace ApiSdk.Security.ThreatIntelligence.Vulnerabilities.Item.Components {
             return requestInfo;
         }
         /// <summary>
-        /// Get a list of vulnerabilityComponent objects related to a known vulnerability. This API is available in the following national cloud deployments.
+        /// Get a list of vulnerabilityComponent objects related to a known vulnerability.
         /// </summary>
         public class ComponentsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

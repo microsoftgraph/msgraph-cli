@@ -83,11 +83,11 @@ namespace ApiSdk.Models.Security {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"accountName", n => { AccountName = n.GetStringValue(); } },
                 {"azureAdUserId", n => { AzureAdUserId = n.GetStringValue(); } },
                 {"displayName", n => { DisplayName = n.GetStringValue(); } },
                 {"domainName", n => { DomainName = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"userPrincipalName", n => { UserPrincipalName = n.GetStringValue(); } },
                 {"userSid", n => { UserSid = n.GetStringValue(); } },
             };

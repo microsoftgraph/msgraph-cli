@@ -57,9 +57,9 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"isDescending", n => { IsDescending = n.GetBoolValue(); } },
                 {"minimumCount", n => { MinimumCount = n.GetIntValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"prefixFilter", n => { PrefixFilter = n.GetStringValue(); } },
                 {"ranges", n => { Ranges = n.GetCollectionOfObjectValues<BucketAggregationRange>(BucketAggregationRange.CreateFromDiscriminatorValue)?.ToList(); } },
                 {"sortBy", n => { SortBy = n.GetEnumValue<BucketAggregationSortProperty>(); } },

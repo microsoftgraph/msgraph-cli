@@ -54,12 +54,12 @@ namespace ApiSdk.Agreements.Item.FileNamespace {
             return command;
         }
         /// <summary>
-        /// Retrieve the details of an agreement file, including the language and version information. The default file can have multiple versions, each with its own language, that can be retrieved by specifying the Accept-Language header. This API is available in the following national cloud deployments.
+        /// Retrieve the details of an agreement file, including the language and version information. The default file can have multiple versions, each with its own language, that can be retrieved by specifying the Accept-Language header.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/agreementfile-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve the details of an agreement file, including the language and version information. The default file can have multiple versions, each with its own language, that can be retrieved by specifying the Accept-Language header. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/agreementfile-get?view=graph-rest-1.0";
+            command.Description = "Retrieve the details of an agreement file, including the language and version information. The default file can have multiple versions, each with its own language, that can be retrieved by specifying the Accept-Language header.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/agreementfile-get?view=graph-rest-1.0";
             var agreementIdOption = new Option<string>("--agreement-id", description: "The unique identifier of agreement") {
             };
             agreementIdOption.IsRequired = true;
@@ -207,7 +207,7 @@ namespace ApiSdk.Agreements.Item.FileNamespace {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the details of an agreement file, including the language and version information. The default file can have multiple versions, each with its own language, that can be retrieved by specifying the Accept-Language header. This API is available in the following national cloud deployments.
+        /// Retrieve the details of an agreement file, including the language and version information. The default file can have multiple versions, each with its own language, that can be retrieved by specifying the Accept-Language header.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -241,7 +241,7 @@ namespace ApiSdk.Agreements.Item.FileNamespace {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the details of an agreement file, including the language and version information. The default file can have multiple versions, each with its own language, that can be retrieved by specifying the Accept-Language header. This API is available in the following national cloud deployments.
+        /// Retrieve the details of an agreement file, including the language and version information. The default file can have multiple versions, each with its own language, that can be retrieved by specifying the Accept-Language header.
         /// </summary>
         public class FileRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

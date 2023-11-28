@@ -119,12 +119,12 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.Relation
             return command;
         }
         /// <summary>
-        /// Get the different relation of a term] or [set] from the relations navigation property. This API is available in the following [national cloud deployments.
+        /// Get the different relation of a [term] or [set] from the relations navigation property.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/termstore-term-list-relations?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Get the different relation of a term] or [set] from the relations navigation property. This API is available in the following [national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-term-list-relations?view=graph-rest-1.0";
+            command.Description = "Get the different relation of a [term] or [set] from the relations navigation property.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/termstore-term-list-relations?view=graph-rest-1.0";
             var groupIdOption = new Option<string>("--group-id", description: "The unique identifier of group") {
             };
             groupIdOption.IsRequired = true;
@@ -248,7 +248,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.Relation
         public RelationsRequestBuilder(string rawUrl) : base("{+baseurl}/groups/{group%2Did}/sites/{site%2Did}/termStore/groups/{group%2Did1}/sets/{set%2Did}/relations{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Get the different relation of a term] or [set] from the relations navigation property. This API is available in the following [national cloud deployments.
+        /// Get the different relation of a [term] or [set] from the relations navigation property.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -282,7 +282,7 @@ namespace ApiSdk.Groups.Item.Sites.Item.TermStore.Groups.Item.Sets.Item.Relation
             return requestInfo;
         }
         /// <summary>
-        /// Get the different relation of a term] or [set] from the relations navigation property. This API is available in the following [national cloud deployments.
+        /// Get the different relation of a [term] or [set] from the relations navigation property.
         /// </summary>
         public class RelationsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

@@ -48,13 +48,13 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"behaviorDuringRetentionPeriod", n => { BehaviorDuringRetentionPeriod = n.GetEnumValue<BehaviorDuringRetentionPeriod>(); } },
                 {"isContentUpdateAllowed", n => { IsContentUpdateAllowed = n.GetBoolValue(); } },
                 {"isDeleteAllowed", n => { IsDeleteAllowed = n.GetBoolValue(); } },
                 {"isLabelUpdateAllowed", n => { IsLabelUpdateAllowed = n.GetBoolValue(); } },
                 {"isMetadataUpdateAllowed", n => { IsMetadataUpdateAllowed = n.GetBoolValue(); } },
                 {"isRecordLocked", n => { IsRecordLocked = n.GetBoolValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

@@ -19,12 +19,12 @@ namespace ApiSdk.Drives.Item.Items.Item.Checkout {
     /// </summary>
     public class CheckoutRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Check out a driveItem resource to prevent others from editing the document, and prevent your changes from being visible until the documented is checked in. This API is available in the following national cloud deployments.
+        /// Check out a driveItem resource to prevent others from editing the document, and prevent your changes from being visible until the documented is checked in.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/driveitem-checkout?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Check out a driveItem resource to prevent others from editing the document, and prevent your changes from being visible until the documented is checked in. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/driveitem-checkout?view=graph-rest-1.0";
+            command.Description = "Check out a driveItem resource to prevent others from editing the document, and prevent your changes from being visible until the documented is checked in.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/driveitem-checkout?view=graph-rest-1.0";
             var driveIdOption = new Option<string>("--drive-id", description: "The unique identifier of drive") {
             };
             driveIdOption.IsRequired = true;
@@ -64,7 +64,7 @@ namespace ApiSdk.Drives.Item.Items.Item.Checkout {
         public CheckoutRequestBuilder(string rawUrl) : base("{+baseurl}/drives/{drive%2Did}/items/{driveItem%2Did}/checkout", rawUrl) {
         }
         /// <summary>
-        /// Check out a driveItem resource to prevent others from editing the document, and prevent your changes from being visible until the documented is checked in. This API is available in the following national cloud deployments.
+        /// Check out a driveItem resource to prevent others from editing the document, and prevent your changes from being visible until the documented is checked in.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

@@ -45,12 +45,12 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
             return command;
         }
         /// <summary>
-        /// Delete a tokenIssuancePolicy object. This API is available in the following national cloud deployments.
+        /// Delete a tokenIssuancePolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/tokenissuancepolicy-delete?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildDeleteCommand() {
             var command = new Command("delete");
-            command.Description = "Delete a tokenIssuancePolicy object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tokenissuancepolicy-delete?view=graph-rest-1.0";
+            command.Description = "Delete a tokenIssuancePolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tokenissuancepolicy-delete?view=graph-rest-1.0";
             var tokenIssuancePolicyIdOption = new Option<string>("--token-issuance-policy-id", description: "The unique identifier of tokenIssuancePolicy") {
             };
             tokenIssuancePolicyIdOption.IsRequired = true;
@@ -129,12 +129,12 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
             return command;
         }
         /// <summary>
-        /// Update the properties of a tokenIssuancePolicy object. This API is available in the following national cloud deployments.
+        /// Update the properties of a tokenIssuancePolicy object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/tokenissuancepolicy-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update the properties of a tokenIssuancePolicy object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tokenissuancepolicy-update?view=graph-rest-1.0";
+            command.Description = "Update the properties of a tokenIssuancePolicy object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/tokenissuancepolicy-update?view=graph-rest-1.0";
             var tokenIssuancePolicyIdOption = new Option<string>("--token-issuance-policy-id", description: "The unique identifier of tokenIssuancePolicy") {
             };
             tokenIssuancePolicyIdOption.IsRequired = true;
@@ -191,7 +191,7 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
         public TokenIssuancePolicyItemRequestBuilder(string rawUrl) : base("{+baseurl}/policies/tokenIssuancePolicies/{tokenIssuancePolicy%2Did}{?%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Delete a tokenIssuancePolicy object. This API is available in the following national cloud deployments.
+        /// Delete a tokenIssuancePolicy object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -223,7 +223,7 @@ namespace ApiSdk.Policies.TokenIssuancePolicies.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update the properties of a tokenIssuancePolicy object. This API is available in the following national cloud deployments.
+        /// Update the properties of a tokenIssuancePolicy object.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

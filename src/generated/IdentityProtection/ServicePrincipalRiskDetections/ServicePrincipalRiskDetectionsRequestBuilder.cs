@@ -91,12 +91,12 @@ namespace ApiSdk.IdentityProtection.ServicePrincipalRiskDetections {
             return command;
         }
         /// <summary>
-        /// Retrieve the properties of a collection of servicePrincipalRiskDetection objects. This API is available in the following national cloud deployments.
+        /// Retrieve the properties of a collection of servicePrincipalRiskDetection objects.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/identityprotectionroot-list-serviceprincipalriskdetections?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve the properties of a collection of servicePrincipalRiskDetection objects. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identityprotectionroot-list-serviceprincipalriskdetections?view=graph-rest-1.0";
+            command.Description = "Retrieve the properties of a collection of servicePrincipalRiskDetection objects.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/identityprotectionroot-list-serviceprincipalriskdetections?view=graph-rest-1.0";
             var topOption = new Option<int?>("--top", description: "Show only the first n items") {
             };
             topOption.IsRequired = false;
@@ -196,7 +196,7 @@ namespace ApiSdk.IdentityProtection.ServicePrincipalRiskDetections {
         public ServicePrincipalRiskDetectionsRequestBuilder(string rawUrl) : base("{+baseurl}/identityProtection/servicePrincipalRiskDetections{?%24top,%24skip,%24search,%24filter,%24count,%24orderby,%24select,%24expand}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve the properties of a collection of servicePrincipalRiskDetection objects. This API is available in the following national cloud deployments.
+        /// Retrieve the properties of a collection of servicePrincipalRiskDetection objects.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -230,7 +230,7 @@ namespace ApiSdk.IdentityProtection.ServicePrincipalRiskDetections {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve the properties of a collection of servicePrincipalRiskDetection objects. This API is available in the following national cloud deployments.
+        /// Retrieve the properties of a collection of servicePrincipalRiskDetection objects.
         /// </summary>
         public class ServicePrincipalRiskDetectionsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

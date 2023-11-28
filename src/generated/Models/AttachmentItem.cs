@@ -65,12 +65,12 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"attachmentType", n => { AttachmentType = n.GetEnumValue<AttachmentType>(); } },
                 {"contentId", n => { ContentId = n.GetStringValue(); } },
                 {"contentType", n => { ContentType = n.GetStringValue(); } },
                 {"isInline", n => { IsInline = n.GetBoolValue(); } },
                 {"name", n => { Name = n.GetStringValue(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"size", n => { Size = n.GetLongValue(); } },
             };
         }

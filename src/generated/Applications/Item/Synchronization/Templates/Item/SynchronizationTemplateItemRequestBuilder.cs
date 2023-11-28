@@ -116,12 +116,12 @@ namespace ApiSdk.Applications.Item.Synchronization.Templates.Item {
             return command;
         }
         /// <summary>
-        /// Update (override) the synchronization template associated with a given application. This API is available in the following national cloud deployments.
+        /// Update (override) the synchronization template associated with a given application.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/synchronization-synchronizationtemplate-update?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPatchCommand() {
             var command = new Command("patch");
-            command.Description = "Update (override) the synchronization template associated with a given application. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronizationtemplate-update?view=graph-rest-1.0";
+            command.Description = "Update (override) the synchronization template associated with a given application.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/synchronization-synchronizationtemplate-update?view=graph-rest-1.0";
             var applicationIdOption = new Option<string>("--application-id", description: "The unique identifier of application") {
             };
             applicationIdOption.IsRequired = true;
@@ -242,7 +242,7 @@ namespace ApiSdk.Applications.Item.Synchronization.Templates.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Update (override) the synchronization template associated with a given application. This API is available in the following national cloud deployments.
+        /// Update (override) the synchronization template associated with a given application.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -99,7 +99,6 @@ namespace ApiSdk.Models {
         /// </summary>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers() {
             return new Dictionary<string, Action<IParseNode>> {
-                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
                 {"excludeGroups", n => { ExcludeGroups = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"excludeGuestsOrExternalUsers", n => { ExcludeGuestsOrExternalUsers = n.GetObjectValue<ConditionalAccessGuestsOrExternalUsers>(ConditionalAccessGuestsOrExternalUsers.CreateFromDiscriminatorValue); } },
                 {"excludeRoles", n => { ExcludeRoles = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
@@ -108,6 +107,7 @@ namespace ApiSdk.Models {
                 {"includeGuestsOrExternalUsers", n => { IncludeGuestsOrExternalUsers = n.GetObjectValue<ConditionalAccessGuestsOrExternalUsers>(ConditionalAccessGuestsOrExternalUsers.CreateFromDiscriminatorValue); } },
                 {"includeRoles", n => { IncludeRoles = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
                 {"includeUsers", n => { IncludeUsers = n.GetCollectionOfPrimitiveValues<string>()?.ToList(); } },
+                {"@odata.type", n => { OdataType = n.GetStringValue(); } },
             };
         }
         /// <summary>

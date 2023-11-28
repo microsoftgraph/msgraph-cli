@@ -53,12 +53,12 @@ namespace ApiSdk.Reports.DailyPrintUsageByPrinter.Item {
             return command;
         }
         /// <summary>
-        /// Retrieve a usage summary for a printer for a particular time period. For descriptions of each of the endpoints, see printUsageByPrinter. This API is available in the following national cloud deployments.
+        /// Retrieve a usage summary for a printer for a particular time period. For descriptions of each of the endpoints, see printUsageByPrinter.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/printusagebyprinter-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "Retrieve a usage summary for a printer for a particular time period. For descriptions of each of the endpoints, see printUsageByPrinter. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printusagebyprinter-get?view=graph-rest-1.0";
+            command.Description = "Retrieve a usage summary for a printer for a particular time period. For descriptions of each of the endpoints, see printUsageByPrinter.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/printusagebyprinter-get?view=graph-rest-1.0";
             var printUsageByPrinterIdOption = new Option<string>("--print-usage-by-printer-id", description: "The unique identifier of printUsageByPrinter") {
             };
             printUsageByPrinterIdOption.IsRequired = true;
@@ -181,7 +181,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByPrinter.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a usage summary for a printer for a particular time period. For descriptions of each of the endpoints, see printUsageByPrinter. This API is available in the following national cloud deployments.
+        /// Retrieve a usage summary for a printer for a particular time period. For descriptions of each of the endpoints, see printUsageByPrinter.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -215,7 +215,7 @@ namespace ApiSdk.Reports.DailyPrintUsageByPrinter.Item {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a usage summary for a printer for a particular time period. For descriptions of each of the endpoints, see printUsageByPrinter. This API is available in the following national cloud deployments.
+        /// Retrieve a usage summary for a printer for a particular time period. For descriptions of each of the endpoints, see printUsageByPrinter.
         /// </summary>
         public class PrintUsageByPrinterItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

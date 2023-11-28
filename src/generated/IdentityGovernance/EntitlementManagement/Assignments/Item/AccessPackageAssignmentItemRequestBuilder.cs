@@ -87,12 +87,12 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
             return command;
         }
         /// <summary>
-        /// In Microsoft Entra entitlement management, retrieve the properties and relationships of an accessPackageAssignment object. This API is available in the following national cloud deployments.
+        /// In Microsoft Entra entitlement management, retrieve the properties and relationships of an accessPackageAssignment object.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/accesspackageassignment-get?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildGetCommand() {
             var command = new Command("get");
-            command.Description = "In Microsoft Entra entitlement management, retrieve the properties and relationships of an accessPackageAssignment object. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackageassignment-get?view=graph-rest-1.0";
+            command.Description = "In Microsoft Entra entitlement management, retrieve the properties and relationships of an accessPackageAssignment object.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/accesspackageassignment-get?view=graph-rest-1.0";
             var accessPackageAssignmentIdOption = new Option<string>("--access-package-assignment-id", description: "The unique identifier of accessPackageAssignment") {
             };
             accessPackageAssignmentIdOption.IsRequired = true;
@@ -245,7 +245,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// In Microsoft Entra entitlement management, retrieve the properties and relationships of an accessPackageAssignment object. This API is available in the following national cloud deployments.
+        /// In Microsoft Entra entitlement management, retrieve the properties and relationships of an accessPackageAssignment object.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -279,7 +279,7 @@ namespace ApiSdk.IdentityGovernance.EntitlementManagement.Assignments.Item {
             return requestInfo;
         }
         /// <summary>
-        /// In Microsoft Entra entitlement management, retrieve the properties and relationships of an accessPackageAssignment object. This API is available in the following national cloud deployments.
+        /// In Microsoft Entra entitlement management, retrieve the properties and relationships of an accessPackageAssignment object.
         /// </summary>
         public class AccessPackageAssignmentItemRequestBuilderGetQueryParameters {
             /// <summary>Expand related entities</summary>

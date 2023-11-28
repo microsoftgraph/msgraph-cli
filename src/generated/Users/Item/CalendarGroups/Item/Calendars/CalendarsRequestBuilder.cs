@@ -54,12 +54,12 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars {
             return command;
         }
         /// <summary>
-        /// Use this API to create a new calendar in a calendar group for a user. This API is available in the following national cloud deployments.
+        /// Use this API to create a new calendar in a calendar group for a user.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/calendargroup-post-calendars?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildCreateCommand() {
             var command = new Command("create");
-            command.Description = "Use this API to create a new calendar in a calendar group for a user. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/calendargroup-post-calendars?view=graph-rest-1.0";
+            command.Description = "Use this API to create a new calendar in a calendar group for a user.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/calendargroup-post-calendars?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -110,12 +110,12 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars {
             return command;
         }
         /// <summary>
-        /// Retrieve a list of calendars belonging to a calendar group. This API is available in the following national cloud deployments.
+        /// Retrieve a list of calendars belonging to a calendar group.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/calendargroup-list-calendars?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildListCommand() {
             var command = new Command("list");
-            command.Description = "Retrieve a list of calendars belonging to a calendar group. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/calendargroup-list-calendars?view=graph-rest-1.0";
+            command.Description = "Retrieve a list of calendars belonging to a calendar group.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/calendargroup-list-calendars?view=graph-rest-1.0";
             var userIdOption = new Option<string>("--user-id", description: "The unique identifier of user. Use 'me' for the currently signed in user.") {
             };
             userIdOption.IsRequired = true;
@@ -214,7 +214,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars {
         public CalendarsRequestBuilder(string rawUrl) : base("{+baseurl}/users/{user%2Did}/calendarGroups/{calendarGroup%2Did}/calendars{?%24top,%24skip,%24filter,%24count,%24orderby,%24select}", rawUrl) {
         }
         /// <summary>
-        /// Retrieve a list of calendars belonging to a calendar group. This API is available in the following national cloud deployments.
+        /// Retrieve a list of calendars belonging to a calendar group.
         /// </summary>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -230,7 +230,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars {
             return requestInfo;
         }
         /// <summary>
-        /// Use this API to create a new calendar in a calendar group for a user. This API is available in the following national cloud deployments.
+        /// Use this API to create a new calendar in a calendar group for a user.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -248,7 +248,7 @@ namespace ApiSdk.Users.Item.CalendarGroups.Item.Calendars {
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a list of calendars belonging to a calendar group. This API is available in the following national cloud deployments.
+        /// Retrieve a list of calendars belonging to a calendar group.
         /// </summary>
         public class CalendarsRequestBuilderGetQueryParameters {
             /// <summary>Include count of items</summary>

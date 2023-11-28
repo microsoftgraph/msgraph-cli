@@ -20,12 +20,12 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Publish {
     /// </summary>
     public class PublishRequestBuilder : BaseCliRequestBuilder {
         /// <summary>
-        /// Publish the specified browserSiteList for devices to download. This API is available in the following national cloud deployments.
+        /// Publish the specified browserSiteList for devices to download.
         /// Find more info here <see href="https://learn.microsoft.com/graph/api/browsersitelist-publish?view=graph-rest-1.0" />
         /// </summary>
         public Command BuildPostCommand() {
             var command = new Command("post");
-            command.Description = "Publish the specified browserSiteList for devices to download. This API is available in the following national cloud deployments.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/browsersitelist-publish?view=graph-rest-1.0";
+            command.Description = "Publish the specified browserSiteList for devices to download.\n\nFind more info here:\n  https://learn.microsoft.com/graph/api/browsersitelist-publish?view=graph-rest-1.0";
             var browserSiteListIdOption = new Option<string>("--browser-site-list-id", description: "The unique identifier of browserSiteList") {
             };
             browserSiteListIdOption.IsRequired = true;
@@ -82,7 +82,7 @@ namespace ApiSdk.Admin.Edge.InternetExplorerMode.SiteLists.Item.Publish {
         public PublishRequestBuilder(string rawUrl) : base("{+baseurl}/admin/edge/internetExplorerMode/siteLists/{browserSiteList%2Did}/publish", rawUrl) {
         }
         /// <summary>
-        /// Publish the specified browserSiteList for devices to download. This API is available in the following national cloud deployments.
+        /// Publish the specified browserSiteList for devices to download.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
